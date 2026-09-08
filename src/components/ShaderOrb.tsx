@@ -28,7 +28,7 @@ interface PhaseConfig {
 
 const PHASES: PhaseConfig[] = [
   {
-    label: "01 GROUND TRUTH",
+    label: "GROUND TRUTH",
     accent: "#f59e0b",
     mid: "#fbbf24",
     light: "#fde68a",
@@ -36,7 +36,7 @@ const PHASES: PhaseConfig[] = [
     ringBorder: "rgba(245, 158, 11, 0.4)",
   },
   {
-    label: "02 ZERO FRICTION",
+    label: "ZERO FRICTION",
     accent: "#14b8a6",
     mid: "#2dd4bf",
     light: "#99f6e4",
@@ -44,7 +44,7 @@ const PHASES: PhaseConfig[] = [
     ringBorder: "rgba(20, 184, 166, 0.4)",
   },
   {
-    label: "03 MVP FIRST",
+    label: "MVP FIRST",
     accent: "#0ea5e9",
     mid: "#38bdf8",
     light: "#bae6fd",
@@ -52,7 +52,7 @@ const PHASES: PhaseConfig[] = [
     ringBorder: "rgba(56, 189, 248, 0.4)",
   },
   {
-    label: "04 GO TO MARKET",
+    label: "GO TO MARKET",
     accent: "#6366f1",
     mid: "#818cf8",
     light: "#c7d2fe",
@@ -60,7 +60,7 @@ const PHASES: PhaseConfig[] = [
     ringBorder: "rgba(99, 102, 241, 0.4)",
   },
   {
-    label: "05 FIND LEVERAGE",
+    label: "FIND LEVERAGE",
     accent: "#a855f7",
     mid: "#c084fc",
     light: "#e9d5ff",
@@ -68,7 +68,7 @@ const PHASES: PhaseConfig[] = [
     ringBorder: "rgba(168, 85, 247, 0.4)",
   },
   {
-    label: "06 SHARED OWNERSHIP",
+    label: "SHARED OWNERSHIP",
     accent: "#fb7185",
     mid: "#fda4af",
     light: "#fecdd3",
@@ -193,9 +193,9 @@ export const ShaderOrb: React.FC<ShaderOrbProps> = ({
         aria-hidden="true"
       />
 
-      {/* Main Breathing Orb Wrapper (scaled to ~90-100px on mobile, 280-310px on desktop) with dynamic phase glow */}
+      {/* Main Breathing Orb Wrapper (compact ~88-96px on mobile, responsive clamp 160px-215px on desktop) with dynamic phase glow */}
       <div
-        className={`relative w-[96px] h-[96px] sm:w-[110px] sm:h-[110px] lg:w-[280px] lg:h-[280px] xl:w-[310px] xl:h-[310px] rounded-full shrink-0 select-none principles-orb-glow ${
+        className={`relative w-[88px] h-[88px] sm:w-[96px] sm:h-[96px] lg:w-[clamp(160px,21vh,215px)] lg:h-[clamp(160px,21vh,215px)] rounded-full shrink-0 select-none principles-orb-glow ${
           shouldReduceMotion ? "principles-orb-static" : "principles-orb-breathe"
         }`}
       >
@@ -295,7 +295,7 @@ export const ShaderOrb: React.FC<ShaderOrbProps> = ({
 
         {/* Phase label: uppercase, white text on dark scrim/pill for contrast guarantee */}
         <div
-          className="absolute inset-0 z-20 rounded-full flex items-center justify-center select-none pointer-events-none p-1.5"
+          className="absolute inset-0 z-20 rounded-full flex items-center justify-center select-none pointer-events-none p-1"
           aria-hidden="true"
         >
           <AnimatePresence mode="wait">
@@ -305,9 +305,9 @@ export const ShaderOrb: React.FC<ShaderOrbProps> = ({
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.94 }}
               transition={{ duration: shouldReduceMotion ? 0.05 : 0.35, ease: "easeInOut" }}
-              className="px-2 py-0.5 sm:px-3 sm:py-1.5 rounded-full bg-black/35 backdrop-blur-sm border border-white/10 shadow-sm flex items-center justify-center max-w-[92%] sm:max-w-none"
+              className="px-2 py-0.5 sm:px-2.5 sm:py-1 lg:px-3 lg:py-1 rounded-full bg-black/35 backdrop-blur-sm border border-white/10 shadow-sm flex items-center justify-center max-w-[86%] sm:max-w-none"
             >
-              <span className="font-inter font-semibold text-[8px] sm:text-[10px] lg:text-[12px] xl:text-[13px] uppercase tracking-[0.08em] sm:tracking-[0.16em] text-white text-center whitespace-nowrap">
+              <span className="font-inter font-semibold text-[7.5px] sm:text-[9px] lg:text-[clamp(9.5px,1.3vh,11.5px)] uppercase tracking-[0.08em] sm:tracking-[0.14em] text-white text-center whitespace-nowrap">
                 {currentPhase.label}
               </span>
             </motion.div>
