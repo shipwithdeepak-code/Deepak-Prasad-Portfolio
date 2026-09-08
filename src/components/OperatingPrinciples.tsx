@@ -144,23 +144,14 @@ export const OperatingPrinciples: React.FC<OperatingPrinciplesProps> = ({
     return (
       <motion.div
         key={item.id}
-        initial={{ opacity: 0, y: isMobile ? 16 : 0 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={isMobile ? { opacity: 0, y: 16 } : { opacity: 0 }}
+        whileInView={isMobile ? { opacity: 1, y: 0 } : { opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.45, delay: isMobile ? item.delayIndex * 0.06 : 0.1 }}
-        style={
-          !isMobile
-            ? ({
-                "--x": item.translateX,
-                "--y": item.translateY,
-                "--rot": item.rotate,
-              } as React.CSSProperties)
-            : undefined
-        }
         className={
           isMobile
             ? "principle-card w-full max-w-md flex flex-col"
-            : `principle-card ${item.className} w-[380px] flex flex-col`
+            : `principle-card card-${item.number} ${item.className} w-[340px] flex flex-col`
         }
       >
         {/* 1. Icon + Title (inline, no box/badge, colored icon glyph) */}
@@ -246,9 +237,12 @@ export const OperatingPrinciples: React.FC<OperatingPrinciplesProps> = ({
             2. MOBILE FALLBACK (< lg): Orb first (centered), then 6 cards stacked
             ========================================================================= */}
         <div className="lg:hidden flex flex-col items-center gap-8 w-full max-w-md mx-auto mt-8">
-          {/* Centered compact orb */}
-          <div className="flex items-center justify-center py-2">
+          {/* Centered compact orb with interactive caption */}
+          <div className="flex flex-col items-center justify-center py-2 gap-2.5">
             <ShaderOrb />
+            <p className="font-inter text-[11px] text-[#042619]/50 text-center select-none">
+              A shader I hand-built — click to cycle through the principles.
+            </p>
           </div>
 
           {/* All 6 cards in numeric order 01 → 06 */}
@@ -270,9 +264,12 @@ export const OperatingPrinciples: React.FC<OperatingPrinciplesProps> = ({
             {leftItems.map((item) => renderItem(item, false))}
           </div>
 
-          {/* Center column: the orb wrapper, vertically centered with no excess height */}
-          <div className="principles-orb-wrapper flex items-center justify-center">
+          {/* Center column: the orb wrapper with interactive caption */}
+          <div className="principles-orb-wrapper flex flex-col items-center justify-center gap-3">
             <ShaderOrb />
+            <p className="font-inter text-[11px] text-[#042619]/50 text-center select-none max-w-[260px]">
+              A shader I hand-built — click to cycle through the principles.
+            </p>
           </div>
 
           {/* Right column (top to bottom): 04, 05, 06 */}

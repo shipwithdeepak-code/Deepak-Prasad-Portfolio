@@ -30,6 +30,22 @@
   transform: scale(1);
 }
 
+.principles-orb-glow {
+  box-shadow: 0 0 30px var(--orb-glow, rgba(56, 189, 248, 0.25));
+  transition: box-shadow 0.7s ease;
+}
+
+@media (min-width: 1024px) {
+  .principles-orb-glow {
+    box-shadow: 0 0 60px var(--orb-glow, rgba(56, 189, 248, 0.3));
+  }
+}
+
+.principles-orb-ring {
+  border-color: var(--orb-ring-border, rgba(56, 189, 248, 0.3));
+  transition: border-color 0.7s ease;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .principles-orb-breathe,
   .principles-ring-breathe {
@@ -145,6 +161,7 @@
   border-radius: 16px;
   padding: 24px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  position: static;
 }
 
 .principle-card p {
@@ -163,79 +180,85 @@
 
 .principles-layout {
   display: grid;
-  grid-template-columns: 380px auto 380px;
+  grid-template-columns: 510px auto 510px;
   align-items: center;
   justify-content: center;
-  gap: 64px;
-  max-width: 1240px;
+  gap: 32px;
+  max-width: 1360px;
   margin: 40px auto 0;
 }
 
-.principles-left,
+.principles-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  width: 510px;
+}
+
 .principles-right {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  align-items: flex-end;
+  gap: 12px;
+  width: 510px;
 }
 
 .principles-left > *,
 .principles-right > * {
+  position: static;
+  width: 340px;
   animation: card-float 7s ease-in-out infinite;
-  width: 380px;
 }
 
-/* Staggered fanned positions per card (translateX + translateY + rotate) and animation delays */
+/* Responsive scaling for viewports between 1024px and 1360px */
+@media (min-width: 1024px) and (max-width: 1360px) {
+  .principles-layout {
+    transform: scale(0.85);
+    transform-origin: center center;
+  }
+}
+
+/* Staggered zigzag positions per card (margin-left/right, rotate) and animation delays */
+.card-01,
 .principles-card-01 {
-  --x: -60px;
-  --y: -5px;
-  --rot: -1deg;
-  translate: var(--x) var(--y);
-  rotate: var(--rot);
+  margin-left: 0px;
+  rotate: -1deg;
   animation-delay: 0s !important;
 }
 
+.card-02,
 .principles-card-02 {
-  --x: -30px;
-  --y: 12px;
-  --rot: 1deg;
-  translate: var(--x) var(--y);
-  rotate: var(--rot);
+  margin-left: 170px;
+  rotate: 1deg;
   animation-delay: 1s !important;
 }
 
+.card-03,
 .principles-card-03 {
-  --x: -10px;
-  --y: -2px;
-  --rot: -0.5deg;
-  translate: var(--x) var(--y);
-  rotate: var(--rot);
+  margin-left: 0px;
+  rotate: -0.5deg;
   animation-delay: 2s !important;
 }
 
+.card-04,
 .principles-card-04 {
-  --x: 60px;
-  --y: 8px;
-  --rot: 1deg;
-  translate: var(--x) var(--y);
-  rotate: var(--rot);
+  margin-right: 0px;
+  rotate: 1deg;
   animation-delay: 3s !important;
 }
 
+.card-05,
 .principles-card-05 {
-  --x: 30px;
-  --y: -10px;
-  --rot: -1.5deg;
-  translate: var(--x) var(--y);
-  rotate: var(--rot);
+  margin-right: 170px;
+  rotate: -1.5deg;
   animation-delay: 4s !important;
 }
 
+.card-06,
 .principles-card-06 {
-  --x: 10px;
-  --y: 14px;
-  --rot: 0.5deg;
-  translate: var(--x) var(--y);
-  rotate: var(--rot);
+  margin-right: 0px;
+  rotate: 0.5deg;
   animation-delay: 5s !important;
 }
 

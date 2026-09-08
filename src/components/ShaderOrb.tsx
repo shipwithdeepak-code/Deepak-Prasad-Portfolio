@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import {
   Shader,
@@ -17,7 +17,65 @@ interface ShaderOrbProps {
   forceFallback?: boolean;
 }
 
-const PHASES = ["BREATHE IN", "HOLD", "BREATHE OUT"];
+interface PhaseConfig {
+  label: string;
+  accent: string;
+  mid: string;
+  light: string;
+  glowRgba: string;
+  ringBorder: string;
+}
+
+const PHASES: PhaseConfig[] = [
+  {
+    label: "01 GROUND TRUTH",
+    accent: "#f59e0b",
+    mid: "#fbbf24",
+    light: "#fde68a",
+    glowRgba: "rgba(245, 158, 11, 0.35)",
+    ringBorder: "rgba(245, 158, 11, 0.4)",
+  },
+  {
+    label: "02 ZERO FRICTION",
+    accent: "#14b8a6",
+    mid: "#2dd4bf",
+    light: "#99f6e4",
+    glowRgba: "rgba(20, 184, 166, 0.35)",
+    ringBorder: "rgba(20, 184, 166, 0.4)",
+  },
+  {
+    label: "03 MVP FIRST",
+    accent: "#0ea5e9",
+    mid: "#38bdf8",
+    light: "#bae6fd",
+    glowRgba: "rgba(56, 189, 248, 0.35)",
+    ringBorder: "rgba(56, 189, 248, 0.4)",
+  },
+  {
+    label: "04 GO TO MARKET",
+    accent: "#6366f1",
+    mid: "#818cf8",
+    light: "#c7d2fe",
+    glowRgba: "rgba(99, 102, 241, 0.35)",
+    ringBorder: "rgba(99, 102, 241, 0.4)",
+  },
+  {
+    label: "05 FIND LEVERAGE",
+    accent: "#a855f7",
+    mid: "#c084fc",
+    light: "#e9d5ff",
+    glowRgba: "rgba(168, 85, 247, 0.35)",
+    ringBorder: "rgba(168, 85, 247, 0.4)",
+  },
+  {
+    label: "06 SHARED OWNERSHIP",
+    accent: "#fb7185",
+    mid: "#fda4af",
+    light: "#fecdd3",
+    glowRgba: "rgba(251, 113, 133, 0.35)",
+    ringBorder: "rgba(251, 113, 133, 0.4)",
+  },
+];
 
 export const ShaderOrb: React.FC<ShaderOrbProps> = ({
   className = "",
@@ -25,14 +83,48 @@ export const ShaderOrb: React.FC<ShaderOrbProps> = ({
 }) => {
   const shouldReduceMotion = Boolean(useReducedMotion());
   const [phaseIndex, setPhaseIndex] = useState(0);
+  const [isPulsing, setIsPulsing] = useState(false);
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const pulseTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Cycle through "BREATHE IN" → "HOLD" → "BREATHE OUT" every 4 seconds
-  useEffect(() => {
-    const timer = setInterval(() => {
+  // Auto-advance every 4 seconds
+  const startTimer = useCallback(() => {
+    if (timerRef.current) clearInterval(timerRef.current);
+    timerRef.current = setInterval(() => {
       setPhaseIndex((prev) => (prev + 1) % PHASES.length);
     }, 4000);
-    return () => clearInterval(timer);
   }, []);
+
+  useEffect(() => {
+    startTimer();
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+      if (pulseTimeoutRef.current) clearTimeout(pulseTimeoutRef.current);
+    };
+  }, [startTimer]);
+
+  // Click / interaction: advance immediately and reset 4-second timer
+  const advancePhase = useCallback(() => {
+    setPhaseIndex((prev) => (prev + 1) % PHASES.length);
+    startTimer();
+
+    if (!shouldReduceMotion) {
+      if (pulseTimeoutRef.current) clearTimeout(pulseTimeoutRef.current);
+      setIsPulsing(true);
+      pulseTimeoutRef.current = setTimeout(() => {
+        setIsPulsing(false);
+      }, 300);
+    }
+  }, [shouldReduceMotion, startTimer]);
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      advancePhase();
+    }
+  };
+
+  const currentPhase = PHASES[phaseIndex];
 
   const [canUseShader, setCanUseShader] = useState<boolean>(() => {
     if (typeof window === "undefined" || forceFallback) return false;
@@ -77,18 +169,33 @@ export const ShaderOrb: React.FC<ShaderOrbProps> = ({
   const showShader = canUseShader && !shouldReduceMotion && !forceFallback;
 
   return (
-    <div className={`relative flex items-center justify-center ${className}`}>
-      {/* Outer thin ring breathing in sync (scale 1 -> 1.07) */}
+    <motion.div
+      role="button"
+      tabIndex={0}
+      onClick={advancePhase}
+      onKeyDown={handleKeyDown}
+      aria-label={`Operating principle: ${currentPhase.label}. Click to cycle through the principles.`}
+      animate={isPulsing && !shouldReduceMotion ? { scale: [1, 1.08, 1] } : { scale: 1 }}
+      transition={{ duration: 0.3, ease: "easeOut" }}
+      className={`relative flex items-center justify-center cursor-pointer select-none rounded-full outline-none focus-visible:ring-2 focus-visible:ring-offset-4 focus-visible:ring-[#188E39] ${className}`}
+      style={
+        {
+          "--orb-glow": currentPhase.glowRgba,
+          "--orb-ring-border": currentPhase.ringBorder,
+        } as React.CSSProperties
+      }
+    >
+      {/* Outer thin ring breathing in sync (scale 1 -> 1.07) with dynamic phase border color */}
       <div
-        className={`absolute -inset-2.5 sm:-inset-3 lg:-inset-4 rounded-full border border-sky-300/30 pointer-events-none ${
+        className={`absolute -inset-2.5 sm:-inset-3 lg:-inset-4 rounded-full border principles-orb-ring pointer-events-none ${
           shouldReduceMotion ? "" : "principles-ring-breathe"
         }`}
         aria-hidden="true"
       />
 
-      {/* Main Breathing Orb Wrapper (scaled to ~90-100px on mobile, 280-310px on desktop) */}
+      {/* Main Breathing Orb Wrapper (scaled to ~90-100px on mobile, 280-310px on desktop) with dynamic phase glow */}
       <div
-        className={`relative w-[96px] h-[96px] sm:w-[110px] sm:h-[110px] lg:w-[280px] lg:h-[280px] xl:w-[310px] xl:h-[310px] rounded-full shrink-0 select-none shadow-[0_0_30px_rgba(56,189,248,0.25)] lg:shadow-[0_0_60px_rgba(56,189,248,0.3)] ${
+        className={`relative w-[96px] h-[96px] sm:w-[110px] sm:h-[110px] lg:w-[280px] lg:h-[280px] xl:w-[310px] xl:h-[310px] rounded-full shrink-0 select-none principles-orb-glow ${
           shouldReduceMotion ? "principles-orb-static" : "principles-orb-breathe"
         }`}
       >
@@ -96,7 +203,7 @@ export const ShaderOrb: React.FC<ShaderOrbProps> = ({
         <div className="w-full h-full rounded-full overflow-hidden relative">
           {showShader ? (
             <Shader
-              className="w-full h-full block cursor-pointer"
+              className="w-full h-full block"
               style={{ width: "100%", height: "100%" }}
               onUnavailable={() => setCanUseShader(false)}
             >
@@ -109,12 +216,12 @@ export const ShaderOrb: React.FC<ShaderOrbProps> = ({
                 radius={1}
               >
                 <Swirl
-                  colorA="#bae6fd"
-                  colorB="#38bdf8"
+                  colorA={currentPhase.light}
+                  colorB={currentPhase.mid}
                   stops={[
-                    { color: "#bae6fd", position: 0 },
-                    { color: "#38bdf8", position: 0.5 },
-                    { color: "#0ea5e9", position: 1 },
+                    { color: currentPhase.light, position: 0 },
+                    { color: currentPhase.mid, position: 0.5 },
+                    { color: currentPhase.accent, position: 1 },
                   ]}
                   colorSpace="oklab"
                   detail={1.2}
@@ -141,7 +248,7 @@ export const ShaderOrb: React.FC<ShaderOrbProps> = ({
                   angle={188}
                   angleVariance={77}
                   opacity={0.5}
-                  particleColor="#e0f2fe"
+                  particleColor="#ffffff"
                   particleSize={1}
                   randomness={0.3}
                   speed={0.1}
@@ -159,38 +266,54 @@ export const ShaderOrb: React.FC<ShaderOrbProps> = ({
               />
             </Shader>
           ) : (
-            /* CSS fallback matching warm sunlight glare at (62%, 8%) on top of 3-tone sky-blue body */
+            /* CSS fallback matching warm sunlight glare at (62%, 8%) on top of 3-tone body */
             <div
-              className="w-full h-full rounded-full"
+              className="w-full h-full rounded-full transition-all duration-700 ease-in-out"
               style={{
-                background:
-                  "radial-gradient(circle at 62% 8%, #fef3c7 0%, rgba(254, 243, 199, 0.45) 18%, transparent 35%), radial-gradient(circle at 45% 35%, #bae6fd 0%, #38bdf8 50%, #0ea5e9 100%)",
+                background: `radial-gradient(circle at 62% 8%, #fef3c7 0%, rgba(254, 243, 199, 0.45) 18%, transparent 35%), radial-gradient(circle at 45% 35%, ${currentPhase.light} 0%, ${currentPhase.mid} 50%, ${currentPhase.accent} 100%)`,
               }}
             />
           )}
         </div>
 
-        {/* Phase label: uppercase, letter-spaced, medium weight, white/90% opacity, 0.8s crossfade */}
+        {/* Quick radial color flash on click pulse */}
+        <AnimatePresence>
+          {isPulsing && !shouldReduceMotion && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.85 }}
+              animate={{ opacity: [0, 0.6, 0], scale: [0.85, 1.1, 1] }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              className="absolute inset-0 rounded-full pointer-events-none z-30"
+              style={{
+                background: `radial-gradient(circle, ${currentPhase.accent} 0%, transparent 70%)`,
+              }}
+              aria-hidden="true"
+            />
+          )}
+        </AnimatePresence>
+
+        {/* Phase label: uppercase, white text on dark scrim/pill for contrast guarantee */}
         <div
-          className="absolute inset-0 z-20 rounded-full flex items-center justify-center select-none pointer-events-none"
+          className="absolute inset-0 z-20 rounded-full flex items-center justify-center select-none pointer-events-none p-1.5"
           aria-hidden="true"
         >
-          <div className="relative h-6 w-full flex items-center justify-center">
-            <AnimatePresence>
-              <motion.span
-                key={PHASES[phaseIndex]}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 0.9 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.8, ease: "easeInOut" }}
-                className="absolute font-inter font-medium text-[9px] sm:text-[10px] lg:text-[13px] xl:text-[14px] uppercase tracking-[0.14em] lg:tracking-[0.22em] text-white/95 drop-shadow-sm text-center px-2"
-              >
-                {PHASES[phaseIndex]}
-              </motion.span>
-            </AnimatePresence>
-          </div>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentPhase.label}
+              initial={{ opacity: 0, scale: 0.94 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.94 }}
+              transition={{ duration: shouldReduceMotion ? 0.05 : 0.35, ease: "easeInOut" }}
+              className="px-2 py-0.5 sm:px-3 sm:py-1.5 rounded-full bg-black/35 backdrop-blur-sm border border-white/10 shadow-sm flex items-center justify-center max-w-[92%] sm:max-w-none"
+            >
+              <span className="font-inter font-semibold text-[8px] sm:text-[10px] lg:text-[12px] xl:text-[13px] uppercase tracking-[0.08em] sm:tracking-[0.16em] text-white text-center whitespace-nowrap">
+                {currentPhase.label}
+              </span>
+            </motion.div>
+          </AnimatePresence>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
