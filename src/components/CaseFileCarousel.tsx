@@ -616,6 +616,7 @@ export const CaseFileCarousel: React.FC<CaseFileCarouselProps> = ({
                         <img
                           src={item.coverImage}
                           alt={item.title}
+                          loading="lazy"
                           referrerPolicy="no-referrer"
                           className="absolute inset-0 w-full h-full object-cover object-center brightness-85 group-hover:scale-105 transition-transform duration-500 ease-out"
                         />

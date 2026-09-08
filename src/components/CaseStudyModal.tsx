@@ -246,7 +246,7 @@ export default function CaseStudyModal({
 
               {/* Quote if present */}
               {activeSection.quote && (
-                <div className="p-4 sm:p-5 rounded-2xl bg-white/[0.03] border-l-4 border-l-[#01bc7c] border-white/10 my-4">
+                <div className="p-4 sm:p-5 rounded-2xl bg-white/[0.03] border border-white/10 my-4">
                   <p className="text-sm sm:text-base text-white/90 font-medium italic">
                     “{activeSection.quote}”
                   </p>

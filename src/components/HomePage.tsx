@@ -208,6 +208,8 @@ export default function HomePage({
             loop
             muted
             playsInline
+            preload="auto"
+            {...({ fetchPriority: "high" } as React.VideoHTMLAttributes<HTMLVideoElement> & { fetchPriority?: "high" | "low" | "auto" })}
             className="w-full h-full object-cover"
           >
             <source
