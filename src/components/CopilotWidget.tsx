@@ -276,12 +276,13 @@ export default function CopilotWidget({
         </button>
       )}
 
-      {/* Main Copilot Drawer / Modal */}
+      {/* Main Copilot Modal Overlay */}
       {isOpen && (
-        <div
-          id="copilot-window"
-          className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 w-[calc(100vw-32px)] sm:w-[460px] h-[620px] max-h-[calc(100vh-48px)] flex flex-col rounded-[24px] bg-[#FFFFFF] border border-[#042718]/15 shadow-2xl overflow-hidden font-inter transition-all duration-300"
-        >
+        <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-4 bg-[#042718]/20 backdrop-blur-sm animate-fade-in">
+          <div
+            id="copilot-window"
+            className="w-full sm:w-[460px] h-[620px] max-h-[calc(100vh-48px)] flex flex-col rounded-[24px] bg-white/95 backdrop-blur-md border border-white/20 shadow-2xl overflow-hidden font-inter transition-all duration-300"
+          >
           {/* Header */}
           <div className="p-4 bg-[#042718] text-white flex items-center justify-between shrink-0 select-none">
             <div className="flex items-center gap-2.5">
