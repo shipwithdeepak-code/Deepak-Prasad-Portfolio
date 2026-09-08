@@ -48,7 +48,7 @@ export default function CaseStudyDetailPage({
       {/* =========================================================================
           HERO & HEADER
           ========================================================================= */}
-      <section className="pt-10 pb-16 md:pt-14 md:pb-20 border-b border-[#042718]/8">
+      <section className="pt-10 pb-16 md:pt-14 md:pb-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Back to Work Link */}
           <button
@@ -144,11 +144,15 @@ export default function CaseStudyDetailPage({
       {/* =========================================================================
           NARRATIVE SECTIONS (EDITORIAL LAYOUT, NOT EXCESSIVE CARDS)
           ========================================================================= */}
-      <section className="py-16 md:py-24">
+      <section className="py-8 md:py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col gap-16 md:gap-20">
+          <div className="flex flex-col gap-10 md:gap-14">
             {caseStudy.sections.map((sec) => (
-              <article key={sec.id} id={sec.id} className="scroll-mt-24">
+              <article
+                key={sec.id}
+                id={sec.id}
+                className="scroll-mt-24 pb-12 border-b border-[#042718]/8 last:border-b-0"
+              >
                 {/* Section header */}
                 <div className="mb-6">
                   <div className="flex items-center gap-3 mb-2">
@@ -355,7 +359,6 @@ export default function CaseStudyDetailPage({
                   </div>
                 )}
 
-                <div className="w-full h-px bg-[#042718]/8 mt-12" />
               </article>
             ))}
           </div>
@@ -365,51 +368,53 @@ export default function CaseStudyDetailPage({
       {/* =========================================================================
           PREVIOUS / NEXT CASE STUDY PAGINATION
           ========================================================================= */}
-      <section className="py-12 bg-white border-t border-[#042718]/8">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
-          <button
-            type="button"
-            onClick={() => {
-              onNavigate(`/work/${prevStudy.slug}`);
-            }}
-            className="flex items-center gap-3 text-left p-4 rounded-xl hover:bg-[#FAFDFB] border border-transparent hover:border-[#042718]/10 transition-colors cursor-pointer w-full sm:w-auto"
-          >
-            <ArrowLeft size={20} className="text-[#188E39]" />
-            <div>
-              <span className="text-[11px] font-inter font-semibold uppercase tracking-wider text-[#042718]/40 block">
-                Previous Case
-              </span>
-              <span className="font-onest font-bold text-sm text-[#042718]">
-                {prevStudy.title}
-              </span>
-            </div>
-          </button>
+      <section className="py-12">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-white/95 backdrop-blur-md rounded-2xl p-4 sm:p-6 border border-[#042718]/10 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-6">
+            <button
+              type="button"
+              onClick={() => {
+                onNavigate(`/work/${prevStudy.slug}`);
+              }}
+              className="flex items-center gap-3 text-left p-3 rounded-xl hover:bg-[#FAFDFB] border border-transparent hover:border-[#042718]/10 transition-colors cursor-pointer w-full sm:w-auto"
+            >
+              <ArrowLeft size={20} className="text-[#188E39]" />
+              <div>
+                <span className="text-[11px] font-inter font-semibold uppercase tracking-wider text-[#042718]/40 block">
+                  Previous Case
+                </span>
+                <span className="font-onest font-bold text-sm text-[#042718]">
+                  {prevStudy.title}
+                </span>
+              </div>
+            </button>
 
-          <button
-            type="button"
-            onClick={() => onNavigate("/work")}
-            className="text-xs font-inter font-semibold text-[#042718]/60 hover:text-[#042718] transition-colors"
-          >
-            All Case Studies
-          </button>
+            <button
+              type="button"
+              onClick={() => onNavigate("/work")}
+              className="text-xs font-inter font-semibold text-[#042718]/60 hover:text-[#042718] transition-colors"
+            >
+              All Case Studies
+            </button>
 
-          <button
-            type="button"
-            onClick={() => {
-              onNavigate(`/work/${nextStudy.slug}`);
-            }}
-            className="flex items-center justify-end gap-3 text-right p-4 rounded-xl hover:bg-[#FAFDFB] border border-transparent hover:border-[#042718]/10 transition-colors cursor-pointer w-full sm:w-auto"
-          >
-            <div>
-              <span className="text-[11px] font-inter font-semibold uppercase tracking-wider text-[#042718]/40 block">
-                Next Case
-              </span>
-              <span className="font-onest font-bold text-sm text-[#042718]">
-                {nextStudy.title}
-              </span>
-            </div>
-            <ArrowRight size={20} className="text-[#188E39]" />
-          </button>
+            <button
+              type="button"
+              onClick={() => {
+                onNavigate(`/work/${nextStudy.slug}`);
+              }}
+              className="flex items-center justify-end gap-3 text-right p-3 rounded-xl hover:bg-[#FAFDFB] border border-transparent hover:border-[#042718]/10 transition-colors cursor-pointer w-full sm:w-auto"
+            >
+              <div>
+                <span className="text-[11px] font-inter font-semibold uppercase tracking-wider text-[#042718]/40 block">
+                  Next Case
+                </span>
+                <span className="font-onest font-bold text-sm text-[#042718]">
+                  {nextStudy.title}
+                </span>
+              </div>
+              <ArrowRight size={20} className="text-[#188E39]" />
+            </button>
+          </div>
         </div>
       </section>
     </div>

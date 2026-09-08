@@ -1613,6 +1613,9 @@ export const HOW_I_WORK_PRINCIPLES: HowIWorkPrinciple[] = [
       'Customer interviews, field research, behavioral data and business context before jumping to solutions.',
     detail:
       'True user friction is invisible on aggregate analytics dashboards. Spending time directly on the floor with operators uncovers unarticulated anxiety and unwritten realities before specs are finalized.',
+    aphorism: 'True user friction is invisible on aggregate analytics dashboards.',
+    evidence: 'ReshaMandi · Field Research → 80K+ Farmers',
+    evidenceLink: '/work/reshamandi',
   },
   {
     number: '02',
@@ -1621,6 +1624,9 @@ export const HOW_I_WORK_PRINCIPLES: HowIWorkPrinciple[] = [
       'Break complicated workflows, systems and constraints into products people can actually operate.',
     detail:
       'The product is the workflow. Software should not force users to pause their physical momentum. Real leverage happens when digital tools effortlessly mirror and accelerate ground operations.',
+    aphorism: 'Software should not force users to pause physical momentum.',
+    evidence: 'ReshaMandi · Bidding Value Uplift >35%',
+    evidenceLink: '/work/reshamandi',
   },
   {
     number: '03',
@@ -1629,6 +1635,9 @@ export const HOW_I_WORK_PRINCIPLES: HowIWorkPrinciple[] = [
       'Define the first version, make tradeoffs explicit and create a path from 0→1 to scale.',
     detail:
       'The fastest way to kill an early-stage product is premature complexity. Ruthlessly isolate the atomic value loop, validate PMF signals, and expand only when the core mechanism is airtight.',
+    aphorism: 'Ruthlessly isolate the atomic value loop before expanding.',
+    evidence: 'Sportstech AI Coach · 300 → 2,000 DAU',
+    evidenceLink: '/work/ai-coach',
   },
   {
     number: '04',
@@ -1637,6 +1646,9 @@ export const HOW_I_WORK_PRINCIPLES: HowIWorkPrinciple[] = [
       'Use adoption, conversion, retention, operational and qualitative signals to decide what happens next.',
     detail:
       'Conversion without retention is just expensive churn. We track cohort survival, daily habit formation, and operational SLA reliability as the ultimate tests of product health.',
+    aphorism: 'Conversion without retention is just expensive churn.',
+    evidence: 'Sportstech · €659K FY25 Subscription Revenue',
+    evidenceLink: '/work/subscription',
   },
   {
     number: '05',
@@ -1645,6 +1657,20 @@ export const HOW_I_WORK_PRINCIPLES: HowIWorkPrinciple[] = [
       'AI, automation and connected systems should change the economics or experience — not simply add technology.',
     detail:
       'Technology should never be added for novelty. Deploy AI and automation where humans are biased, strained, or throttled—transforming operational bottlenecks into scalable leverage.',
+    aphorism: 'Deploy AI where human effort is throttled, not for novelty.',
+    evidence: 'ReshaMandi · ML Pricing Accuracy >90%',
+    evidenceLink: '/work/reshamandi',
+  },
+  {
+    number: '06',
+    title: 'Grow the team, not just the roadmap',
+    description:
+      'Cross-functional ownership means the pod gets stronger while the product ships — not just tickets closed.',
+    detail:
+      "A roadmap is temporary; the people who shipped it aren't. Cross-functional ownership means the pod gets stronger while the product ships — not just tickets closed.",
+    aphorism: "A roadmap is temporary; the people who shipped it aren't.",
+    evidence: 'Sportstech · Managed & Mentored 6-Person Cross-Functional Pod',
+    evidenceLink: '/work/ai-coach',
   },
 ];
 

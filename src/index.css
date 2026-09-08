@@ -5,3 +5,249 @@
   --font-onest: 'Onest', sans-serif;
   --font-playfair: 'Playfair Display', Georgia, serif;
 }
+
+@keyframes breathe-orb {
+  0%            { transform: scale(1); }
+  33.33%, 66.67%{ transform: scale(1.035); }
+  100%          { transform: scale(1); }
+}
+
+@keyframes breathe-ring {
+  0%            { transform: scale(1); opacity: 0.4; }
+  33.33%, 66.67%{ transform: scale(1.07); opacity: 0.85; }
+  100%          { transform: scale(1); opacity: 0.4; }
+}
+
+.principles-orb-breathe {
+  animation: breathe-orb 12s ease-in-out infinite;
+}
+
+.principles-ring-breathe {
+  animation: breathe-ring 12s ease-in-out infinite;
+}
+
+.principles-orb-static {
+  transform: scale(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .principles-orb-breathe,
+  .principles-ring-breathe {
+    animation: none;
+    transform: scale(1);
+  }
+}
+
+/* =========================================================================
+   CORE SKILLS / COMPETENCIES — STAGGERED NATURAL LAYOUT & FLOATING ANIMATION
+   ========================================================================= */
+
+@keyframes skills-card-float {
+  0%   { transform: translateX(0); }
+  50%  { transform: translateX(6px); }
+  100% { transform: translateX(0); }
+}
+
+.skills-scatter {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 28px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.skills-scatter > * {
+  width: 340px;
+  flex-shrink: 0;
+  animation: skills-card-float 6s ease-in-out infinite;
+}
+
+/* Fixed resting vertical offsets and slight rotations per card */
+.skills-card-01 {
+  translate: 0px 0px;
+  rotate: -1.5deg;
+  animation-delay: 0s;
+}
+
+.skills-card-02 {
+  translate: 0px 24px;
+  rotate: 1deg;
+  animation-delay: 0.8s;
+}
+
+.skills-card-03 {
+  translate: 0px -12px;
+  rotate: -0.5deg;
+  animation-delay: 1.6s;
+}
+
+.skills-card-04 {
+  translate: 0px 16px;
+  rotate: 1.5deg;
+  animation-delay: 2.4s;
+}
+
+.skills-card-05 {
+  translate: 0px -8px;
+  rotate: -1deg;
+  animation-delay: 3.2s;
+}
+
+.skills-card-06 {
+  translate: 0px 20px;
+  rotate: 0.5deg;
+  animation-delay: 4s;
+}
+
+/* Reduced-motion: disable float animation, hold all cards at static fixed-offset position */
+@media (prefers-reduced-motion: reduce) {
+  .skills-scatter > * {
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
+/* Mobile fallback: single clean column, normal document flow, no scatter, no rotation */
+@media (max-width: 767px) {
+  .skills-scatter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+  }
+
+  .skills-scatter > * {
+    width: 100%;
+    max-width: 340px;
+    animation: none !important;
+    translate: none !important;
+    rotate: none !important;
+    transform: none !important;
+  }
+}
+
+/* =========================================================================
+   OPERATING PRINCIPLES — STAGGERED MINIMAL CARDS & VERTICAL FLOAT
+   ========================================================================= */
+
+.principles-section {
+  max-width: 1360px;
+  padding-inline: 24px;
+  margin: 0 auto;
+  overflow-x: visible;
+}
+
+.principle-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+.principle-card p {
+  line-height: 1.45;
+}
+
+.principles-orb-wrapper {
+  align-self: center;
+}
+
+@keyframes card-float {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-4px); }
+  100% { transform: translateY(0); }
+}
+
+.principles-layout {
+  display: grid;
+  grid-template-columns: 380px auto 380px;
+  align-items: center;
+  justify-content: center;
+  gap: 64px;
+  max-width: 1240px;
+  margin: 40px auto 0;
+}
+
+.principles-left,
+.principles-right {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.principles-left > *,
+.principles-right > * {
+  animation: card-float 7s ease-in-out infinite;
+  width: 380px;
+}
+
+/* Staggered fanned positions per card (translateX + translateY + rotate) and animation delays */
+.principles-card-01 {
+  --x: -60px;
+  --y: -5px;
+  --rot: -1deg;
+  translate: var(--x) var(--y);
+  rotate: var(--rot);
+  animation-delay: 0s !important;
+}
+
+.principles-card-02 {
+  --x: -30px;
+  --y: 12px;
+  --rot: 1deg;
+  translate: var(--x) var(--y);
+  rotate: var(--rot);
+  animation-delay: 1s !important;
+}
+
+.principles-card-03 {
+  --x: -10px;
+  --y: -2px;
+  --rot: -0.5deg;
+  translate: var(--x) var(--y);
+  rotate: var(--rot);
+  animation-delay: 2s !important;
+}
+
+.principles-card-04 {
+  --x: 60px;
+  --y: 8px;
+  --rot: 1deg;
+  translate: var(--x) var(--y);
+  rotate: var(--rot);
+  animation-delay: 3s !important;
+}
+
+.principles-card-05 {
+  --x: 30px;
+  --y: -10px;
+  --rot: -1.5deg;
+  translate: var(--x) var(--y);
+  rotate: var(--rot);
+  animation-delay: 4s !important;
+}
+
+.principles-card-06 {
+  --x: 10px;
+  --y: 14px;
+  --rot: 0.5deg;
+  translate: var(--x) var(--y);
+  rotate: var(--rot);
+  animation-delay: 5s !important;
+}
+
+/* Reduced-motion: disable vertical float entirely; cards keep static offset positions */
+@media (prefers-reduced-motion: reduce) {
+  .principles-left > *,
+  .principles-right > * {
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
+
+
+

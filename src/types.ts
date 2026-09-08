@@ -92,6 +92,9 @@ export interface HowIWorkPrinciple {
   title: string;
   description: string;
   detail: string;
+  aphorism?: string;
+  evidence?: string;
+  evidenceLink?: string;
 }
 
 export interface CapabilityGroup {

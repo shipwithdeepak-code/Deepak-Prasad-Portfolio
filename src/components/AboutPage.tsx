@@ -256,7 +256,7 @@ export default function AboutPage({
             </h2>
           </div>
           <p className="font-inter text-sm sm:text-base text-[#042718]/65 mb-8">
-            Five core principles governing discovery, architecture, and technology execution.
+            Six core principles governing discovery, architecture, and technology execution.
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

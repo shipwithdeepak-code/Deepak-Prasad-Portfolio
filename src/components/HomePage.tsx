@@ -1,35 +1,17 @@
 import React, { useState, useEffect, useRef } from "react";
-import { motion, useInView, useReducedMotion, AnimatePresence } from "framer-motion";
+import { motion, useInView, useReducedMotion } from "framer-motion";
 import {
   ArrowRight,
   ArrowUpRight,
   CheckCircle2,
   Sparkles,
-  Layers,
   FileText,
-  Compass,
-  Zap,
-  Users,
-  Target,
-  TrendingUp,
-  HelpCircle,
-  ChevronDown,
 } from "lucide-react";
-import { ALL_FLAGSHIP_CASE_STUDIES, HOW_I_WORK_PRINCIPLES } from "../data/caseStudies";
+import { ALL_FLAGSHIP_CASE_STUDIES } from "../data/caseStudies";
 import { CaseStudyDetail } from "../types";
 import ProductStack from "./ProductStack";
 import { CaseFileCarousel } from "./CaseFileCarousel";
-
-const PRINCIPLE_ICONS: Record<
-  string,
-  React.ComponentType<{ size?: number; className?: string; strokeWidth?: number }>
-> = {
-  "01": Users,
-  "02": Layers,
-  "03": Target,
-  "04": TrendingUp,
-  "05": Zap,
-};
+import { OperatingPrinciples } from "./OperatingPrinciples";
 
 interface HomePageProps {
   onNavigate: (path: string) => void;
@@ -166,8 +148,6 @@ export default function HomePage({
   onSelectCaseStudy,
   onOpenResumeModal,
 }: HomePageProps) {
-  const [expandedPrinciple, setExpandedPrinciple] = useState<string | null>(null);
-  const [hoveredPrinciple, setHoveredPrinciple] = useState<string | null>(null);
   const statsSectionRef = useRef<HTMLElement>(null);
   const isInView = useInView(statsSectionRef, { once: true, amount: 0.15 });
   const shouldReduceMotion = Boolean(useReducedMotion());
@@ -445,7 +425,7 @@ export default function HomePage({
             <h2 className="font-onest text-3xl sm:text-4xl font-bold tracking-tight text-[#042718]">
               Selected work
             </h2>
-            <p className="font-inter text-base text-[#042718]/70 mt-2 max-w-xl">
+            <p className="font-inter text-base text-[#042718]/70 mt-2">
               A selection of products I’ve taken from ambiguity to launch, scale or development-ready strategy.
             </p>
           </div>
@@ -453,7 +433,7 @@ export default function HomePage({
           <button
             type="button"
             onClick={() => onNavigate("/work")}
-            className="inline-flex items-center gap-2 text-sm font-inter font-semibold text-[#042718] hover:text-[#188E39] transition-colors cursor-pointer group shrink-0"
+            className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white border border-[#042718]/10 shadow-xs hover:bg-[#FAFDFB] text-sm font-inter font-semibold text-[#042718] hover:text-[#188E39] transition-colors cursor-pointer group shrink-0 self-start md:self-end"
           >
             <span>Explore all projects</span>
             <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
@@ -473,234 +453,12 @@ export default function HomePage({
       <ProductStack />
 
       {/* =========================================================================
-          4. HOW I WORK (5 PRINCIPLES)
+          4. HOW I WORK (6 PRINCIPLES — SYMMETRIC GRID & ORB)
           ========================================================================= */}
-      <section id="principles" className="py-20 bg-[#F4FAFA] border-y border-[#042718]/8 scroll-mt-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mb-12">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E4F2EB] border border-[#188E39]/15 mb-4 sm:mb-6">
-              <Compass className="w-4 h-4 text-[#188E39]" />
-              <span className="text-[#188E39] text-[13px] font-inter font-bold uppercase tracking-wider">
-                Operating Principles
-              </span>
-            </div>
-            <h2 className="font-onest text-3xl sm:text-4xl font-bold tracking-tight text-[#042718]">
-              The real thinking behind{" "}
-              <span className="font-playfair italic font-medium text-black/40">
-                7+ years in the field
-              </span>
-            </h2>
-            <p className="font-inter text-base text-[#042718]/70 mt-2">
-              Five consistent product principles refined over 7+ years of building across complex B2B ecosystems and high-growth consumer apps.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {HOW_I_WORK_PRINCIPLES.map((principle, idx) => {
-              const Icon = PRINCIPLE_ICONS[principle.number] || Compass;
-              const isLastCard = principle.number === "05";
-              const isExpanded =
-                expandedPrinciple === principle.number ||
-                hoveredPrinciple === principle.number;
-              const singleSentence =
-                principle.description.split(/(?<=[.!?])\s+/)[0] ||
-                principle.description;
-
-              if (isLastCard) {
-                return (
-                  <motion.div
-                    key={principle.number}
-                    initial={{ opacity: 0, y: 16 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.2 }}
-                    transition={{ duration: 0.4, delay: idx * 0.08 }}
-                    onMouseEnter={() => setHoveredPrinciple(principle.number)}
-                    onMouseLeave={() => setHoveredPrinciple(null)}
-                    onClick={() => {
-                      setExpandedPrinciple((prev) =>
-                        prev === principle.number ? null : principle.number
-                      );
-                    }}
-                    className="md:col-span-2 bg-white rounded-[24px] p-6 sm:p-7 border border-[#042718]/8 shadow-2xs hover:border-[#188E39]/30 hover:shadow-xs transition-[border-color,box-shadow] duration-300 group cursor-pointer"
-                  >
-                    <div className="flex flex-col sm:flex-row items-start gap-5 sm:gap-6">
-                      {/* Icon on the left */}
-                      <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-[16px] sm:rounded-[18px] bg-[#188E39]/5 border border-[#188E39]/20 flex items-center justify-center text-[#188E39] shrink-0 group-hover:bg-[#188E39]/10 group-hover:border-[#188E39]/30 transition-colors shadow-2xs">
-                        <Icon size={24} strokeWidth={1.8} className="text-[#188E39]" />
-                      </div>
-
-                      {/* Title + Text + Why on the right, side by side */}
-                      <div className="flex-1 w-full min-w-0">
-                        <div className="flex items-start justify-between gap-4 mb-2">
-                          <h3 className="font-onest font-bold text-[#042718] text-lg sm:text-xl leading-snug tracking-tight">
-                            {principle.title}
-                          </h3>
-                          <span className="font-onest text-xs sm:text-sm font-semibold text-[#042718]/45 tracking-wider px-2.5 py-1 rounded-full bg-[#042718]/4 shrink-0">
-                            {principle.number}
-                          </span>
-                        </div>
-
-                        <p className="font-inter text-sm text-[#042718]/70 leading-relaxed mb-4">
-                          {singleSentence}
-                        </p>
-
-                        {/* Why Affordance & Expandable Detail */}
-                        <div className="pt-3.5 border-t border-[#042718]/6 flex flex-col">
-                          <div className="flex items-center justify-between">
-                            <button
-                              type="button"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                setExpandedPrinciple((prev) =>
-                                  prev === principle.number ? null : principle.number
-                                );
-                              }}
-                              aria-expanded={isExpanded}
-                              className="inline-flex items-center gap-1.5 text-xs font-inter font-medium text-[#188E39] hover:text-[#042718] transition-colors py-1 px-2.5 rounded-full bg-[#188E39]/8 hover:bg-[#188E39]/15 cursor-pointer"
-                            >
-                              <HelpCircle size={13} className="text-[#188E39]" />
-                              <span>Why</span>
-                              <ChevronDown
-                                size={13}
-                                className={`text-[#188E39] transition-transform duration-200 ${
-                                  isExpanded ? "rotate-180" : ""
-                                }`}
-                              />
-                            </button>
-                            <span className="text-[11px] font-inter text-[#042718]/40 select-none">
-                              {isExpanded ? "Tap to close" : "Hover or tap"}
-                            </span>
-                          </div>
-
-                          <AnimatePresence initial={false}>
-                            {isExpanded && (
-                              <motion.div
-                                key="detail"
-                                initial={{ opacity: 0, height: 0 }}
-                                animate={{ opacity: 1, height: "auto" }}
-                                exit={{ opacity: 0, height: 0 }}
-                                transition={{
-                                  duration: 0.25,
-                                  ease: [0.21, 0.45, 0.32, 0.9],
-                                }}
-                                className="overflow-hidden"
-                              >
-                                <div className="pt-3 text-xs sm:text-[13px] font-inter text-[#042718]/75 leading-relaxed italic border-l-2 border-[#188E39]/40 pl-3.5 mt-2.5 bg-[#FAFDFB]/70 rounded-r-lg py-2">
-                                  {principle.detail}
-                                </div>
-                              </motion.div>
-                            )}
-                          </AnimatePresence>
-                        </div>
-                      </div>
-                    </div>
-                  </motion.div>
-                );
-              }
-
-              return (
-                <motion.div
-                  key={principle.number}
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.2 }}
-                  transition={{ duration: 0.4, delay: idx * 0.08 }}
-                  onMouseEnter={() => setHoveredPrinciple(principle.number)}
-                  onMouseLeave={() => setHoveredPrinciple(null)}
-                  onClick={() => {
-                    setExpandedPrinciple((prev) =>
-                      prev === principle.number ? null : principle.number
-                    );
-                  }}
-                  className="bg-white rounded-[24px] p-6 sm:p-7 border border-[#042718]/8 shadow-2xs hover:border-[#188E39]/30 hover:shadow-xs transition-[border-color,box-shadow] duration-300 flex flex-col justify-between group cursor-pointer md:col-span-1"
-                >
-                  <div>
-                    {/* Top row: Prominent Icon Box & Number label */}
-                    <div className="flex items-center justify-between gap-4 mb-5">
-                      <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-[16px] sm:rounded-[18px] bg-[#188E39]/5 border border-[#188E39]/20 flex items-center justify-center text-[#188E39] shrink-0 group-hover:bg-[#188E39]/10 group-hover:border-[#188E39]/30 transition-colors shadow-2xs">
-                        <Icon size={24} strokeWidth={1.8} className="text-[#188E39]" />
-                      </div>
-                      <span className="font-onest text-xs sm:text-sm font-semibold text-[#042718]/45 tracking-wider px-2.5 py-1 rounded-full bg-[#042718]/4">
-                        {principle.number}
-                      </span>
-                    </div>
-
-                    {/* Title */}
-                    <h3 className="font-onest font-bold text-[#042718] leading-snug tracking-tight mb-2.5 text-lg sm:text-xl">
-                      {principle.title}
-                    </h3>
-
-                    {/* Single Sentence Description */}
-                    <p className="font-inter text-sm text-[#042718]/70 leading-relaxed mb-4">
-                      {singleSentence}
-                    </p>
-                  </div>
-
-                  {/* Why Affordance & Expandable Detail */}
-                  <div className="pt-3.5 mt-auto border-t border-[#042718]/6 flex flex-col">
-                    <div className="flex items-center justify-between">
-                      <button
-                        type="button"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setExpandedPrinciple((prev) =>
-                            prev === principle.number ? null : principle.number
-                          );
-                        }}
-                        aria-expanded={isExpanded}
-                        className="inline-flex items-center gap-1.5 text-xs font-inter font-medium text-[#188E39] hover:text-[#042718] transition-colors py-1 px-2.5 rounded-full bg-[#188E39]/8 hover:bg-[#188E39]/15 cursor-pointer"
-                      >
-                        <HelpCircle size={13} className="text-[#188E39]" />
-                        <span>Why</span>
-                        <ChevronDown
-                          size={13}
-                          className={`text-[#188E39] transition-transform duration-200 ${
-                            isExpanded ? "rotate-180" : ""
-                          }`}
-                        />
-                      </button>
-                      <span className="text-[11px] font-inter text-[#042718]/40 select-none">
-                        {isExpanded ? "Tap to close" : "Hover or tap"}
-                      </span>
-                    </div>
-
-                    <AnimatePresence initial={false}>
-                      {isExpanded && (
-                        <motion.div
-                          key="detail"
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: "auto" }}
-                          exit={{ opacity: 0, height: 0 }}
-                          transition={{
-                            duration: 0.25,
-                            ease: [0.21, 0.45, 0.32, 0.9],
-                          }}
-                          className="overflow-hidden"
-                        >
-                          <div className="pt-3 text-xs sm:text-[13px] font-inter text-[#042718]/75 leading-relaxed italic border-l-2 border-[#188E39]/40 pl-3.5 mt-2.5 bg-[#FAFDFB]/70 rounded-r-lg py-2">
-                            {principle.detail}
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
-
-          <div className="mt-12 text-center">
-            <button
-              type="button"
-              onClick={() => onNavigate("/about")}
-              className="inline-flex items-center gap-2 text-sm font-inter font-semibold text-[#042718] hover:text-[#188E39] transition-colors cursor-pointer"
-            >
-              <span>Learn more about my background and leadership approach</span>
-              <ArrowRight size={16} />
-            </button>
-          </div>
-        </div>
-      </section>
+      <OperatingPrinciples
+        onNavigate={onNavigate}
+        onSelectCaseStudy={onSelectCaseStudy}
+      />
     </div>
   );
 }
