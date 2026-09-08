@@ -109,6 +109,14 @@ const CASE_FILE_ITEMS: CaseFileItem[] = [
   },
 ];
 
+/**
+ * Shared gradient overlay for cover photos on both closed card faces and the opened dossier view.
+ * 3-stop formula: subtle top shadow for pills/tags, transparent mid-zone preserving photo depth,
+ * and deep rich green base for crisp typography and thesis legibility.
+ */
+const COVER_PHOTO_GRADIENT_OVERLAY =
+  "linear-gradient(to bottom, rgba(4,39,24,0.55) 0%, rgba(4,39,24,0.2) 40%, rgba(4,39,24,0.92) 100%)";
+
 export const CaseFileCarousel: React.FC<CaseFileCarouselProps> = ({
   onNavigate,
   onSelectCaseStudy,
@@ -138,7 +146,16 @@ export const CaseFileCarousel: React.FC<CaseFileCarouselProps> = ({
   // Responsive stage width configuration
   const [stageWidth, setStageWidth] = useState<number>(1100);
 
-  // Update DOM transform styles with mathematically exact container-centering
+  // Helper to compute circular shortest offset of card `idx` relative to continuous `progress`
+  const getCircularOffset = useCallback((idx: number, progress: number, n = 5): number => {
+    const normProgress = ((progress % n) + n) % n;
+    let diff = idx - normProgress;
+    while (diff > n / 2) diff -= n;
+    while (diff < -n / 2) diff += n;
+    return diff;
+  }, []);
+
+  // Update DOM transform styles with mathematically exact container-centering and circular infinite loop
   const applyTransforms = useCallback(
     (progress: number) => {
       const container = containerRef.current;
@@ -151,20 +168,13 @@ export const CaseFileCarousel: React.FC<CaseFileCarouselProps> = ({
 
       // Base left coordinate that places any card with offset 0 in the exact horizontal middle of the container
       const baseLeft = (containerWidth - cardWidth) / 2;
+      const n = CASE_FILE_ITEMS.length;
 
       CASE_FILE_ITEMS.forEach((_, idx) => {
         const el = cardRefs.current[idx];
         if (!el) return;
 
-        // When a dossier is opened, completely hide all background cards to eliminate any visual artifacts
-        if (openedIndex !== null) {
-          el.style.opacity = "0";
-          el.style.visibility = "hidden";
-          el.style.pointerEvents = "none";
-          return;
-        }
-
-        const offset = idx - progress;
+        const offset = getCircularOffset(idx, progress, n);
         const x = baseLeft + offset * spacing;
         const z = -Math.abs(offset) * 100;
 
@@ -204,15 +214,16 @@ export const CaseFileCarousel: React.FC<CaseFileCarouselProps> = ({
         el.style.opacity = `${opacity}`;
         el.style.visibility = visibility;
         el.style.zIndex = `${zIndex}`;
-        el.style.pointerEvents = absOffset <= 2.2 ? "auto" : "none";
+        // While a dossier is opened, disable pointer events on background cards so clicks hit backdrop
+        el.style.pointerEvents = openedIndex === null && absOffset <= 2.2 ? "auto" : "none";
       });
 
-      // Synchronize activeIndex state for accessibility & pagination indicators
+      // Synchronize activeIndex state with modulo wrapping
       const rounded = Math.round(progress);
-      const clampedRounded = Math.max(0, Math.min(CASE_FILE_ITEMS.length - 1, rounded));
-      setActiveIndex((prev) => (prev !== clampedRounded ? clampedRounded : prev));
+      const normalizedActive = ((rounded % n) + n) % n;
+      setActiveIndex((prev) => (prev !== normalizedActive ? normalizedActive : prev));
     },
-    [openedIndex, stageWidth]
+    [openedIndex, stageWidth, getCircularOffset]
   );
 
   // Measure container's actual clientWidth via ResizeObserver to ensure robust centering on all screen sizes
@@ -250,7 +261,10 @@ export const CaseFileCarousel: React.FC<CaseFileCarouselProps> = ({
     }
 
     if (prefersReducedMotionRef.current) {
-      currentProgressRef.current = targetProgressRef.current;
+      const n = CASE_FILE_ITEMS.length;
+      const normalized = ((targetProgressRef.current % n) + n) % n;
+      currentProgressRef.current = normalized;
+      targetProgressRef.current = normalized;
       applyTransforms(currentProgressRef.current);
       rafIdRef.current = null;
       return;
@@ -265,6 +279,12 @@ export const CaseFileCarousel: React.FC<CaseFileCarouselProps> = ({
       currentProgressRef.current = targetProgressRef.current;
       applyTransforms(currentProgressRef.current);
       rafIdRef.current = null;
+
+      // When settled, normalize progress to [0, n) so values never grow unbounded
+      const n = CASE_FILE_ITEMS.length;
+      const normalized = ((targetProgressRef.current % n) + n) % n;
+      currentProgressRef.current = normalized;
+      targetProgressRef.current = normalized;
     }
   }, [applyTransforms]);
 
@@ -274,22 +294,21 @@ export const CaseFileCarousel: React.FC<CaseFileCarouselProps> = ({
     }
   }, [tick]);
 
-  // Navigate to target case study index
+  // Navigate to target case study index (infinite loop supported)
   const goToIndex = useCallback(
     (index: number) => {
-      const clamped = Math.max(0, Math.min(CASE_FILE_ITEMS.length - 1, index));
-      targetProgressRef.current = clamped;
+      targetProgressRef.current = index;
       requestTick();
     },
     [requestTick]
   );
 
   const handlePrev = useCallback(() => {
-    goToIndex(targetProgressRef.current - 1);
+    goToIndex(Math.round(targetProgressRef.current) - 1);
   }, [goToIndex]);
 
   const handleNext = useCallback(() => {
-    goToIndex(targetProgressRef.current + 1);
+    goToIndex(Math.round(targetProgressRef.current) + 1);
   }, [goToIndex]);
 
   // IntersectionObserver to pause the animation loop when scrolled off-screen
@@ -337,9 +356,7 @@ export const CaseFileCarousel: React.FC<CaseFileCarouselProps> = ({
         hasDraggedRef.current = true;
         const sensitivity = stageWidth < 640 ? 0.005 : 0.0035;
         const newProgress = dragStartProgressRef.current - deltaX * sensitivity;
-        const clamped = Math.max(-0.2, Math.min(CASE_FILE_ITEMS.length - 0.8, newProgress));
-
-        targetProgressRef.current = clamped;
+        targetProgressRef.current = newProgress;
         requestTick();
       }
     };
@@ -379,7 +396,7 @@ export const CaseFileCarousel: React.FC<CaseFileCarouselProps> = ({
     };
 
     // Wheel listener: works with mouse wheel (deltaY) and trackpad (deltaX/deltaY)
-    // strictly scoped to containerRef, never hijacking page scroll outside the carousel
+    // strictly scoped to containerRef, loops infinitely without clamping
     const onWheel = (e: WheelEvent) => {
       // Allow standard scrolling inside the opened reading dossier
       if (openedIndex !== null) return;
@@ -387,15 +404,10 @@ export const CaseFileCarousel: React.FC<CaseFileCarouselProps> = ({
       const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
       if (Math.abs(delta) < 4) return;
 
-      // Scoped to carousel container: prevent vertical page scroll while mouse is over carousel
       e.preventDefault();
 
       const sensitivity = 0.0032;
-      const nextProgress = Math.max(
-        0,
-        Math.min(CASE_FILE_ITEMS.length - 1, targetProgressRef.current + delta * sensitivity)
-      );
-      targetProgressRef.current = nextProgress;
+      targetProgressRef.current = targetProgressRef.current + delta * sensitivity;
       requestTick();
 
       if (wheelTimeoutRef.current) clearTimeout(wheelTimeoutRef.current);
@@ -438,17 +450,17 @@ export const CaseFileCarousel: React.FC<CaseFileCarouselProps> = ({
 
     if (e.key === "ArrowLeft") {
       e.preventDefault();
-      const prev = Math.max(0, activeIndex - 1);
+      const prev = Math.round(targetProgressRef.current) - 1;
       goToIndex(prev);
       if (openedIndex !== null) {
-        setOpenedIndex(prev);
+        setOpenedIndex((openedIndex - 1 + CASE_FILE_ITEMS.length) % CASE_FILE_ITEMS.length);
       }
     } else if (e.key === "ArrowRight") {
       e.preventDefault();
-      const next = Math.min(CASE_FILE_ITEMS.length - 1, activeIndex + 1);
+      const next = Math.round(targetProgressRef.current) + 1;
       goToIndex(next);
       if (openedIndex !== null) {
-        setOpenedIndex(next);
+        setOpenedIndex((openedIndex + 1) % CASE_FILE_ITEMS.length);
       }
     } else if (e.key === "Enter" || e.key === " ") {
       if ((e.target as HTMLElement)?.closest("button, a")) return;
@@ -465,13 +477,13 @@ export const CaseFileCarousel: React.FC<CaseFileCarouselProps> = ({
     if (hasDraggedRef.current) return;
     if (openedIndex !== null) return;
 
-    const currentCentered = Math.round(targetProgressRef.current);
-    if (idx === currentCentered) {
+    const offset = getCircularOffset(idx, targetProgressRef.current, CASE_FILE_ITEMS.length);
+    if (Math.abs(offset) < 0.25) {
       // Centered/active card clicked: open the reading view
       setOpenedIndex(idx);
     } else {
-      // Non-centered card clicked: smoothly center this card
-      goToIndex(idx);
+      // Non-centered card clicked: smoothly rotate to center this card
+      goToIndex(Math.round(targetProgressRef.current) + offset);
     }
   };
 
@@ -486,9 +498,19 @@ export const CaseFileCarousel: React.FC<CaseFileCarouselProps> = ({
       aria-label="Flagship Case Studies 3D Carousel"
       aria-roledescription="carousel"
       onKeyDown={handleKeyDown}
-      className="relative w-full select-none focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#188E39] focus-visible:ring-offset-4 focus-visible:ring-offset-[#FAFDFB] rounded-[28px] overflow-hidden py-6 sm:py-10"
+      className="relative w-full select-none focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#188E39] focus-visible:ring-offset-4 focus-visible:ring-offset-[#FAFDFB] py-6 sm:py-10"
       style={{ touchAction: "pan-y" }}
     >
+      {/* Soft atmospheric radial gradient centered behind active card fading to 100% transparent at edges — zero hard box boundary */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse 75% 65% at 50% 50%, rgba(24, 142, 57, 0.04) 0%, rgba(4, 39, 24, 0.012) 45%, transparent 75%)",
+        }}
+        aria-hidden="true"
+      />
+
       {/* 3D PERSPECTIVE STAGE */}
       <div
         ref={stageRef}
@@ -543,10 +565,8 @@ export const CaseFileCarousel: React.FC<CaseFileCarouselProps> = ({
                     }}
                     aria-hidden="true"
                   >
-                    {/* Spine Top: Case Number */}
-                    <span className="font-onest font-bold text-xs text-[#34D399] tracking-wider select-none">
-                      {item.number}
-                    </span>
+                    {/* Spine Top: Status Dot */}
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#34D399]" />
 
                     {/* Spine Middle: Company / Product Name (Vertical orientation) */}
                     <div className="flex-1 flex items-center justify-center my-2 overflow-hidden">
@@ -603,17 +623,13 @@ export const CaseFileCarousel: React.FC<CaseFileCarouselProps> = ({
                         <div
                           className="absolute inset-0 pointer-events-none z-10"
                           style={{
-                            background:
-                              "linear-gradient(to bottom, rgba(4,39,24,0.55) 0%, rgba(4,39,24,0.2) 40%, rgba(4,39,24,0.92) 100%)",
+                            background: COVER_PHOTO_GRADIENT_OVERLAY,
                           }}
                           aria-hidden="true"
                         />
 
-                        {/* Top Row: Numeral & Spine Label Pill */}
-                        <div className="relative z-20 flex items-center justify-between">
-                          <span className="font-onest font-black text-sm px-2 py-0.5 rounded bg-black/40 backdrop-blur-md text-[#34D399] border border-white/15">
-                            {item.number}
-                          </span>
+                        {/* Top Row: Spine Label Pill */}
+                        <div className="relative z-20 flex items-center justify-start">
                           <span className="font-inter text-[11px] font-semibold text-white/90 bg-[#042718]/80 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/10">
                             {item.spineLabel}
                           </span>
@@ -643,19 +659,8 @@ export const CaseFileCarousel: React.FC<CaseFileCarouselProps> = ({
                           aria-hidden="true"
                         />
 
-                        {/* Large subtle watermark numeral */}
-                        <span
-                          className="absolute top-2 right-2 font-onest font-black text-5xl text-[#188E39]/15 select-none pointer-events-none"
-                          aria-hidden="true"
-                        >
-                          {item.number}
-                        </span>
-
-                        {/* Header: Numeral & Spine Label */}
-                        <div className="flex items-center justify-between">
-                          <span className="font-onest font-black text-sm px-2 py-0.5 rounded bg-[#188E39]/20 text-[#34D399] border border-[#188E39]/30">
-                            {item.number}
-                          </span>
+                        {/* Header: Spine Label */}
+                        <div className="flex items-center justify-start">
                           <span className="font-inter text-[11px] font-semibold text-white/80 bg-white/5 px-2.5 py-1 rounded-full border border-white/10">
                             {item.spineLabel}
                           </span>
@@ -693,7 +698,7 @@ export const CaseFileCarousel: React.FC<CaseFileCarouselProps> = ({
           );
         })}
 
-        {/* OPENED READING VIEW: TWO-PAGE EXPANDED DOSSIER SPREAD WITH FULL BACKDROP */}
+        {/* OPENED READING VIEW: TWO-PAGE EXPANDED DOSSIER SPREAD WITH LIGHTENED BACKDROP */}
         {openedIndex !== null && currentOpenedItem && (
           <div
             className="absolute inset-0 z-50 flex items-center justify-center p-3 sm:p-6 animate-in fade-in duration-200"
@@ -701,9 +706,9 @@ export const CaseFileCarousel: React.FC<CaseFileCarouselProps> = ({
             aria-modal="true"
             aria-label={`Executive Dossier: ${currentOpenedItem.title}`}
           >
-            {/* Dim and blur backdrop covering the rest of the carousel behind it */}
+            {/* Fully transparent backdrop allowing outside-click close without any colored tint or wash */}
             <div
-              className="absolute inset-0 bg-[#042718]/70 backdrop-blur-md cursor-pointer transition-opacity"
+              className="absolute inset-0 backdrop-blur-sm cursor-pointer transition-opacity"
               onClick={() => setOpenedIndex(null)}
               aria-label="Close dossier"
             />
@@ -716,71 +721,49 @@ export const CaseFileCarousel: React.FC<CaseFileCarouselProps> = ({
                 maxHeight: "490px",
               }}
             >
-              {/* LEFT PAGE: CASE BRIEF & DOSSIER OVERVIEW */}
-              <div className="w-full md:w-[42%] bg-[#042718] text-white p-6 sm:p-7 flex flex-col justify-between relative overflow-hidden shrink-0">
-                {/* Subtle texture background */}
+              {/* LEFT PAGE: CASE BRIEF & DOSSIER OVERVIEW (Full-bleed case photo background) */}
+              <div className="w-full md:w-[42%] bg-[#042718] text-white p-6 sm:p-7 flex flex-col relative overflow-hidden shrink-0">
+                {/* Full-bleed background photo if available */}
+                {currentOpenedItem.coverImage && (
+                  <>
+                    <img
+                      src={currentOpenedItem.coverImage}
+                      alt={currentOpenedItem.title}
+                      referrerPolicy="no-referrer"
+                      className="absolute inset-0 w-full h-full object-cover object-center brightness-85"
+                    />
+                    {/* Dark green gradient overlay matching closed card face treatment */}
+                    <div
+                      className="absolute inset-0 pointer-events-none z-10"
+                      style={{
+                        background: COVER_PHOTO_GRADIENT_OVERLAY,
+                      }}
+                      aria-hidden="true"
+                    />
+                  </>
+                )}
+
+                {/* Localized scrim behind the header text block only — dark at top fading to transparent by ~40% */}
                 <div
-                  className="absolute inset-0 pointer-events-none opacity-20"
-                  style={{
-                    backgroundImage:
-                      "radial-gradient(#34D399 0.75px, transparent 0.75px)",
-                    backgroundSize: "16px 16px",
-                  }}
+                  className="absolute inset-x-0 top-0 h-[40%] bg-gradient-to-b from-black/70 via-black/25 to-transparent pointer-events-none z-10"
                   aria-hidden="true"
                 />
 
-                <div className="relative z-10">
-                  {/* Header tag */}
-                  <div className="flex items-center justify-between gap-2 mb-3">
-                    <span className="font-onest font-black text-xs px-2.5 py-0.5 rounded bg-[#188E39]/25 text-[#34D399] border border-[#188E39]/40">
-                      CASE {currentOpenedItem.number}
-                    </span>
-                    <span className="font-inter text-[11px] font-semibold text-white/70 uppercase tracking-wider">
+                <div className="relative z-20">
+                  {/* Header: Spine label (CASE numeral badge removed) */}
+                  <div className="flex items-center justify-start mb-3">
+                    <span className="font-inter text-[11px] font-semibold text-white/90 uppercase tracking-wider drop-shadow-sm">
                       {currentOpenedItem.spineLabel}
                     </span>
                   </div>
 
-                  <h3 className="font-onest font-bold text-lg sm:text-xl text-white leading-snug mb-2">
-                    {currentOpenedItem.title}
-                  </h3>
-
-                  <span className="font-inter text-xs text-[#34D399] font-medium block mb-4">
+                  <span className="font-inter text-xs text-[#34D399] font-semibold uppercase tracking-wider block mb-1.5 drop-shadow-sm">
                     {currentOpenedItem.category}
                   </span>
 
-                  {/* Cover visual or Thesis quote */}
-                  {currentOpenedItem.coverImage ? (
-                    <div className="w-full h-24 sm:h-28 rounded-xl overflow-hidden mb-4 border border-white/15 relative">
-                      <img
-                        src={currentOpenedItem.coverImage}
-                        alt={currentOpenedItem.title}
-                        referrerPolicy="no-referrer"
-                        className="w-full h-full object-cover"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                    </div>
-                  ) : (
-                    <div className="p-3 rounded-xl bg-white/5 border border-white/10 mb-4">
-                      <span className="text-[10px] font-inter uppercase tracking-wider text-[#34D399] font-semibold block mb-1">
-                        Product Thesis
-                      </span>
-                      <p className="font-inter text-xs text-white/80 italic leading-relaxed">
-                        "{currentOpenedItem.thesis}"
-                      </p>
-                    </div>
-                  )}
-                </div>
-
-                {/* Left page footer tags */}
-                <div className="relative z-10 pt-3 border-t border-white/10 flex flex-wrap gap-1.5">
-                  {currentOpenedItem.proofPoints?.slice(0, 3).map((pt, pIdx) => (
-                    <span
-                      key={pIdx}
-                      className="px-2 py-0.5 rounded-md text-[10px] font-inter font-medium bg-white/10 text-white/90"
-                    >
-                      {pt}
-                    </span>
-                  ))}
+                  <h3 className="font-onest font-bold text-lg sm:text-xl text-white leading-snug drop-shadow-md">
+                    {currentOpenedItem.title}
+                  </h3>
                 </div>
               </div>
 
@@ -825,7 +808,7 @@ export const CaseFileCarousel: React.FC<CaseFileCarouselProps> = ({
                     </p>
                   </div>
 
-                  {/* Key stats / proof points */}
+                  {/* Key stats / proof points (Single authoritative place for metrics) */}
                   {currentOpenedItem.keyStats && currentOpenedItem.keyStats.length > 0 && (
                     <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 mb-6">
                       {currentOpenedItem.keyStats.map((stat, sIdx) => (
@@ -873,59 +856,26 @@ export const CaseFileCarousel: React.FC<CaseFileCarouselProps> = ({
         )}
       </div>
 
-      {/* CAROUSEL CONTROLS BAR: CENTERED PREV/NEXT ROUND BUTTONS + CASE STUDY INDICATORS */}
-      <div className="mt-6 flex flex-wrap items-center justify-center gap-3 sm:gap-4 px-2 sm:px-6">
+      {/* CAROUSEL CONTROLS BAR: CENTERED PREV/NEXT ROUND BUTTONS */}
+      <div className="mt-6 flex items-center justify-center gap-3 px-2 sm:px-6">
         {/* Prev button */}
         <button
           type="button"
           id="carousel-prev-btn"
           onClick={handlePrev}
-          disabled={activeIndex === 0}
-          className="h-11 w-11 sm:h-12 sm:w-12 rounded-full bg-white border border-[#042718]/15 hover:bg-[#188E39]/10 hover:border-[#188E39]/40 text-[#042718] transition-colors flex items-center justify-center cursor-pointer shadow-xs disabled:opacity-30 disabled:cursor-not-allowed"
+          className="h-11 w-11 sm:h-12 sm:w-12 rounded-full bg-white border border-[#042718]/15 hover:bg-[#188E39]/10 hover:border-[#188E39]/40 text-[#042718] transition-colors flex items-center justify-center cursor-pointer shadow-xs active:scale-95"
           aria-label="Previous case study"
           title="Previous case study"
         >
           <ChevronLeft size={20} className="text-[#042718]" />
         </button>
 
-        {/* Indicator pills for all 5 cases */}
-        <div className="flex items-center gap-1.5 sm:gap-2">
-          {CASE_FILE_ITEMS.map((item, idx) => {
-            const isSelected = activeIndex === idx;
-            return (
-              <button
-                key={item.slug}
-                type="button"
-                id={`carousel-pill-${item.slug}`}
-                onClick={() => {
-                  goToIndex(idx);
-                  if (openedIndex !== null) {
-                    setOpenedIndex(idx);
-                  }
-                }}
-                className={`px-3 py-1.5 rounded-full font-inter text-xs transition-[background-color,color,border-color,box-shadow] cursor-pointer flex items-center gap-1.5 ${
-                  isSelected
-                    ? "bg-[#042718] text-white font-semibold shadow-xs"
-                    : "bg-white hover:bg-[#FAFDFB] text-[#042718]/70 hover:text-[#042718] border border-[#042718]/15"
-                }`}
-                aria-label={`Jump to Case ${item.number}: ${item.spineLabel}`}
-              >
-                <span className={isSelected ? "text-[#34D399]" : "text-[#042718]/50"}>
-                  {item.number}
-                </span>
-                <span className="hidden sm:inline">{item.spineLabel}</span>
-              </button>
-            );
-          })}
-        </div>
-
         {/* Next button */}
         <button
           type="button"
           id="carousel-next-btn"
           onClick={handleNext}
-          disabled={activeIndex === CASE_FILE_ITEMS.length - 1}
-          className="h-11 w-11 sm:h-12 sm:w-12 rounded-full bg-white border border-[#042718]/15 hover:bg-[#188E39]/10 hover:border-[#188E39]/40 text-[#042718] transition-colors flex items-center justify-center cursor-pointer shadow-xs disabled:opacity-30 disabled:cursor-not-allowed"
+          className="h-11 w-11 sm:h-12 sm:w-12 rounded-full bg-white border border-[#042718]/15 hover:bg-[#188E39]/10 hover:border-[#188E39]/40 text-[#042718] transition-colors flex items-center justify-center cursor-pointer shadow-xs active:scale-95"
           aria-label="Next case study"
           title="Next case study"
         >
