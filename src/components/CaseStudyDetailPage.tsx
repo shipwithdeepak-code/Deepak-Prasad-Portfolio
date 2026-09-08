@@ -372,7 +372,7 @@ export default function CaseStudyDetailPage({
             onClick={() => {
               onNavigate(`/work/${prevStudy.slug}`);
             }}
-            className="flex items-center gap-3 text-left p-4 rounded-xl hover:bg-[#FAFDFB] border border-transparent hover:border-[#042718]/10 transition-all cursor-pointer w-full sm:w-auto"
+            className="flex items-center gap-3 text-left p-4 rounded-xl hover:bg-[#FAFDFB] border border-transparent hover:border-[#042718]/10 transition-colors cursor-pointer w-full sm:w-auto"
           >
             <ArrowLeft size={20} className="text-[#188E39]" />
             <div>
@@ -398,7 +398,7 @@ export default function CaseStudyDetailPage({
             onClick={() => {
               onNavigate(`/work/${nextStudy.slug}`);
             }}
-            className="flex items-center justify-end gap-3 text-right p-4 rounded-xl hover:bg-[#FAFDFB] border border-transparent hover:border-[#042718]/10 transition-all cursor-pointer w-full sm:w-auto"
+            className="flex items-center justify-end gap-3 text-right p-4 rounded-xl hover:bg-[#FAFDFB] border border-transparent hover:border-[#042718]/10 transition-colors cursor-pointer w-full sm:w-auto"
           >
             <div>
               <span className="text-[11px] font-inter font-semibold uppercase tracking-wider text-[#042718]/40 block">

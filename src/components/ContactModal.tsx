@@ -117,7 +117,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                     type="button"
                     onClick={() => setSubject(opt)}
                     className={
-                      "p-2.5 rounded-xl font-inter text-xs text-left transition-all cursor-pointer border " +
+                      "p-2.5 rounded-xl font-inter text-xs text-left transition-[background-color,color,border-color,box-shadow] cursor-pointer border " +
                       (subject === opt
                         ? "bg-[#042718] text-white border-[#042718] font-semibold shadow-xs"
                         : "bg-[#FAFDFB] text-[#042718]/80 border-[#042718]/10 hover:border-[#188E39]/40")
@@ -209,7 +209,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
 
               <button
                 type="submit"
-                className="w-full sm:w-auto px-6 py-3 rounded-full bg-[#042718] hover:bg-[#042718]/90 text-white font-inter font-semibold text-xs shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-95"
+                className="w-full sm:w-auto px-6 py-3 rounded-full bg-[#042718] hover:bg-[#042718]/90 text-white font-inter font-semibold text-xs shadow-md transition-[background-color,transform] flex items-center justify-center gap-2 cursor-pointer active:scale-95"
               >
                 <span>Send Message</span>
                 <Send size={14} />

@@ -108,7 +108,7 @@ export default function Footer({}: FooterProps) {
                 target="_blank"
                 rel="noopener noreferrer"
                 id="footer-book-strategy-chat-cta"
-                className="h-14 px-8 rounded-full bg-[#042718] text-white font-inter font-semibold text-base shadow-lg hover:bg-[#042718]/90 transition-all flex items-center gap-3 group cursor-pointer"
+                className="h-14 px-8 rounded-full bg-[#042718] text-white font-inter font-semibold text-base shadow-lg hover:bg-[#042718]/90 transition-colors flex items-center gap-3 group cursor-pointer"
               >
                 <Calendar size={18} className="text-[#34D399]" />
                 <span>Book Strategy Chat</span>
@@ -124,7 +124,7 @@ export default function Footer({}: FooterProps) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
-                className="h-14 w-14 rounded-full bg-white/70 backdrop-blur-md border border-[#042718]/15 hover:bg-white text-[#042718] transition-all flex items-center justify-center cursor-pointer shadow-xs shrink-0"
+                className="h-14 w-14 rounded-full bg-white/70 backdrop-blur-md border border-[#042718]/15 hover:bg-white text-[#042718] transition-colors flex items-center justify-center cursor-pointer shadow-xs shrink-0"
               >
                 <Linkedin size={20} className="text-[#042718]" />
               </a>
@@ -134,7 +134,7 @@ export default function Footer({}: FooterProps) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub"
-                className="h-14 w-14 rounded-full bg-white/70 backdrop-blur-md border border-[#042718]/15 hover:bg-white text-[#042718] transition-all flex items-center justify-center cursor-pointer shadow-xs shrink-0"
+                className="h-14 w-14 rounded-full bg-white/70 backdrop-blur-md border border-[#042718]/15 hover:bg-white text-[#042718] transition-colors flex items-center justify-center cursor-pointer shadow-xs shrink-0"
               >
                 <Github size={20} className="text-[#042718]" />
               </a>
@@ -142,7 +142,7 @@ export default function Footer({}: FooterProps) {
               <a
                 href="mailto:shipwithdeepak@gmail.com"
                 aria-label="Email"
-                className="h-14 w-14 rounded-full bg-white/70 backdrop-blur-md border border-[#042718]/15 hover:bg-white text-[#042718] transition-all flex items-center justify-center cursor-pointer shadow-xs shrink-0"
+                className="h-14 w-14 rounded-full bg-white/70 backdrop-blur-md border border-[#042718]/15 hover:bg-white text-[#042718] transition-colors flex items-center justify-center cursor-pointer shadow-xs shrink-0"
               >
                 <Mail size={20} className="text-[#042718]" />
               </a>

@@ -72,7 +72,7 @@ export default function Navigation({
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full transition-all duration-300 ${
+      className={`sticky top-0 z-50 w-full transition-[background-color,border-color,box-shadow] duration-300 ${
         isTransparent
           ? "bg-transparent border-transparent"
           : "bg-[#FAFDFB]/85 backdrop-blur-md border-b border-[#042718]/10 shadow-xs"
@@ -165,7 +165,7 @@ export default function Navigation({
                 href={link.path}
                 onClick={(e) => handleLinkClick(link, e)}
                 id={`nav-link-${link.label.toLowerCase().replace(/\s+/g, "-")}`}
-                className={`font-inter text-[14px] sm:text-[15px] leading-6 tracking-[-0.2px] transition-all relative py-1 ${
+                className={`font-inter text-[14px] sm:text-[15px] leading-6 tracking-[-0.2px] transition-colors relative py-1 ${
                   isActive
                     ? "text-[#042718] font-semibold"
                     : "text-[#042718]/80 font-medium hover:text-[#042718]"
@@ -203,7 +203,7 @@ export default function Navigation({
               onMouseEnter={() => setIsNavHovered(true)}
               onMouseLeave={() => setIsNavHovered(false)}
               className={
-                "flex items-center gap-2.5 py-1.5 rounded-full bg-white/80 hover:bg-white backdrop-blur-md border border-[#042718]/15 group cursor-pointer relative h-10 transition-all duration-300 shadow-2xs " +
+                "flex items-center gap-2.5 py-1.5 rounded-full bg-white/80 hover:bg-white backdrop-blur-md border border-[#042718]/15 group cursor-pointer relative h-10 transition-colors duration-300 shadow-2xs " +
                 (isNavHovered ? "flex-row-reverse pl-1.5 pr-4" : "flex-row pl-4 pr-1.5")
               }
             >

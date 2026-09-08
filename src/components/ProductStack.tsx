@@ -297,7 +297,7 @@ export default function ProductStack({ className }: { className?: string }) {
                       whileInView={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.6, delay: 0.1 + idx * 0.1 }}
                       viewport={{ once: true }}
-                      className="w-[280px] sm:w-[320px] lg:w-[340px] min-h-[80px] lg:h-[88px] bg-white rounded-[20px] p-3.5 lg:p-4 flex items-center gap-3.5 shadow-[0_4px_20px_rgba(4,39,24,0.02)] group hover:shadow-[0_12px_40px_rgba(4,39,24,0.06)] transition-all cursor-default border border-[#042619]/10 lg:absolute"
+                      className="w-[280px] sm:w-[320px] lg:w-[340px] min-h-[80px] lg:h-[88px] bg-white rounded-[20px] p-3.5 lg:p-4 flex items-center gap-3.5 shadow-[0_4px_20px_rgba(4,39,24,0.02)] group hover:shadow-[0_12px_40px_rgba(4,39,24,0.06)] transition-shadow cursor-default border border-[#042619]/10 lg:absolute"
                       style={{
                         top: isLargeScreen
                           ? competencyTopValues[idx]
@@ -374,7 +374,7 @@ export default function ProductStack({ className }: { className?: string }) {
                       whileInView={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.6, delay: 0.1 + idx * 0.1 }}
                       viewport={{ once: true }}
-                      className="w-[280px] sm:w-[320px] lg:w-[340px] min-h-[80px] lg:h-[88px] bg-white rounded-[20px] p-3.5 lg:p-4 flex items-center gap-3.5 shadow-[0_4px_20px_rgba(4,39,24,0.02)] group hover:shadow-[0_12px_40px_rgba(4,39,24,0.06)] transition-all cursor-default border border-[#042619]/10 lg:absolute"
+                      className="w-[280px] sm:w-[320px] lg:w-[340px] min-h-[80px] lg:h-[88px] bg-white rounded-[20px] p-3.5 lg:p-4 flex items-center gap-3.5 shadow-[0_4px_20px_rgba(4,39,24,0.02)] group hover:shadow-[0_12px_40px_rgba(4,39,24,0.06)] transition-shadow cursor-default border border-[#042619]/10 lg:absolute"
                       style={{
                         top: isLargeScreen
                           ? competencyTopValues[idx]

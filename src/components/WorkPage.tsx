@@ -87,7 +87,7 @@ export default function WorkPage({
               key={cat.id}
               type="button"
               onClick={() => setSelectedCategory(cat.id)}
-              className={`px-4 py-2 rounded-full text-xs sm:text-sm font-inter font-medium transition-all cursor-pointer ${
+              className={`px-4 py-2 rounded-full text-xs sm:text-sm font-inter font-medium transition-[background-color,color,border-color,box-shadow] cursor-pointer ${
                 selectedCategory === cat.id
                   ? "bg-[#042718] text-white shadow-xs"
                   : "bg-white text-[#042718]/70 hover:text-[#042718] border border-[#042718]/10 hover:border-[#042718]/20"
@@ -111,7 +111,7 @@ export default function WorkPage({
                 onSelectCaseStudy(study);
                 onNavigate(`/work/${study.slug}`);
               }}
-              className="group cursor-pointer rounded-[24px] bg-white border border-[#042718]/10 p-6 sm:p-10 transition-all duration-300 hover:border-[#188E39]/40 hover:shadow-[0_20px_50px_rgba(4,39,24,0.06)] flex flex-col justify-between relative"
+              className="group cursor-pointer rounded-[24px] bg-white border border-[#042718]/10 p-6 sm:p-10 transition-[border-color,box-shadow] duration-300 hover:border-[#188E39]/40 hover:shadow-[0_20px_50px_rgba(4,39,24,0.06)] flex flex-col justify-between relative"
             >
               <div>
                 {/* Header row */}

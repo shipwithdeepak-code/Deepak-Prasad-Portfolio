@@ -123,7 +123,7 @@ export default function CaseStudyModal({
             <button
               type="button"
               onClick={onOpenContact}
-              className="hidden sm:inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#01bc7c]/15 hover:bg-[#01bc7c]/25 border border-[#01bc7c]/40 text-[#01bc7c] text-xs font-bold transition-all cursor-pointer"
+              className="hidden sm:inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#01bc7c]/15 hover:bg-[#01bc7c]/25 border border-[#01bc7c]/40 text-[#01bc7c] text-xs font-bold transition-colors cursor-pointer"
             >
               <span>Discuss Strategy</span>
               <ArrowRight size={13} />
@@ -152,7 +152,7 @@ export default function CaseStudyModal({
                   key={section.id}
                   type="button"
                   onClick={() => setActiveSectionId(section.id)}
-                  className={`flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-xs font-medium text-left transition-all duration-200 cursor-pointer shrink-0 lg:shrink ${
+                  className={`flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-xs font-medium text-left transition-[background-color,border-color,color,box-shadow] duration-200 cursor-pointer shrink-0 lg:shrink ${
                     isActive
                       ? 'bg-[#01bc7c]/20 border border-[#01bc7c]/50 text-white font-semibold shadow-sm'
                       : 'text-white/60 hover:text-white hover:bg-white/5 border border-transparent'
@@ -323,7 +323,7 @@ export default function CaseStudyModal({
                         key={index}
                         type="button"
                         onClick={() => setActiveSystemNode(index)}
-                        className={`p-3 rounded-xl text-left border transition-all cursor-pointer ${
+                        className={`p-3 rounded-xl text-left border transition-[background-color,border-color,color,box-shadow] cursor-pointer ${
                           activeSystemNode === index
                             ? 'bg-[#01bc7c]/20 border-[#01bc7c] text-white shadow-md'
                             : 'bg-white/5 border-white/10 text-white/70 hover:bg-white/10'

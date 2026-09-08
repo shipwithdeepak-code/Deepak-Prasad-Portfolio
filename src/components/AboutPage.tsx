@@ -293,16 +293,13 @@ export default function AboutPage({
             Domain proficiency across the full product lifecycle.
           </p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          <div className="flex flex-col gap-6 sm:gap-7">
             {CAPABILITY_GROUPS.map((group, idx) => (
-              <div
-                key={idx}
-                className="p-5 rounded-[18px] bg-white border border-[#042718]/8 shadow-2xs"
-              >
-                <h3 className="font-onest text-base font-bold text-[#042718] mb-3">
+              <div key={idx} className="flex flex-col gap-2.5">
+                <h3 className="font-onest text-sm sm:text-base font-bold text-[#042718]">
                   {group.category}
                 </h3>
-                <div className="flex flex-wrap gap-1.5">
+                <div className="flex flex-wrap gap-2">
                   {group.skills.map((skill, sIdx) => (
                     <span
                       key={sIdx}

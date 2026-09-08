@@ -252,7 +252,7 @@ export default function CopilotWidget({
         <button
           id="copilot-launcher-btn"
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-5 right-5 z-40 group flex items-center justify-center w-14 h-14 rounded-full bg-[#042718] text-white shadow-xl hover:shadow-2xl active:scale-95 transition-all duration-300 border-2 border-[#188E39]/40 hover:border-[#188E39]/80 cursor-pointer animate-copilot-breathe overflow-visible"
+          className="fixed bottom-5 right-5 z-40 group flex items-center justify-center w-14 h-14 rounded-full bg-[#042718] text-white shadow-xl hover:shadow-2xl active:scale-95 transition-[box-shadow,transform,border-color] duration-300 border-2 border-[#188E39]/40 hover:border-[#188E39]/80 cursor-pointer animate-copilot-breathe overflow-visible"
           aria-label="Open Deepak's AI Copilot"
           title="Open Deepak's AI Copilot"
         >
@@ -280,7 +280,7 @@ export default function CopilotWidget({
       {isOpen && (
         <div
           id="copilot-window"
-          className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 w-[calc(100vw-32px)] sm:w-[460px] h-[620px] max-h-[calc(100vh-48px)] flex flex-col rounded-[24px] bg-[#FFFFFF] border border-[#042718]/15 shadow-2xl overflow-hidden font-inter transition-all duration-300"
+          className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 w-[calc(100vw-32px)] sm:w-[460px] h-[620px] max-h-[calc(100vh-48px)] flex flex-col rounded-[24px] bg-[#FFFFFF] border border-[#042718]/15 shadow-2xl overflow-hidden font-inter transition-[opacity,transform] duration-300"
         >
           {/* Header */}
           <div className="p-4 bg-[#042718] text-white flex items-center justify-between shrink-0 select-none">
@@ -337,7 +337,7 @@ export default function CopilotWidget({
 
           {/* "How This Works" Collapsible Transparent Architecture Panel */}
           {isHowItWorksOpen && (
-            <div className="bg-[#FAFDFB] border-b border-[#042718]/10 p-4 shrink-0 overflow-y-auto max-h-[220px] transition-all">
+            <div className="bg-[#FAFDFB] border-b border-[#042718]/10 p-4 shrink-0 overflow-y-auto max-h-[220px] transition-[opacity,max-height] duration-200">
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center gap-1.5 text-xs font-bold text-[#188E39] uppercase tracking-wider">
                   <Cpu size={14} />

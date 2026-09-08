@@ -68,7 +68,7 @@ export default function ResumePage({
                 type="button"
                 id="resume-page-direct-download"
                 onClick={handleDownload}
-                className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full bg-[#188E39] hover:bg-[#15803D] text-white font-inter text-sm font-semibold transition-all duration-200 shadow cursor-pointer"
+                className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full bg-[#188E39] hover:bg-[#15803D] text-white font-inter text-sm font-semibold transition-colors duration-200 shadow cursor-pointer"
               >
                 <FileDown size={16} />
                 <span>Download resume (PDF)</span>
@@ -79,7 +79,7 @@ export default function ResumePage({
                   type="button"
                   id="resume-page-preview-modal"
                   onClick={onOpenResumeModal}
-                  className="inline-flex items-center gap-2 px-5 py-3.5 rounded-full bg-white/10 hover:bg-white/15 text-white font-inter text-sm font-semibold transition-all duration-200 cursor-pointer"
+                  className="inline-flex items-center gap-2 px-5 py-3.5 rounded-full bg-white/10 hover:bg-white/15 text-white font-inter text-sm font-semibold transition-colors duration-200 cursor-pointer"
                 >
                   <Eye size={16} />
                   <span>Preview in-app</span>

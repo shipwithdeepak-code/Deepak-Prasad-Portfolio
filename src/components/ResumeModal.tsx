@@ -224,7 +224,7 @@ export default function ResumeModal({
               <button
                 type="button"
                 onClick={() => setActiveTab("pdf")}
-                className={`px-3 py-1 rounded-full transition-all cursor-pointer flex items-center gap-1.5 ${
+                className={`px-3 py-1 rounded-full transition-[background-color,color,box-shadow] cursor-pointer flex items-center gap-1.5 ${
                   activeTab === "pdf"
                     ? "bg-white text-[#042718] font-semibold shadow-2xs"
                     : "text-[#042718]/60 hover:text-[#042718]"
@@ -236,7 +236,7 @@ export default function ResumeModal({
               <button
                 type="button"
                 onClick={() => setActiveTab("structured")}
-                className={`px-3 py-1 rounded-full transition-all cursor-pointer flex items-center gap-1.5 ${
+                className={`px-3 py-1 rounded-full transition-[background-color,color,box-shadow] cursor-pointer flex items-center gap-1.5 ${
                   activeTab === "structured"
                     ? "bg-white text-[#042718] font-semibold shadow-2xs"
                     : "text-[#042718]/60 hover:text-[#042718]"
@@ -252,7 +252,7 @@ export default function ResumeModal({
             <button
               type="button"
               onClick={handleDownload}
-              className="px-3.5 py-1.5 rounded-full bg-[#188E39] hover:bg-[#188E39]/90 text-white font-inter text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 shadow-2xs"
+              className="px-3.5 py-1.5 rounded-full bg-[#188E39] hover:bg-[#188E39]/90 text-white font-inter text-xs font-semibold transition-colors cursor-pointer flex items-center gap-1.5 shadow-2xs"
               title="Download Resume PDF"
             >
               <Download size={13} />
@@ -269,7 +269,7 @@ export default function ResumeModal({
               href={CALENDLY_URL}
               target="_blank"
               rel="noopener"
-              className="px-4 py-1.5 rounded-full bg-[#042718] text-white font-inter text-xs font-semibold hover:bg-[#042718]/90 transition-all cursor-pointer hidden lg:flex items-center gap-1.5"
+              className="px-4 py-1.5 rounded-full bg-[#042718] text-white font-inter text-xs font-semibold hover:bg-[#042718]/90 transition-colors cursor-pointer hidden lg:flex items-center gap-1.5"
             >
               <span>Book Chat</span>
               <ArrowRight size={13} />
@@ -532,7 +532,7 @@ export default function ResumeModal({
             <button
               type="button"
               onClick={handleDownload}
-              className="px-4 py-2 rounded-full bg-[#188E39] hover:bg-[#188E39]/90 text-white font-inter text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 shadow-2xs"
+              className="px-4 py-2 rounded-full bg-[#188E39] hover:bg-[#188E39]/90 text-white font-inter text-xs font-semibold transition-colors cursor-pointer flex items-center gap-1.5 shadow-2xs"
             >
               <Download size={14} />
               <span>
@@ -548,7 +548,7 @@ export default function ResumeModal({
               href={CALENDLY_URL}
               target="_blank"
               rel="noopener"
-              className="px-5 py-2 rounded-full bg-[#042718] hover:bg-[#042718]/90 text-white font-inter text-xs font-semibold transition-all cursor-pointer flex items-center gap-2"
+              className="px-5 py-2 rounded-full bg-[#042718] hover:bg-[#042718]/90 text-white font-inter text-xs font-semibold transition-colors cursor-pointer flex items-center gap-2"
             >
               <span>Discuss Role / Interview</span>
               <ArrowRight size={14} />

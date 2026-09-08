@@ -202,7 +202,7 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
                   <button
                     type="submit"
                     id="contact-form-submit"
-                    className="mt-2 w-full py-3 rounded-xl bg-[#042718] hover:bg-[#063b25] text-white font-inter text-sm font-semibold transition-all flex items-center justify-center gap-2 cursor-pointer shadow-xs"
+                    className="mt-2 w-full py-3 rounded-xl bg-[#042718] hover:bg-[#063b25] text-white font-inter text-sm font-semibold transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-xs"
                   >
                     <Send size={15} />
                     <span>Send Message</span>
