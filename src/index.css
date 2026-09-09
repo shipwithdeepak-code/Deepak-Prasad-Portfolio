@@ -6,6 +6,10 @@
   --font-playfair: 'Playfair Display', Georgia, serif;
 }
 
+html, body {
+  overflow-x: clip;
+}
+
 @keyframes breathe-orb {
   0%            { transform: scale(1); }
   33.33%, 66.67%{ transform: scale(1.035); }

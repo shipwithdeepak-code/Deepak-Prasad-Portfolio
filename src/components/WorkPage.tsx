@@ -5,7 +5,6 @@ import {
   ArrowUpRight,
   CheckCircle2,
   Sparkles,
-  Layers,
   FileText,
   Filter,
   Terminal,
@@ -189,15 +188,11 @@ export default function WorkPage({
             MORE WORK (SECTION 13)
             ========================================================================= */}
         <section id="more-work" className="pt-8 border-t border-[#042718]/10">
-          <div className="max-w-3xl mb-12">
-            <div className="inline-flex items-center gap-2 text-xs font-inter font-semibold uppercase tracking-wider text-[#188E39] mb-2">
-              <Layers size={14} />
-              <span>Secondary & Systems Work</span>
-            </div>
-            <h2 className="font-onest text-3xl sm:text-4xl font-bold tracking-tight text-[#042718]">
+          <div className="max-w-3xl mb-8 md:mb-12">
+            <h2 className="font-onest text-[34px] sm:text-[44px] md:text-[54px] font-semibold text-[#042718] leading-[1.12] tracking-tight md:tracking-[-2px]">
               More work
             </h2>
-            <p className="font-inter text-base text-[#042718]/70 mt-2">
+            <p className="font-inter text-[15px] md:text-[18px] text-[#042718]/80 leading-relaxed max-w-[640px] mt-4">
               A record of platform extensions, operational pipelines, CRM/ERP integrations, and earlier hardware product initiatives.
             </p>
           </div>

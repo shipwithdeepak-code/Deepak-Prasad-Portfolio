@@ -52,27 +52,13 @@ export default function Footer({}: FooterProps) {
 
         <div className="max-w-[1440px] w-full mx-auto px-6 lg:px-[96px] relative z-10 flex flex-col items-center">
           <div className="max-w-[1248px] w-full flex flex-col items-center">
-            {/* Tag */}
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#E4F2EB] border border-[#188E39]/15 mb-6"
-            >
-              <Sparkles className="w-3.5 h-3.5 text-[#188E39]" />
-              <span className="text-[#188E39] text-xs font-inter font-bold uppercase tracking-wider">
-                Open for High-Impact Roles
-              </span>
-            </motion.div>
-
             {/* Heading */}
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
               viewport={{ once: true }}
-              className="w-full max-w-[820px] text-center text-[#042718] font-semibold text-[38px] md:text-[60px] leading-[1.1] tracking-tight md:tracking-[-2px] mb-4 font-onest"
+              className="w-full max-w-3xl text-center text-[#042718] font-onest text-[34px] sm:text-[44px] md:text-[54px] font-semibold leading-[1.12] tracking-tight md:tracking-[-2px] mb-4"
             >
               Let’s build something{" "}
               <span className="font-playfair italic font-medium text-black/40">
@@ -87,7 +73,7 @@ export default function Footer({}: FooterProps) {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
-              className="w-full max-w-[660px] text-center text-[#042718]/80 font-inter text-base md:text-lg leading-relaxed mb-10"
+              className="w-full max-w-[640px] text-center text-[#042718]/80 font-inter text-[15px] md:text-[18px] leading-relaxed mb-10"
             >
               Looking for a Senior Product Manager who thrives in ambiguity,
               talks to real users, and builds resilient physical-digital
