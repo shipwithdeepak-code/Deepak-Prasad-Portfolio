@@ -66,6 +66,8 @@ export default function CopilotWidget({
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [showIntroTooltip, setShowIntroTooltip] = useState(false);
+  const [showScrollNudge, setShowScrollNudge] = useState(false);
+  const [isCtaHovering, setIsCtaHovering] = useState(false);
   const shouldReduceMotion = Boolean(useReducedMotion());
 
   const [messages, setMessages] = useState<Message[]>([
@@ -83,10 +85,26 @@ export default function CopilotWidget({
   const inputRef = useRef<HTMLInputElement>(null);
   const hasInteractedRef = useRef<boolean>(false);
 
+  // Track if user has actually opened the chat (persists in localStorage)
+  useEffect(() => {
+    if (isOpen) {
+      try {
+        localStorage.setItem("copilotEverOpened", "true");
+      } catch {}
+    }
+  }, [isOpen]);
+
   const dismissIntroTooltip = useCallback(() => {
     setShowIntroTooltip(false);
     try {
       localStorage.setItem("copilotIntroSeen", "true");
+    } catch {}
+  }, []);
+
+  const dismissScrollNudge = useCallback(() => {
+    setShowScrollNudge(false);
+    try {
+      sessionStorage.setItem("copilotScrollNudgeShown", "true");
     } catch {}
   }, []);
 
@@ -133,22 +151,113 @@ export default function CopilotWidget({
     };
   }, [showIntroTooltip, dismissIntroTooltip]);
 
-  // If panel opens while tooltip is visible, dismiss tooltip
+  // Contextual scroll nudge auto-dismiss (7s, lighter touch)
   useEffect(() => {
-    if (isOpen && showIntroTooltip) {
-      dismissIntroTooltip();
+    if (!showScrollNudge) return;
+
+    const autoDismissTimer = setTimeout(() => {
+      dismissScrollNudge();
+    }, 7000);
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" || e.key === "Esc") {
+        dismissScrollNudge();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      clearTimeout(autoDismissTimer);
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [showScrollNudge, dismissScrollNudge]);
+
+  // Contextual scroll nudge: triggers when user scrolls to #selected-work (~40-50% visible)
+  // fires at most once per session for users who have never opened the chat
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    try {
+      if (localStorage.getItem("copilotEverOpened") === "true") return;
+      if (sessionStorage.getItem("copilotScrollNudgeShown") === "true") return;
+    } catch {}
+
+    let observer: IntersectionObserver | null = null;
+    let retryTimer: ReturnType<typeof setTimeout> | null = null;
+
+    const attachObserver = () => {
+      const targetEl = document.getElementById("selected-work");
+      if (!targetEl) return false;
+
+      observer = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (entry.isIntersecting && entry.intersectionRatio >= 0.4) {
+              try {
+                const everOpened = localStorage.getItem("copilotEverOpened") === "true";
+                const nudgeShown = sessionStorage.getItem("copilotScrollNudgeShown") === "true";
+
+                if (!everOpened && !nudgeShown && !showIntroTooltip && !isOpen) {
+                  setShowScrollNudge(true);
+                  sessionStorage.setItem("copilotScrollNudgeShown", "true");
+                  if (observer) {
+                    observer.disconnect();
+                  }
+                }
+              } catch {}
+            }
+          }
+        },
+        {
+          threshold: [0.4, 0.5],
+        }
+      );
+
+      observer.observe(targetEl);
+      return true;
+    };
+
+    const attached = attachObserver();
+    if (!attached) {
+      retryTimer = setTimeout(attachObserver, 800);
     }
-  }, [isOpen, showIntroTooltip, dismissIntroTooltip]);
+
+    return () => {
+      if (observer) observer.disconnect();
+      if (retryTimer) clearTimeout(retryTimer);
+    };
+  }, [isOpen, showIntroTooltip]);
+
+  // If panel opens while tooltip or nudge is visible, dismiss them
+  useEffect(() => {
+    if (isOpen) {
+      if (showIntroTooltip) dismissIntroTooltip();
+      if (showScrollNudge) dismissScrollNudge();
+    }
+  }, [isOpen, showIntroTooltip, showScrollNudge, dismissIntroTooltip, dismissScrollNudge]);
 
   // Global custom event listener so any button on the site can open Dīpa
   useEffect(() => {
     const handleOpenDipa = () => {
       setIsOpen(true);
       dismissIntroTooltip();
+      dismissScrollNudge();
     };
     window.addEventListener("open-copilot", handleOpenDipa);
     return () => window.removeEventListener("open-copilot", handleOpenDipa);
-  }, [dismissIntroTooltip]);
+  }, [dismissIntroTooltip, dismissScrollNudge]);
+
+  // Listen for Hero CTA hover events to animate the launcher orb wrapper
+  useEffect(() => {
+    const handleCtaHover = (e: Event) => {
+      const customEvent = e as CustomEvent<{ hovering?: boolean }>;
+      if (customEvent.detail) {
+        setIsCtaHovering(Boolean(customEvent.detail.hovering));
+      }
+    };
+    window.addEventListener("dipa-cta-hover", handleCtaHover);
+    return () => window.removeEventListener("dipa-cta-hover", handleCtaHover);
+  }, []);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -397,15 +506,15 @@ export default function CopilotWidget({
         }
       `}</style>
 
-      {/* One-time intro tooltip */}
+      {/* One-time intro tooltip or contextual scroll nudge */}
       <AnimatePresence>
-        {showIntroTooltip && !isOpen && (
+        {(showIntroTooltip || showScrollNudge) && !isOpen && (
           <motion.div
             initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 8, scale: 0.96 }}
             animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1 }}
             exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 6, scale: 0.98 }}
             transition={{ duration: 0.22, ease: "easeOut" }}
-            className="fixed bottom-22 right-5 z-40 max-w-[300px] sm:max-w-[330px] p-3.5 rounded-2xl cursor-pointer text-left select-none"
+            className="fixed bottom-[142px] right-5 z-40 max-w-[300px] sm:max-w-[330px] p-3.5 rounded-2xl cursor-pointer text-left select-none"
             style={{
               background: "color-mix(in oklch, #FAFDFB 82%, transparent)",
               backdropFilter: "blur(20px) saturate(160%)",
@@ -415,7 +524,8 @@ export default function CopilotWidget({
                 "0 12px 30px -8px rgba(4,39,24,.22), 0 4px 10px -3px rgba(4,39,24,.1)",
             }}
             onClick={() => {
-              dismissIntroTooltip();
+              if (showScrollNudge) dismissScrollNudge();
+              if (showIntroTooltip) dismissIntroTooltip();
               setIsOpen(true);
             }}
           >
@@ -424,7 +534,8 @@ export default function CopilotWidget({
               type="button"
               onClick={(e) => {
                 e.stopPropagation();
-                dismissIntroTooltip();
+                if (showScrollNudge) dismissScrollNudge();
+                if (showIntroTooltip) dismissIntroTooltip();
               }}
               aria-label="Dismiss"
               className="absolute top-2.5 right-2.5 p-1 rounded-full text-[#042718]/40 hover:text-[#042718] hover:bg-[#042718]/8 transition-colors cursor-pointer"
@@ -442,19 +553,30 @@ export default function CopilotWidget({
               </div>
               <div>
                 <p className="font-inter text-xs sm:text-[13px] font-medium text-[#042718] leading-snug">
-                  I'm Dīpa — I know a little about Deepak's work. Ask me anything →
+                  {showScrollNudge
+                    ? "Curious about the thinking behind this? Ask Dīpa →"
+                    : "I'm Dīpa — I know a little about Deepak's work. Ask me anything →"}
                 </p>
                 <button
                   type="button"
                   onClick={(e) => {
                     e.stopPropagation();
-                    dismissIntroTooltip();
+                    const promptText = showScrollNudge
+                      ? "Tell me about the trade-offs in Deepak's selected work"
+                      : "What's Deepak's strongest 0→1 product?";
+                    if (showScrollNudge) dismissScrollNudge();
+                    if (showIntroTooltip) dismissIntroTooltip();
                     setIsOpen(true);
-                    handleSend("What's Deepak's strongest 0→1 product?");
+                    handleSend(promptText);
                   }}
                   className="mt-2 text-left font-inter text-[11px] font-medium text-[#065F46] hover:text-[#042718] bg-[#ECFDF5]/85 hover:bg-[#ECFDF5] px-2.5 py-1 rounded-lg border border-[#01bc7c]/30 transition-colors block w-fit"
                 >
-                  Try: <span className="font-semibold">What's Deepak's strongest 0→1 product?</span>
+                  Try:{" "}
+                  <span className="font-semibold">
+                    {showScrollNudge
+                      ? "Trade-offs in Deepak's selected work"
+                      : "What's Deepak's strongest 0→1 product?"}
+                  </span>
                 </button>
               </div>
             </div>
@@ -475,12 +597,24 @@ export default function CopilotWidget({
       {/* Floating Circular Trigger (always visible, toggles open/close) */}
       <div
         id="copilot-launcher-btn"
-        className="fixed bottom-5 right-5 z-40"
+        className={`fixed bottom-20 right-5 z-40 transition-transform duration-300 ease-out ${
+          isCtaHovering && !shouldReduceMotion
+            ? "scale-[1.08] -translate-y-1"
+            : "scale-100 translate-y-0"
+        }`}
+        style={
+          isCtaHovering && !shouldReduceMotion
+            ? {
+                filter: "drop-shadow(0 0 16px rgba(1, 188, 124, 0.45))",
+                transition: "transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), filter 0.25s ease-out",
+              }
+            : undefined
+        }
       >
         <ShaderOrb
           fixedLabel=""
           disableClickAdvance
-          sizeClassName="w-14 h-14"
+          sizeClassName="w-[52px] h-[52px]"
           title={
             isOpen
               ? "Close Dīpa"
@@ -494,6 +628,7 @@ export default function CopilotWidget({
           onOrbClick={() => {
             setIsOpen((prev) => !prev);
             dismissIntroTooltip();
+            dismissScrollNudge();
           }}
         />
       </div>
@@ -691,7 +826,7 @@ export default function CopilotWidget({
                   },
                   {
                     step: "4. Confidence Gate",
-                    desc: "Threshold \u2265 0.68. Unknowns escalate to Book Chat",
+                    desc: "Threshold \u2265 0.68. Unknowns escalate to Let's Talk",
                   },
                   {
                     step: "5. Strict Grounding",
@@ -843,7 +978,7 @@ export default function CopilotWidget({
                           className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#188E39] hover:bg-[#065F46] text-white font-semibold text-xs transition-colors shadow-xs"
                         >
                           <Calendar size={13} />
-                          <span>Book Chat with Deepak</span>
+                          <span>Let&apos;s Talk with Deepak</span>
                         </a>
                         <button
                           onClick={() => {

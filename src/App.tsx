@@ -12,6 +12,7 @@ import ContactModal from "./components/ContactModal";
 import ResumeModal from "./components/ResumeModal";
 import CopilotWidget from "./components/CopilotWidget";
 import { openCalendly } from "./utils/calendly";
+import { downloadResumePDF } from "./utils/downloadResume";
 import {
   ALL_FLAGSHIP_CASE_STUDIES,
   RESHAMANDI_CASE_STUDY,
@@ -154,7 +155,7 @@ export default function App() {
       return (
         <AboutPage
           onNavigate={navigate}
-          onOpenResumeModal={() => setIsResumeModalOpen(true)}
+          onOpenResumeModal={() => downloadResumePDF()}
         />
       );
     }
@@ -164,7 +165,7 @@ export default function App() {
       return (
         <ResumePage
           onNavigate={navigate}
-          onOpenResumeModal={() => setIsResumeModalOpen(true)}
+          onOpenResumeModal={() => downloadResumePDF()}
         />
       );
     }
@@ -179,7 +180,7 @@ export default function App() {
       <HomePage
         onNavigate={navigate}
         onSelectCaseStudy={handleSelectCaseStudy}
-        onOpenResumeModal={() => setIsResumeModalOpen(true)}
+        onOpenResumeModal={() => downloadResumePDF()}
       />
     );
   };
@@ -190,7 +191,7 @@ export default function App() {
       <Navigation
         currentPath={currentPath}
         onNavigate={navigate}
-        onOpenResumeModal={() => setIsResumeModalOpen(true)}
+        onOpenResumeModal={() => downloadResumePDF()}
         onOpenContactModal={() => openCalendly()}
       />
 
@@ -200,7 +201,7 @@ export default function App() {
       {/* Persistent Footer */}
       <Footer
         onNavigate={navigate}
-        onOpenResumeModal={() => setIsResumeModalOpen(true)}
+        onOpenResumeModal={() => downloadResumePDF()}
         onOpenContactModal={() => setIsContactModalOpen(true)}
         onSelectCaseStudy={(id) => {
           const found =

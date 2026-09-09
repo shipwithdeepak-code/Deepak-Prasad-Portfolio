@@ -143,6 +143,151 @@ function StatNumberDisplay({ idx, isInView, shouldReduceMotion }: StatNumberDisp
   return null;
 }
 
+interface GlowCTAProps {
+  children: React.ReactNode;
+  className?: string;
+}
+
+function GlowCTA({ children, className = "" }: GlowCTAProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const stateRef = useRef({
+    x: 0,
+    targetX: 0,
+    velocity: 0,
+    rafId: 0,
+    lastTime: 0,
+    isRunning: false,
+  });
+
+  const prefersReducedMotion =
+    typeof window !== "undefined" &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  useEffect(() => {
+    if (containerRef.current) {
+      containerRef.current.style.setProperty("--light-x", "0px");
+    }
+    return () => {
+      if (stateRef.current.rafId) {
+        cancelAnimationFrame(stateRef.current.rafId);
+      }
+    };
+  }, []);
+
+  const updateSpring = (time: number) => {
+    const s = stateRef.current;
+    if (!s.isRunning) return;
+
+    if (!s.lastTime) s.lastTime = time;
+    const dt = Math.min((time - s.lastTime) / 1000, 0.033);
+    s.lastTime = time;
+
+    const displacement = s.x - s.targetX;
+    // Critically damped spring math (frequency ~3.4, damping ~0.78)
+    const springForce = -11.56 * displacement;
+    const dampingForce = -5.304 * s.velocity;
+    const acceleration = springForce + dampingForce;
+
+    s.velocity += acceleration * dt;
+    s.x += s.velocity * dt;
+
+    if (containerRef.current) {
+      containerRef.current.style.setProperty("--light-x", `${s.x.toFixed(2)}px`);
+    }
+
+    if (Math.abs(s.velocity) < 0.05 && Math.abs(displacement) < 0.1) {
+      s.x = s.targetX;
+      s.velocity = 0;
+      s.isRunning = false;
+      if (containerRef.current) {
+        containerRef.current.style.setProperty("--light-x", `${s.x.toFixed(2)}px`);
+      }
+      return;
+    }
+
+    s.rafId = requestAnimationFrame(updateSpring);
+  };
+
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (prefersReducedMotion || !containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const halfWidth = rect.width / 2;
+    const offsetX = e.clientX - centerX;
+    const clampedX = Math.max(-halfWidth, Math.min(halfWidth, offsetX));
+
+    stateRef.current.targetX = clampedX;
+    if (!stateRef.current.isRunning) {
+      stateRef.current.isRunning = true;
+      stateRef.current.lastTime = 0;
+      stateRef.current.rafId = requestAnimationFrame(updateSpring);
+    }
+  };
+
+  const handlePointerLeave = () => {
+    if (prefersReducedMotion) return;
+    stateRef.current.targetX = 0;
+    if (!stateRef.current.isRunning) {
+      stateRef.current.isRunning = true;
+      stateRef.current.lastTime = 0;
+      stateRef.current.rafId = requestAnimationFrame(updateSpring);
+    }
+  };
+
+  return (
+    <div
+      ref={containerRef}
+      onPointerMove={handlePointerMove}
+      onPointerLeave={handlePointerLeave}
+      className={`relative inline-flex items-center justify-center ${className}`}
+      style={{ "--light-x": "0px" } as React.CSSProperties}
+    >
+      {/* Glow Layer 1: Cursor-left edge tone & mid-intensity glow */}
+      <div
+        className="absolute -inset-1 rounded-full pointer-events-none opacity-55 transition-opacity duration-300 blur-[8px]"
+        style={{
+          background:
+            "radial-gradient(ellipse 60% 85% at calc(50% + var(--light-x) - 18px) 50%, rgba(52, 211, 153, 0.45) 0%, rgba(1, 188, 124, 0.28) 45%, rgba(24, 142, 57, 0.12) 75%, transparent 100%)",
+        }}
+        aria-hidden="true"
+      />
+
+      {/* Glow Layer 2: Cursor-right edge tone & mid-intensity glow */}
+      <div
+        className="absolute -inset-1 rounded-full pointer-events-none opacity-50 transition-opacity duration-300 blur-[10px]"
+        style={{
+          background:
+            "radial-gradient(ellipse 60% 85% at calc(50% + var(--light-x) + 18px) 50%, rgba(1, 188, 124, 0.4) 0%, rgba(52, 211, 153, 0.25) 45%, rgba(24, 142, 57, 0.1) 75%, transparent 100%)",
+        }}
+        aria-hidden="true"
+      />
+
+      {/* Top light shimmer streak: soft mint-white core fading to transparent */}
+      <div
+        className="absolute -inset-[2px] rounded-full pointer-events-none opacity-60 transition-opacity duration-200 blur-[4px]"
+        style={{
+          background:
+            "radial-gradient(ellipse 55px 22px at calc(50% + var(--light-x)) 0%, #FAFDFB 0%, #ECFDF5 35%, rgba(1, 188, 124, 0.3) 65%, transparent 100%)",
+        }}
+        aria-hidden="true"
+      />
+
+      {/* Subtle border outline ring accent that catches the edge halo */}
+      <div
+        className="absolute inset-0 rounded-full pointer-events-none border border-[#01bc7c]/30"
+        style={{
+          boxShadow:
+            "inset 0 1px 2px rgba(250, 253, 251, 0.5), 0 0 12px -2px rgba(1, 188, 124, 0.22)",
+        }}
+        aria-hidden="true"
+      />
+
+      {/* Render children in front of glow */}
+      <div className="relative z-10">{children}</div>
+    </div>
+  );
+}
+
 export default function HomePage({
   onNavigate,
   onSelectCaseStudy,
@@ -249,7 +394,7 @@ export default function HomePage({
               curious
             </span>
             .{" "}
-            <span className="font-playfair italic font-medium text-[#042718]/70">
+            <span className="font-playfair font-medium text-[#042718]/70">
               Stubborn
             </span>{" "}
             enough not to stop asking &apos;why.&apos;
@@ -266,7 +411,7 @@ export default function HomePage({
             <span className="font-playfair italic font-medium text-[#042718]">
               Deepak
             </span>
-            , a Senior Product Manager, though most days it just feels like staying curious long enough to build things that actually work. 7+ years across marketplaces, AI features, and subscription products. Not because I had all the answers. Because I kept asking questions until the product matched reality.
+            , a Senior Product Manager. Most days, it feels like staying curious long enough to build things that actually work. 7+ years across marketplaces, AI features, and subscription products — asking questions until the product matches reality.
           </motion.p>
 
           {/* CTAs */}
@@ -299,29 +444,58 @@ export default function HomePage({
             </div>
 
             {/* Hero CTA line for Dīpa */}
-            <div className="flex flex-col items-center gap-1.5 mt-0.5">
-              <button
-                type="button"
-                id="hero-ask-dipa-cta"
-                onClick={() => {
-                  if (typeof window !== "undefined") {
-                    window.dispatchEvent(new CustomEvent("open-copilot"));
-                  }
-                }}
-                className="group inline-flex items-center gap-2 text-sm sm:text-base font-semibold text-[#188E39] hover:text-[#065F46] transition-colors cursor-pointer py-1.5 px-3.5 rounded-full hover:bg-[#188E39]/8"
-                aria-label="Ask Dīpa about my work"
-              >
-                <Sparkles size={16} className="text-[#01bc7c] group-hover:scale-110 transition-transform shrink-0" />
-                <span className="underline decoration-[#188E39]/40 group-hover:decoration-[#065F46] underline-offset-4">
-                  ✦ Ask Dīpa about my work →
-                </span>
-              </button>
+            <div className="flex flex-col items-center gap-2 mt-0.5">
+              <GlowCTA>
+                <button
+                  type="button"
+                  id="hero-ask-dipa-cta"
+                  onClick={() => {
+                    if (typeof window !== "undefined") {
+                      window.dispatchEvent(new CustomEvent("open-copilot"));
+                    }
+                  }}
+                  onMouseEnter={() => {
+                    if (typeof window !== "undefined") {
+                      window.dispatchEvent(
+                        new CustomEvent("dipa-cta-hover", { detail: { hovering: true } })
+                      );
+                    }
+                  }}
+                  onMouseLeave={() => {
+                    if (typeof window !== "undefined") {
+                      window.dispatchEvent(
+                        new CustomEvent("dipa-cta-hover", { detail: { hovering: false } })
+                      );
+                    }
+                  }}
+                  onFocus={() => {
+                    if (typeof window !== "undefined") {
+                      window.dispatchEvent(
+                        new CustomEvent("dipa-cta-hover", { detail: { hovering: true } })
+                      );
+                    }
+                  }}
+                  onBlur={() => {
+                    if (typeof window !== "undefined") {
+                      window.dispatchEvent(
+                        new CustomEvent("dipa-cta-hover", { detail: { hovering: false } })
+                      );
+                    }
+                  }}
+                  className="group inline-flex items-center gap-2 text-sm sm:text-base font-semibold text-[#188E39] hover:text-[#065F46] transition-colors cursor-pointer py-1.5 px-4 rounded-full hover:bg-[#188E39]/8"
+                  aria-label="Ask Dīpa about my work"
+                >
+                  <span>
+                    ✦ Ask Dīpa about my work →
+                  </span>
+                </button>
+              </GlowCTA>
+
               <p
                 id="hero-dipa-supporting-text"
-                className="text-xs sm:text-[13px] text-[#042718]/65 font-inter font-normal flex items-center justify-center gap-1.5 text-center max-w-md px-2"
+                className="text-xs sm:text-[13px] font-inter text-[#042718]/80 text-center max-w-md mt-2.5 [text-shadow:0_1px_8px_rgba(250,253,251,0.9)]"
               >
-                <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#188E39] shrink-0" aria-hidden="true" />
-                <span>Grounded AI assistant · Ask anything about case studies, metrics, or decisions</span>
+                Grounded AI assistant · Ask anything about case studies, metrics, or decisions
               </p>
             </div>
           </motion.div>

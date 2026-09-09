@@ -128,21 +128,10 @@ export default function Navigation({
                 DP
               </div>
             </div>
-            {/* Green available status dot on corner */}
-            <span
-              className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-[#188E39] border-2 border-[#FAFDFB]"
-              title="Available"
-            />
           </div>
           <div className="text-left">
-            <div className="flex items-center gap-2">
-              <span className="font-onest text-base font-bold text-[#042718] leading-none tracking-[-0.2px]">
-                Deepak Prasad
-              </span>
-              <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#188E39] animate-pulse" />
-            </div>
-            <span className="font-inter text-[12px] text-[#042718]/70 font-medium leading-none block mt-1">
-              Senior Product Manager
+            <span className="font-onest text-base font-bold text-[#042718] leading-none tracking-[-0.2px]">
+              Deepak Prasad
             </span>
           </div>
         </a>
@@ -223,7 +212,7 @@ export default function Navigation({
               }
             >
               <span className="font-inter text-xs lg:text-[13px] font-semibold leading-5 text-[#042718]">
-                Book Chat
+                Let&apos;s Talk
               </span>
               <div className="w-7 h-7 rounded-full bg-[#042718] flex items-center justify-center shrink-0">
                 <ArrowUpRight className="w-3.5 h-3.5 text-white group-hover:scale-110 transition-transform" />
@@ -305,7 +294,7 @@ export default function Navigation({
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="w-full py-2.5 rounded-full bg-[#042718] text-white font-inter font-semibold text-sm flex items-center justify-center gap-2 cursor-pointer shadow-xs"
               >
-                <span>Book Chat</span>
+                <span>Let&apos;s Talk</span>
                 <ArrowUpRight size={16} />
               </a>
             </div>

@@ -111,7 +111,7 @@ export default function Footer({}: FooterProps) {
                 className="h-14 px-8 rounded-full bg-[#042718] text-white font-inter font-semibold text-base shadow-lg hover:bg-[#042718]/90 transition-colors flex items-center gap-3 group cursor-pointer"
               >
                 <Calendar size={18} className="text-[#34D399]" />
-                <span>Book Strategy Chat</span>
+                <span>Let&apos;s Talk</span>
                 <ArrowUpRight
                   size={16}
                   className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
