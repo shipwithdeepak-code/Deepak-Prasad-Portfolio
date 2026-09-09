@@ -15,18 +15,26 @@ interface ShaderCanvasProps {
     mid: string;
     light: string;
   };
+  isMobile?: boolean;
+  onReady?: () => void;
   onUnavailable: () => void;
 }
 
-export default function ShaderCanvas({ currentPhase, onUnavailable }: ShaderCanvasProps) {
+export default function ShaderCanvas({
+  currentPhase,
+  isMobile = false,
+  onReady,
+  onUnavailable,
+}: ShaderCanvasProps) {
   return (
     <Shader
       className="w-full h-full block"
       style={{ width: "100%", height: "100%" }}
+      onReady={onReady}
       onUnavailable={onUnavailable}
     >
       <Spherize
-        depth={1.1}
+        depth={isMobile ? 0.9 : 1.1}
         lightColor="#fef3c7"
         lightIntensity={0.85}
         lightPosition={{ x: 0.62, y: 0.08 }}
@@ -42,8 +50,8 @@ export default function ShaderCanvas({ currentPhase, onUnavailable }: ShaderCanv
             { color: currentPhase.accent, position: 1 },
           ]}
           colorSpace="oklab"
-          detail={1.2}
-          speed={0.5}
+          detail={isMobile ? 0.7 : 1.2}
+          speed={isMobile ? 0.35 : 0.5}
         />
         <LensFlare
           ghostChroma={0}
@@ -56,7 +64,7 @@ export default function ShaderCanvas({ currentPhase, onUnavailable }: ShaderCanv
           haloRadius={0.38}
           haloSoftness={1.1}
           lightPosition={{ x: 0.6, y: 0.1 }}
-          speed={0.9}
+          speed={isMobile ? 0.6 : 0.9}
           starburstIntensity={0.08}
           starburstPoints={4}
           streakIntensity={0}
@@ -65,23 +73,27 @@ export default function ShaderCanvas({ currentPhase, onUnavailable }: ShaderCanv
         <FloatingParticles
           angle={188}
           angleVariance={77}
-          opacity={0.5}
+          opacity={isMobile ? 0.35 : 0.5}
           particleColor="#ffffff"
           particleSize={1}
           randomness={0.3}
           speed={0.1}
           speedVariance={0.6}
-          twinkle={1}
+          twinkle={isMobile ? 0.5 : 1}
         />
-        <CursorRipples
-          chromaticSplit={2}
-          decay={4}
-        />
+        {!isMobile && (
+          <CursorRipples
+            chromaticSplit={2}
+            decay={4}
+          />
+        )}
       </Spherize>
-      <FilmGrain
-        strength={0.04}
-        visible={true}
-      />
+      {!isMobile && (
+        <FilmGrain
+          strength={0.04}
+          visible={true}
+        />
+      )}
     </Shader>
   );
 }

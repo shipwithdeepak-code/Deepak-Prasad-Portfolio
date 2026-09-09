@@ -152,6 +152,8 @@ export const ShaderOrb: React.FC<ShaderOrbProps> = ({
     `Operating principle: ${currentPhase.label}. Click to cycle through the principles.`;
 
   const [canUseShader, setCanUseShader] = useState<boolean>(false);
+  const [isShaderReady, setIsShaderReady] = useState<boolean>(false);
+  const isMobileDevice = typeof window !== "undefined" && window.innerWidth < 768;
 
   useEffect(() => {
     if (forceFallback || shouldReduceMotion) {
@@ -159,13 +161,7 @@ export const ShaderOrb: React.FC<ShaderOrbProps> = ({
       return;
     }
 
-    // Only attempt WebGPU on desktop
-    if (typeof window === "undefined" || window.innerWidth < 1024) {
-      setCanUseShader(false);
-      return;
-    }
-
-    if (typeof navigator === "undefined" || !("gpu" in navigator)) {
+    if (typeof window === "undefined" || typeof navigator === "undefined" || !("gpu" in navigator)) {
       setCanUseShader(false);
       return;
     }
@@ -187,16 +183,14 @@ export const ShaderOrb: React.FC<ShaderOrbProps> = ({
         });
     };
 
-    // Wait for the browser to be idle (max 2s) before requesting the GPU
-    // adapter. Requesting it is what ultimately mounts <ShaderCanvas /> and
-    // triggers the ~2.4MB shaders-vendor download — deferring it keeps that
-    // download from competing with fonts, the hero image, and the main JS
-    // bundle during the critical rendering path. The visual result is
-    // identical, it just starts a beat later.
+    // Wait for the browser to be completely idle before requesting the GPU
+    // adapter. On mobile, allow a longer idle window (2500ms) to ensure
+    // critical hydration, font swaps, and hero paint are 100% complete.
+    const idleTimeout = isMobileDevice ? 2500 : 1800;
     if ("requestIdleCallback" in window) {
-      idleHandle = (window as any).requestIdleCallback(checkAdapter, { timeout: 2000 });
+      idleHandle = (window as any).requestIdleCallback(checkAdapter, { timeout: idleTimeout });
     } else {
-      idleTimer = setTimeout(checkAdapter, 1500);
+      idleTimer = setTimeout(checkAdapter, idleTimeout);
     }
 
     return () => {
@@ -206,7 +200,7 @@ export const ShaderOrb: React.FC<ShaderOrbProps> = ({
       }
       if (idleTimer) clearTimeout(idleTimer);
     };
-  }, [forceFallback, shouldReduceMotion]);
+  }, [forceFallback, shouldReduceMotion, isMobileDevice]);
 
   // Reference animation-heavy sites (Stripe's gradient work included) all
   // share one habit regardless of how the effect itself is built: stop the
@@ -280,30 +274,30 @@ export const ShaderOrb: React.FC<ShaderOrbProps> = ({
       >
         {/* Clipped circular canvas / fallback container */}
         <div className="w-full h-full rounded-full overflow-hidden relative">
-          {showShader ? (
-            <Suspense
-              fallback={
-                <div
-                  className="w-full h-full rounded-full transition-all duration-700 ease-in-out"
-                  style={{
-                    background: `radial-gradient(circle at 62% 8%, #fef3c7 0%, rgba(254, 243, 199, 0.45) 18%, transparent 35%), radial-gradient(circle at 45% 35%, ${currentPhase.light} 0%, ${currentPhase.mid} 50%, ${currentPhase.accent} 100%)`,
-                  }}
-                />
-              }
-            >
-              <ShaderCanvas
-                currentPhase={currentPhase}
-                onUnavailable={() => setCanUseShader(false)}
-              />
-            </Suspense>
-          ) : (
-            /* CSS fallback matching warm sunlight glare at (62%, 8%) on top of 3-tone body */
+          {/* Base CSS gradient fallback: always rendered for instant 0ms first paint */}
+          <div
+            className="absolute inset-0 w-full h-full rounded-full transition-all duration-700 ease-in-out"
+            style={{
+              background: `radial-gradient(circle at 62% 8%, #fef3c7 0%, rgba(254, 243, 199, 0.45) 18%, transparent 35%), radial-gradient(circle at 45% 35%, ${currentPhase.light} 0%, ${currentPhase.mid} 50%, ${currentPhase.accent} 100%)`,
+            }}
+          />
+
+          {/* Shader Canvas overlay: smoothly fades in over 700ms once ready */}
+          {showShader && (
             <div
-              className="w-full h-full rounded-full transition-all duration-700 ease-in-out"
-              style={{
-                background: `radial-gradient(circle at 62% 8%, #fef3c7 0%, rgba(254, 243, 199, 0.45) 18%, transparent 35%), radial-gradient(circle at 45% 35%, ${currentPhase.light} 0%, ${currentPhase.mid} 50%, ${currentPhase.accent} 100%)`,
-              }}
-            />
+              className={`absolute inset-0 w-full h-full transition-opacity duration-700 ease-out ${
+                isShaderReady ? "opacity-100" : "opacity-0"
+              }`}
+            >
+              <Suspense fallback={null}>
+                <ShaderCanvas
+                  currentPhase={currentPhase}
+                  isMobile={isMobileDevice}
+                  onReady={() => setIsShaderReady(true)}
+                  onUnavailable={() => setCanUseShader(false)}
+                />
+              </Suspense>
+            </div>
           )}
         </div>
 

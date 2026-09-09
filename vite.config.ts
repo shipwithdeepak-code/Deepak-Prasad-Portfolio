@@ -98,11 +98,22 @@ export default defineConfig(() => {
     },
     build: {
       target: 'esnext',
+      modulePreload: {
+        resolveDependencies(filename, deps, { hostId, hostType }) {
+          return deps.filter(
+            (dep) => !dep.includes('shaders') && !dep.includes('ShaderCanvas')
+          );
+        },
+      },
       rollupOptions: {
         output: {
           manualChunks(id) {
-            if (id.includes('node_modules/shaders')) {
-              return 'shaders-vendor';
+            if (
+              id.includes('node_modules/react/') ||
+              id.includes('node_modules/react-dom/') ||
+              id.includes('node_modules/scheduler/')
+            ) {
+              return 'react-vendor';
             }
             if (id.includes('node_modules/framer-motion')) {
               return 'motion-vendor';
