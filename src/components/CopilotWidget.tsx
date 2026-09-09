@@ -325,7 +325,7 @@ export default function CopilotWidget({
       {isOpen && (
         <div
           id="copilot-window"
-          className="fixed bottom-24 right-5 z-50 w-[calc(100vw-32px)] sm:w-[460px] h-[620px] max-h-[calc(100vh-48px)] flex flex-col rounded-[24px] overflow-hidden font-inter transition-[opacity,transform] duration-300 relative"
+          className="fixed bottom-24 right-5 z-50 w-[calc(100vw-32px)] sm:w-[460px] h-[620px] max-h-[calc(100vh-48px)] flex flex-col rounded-[24px] overflow-hidden font-inter transition-[opacity,transform] duration-300"
           style={{
             background: "color-mix(in oklch, #FAFDFB 55%, transparent)",
             backdropFilter: "blur(24px) saturate(160%)",
