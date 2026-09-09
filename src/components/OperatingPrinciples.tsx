@@ -219,7 +219,7 @@ export const OperatingPrinciples: React.FC<OperatingPrinciplesProps> = ({
             className="text-[34px] sm:text-[44px] md:text-[54px] font-onest font-semibold text-[#042718] leading-[1.12] tracking-tight md:tracking-[-2px] max-w-3xl text-center"
           >
             The real thinking behind{" "}
-            <span className="font-playfair italic font-medium text-black/40">
+            <span className="font-playfair italic font-medium text-black/60">
               7+ years in the field
             </span>
           </motion.h2>
@@ -243,7 +243,7 @@ export const OperatingPrinciples: React.FC<OperatingPrinciplesProps> = ({
           {/* Centered compact orb with interactive caption */}
           <div className="flex flex-col items-center justify-center py-1">
             <ShaderOrb />
-            <p className="font-inter text-[11px] text-[#042619]/50 text-center select-none mt-4">
+            <p className="font-inter text-[11px] text-[#042619]/70 text-center select-none mt-4">
               A shader I hand-built. Click to cycle through the principles.
             </p>
           </div>
@@ -268,7 +268,7 @@ export const OperatingPrinciples: React.FC<OperatingPrinciplesProps> = ({
           {/* Center column: the orb wrapper with interactive caption */}
           <div className="principles-orb-wrapper flex flex-col items-center justify-center">
             <ShaderOrb />
-            <p className="font-inter text-[11px] text-[#042619]/50 text-center select-none max-w-[220px] mt-4 sm:mt-5">
+            <p className="font-inter text-[11px] text-[#042619]/70 text-center select-none max-w-[220px] mt-4 sm:mt-5">
               A shader I hand-built. Click to cycle through the principles.
             </p>
           </div>

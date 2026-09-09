@@ -114,7 +114,7 @@ export default function Navigation({
                 <source srcSet="/images/deepak-prasad-80.webp" type="image/webp" />
                 <img
                   src="/images/deepak-prasad-80.jpg"
-                  alt="Deepak Prasad"
+                  alt=""
                   width="40"
                   height="40"
                   referrerPolicy="no-referrer"

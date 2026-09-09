@@ -69,6 +69,10 @@ export default function CopilotWidget({
   const [showScrollNudge, setShowScrollNudge] = useState(false);
   const [isCtaHovering, setIsCtaHovering] = useState(false);
   const shouldReduceMotion = Boolean(useReducedMotion());
+  const [keyboardViewport, setKeyboardViewport] = useState<{
+    height: number;
+    offsetTop: number;
+  } | null>(null);
 
   const [messages, setMessages] = useState<Message[]>([
     {
@@ -291,6 +295,30 @@ export default function CopilotWidget({
       });
       inputRef.current?.focus({ preventScroll: true });
     }
+  }, [isOpen]);
+
+  // Track the visual viewport so the chat window repositions above the
+  // on-screen keyboard on mobile. 100dvh alone isn't enough: Chrome only
+  // shrinks it when interactive-widget=resizes-content is set, and iOS
+  // Safari doesn't shrink dvh for the keyboard at all — so without this,
+  // the keyboard just covers the bottom of the fixed-position window
+  // (including the input bar) on iPhone.
+  useEffect(() => {
+    if (!isOpen) return;
+    const vv = window.visualViewport;
+    if (!vv) return;
+
+    const updateViewport = () => {
+      setKeyboardViewport({ height: vv.height, offsetTop: vv.offsetTop });
+    };
+
+    updateViewport();
+    vv.addEventListener("resize", updateViewport);
+    vv.addEventListener("scroll", updateViewport);
+    return () => {
+      vv.removeEventListener("resize", updateViewport);
+      vv.removeEventListener("scroll", updateViewport);
+    };
   }, [isOpen]);
 
   // Only auto-scroll after a real interaction (user sends query or AI replies)
@@ -650,6 +678,16 @@ export default function CopilotWidget({
             border: "1px solid color-mix(in oklch, #042718 12%, transparent)",
             boxShadow:
               "0 16px 32px -16px rgba(4,39,24,.4), 0 4px 10px -4px rgba(4,39,24,.18)",
+            ...(keyboardViewport &&
+            typeof window !== "undefined" &&
+            window.innerWidth < 640
+              ? {
+                  top: keyboardViewport.offsetTop + 16,
+                  bottom: "auto",
+                  height: keyboardViewport.height - 32,
+                  maxHeight: keyboardViewport.height - 32,
+                }
+              : undefined),
           }}
         >
           {/* Ambient glowing background layer (z-0) */}

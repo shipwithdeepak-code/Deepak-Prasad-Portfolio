@@ -137,7 +137,7 @@ export default function ProductStack({ className }: { className?: string }) {
               className="text-[34px] sm:text-[44px] md:text-[54px] font-onest font-semibold text-[#042619] leading-[1.12] tracking-tight md:tracking-[-2px] mb-6 max-w-3xl text-center"
             >
               Product skills built for{" "}
-              <span className="font-playfair italic font-medium text-black/40">
+              <span className="font-playfair italic font-medium text-black/60">
                 strategy, delivery & influence
               </span>
             </motion.h2>
