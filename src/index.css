@@ -187,25 +187,27 @@ html, body {
   100% { translate: 0 0; }
 }
 
-.principles-layout {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  justify-content: space-between;
-  gap: clamp(16px, 2.5vw, 48px);
-  width: 100%;
-  max-width: min(92vw, 1680px);
-  margin: 6px auto 0;
-}
+@media (min-width: 1024px) {
+  .principles-layout {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    justify-content: space-between;
+    gap: clamp(16px, 2.5vw, 48px);
+    width: 100%;
+    max-width: min(92vw, 1680px);
+    margin: 6px auto 0;
+  }
 
-/* Fixed-height relative cluster container scaling relative to viewport */
-.principles-cluster,
-.principles-left,
-.principles-right {
-  position: relative;
-  width: 100%;
-  height: clamp(420px, 53vh, 475px);
-  min-height: 410px;
+  /* Fixed-height relative cluster container scaling relative to viewport */
+  .principles-cluster,
+  .principles-left,
+  .principles-right {
+    position: relative;
+    width: 100%;
+    height: clamp(420px, 53vh, 475px);
+    min-height: 410px;
+  }
 }
 
 /* Desktop absolute positioning & fanned layer arrangement */

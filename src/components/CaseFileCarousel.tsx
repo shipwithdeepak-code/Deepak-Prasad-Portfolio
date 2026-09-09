@@ -796,8 +796,9 @@ export const CaseFileCarousel: React.FC<CaseFileCarouselProps> = ({
               />
 
               {/* RIGHT PAGE: THE READING VIEW */}
-              <div className="flex-1 bg-[#FAFDFB] p-6 sm:p-8 flex flex-col justify-between overflow-y-auto">
-                <div>
+              <div className="flex-1 bg-[#FAFDFB] flex flex-col min-h-0">
+                {/* Scrollable content — only this part scrolls if it overflows */}
+                <div className="p-6 sm:p-8 pb-0 flex-1 min-h-0 overflow-y-auto">
                   {/* Header row with Close button */}
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center gap-2">
@@ -850,8 +851,8 @@ export const CaseFileCarousel: React.FC<CaseFileCarouselProps> = ({
                   )}
                 </div>
 
-                {/* Action row */}
-                <div className="pt-4 border-t border-[#042718]/10 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+                {/* Action row — pinned, always visible, never requires scrolling */}
+                <div className="p-6 sm:p-8 pt-4 shrink-0 border-t border-[#042718]/10 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
                   <span className="font-inter text-xs text-[#042718]/50 hidden sm:inline">
                     Press Esc or click backdrop to return
                   </span>
