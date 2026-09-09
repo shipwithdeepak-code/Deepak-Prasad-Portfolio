@@ -528,7 +528,9 @@ export const CaseFileCarousel: React.FC<CaseFileCarouselProps> = ({
           return (
             <div
               key={item.slug}
-              ref={(el) => (cardRefs.current[idx] = el)}
+              ref={(el) => {
+                cardRefs.current[idx] = el;
+              }}
               id={`case-card-${item.slug}`}
               tabIndex={0}
               role="button"

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUpRight, Menu, X, FileText } from "lucide-react";
+import { ArrowUpRight, Menu, X, FileText, Sparkles } from "lucide-react";
 
 import { CALENDLY_URL } from "../utils/calendly";
 
@@ -180,7 +180,22 @@ export default function Navigation({
         {/* Action CTAs & Mobile Toggle */}
         <div className="flex items-center gap-3.5">
           {/* Desktop CTAs (Strictly hidden below 1024px) */}
-          <div id="desktop-nav-ctas" className="nav-desktop-only hidden lg:flex items-center gap-3.5">
+          <div id="desktop-nav-ctas" className="nav-desktop-only hidden lg:flex items-center gap-2.5">
+            <button
+              type="button"
+              id="nav-ask-dipa-button"
+              onClick={() => {
+                if (typeof window !== "undefined") {
+                  window.dispatchEvent(new CustomEvent("open-copilot"));
+                }
+              }}
+              className="inline-flex items-center gap-1.5 text-[#042718] text-[14px] font-medium px-3 py-1.5 rounded-full hover:bg-white/60 transition-colors border border-transparent hover:border-[#042718]/10 cursor-pointer"
+              title="Ask Dīpa, Deepak's AI assistant"
+            >
+              <Sparkles size={14} className="text-[#01bc7c]" />
+              <span>Ask Dīpa</span>
+            </button>
+
             <button
               type="button"
               id="nav-resume-button"
@@ -255,6 +270,21 @@ export default function Navigation({
             </ul>
 
             <div className="pt-4 border-t border-[#042718]/10 flex flex-col gap-3">
+              <button
+                type="button"
+                id="mobile-nav-ask-dipa-button"
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  if (typeof window !== "undefined") {
+                    window.dispatchEvent(new CustomEvent("open-copilot"));
+                  }
+                }}
+                className="w-full py-2.5 rounded-full bg-white border border-[#042718]/15 text-[#042718] font-inter font-semibold text-sm flex items-center justify-center gap-2 cursor-pointer shadow-2xs"
+              >
+                <Sparkles size={16} className="text-[#01bc7c]" />
+                <span>Ask Dīpa</span>
+              </button>
+
               <button
                 type="button"
                 onClick={() => {

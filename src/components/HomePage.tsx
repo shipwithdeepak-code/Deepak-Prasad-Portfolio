@@ -274,27 +274,56 @@ export default function HomePage({
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45, delay: 0.15 }}
-            className="flex flex-wrap items-center justify-center gap-4 mb-12 sm:mb-16"
+            className="flex flex-col items-center justify-center gap-4 mb-12 sm:mb-16"
           >
-            <button
-              type="button"
-              id="hero-view-work-cta"
-              onClick={() => onNavigate("/work")}
-              className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full bg-[#042718] hover:bg-[#063b25] text-white font-inter text-sm font-semibold transition-[background-color,box-shadow] duration-200 shadow-sm hover:shadow cursor-pointer"
-            >
-              <span>View Selected Work</span>
-              <ArrowRight size={16} />
-            </button>
+            <div className="flex flex-wrap items-center justify-center gap-4">
+              <button
+                type="button"
+                id="hero-view-work-cta"
+                onClick={() => onNavigate("/work")}
+                className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full bg-[#042718] hover:bg-[#063b25] text-white font-inter text-sm font-semibold transition-[background-color,box-shadow] duration-200 shadow-sm hover:shadow cursor-pointer"
+              >
+                <span>View Selected Work</span>
+                <ArrowRight size={16} />
+              </button>
 
-            <button
-              type="button"
-              id="hero-about-cta"
-              onClick={() => onNavigate("/about")}
-              className="inline-flex items-center gap-2 px-5 py-3.5 rounded-full bg-white/90 hover:bg-white border border-[#042718]/15 text-[#042718] font-inter text-sm font-semibold transition-colors duration-200 cursor-pointer shadow-2xs backdrop-blur-xs"
-            >
-              <span>About Me</span>
-              <ArrowUpRight size={15} className="text-[#042718]/60" />
-            </button>
+              <button
+                type="button"
+                id="hero-about-cta"
+                onClick={() => onNavigate("/about")}
+                className="inline-flex items-center gap-2 px-5 py-3.5 rounded-full bg-white/90 hover:bg-white border border-[#042718]/15 text-[#042718] font-inter text-sm font-semibold transition-colors duration-200 cursor-pointer shadow-2xs backdrop-blur-xs"
+              >
+                <span>About Me</span>
+                <ArrowUpRight size={15} className="text-[#042718]/60" />
+              </button>
+            </div>
+
+            {/* Hero CTA line for Dīpa */}
+            <div className="flex flex-col items-center gap-1.5 mt-0.5">
+              <button
+                type="button"
+                id="hero-ask-dipa-cta"
+                onClick={() => {
+                  if (typeof window !== "undefined") {
+                    window.dispatchEvent(new CustomEvent("open-copilot"));
+                  }
+                }}
+                className="group inline-flex items-center gap-2 text-sm sm:text-base font-semibold text-[#188E39] hover:text-[#065F46] transition-colors cursor-pointer py-1.5 px-3.5 rounded-full hover:bg-[#188E39]/8"
+                aria-label="Ask Dīpa about my work"
+              >
+                <Sparkles size={16} className="text-[#01bc7c] group-hover:scale-110 transition-transform shrink-0" />
+                <span className="underline decoration-[#188E39]/40 group-hover:decoration-[#065F46] underline-offset-4">
+                  ✦ Ask Dīpa about my work →
+                </span>
+              </button>
+              <p
+                id="hero-dipa-supporting-text"
+                className="text-xs sm:text-[13px] text-[#042718]/65 font-inter font-normal flex items-center justify-center gap-1.5 text-center max-w-md px-2"
+              >
+                <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#188E39] shrink-0" aria-hidden="true" />
+                <span>Grounded AI assistant · Ask anything about case studies, metrics, or decisions</span>
+              </p>
+            </div>
           </motion.div>
 
           {/* Domain Ticker Marquee */}

@@ -20,6 +20,7 @@ export interface ShaderOrbProps {
   onOrbClick?: () => void;
   sizeClassName?: string;
   ariaLabel?: string;
+  title?: string;
   isSmall?: boolean;
 }
 
@@ -91,6 +92,7 @@ export const ShaderOrb: React.FC<ShaderOrbProps> = ({
   onOrbClick,
   sizeClassName,
   ariaLabel,
+  title,
   isSmall,
 }) => {
   const shouldReduceMotion = Boolean(useReducedMotion());
@@ -206,6 +208,7 @@ export const ShaderOrb: React.FC<ShaderOrbProps> = ({
       tabIndex={0}
       onClick={handleClick}
       onKeyDown={handleKeyDown}
+      title={title || accessibleLabel}
       aria-label={accessibleLabel}
       animate={isPulsing && !shouldReduceMotion ? { scale: [1, 1.08, 1] } : { scale: 1 }}
       transition={{ duration: 0.3, ease: "easeOut" }}

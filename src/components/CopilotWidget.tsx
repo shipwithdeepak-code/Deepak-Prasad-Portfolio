@@ -1,4 +1,5 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import {
   Sparkles,
   Send,
@@ -64,17 +65,90 @@ export default function CopilotWidget({
   const [selectedChunk, setSelectedChunk] = useState<RetrievedChunk | null>(null);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [showIntroTooltip, setShowIntroTooltip] = useState(false);
+  const shouldReduceMotion = Boolean(useReducedMotion());
+
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "welcome",
       sender: "copilot",
-      text: "Hi! I'm Deepak’s AI Copilot. I'm a custom Retrieval-Augmented Generation (RAG) assistant running on Gemini Flash Lite and an in-memory cosine similarity engine.\n\nAsk me anything about Deepak’s work, metrics, operating principles, or what's actually changing for PMs right now. I only answer from things he's actually written.",
+      text: "Hi, I'm Dīpa. I know Deepak's work, thinking, and the stories behind his projects — the case studies, decisions, and lessons in between. What are you curious about?",
       timestamp: "Just now",
     },
   ]);
 
+  const messagesContainerRef = useRef<HTMLDivElement>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const lastMessageRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const hasInteractedRef = useRef<boolean>(false);
+
+  const dismissIntroTooltip = useCallback(() => {
+    setShowIntroTooltip(false);
+    try {
+      localStorage.setItem("copilotIntroSeen", "true");
+    } catch {}
+  }, []);
+
+  // One-time intro tooltip (appears once ever per browser, 4.5s after mount, auto-dismisses after 9s)
+  useEffect(() => {
+    try {
+      if (typeof window !== "undefined" && localStorage.getItem("copilotIntroSeen") === "true") {
+        return;
+      }
+    } catch {}
+
+    if (isOpen) return;
+
+    const timer = setTimeout(() => {
+      try {
+        if (localStorage.getItem("copilotIntroSeen") !== "true") {
+          setShowIntroTooltip(true);
+        }
+      } catch {
+        setShowIntroTooltip(true);
+      }
+    }, 4500);
+
+    return () => clearTimeout(timer);
+  }, [isOpen]);
+
+  useEffect(() => {
+    if (!showIntroTooltip) return;
+
+    const autoDismissTimer = setTimeout(() => {
+      dismissIntroTooltip();
+    }, 9000);
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" || e.key === "Esc") {
+        dismissIntroTooltip();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      clearTimeout(autoDismissTimer);
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [showIntroTooltip, dismissIntroTooltip]);
+
+  // If panel opens while tooltip is visible, dismiss tooltip
+  useEffect(() => {
+    if (isOpen && showIntroTooltip) {
+      dismissIntroTooltip();
+    }
+  }, [isOpen, showIntroTooltip, dismissIntroTooltip]);
+
+  // Global custom event listener so any button on the site can open Dīpa
+  useEffect(() => {
+    const handleOpenDipa = () => {
+      setIsOpen(true);
+      dismissIntroTooltip();
+    };
+    window.addEventListener("open-copilot", handleOpenDipa);
+    return () => window.removeEventListener("open-copilot", handleOpenDipa);
+  }, [dismissIntroTooltip]);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -95,12 +169,28 @@ export default function CopilotWidget({
     };
   }, [isOpen, selectedChunk]);
 
+  // When panel opens, reset scroll position to the top of the welcome message
   useEffect(() => {
     if (isOpen) {
-      setTimeout(() => {
-        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-        inputRef.current?.focus();
-      }, 100);
+      if (messagesContainerRef.current) {
+        messagesContainerRef.current.scrollTop = 0;
+      }
+      requestAnimationFrame(() => {
+        if (messagesContainerRef.current) {
+          messagesContainerRef.current.scrollTop = 0;
+        }
+      });
+      inputRef.current?.focus({ preventScroll: true });
+    }
+  }, [isOpen]);
+
+  // Only auto-scroll after a real interaction (user sends query or AI replies)
+  useEffect(() => {
+    if (isOpen && hasInteractedRef.current) {
+      const timer = setTimeout(() => {
+        lastMessageRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 50);
+      return () => clearTimeout(timer);
     }
   }, [isOpen, messages]);
 
@@ -108,6 +198,7 @@ export default function CopilotWidget({
     const textToSend = (queryText || input).trim();
     if (!textToSend || isLoading) return;
 
+    hasInteractedRef.current = true;
     const userMessage: Message = {
       id: "user-" + Date.now(),
       sender: "user",
@@ -174,15 +265,19 @@ export default function CopilotWidget({
   };
 
   const handleResetChat = () => {
+    hasInteractedRef.current = false;
     setMessages([
       {
         id: "welcome-" + Date.now(),
         sender: "copilot",
-        text: "Chat cleared. Ask me anything about Deepak’s case studies, leadership track record, or this copilot's architecture.",
+        text: "Hi, I'm Dīpa. I know Deepak's work, thinking, and the stories behind his projects — the case studies, decisions, and lessons in between. What are you curious about?",
         timestamp: "Just now",
       },
     ]);
     setSelectedChunk(null);
+    if (messagesContainerRef.current) {
+      messagesContainerRef.current.scrollTop = 0;
+    }
   };
 
   const formatText = (content: string, isUser: boolean = false) => {
@@ -302,17 +397,104 @@ export default function CopilotWidget({
         }
       `}</style>
 
+      {/* One-time intro tooltip */}
+      <AnimatePresence>
+        {showIntroTooltip && !isOpen && (
+          <motion.div
+            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 8, scale: 0.96 }}
+            animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1 }}
+            exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 6, scale: 0.98 }}
+            transition={{ duration: 0.22, ease: "easeOut" }}
+            className="fixed bottom-22 right-5 z-40 max-w-[300px] sm:max-w-[330px] p-3.5 rounded-2xl cursor-pointer text-left select-none"
+            style={{
+              background: "color-mix(in oklch, #FAFDFB 82%, transparent)",
+              backdropFilter: "blur(20px) saturate(160%)",
+              WebkitBackdropFilter: "blur(20px) saturate(160%)",
+              border: "1px solid color-mix(in oklch, #042718 12%, transparent)",
+              boxShadow:
+                "0 12px 30px -8px rgba(4,39,24,.22), 0 4px 10px -3px rgba(4,39,24,.1)",
+            }}
+            onClick={() => {
+              dismissIntroTooltip();
+              setIsOpen(true);
+            }}
+          >
+            {/* Close × button */}
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                dismissIntroTooltip();
+              }}
+              aria-label="Dismiss"
+              className="absolute top-2.5 right-2.5 p-1 rounded-full text-[#042718]/40 hover:text-[#042718] hover:bg-[#042718]/8 transition-colors cursor-pointer"
+            >
+              <X size={14} />
+            </button>
+
+            <div className="flex items-start gap-2.5 pr-4">
+              <div className="w-7 h-7 rounded-full overflow-hidden border border-[#042718]/15 bg-[#042718] shrink-0 mt-0.5">
+                <img
+                  src="/images/deepak-prasad.jpg"
+                  alt="Dīpa"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div>
+                <p className="font-inter text-xs sm:text-[13px] font-medium text-[#042718] leading-snug">
+                  I'm Dīpa — I know a little about Deepak's work. Ask me anything →
+                </p>
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    dismissIntroTooltip();
+                    setIsOpen(true);
+                    handleSend("What's Deepak's strongest 0→1 product?");
+                  }}
+                  className="mt-2 text-left font-inter text-[11px] font-medium text-[#065F46] hover:text-[#042718] bg-[#ECFDF5]/85 hover:bg-[#ECFDF5] px-2.5 py-1 rounded-lg border border-[#01bc7c]/30 transition-colors block w-fit"
+                >
+                  Try: <span className="font-semibold">What's Deepak's strongest 0→1 product?</span>
+                </button>
+              </div>
+            </div>
+
+            {/* Speech bubble pointer toward the launcher orb */}
+            <div
+              className="absolute -bottom-1.5 right-6 w-3 h-3 rotate-45"
+              style={{
+                background: "color-mix(in oklch, #FAFDFB 82%, transparent)",
+                borderRight: "1px solid color-mix(in oklch, #042718 12%, transparent)",
+                borderBottom: "1px solid color-mix(in oklch, #042718 12%, transparent)",
+              }}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Floating Circular Trigger (always visible, toggles open/close) */}
       <div
         id="copilot-launcher-btn"
         className="fixed bottom-5 right-5 z-40"
       >
         <ShaderOrb
-          fixedLabel="DP"
+          fixedLabel=""
           disableClickAdvance
           sizeClassName="w-14 h-14"
-          ariaLabel={isOpen ? "Close Deepak's AI Copilot" : "Open Deepak's AI Copilot"}
-          onOrbClick={() => setIsOpen((prev) => !prev)}
+          title={
+            isOpen
+              ? "Close Dīpa"
+              : "Dīpa — illuminate the thinking. Ask about Deepak's work."
+          }
+          ariaLabel={
+            isOpen
+              ? "Close Dīpa"
+              : "Open Dīpa, Deepak's AI assistant"
+          }
+          onOrbClick={() => {
+            setIsOpen((prev) => !prev);
+            dismissIntroTooltip();
+          }}
         />
       </div>
 
@@ -352,28 +534,44 @@ export default function CopilotWidget({
             />
           </div>
 
-          {/* Header (z-10) */}
+          {/* Header (z-10) — soft continuous glass surface without hard divider line */}
           <div
             className="relative z-10 p-4 flex items-center justify-between shrink-0 select-none"
             style={{
-              borderBottom: "1px solid color-mix(in oklch, #042718 10%, transparent)",
               backgroundColor: "transparent",
             }}
           >
             <div className="flex items-center gap-2.5">
-              <div
-                className="w-8 h-8 rounded-full flex items-center justify-center text-[#188E39]"
-                style={{
-                  backgroundColor: "color-mix(in oklch, #188E39 15%, transparent)",
-                  border: "1px solid color-mix(in oklch, #01bc7c 30%, transparent)",
-                }}
-              >
-                <Sparkles size={17} />
+              <div className="relative shrink-0">
+                <div className="w-8 h-8 rounded-full overflow-hidden border border-[#042718]/15 bg-[#042718] flex items-center justify-center relative shadow-2xs">
+                  <img
+                    src="/images/deepak-prasad.jpg"
+                    alt="Deepak Prasad"
+                    referrerPolicy="no-referrer"
+                    loading="eager"
+                    decoding="async"
+                    className="w-full h-full object-cover object-center block"
+                    onError={(e) => {
+                      const target = e.currentTarget;
+                      target.style.display = "none";
+                      const fallback = target.parentElement?.querySelector(".dipa-dp-fallback");
+                      if (fallback) (fallback as HTMLElement).style.display = "flex";
+                    }}
+                  />
+                  <div className="dipa-dp-fallback hidden w-full h-full items-center justify-center font-onest font-bold text-white text-xs bg-[#042718]">
+                    DP
+                  </div>
+                </div>
+                {/* Subtle online status indicator */}
+                <span
+                  className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-[#188E39] border-2 border-[#FAFDFB]"
+                  title="Online"
+                />
               </div>
               <div>
                 <div className="flex items-center gap-2">
                   <h3 className="font-onest text-sm sm:text-base font-bold text-[#042718] tracking-tight">
-                    Deepak's AI Copilot
+                    Dīpa
                   </h3>
                   <span
                     className="px-1.5 py-0.5 rounded text-[10px] font-mono font-bold text-[#065F46]"
@@ -385,8 +583,8 @@ export default function CopilotWidget({
                     RAG
                   </span>
                 </div>
-                <p className="text-[11px] text-[#042718]/60 font-inter truncate max-w-[240px]">
-                  Grounded in 45+ case study chunks · gemini-3.1-flash-lite
+                <p className="text-[11px] text-[#042718]/65 font-inter">
+                  Illuminate the thinking.
                 </p>
               </div>
             </div>
@@ -423,7 +621,8 @@ export default function CopilotWidget({
 
               <button
                 onClick={() => setIsOpen(false)}
-                title="Close Copilot"
+                title="Close Dīpa"
+                aria-label="Close Dīpa"
                 className="p-1.5 rounded-lg text-[#042718]/55 hover:text-[#042718] hover:bg-[#042718]/5 transition-colors cursor-pointer"
               >
                 <X size={18} />
@@ -434,7 +633,7 @@ export default function CopilotWidget({
           {/* "How This Works" Collapsible Transparent Architecture Panel (z-10) */}
           {isHowItWorksOpen && (
             <div
-              className="relative z-10 p-4 shrink-0 overflow-y-auto max-h-[220px] transition-[opacity,max-height] duration-200"
+              className="relative z-10 p-4 shrink-0 overflow-y-auto max-h-[240px] transition-[opacity,max-height] duration-200"
               style={{
                 background: "color-mix(in oklch, #FAFDFB 65%, transparent)",
                 backdropFilter: "blur(10px) saturate(150%)",
@@ -445,7 +644,7 @@ export default function CopilotWidget({
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center gap-1.5 text-xs font-bold text-[#188E39] uppercase tracking-wider">
                   <Cpu size={14} />
-                  <span>How This Custom RAG Works</span>
+                  <span>How Dīpa Works</span>
                 </div>
                 <button
                   onClick={() => {
@@ -457,6 +656,22 @@ export default function CopilotWidget({
                   <span>Read Case Study</span>
                   <ArrowRight size={12} />
                 </button>
+              </div>
+
+              {/* Technical Specifications (relocated from header) */}
+              <div
+                className="mb-2.5 px-2.5 py-1.5 rounded-lg text-[10.5px] font-mono text-[#065F46] flex flex-wrap items-center gap-x-2 gap-y-1"
+                style={{
+                  backgroundColor: "color-mix(in oklch, #01bc7c 14%, transparent)",
+                  border: "1px solid color-mix(in oklch, #01bc7c 24%, transparent)",
+                }}
+              >
+                <span className="font-bold">Specs:</span>
+                <span>Grounded in 45+ case study chunks</span>
+                <span>·</span>
+                <span>gemini-3.1-flash-lite</span>
+                <span>·</span>
+                <span>In-memory CPU cosine similarity (&lt;2ms)</span>
               </div>
 
               {/* Step-by-Step Transparent Pipeline Diagram */}
@@ -577,13 +792,18 @@ export default function CopilotWidget({
           )}
 
           {/* Messages Area (z-10) */}
-          <div className="relative z-10 flex-1 overflow-y-auto p-4 space-y-4 bg-transparent">
-            {messages.map((msg) => (
+          <div
+            ref={messagesContainerRef}
+            className="relative z-10 flex-1 overflow-y-auto p-4 space-y-4 bg-transparent"
+          >
+            {messages.map((msg, idx) => (
               <div
                 key={msg.id}
-                className={`flex flex-col ${
+                ref={idx === messages.length - 1 ? lastMessageRef : null}
+                className={`flex flex-col scroll-mt-3 ${
                   msg.sender === "user" ? "items-end" : "items-start"
                 }`}
+                style={{ scrollMarginTop: 12 }}
               >
                 {/* Chat Bubble */}
                 <div
@@ -717,21 +937,20 @@ export default function CopilotWidget({
             <div
               className="relative z-10 p-3 shrink-0"
               style={{
-                borderTop: "1px solid color-mix(in oklch, #042718 8%, transparent)",
                 backgroundColor: "transparent",
               }}
             >
               <div className="text-[10px] font-bold text-[#042718]/50 uppercase tracking-wider mb-2">
                 Suggested Questions
               </div>
-              <div className="flex flex-wrap gap-1.5">
+              <div className="grid grid-cols-2 gap-2">
                 {STARTER_PROMPTS.map((prompt, idx) => {
                   const isAIPMTrend = idx >= 4;
                   return (
                     <button
                       key={idx}
                       onClick={() => handleSend(prompt)}
-                      className={`text-left text-[11px] px-2.5 py-1.5 rounded-full transition-colors cursor-pointer ${
+                      className={`text-left text-[11px] leading-snug p-2 rounded-xl transition-colors cursor-pointer flex items-center ${
                         isAIPMTrend
                           ? "text-[#065F46] font-medium hover:bg-[#ECFDF5]/80"
                           : "text-[#042718]/80 hover:text-[#065F46] hover:bg-[#ECFDF5]/60"
@@ -753,11 +972,10 @@ export default function CopilotWidget({
             </div>
           )}
 
-          {/* Input Bar (z-10) */}
+          {/* Input Bar (z-10) — seamless continuous glass surface */}
           <div
             className="relative z-10 p-3 flex items-center gap-2 shrink-0"
             style={{
-              borderTop: "1px solid color-mix(in oklch, #042718 10%, transparent)",
               backgroundColor: "transparent",
             }}
           >
@@ -767,7 +985,7 @@ export default function CopilotWidget({
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={handleKeyDown}
-              placeholder="Ask about Deepak's metrics, case studies, RAG..."
+              placeholder="Ask Dīpa about Deepak's metrics, case studies, work..."
               disabled={isLoading}
               className="flex-1 px-3.5 py-2.5 rounded-xl focus:outline-none focus:border-[#188E39] focus:ring-1 focus:ring-[#188E39] text-xs sm:text-sm text-[#042718] placeholder-[#042718]/40"
               style={{
@@ -781,7 +999,7 @@ export default function CopilotWidget({
               onClick={() => handleSend()}
               disabled={!input.trim() || isLoading}
               className="p-2.5 rounded-xl bg-[#042718] hover:bg-[#188E39] disabled:bg-[#042718]/20 text-white disabled:text-white/40 transition-colors shrink-0 shadow-xs cursor-pointer disabled:cursor-not-allowed"
-              aria-label="Send query"
+              aria-label="Send query to Dīpa"
             >
               <Send size={16} />
             </button>

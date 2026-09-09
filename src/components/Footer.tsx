@@ -181,7 +181,21 @@ export default function Footer({}: FooterProps) {
             <div>
               &copy; {new Date().getFullYear()} Deepak Prasad. All rights reserved.
             </div>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3 sm:gap-4">
+              <button
+                type="button"
+                onClick={() => {
+                  if (typeof window !== "undefined") {
+                    window.dispatchEvent(new CustomEvent("open-copilot"));
+                  }
+                }}
+                className="inline-flex items-center gap-1.5 text-[#188E39] hover:text-[#042718] font-medium transition-colors cursor-pointer"
+                title="Ask Dīpa, Deepak's AI assistant"
+              >
+                <Sparkles size={12} className="text-[#01bc7c]" />
+                <span>Ask Dīpa</span>
+              </button>
+              <span>•</span>
               <span>Senior Product Manager</span>
               <span>•</span>
               <span>Bengaluru / Remote</span>
