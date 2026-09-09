@@ -95,17 +95,16 @@ export default function CaseStudyDetailPage({
             </div>
           </div>
 
-          {/* Thesis Callout */}
-          <div className="p-6 rounded-[20px] bg-[#F4FAFA] border border-[#042718]/8 mb-8">
-            <div className="flex items-center gap-2 text-xs font-inter font-semibold uppercase tracking-wider text-[#188E39] mb-2">
-              <Sparkles size={14} />
-              <span>Core Product Thesis</span>
-            </div>
-            <p className="font-onest text-lg sm:text-xl font-bold text-[#042718] leading-snug">
+          {/* Thesis Pull-Quote */}
+          <div className="mb-8 pb-6 border-b border-[#042718]/8">
+            <p
+              className="text-xl sm:text-2xl leading-snug text-[#042718]"
+              style={{ fontFamily: "'Playfair Display', Georgia, serif", fontStyle: "italic" }}
+            >
               "{caseStudy.thesis}"
             </p>
             {caseStudy.centralQuestion && (
-              <p className="font-inter text-sm text-[#042718]/70 mt-3 pt-3 border-t border-[#042718]/8">
+              <p className="font-inter text-sm text-[#042718]/70 mt-4">
                 <span className="font-semibold text-[#042718]">Central Question: </span>
                 {caseStudy.centralQuestion}
               </p>

@@ -84,7 +84,7 @@ const CASE_FILE_ITEMS: CaseFileItem[] = [
     title: PERFORMANCE_SCORE_CASE_STUDY.title,
     subtitle: PERFORMANCE_SCORE_CASE_STUDY.subtitle,
     slug: PERFORMANCE_SCORE_CASE_STUDY.slug,
-    coverImage: undefined, // Solid-color cover with title typeset directly
+    coverImage: "/images/performance-score-hero.jpg",
     category: PERFORMANCE_SCORE_CASE_STUDY.category,
     proofPoints: PERFORMANCE_SCORE_CASE_STUDY.proofPoints,
     keyStats: [
@@ -101,13 +101,34 @@ const CASE_FILE_ITEMS: CaseFileItem[] = [
     title: AI_LOCALIZATION_CASE_STUDY.title,
     subtitle: AI_LOCALIZATION_CASE_STUDY.subtitle,
     slug: AI_LOCALIZATION_CASE_STUDY.slug,
-    coverImage: undefined, // Solid-color cover with title typeset directly
+    coverImage: "/images/ai-localization-hero.jpg",
     category: AI_LOCALIZATION_CASE_STUDY.category,
     proofPoints: AI_LOCALIZATION_CASE_STUDY.proofPoints,
     keyStats: AI_LOCALIZATION_CASE_STUDY.keyStats?.slice(0, 3),
     thesis: AI_LOCALIZATION_CASE_STUDY.thesis,
   },
 ];
+
+const FoilEdge = () => (
+  <>
+    <div
+      className="absolute top-0 left-0 right-0 h-[2px] z-20 pointer-events-none"
+      style={{
+        background:
+          "linear-gradient(90deg, transparent, rgba(201,162,75,0.85), transparent)",
+      }}
+      aria-hidden="true"
+    />
+    <div
+      className="absolute inset-0 rounded-xl pointer-events-none z-20"
+      style={{
+        boxShadow:
+          "inset 0 1px 0 rgba(255,255,255,0.08), inset 0 0 0 1px rgba(201,162,75,0.16)",
+      }}
+      aria-hidden="true"
+    />
+  </>
+);
 
 /**
  * Shared gradient overlay for cover photos on both closed card faces and the opened dossier view.
@@ -630,6 +651,7 @@ export const CaseFileCarousel: React.FC<CaseFileCarouselProps> = ({
                           }}
                           aria-hidden="true"
                         />
+                        <FoilEdge />
 
                         {/* Top Row: Spine Label Pill */}
                         <div className="relative z-20 flex items-center justify-start">
@@ -657,10 +679,7 @@ export const CaseFileCarousel: React.FC<CaseFileCarouselProps> = ({
                       /* PATH B: SOLID-COLOR COVER (Performance Score 04 & AI Localization 05) */
                       <div className="relative z-10 w-full h-full flex flex-col justify-between p-1">
                         {/* Elegant subtle geometric foil border */}
-                        <div
-                          className="absolute inset-0 rounded-xl border border-[#188E39]/30 pointer-events-none"
-                          aria-hidden="true"
-                        />
+                        <FoilEdge />
 
                         {/* Header: Spine Label */}
                         <div className="flex items-center justify-start">

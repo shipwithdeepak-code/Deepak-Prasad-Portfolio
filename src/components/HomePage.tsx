@@ -641,10 +641,10 @@ export default function HomePage({
               <span>Flagship Case Studies</span>
             </div>
             <h2 className="font-onest text-3xl sm:text-4xl font-bold tracking-tight text-[#042718]">
-              Selected work
+              From silk mandis to <span className="italic font-normal" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>conversational AI</span>
             </h2>
-            <p className="font-inter text-base text-[#042718]/70 mt-2">
-              A selection of products I’ve taken from ambiguity to launch, scale or development-ready strategy.
+            <p className="font-inter text-base text-[#042718]/70 mt-2 max-w-xl">
+              Five of the problems I've shipped against, picked to show range rather than repeat myself: a legacy textile trade, a fitness AI coach, a subscription funnel, a connected hardware ecosystem, and an AI pipeline that localizes video content across three languages. There's more below if you want the rest.
             </p>
           </div>
 
