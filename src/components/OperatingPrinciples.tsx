@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
   Compass,
@@ -141,6 +141,25 @@ interface OperatingPrinciplesProps {
 export const OperatingPrinciples: React.FC<OperatingPrinciplesProps> = ({
   onNavigate,
 }) => {
+  // This section renders the orb twice below — once for the mobile stacked
+  // layout, once for the desktop fanned layout — and swaps which one is
+  // visible purely with lg:hidden / hidden lg:grid CSS. CSS "hidden"
+  // doesn't stop the offscreen copy from running its live WebGPU shader,
+  // so without this, desktop visitors silently pay for two animated
+  // shaders at once, one of them never seen. Track which layout is
+  // actually active so the offscreen orb can fall back to its static
+  // CSS gradient instead of doing real shader work for nothing.
+  const [isDesktopLayout, setIsDesktopLayout] = useState(
+    () => typeof window !== "undefined" && window.matchMedia("(min-width: 1024px)").matches
+  );
+
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1024px)");
+    const handleChange = (e: MediaQueryListEvent) => setIsDesktopLayout(e.matches);
+    mq.addEventListener("change", handleChange);
+    return () => mq.removeEventListener("change", handleChange);
+  }, []);
+
   // Render a single principle card
   const renderItem = (
     item: PrincipleItem,
@@ -242,7 +261,7 @@ export const OperatingPrinciples: React.FC<OperatingPrinciplesProps> = ({
         <div className="lg:hidden flex flex-col items-center gap-6 w-full max-w-md mx-auto mt-6">
           {/* Centered compact orb with interactive caption */}
           <div className="flex flex-col items-center justify-center py-1">
-            <ShaderOrb />
+            <ShaderOrb forceFallback={isDesktopLayout} />
             <p className="font-inter text-[11px] text-[#042619]/70 text-center select-none mt-4">
               A shader I hand-built. Click to cycle through the principles.
             </p>
@@ -267,7 +286,7 @@ export const OperatingPrinciples: React.FC<OperatingPrinciplesProps> = ({
 
           {/* Center column: the orb wrapper with interactive caption */}
           <div className="principles-orb-wrapper flex flex-col items-center justify-center">
-            <ShaderOrb />
+            <ShaderOrb forceFallback={!isDesktopLayout} />
             <p className="font-inter text-[11px] text-[#042619]/70 text-center select-none max-w-[220px] mt-4 sm:mt-5">
               A shader I hand-built. Click to cycle through the principles.
             </p>

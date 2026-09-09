@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import {
   Linkedin,
@@ -18,29 +18,10 @@ interface FooterProps {
 }
 
 export default function Footer({}: FooterProps) {
-  const [canPlayVideo, setCanPlayVideo] = useState(false);
-  const footerRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0]?.isIntersecting) {
-          setCanPlayVideo(true);
-          observer.disconnect();
-        }
-      },
-      { rootMargin: "300px" }
-    );
-    if (footerRef.current) {
-      observer.observe(footerRef.current);
-    }
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <footer ref={footerRef} className="relative w-full overflow-hidden flex flex-col items-center">
-      {/* Background Video with Instant Lightweight Poster */}
+    <footer className="relative w-full overflow-hidden flex flex-col items-center">
+      {/* Background Image — the hero already plays this exact clip; the footer
+          only needs the still frame, not a second video fetch */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         <picture>
           <source srcSet="/images/hero-bg-poster.webp" type="image/webp" />
@@ -52,22 +33,6 @@ export default function Footer({}: FooterProps) {
             className="w-full h-full object-cover opacity-40"
           />
         </picture>
-        {canPlayVideo && (
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            poster="/images/hero-bg-poster.webp"
-            aria-hidden="true"
-            className="absolute inset-0 w-full h-full object-cover opacity-40"
-          >
-            <source
-              src="https://cdn.jiro.build/Amox/All%20Images/P01-Header-01-BG.mp4"
-              type="video/mp4"
-            />
-          </video>
-        )}
         <div className="absolute inset-0 bg-[#FAFDFB]/55" />
         <div className="absolute bottom-0 left-0 right-0 h-[400px] bg-white/5 backdrop-blur-[2px] [mask-image:linear-gradient(to_top,black_40%,transparent)]" />
       </div>
