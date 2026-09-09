@@ -12,9 +12,15 @@ import {
   getWebGPUSupport,
 } from "shaders/react";
 
-interface ShaderOrbProps {
+export interface ShaderOrbProps {
   className?: string;
   forceFallback?: boolean;
+  fixedLabel?: string;
+  disableClickAdvance?: boolean;
+  onOrbClick?: () => void;
+  sizeClassName?: string;
+  ariaLabel?: string;
+  isSmall?: boolean;
 }
 
 interface PhaseConfig {
@@ -80,12 +86,27 @@ const PHASES: PhaseConfig[] = [
 export const ShaderOrb: React.FC<ShaderOrbProps> = ({
   className = "",
   forceFallback = false,
+  fixedLabel,
+  disableClickAdvance = false,
+  onOrbClick,
+  sizeClassName,
+  ariaLabel,
+  isSmall,
 }) => {
   const shouldReduceMotion = Boolean(useReducedMotion());
   const [phaseIndex, setPhaseIndex] = useState(0);
   const [isPulsing, setIsPulsing] = useState(false);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const pulseTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const isSmallComputed =
+    isSmall !== undefined
+      ? isSmall
+      : Boolean(
+          sizeClassName &&
+            (/\b(w|h)-(?:[1-9]|1[0-4])\b/.test(sizeClassName) ||
+              /(?:[1-4][0-9]|5[0-6])px/.test(sizeClassName))
+        );
 
   // Auto-advance every 4 seconds
   const startTimer = useCallback(() => {
@@ -117,14 +138,25 @@ export const ShaderOrb: React.FC<ShaderOrbProps> = ({
     }
   }, [shouldReduceMotion, startTimer]);
 
+  const handleClick = useCallback(() => {
+    if (!disableClickAdvance) {
+      advancePhase();
+    }
+    onOrbClick?.();
+  }, [disableClickAdvance, advancePhase, onOrbClick]);
+
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
-      advancePhase();
+      handleClick();
     }
   };
 
   const currentPhase = PHASES[phaseIndex];
+  const labelText = fixedLabel !== undefined ? fixedLabel : currentPhase.label;
+  const accessibleLabel =
+    ariaLabel ||
+    `Operating principle: ${currentPhase.label}. Click to cycle through the principles.`;
 
   const [canUseShader, setCanUseShader] = useState<boolean>(() => {
     if (typeof window === "undefined" || forceFallback) return false;
@@ -172,9 +204,9 @@ export const ShaderOrb: React.FC<ShaderOrbProps> = ({
     <motion.div
       role="button"
       tabIndex={0}
-      onClick={advancePhase}
+      onClick={handleClick}
       onKeyDown={handleKeyDown}
-      aria-label={`Operating principle: ${currentPhase.label}. Click to cycle through the principles.`}
+      aria-label={accessibleLabel}
       animate={isPulsing && !shouldReduceMotion ? { scale: [1, 1.08, 1] } : { scale: 1 }}
       transition={{ duration: 0.3, ease: "easeOut" }}
       className={`relative flex items-center justify-center cursor-pointer select-none rounded-full outline-none focus-visible:ring-2 focus-visible:ring-offset-4 focus-visible:ring-[#188E39] ${className}`}
@@ -187,7 +219,9 @@ export const ShaderOrb: React.FC<ShaderOrbProps> = ({
     >
       {/* Outer thin ring breathing in sync (scale 1 -> 1.07) with dynamic phase border color */}
       <div
-        className={`absolute -inset-2.5 sm:-inset-3 lg:-inset-4 rounded-full border principles-orb-ring pointer-events-none ${
+        className={`absolute ${
+          isSmallComputed ? "-inset-1.5" : "-inset-2.5 sm:-inset-3 lg:-inset-4"
+        } rounded-full border principles-orb-ring pointer-events-none ${
           shouldReduceMotion ? "" : "principles-ring-breathe"
         }`}
         aria-hidden="true"
@@ -195,7 +229,10 @@ export const ShaderOrb: React.FC<ShaderOrbProps> = ({
 
       {/* Main Breathing Orb Wrapper (compact ~88-96px on mobile, responsive clamp 160px-215px on desktop) with dynamic phase glow */}
       <div
-        className={`relative w-[88px] h-[88px] sm:w-[96px] sm:h-[96px] lg:w-[clamp(160px,21vh,215px)] lg:h-[clamp(160px,21vh,215px)] rounded-full shrink-0 select-none principles-orb-glow ${
+        className={`relative ${
+          sizeClassName ||
+          "w-[88px] h-[88px] sm:w-[96px] sm:h-[96px] lg:w-[clamp(160px,21vh,215px)] lg:h-[clamp(160px,21vh,215px)]"
+        } rounded-full shrink-0 select-none principles-orb-glow ${
           shouldReduceMotion ? "principles-orb-static" : "principles-orb-breathe"
         }`}
       >
@@ -293,26 +330,42 @@ export const ShaderOrb: React.FC<ShaderOrbProps> = ({
           )}
         </AnimatePresence>
 
-        {/* Phase label: uppercase, white text on dark scrim/pill for contrast guarantee */}
-        <div
-          className="absolute inset-0 z-20 rounded-full flex items-center justify-center select-none pointer-events-none p-1"
-          aria-hidden="true"
-        >
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={currentPhase.label}
-              initial={{ opacity: 0, scale: 0.94 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.94 }}
-              transition={{ duration: shouldReduceMotion ? 0.05 : 0.35, ease: "easeInOut" }}
-              className="px-2 py-0.5 sm:px-2.5 sm:py-1 lg:px-3 lg:py-1 rounded-full bg-black/35 backdrop-blur-sm border border-white/10 shadow-sm flex items-center justify-center max-w-[86%] sm:max-w-none"
-            >
-              <span className="font-inter font-semibold text-[7.5px] sm:text-[9px] lg:text-[clamp(9.5px,1.3vh,11.5px)] uppercase tracking-[0.08em] sm:tracking-[0.14em] text-white text-center whitespace-nowrap">
-                {currentPhase.label}
-              </span>
-            </motion.div>
-          </AnimatePresence>
-        </div>
+        {/* Phase / Fixed label: uppercase, white text on dark scrim/pill for contrast guarantee */}
+        {labelText !== "" && (
+          <div
+            className={`absolute inset-0 z-20 rounded-full flex ${
+              isSmallComputed
+                ? "items-end justify-center pb-1.5"
+                : "items-center justify-center p-1"
+            } select-none pointer-events-none`}
+            aria-hidden="true"
+          >
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={fixedLabel !== undefined ? fixedLabel : currentPhase.label}
+                initial={{ opacity: 0, scale: 0.94 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.94 }}
+                transition={{ duration: shouldReduceMotion ? 0.05 : 0.35, ease: "easeInOut" }}
+                className={
+                  isSmallComputed
+                    ? "px-[6px] py-[2px] rounded-full bg-black/45 backdrop-blur-sm border border-white/15 shadow-sm flex items-center justify-center max-w-[92%]"
+                    : "px-2 py-0.5 sm:px-2.5 sm:py-1 lg:px-3 lg:py-1 rounded-full bg-black/35 backdrop-blur-sm border border-white/10 shadow-sm flex items-center justify-center max-w-[86%] sm:max-w-none"
+                }
+              >
+                <span
+                  className={
+                    isSmallComputed
+                      ? "font-inter font-bold text-[7px] uppercase tracking-[0.08em] text-white text-center whitespace-nowrap leading-none"
+                      : "font-inter font-semibold text-[7.5px] sm:text-[9px] lg:text-[clamp(9.5px,1.3vh,11.5px)] uppercase tracking-[0.08em] sm:tracking-[0.14em] text-white text-center whitespace-nowrap"
+                  }
+                >
+                  {labelText}
+                </span>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        )}
       </div>
     </motion.div>
   );

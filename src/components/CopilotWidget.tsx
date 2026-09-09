@@ -18,6 +18,7 @@ import {
   Terminal,
 } from "lucide-react";
 import { CALENDLY_URL } from "../utils/calendly";
+import { ShaderOrb } from "./ShaderOrb";
 
 interface RetrievedChunk {
   id: string;
@@ -50,6 +51,8 @@ const STARTER_PROMPTS = [
   "Why choose RAG over fine-tuning for this site?",
   "How did the Sportstech AI Coach handle latency?",
   "Explain Deepak's first operating principle",
+  "What's actually changing for PMs with AI?",
+  "Is 'AI-native PM' more than a buzzword?",
 ];
 
 export default function CopilotWidget({
@@ -65,7 +68,7 @@ export default function CopilotWidget({
     {
       id: "welcome",
       sender: "copilot",
-      text: "Hi! I'm Deepak’s AI Copilot. I'm a custom Retrieval-Augmented Generation (RAG) assistant running on Gemini Flash Lite and an in-memory cosine similarity engine.\n\nAsk me anything about Deepak’s work, metrics, operating principles, or the architecture of this portfolio copilot.",
+      text: "Hi! I'm Deepak’s AI Copilot. I'm a custom Retrieval-Augmented Generation (RAG) assistant running on Gemini Flash Lite and an in-memory cosine similarity engine.\n\nAsk me anything about Deepak’s work, metrics, operating principles, or what's actually changing for PMs right now. I only answer from things he's actually written.",
       timestamp: "Just now",
     },
   ]);
@@ -117,17 +120,22 @@ export default function CopilotWidget({
     setIsLoading(true);
 
     try {
-      const res = await fetch("/api/copilot/query", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ question: textToSend }),
-      });
+      const fetchPromise = (async () => {
+        const res = await fetch("/api/copilot/query", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ question: textToSend }),
+        });
 
-      if (!res.ok) {
-        throw new Error(`Server returned status ${res.status}`);
-      }
+        if (!res.ok) {
+          throw new Error(`Server returned status ${res.status}`);
+        }
 
-      const data = await res.json();
+        return await res.json();
+      })();
+
+      const minDurationPromise = new Promise((resolve) => setTimeout(resolve, 300));
+      const [data] = await Promise.all([fetchPromise, minDurationPromise]);
 
       const copilotMessage: Message = {
         id: "copilot-" + Date.now(),
@@ -232,47 +240,84 @@ export default function CopilotWidget({
   return (
     <>
       <style>{`
-        @keyframes copilot-breathe {
+        @keyframes ambientDrift1 {
           0%, 100% {
-            transform: scale(1);
-            box-shadow: 0 10px 25px -5px rgba(4, 39, 24, 0.4), 0 0 0 0 rgba(1, 188, 124, 0.25);
+            transform: translate(0px, 0px) scale(1);
           }
           50% {
-            transform: scale(1.04);
-            box-shadow: 0 14px 28px -5px rgba(4, 39, 24, 0.5), 0 0 0 6px rgba(1, 188, 124, 0);
+            transform: translate(14px, -14px) scale(1.05);
           }
         }
-        .animate-copilot-breathe {
-          animation: copilot-breathe 3.2s ease-in-out infinite;
+        @keyframes ambientDrift2 {
+          0%, 100% {
+            transform: translate(0px, 0px) scale(1);
+          }
+          50% {
+            transform: translate(-14px, 14px) scale(1.05);
+          }
+        }
+        .ambient-drift-1 {
+          animation: ambientDrift1 24s ease-in-out infinite;
+        }
+        .ambient-drift-2 {
+          animation: ambientDrift2 28s ease-in-out infinite;
+        }
+
+        @keyframes copilotDotPulse {
+          0%, 80%, 100% {
+            opacity: 0.35;
+            transform: scale(0.82);
+          }
+          40% {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+        .copilot-dot-pulse-1 {
+          animation: copilotDotPulse 1.1s ease-in-out infinite;
+          animation-delay: 0s;
+        }
+        .copilot-dot-pulse-2 {
+          animation: copilotDotPulse 1.1s ease-in-out infinite;
+          animation-delay: 0.15s;
+        }
+        .copilot-dot-pulse-3 {
+          animation: copilotDotPulse 1.1s ease-in-out infinite;
+          animation-delay: 0.3s;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .ambient-drift-1,
+          .ambient-drift-2 {
+            animation: none !important;
+            transform: none !important;
+          }
+          .copilot-dot-pulse-1,
+          .copilot-dot-pulse-2,
+          .copilot-dot-pulse-3 {
+            animation: none !important;
+            opacity: 0.65 !important;
+            transform: scale(1) !important;
+          }
         }
       `}</style>
 
-      {/* Floating Circular Photo Trigger Button */}
+      {/* Floating Circular Trigger Button */}
       {!isOpen && (
         <button
           id="copilot-launcher-btn"
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-5 right-5 z-40 group flex items-center justify-center w-14 h-14 rounded-full bg-[#042718] text-white shadow-xl hover:shadow-2xl active:scale-95 transition-[box-shadow,transform,border-color] duration-300 border-2 border-[#188E39]/40 hover:border-[#188E39]/80 cursor-pointer animate-copilot-breathe overflow-visible"
+          className="fixed bottom-5 right-5 z-40 focus:outline-none"
           aria-label="Open Deepak's AI Copilot"
           title="Open Deepak's AI Copilot"
         >
-          {/* Subtle online status indicator dot */}
-          <span className="absolute -top-0.5 -right-0.5 z-20 flex h-3.5 w-3.5 pointer-events-none">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#01bc7c] opacity-75" />
-            <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-[#01bc7c] border-2 border-[#FAFDFB]" />
-          </span>
-
-          {/* Avatar container - awaiting user-provided data URI in next prompt */}
-          <div className="relative w-full h-full rounded-full overflow-hidden flex items-center justify-center bg-[#042718]">
-            <div className="w-full h-full flex items-center justify-center font-onest font-bold text-base text-white tracking-[-0.2px] select-none group-hover:scale-105 transition-transform bg-[#042718]">
-              DP
-            </div>
-          </div>
-
-          {/* Subtle AI Sparkles Badge */}
-          <span className="absolute -bottom-0.5 -right-0.5 z-20 w-4.5 h-4.5 rounded-full bg-[#042718] border border-[#01bc7c]/50 flex items-center justify-center shadow-xs">
-            <Sparkles size={10} className="text-[#01bc7c] animate-pulse" />
-          </span>
+          <ShaderOrb
+            fixedLabel="DP"
+            disableClickAdvance
+            sizeClassName="w-14 h-14"
+            ariaLabel="Open Deepak's AI Copilot"
+            onOrbClick={() => setIsOpen(true)}
+          />
         </button>
       )}
 
@@ -280,24 +325,72 @@ export default function CopilotWidget({
       {isOpen && (
         <div
           id="copilot-window"
-          className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 w-[calc(100vw-32px)] sm:w-[460px] h-[620px] max-h-[calc(100vh-48px)] flex flex-col rounded-[24px] bg-[#FFFFFF] border border-[#042718]/15 shadow-2xl overflow-hidden font-inter transition-[opacity,transform] duration-300"
+          className="fixed bottom-24 right-5 z-50 w-[calc(100vw-32px)] sm:w-[460px] h-[620px] max-h-[calc(100vh-48px)] flex flex-col rounded-[24px] overflow-hidden font-inter transition-[opacity,transform] duration-300 relative"
+          style={{
+            background: "color-mix(in oklch, #FAFDFB 55%, transparent)",
+            backdropFilter: "blur(24px) saturate(160%)",
+            WebkitBackdropFilter: "blur(24px) saturate(160%)",
+            border: "1px solid color-mix(in oklch, #042718 12%, transparent)",
+            boxShadow:
+              "0 16px 32px -16px rgba(4,39,24,.4), 0 4px 10px -4px rgba(4,39,24,.18)",
+          }}
         >
-          {/* Header */}
-          <div className="p-4 bg-[#042718] text-white flex items-center justify-between shrink-0 select-none">
+          {/* Ambient glowing background layer (z-0) */}
+          <div className="absolute inset-0 pointer-events-none overflow-hidden z-0" aria-hidden="true">
+            <div
+              className="ambient-drift-1 absolute -top-12 -right-12 w-72 h-72 rounded-full pointer-events-none"
+              style={{
+                background: "radial-gradient(circle, #188E39 0%, transparent 70%)",
+                opacity: 0.18,
+                filter: "blur(34px)",
+                WebkitFilter: "blur(34px)",
+              }}
+            />
+            <div
+              className="ambient-drift-2 absolute -bottom-10 -left-10 w-64 h-64 rounded-full pointer-events-none"
+              style={{
+                background: "radial-gradient(circle, #188E39 0%, transparent 70%)",
+                opacity: 0.14,
+                filter: "blur(30px)",
+                WebkitFilter: "blur(30px)",
+              }}
+            />
+          </div>
+
+          {/* Header (z-10) */}
+          <div
+            className="relative z-10 p-4 flex items-center justify-between shrink-0 select-none"
+            style={{
+              borderBottom: "1px solid color-mix(in oklch, #042718 10%, transparent)",
+              backgroundColor: "transparent",
+            }}
+          >
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-full bg-[#188E39]/20 border border-[#01bc7c]/40 flex items-center justify-center text-[#01bc7c]">
-                <Sparkles size={18} />
+              <div
+                className="w-8 h-8 rounded-full flex items-center justify-center text-[#188E39]"
+                style={{
+                  backgroundColor: "color-mix(in oklch, #188E39 15%, transparent)",
+                  border: "1px solid color-mix(in oklch, #01bc7c 30%, transparent)",
+                }}
+              >
+                <Sparkles size={17} />
               </div>
               <div>
                 <div className="flex items-center gap-2">
-                  <h3 className="font-onest text-sm sm:text-base font-bold text-white tracking-tight">
+                  <h3 className="font-onest text-sm sm:text-base font-bold text-[#042718] tracking-tight">
                     Deepak's AI Copilot
                   </h3>
-                  <span className="px-1.5 py-0.5 rounded text-[10px] font-mono font-bold bg-[#01bc7c]/20 text-[#01bc7c] border border-[#01bc7c]/30">
+                  <span
+                    className="px-1.5 py-0.5 rounded text-[10px] font-mono font-bold text-[#065F46]"
+                    style={{
+                      backgroundColor: "color-mix(in oklch, #01bc7c 18%, transparent)",
+                      border: "1px solid color-mix(in oklch, #01bc7c 30%, transparent)",
+                    }}
+                  >
                     RAG
                   </span>
                 </div>
-                <p className="text-[11px] text-white/60 font-inter truncate max-w-[240px]">
+                <p className="text-[11px] text-[#042718]/60 font-inter truncate max-w-[240px]">
                   Grounded in 45+ case study chunks · gemini-3.1-flash-lite
                 </p>
               </div>
@@ -307,20 +400,28 @@ export default function CopilotWidget({
               <button
                 onClick={() => setIsHowItWorksOpen(!isHowItWorksOpen)}
                 title="How this works"
-                className={`p-1.5 rounded-lg text-xs font-medium flex items-center gap-1 transition-colors ${
-                  isHowItWorksOpen
-                    ? "bg-[#01bc7c] text-[#042718] font-bold"
-                    : "text-white/70 hover:text-white hover:bg-white/10"
-                }`}
+                className="p-1.5 rounded-lg text-xs font-medium flex items-center gap-1 transition-colors cursor-pointer"
+                style={{
+                  backgroundColor: isHowItWorksOpen
+                    ? "color-mix(in oklch, #01bc7c 22%, transparent)"
+                    : "transparent",
+                  color: isHowItWorksOpen ? "#042718" : "rgba(4, 39, 24, 0.55)",
+                }}
               >
                 <Info size={16} />
-                <span className="hidden sm:inline text-[11px]">Architecture</span>
+                <span
+                  className={`hidden sm:inline text-[11px] ${
+                    isHowItWorksOpen ? "font-bold text-[#042718]" : "text-[#042718]/70"
+                  }`}
+                >
+                  Architecture
+                </span>
               </button>
 
               <button
                 onClick={handleResetChat}
                 title="Reset conversation"
-                className="p-1.5 rounded-lg text-white/70 hover:text-white hover:bg-white/10 transition-colors"
+                className="p-1.5 rounded-lg text-[#042718]/55 hover:text-[#042718] hover:bg-[#042718]/5 transition-colors cursor-pointer"
               >
                 <RotateCcw size={15} />
               </button>
@@ -328,16 +429,24 @@ export default function CopilotWidget({
               <button
                 onClick={() => setIsOpen(false)}
                 title="Close Copilot"
-                className="p-1.5 rounded-lg text-white/70 hover:text-white hover:bg-white/10 transition-colors"
+                className="p-1.5 rounded-lg text-[#042718]/55 hover:text-[#042718] hover:bg-[#042718]/5 transition-colors cursor-pointer"
               >
                 <X size={18} />
               </button>
             </div>
           </div>
 
-          {/* "How This Works" Collapsible Transparent Architecture Panel */}
+          {/* "How This Works" Collapsible Transparent Architecture Panel (z-10) */}
           {isHowItWorksOpen && (
-            <div className="bg-[#FAFDFB] border-b border-[#042718]/10 p-4 shrink-0 overflow-y-auto max-h-[220px] transition-[opacity,max-height] duration-200">
+            <div
+              className="relative z-10 p-4 shrink-0 overflow-y-auto max-h-[220px] transition-[opacity,max-height] duration-200"
+              style={{
+                background: "color-mix(in oklch, #FAFDFB 65%, transparent)",
+                backdropFilter: "blur(10px) saturate(150%)",
+                WebkitBackdropFilter: "blur(10px) saturate(150%)",
+                borderBottom: "1px solid color-mix(in oklch, #042718 10%, transparent)",
+              }}
+            >
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center gap-1.5 text-xs font-bold text-[#188E39] uppercase tracking-wider">
                   <Cpu size={14} />
@@ -348,7 +457,7 @@ export default function CopilotWidget({
                     onNavigate("/work/behind-ai-copilot");
                     setIsOpen(false);
                   }}
-                  className="text-[11px] font-semibold text-[#188E39] hover:underline flex items-center gap-1"
+                  className="text-[11px] font-semibold text-[#188E39] hover:underline flex items-center gap-1 cursor-pointer"
                 >
                   <span>Read Case Study</span>
                   <ArrowRight size={12} />
@@ -357,67 +466,64 @@ export default function CopilotWidget({
 
               {/* Step-by-Step Transparent Pipeline Diagram */}
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 text-[11px] text-[#042718] font-inter">
-                <div className="p-2 rounded-lg bg-white border border-[#042718]/10">
-                  <div className="font-bold text-[#188E39] flex items-center gap-1 mb-0.5">
-                    <span>1. Ingest & Chunk</span>
+                {[
+                  {
+                    step: "1. Ingest & Chunk",
+                    desc: "45 atomic semantic chunks (subsections, not tokens)",
+                  },
+                  {
+                    step: "2. Build Embed",
+                    desc: "gemini-embedding-2 (512-dim) stored in JSON",
+                  },
+                  {
+                    step: "3. In-Memory Search",
+                    desc: "Cosine similarity on CPU in <2ms (No Vector DB)",
+                  },
+                  {
+                    step: "4. Confidence Gate",
+                    desc: "Threshold \u2265 0.68. Unknowns escalate to Book Chat",
+                  },
+                  {
+                    step: "5. Strict Grounding",
+                    desc: "Top 3-4 chunks passed to gemini-3.1-flash-lite",
+                  },
+                  {
+                    step: "6. Source Provenance",
+                    desc: "Citations tagged with exact similarity percentages",
+                  },
+                ].map((tile, i) => (
+                  <div
+                    key={i}
+                    className="p-2 rounded-lg"
+                    style={{
+                      background: "color-mix(in oklch, #FAFDFB 70%, transparent)",
+                      backdropFilter: "blur(10px) saturate(150%)",
+                      WebkitBackdropFilter: "blur(10px) saturate(150%)",
+                      border: "1px solid color-mix(in oklch, #042718 8%, transparent)",
+                    }}
+                  >
+                    <div className="font-bold text-[#188E39] flex items-center gap-1 mb-0.5">
+                      <span>{tile.step}</span>
+                    </div>
+                    <p className="text-[10px] text-[#042718]/70">{tile.desc}</p>
                   </div>
-                  <p className="text-[10px] text-[#042718]/70">
-                    45 atomic semantic chunks (subsections, not tokens)
-                  </p>
-                </div>
-
-                <div className="p-2 rounded-lg bg-white border border-[#042718]/10">
-                  <div className="font-bold text-[#188E39] flex items-center gap-1 mb-0.5">
-                    <span>2. Build Embed</span>
-                  </div>
-                  <p className="text-[10px] text-[#042718]/70">
-                    gemini-embedding-2 (512-dim) stored in JSON
-                  </p>
-                </div>
-
-                <div className="p-2 rounded-lg bg-white border border-[#042718]/10">
-                  <div className="font-bold text-[#188E39] flex items-center gap-1 mb-0.5">
-                    <span>3. In-Memory Search</span>
-                  </div>
-                  <p className="text-[10px] text-[#042718]/70">
-                    Cosine similarity on CPU in &lt;2ms (No Vector DB)
-                  </p>
-                </div>
-
-                <div className="p-2 rounded-lg bg-white border border-[#042718]/10">
-                  <div className="font-bold text-[#188E39] flex items-center gap-1 mb-0.5">
-                    <span>4. Confidence Gate</span>
-                  </div>
-                  <p className="text-[10px] text-[#042718]/70">
-                    Threshold &ge; 0.68. Unknowns escalate to Book Chat
-                  </p>
-                </div>
-
-                <div className="p-2 rounded-lg bg-white border border-[#042718]/10">
-                  <div className="font-bold text-[#188E39] flex items-center gap-1 mb-0.5">
-                    <span>5. Strict Grounding</span>
-                  </div>
-                  <p className="text-[10px] text-[#042718]/70">
-                    Top 3-4 chunks passed to gemini-3.1-flash-lite
-                  </p>
-                </div>
-
-                <div className="p-2 rounded-lg bg-white border border-[#042718]/10">
-                  <div className="font-bold text-[#188E39] flex items-center gap-1 mb-0.5">
-                    <span>6. Source Provenance</span>
-                  </div>
-                  <p className="text-[10px] text-[#042718]/70">
-                    Citations tagged with exact similarity percentages
-                  </p>
-                </div>
+                ))}
               </div>
             </div>
           )}
 
           {/* Selected Chunk Modal / Drawer Overlay */}
           {selectedChunk && (
-            <div className="absolute inset-0 bg-[#042718]/60 z-30 flex flex-col justify-end p-3 animate-fade-in">
-              <div className="bg-white rounded-2xl p-4 shadow-2xl max-h-[80%] overflow-y-auto flex flex-col border border-[#042718]/15">
+            <div className="absolute inset-0 bg-[#042718]/40 backdrop-blur-xs z-30 flex flex-col justify-end p-3 animate-fade-in">
+              <div
+                className="rounded-2xl p-4 shadow-2xl max-h-[80%] overflow-y-auto flex flex-col"
+                style={{
+                  background: "color-mix(in oklch, #FAFDFB 75%, transparent)",
+                  backdropFilter: "blur(12px) saturate(150%)",
+                  WebkitBackdropFilter: "blur(12px) saturate(150%)",
+                  border: "1px solid color-mix(in oklch, #042718 10%, transparent)",
+                }}
+              >
                 <div className="flex items-center justify-between pb-2 border-b border-[#042718]/10">
                   <div>
                     <span className="text-[10px] font-bold text-[#188E39] uppercase tracking-wider">
@@ -429,32 +535,44 @@ export default function CopilotWidget({
                   </div>
                   <button
                     onClick={() => setSelectedChunk(null)}
-                    className="p-1 rounded hover:bg-[#042718]/10 text-[#042718]/70"
+                    className="p-1 rounded hover:bg-[#042718]/10 text-[#042718]/70 cursor-pointer"
                   >
                     <X size={16} />
                   </button>
                 </div>
 
                 <div className="my-2.5 flex items-center gap-2">
-                  <span className="px-2 py-0.5 rounded bg-[#042718]/5 text-[11px] font-semibold text-[#042718]/80">
+                  <span
+                    className="px-2 py-0.5 rounded text-[11px] font-semibold text-[#042718]/80"
+                    style={{
+                      background: "color-mix(in oklch, #FAFDFB 60%, transparent)",
+                      border: "1px solid color-mix(in oklch, #042718 8%, transparent)",
+                    }}
+                  >
                     {selectedChunk.source}
                   </span>
-                  <span className="px-2 py-0.5 rounded bg-[#ECFDF5] text-[11px] font-bold text-[#065F46]">
+                  <span className="px-2 py-0.5 rounded bg-[#ECFDF5] text-[11px] font-bold text-[#065F46] border border-[#01bc7c]/30">
                     Match: {(selectedChunk.similarity * 100).toFixed(1)}%
                   </span>
                 </div>
 
-                <div className="p-3 rounded-xl bg-[#FAFDFB] border border-[#042718]/10 text-xs text-[#042718]/80 leading-relaxed font-mono">
+                <div
+                  className="p-3 rounded-xl text-xs text-[#042718]/85 leading-relaxed font-mono"
+                  style={{
+                    background: "color-mix(in oklch, #FAFDFB 60%, transparent)",
+                    border: "1px solid color-mix(in oklch, #042718 8%, transparent)",
+                  }}
+                >
                   {selectedChunk.chunk}
                 </div>
 
                 <div className="mt-3 flex items-center justify-between pt-2 border-t border-[#042718]/10">
                   <span className="text-[11px] text-[#042718]/60">
-                    Chunk ID: <code className="text-[#042718]">{selectedChunk.id}</code>
+                    Chunk ID: <code className="text-[#042718] font-bold">{selectedChunk.id}</code>
                   </span>
                   <button
                     onClick={() => setSelectedChunk(null)}
-                    className="px-3 py-1 text-xs font-semibold rounded-lg bg-[#042718] text-white hover:bg-[#188E39] transition-colors"
+                    className="px-3 py-1 text-xs font-semibold rounded-lg bg-[#042718] text-white hover:bg-[#188E39] transition-colors cursor-pointer"
                   >
                     Close Preview
                   </button>
@@ -463,8 +581,8 @@ export default function CopilotWidget({
             </div>
           )}
 
-          {/* Messages Area */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-[#F8FAF9]">
+          {/* Messages Area (z-10) */}
+          <div className="relative z-10 flex-1 overflow-y-auto p-4 space-y-4 bg-transparent">
             {messages.map((msg) => (
               <div
                 key={msg.id}
@@ -477,8 +595,18 @@ export default function CopilotWidget({
                   className={`max-w-[88%] p-3.5 rounded-[18px] text-sm leading-relaxed ${
                     msg.sender === "user"
                       ? "bg-[#042718] text-white rounded-br-xs shadow-xs"
-                      : "bg-white text-[#042718] border border-[#042718]/10 rounded-bl-xs shadow-2xs"
+                      : "rounded-bl-xs shadow-2xs text-[#042718]"
                   }`}
+                  style={
+                    msg.sender === "copilot"
+                      ? {
+                          background: "color-mix(in oklch, #FAFDFB 65%, transparent)",
+                          backdropFilter: "blur(10px) saturate(150%)",
+                          WebkitBackdropFilter: "blur(10px) saturate(150%)",
+                          border: "1px solid color-mix(in oklch, #042718 10%, transparent)",
+                        }
+                      : undefined
+                  }
                 >
                   {formatText(msg.text, msg.sender === "user")}
 
@@ -507,7 +635,7 @@ export default function CopilotWidget({
                             onNavigate("/work/behind-ai-copilot");
                             setIsOpen(false);
                           }}
-                          className="text-xs text-[#188E39] font-medium hover:underline flex items-center gap-1"
+                          className="text-xs text-[#188E39] font-medium hover:underline flex items-center gap-1 cursor-pointer"
                         >
                           <span>See Fallback Design</span>
                           <ArrowRight size={11} />
@@ -536,7 +664,13 @@ export default function CopilotWidget({
                           <button
                             key={cIdx}
                             onClick={() => setSelectedChunk(chunk)}
-                            className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-medium bg-white hover:bg-[#ECFDF5] border border-[#042718]/10 text-[#042718]/80 hover:text-[#065F46] hover:border-[#188E39]/40 transition-colors shadow-2xs group"
+                            className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-medium text-[#042718]/80 hover:text-[#065F46] hover:border-[#188E39]/40 transition-colors shadow-2xs group cursor-pointer"
+                            style={{
+                              background: "color-mix(in oklch, #FAFDFB 65%, transparent)",
+                              backdropFilter: "blur(8px) saturate(150%)",
+                              WebkitBackdropFilter: "blur(8px) saturate(150%)",
+                              border: "1px solid color-mix(in oklch, #042718 10%, transparent)",
+                            }}
                             title="Click to view exact ground chunk"
                           >
                             <BookOpen size={10} className="text-[#188E39]" />
@@ -559,11 +693,19 @@ export default function CopilotWidget({
             {/* Loading Indicator */}
             {isLoading && (
               <div className="flex items-start gap-2">
-                <div className="p-3.5 rounded-[18px] bg-white border border-[#042718]/10 shadow-2xs rounded-bl-xs flex items-center gap-2">
-                  <div className="flex space-x-1">
-                    <div className="w-2 h-2 bg-[#188E39] rounded-full animate-bounce [animation-delay:-0.3s]" />
-                    <div className="w-2 h-2 bg-[#188E39] rounded-full animate-bounce [animation-delay:-0.15s]" />
-                    <div className="w-2 h-2 bg-[#188E39] rounded-full animate-bounce" />
+                <div
+                  className="p-3.5 rounded-[18px] shadow-2xs rounded-bl-xs flex items-center gap-2"
+                  style={{
+                    background: "color-mix(in oklch, #FAFDFB 65%, transparent)",
+                    backdropFilter: "blur(10px) saturate(150%)",
+                    WebkitBackdropFilter: "blur(10px) saturate(150%)",
+                    border: "1px solid color-mix(in oklch, #042718 10%, transparent)",
+                  }}
+                >
+                  <div className="flex space-x-1.5 items-center">
+                    <div className="w-2 h-2 bg-[#188E39] rounded-full copilot-dot-pulse-1" />
+                    <div className="w-2 h-2 bg-[#188E39] rounded-full copilot-dot-pulse-2" />
+                    <div className="w-2 h-2 bg-[#188E39] rounded-full copilot-dot-pulse-3" />
                   </div>
                   <span className="text-xs text-[#042718]/60 font-inter font-medium">
                     Searching in-memory embeddings...
@@ -575,28 +717,55 @@ export default function CopilotWidget({
             <div ref={messagesEndRef} />
           </div>
 
-          {/* Quick Starter Chips */}
+          {/* Quick Starter Chips (z-10) */}
           {messages.length <= 2 && !isLoading && (
-            <div className="p-3 bg-white border-t border-[#042718]/8">
+            <div
+              className="relative z-10 p-3 shrink-0"
+              style={{
+                borderTop: "1px solid color-mix(in oklch, #042718 8%, transparent)",
+                backgroundColor: "transparent",
+              }}
+            >
               <div className="text-[10px] font-bold text-[#042718]/50 uppercase tracking-wider mb-2">
                 Suggested Questions
               </div>
               <div className="flex flex-wrap gap-1.5">
-                {STARTER_PROMPTS.map((prompt, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => handleSend(prompt)}
-                    className="text-left text-[11px] px-2.5 py-1.5 rounded-full bg-[#FAFDFB] hover:bg-[#ECFDF5] border border-[#042718]/10 hover:border-[#188E39]/40 text-[#042718]/80 hover:text-[#065F46] transition-colors"
-                  >
-                    "{prompt}"
-                  </button>
-                ))}
+                {STARTER_PROMPTS.map((prompt, idx) => {
+                  const isAIPMTrend = idx >= 4;
+                  return (
+                    <button
+                      key={idx}
+                      onClick={() => handleSend(prompt)}
+                      className={`text-left text-[11px] px-2.5 py-1.5 rounded-full transition-colors cursor-pointer ${
+                        isAIPMTrend
+                          ? "text-[#065F46] font-medium hover:bg-[#ECFDF5]/80"
+                          : "text-[#042718]/80 hover:text-[#065F46] hover:bg-[#ECFDF5]/60"
+                      }`}
+                      style={{
+                        background: "color-mix(in oklch, #FAFDFB 65%, transparent)",
+                        backdropFilter: "blur(8px) saturate(150%)",
+                        WebkitBackdropFilter: "blur(8px) saturate(150%)",
+                        border: isAIPMTrend
+                          ? "1px solid color-mix(in oklch, #01bc7c 30%, transparent)"
+                          : "1px solid color-mix(in oklch, #042718 10%, transparent)",
+                      }}
+                    >
+                      "{prompt}"
+                    </button>
+                  );
+                })}
               </div>
             </div>
           )}
 
-          {/* Input Bar */}
-          <div className="p-3 bg-white border-t border-[#042718]/10 flex items-center gap-2 shrink-0">
+          {/* Input Bar (z-10) */}
+          <div
+            className="relative z-10 p-3 flex items-center gap-2 shrink-0"
+            style={{
+              borderTop: "1px solid color-mix(in oklch, #042718 10%, transparent)",
+              backgroundColor: "transparent",
+            }}
+          >
             <input
               ref={inputRef}
               type="text"
@@ -605,12 +774,18 @@ export default function CopilotWidget({
               onKeyDown={handleKeyDown}
               placeholder="Ask about Deepak's metrics, case studies, RAG..."
               disabled={isLoading}
-              className="flex-1 px-3.5 py-2.5 rounded-xl bg-[#FAFDFB] border border-[#042718]/15 focus:outline-none focus:border-[#188E39] focus:ring-1 focus:ring-[#188E39] text-xs sm:text-sm text-[#042718] placeholder-[#042718]/40"
+              className="flex-1 px-3.5 py-2.5 rounded-xl focus:outline-none focus:border-[#188E39] focus:ring-1 focus:ring-[#188E39] text-xs sm:text-sm text-[#042718] placeholder-[#042718]/40"
+              style={{
+                background: "color-mix(in oklch, #FAFDFB 65%, transparent)",
+                backdropFilter: "blur(10px) saturate(150%)",
+                WebkitBackdropFilter: "blur(10px) saturate(150%)",
+                border: "1px solid color-mix(in oklch, #042718 12%, transparent)",
+              }}
             />
             <button
               onClick={() => handleSend()}
               disabled={!input.trim() || isLoading}
-              className="p-2.5 rounded-xl bg-[#042718] hover:bg-[#188E39] disabled:bg-[#042718]/20 text-white disabled:text-white/40 transition-colors shrink-0 shadow-xs"
+              className="p-2.5 rounded-xl bg-[#042718] hover:bg-[#188E39] disabled:bg-[#042718]/20 text-white disabled:text-white/40 transition-colors shrink-0 shadow-xs cursor-pointer disabled:cursor-not-allowed"
               aria-label="Send query"
             >
               <Send size={16} />
