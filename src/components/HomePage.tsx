@@ -408,10 +408,10 @@ export default function HomePage({
             className="font-inter text-lg sm:text-xl text-[#042718]/80 leading-relaxed mb-8 max-w-3xl mx-auto text-center font-normal"
           >
             I&apos;m{" "}
-            <span className="font-playfair italic font-medium text-[#042718]">
+            <span className="font-playfair italic font-medium text-[#042718] text-xl sm:text-2xl inline-block">
               Deepak
             </span>
-            , a Senior Product Manager. Most days, it feels like staying curious long enough to build things that actually work. 7+ years across marketplaces, AI features, and subscription products — asking questions until the product matches reality.
+            , a Senior Product Manager. Most days, it feels like staying curious long enough to build things that actually work. 7+ years across marketplaces, AI features, and subscription products. I kept asking questions until the product matches reality.
           </motion.p>
 
           {/* CTAs */}
@@ -482,7 +482,7 @@ export default function HomePage({
                       );
                     }
                   }}
-                  className="group inline-flex items-center gap-2 text-sm sm:text-base font-semibold text-[#188E39] hover:text-[#065F46] transition-colors cursor-pointer py-1.5 px-4 rounded-full hover:bg-[#188E39]/8"
+                  className="group inline-flex items-center gap-2 text-sm sm:text-base font-semibold text-[#065F46] hover:text-[#042718] transition-colors cursor-pointer py-1.5 px-4 rounded-full hover:bg-[#065F46]/8 [text-shadow:0_1px_8px_rgba(250,253,251,0.9)]"
                   aria-label="Ask Dīpa about my work"
                 >
                   <span>
@@ -537,7 +537,7 @@ export default function HomePage({
       <section
         ref={statsSectionRef}
         id="methodology"
-        className="py-12 md:py-16 bg-[#FAF8F5] border-b border-[#042718]/8 scroll-mt-24 relative z-10"
+        className="py-12 md:py-16 bg-[#FAF8F5] scroll-mt-24 relative z-10"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-y-6 sm:gap-y-8 md:gap-y-0">

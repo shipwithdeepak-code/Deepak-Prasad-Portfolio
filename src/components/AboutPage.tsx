@@ -67,7 +67,7 @@ export default function AboutPage({
               I like solving problems where the answer isn’t obvious.
             </h1>
             <p className="font-inter text-base sm:text-lg text-[#042718]/75 leading-relaxed font-normal mb-4">
-              I turn complex customer, business and operational problems into products people use — from AI-powered experiences and subscription businesses to B2B marketplaces and connected ecosystems.
+              I turn complex customer, business and operational problems into products people use, from AI-powered experiences and subscription businesses to B2B marketplaces and connected ecosystems.
             </p>
             <p className="font-inter text-sm sm:text-base text-[#042718]/70 leading-relaxed font-normal">
               Over the past 7+ years, I’ve operated across both India and European markets, building 0→1 products from concept to scale, managing cross-border pods, and designing systems that connect hardware, software, and human operations.

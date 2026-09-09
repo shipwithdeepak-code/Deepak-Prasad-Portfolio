@@ -164,7 +164,7 @@ export default function ProductStack({ className }: { className?: string }) {
               className="text-[15px] md:text-[18px] text-[#042619]/80 leading-relaxed max-w-[640px] font-inter font-normal text-center"
             >
               The skills, tools, and platforms Deepak applies across discovery,
-              execution, and cross-functional leadership — from 0→1 builds to
+              execution, and cross-functional leadership, from 0→1 builds to
               scaled enterprise systems.
             </motion.p>
           </div>

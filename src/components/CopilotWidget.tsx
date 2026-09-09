@@ -74,7 +74,7 @@ export default function CopilotWidget({
     {
       id: "welcome",
       sender: "copilot",
-      text: "Hi, I'm Dīpa. I know Deepak's work, thinking, and the stories behind his projects — the case studies, decisions, and lessons in between. What are you curious about?",
+      text: "Hi, I'm Dīpa. I know Deepak's work, thinking, and the stories behind his projects: the case studies, decisions, and lessons in between. What are you curious about?",
       timestamp: "Just now",
     },
   ]);
@@ -379,7 +379,7 @@ export default function CopilotWidget({
       {
         id: "welcome-" + Date.now(),
         sender: "copilot",
-        text: "Hi, I'm Dīpa. I know Deepak's work, thinking, and the stories behind his projects — the case studies, decisions, and lessons in between. What are you curious about?",
+        text: "Hi, I'm Dīpa. I know Deepak's work, thinking, and the stories behind his projects: the case studies, decisions, and lessons in between. What are you curious about?",
         timestamp: "Just now",
       },
     ]);
@@ -514,7 +514,7 @@ export default function CopilotWidget({
             animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1 }}
             exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 6, scale: 0.98 }}
             transition={{ duration: 0.22, ease: "easeOut" }}
-            className="fixed bottom-[142px] right-5 z-40 max-w-[300px] sm:max-w-[330px] p-3.5 rounded-2xl cursor-pointer text-left select-none"
+            className="fixed bottom-[148px] right-5 z-40 max-w-[300px] sm:max-w-[330px] p-3.5 rounded-2xl cursor-pointer text-left select-none"
             style={{
               background: "color-mix(in oklch, #FAFDFB 82%, transparent)",
               backdropFilter: "blur(20px) saturate(160%)",
@@ -555,7 +555,7 @@ export default function CopilotWidget({
                 <p className="font-inter text-xs sm:text-[13px] font-medium text-[#042718] leading-snug">
                   {showScrollNudge
                     ? "Curious about the thinking behind this? Ask Dīpa →"
-                    : "I'm Dīpa — I know a little about Deepak's work. Ask me anything →"}
+                    : "I'm Dīpa. I know a little about Deepak's work. Ask me anything →"}
                 </p>
                 <button
                   type="button"
@@ -618,7 +618,7 @@ export default function CopilotWidget({
           title={
             isOpen
               ? "Close Dīpa"
-              : "Dīpa — illuminate the thinking. Ask about Deepak's work."
+              : "Dīpa: illuminate the thinking. Ask about Deepak's work."
           }
           ariaLabel={
             isOpen
@@ -637,7 +637,7 @@ export default function CopilotWidget({
       {isOpen && (
         <div
           id="copilot-window"
-          className="fixed bottom-24 right-5 z-50 w-[calc(100vw-32px)] sm:w-[460px] h-[620px] max-h-[calc(100vh-48px)] flex flex-col rounded-[24px] overflow-hidden font-inter transition-[opacity,transform] duration-300"
+          className="fixed bottom-[152px] right-5 z-50 w-[calc(100vw-32px)] sm:w-[460px] h-[620px] max-h-[calc(100vh-176px)] flex flex-col rounded-[24px] overflow-hidden font-inter transition-[opacity,transform] duration-300"
           style={{
             background: "color-mix(in oklch, #FAFDFB 55%, transparent)",
             backdropFilter: "blur(24px) saturate(160%)",
