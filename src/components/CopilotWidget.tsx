@@ -302,24 +302,19 @@ export default function CopilotWidget({
         }
       `}</style>
 
-      {/* Floating Circular Trigger Button */}
-      {!isOpen && (
-        <button
-          id="copilot-launcher-btn"
-          onClick={() => setIsOpen(true)}
-          className="fixed bottom-5 right-5 z-40 focus:outline-none"
-          aria-label="Open Deepak's AI Copilot"
-          title="Open Deepak's AI Copilot"
-        >
-          <ShaderOrb
-            fixedLabel="DP"
-            disableClickAdvance
-            sizeClassName="w-14 h-14"
-            ariaLabel="Open Deepak's AI Copilot"
-            onOrbClick={() => setIsOpen(true)}
-          />
-        </button>
-      )}
+      {/* Floating Circular Trigger (always visible, toggles open/close) */}
+      <div
+        id="copilot-launcher-btn"
+        className="fixed bottom-5 right-5 z-40"
+      >
+        <ShaderOrb
+          fixedLabel="DP"
+          disableClickAdvance
+          sizeClassName="w-14 h-14"
+          ariaLabel={isOpen ? "Close Deepak's AI Copilot" : "Open Deepak's AI Copilot"}
+          onOrbClick={() => setIsOpen((prev) => !prev)}
+        />
+      </div>
 
       {/* Main Copilot Drawer / Modal */}
       {isOpen && (
