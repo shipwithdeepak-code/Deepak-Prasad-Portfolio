@@ -4,7 +4,6 @@ import {
   ArrowRight,
   ArrowUpRight,
   CheckCircle2,
-  Sparkles,
   FileText,
 } from "lucide-react";
 import { ALL_FLAGSHIP_CASE_STUDIES } from "../data/caseStudies";
@@ -633,16 +632,12 @@ export default function HomePage({
       {/* =========================================================================
           3. SELECTED WORK SECTION (5 FLAGSHIP CASE STUDIES)
           ========================================================================= */}
-      <section id="selected-work" className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col items-center text-center mb-12">
-          <div className="inline-flex items-center gap-2 text-xs font-inter font-semibold uppercase tracking-wider text-[#188E39] mb-2">
-            <Sparkles size={14} />
-            <span>Flagship Case Studies</span>
-          </div>
-          <h2 className="font-onest text-3xl sm:text-4xl font-bold tracking-tight text-[#042718] max-w-2xl">
-            From silk mandis to <span className="italic font-normal" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>conversational AI</span>
+      <section id="selected-work" className="py-14 md:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col items-center text-center mb-8 md:mb-12">
+          <h2 className="font-onest text-[34px] sm:text-[44px] md:text-[54px] font-semibold text-[#042718] leading-[1.12] tracking-tight md:tracking-[-2px] max-w-3xl text-center">
+            From silk mandis to <span className="font-playfair italic font-medium text-black/40">conversational AI</span>
           </h2>
-          <p className="font-inter text-base text-[#042718]/70 mt-2 max-w-xl">
+          <p className="font-inter text-[15px] md:text-[18px] text-[#042718]/80 leading-relaxed max-w-[640px] font-normal mt-4 text-center">
             Five of the problems I've shipped against, picked to show range rather than repeat myself: a legacy textile trade, a fitness AI coach, a subscription funnel, a connected hardware ecosystem, and an AI pipeline that localizes video content across three languages. There's more below if you want the rest.
           </p>
 

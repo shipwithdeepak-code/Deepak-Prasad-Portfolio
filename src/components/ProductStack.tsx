@@ -4,7 +4,6 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
   ShieldCheck,
-  Sparkles,
   Compass,
   Brain,
   Rocket,
@@ -122,27 +121,14 @@ export default function ProductStack({ className }: { className?: string }) {
     <section
       id="competencies"
       className={
-        "w-full bg-transparent py-20 lg:py-32 overflow-hidden relative flex justify-center " +
+        "w-full bg-transparent py-14 lg:py-20 overflow-hidden relative flex justify-center " +
         (className || "")
       }
     >
       <div className="w-full max-w-[1440px] px-6 lg:px-[96px]">
         <div className="w-full max-w-[1248px] mx-auto">
           {/* Header Content */}
-          <div className="flex flex-col items-center text-center mb-12 md:mb-[64px]">
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E4F2EB] border border-[#188E39]/15 mb-6"
-            >
-              <Sparkles className="w-4 h-4 text-[#188E39]" />
-              <span className="text-[#188E39] text-[13px] font-inter font-bold uppercase tracking-wider">
-                CORE COMPETENCIES
-              </span>
-            </motion.div>
-
+          <div className="flex flex-col items-center text-center mb-8 md:mb-12">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}

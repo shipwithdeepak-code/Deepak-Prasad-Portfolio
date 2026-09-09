@@ -209,28 +209,14 @@ export const OperatingPrinciples: React.FC<OperatingPrinciplesProps> = ({
         {/* =========================================================================
             1. SECTION HEADING (Tightened vertical spacing for 800px+ laptop viewports)
             ========================================================================= */}
-        <div className="flex flex-col items-center text-center">
-          {/* Eyebrow Pill */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E4F2EB] border border-[#188E39]/15 mb-2 sm:mb-2.5"
-          >
-            <Compass className="w-3.5 h-3.5 text-[#188E39]" />
-            <span className="text-[#188E39] text-[11px] sm:text-[11.5px] font-inter font-bold uppercase tracking-wider">
-              OPERATING PRINCIPLES
-            </span>
-          </motion.div>
-
+        <div className="flex flex-col items-center text-center mb-6 md:mb-8">
           {/* Headline with italic accent styling */}
           <motion.h2
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.08 }}
             viewport={{ once: true }}
-            className="text-[26px] sm:text-[32px] md:text-[38px] font-onest font-semibold text-[#042619] leading-[1.14] tracking-tight md:tracking-[-1.2px] mb-1.5 sm:mb-2 max-w-2xl text-center"
+            className="text-[34px] sm:text-[44px] md:text-[54px] font-onest font-semibold text-[#042718] leading-[1.12] tracking-tight md:tracking-[-2px] max-w-3xl text-center"
           >
             The real thinking behind{" "}
             <span className="font-playfair italic font-medium text-black/40">
@@ -244,7 +230,7 @@ export const OperatingPrinciples: React.FC<OperatingPrinciplesProps> = ({
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.15 }}
             viewport={{ once: true }}
-            className="text-[13px] md:text-[14px] text-[#042619]/75 leading-relaxed max-w-[540px] font-inter font-normal text-center"
+            className="font-inter text-[15px] md:text-[18px] text-[#042718]/80 leading-relaxed max-w-[640px] font-normal mt-4 text-center"
           >
             Six consistent principles, refined by doing the work, not writing about it.
           </motion.p>
