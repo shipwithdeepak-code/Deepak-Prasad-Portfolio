@@ -171,19 +171,40 @@ export const ShaderOrb: React.FC<ShaderOrbProps> = ({
     }
 
     let isMounted = true;
-    (navigator as any).gpu
-      ?.requestAdapter?.()
-      .then((adapter: any) => {
-        if (isMounted) {
-          setCanUseShader(Boolean(adapter));
-        }
-      })
-      .catch(() => {
-        if (isMounted) setCanUseShader(false);
-      });
+    let idleHandle: number | null = null;
+    let idleTimer: ReturnType<typeof setTimeout> | null = null;
+
+    const checkAdapter = () => {
+      (navigator as any).gpu
+        ?.requestAdapter?.()
+        .then((adapter: any) => {
+          if (isMounted) {
+            setCanUseShader(Boolean(adapter));
+          }
+        })
+        .catch(() => {
+          if (isMounted) setCanUseShader(false);
+        });
+    };
+
+    // Wait for the browser to be idle (max 2s) before requesting the GPU
+    // adapter. Requesting it is what ultimately mounts <ShaderCanvas /> and
+    // triggers the ~2.4MB shaders-vendor download — deferring it keeps that
+    // download from competing with fonts, the hero image, and the main JS
+    // bundle during the critical rendering path. The visual result is
+    // identical, it just starts a beat later.
+    if ("requestIdleCallback" in window) {
+      idleHandle = (window as any).requestIdleCallback(checkAdapter, { timeout: 2000 });
+    } else {
+      idleTimer = setTimeout(checkAdapter, 1500);
+    }
 
     return () => {
       isMounted = false;
+      if (idleHandle !== null && "cancelIdleCallback" in window) {
+        (window as any).cancelIdleCallback(idleHandle);
+      }
+      if (idleTimer) clearTimeout(idleTimer);
     };
   }, [forceFallback, shouldReduceMotion]);
 

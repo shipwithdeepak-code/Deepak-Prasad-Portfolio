@@ -399,6 +399,7 @@ export default function HomePage({
               playsInline
               preload="auto"
               poster="/images/hero-bg-poster.webp"
+              aria-hidden="true"
               className="absolute inset-0 w-full h-full object-cover"
             >
               <source

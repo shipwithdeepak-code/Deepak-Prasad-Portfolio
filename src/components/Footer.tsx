@@ -59,6 +59,7 @@ export default function Footer({}: FooterProps) {
             muted
             playsInline
             poster="/images/hero-bg-poster.webp"
+            aria-hidden="true"
             className="absolute inset-0 w-full h-full object-cover opacity-40"
           >
             <source
