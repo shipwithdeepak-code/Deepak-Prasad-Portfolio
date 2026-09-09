@@ -208,10 +208,41 @@ export const ShaderOrb: React.FC<ShaderOrbProps> = ({
     };
   }, [forceFallback, shouldReduceMotion]);
 
-  const showShader = canUseShader && !shouldReduceMotion && !forceFallback;
+  // Reference animation-heavy sites (Stripe's gradient work included) all
+  // share one habit regardless of how the effect itself is built: stop the
+  // render loop the moment it's not visible. Pause when scrolled out of
+  // view, and pause when the browser tab is backgrounded — resume the
+  // instant either comes back. The look is identical; the GPU just stops
+  // working for it when nobody's watching.
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const [isInViewport, setIsInViewport] = useState(true);
+  const [isTabVisible, setIsTabVisible] = useState(
+    () => typeof document === "undefined" || document.visibilityState !== "hidden"
+  );
+
+  useEffect(() => {
+    if (typeof window === "undefined" || !wrapperRef.current) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsInViewport(entry.isIntersecting),
+      { rootMargin: "200px" }
+    );
+    observer.observe(wrapperRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (typeof document === "undefined") return;
+    const handleVisibility = () => setIsTabVisible(document.visibilityState !== "hidden");
+    document.addEventListener("visibilitychange", handleVisibility);
+    return () => document.removeEventListener("visibilitychange", handleVisibility);
+  }, []);
+
+  const showShader =
+    canUseShader && !shouldReduceMotion && !forceFallback && isInViewport && isTabVisible;
 
   return (
     <motion.div
+      ref={wrapperRef}
       role="button"
       tabIndex={0}
       onClick={handleClick}
