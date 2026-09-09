@@ -1,16 +1,7 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useEffect, useRef, useCallback, Suspense, lazy } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
-import {
-  Shader,
-  Spherize,
-  Swirl,
-  LensFlare,
-  FloatingParticles,
-  CursorRipples,
-  FilmGrain,
-  isWebGPUSupported,
-  getWebGPUSupport,
-} from "shaders/react";
+
+const ShaderCanvas = lazy(() => import("./ShaderCanvas"));
 
 export interface ShaderOrbProps {
   className?: string;
@@ -160,45 +151,41 @@ export const ShaderOrb: React.FC<ShaderOrbProps> = ({
     ariaLabel ||
     `Operating principle: ${currentPhase.label}. Click to cycle through the principles.`;
 
-  const [canUseShader, setCanUseShader] = useState<boolean>(() => {
-    if (typeof window === "undefined" || forceFallback) return false;
-    try {
-      return isWebGPUSupported();
-    } catch {
-      return false;
-    }
-  });
+  const [canUseShader, setCanUseShader] = useState<boolean>(false);
 
   useEffect(() => {
-    if (forceFallback) {
+    if (forceFallback || shouldReduceMotion) {
+      setCanUseShader(false);
+      return;
+    }
+
+    // Only attempt WebGPU on desktop
+    if (typeof window === "undefined" || window.innerWidth < 1024) {
+      setCanUseShader(false);
+      return;
+    }
+
+    if (typeof navigator === "undefined" || !("gpu" in navigator)) {
       setCanUseShader(false);
       return;
     }
 
     let isMounted = true;
-    try {
-      if (!isWebGPUSupported()) {
-        setCanUseShader(false);
-        return;
-      }
-
-      getWebGPUSupport()
-        .then((info) => {
-          if (isMounted) {
-            setCanUseShader(Boolean(info?.supported));
-          }
-        })
-        .catch(() => {
-          if (isMounted) setCanUseShader(false);
-        });
-    } catch {
-      if (isMounted) setCanUseShader(false);
-    }
+    (navigator as any).gpu
+      ?.requestAdapter?.()
+      .then((adapter: any) => {
+        if (isMounted) {
+          setCanUseShader(Boolean(adapter));
+        }
+      })
+      .catch(() => {
+        if (isMounted) setCanUseShader(false);
+      });
 
     return () => {
       isMounted = false;
     };
-  }, [forceFallback]);
+  }, [forceFallback, shouldReduceMotion]);
 
   const showShader = canUseShader && !shouldReduceMotion && !forceFallback;
 
@@ -242,69 +229,21 @@ export const ShaderOrb: React.FC<ShaderOrbProps> = ({
         {/* Clipped circular canvas / fallback container */}
         <div className="w-full h-full rounded-full overflow-hidden relative">
           {showShader ? (
-            <Shader
-              className="w-full h-full block"
-              style={{ width: "100%", height: "100%" }}
-              onUnavailable={() => setCanUseShader(false)}
+            <Suspense
+              fallback={
+                <div
+                  className="w-full h-full rounded-full transition-all duration-700 ease-in-out"
+                  style={{
+                    background: `radial-gradient(circle at 62% 8%, #fef3c7 0%, rgba(254, 243, 199, 0.45) 18%, transparent 35%), radial-gradient(circle at 45% 35%, ${currentPhase.light} 0%, ${currentPhase.mid} 50%, ${currentPhase.accent} 100%)`,
+                  }}
+                />
+              }
             >
-              <Spherize
-                depth={1.1}
-                lightColor="#fef3c7"
-                lightIntensity={0.85}
-                lightPosition={{ x: 0.62, y: 0.08 }}
-                lightSoftness={0.2}
-                radius={1}
-              >
-                <Swirl
-                  colorA={currentPhase.light}
-                  colorB={currentPhase.mid}
-                  stops={[
-                    { color: currentPhase.light, position: 0 },
-                    { color: currentPhase.mid, position: 0.5 },
-                    { color: currentPhase.accent, position: 1 },
-                  ]}
-                  colorSpace="oklab"
-                  detail={1.2}
-                  speed={0.5}
-                />
-                <LensFlare
-                  ghostChroma={0}
-                  ghostIntensity={0.35}
-                  ghostSpread={0.78}
-                  glareIntensity={0.25}
-                  glareSize={0.18}
-                  haloChroma={0.5}
-                  haloIntensity={0.3}
-                  haloRadius={0.38}
-                  haloSoftness={1.1}
-                  lightPosition={{ x: 0.6, y: 0.1 }}
-                  speed={0.9}
-                  starburstIntensity={0.08}
-                  starburstPoints={4}
-                  streakIntensity={0}
-                  streakLength={0.21}
-                />
-                <FloatingParticles
-                  angle={188}
-                  angleVariance={77}
-                  opacity={0.5}
-                  particleColor="#ffffff"
-                  particleSize={1}
-                  randomness={0.3}
-                  speed={0.1}
-                  speedVariance={0.6}
-                  twinkle={1}
-                />
-                <CursorRipples
-                  chromaticSplit={2}
-                  decay={4}
-                />
-              </Spherize>
-              <FilmGrain
-                strength={0.04}
-                visible={true}
+              <ShaderCanvas
+                currentPhase={currentPhase}
+                onUnavailable={() => setCanUseShader(false)}
               />
-            </Shader>
+            </Suspense>
           ) : (
             /* CSS fallback matching warm sunlight glare at (62%, 8%) on top of 3-tone body */
             <div

@@ -545,11 +545,16 @@ export default function CopilotWidget({
 
             <div className="flex items-start gap-2.5 pr-4">
               <div className="w-7 h-7 rounded-full overflow-hidden border border-[#042718]/15 bg-[#042718] shrink-0 mt-0.5">
-                <img
-                  src="/images/deepak-prasad.jpg"
-                  alt="Dīpa"
-                  className="w-full h-full object-cover"
-                />
+                <picture className="w-full h-full block">
+                  <source srcSet="/images/deepak-prasad-80.webp" type="image/webp" />
+                  <img
+                    src="/images/deepak-prasad-80.jpg"
+                    alt="Dīpa"
+                    width="28"
+                    height="28"
+                    className="w-full h-full object-cover"
+                  />
+                </picture>
               </div>
               <div>
                 <p className="font-inter text-xs sm:text-[13px] font-medium text-[#042718] leading-snug">
@@ -637,7 +642,7 @@ export default function CopilotWidget({
       {isOpen && (
         <div
           id="copilot-window"
-          className="fixed bottom-[152px] right-5 z-50 w-[calc(100vw-32px)] sm:w-[460px] h-[620px] max-h-[calc(100dvh-176px)] flex flex-col rounded-[24px] overflow-hidden font-inter transition-[opacity,transform] duration-300"
+          className="fixed bottom-4 sm:bottom-[152px] right-4 sm:right-5 left-4 sm:left-auto z-50 w-auto sm:w-[460px] h-[calc(100dvh-32px)] sm:h-[620px] max-h-[calc(100dvh-32px)] sm:max-h-[calc(100dvh-176px)] flex flex-col rounded-[24px] overflow-hidden font-inter transition-[opacity,transform] duration-300"
           style={{
             background: "color-mix(in oklch, #FAFDFB 55%, transparent)",
             backdropFilter: "blur(24px) saturate(160%)",
@@ -679,20 +684,25 @@ export default function CopilotWidget({
             <div className="flex items-center gap-2.5">
               <div className="relative shrink-0">
                 <div className="w-8 h-8 rounded-full overflow-hidden border border-[#042718]/15 bg-[#042718] flex items-center justify-center relative shadow-2xs">
-                  <img
-                    src="/images/deepak-prasad.jpg"
-                    alt="Deepak Prasad"
-                    referrerPolicy="no-referrer"
-                    loading="eager"
-                    decoding="async"
-                    className="w-full h-full object-cover object-center block"
-                    onError={(e) => {
-                      const target = e.currentTarget;
-                      target.style.display = "none";
-                      const fallback = target.parentElement?.querySelector(".dipa-dp-fallback");
-                      if (fallback) (fallback as HTMLElement).style.display = "flex";
-                    }}
-                  />
+                  <picture className="w-full h-full block">
+                    <source srcSet="/images/deepak-prasad-80.webp" type="image/webp" />
+                    <img
+                      src="/images/deepak-prasad-80.jpg"
+                      alt="Deepak Prasad"
+                      width="32"
+                      height="32"
+                      referrerPolicy="no-referrer"
+                      loading="eager"
+                      decoding="async"
+                      className="w-full h-full object-cover object-center block"
+                      onError={(e) => {
+                        const target = e.currentTarget;
+                        target.style.display = "none";
+                        const fallback = target.closest(".rounded-full")?.querySelector(".dipa-dp-fallback");
+                        if (fallback) (fallback as HTMLElement).style.display = "flex";
+                      }}
+                    />
+                  </picture>
                   <div className="dipa-dp-fallback hidden w-full h-full items-center justify-center font-onest font-bold text-white text-xs bg-[#042718]">
                     DP
                   </div>

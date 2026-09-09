@@ -97,7 +97,7 @@ export default function CaseStudyModal({
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.96, y: 20 }}
         transition={{ duration: 0.3 }}
-        className="w-full max-w-5xl h-[92vh] flex flex-col bg-[#0c0f14] border border-white/20 rounded-[28px] shadow-[0_25px_80px_rgba(0,0,0,0.8)] overflow-hidden text-left select-text relative cursor-default"
+        className="w-full max-w-5xl h-[92dvh] max-h-[92dvh] flex flex-col bg-[#0c0f14] border border-white/20 rounded-[28px] shadow-[0_25px_80px_rgba(0,0,0,0.8)] overflow-hidden text-left select-text relative cursor-default"
       >
         {/* Top Header Bar */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-white/[0.03] backdrop-blur-md shrink-0">
@@ -141,7 +141,7 @@ export default function CaseStudyModal({
         {/* Modal Main Body: 2-column layout on desktop */}
         <div className="flex-1 flex flex-col lg:flex-row min-h-0 overflow-hidden">
           {/* Left Sidebar: Section Index */}
-          <div className="w-full lg:w-72 border-b lg:border-b-0 lg:border-r border-white/10 bg-black/30 p-4 overflow-y-auto shrink-0 flex lg:flex-col gap-1.5">
+          <div className="w-full lg:w-72 border-b lg:border-b-0 lg:border-r border-white/10 bg-black/30 p-3 sm:p-4 overflow-x-auto lg:overflow-y-auto shrink-0 flex lg:flex-col gap-1.5">
             <div className="text-[11px] font-bold text-white/40 uppercase tracking-wider px-2 py-1 hidden lg:block">
               Case Study Outline ({caseStudy.sections.length} Sections)
             </div>
@@ -264,7 +264,7 @@ export default function CaseStudyModal({
                       95% Accuracy (19/20 Pass)
                     </span>
                   </div>
-                  <div className="overflow-x-auto max-h-80">
+                  <div className="overflow-x-auto max-h-80 w-full touch-pan-x overscroll-x-contain">
                     <table className="w-full text-left border-collapse text-xs">
                       <thead className="sticky top-0 bg-[#042718] text-white/60 border-b border-white/10">
                         <tr>

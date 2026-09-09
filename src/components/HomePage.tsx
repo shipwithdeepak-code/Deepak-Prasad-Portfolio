@@ -308,6 +308,25 @@ export default function HomePage({
   const statsSectionRef = useRef<HTMLElement>(null);
   const isInView = useInView(statsSectionRef, { once: true, amount: 0.15 });
   const shouldReduceMotion = Boolean(useReducedMotion());
+  const [canPlayHeroVideo, setCanPlayHeroVideo] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const isDesktop = window.innerWidth >= 768;
+    if (isDesktop) {
+      setCanPlayHeroVideo(true);
+    } else {
+      // On mobile devices, defer video load until after LCP/idle
+      const timer = setTimeout(() => {
+        if ("requestIdleCallback" in window) {
+          (window as any).requestIdleCallback(() => setCanPlayHeroVideo(true));
+        } else {
+          setCanPlayHeroVideo(true);
+        }
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, []);
 
   const domainPills = [
     "ReshaMandi B2B Ecosystem",
@@ -358,22 +377,36 @@ export default function HomePage({
           1. HERO SECTION (CENTERED COMPOSITION INTEGRATED WITH TOP NAVIGATION)
           ========================================================================= */}
       <section className="relative -mt-20 pt-28 pb-16 md:pt-36 md:pb-24 min-h-[calc(100vh)] flex flex-col justify-center items-center overflow-hidden bg-[#FAFDFB]">
-        {/* Earlier Original Background Video */}
+        {/* Background Video with Instant Lightweight Poster for LCP */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="auto"
-            {...({ fetchPriority: "high" } as React.VideoHTMLAttributes<HTMLVideoElement> & { fetchPriority?: "high" | "low" | "auto" })}
-            className="w-full h-full object-cover"
-          >
-            <source
-              src="https://cdn.jiro.build/Amox/All%20Images/P01-Header-01-BG.mp4"
-              type="video/mp4"
+          <picture>
+            <source srcSet="/images/hero-bg-poster.webp" type="image/webp" />
+            <img
+              src="/images/hero-bg-poster.jpg"
+              alt=""
+              aria-hidden="true"
+              fetchPriority="high"
+              width="1920"
+              height="1080"
+              className="w-full h-full object-cover"
             />
-          </video>
+          </picture>
+          {canPlayHeroVideo && (
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="auto"
+              poster="/images/hero-bg-poster.webp"
+              className="absolute inset-0 w-full h-full object-cover"
+            >
+              <source
+                src="https://cdn.jiro.build/Amox/All%20Images/P01-Header-01-BG.mp4"
+                type="video/mp4"
+              />
+            </video>
+          )}
         </div>
 
         {/* Soft gradient fade at bottom to blend smoothly into stats section background */}

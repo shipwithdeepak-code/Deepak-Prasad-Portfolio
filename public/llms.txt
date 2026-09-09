@@ -1,0 +1,26 @@
+# Deepak Prasad - Senior Product Manager Portfolio
+
+> Deepak Prasad is a Senior Product Manager with 7+ years of experience across India and Europe, specializing in 0→1 products, AI systems, B2B marketplaces, and consumer SaaS. Former Lead PM at ReshaMandi (scaled to $50M+ GMV, 80K+ farmers, 99.9% automated payouts) and Product Lead at fitpage (scaled AI endurance coach 10x DAU, built subscription engine from 0 to 12K+ paying subscribers).
+
+## Core Case Studies
+
+- [ReshaMandi B2B Agri-Fintech Ecosystem](https://shipwithdeepak.ai.studio/work/reshamandi): Re-architecting India's silk supply chain with an instant farmer payout engine (< 2 hours from 15 days), CV cocoon grading, and live auction bidding across 80K+ farmers.
+- [AI Endurance Coach](https://shipwithdeepak.ai.studio/work/ai-coach): 0→1 multimodal training intelligence powering personalized marathon coaching, scaling from 300 to 3,200+ DAU with 48% higher week-4 retention.
+- [B2C SaaS Subscription Engine](https://shipwithdeepak.ai.studio/work/subscription-engine): Built recurring monetization architecture from zero to 12K+ paid subscribers, cutting checkout drop-off by 38%.
+- [Holistic Performance Score](https://shipwithdeepak.ai.studio/work/performance-score): Multi-device physiological fitness scoring engine normalizing metrics across 5 wearable ecosystems without hardware lock-in.
+- [AI Global Content Localization Platform](https://shipwithdeepak.ai.studio/work/ai-localization): Human-in-the-loop automated translation and cultural adaptation pipeline reducing turnaround by 65%.
+
+## Experience & Background
+
+- [Professional Resume & Career History](https://shipwithdeepak.ai.studio/resume): Full chronological work history, leadership achievements, engineering foundation, and education.
+- [About Deepak Prasad](https://shipwithdeepak.ai.studio/about): Product philosophy, operating principles, core competencies, and mentorship background.
+- [Schedule a Product Strategy Call](https://calendly.com/deepakprasad): Direct 30-minute introductory conversation.
+
+## Operating Principles
+
+1. Ground Truth First: Spend time where the product is actually used — in warehouses, on tracks, and with real end users.
+2. Zero Friction by Design: Eliminate needless intermediate steps; high velocity comes from unblocking transactions and user intent.
+3. MVP First, Iterate Relentlessly: Ship working software quickly to validate core value propositions before scaling architecture.
+4. Go-To-Market from Day 0: Build product and distribution in tandem, partnering closely with sales, marketing, and operations.
+5. Find High-Leverage Points: Identify the 20% of product surface that creates 80% of business and user impact.
+6. Shared Ownership: High-trust team culture with clear context, continuous feedback, and transparent decision-making.

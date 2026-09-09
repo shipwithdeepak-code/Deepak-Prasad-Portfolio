@@ -110,20 +110,25 @@ export default function Navigation({
         >
           <div className="relative shrink-0">
             <div className="w-10 h-10 rounded-full overflow-hidden border border-[#042718]/15 shadow-xs group-hover:scale-105 transition-transform bg-[#042718] flex items-center justify-center relative">
-              <img
-                src="/images/deepak-prasad.jpg"
-                alt="Deepak Prasad"
-                referrerPolicy="no-referrer"
-                loading="eager"
-                decoding="async"
-                className="w-full h-full object-cover object-center block"
-                onError={(e) => {
-                  const target = e.currentTarget;
-                  target.style.display = "none";
-                  const fallback = target.parentElement?.querySelector(".nav-dp-fallback");
-                  if (fallback) (fallback as HTMLElement).style.display = "flex";
-                }}
-              />
+              <picture className="w-full h-full block">
+                <source srcSet="/images/deepak-prasad-80.webp" type="image/webp" />
+                <img
+                  src="/images/deepak-prasad-80.jpg"
+                  alt="Deepak Prasad"
+                  width="40"
+                  height="40"
+                  referrerPolicy="no-referrer"
+                  loading="eager"
+                  decoding="async"
+                  className="w-full h-full object-cover object-center block"
+                  onError={(e) => {
+                    const target = e.currentTarget;
+                    target.style.display = "none";
+                    const fallback = target.closest(".rounded-full")?.querySelector(".nav-dp-fallback");
+                    if (fallback) (fallback as HTMLElement).style.display = "flex";
+                  }}
+                />
+              </picture>
               <div className="nav-dp-fallback hidden w-full h-full items-center justify-center font-onest font-bold text-white text-sm bg-[#042718]">
                 DP
               </div>

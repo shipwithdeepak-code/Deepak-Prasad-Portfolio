@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import {
   Linkedin,
@@ -18,23 +18,48 @@ interface FooterProps {
 }
 
 export default function Footer({}: FooterProps) {
-  const [isMounted, setIsMounted] = useState(false);
+  const [canPlayVideo, setCanPlayVideo] = useState(false);
+  const footerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    setIsMounted(true);
+    if (typeof window === "undefined") return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting) {
+          setCanPlayVideo(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "300px" }
+    );
+    if (footerRef.current) {
+      observer.observe(footerRef.current);
+    }
+    return () => observer.disconnect();
   }, []);
 
   return (
-    <footer className="relative w-full overflow-hidden flex flex-col items-center">
-      {/* Background Video */}
+    <footer ref={footerRef} className="relative w-full overflow-hidden flex flex-col items-center">
+      {/* Background Video with Instant Lightweight Poster */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-        {isMounted && (
+        <picture>
+          <source srcSet="/images/hero-bg-poster.webp" type="image/webp" />
+          <img
+            src="/images/hero-bg-poster.jpg"
+            alt=""
+            aria-hidden="true"
+            loading="lazy"
+            className="w-full h-full object-cover opacity-40"
+          />
+        </picture>
+        {canPlayVideo && (
           <video
             autoPlay
             loop
             muted
             playsInline
-            className="w-full h-full object-cover opacity-40"
+            poster="/images/hero-bg-poster.webp"
+            className="absolute inset-0 w-full h-full object-cover opacity-40"
           >
             <source
               src="https://cdn.jiro.build/Amox/All%20Images/P01-Header-01-BG.mp4"
@@ -61,7 +86,7 @@ export default function Footer({}: FooterProps) {
               className="w-full max-w-3xl text-center text-[#042718] font-onest text-[34px] sm:text-[44px] md:text-[54px] font-semibold leading-[1.12] tracking-tight md:tracking-[-2px] mb-4"
             >
               Let’s build something{" "}
-              <span className="font-playfair italic font-medium text-black/40">
+              <span className="font-playfair italic font-medium text-[#042718]/70">
                 extraordinary
               </span>{" "}
               together

@@ -1,16 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense, lazy } from "react";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import HomePage from "./components/HomePage";
-import WorkPage from "./components/WorkPage";
-import CaseStudyDetailPage from "./components/CaseStudyDetailPage";
-import AboutPage from "./components/AboutPage";
-import ResumePage from "./components/ResumePage";
-import ContactPage from "./components/ContactPage";
-import CaseStudyModal from "./components/CaseStudyModal";
-import ContactModal from "./components/ContactModal";
-import ResumeModal from "./components/ResumeModal";
-import CopilotWidget from "./components/CopilotWidget";
 import { openCalendly } from "./utils/calendly";
 import { downloadResumePDF } from "./utils/downloadResume";
 import {
@@ -18,6 +9,16 @@ import {
   RESHAMANDI_CASE_STUDY,
 } from "./data/caseStudies";
 import { CaseStudyDetail } from "./types";
+
+const WorkPage = lazy(() => import("./components/WorkPage"));
+const CaseStudyDetailPage = lazy(() => import("./components/CaseStudyDetailPage"));
+const AboutPage = lazy(() => import("./components/AboutPage"));
+const ResumePage = lazy(() => import("./components/ResumePage"));
+const ContactPage = lazy(() => import("./components/ContactPage"));
+const CaseStudyModal = lazy(() => import("./components/CaseStudyModal"));
+const ContactModal = lazy(() => import("./components/ContactModal"));
+const ResumeModal = lazy(() => import("./components/ResumeModal"));
+const CopilotWidget = lazy(() => import("./components/CopilotWidget"));
 
 export default function App() {
   const [currentPath, setCurrentPath] = useState<string>(() => {
@@ -196,7 +197,9 @@ export default function App() {
       />
 
       {/* Main Page View */}
-      <main className="flex-1 w-full">{renderCurrentView()}</main>
+      <main className="flex-1 w-full">
+        <Suspense fallback={null}>{renderCurrentView()}</Suspense>
+      </main>
 
       {/* Persistent Footer */}
       <Footer
@@ -214,35 +217,43 @@ export default function App() {
       />
 
       {/* Interactive Modals */}
-      <CaseStudyModal
-        caseStudy={selectedModalCaseStudy}
-        isOpen={isCaseStudyModalOpen}
-        onClose={() => setIsCaseStudyModalOpen(false)}
-        onOpenContact={() => {
-          setIsCaseStudyModalOpen(false);
-          setIsContactModalOpen(true);
-        }}
-      />
+      <Suspense fallback={null}>
+        {isCaseStudyModalOpen && (
+          <CaseStudyModal
+            caseStudy={selectedModalCaseStudy}
+            isOpen={isCaseStudyModalOpen}
+            onClose={() => setIsCaseStudyModalOpen(false)}
+            onOpenContact={() => {
+              setIsCaseStudyModalOpen(false);
+              setIsContactModalOpen(true);
+            }}
+          />
+        )}
 
-      <ContactModal
-        isOpen={isContactModalOpen}
-        onClose={() => setIsContactModalOpen(false)}
-      />
+        {isContactModalOpen && (
+          <ContactModal
+            isOpen={isContactModalOpen}
+            onClose={() => setIsContactModalOpen(false)}
+          />
+        )}
 
-      <ResumeModal
-        isOpen={isResumeModalOpen}
-        onClose={() => setIsResumeModalOpen(false)}
-        onOpenContact={() => {
-          setIsResumeModalOpen(false);
-          setIsContactModalOpen(true);
-        }}
-      />
+        {isResumeModalOpen && (
+          <ResumeModal
+            isOpen={isResumeModalOpen}
+            onClose={() => setIsResumeModalOpen(false)}
+            onOpenContact={() => {
+              setIsResumeModalOpen(false);
+              setIsContactModalOpen(true);
+            }}
+          />
+        )}
 
-      {/* RAG-based AI Copilot Widget */}
-      <CopilotWidget
-        onOpenBookChat={() => openCalendly()}
-        onNavigate={navigate}
-      />
+        {/* RAG-based AI Copilot Widget */}
+        <CopilotWidget
+          onOpenBookChat={() => openCalendly()}
+          onNavigate={navigate}
+        />
+      </Suspense>
     </div>
   );
 }

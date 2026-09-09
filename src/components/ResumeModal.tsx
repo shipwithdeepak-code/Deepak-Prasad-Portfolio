@@ -200,43 +200,43 @@ export default function ResumeModal({
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.96, y: 20 }}
         transition={{ duration: 0.3 }}
-        className="w-full max-w-4xl h-[92vh] bg-white rounded-[32px] border border-[#042718]/10 shadow-2xl overflow-hidden flex flex-col text-left cursor-default"
+        className="w-full max-w-4xl h-[94dvh] max-h-[94dvh] bg-white rounded-[24px] sm:rounded-[32px] border border-[#042718]/10 shadow-2xl overflow-hidden flex flex-col text-left cursor-default"
       >
         {/* Top Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-[#042718]/10 bg-[#FAFDFB] shrink-0">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-[#E4F2EB] flex items-center justify-center text-[#188E39]">
-              <FileText size={20} />
+        <div className="flex items-center justify-between px-3 sm:px-6 py-3 sm:py-4 border-b border-[#042718]/10 bg-[#FAFDFB] shrink-0 gap-2">
+          <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl bg-[#E4F2EB] flex items-center justify-center text-[#188E39] shrink-0">
+              <FileText size={18} />
             </div>
-            <div>
-              <h3 className="font-onest text-lg font-bold text-[#042718]">
-                Deepak P — Senior Product Manager
+            <div className="min-w-0">
+              <h3 className="font-onest text-sm sm:text-lg font-bold text-[#042718] truncate">
+                Deepak P — Senior PM
               </h3>
-              <p className="font-inter text-xs text-[#042718]/60">
-                B2B & B2C · AI & Machine Learning · Product Strategy & Roadmapping
+              <p className="font-inter text-[11px] sm:text-xs text-[#042718]/60 truncate hidden xs:block">
+                B2B & B2C · AI & ML · Product Strategy
               </p>
             </div>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
             {/* View Switcher Tabs */}
-            <div className="flex items-center bg-[#042718]/5 p-1 rounded-full border border-[#042718]/10 text-xs font-inter font-medium">
+            <div className="flex items-center bg-[#042718]/5 p-0.5 sm:p-1 rounded-full border border-[#042718]/10 text-xs font-inter font-medium">
               <button
                 type="button"
                 onClick={() => setActiveTab("pdf")}
-                className={`px-3 py-1 rounded-full transition-[background-color,color,box-shadow] cursor-pointer flex items-center gap-1.5 ${
+                className={`px-2.5 sm:px-3 py-1 rounded-full transition-[background-color,color,box-shadow] cursor-pointer flex items-center gap-1 sm:gap-1.5 text-[11px] sm:text-xs ${
                   activeTab === "pdf"
                     ? "bg-white text-[#042718] font-semibold shadow-2xs"
                     : "text-[#042718]/60 hover:text-[#042718]"
                 }`}
               >
                 <FileText size={12} className={activeTab === "pdf" ? "text-[#188E39]" : ""} />
-                <span>Original PDF</span>
+                <span>PDF</span>
               </button>
               <button
                 type="button"
                 onClick={() => setActiveTab("structured")}
-                className={`px-3 py-1 rounded-full transition-[background-color,color,box-shadow] cursor-pointer flex items-center gap-1.5 ${
+                className={`px-2.5 sm:px-3 py-1 rounded-full transition-[background-color,color,box-shadow] cursor-pointer flex items-center gap-1 sm:gap-1.5 text-[11px] sm:text-xs ${
                   activeTab === "structured"
                     ? "bg-white text-[#042718] font-semibold shadow-2xs"
                     : "text-[#042718]/60 hover:text-[#042718]"
@@ -252,11 +252,11 @@ export default function ResumeModal({
             <button
               type="button"
               onClick={handleDownload}
-              className="px-3.5 py-1.5 rounded-full bg-[#188E39] hover:bg-[#188E39]/90 text-white font-inter text-xs font-semibold transition-colors cursor-pointer flex items-center gap-1.5 shadow-2xs"
+              className="px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-[#188E39] hover:bg-[#188E39]/90 text-white font-inter text-xs font-semibold transition-colors cursor-pointer flex items-center gap-1 sm:gap-1.5 shadow-2xs"
               title="Download Resume PDF"
             >
               <Download size={13} />
-              <span>
+              <span className="hidden sm:inline">
                 {downloadStatus === "downloading"
                   ? "Downloading..."
                   : downloadStatus === "done"

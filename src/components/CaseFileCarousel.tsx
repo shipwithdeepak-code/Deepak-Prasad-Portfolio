@@ -109,6 +109,15 @@ const CASE_FILE_ITEMS: CaseFileItem[] = [
   },
 ];
 
+const getCoverSources = (imagePath: string) => {
+  const base = imagePath.replace(/\.(jpg|jpeg|png|webp)$/i, "");
+  return {
+    webpSrcSet: `${base}-480.webp 480w, ${base}.webp 800w`,
+    jpgSrcSet: `${base}-480.jpg 480w, ${imagePath} 800w`,
+    fallback: imagePath,
+  };
+};
+
 const FoilEdge = () => (
   <>
     <div
@@ -635,14 +644,28 @@ export const CaseFileCarousel: React.FC<CaseFileCarouselProps> = ({
                     {/* PATH A: PHOTO COVER (When coverImage exists: 01, 02, 03) */}
                     {item.coverImage ? (
                       <>
-                        {/* Background Photo */}
-                        <img
-                          src={item.coverImage}
-                          alt={item.title}
-                          loading="lazy"
-                          referrerPolicy="no-referrer"
-                          className="absolute inset-0 w-full h-full object-cover object-center brightness-85 group-hover:scale-105 transition-transform duration-500 ease-out"
-                        />
+                        {/* Background Photo with Responsive WebP/JPG SrcSet */}
+                        <picture className="absolute inset-0 w-full h-full">
+                          <source
+                            type="image/webp"
+                            srcSet={getCoverSources(item.coverImage).webpSrcSet}
+                            sizes="(max-width: 640px) 240px, 300px"
+                          />
+                          <source
+                            type="image/jpeg"
+                            srcSet={getCoverSources(item.coverImage).jpgSrcSet}
+                            sizes="(max-width: 640px) 240px, 300px"
+                          />
+                          <img
+                            src={item.coverImage}
+                            alt={item.title}
+                            loading="lazy"
+                            width="260"
+                            height="380"
+                            referrerPolicy="no-referrer"
+                            className="w-full h-full object-cover object-center brightness-85 group-hover:scale-105 transition-transform duration-500 ease-out"
+                          />
+                        </picture>
                         {/* Dark green overlay for high legibility */}
                         <div
                           className="absolute inset-0 pointer-events-none z-10"
@@ -748,12 +771,26 @@ export const CaseFileCarousel: React.FC<CaseFileCarouselProps> = ({
                 {/* Full-bleed background photo if available */}
                 {currentOpenedItem.coverImage && (
                   <>
-                    <img
-                      src={currentOpenedItem.coverImage}
-                      alt={currentOpenedItem.title}
-                      referrerPolicy="no-referrer"
-                      className="absolute inset-0 w-full h-full object-cover object-center brightness-85"
-                    />
+                    <picture className="absolute inset-0 w-full h-full">
+                      <source
+                        type="image/webp"
+                        srcSet={getCoverSources(currentOpenedItem.coverImage).webpSrcSet}
+                        sizes="(max-width: 768px) 100vw, 360px"
+                      />
+                      <source
+                        type="image/jpeg"
+                        srcSet={getCoverSources(currentOpenedItem.coverImage).jpgSrcSet}
+                        sizes="(max-width: 768px) 100vw, 360px"
+                      />
+                      <img
+                        src={currentOpenedItem.coverImage}
+                        alt={currentOpenedItem.title}
+                        width="360"
+                        height="490"
+                        referrerPolicy="no-referrer"
+                        className="w-full h-full object-cover object-center brightness-85"
+                      />
+                    </picture>
                     {/* Dark green gradient overlay matching closed card face treatment */}
                     <div
                       className="absolute inset-0 pointer-events-none z-10"
