@@ -1,5 +1,5 @@
-export const RESUME_PDF_URL = '/Deepak_Prasad_Senior_Product_Manager_Resume.pdf';
-export const RESUME_FILENAME = 'Deepak_Prasad_Senior_Product_Manager_Resume.pdf';
+   export const RESUME_PDF_URL = '/Deepak_Prasad_Resume.pdf';
+   export const RESUME_FILENAME = 'Deepak_Prasad_Resume.pdf';
 
 /**
  * Downloads the exact attached resume PDF directly without opening new tabs or modifying content.
