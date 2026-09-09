@@ -68,7 +68,7 @@ export const RESHAMANDI_CASE_STUDY: CaseStudyDetail = {
       subtitle: 'Ground reality at 4:30 AM in Ramanagara and Sidlaghatta',
       content: [
         'Rather than designing software from a remote boardroom, our product discovery started on the damp, crowded floors of Ramanagara, Sidlaghatta, and Dharmapuri mandis before dawn.',
-        'Observing hundreds of live transactions revealed a vital operational truth: farmers and commission agents were not resistant to technology because of literacy—they rejected digital tools because generic apps ignored their high-speed, high-stress physical operating reality. In a crowded auction floor with shouting traders and moving crates, any tool requiring more than 2 taps or 5 seconds of latency was dead on arrival.',
+        'Observing hundreds of live transactions revealed a vital operational truth: farmers and commission agents were not resistant to technology because of literacy. They rejected digital tools because generic apps ignored their high-speed, high-stress physical operating reality. In a crowded auction floor with shouting traders and moving crates, any tool requiring more than 2 taps or 5 seconds of latency was dead on arrival.',
       ],
       highlights: [
         {
@@ -200,7 +200,7 @@ export const RESHAMANDI_CASE_STUDY: CaseStudyDetail = {
       title: 'Cocoon Bidding: Transparent Price Discovery',
       subtitle: 'Scan → Bid → Watch → Win → Pay across 3 daily live auction sessions',
       content: [
-        'Traditional mandi auctions were prone to local trader collusion, where informal cartels kept bidding artificially low. We built a live digital auction system that allowed certified reelers—both physically present and participating remotely—to place transparent bids on graded cocoon lots.',
+        'Traditional mandi auctions were prone to local trader collusion, where informal cartels kept bidding artificially low. We built a live digital auction system that allowed certified reelers, both physically present and participating remotely, to place transparent bids on graded cocoon lots.',
         'In pilot deployments across target mandi centers, this transparent competitive auction mechanism drove a >35% improvement in realized transaction value for high-quality lots compared to unorganized cartel averages.',
       ],
       diagramType: 'bidding',
@@ -316,9 +316,9 @@ export const AI_COACH_CASE_STUDY: CaseStudyDetail = {
   number: '02',
   title: 'Building a Conversational AI Coach',
   subtitle:
-    'How I took an ambiguous "add AI" opportunity from concept to production — defining the use cases, product boundaries, safety guardrails, model strategy and iterative feedback loop.',
+    'How I took an ambiguous "add AI" opportunity from concept to production: defining the use cases, product boundaries, safety guardrails, model strategy and iterative feedback loop.',
   description:
-    'Taking an ambiguous "add AI" opportunity from concept to production — defining use cases, product boundaries, safety guardrails, model strategy and the feedback loop.',
+    'Taking an ambiguous "add AI" opportunity from concept to production: defining use cases, product boundaries, safety guardrails, model strategy and the feedback loop.',
   thesis:
     'The model can generate answers. The product needs to determine where AI adds value, where it should be constrained, and where deterministic systems should take over.',
   centralQuestion:
@@ -446,7 +446,7 @@ export const AI_COACH_CASE_STUDY: CaseStudyDetail = {
       subtitle: 'Internal dogfooding → 100-user closed beta → production rollout',
       content: [
         'We progressed through disciplined rollout stages: internal team testing, followed by a closed beta with 100 highly active community members, followed by tiered production rollout.',
-        'Hallucinations occurred during early testing—such as inventing workout durations or assuming equipment the user did not own. Rather than concealing this reality, we implemented structured post-launch enhancements:',
+        'Hallucinations occurred during early testing, such as inventing workout durations or assuming equipment the user did not own. Rather than concealing this reality, we implemented structured post-launch enhancements:',
         '• Mandatory clarifying prompts before generating complex suggestions.',
         '• Voice input support for post-workout hands-free queries.',
         '• Improved response readability: shorter paragraphs, scannable bullet points, and autoscrolling.',
@@ -497,9 +497,9 @@ export const SUBSCRIPTION_CASE_STUDY: CaseStudyDetail = {
   number: '03',
   title: 'Turning a Free Fitness App into a Subscription Business',
   subtitle:
-    'How I designed the end-to-end subscription experience — from packaging and paywalls to onboarding, value realization, conversion and retention.',
+    'How I designed the end-to-end subscription experience: from packaging and paywalls to onboarding, value realization, conversion and retention.',
   description:
-    'Designing the end-to-end monetization experience — from pricing and packaging to onboarding, paywalls, conversion and retention.',
+    'Designing the end-to-end monetization experience: from pricing and packaging to onboarding, paywalls, conversion and retention.',
   thesis:
     'Monetization is fundamentally a product problem, not just a pricing problem. The shift: from "What should we put behind the paywall?" to "What recurring value can we create that users would genuinely miss if they left?"',
   centralQuestion:
@@ -592,11 +592,11 @@ export const SUBSCRIPTION_CASE_STUDY: CaseStudyDetail = {
       title: 'The Strategic Shift: Recurring Value Over Content Walls',
       subtitle: 'Moving from "What can we gate?" to "What will users genuinely miss?"',
       content: [
-        'Early experimentation taught us that paywalls don’t create value—they only capture it. If the product didn’t build daily active habits during the 7-day trial, users cancelled before the first charge.',
+        'Early experimentation taught us that paywalls don’t create value. They only capture it. If the product didn’t build daily active habits during the 7-day trial, users cancelled before the first charge.',
         'We overhauled the post-paywall experience around three retention engines:',
         '1. Adaptive Scheduling: Workouts automatically shortened if the user logged late in the evening.',
         '2. Cross-Device Connectivity: Syncing with heart rate monitors and Smart Gym hardware to show live effort telemetry.',
-        '3. Proactive Milestone Nudges: In-app celebrations at Workout #3 and Workout #5—the critical threshold where cohort retention stabilized.',
+        '3. Proactive Milestone Nudges: In-app celebrations at Workout #3 and Workout #5, the critical threshold where cohort retention stabilized.',
       ],
       highlights: [
         {
@@ -644,9 +644,9 @@ export const PERFORMANCE_SCORE_CASE_STUDY: CaseStudyDetail = {
   number: '04',
   title: 'One Body. One Score. One Ecosystem.',
   subtitle:
-    'Designing a unified progress and activity experience across app, Smart Gym and connected devices — while fixing the underlying data fragmentation first.',
+    'Designing a unified progress and activity experience across app, Smart Gym and connected devices, while fixing the underlying data fragmentation first.',
   description:
-    'Designing a unified progress and activity experience across app, Smart Gym and connected devices — while fixing the underlying data fragmentation first.',
+    'Designing a unified progress and activity experience across app, Smart Gym and connected devices, while fixing the underlying data fragmentation first.',
   thesis:
     'Before promising users one measure of progress, we needed to make the ecosystem behave like one product.',
   centralQuestion:
@@ -680,7 +680,7 @@ export const PERFORMANCE_SCORE_CASE_STUDY: CaseStudyDetail = {
       content: [
         'The platform offered mobile applications (iOS/Android), embedded touchscreen displays on cardio equipment, connected Smart Gym strength machines, and optional Bluetooth heart-rate sensors. However, the user experience was fractured:',
         '1. Progress Was Invisible: A workout on the treadmill didn’t speak to strength sets logged on the Smart Gym, leaving users with no unified sense of overall progress.',
-        '2. Data Fatigue Rather Than Insight: The apps displayed raw heart rate graphs, reps, and calories burned—numbers that overwhelmed casual users without delivering actionable guidance.',
+        '2. Data Fatigue Rather Than Insight: The apps displayed raw heart rate graphs, reps, and calories burned: numbers that overwhelmed casual users without delivering actionable guidance.',
         '3. Siloed Hardware & Mobile Databases: Workout records lived in isolated database tables, causing sync discrepancies and user frustration.',
       ],
       highlights: [
@@ -742,9 +742,9 @@ export const PERFORMANCE_SCORE_CASE_STUDY: CaseStudyDetail = {
       content: [
         'A critical product principle governed this strategy: hardware should be an aspiration, not a gate. Users who did not own expensive hardware still deserved a first-class progress tracking experience.',
         'We engineered three progressive telemetry tiers:',
-        '• Tier 1: No Hardware Fallback — Calculates score based on session duration, RPE (Rate of Perceived Exertion), and workout consistency.',
-        '• Tier 2: sPulse HR-Enhanced — Integrates live heart-rate zone distribution and real-time cardiovascular strain calculations.',
-        '• Tier 3: Tracker / Ring Bio-Centric — Seamlessly incorporates sleep duration, resting heart rate, and overnight HRV recovery metrics.',
+        '• Tier 1 (No Hardware Fallback): Calculates score based on session duration, RPE (Rate of Perceived Exertion), and workout consistency.',
+        '• Tier 2 (sPulse HR-Enhanced): Integrates live heart-rate zone distribution and real-time cardiovascular strain calculations.',
+        '• Tier 3 (Tracker / Ring Bio-Centric): Seamlessly incorporates sleep duration, resting heart rate, and overnight HRV recovery metrics.',
       ],
       highlights: [
         {
@@ -851,7 +851,7 @@ export const AI_LOCALIZATION_CASE_STUDY: CaseStudyDetail = {
           desc: 'Combined ElevenLabs for dynamic voice cloning and emotional cadence with HeyGen for realistic lip-sync rendering.',
         },
         {
-          title: 'Not Building Models — Orchestrating Leverage',
+          title: 'Not Building Models: Orchestrating Leverage',
           desc: 'Disciplined PM focus on selecting, integrating, and evaluating commercial tools rather than reinventing underlying ML.',
         },
       ],
@@ -862,7 +862,7 @@ export const AI_LOCALIZATION_CASE_STUDY: CaseStudyDetail = {
       title: 'The Operating Model Transformation',
       subtitle: 'Old studio filming vs new AI-assisted localization pipeline',
       content: [
-        'The true innovation was not the generative algorithms—it was the restructured operational workflow connecting automated synthesis with human quality control.',
+        "The true innovation wasn't the generative algorithms. It was the restructured operational workflow connecting automated synthesis with human quality control.",
       ],
       diagramType: 'comparison',
       comparison: {
@@ -943,7 +943,7 @@ export const COPILOT_GOLDEN_EVALUATION_SET: EvaluationRow[] = [
     id: 1,
     query: "What was Deepak's impact at ReshaMandi?",
     category: "Career Metrics",
-    groundTruthSource: "ReshaMandi Case Study — Key Metrics",
+    groundTruthSource: "ReshaMandi Case Study: Key Metrics",
     retrievalHitTop3: true,
     similarity: 0.88,
     status: "Pass",
@@ -953,7 +953,7 @@ export const COPILOT_GOLDEN_EVALUATION_SET: EvaluationRow[] = [
     id: 2,
     query: "Why did mandi farmers reject generic software?",
     category: "Problem Discovery",
-    groundTruthSource: "ReshaMandi — Ground Research",
+    groundTruthSource: "ReshaMandi: Ground Research",
     retrievalHitTop3: true,
     similarity: 0.84,
     status: "Pass",
@@ -963,7 +963,7 @@ export const COPILOT_GOLDEN_EVALUATION_SET: EvaluationRow[] = [
     id: 3,
     query: "What primary and fallback models were used in the Sportstech AI Coach?",
     category: "Architecture",
-    groundTruthSource: "Sportstech AI Coach — Multi-Model Strategy",
+    groundTruthSource: "Sportstech AI Coach: Multi-Model Strategy",
     retrievalHitTop3: true,
     similarity: 0.86,
     status: "Pass",
@@ -973,7 +973,7 @@ export const COPILOT_GOLDEN_EVALUATION_SET: EvaluationRow[] = [
     id: 4,
     query: "What safety guardrails governed the AI Coach?",
     category: "Safety Guardrails",
-    groundTruthSource: "Sportstech AI Coach — Safety Guardrails",
+    groundTruthSource: "Sportstech AI Coach: Safety Guardrails",
     retrievalHitTop3: true,
     similarity: 0.85,
     status: "Pass",
@@ -983,7 +983,7 @@ export const COPILOT_GOLDEN_EVALUATION_SET: EvaluationRow[] = [
     id: 5,
     query: "How fast did user adoption scale for the AI Coach?",
     category: "Growth & Retention",
-    groundTruthSource: "Sportstech AI Coach — Metrics",
+    groundTruthSource: "Sportstech AI Coach: Metrics",
     retrievalHitTop3: true,
     similarity: 0.87,
     status: "Pass",
@@ -993,7 +993,7 @@ export const COPILOT_GOLDEN_EVALUATION_SET: EvaluationRow[] = [
     id: 6,
     query: "How did Deepak optimize paywall conversion and reduce churn?",
     category: "Monetization",
-    groundTruthSource: "Subscription Monetization — Experiments",
+    groundTruthSource: "Subscription Monetization: Experiments",
     retrievalHitTop3: true,
     similarity: 0.82,
     status: "Pass",
@@ -1003,7 +1003,7 @@ export const COPILOT_GOLDEN_EVALUATION_SET: EvaluationRow[] = [
     id: 7,
     query: "What is Deepak's first operating principle?",
     category: "Operating Principles",
-    groundTruthSource: "Operating Principles — Principle 01",
+    groundTruthSource: "Operating Principles: Principle 01",
     retrievalHitTop3: true,
     similarity: 0.89,
     status: "Pass",
@@ -1013,7 +1013,7 @@ export const COPILOT_GOLDEN_EVALUATION_SET: EvaluationRow[] = [
     id: 8,
     query: "What is Deepak's educational degree and college?",
     category: "Resume",
-    groundTruthSource: "Resume — Education & Background",
+    groundTruthSource: "Resume: Education & Background",
     retrievalHitTop3: true,
     similarity: 0.88,
     status: "Pass",
@@ -1023,7 +1023,7 @@ export const COPILOT_GOLDEN_EVALUATION_SET: EvaluationRow[] = [
     id: 9,
     query: "Why choose RAG instead of fine-tuning for this copilot?",
     category: "Copilot Architecture",
-    groundTruthSource: "AI Copilot Architecture — RAG vs Fine-Tuning",
+    groundTruthSource: "AI Copilot Architecture: RAG vs Fine-Tuning",
     retrievalHitTop3: true,
     similarity: 0.86,
     status: "Pass",
@@ -1033,7 +1033,7 @@ export const COPILOT_GOLDEN_EVALUATION_SET: EvaluationRow[] = [
     id: 10,
     query: "Why is there no external vector database like Pinecone?",
     category: "Copilot Architecture",
-    groundTruthSource: "AI Copilot Architecture — In-Memory vs Vector DB",
+    groundTruthSource: "AI Copilot Architecture: In-Memory vs Vector DB",
     retrievalHitTop3: true,
     similarity: 0.87,
     status: "Pass",
@@ -1043,7 +1043,7 @@ export const COPILOT_GOLDEN_EVALUATION_SET: EvaluationRow[] = [
     id: 11,
     query: "What chunking strategy was used for the portfolio corpus?",
     category: "Copilot Architecture",
-    groundTruthSource: "AI Copilot Architecture — Chunking Strategy",
+    groundTruthSource: "AI Copilot Architecture: Chunking Strategy",
     retrievalHitTop3: true,
     similarity: 0.85,
     status: "Pass",
@@ -1053,7 +1053,7 @@ export const COPILOT_GOLDEN_EVALUATION_SET: EvaluationRow[] = [
     id: 12,
     query: "What happens when you don't know the answer to a question?",
     category: "Copilot Fallback",
-    groundTruthSource: "AI Copilot Architecture — Handling Unknowns",
+    groundTruthSource: "AI Copilot Architecture: Handling Unknowns",
     retrievalHitTop3: true,
     similarity: 0.84,
     status: "Pass",
@@ -1063,7 +1063,7 @@ export const COPILOT_GOLDEN_EVALUATION_SET: EvaluationRow[] = [
     id: 13,
     query: "Which embedding model and vector dimension are used?",
     category: "Copilot Architecture",
-    groundTruthSource: "AI Copilot Architecture — Embeddings & Generation",
+    groundTruthSource: "AI Copilot Architecture: Embeddings & Generation",
     retrievalHitTop3: true,
     similarity: 0.85,
     status: "Pass",
@@ -1073,7 +1073,7 @@ export const COPILOT_GOLDEN_EVALUATION_SET: EvaluationRow[] = [
     id: 14,
     query: "Which LLM model generates the grounded response?",
     category: "Copilot Architecture",
-    groundTruthSource: "AI Copilot Architecture — Embeddings & Generation",
+    groundTruthSource: "AI Copilot Architecture: Embeddings & Generation",
     retrievalHitTop3: true,
     similarity: 0.84,
     status: "Pass",
@@ -1083,7 +1083,7 @@ export const COPILOT_GOLDEN_EVALUATION_SET: EvaluationRow[] = [
     id: 15,
     query: "How did ReshaMandi grade silk cocoons objectively?",
     category: "Case Study",
-    groundTruthSource: "ReshaMandi — AI Cocoon Grading",
+    groundTruthSource: "ReshaMandi: AI Cocoon Grading",
     retrievalHitTop3: true,
     similarity: 0.83,
     status: "Pass",
@@ -1093,7 +1093,7 @@ export const COPILOT_GOLDEN_EVALUATION_SET: EvaluationRow[] = [
     id: 16,
     query: "How does the Performance Score algorithm work?",
     category: "Algorithmic Products",
-    groundTruthSource: "Performance Score — Telemetry",
+    groundTruthSource: "Performance Score: Telemetry",
     retrievalHitTop3: true,
     similarity: 0.83,
     status: "Pass",
@@ -1103,7 +1103,7 @@ export const COPILOT_GOLDEN_EVALUATION_SET: EvaluationRow[] = [
     id: 17,
     query: "How many languages were supported in the localization engine?",
     category: "AI Workflows",
-    groundTruthSource: "AI Localization — Overview",
+    groundTruthSource: "AI Localization: Overview",
     retrievalHitTop3: true,
     similarity: 0.82,
     status: "Pass",
@@ -1133,7 +1133,7 @@ export const COPILOT_GOLDEN_EVALUATION_SET: EvaluationRow[] = [
     id: 20,
     query: "How can I book a chat or contact Deepak?",
     category: "Contact & Interaction",
-    groundTruthSource: "Portfolio — Contact & Booking Information",
+    groundTruthSource: "Portfolio: Contact & Booking Information",
     retrievalHitTop3: true,
     similarity: 0.85,
     status: "Pass",
@@ -1155,7 +1155,7 @@ export const BEHIND_COPILOT_CASE_STUDY: CaseStudyDetail = {
   centralQuestion:
     'How do you build a domain-specific portfolio copilot with zero hallucination risk, verifiable citation provenance, and sub-second end-to-end response times?',
   productPhilosophy:
-    'Grounding over guessing. When an AI does not know, the most trustworthy product response is not a plausible hallucination—it is an honest, immediate escalation to human connection.',
+    'Grounding over guessing. When an AI does not know, the most trustworthy product response is not a plausible hallucination. It is an honest, immediate escalation to human connection.',
   category: 'Applied AI & Systems Architecture',
   role: 'Product Architect & Engineer',
   timeline: '2025',
@@ -1180,7 +1180,7 @@ export const BEHIND_COPILOT_CASE_STUDY: CaseStudyDetail = {
       subtitle: 'The trade-offs between static parametric weights and dynamic non-parametric retrieval',
       content: [
         'When engineering an AI assistant to represent a professional portfolio, teams frequently debate whether to fine-tune an open model or implement Retrieval-Augmented Generation (RAG).',
-        'Fine-tuning alters model weights directly, but parametric memory is lossy and stochastic. When asked for precise historical metrics—such as ReshaMandi’s ₹20–25 Cr monthly escrow disbursement or NIT Trichy engineering credentials—a fine-tuned model frequently hallucinates plausible-sounding but erroneous figures.',
+        'Fine-tuning alters model weights directly, but parametric memory is lossy and stochastic. When asked for precise historical metrics, such as ReshaMandi’s ₹20–25 Cr monthly escrow disbursement or NIT Trichy engineering credentials, a fine-tuned model frequently hallucinates plausible-sounding but erroneous figures.',
         'Furthermore, whenever a case study is updated or a new role is added, fine-tuning requires complete dataset re-training. In contrast, RAG cleanly separates knowledge storage from reasoning, guaranteeing 100% factual fidelity, instant knowledge base updates, and auditable citation provenance.',
       ],
       highlights: [
@@ -1202,7 +1202,7 @@ export const BEHIND_COPILOT_CASE_STUDY: CaseStudyDetail = {
       content: [
         'In modern AI application development, engineers reflexively provision external vector databases (e.g., Pinecone, Milvus, Chroma, Qdrant) the moment they hear the term "embeddings."',
         'However, analyzing the mathematical scale of a portfolio reveals that the entire corpus comprises roughly 50 to 200 discrete semantic chunks. Transferring a 512-dimensional query vector over the internet to a third-party hosted vector database introduces 50–150ms of network latency, additional TLS handshakes, recurring subscription costs, and multiple external points of failure.',
-        'Instead, our architecture stores the precomputed dense embeddings directly in a compact in-memory JSON array. At query time, calculating the exact dot product and cosine similarity across all stored chunks executes on CPU in under 1.5 milliseconds—faster than a single database packet could even leave the local network interface.',
+        'Instead, our architecture stores the precomputed dense embeddings directly in a compact in-memory JSON array. At query time, calculating the exact dot product and cosine similarity across all stored chunks executes on CPU in under 1.5 milliseconds, faster than a single database packet could even leave the local network interface.',
       ],
       diagramType: 'workflow',
       workflowSteps: [
@@ -1231,8 +1231,8 @@ export const BEHIND_COPILOT_CASE_STUDY: CaseStudyDetail = {
       subtitle: 'Why 500-token fixed windows destroy product context',
       content: [
         'Naïve RAG tutorials split documents using arbitrary sliding windows (e.g., every 500 tokens with a 50-token overlap). In complex operational case studies, this arbitrary slicing breaks sentences mid-thought, separates crucial metrics from their qualifying preconditions, and fragments cause-and-effect narratives.',
-        'We implemented a strict semantic chunking strategy: every chunk corresponds to a discrete, coherent idea—such as a single case study subsection, an individual operational principle, a specific career milestone, or a safety guardrail.',
-        'Furthermore, each chunk is stored with immutable provenance metadata: an explicit source label (e.g., "ReshaMandi Case Study — Instant Payouts Engine"), a categorical taxonomy tag, and a title. This allows the generator to cite exact sections with complete contextual coherence.',
+        'We implemented a strict semantic chunking strategy: every chunk corresponds to a discrete, coherent idea: a single case study subsection, an individual operational principle, a specific career milestone, or a safety guardrail.',
+        'Furthermore, each chunk is stored with immutable provenance metadata: an explicit source label (e.g., "ReshaMandi Case Study: Instant Payouts Engine"), a categorical taxonomy tag, and a title. This allows the generator to cite exact sections with complete contextual coherence.',
       ],
       comparison: {
         before: {
@@ -1654,9 +1654,9 @@ export const HOW_I_WORK_PRINCIPLES: HowIWorkPrinciple[] = [
     number: '05',
     title: 'Use technology where it creates leverage',
     description:
-      'AI, automation and connected systems should change the economics or experience — not simply add technology.',
+      'AI, automation and connected systems should change the economics or experience, not simply add technology.',
     detail:
-      'Technology should never be added for novelty. Deploy AI and automation where humans are biased, strained, or throttled—transforming operational bottlenecks into scalable leverage.',
+      'Technology should never be added for novelty. Deploy AI and automation where humans are biased, strained, or throttled, transforming operational bottlenecks into scalable leverage.',
     aphorism: 'Deploy AI where human effort is throttled, not for novelty.',
     evidence: 'ReshaMandi · ML Pricing Accuracy >90%',
     evidenceLink: '/work/reshamandi',
@@ -1665,9 +1665,9 @@ export const HOW_I_WORK_PRINCIPLES: HowIWorkPrinciple[] = [
     number: '06',
     title: 'Grow the team, not just the roadmap',
     description:
-      'Cross-functional ownership means the pod gets stronger while the product ships — not just tickets closed.',
+      'Cross-functional ownership means the pod gets stronger while the product ships, not just tickets closed.',
     detail:
-      "A roadmap is temporary; the people who shipped it aren't. Cross-functional ownership means the pod gets stronger while the product ships — not just tickets closed.",
+      "A roadmap is temporary; the people who shipped it aren't. Cross-functional ownership means the pod gets stronger while the product ships, not just tickets closed.",
     aphorism: "A roadmap is temporary; the people who shipped it aren't.",
     evidence: 'Sportstech · Managed & Mentored 6-Person Cross-Functional Pod',
     evidenceLink: '/work/ai-coach',
@@ -1777,7 +1777,7 @@ export const PRODUCT_PRINCIPLES = [
     number: "05",
     title: "Use technology where it creates leverage",
     principle:
-      "AI, automation and connected systems should change the economics or experience — not simply add technology.",
+      "AI, automation and connected systems should change the economics or experience, not simply add technology.",
     detail: "AI delivers the highest ROI when it converts dispute into consensus.",
     tags: ["AI & ML", "Operations"],
   },

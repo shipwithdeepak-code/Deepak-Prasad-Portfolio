@@ -271,7 +271,7 @@ export default function ResumeModal({
               rel="noopener"
               className="px-4 py-1.5 rounded-full bg-[#042718] text-white font-inter text-xs font-semibold hover:bg-[#042718]/90 transition-colors cursor-pointer hidden lg:flex items-center gap-1.5"
             >
-              <span>Book Chat</span>
+              <span>Let's Talk</span>
               <ArrowRight size={13} />
             </a>
 

@@ -184,7 +184,7 @@ async function startServer() {
       // 3. Confidence Gating (Sportstech AI Coach Failover Pattern)
       if (topScore < CONFIDENCE_THRESHOLD) {
         const fallbackText =
-          "I don't have enough verified information in Deepak's portfolio to answer that with high confidence. Deepak's work focuses on AI products, B2B marketplaces, subscriptions, and workflow systems. To discuss this topic directly with Deepak, please click 'Book Chat' below to connect with him.";
+          "I don't have enough verified information in Deepak's portfolio to answer that with high confidence. Deepak's work focuses on AI products, B2B marketplaces, subscriptions, and workflow systems. To discuss this topic directly with Deepak, please click 'Let's Talk' below to connect with him.";
         return res.json({
           question: cleanQuestion,
           answer: fallbackText,
@@ -220,7 +220,7 @@ Your job is to answer user questions about Deepak's work, experience, case studi
 CRITICAL GROUNDING RULES:
 1. Answer strictly using ONLY the information provided in the context below.
 2. If the context contains relevant metrics, numbers, or frameworks (e.g., 80K+ farmers, ₹20–25 Cr monthly, 99.9% reliability, 300 to 2000 DAU, 48-hour perishable window, etc.), cite them accurately.
-3. If the context does not contain sufficient details to answer the question, state honestly what is known and politely recommend clicking "Book Chat" to discuss with Deepak directly.
+3. If the context does not contain sufficient details to answer the question, state honestly what is known and politely recommend clicking "Let's Talk" to discuss with Deepak directly.
 4. Keep answers crisp, professional, and well-structured (1-3 brief paragraphs or focused bullet points).
 5. Never hallucinate previous employers, unmentioned technologies, or speculative claims.`;
 

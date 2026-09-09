@@ -149,6 +149,7 @@ interface GlowCTAProps {
 }
 
 function GlowCTA({ children, className = "" }: GlowCTAProps) {
+  const [isActive, setIsActive] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const stateRef = useRef({
     x: 0,
@@ -225,6 +226,7 @@ function GlowCTA({ children, className = "" }: GlowCTAProps) {
   };
 
   const handlePointerLeave = () => {
+    setIsActive(false);
     if (prefersReducedMotion) return;
     stateRef.current.targetX = 0;
     if (!stateRef.current.isRunning) {
@@ -237,14 +239,19 @@ function GlowCTA({ children, className = "" }: GlowCTAProps) {
   return (
     <div
       ref={containerRef}
+      onPointerEnter={() => setIsActive(true)}
       onPointerMove={handlePointerMove}
       onPointerLeave={handlePointerLeave}
+      onFocus={() => setIsActive(true)}
+      onBlur={() => setIsActive(false)}
       className={`relative inline-flex items-center justify-center ${className}`}
       style={{ "--light-x": "0px" } as React.CSSProperties}
     >
       {/* Glow Layer 1: Cursor-left edge tone & mid-intensity glow */}
       <div
-        className="absolute -inset-1 rounded-full pointer-events-none opacity-55 transition-opacity duration-300 blur-[8px]"
+        className={`absolute -inset-1 rounded-full pointer-events-none transition-opacity duration-300 blur-[8px] ${
+          isActive ? "opacity-55" : "opacity-0"
+        }`}
         style={{
           background:
             "radial-gradient(ellipse 60% 85% at calc(50% + var(--light-x) - 18px) 50%, rgba(52, 211, 153, 0.45) 0%, rgba(1, 188, 124, 0.28) 45%, rgba(24, 142, 57, 0.12) 75%, transparent 100%)",
@@ -254,7 +261,9 @@ function GlowCTA({ children, className = "" }: GlowCTAProps) {
 
       {/* Glow Layer 2: Cursor-right edge tone & mid-intensity glow */}
       <div
-        className="absolute -inset-1 rounded-full pointer-events-none opacity-50 transition-opacity duration-300 blur-[10px]"
+        className={`absolute -inset-1 rounded-full pointer-events-none transition-opacity duration-300 blur-[10px] ${
+          isActive ? "opacity-50" : "opacity-0"
+        }`}
         style={{
           background:
             "radial-gradient(ellipse 60% 85% at calc(50% + var(--light-x) + 18px) 50%, rgba(1, 188, 124, 0.4) 0%, rgba(52, 211, 153, 0.25) 45%, rgba(24, 142, 57, 0.1) 75%, transparent 100%)",
@@ -264,7 +273,9 @@ function GlowCTA({ children, className = "" }: GlowCTAProps) {
 
       {/* Top light shimmer streak: soft mint-white core fading to transparent */}
       <div
-        className="absolute -inset-[2px] rounded-full pointer-events-none opacity-60 transition-opacity duration-200 blur-[4px]"
+        className={`absolute -inset-[2px] rounded-full pointer-events-none transition-opacity duration-300 blur-[4px] ${
+          isActive ? "opacity-60" : "opacity-0"
+        }`}
         style={{
           background:
             "radial-gradient(ellipse 55px 22px at calc(50% + var(--light-x)) 0%, #FAFDFB 0%, #ECFDF5 35%, rgba(1, 188, 124, 0.3) 65%, transparent 100%)",
@@ -274,7 +285,9 @@ function GlowCTA({ children, className = "" }: GlowCTAProps) {
 
       {/* Subtle border outline ring accent that catches the edge halo */}
       <div
-        className="absolute inset-0 rounded-full pointer-events-none border border-[#01bc7c]/30"
+        className={`absolute inset-0 rounded-full pointer-events-none border border-[#01bc7c]/30 transition-opacity duration-300 ${
+          isActive ? "opacity-100" : "opacity-0"
+        }`}
         style={{
           boxShadow:
             "inset 0 1px 2px rgba(250, 253, 251, 0.5), 0 0 12px -2px rgba(1, 188, 124, 0.22)",
@@ -495,7 +508,7 @@ export default function HomePage({
                 id="hero-dipa-supporting-text"
                 className="text-xs sm:text-[13px] font-inter text-[#042718]/80 text-center max-w-md mt-2.5 [text-shadow:0_1px_8px_rgba(250,253,251,0.9)]"
               >
-                Grounded AI assistant · Ask anything about case studies, metrics, or decisions
+                Curious about the thinking behind it?
               </p>
             </div>
           </motion.div>
