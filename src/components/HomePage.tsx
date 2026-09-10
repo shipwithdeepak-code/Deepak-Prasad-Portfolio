@@ -315,16 +315,6 @@ export default function HomePage({
     const isDesktop = window.innerWidth >= 768;
     if (isDesktop) {
       setCanPlayHeroVideo(true);
-    } else {
-      // On mobile devices, defer video load until after LCP/idle
-      const timer = setTimeout(() => {
-        if ("requestIdleCallback" in window) {
-          (window as any).requestIdleCallback(() => setCanPlayHeroVideo(true));
-        } else {
-          setCanPlayHeroVideo(true);
-        }
-      }, 3000);
-      return () => clearTimeout(timer);
     }
   }, []);
 
