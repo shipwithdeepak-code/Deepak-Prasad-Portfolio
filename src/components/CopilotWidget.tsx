@@ -542,7 +542,7 @@ export default function CopilotWidget({
             animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1 }}
             exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 6, scale: 0.98 }}
             transition={{ duration: 0.22, ease: "easeOut" }}
-            className="fixed bottom-[calc(148px+env(safe-area-inset-bottom))] right-5 z-40 max-w-[300px] sm:max-w-[330px] p-3.5 rounded-2xl cursor-pointer text-left select-none"
+            className="fixed bottom-[calc(148px_+_env(safe-area-inset-bottom))] right-5 z-40 max-w-[300px] sm:max-w-[330px] p-3.5 rounded-2xl cursor-pointer text-left select-none"
             style={{
               background: "color-mix(in oklch, #FAFDFB 82%, transparent)",
               backdropFilter: "blur(20px) saturate(160%)",
@@ -630,7 +630,7 @@ export default function CopilotWidget({
       {/* Floating Circular Trigger (always visible, toggles open/close) */}
       <div
         id="copilot-launcher-btn"
-        className={`fixed bottom-[calc(5rem+env(safe-area-inset-bottom))] right-5 z-40 transition-transform duration-300 ease-out ${
+        className={`fixed bottom-[calc(5rem_+_env(safe-area-inset-bottom))] right-5 z-40 transition-transform duration-300 ease-out ${
           isCtaHovering && !shouldReduceMotion
             ? "scale-[1.08] -translate-y-1"
             : "scale-100 translate-y-0"
