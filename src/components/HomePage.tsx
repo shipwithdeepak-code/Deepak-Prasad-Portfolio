@@ -691,7 +691,7 @@ export default function HomePage({
             From silk mandis to <span className="font-playfair italic font-medium text-black/60">conversational AI</span>
           </h2>
           <p className="font-inter text-[15px] md:text-[18px] text-[#042718]/80 leading-relaxed max-w-[640px] font-normal mt-4 text-center">
-            Five of the problems I've shipped against, picked to show range rather than repeat myself: a legacy textile trade, a fitness AI coach, a subscription funnel, a connected hardware ecosystem, and an AI pipeline that localizes video content across three languages. There's more below if you want the rest.
+            From complex marketplaces to AI powered products and everything in between.
           </p>
 
           <button
@@ -699,7 +699,7 @@ export default function HomePage({
             onClick={() => onNavigate("/work")}
             className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white border border-[#042718]/10 shadow-xs hover:bg-[#FAFDFB] text-sm font-inter font-semibold text-[#042718] hover:text-[#188E39] transition-colors cursor-pointer group mt-6"
           >
-            <span>Explore all projects</span>
+            <span>All work</span>
             <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
           </button>
         </div>
