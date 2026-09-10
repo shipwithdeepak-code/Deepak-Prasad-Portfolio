@@ -4,16 +4,16 @@
 
 ## Core Case Studies
 
-- [ReshaMandi B2B Agri-Fintech Ecosystem](https://deepak-prasad-portfolio.ai.studio/work/reshamandi): Re-architecting India's silk supply chain with an instant farmer payout engine (< 2 hours from 15 days), CV cocoon grading, and live auction bidding across 80K+ farmers.
-- [AI Endurance Coach](https://deepak-prasad-portfolio.ai.studio/work/ai-coach): 0→1 multimodal training intelligence powering personalized marathon coaching, scaling from 300 to 3,200+ DAU with 48% higher week-4 retention.
-- [B2C SaaS Subscription Engine](https://deepak-prasad-portfolio.ai.studio/work/subscription-engine): Built recurring monetization architecture from zero to 12K+ paid subscribers, cutting checkout drop-off by 38%.
-- [Holistic Performance Score](https://deepak-prasad-portfolio.ai.studio/work/performance-score): Multi-device physiological fitness scoring engine normalizing metrics across 5 wearable ecosystems without hardware lock-in.
-- [AI Global Content Localization Platform](https://deepak-prasad-portfolio.ai.studio/work/ai-localization): Human-in-the-loop automated translation and cultural adaptation pipeline reducing turnaround by 65%.
+- [ReshaMandi B2B Agri-Fintech Ecosystem](https://deepak-prasad.ai.studio/work/reshamandi): Re-architecting India's silk supply chain with an instant farmer payout engine (< 2 hours from 15 days), CV cocoon grading, and live auction bidding across 80K+ farmers.
+- [AI Endurance Coach](https://deepak-prasad.ai.studio/work/ai-coach): 0→1 multimodal training intelligence powering personalized marathon coaching, scaling from 300 to 3,200+ DAU with 48% higher week-4 retention.
+- [B2C SaaS Subscription Engine](https://deepak-prasad.ai.studio/work/subscription-engine): Built recurring monetization architecture from zero to 12K+ paid subscribers, cutting checkout drop-off by 38%.
+- [Holistic Performance Score](https://deepak-prasad.ai.studio/work/performance-score): Multi-device physiological fitness scoring engine normalizing metrics across 5 wearable ecosystems without hardware lock-in.
+- [AI Global Content Localization Platform](https://deepak-prasad.ai.studio/work/ai-localization): Human-in-the-loop automated translation and cultural adaptation pipeline reducing turnaround by 65%.
 
 ## Experience & Background
 
-- [Professional Resume & Career History](https://deepak-prasad-portfolio.ai.studio/resume): Full chronological work history, leadership achievements, engineering foundation, and education.
-- [About Deepak Prasad](https://deepak-prasad-portfolio.ai.studio/about): Product philosophy, operating principles, core competencies, and mentorship background.
+- [Professional Resume & Career History](https://deepak-prasad.ai.studio/resume): Full chronological work history, leadership achievements, engineering foundation, and education.
+- [About Deepak Prasad](https://deepak-prasad.ai.studio/about): Product philosophy, operating principles, core competencies, and mentorship background.
 - [Schedule a Product Strategy Call](https://calendly.com/shipwithdeepak/chit-chat-with-deepak): Direct 30-minute introductory conversation.
 
 ## Operating Principles

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://deepak-prasad-portfolio.ai.studio/sitemap.xml
+Sitemap: https://deepak-prasad.ai.studio/sitemap.xml
