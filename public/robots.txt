@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-# NOTE: [PRODUCTION_URL] placeholder: swap with custom domain when configured
-Sitemap: https://deepak-prasad.ai.studio/sitemap.xml
+Sitemap: https://deepak-prasad-portfolio.ai.studio/sitemap.xml
