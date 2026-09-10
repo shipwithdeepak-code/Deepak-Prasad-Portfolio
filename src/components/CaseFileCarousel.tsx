@@ -692,10 +692,12 @@ export const CaseFileCarousel: React.FC<CaseFileCarouselProps> = ({
                             {item.title}
                           </h3>
 
-                          <div className="mt-2 flex items-center gap-1.5 text-[11px] font-inter font-medium text-white/80 group-hover:text-white transition-colors">
-                            <BookOpen size={12} className="text-[#34D399]" />
-                            <span>{isCurrentActive ? "Click to open dossier" : "Click to focus"}</span>
-                          </div>
+                          {isCurrentActive && (
+                            <div className="mt-2 flex items-center gap-1.5 text-[11px] font-inter font-medium text-white/80 group-hover:text-white transition-colors">
+                              <BookOpen size={12} className="text-[#34D399]" />
+                              <span>Open</span>
+                            </div>
+                          )}
                         </div>
                       </>
                     ) : (
@@ -729,10 +731,12 @@ export const CaseFileCarousel: React.FC<CaseFileCarouselProps> = ({
                           <span className="font-inter text-[10px] text-white/50 uppercase tracking-wider">
                             Verified Strategy
                           </span>
-                          <div className="flex items-center gap-1.5 text-[11px] font-inter font-medium text-[#34D399]">
-                            <BookOpen size={12} />
-                            <span>{isCurrentActive ? "Open dossier" : "Focus"}</span>
-                          </div>
+                          {isCurrentActive && (
+                            <div className="flex items-center gap-1.5 text-[11px] font-inter font-medium text-[#34D399]">
+                              <BookOpen size={12} />
+                              <span>Open</span>
+                            </div>
+                          )}
                         </div>
                       </div>
                     )}
@@ -749,13 +753,13 @@ export const CaseFileCarousel: React.FC<CaseFileCarouselProps> = ({
             className="absolute inset-0 z-50 flex items-center justify-center p-3 sm:p-6 animate-in fade-in duration-200"
             role="dialog"
             aria-modal="true"
-            aria-label={`Executive Dossier: ${currentOpenedItem.title}`}
+            aria-label={`Case study: ${currentOpenedItem.title}`}
           >
             {/* Fully transparent backdrop allowing outside-click close without any colored tint or wash */}
             <div
               className="absolute inset-0 backdrop-blur-sm cursor-pointer transition-opacity"
               onClick={() => setOpenedIndex(null)}
-              aria-label="Close dossier"
+              aria-label="Close case study"
             />
 
             <div
@@ -838,12 +842,7 @@ export const CaseFileCarousel: React.FC<CaseFileCarouselProps> = ({
                 <div className="p-6 sm:p-8 pb-0 flex-1 min-h-0 overflow-y-auto">
                   {/* Header row with Close button */}
                   <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 rounded-full bg-[#188E39]" />
-                      <span className="font-inter text-xs font-bold uppercase tracking-wider text-[#042718]/70">
-                        Executive Dossier
-                      </span>
-                    </div>
+                    <div />
 
                     {/* Close button */}
                     <button
@@ -860,9 +859,6 @@ export const CaseFileCarousel: React.FC<CaseFileCarouselProps> = ({
 
                   {/* THE CASE'S REAL SUBTITLE TEXT */}
                   <div className="mb-5">
-                    <span className="font-inter text-[11px] font-semibold text-[#188E39] uppercase tracking-wider block mb-1.5">
-                      Transformation & Scope
-                    </span>
                     <p className="font-inter text-sm sm:text-base text-[#042718] leading-relaxed font-medium">
                       {currentOpenedItem.subtitle}
                     </p>
@@ -891,7 +887,7 @@ export const CaseFileCarousel: React.FC<CaseFileCarouselProps> = ({
                 {/* Action row — pinned, always visible, never requires scrolling */}
                 <div className="p-6 sm:p-8 pt-4 shrink-0 border-t border-[#042718]/10 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
                   <span className="font-inter text-xs text-[#042718]/50 hidden sm:inline">
-                    Press Esc or click backdrop to return
+                    Esc to close
                   </span>
 
                   <button
@@ -903,7 +899,7 @@ export const CaseFileCarousel: React.FC<CaseFileCarouselProps> = ({
                     }}
                     className="px-6 py-3 rounded-full bg-[#042718] hover:bg-[#063b25] text-white font-inter text-sm font-semibold flex items-center justify-center gap-2 shadow-sm hover:shadow transition-[background-color,box-shadow] cursor-pointer group"
                   >
-                    <span>Read full case study</span>
+                    <span>Read how I built it</span>
                     <ArrowRight
                       size={16}
                       className="text-[#34D399] group-hover:translate-x-1 transition-transform"

@@ -63,7 +63,7 @@ export default function CaseStudyDetailPage({
           {/* Eyebrow & Status Notice */}
           <div className="flex flex-wrap items-center gap-3 mb-4">
             <span className="px-3 py-1 rounded-full bg-[#042718]/5 text-xs font-inter font-semibold text-[#042718]">
-              CASE {caseStudy.number} · {caseStudy.category}
+              {caseStudy.category}
             </span>
             {caseStudy.isStrategyOnly && (
               <span className="px-3 py-1 rounded-full bg-[#F3E8FF] text-[#7E22CE] text-xs font-inter font-semibold">
@@ -95,17 +95,14 @@ export default function CaseStudyDetailPage({
             </div>
           </div>
 
-          {/* Thesis Pull-Quote */}
+          {/* Thesis Statement */}
           <div className="mb-8 pb-6 border-b border-[#042718]/8">
-            <p
-              className="text-xl sm:text-2xl leading-snug text-[#042718]"
-              style={{ fontFamily: "'Playfair Display', Georgia, serif", fontStyle: "italic" }}
-            >
-              "{caseStudy.thesis}"
+            <p className="font-onest font-semibold text-2xl sm:text-[28px] leading-snug text-[#042718]">
+              {caseStudy.thesis}
             </p>
             {caseStudy.centralQuestion && (
               <p className="font-inter text-sm text-[#042718]/70 mt-4">
-                <span className="font-semibold text-[#042718]">Central Question: </span>
+                <span className="font-semibold text-[#042718]">The question I kept coming back to: </span>
                 {caseStudy.centralQuestion}
               </p>
             )}
