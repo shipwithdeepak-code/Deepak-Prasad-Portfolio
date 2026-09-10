@@ -68,6 +68,10 @@ export default function CopilotWidget({
   const [showIntroTooltip, setShowIntroTooltip] = useState(false);
   const [showScrollNudge, setShowScrollNudge] = useState(false);
   const [isCtaHovering, setIsCtaHovering] = useState(false);
+  // Mobile only: true while the hero section's own "Ask Dīpa" CTA is on
+  // screen, so the floating launcher can step out of its way instead of
+  // visually colliding with it.
+  const [hideForHeroCta, setHideForHeroCta] = useState(false);
   const shouldReduceMotion = Boolean(useReducedMotion());
   const [keyboardViewport, setKeyboardViewport] = useState<{
     height: number;
@@ -239,6 +243,45 @@ export default function CopilotWidget({
       if (showScrollNudge) dismissScrollNudge();
     }
   }, [isOpen, showIntroTooltip, showScrollNudge, dismissIntroTooltip, dismissScrollNudge]);
+
+  // Mobile only: the hero section has its own "Ask Dīpa" CTA right above
+  // the fold. On small screens it sits in the same bottom-right area as
+  // the floating launcher, so fade the launcher out while that CTA is
+  // visible and bring it back once the visitor scrolls past it.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (window.innerWidth >= 640) return;
+
+    let observer: IntersectionObserver | null = null;
+    let retryTimer: ReturnType<typeof setTimeout> | null = null;
+
+    const attachObserver = () => {
+      const heroCta = document.getElementById("hero-ask-dipa-cta");
+      if (!heroCta) return false;
+
+      observer = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            setHideForHeroCta(entry.isIntersecting);
+          }
+        },
+        { threshold: 0.15 }
+      );
+
+      observer.observe(heroCta);
+      return true;
+    };
+
+    const attached = attachObserver();
+    if (!attached) {
+      retryTimer = setTimeout(attachObserver, 800);
+    }
+
+    return () => {
+      if (observer) observer.disconnect();
+      if (retryTimer) clearTimeout(retryTimer);
+    };
+  }, []);
 
   // Global custom event listener so any button on the site can open Dīpa
   useEffect(() => {
@@ -536,7 +579,7 @@ export default function CopilotWidget({
 
       {/* One-time intro tooltip or contextual scroll nudge */}
       <AnimatePresence>
-        {(showIntroTooltip || showScrollNudge) && !isOpen && (
+        {(showIntroTooltip || showScrollNudge) && !isOpen && !hideForHeroCta && (
           <motion.div
             initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 8, scale: 0.96 }}
             animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1 }}
@@ -630,11 +673,11 @@ export default function CopilotWidget({
       {/* Floating Circular Trigger (always visible, toggles open/close) */}
       <div
         id="copilot-launcher-btn"
-        className={`fixed bottom-[calc(148px_+_env(safe-area-inset-bottom))] sm:bottom-20 right-5 z-40 transition-transform duration-300 ease-out ${
+        className={`fixed bottom-[calc(148px_+_env(safe-area-inset-bottom))] sm:bottom-20 right-5 z-40 transition-[transform,opacity] duration-300 ease-out ${
           isCtaHovering && !shouldReduceMotion
             ? "scale-[1.08] -translate-y-1"
             : "scale-100 translate-y-0"
-        }`}
+        } ${hideForHeroCta && !isOpen ? "opacity-0 pointer-events-none" : "opacity-100 pointer-events-auto"}`}
         style={
           isCtaHovering && !shouldReduceMotion
             ? {
