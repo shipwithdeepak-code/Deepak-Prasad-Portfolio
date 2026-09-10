@@ -685,10 +685,10 @@ export const CaseFileCarousel: React.FC<CaseFileCarouselProps> = ({
 
                         {/* Bottom Row: Category, Title & Open Cue */}
                         <div className="relative z-20 flex flex-col gap-1.5 mt-auto">
-                          <span className="font-inter text-[10px] font-semibold text-[#34D399] uppercase tracking-wider line-clamp-1">
+                          <span className="font-inter text-[10px] font-semibold text-[#34D399] uppercase tracking-wider break-words">
                             {item.category}
                           </span>
-                          <h3 className="font-onest font-bold text-white text-base sm:text-lg leading-tight line-clamp-2 drop-shadow-sm group-hover:text-[#34D399] transition-colors">
+                          <h3 className="font-onest font-bold text-white text-sm sm:text-base md:text-lg leading-snug drop-shadow-sm group-hover:text-[#34D399] transition-colors break-words">
                             {item.title}
                           </h3>
 
@@ -713,13 +713,13 @@ export const CaseFileCarousel: React.FC<CaseFileCarouselProps> = ({
 
                         {/* Center: Title Typeset Directly on Solid Cover */}
                         <div className="my-auto py-3">
-                          <span className="font-inter text-[10px] font-semibold text-[#34D399] uppercase tracking-wider block mb-1.5">
+                          <span className="font-inter text-[10px] font-semibold text-[#34D399] uppercase tracking-wider block mb-1.5 break-words">
                             {item.category}
                           </span>
-                          <h3 className="font-onest font-bold text-white text-lg sm:text-xl leading-snug tracking-tight group-hover:text-[#34D399] transition-colors">
+                          <h3 className="font-onest font-bold text-white text-base sm:text-lg md:text-xl leading-snug tracking-tight group-hover:text-[#34D399] transition-colors break-words">
                             {item.title}
                           </h3>
-                          <p className="font-inter text-xs text-white/65 mt-2 line-clamp-3 leading-relaxed">
+                          <p className="font-inter text-xs text-white/65 mt-2 leading-relaxed break-words">
                             {item.subtitle}
                           </p>
                         </div>
@@ -879,7 +879,7 @@ export const CaseFileCarousel: React.FC<CaseFileCarouselProps> = ({
                           <div className="font-onest font-bold text-sm sm:text-base text-[#188E39]">
                             {stat.value}
                           </div>
-                          <div className="font-inter text-[10px] text-[#042718]/60 font-medium line-clamp-1">
+                          <div className="font-inter text-[10px] text-[#042718]/60 font-medium leading-tight break-words">
                             {stat.label}
                           </div>
                         </div>

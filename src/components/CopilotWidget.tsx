@@ -47,125 +47,11 @@ export default function CopilotWidget({
     } catch {}
   }, []);
 
-  // One-time intro tooltip (appears once ever per browser, 4.5s after mount, auto-dismisses after 9s)
+  // Proactive tooltips/bubbles are disabled to prevent covering hero content
   useEffect(() => {
-    try {
-      if (typeof window !== "undefined" && localStorage.getItem("copilotIntroSeen") === "true") {
-        return;
-      }
-    } catch {}
-
-    if (isOpen) return;
-
-    const timer = setTimeout(() => {
-      try {
-        if (localStorage.getItem("copilotIntroSeen") !== "true") {
-          setShowIntroTooltip(true);
-        }
-      } catch {
-        setShowIntroTooltip(true);
-      }
-    }, 4500);
-
-    return () => clearTimeout(timer);
-  }, [isOpen]);
-
-  useEffect(() => {
-    if (!showIntroTooltip) return;
-
-    const autoDismissTimer = setTimeout(() => {
-      dismissIntroTooltip();
-    }, 9000);
-
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape" || e.key === "Esc") {
-        dismissIntroTooltip();
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-    return () => {
-      clearTimeout(autoDismissTimer);
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [showIntroTooltip, dismissIntroTooltip]);
-
-  // Contextual scroll nudge auto-dismiss (7s, lighter touch)
-  useEffect(() => {
-    if (!showScrollNudge) return;
-
-    const autoDismissTimer = setTimeout(() => {
-      dismissScrollNudge();
-    }, 7000);
-
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape" || e.key === "Esc") {
-        dismissScrollNudge();
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-    return () => {
-      clearTimeout(autoDismissTimer);
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [showScrollNudge, dismissScrollNudge]);
-
-  // Contextual scroll nudge: triggers when user scrolls to #selected-work (~40-50% visible)
-  // fires at most once per session for users who have never opened the chat
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    try {
-      if (localStorage.getItem("copilotEverOpened") === "true") return;
-      if (sessionStorage.getItem("copilotScrollNudgeShown") === "true") return;
-    } catch {}
-
-    let observer: IntersectionObserver | null = null;
-    let retryTimer: ReturnType<typeof setTimeout> | null = null;
-
-    const attachObserver = () => {
-      const targetEl = document.getElementById("selected-work");
-      if (!targetEl) return false;
-
-      observer = new IntersectionObserver(
-        (entries) => {
-          for (const entry of entries) {
-            if (entry.isIntersecting && entry.intersectionRatio >= 0.4) {
-              try {
-                const everOpened = localStorage.getItem("copilotEverOpened") === "true";
-                const nudgeShown = sessionStorage.getItem("copilotScrollNudgeShown") === "true";
-
-                if (!everOpened && !nudgeShown && !showIntroTooltip && !isOpen) {
-                  setShowScrollNudge(true);
-                  sessionStorage.setItem("copilotScrollNudgeShown", "true");
-                  if (observer) {
-                    observer.disconnect();
-                  }
-                }
-              } catch {}
-            }
-          }
-        },
-        {
-          threshold: [0.4, 0.5],
-        }
-      );
-
-      observer.observe(targetEl);
-      return true;
-    };
-
-    const attached = attachObserver();
-    if (!attached) {
-      retryTimer = setTimeout(attachObserver, 800);
-    }
-
-    return () => {
-      if (observer) observer.disconnect();
-      if (retryTimer) clearTimeout(retryTimer);
-    };
-  }, [isOpen, showIntroTooltip]);
+    setShowIntroTooltip(false);
+    setShowScrollNudge(false);
+  }, []);
 
   // If panel opens while tooltip or nudge is visible, dismiss them
   useEffect(() => {
@@ -380,10 +266,10 @@ export default function CopilotWidget({
         )}
       </AnimatePresence>
 
-      {/* Floating Circular Trigger (always visible, toggles open/close) */}
+      {/* Floating Circular Trigger (desktop >=768px only, toggles open/close) */}
       <div
         id="copilot-launcher-btn"
-        className={`fixed bottom-[calc(148px_+_env(safe-area-inset-bottom))] sm:bottom-20 right-5 z-40 transition-[transform,opacity] duration-300 ease-out ${
+        className={`hidden md:block fixed sm:bottom-20 right-5 z-40 transition-[transform,opacity] duration-300 ease-out ${
           isCtaHovering && !shouldReduceMotion
             ? "scale-[1.08] -translate-y-1"
             : "scale-100 translate-y-0"

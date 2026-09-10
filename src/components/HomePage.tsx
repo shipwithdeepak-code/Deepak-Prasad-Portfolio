@@ -308,14 +308,43 @@ export default function HomePage({
   const statsSectionRef = useRef<HTMLElement>(null);
   const isInView = useInView(statsSectionRef, { once: true, amount: 0.15 });
   const shouldReduceMotion = Boolean(useReducedMotion());
-  const [canPlayHeroVideo, setCanPlayHeroVideo] = useState(false);
+  const [canPlayHeroVideo, setCanPlayHeroVideo] = useState<boolean>(() => {
+    if (typeof window === "undefined") return false;
+    const mql = window.matchMedia("(min-width: 768px)");
+    return mql.matches && window.innerWidth >= 768;
+  });
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-    const isDesktop = window.innerWidth >= 768;
-    if (isDesktop) {
-      setCanPlayHeroVideo(true);
+
+    const mql = window.matchMedia("(min-width: 768px)");
+
+    const syncVideoAvailability = () => {
+      const isDesktop = mql.matches && window.innerWidth >= 768;
+      setCanPlayHeroVideo(isDesktop);
+    };
+
+    // Immediate sync on mount
+    syncVideoAvailability();
+
+    // Listen for media query match changes
+    if (mql.addEventListener) {
+      mql.addEventListener("change", syncVideoAvailability);
+    } else {
+      mql.addListener(syncVideoAvailability);
     }
+
+    // Also listen to window resize events (e.g. Chrome DevTools viewport changes, orientation change)
+    window.addEventListener("resize", syncVideoAvailability, { passive: true });
+
+    return () => {
+      if (mql.removeEventListener) {
+        mql.removeEventListener("change", syncVideoAvailability);
+      } else {
+        mql.removeListener(syncVideoAvailability);
+      }
+      window.removeEventListener("resize", syncVideoAvailability);
+    };
   }, []);
 
   const domainPills = [
@@ -407,15 +436,15 @@ export default function HomePage({
         />
 
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center text-center my-auto w-full">
-          {/* Eyebrow badge */}
+          {/* Eyebrow badge / Credential chip */}
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
-            className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/80 backdrop-blur-xs border border-[#042718]/10 text-xs sm:text-sm font-inter font-semibold text-[#042718]/80 mb-6 shadow-2xs mx-auto"
+            className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-full bg-white/90 backdrop-blur-xs border border-[#042718]/10 text-[11px] xs:text-xs sm:text-sm font-inter font-semibold text-[#042718] mb-6 shadow-2xs mx-auto max-w-full text-center flex-wrap justify-center leading-normal"
           >
-            <span className="w-2 h-2 rounded-full bg-[#188E39]" />
-            <span>Senior Product Manager · AI · 0→1 · B2B & B2C</span>
+            <span className="w-2 h-2 rounded-full bg-[#188E39] shrink-0" />
+            <span className="break-words">Senior Product Manager · AI · 0→1 · B2B & B2C</span>
           </motion.div>
 
           {/* Main Headline */}
@@ -529,7 +558,7 @@ export default function HomePage({
 
               <p
                 id="hero-dipa-supporting-text"
-                className="text-xs sm:text-[13px] font-inter text-[#042718]/80 text-center max-w-md mt-2.5 [text-shadow:0_1px_8px_rgba(250,253,251,0.9)]"
+                className="text-xs sm:text-[13px] font-inter font-semibold text-[#042718] text-center max-w-md mt-2.5 px-3.5 py-1 rounded-full bg-[#FAFDFB]/95 backdrop-blur-xs border border-[#042718]/12 shadow-2xs [text-shadow:0_1px_4px_rgba(250,253,251,0.9)]"
               >
                 Curious about the thinking behind it?
               </p>
