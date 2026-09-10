@@ -18,6 +18,7 @@ import {
   Terminal,
 } from "lucide-react";
 import { CALENDLY_URL } from "../utils/calendly";
+import { DipaAvatar } from "./DipaAvatar";
 
 export interface RetrievedChunk {
   id: string;
@@ -178,10 +179,17 @@ export default function CopilotDrawer({
       const minDurationPromise = new Promise((resolve) => setTimeout(resolve, 300));
       const [data] = await Promise.all([fetchPromise, minDurationPromise]);
 
+      const cleanAnswer = (data.answer || "")
+        .replace(
+          /^(?:hello!?|hi!?|greetings!?|hey!?)\s*(?:i am|i'm|this is)?\s*(?:dīpa|dipa)?(?:,?\s*deepak(?:'s)?\s*ai\s*assistant)?[.!,:]*\s*/i,
+          ""
+        )
+        .trim();
+
       const copilotMessage: Message = {
         id: "copilot-" + Date.now(),
         sender: "copilot",
-        text: data.answer,
+        text: cleanAnswer || data.answer,
         timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
         fallback: data.fallback,
         retrievedChunks: data.retrievedChunks,
@@ -344,18 +352,7 @@ export default function CopilotDrawer({
       >
         <div className="flex items-center gap-3">
           <div className="relative">
-            <div className="w-9 h-9 rounded-full overflow-hidden border border-[#188E39]/30 bg-white/70 shadow-xs flex items-center justify-center">
-              <picture>
-                <source srcSet="/images/deepak-prasad-80.webp" type="image/webp" />
-                <img
-                  src="/images/deepak-prasad-80.jpg"
-                  alt="Deepak Prasad"
-                  width="36"
-                  height="36"
-                  className="w-full h-full object-cover"
-                />
-              </picture>
-            </div>
+            <DipaAvatar />
             <span
               className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-[#188E39] border-2 border-white ring-1 ring-[#188E39]/30"
               title="Online & Ready"
@@ -464,61 +461,68 @@ export default function CopilotDrawer({
               className={`flex flex-col ${isUser ? "items-end" : "items-start"}`}
             >
               <div
-                className={`max-w-[88%] rounded-2xl px-3.5 py-2.5 transition-all duration-200 ${
-                  isUser
-                    ? "bg-[#042718] text-white shadow-xs"
-                    : "text-[#042718] shadow-xs"
+                className={`flex items-start gap-2.5 w-full ${
+                  isUser ? "justify-end" : "justify-start"
                 }`}
-                style={
-                  !isUser
-                    ? {
-                        background: "color-mix(in oklch, #FAFDFB 78%, transparent)",
-                        backdropFilter: "blur(12px)",
-                        WebkitBackdropFilter: "blur(12px)",
-                        border: "1px solid color-mix(in oklch, #042718 10%, transparent)",
-                      }
-                    : undefined
-                }
               >
-                <div className="break-words">{formatText(msg.text, isUser)}</div>
+                {!isUser && <DipaAvatar className="mt-0.5" />}
+                <div
+                  className={`rounded-2xl px-3.5 py-2.5 transition-all duration-200 ${
+                    isUser
+                      ? "bg-[#042718] text-white shadow-xs max-w-[88%]"
+                      : "text-[#042718] shadow-xs max-w-[84%] sm:max-w-[88%]"
+                  }`}
+                  style={
+                    !isUser
+                      ? {
+                          background: "color-mix(in oklch, #FAFDFB 78%, transparent)",
+                          backdropFilter: "blur(12px)",
+                          WebkitBackdropFilter: "blur(12px)",
+                          border: "1px solid color-mix(in oklch, #042718 10%, transparent)",
+                        }
+                      : undefined
+                  }
+                >
+                  <div className="break-words">{formatText(msg.text, isUser)}</div>
 
-                {/* Retrieved chunks / citations drawer */}
-                {!isUser && msg.retrievedChunks && msg.retrievedChunks.length > 0 && (
-                  <div className="mt-2.5 pt-2 border-t border-[#042718]/8">
-                    <div className="flex items-center justify-between mb-1.5">
-                      <span className="text-[10px] font-mono uppercase tracking-wider text-[#065F46] font-semibold flex items-center gap-1">
-                        <Database size={11} /> Grounded in {msg.retrievedChunks.length} Source
-                        {msg.retrievedChunks.length > 1 ? "s" : ""}
-                      </span>
-                      {msg.topSimilarity && (
-                        <span className="text-[10px] font-mono text-[#042718]/50">
-                          Match: {Math.round(msg.topSimilarity * 100)}%
+                  {/* Retrieved chunks / citations drawer */}
+                  {!isUser && msg.retrievedChunks && msg.retrievedChunks.length > 0 && (
+                    <div className="mt-2.5 pt-2 border-t border-[#042718]/8">
+                      <div className="flex items-center justify-between mb-1.5">
+                        <span className="text-[10px] font-mono uppercase tracking-wider text-[#065F46] font-semibold flex items-center gap-1">
+                          <Database size={11} /> Grounded in {msg.retrievedChunks.length} Source
+                          {msg.retrievedChunks.length > 1 ? "s" : ""}
                         </span>
-                      )}
-                    </div>
-                    <div className="flex flex-wrap gap-1.5">
-                      {msg.retrievedChunks.map((chunk) => (
-                        <button
-                          key={chunk.id}
-                          onClick={() => setSelectedChunk(chunk)}
-                          className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-medium bg-[#ECFDF5] hover:bg-[#D1FAE5] text-[#065F46] border border-[#A7F3D0] transition-colors cursor-pointer"
-                        >
-                          <BookOpen size={10} />
-                          <span className="truncate max-w-[130px]">{chunk.title}</span>
-                          <span className="text-[9px] font-mono opacity-60">
-                            {Math.round(chunk.similarity * 100)}%
+                        {msg.topSimilarity && (
+                          <span className="text-[10px] font-mono text-[#042718]/50">
+                            Match: {Math.round(msg.topSimilarity * 100)}%
                           </span>
-                        </button>
-                      ))}
+                        )}
+                      </div>
+                      <div className="flex flex-wrap gap-1.5">
+                        {msg.retrievedChunks.map((chunk) => (
+                          <button
+                            key={chunk.id}
+                            onClick={() => setSelectedChunk(chunk)}
+                            className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-medium bg-[#ECFDF5] hover:bg-[#D1FAE5] text-[#065F46] border border-[#A7F3D0] transition-colors cursor-pointer"
+                          >
+                            <BookOpen size={10} />
+                            <span className="truncate max-w-[130px]">{chunk.title}</span>
+                            <span className="text-[9px] font-mono opacity-60">
+                              {Math.round(chunk.similarity * 100)}%
+                            </span>
+                          </button>
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                )}
+                  )}
+                </div>
               </div>
 
               {/* Timestamp & metrics */}
               <div
                 className={`flex items-center gap-2 mt-1 px-1 text-[10px] text-[#042718]/45 font-mono ${
-                  isUser ? "flex-row-reverse" : "flex-row"
+                  isUser ? "flex-row-reverse" : "flex-row ml-[42px]"
                 }`}
               >
                 <span>{msg.timestamp}</span>
@@ -537,7 +541,8 @@ export default function CopilotDrawer({
 
         {/* Typing indicator */}
         {isLoading && (
-          <div className="flex items-start">
+          <div className="flex items-start gap-2.5">
+            <DipaAvatar className="mt-0.5" />
             <div
               className="rounded-2xl px-4 py-3 flex items-center gap-2 text-xs text-[#042718]/70"
               style={{

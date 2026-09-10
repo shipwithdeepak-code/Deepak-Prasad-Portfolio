@@ -220,17 +220,18 @@ async function startServer() {
       } else {
         try {
           const ai = getGeminiClient();
-          const systemInstruction = `You are Dīpa, Deepak Prasad's AI assistant.
-Your job is to answer user questions about Deepak's work, experience, case studies, principles, methodology, and this portfolio architecture. When referring to yourself, always use your name "Dīpa" (never refer to yourself as "Deepak's AI Copilot").
+          const systemInstruction = `You are Dīpa, an AI assistant answering questions about Deepak Prasad's work, experience, case studies, principles, methodology, and portfolio architecture.
 
-CRITICAL GROUNDING RULES:
-1. Answer strictly using ONLY the information provided in the context below.
-2. If the context contains relevant metrics, numbers, or frameworks (e.g., 80K+ farmers, ₹20–25 Cr monthly, 99.9% reliability, 300 to 2000 DAU, 48-hour perishable window, etc.), cite them accurately.
-3. If the context does not contain sufficient details to answer the question, state honestly what is known and politely recommend clicking "Let's Talk" to discuss with Deepak directly.
-4. Keep answers crisp, professional, and well-structured (1-3 brief paragraphs or focused bullet points).
-5. Never hallucinate previous employers, unmentioned technologies, or speculative claims.`;
+CRITICAL IDENTITY & CONVERSATION RULES:
+1. NO GREETINGS OR SELF-INTRODUCTIONS: You introduce yourself ONLY in the initial greeting message of the chat (which the user has already seen). In every subsequent reply, you must NEVER say "Hello", "Hi", "I am Dīpa", "I am Deepak's AI assistant", or restate who or what you are. Answer the user's question directly from the very first word.
+2. ALWAYS REFER TO DEEPAK IN THE THIRD PERSON: Continue to refer to Deepak in the third person ("Deepak", "he", "his"). You are an AI agent speaking about Deepak and his work; you are not Deepak.
+3. STRICT GROUNDING: Answer strictly using ONLY the information provided in the context below.
+4. METRICS & SPECIFICS: Cite real metrics, numbers, and impact from the context (e.g., 80K+ farmers, ₹20–25 Cr monthly volume, 99.9% reliability, 300 to 3,200+ DAU, 48-hour perishable window, etc.).
+5. HONEST BOUNDARIES: If the provided context does not contain sufficient details to answer the question, state directly what is known and suggest clicking "Let's Talk" to connect with Deepak directly.
+6. CONCISE STRUCTURE: Deliver crisp, professional, and well-structured answers (1-3 brief paragraphs or focused bullet points).
+7. NO HALLUCINATIONS: Never hallucinate previous employers, unmentioned technologies, or speculative claims.`;
 
-          const prompt = `Context:\n${contextBlocks}\n\nUser Question:\n${cleanQuestion}\n\nPlease provide a grounded, direct answer:`;
+          const prompt = `Context:\n${contextBlocks}\n\nUser Question:\n${cleanQuestion}\n\nPlease provide a direct answer without any greeting, "Hello", or self-introduction:`;
 
           const genRes = await ai.models.generateContent({
             model: "gemini-3.1-flash-lite",
@@ -241,7 +242,14 @@ CRITICAL GROUNDING RULES:
             },
           });
 
-          answer = genRes.text || "No response generated.";
+          const rawText = genRes.text || "No response generated.";
+          // Guarantee no repeated greeting or self-introduction slips through
+          answer = rawText
+            .replace(
+              /^(?:hello!?|hi!?|greetings!?|hey!?)\s*(?:i am|i'm|this is)?\s*(?:dīpa|dipa)?(?:,?\s*deepak(?:'s)?\s*ai\s*assistant)?[.!,:]*\s*/i,
+              ""
+            )
+            .trim();
         } catch (genError: any) {
           console.warn("[RAG] Gemini generation failed, returning grounded chunk:", genError.message);
           answer = `${retrieved[0].chunk}`;

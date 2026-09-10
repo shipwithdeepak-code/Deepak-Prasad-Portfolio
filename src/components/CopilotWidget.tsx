@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback, lazy, Suspense } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { ShaderOrb } from "./ShaderOrb";
+import { DipaAvatar } from "./DipaAvatar";
 
 const CopilotDrawer = lazy(() => import("./CopilotDrawer"));
 
@@ -211,18 +212,7 @@ export default function CopilotWidget({
             }}
           >
             <div className="flex items-start gap-3">
-              <div className="w-7 h-7 rounded-full overflow-hidden border border-[#188E39]/30 bg-white shrink-0 mt-0.5 shadow-2xs">
-                <picture>
-                  <source srcSet="/images/deepak-prasad-80.webp" type="image/webp" />
-                  <img
-                    src="/images/deepak-prasad-80.jpg"
-                    alt="Dīpa"
-                    width="28"
-                    height="28"
-                    className="w-full h-full object-cover"
-                  />
-                </picture>
-              </div>
+              <DipaAvatar className="mt-0.5" />
               <div>
                 <p className="font-inter text-xs sm:text-[13px] font-medium text-[#042718] leading-snug">
                   {showScrollNudge
