@@ -161,7 +161,14 @@ export const ShaderOrb: React.FC<ShaderOrbProps> = ({
       return;
     }
 
-    if (typeof window === "undefined" || typeof navigator === "undefined" || !("gpu" in navigator)) {
+    // Only attempt WebGPU on desktop — on phones this shader costs 220ms of
+    // main-thread blocking time for an effect most visitors only glance at.
+    if (typeof window === "undefined" || window.innerWidth < 1024) {
+      setCanUseShader(false);
+      return;
+    }
+
+    if (typeof navigator === "undefined" || !("gpu" in navigator)) {
       setCanUseShader(false);
       return;
     }

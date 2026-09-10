@@ -206,7 +206,6 @@ async function startServer() {
       }
 
       // 4. Grounded Generation with Gemini 3.1 Flash Lite
-      const ai = getGeminiClient();
       const contextBlocks = retrieved
         .map(
           (c, idx) =>
@@ -214,7 +213,14 @@ async function startServer() {
         )
         .join("\n\n");
 
-      const systemInstruction = `You are Dīpa, Deepak Prasad's AI assistant.
+      let answer = "";
+      if (!process.env.GEMINI_API_KEY) {
+        // Graceful contextual answer when API key is not yet configured
+        answer = `${retrieved[0].chunk}\n\n*(Note: Add GEMINI_API_KEY in the Settings menu to enable AI synthesis.)*`;
+      } else {
+        try {
+          const ai = getGeminiClient();
+          const systemInstruction = `You are Dīpa, Deepak Prasad's AI assistant.
 Your job is to answer user questions about Deepak's work, experience, case studies, principles, methodology, and this portfolio architecture. When referring to yourself, always use your name "Dīpa" (never refer to yourself as "Deepak's AI Copilot").
 
 CRITICAL GROUNDING RULES:
@@ -224,18 +230,24 @@ CRITICAL GROUNDING RULES:
 4. Keep answers crisp, professional, and well-structured (1-3 brief paragraphs or focused bullet points).
 5. Never hallucinate previous employers, unmentioned technologies, or speculative claims.`;
 
-      const prompt = `Context:\n${contextBlocks}\n\nUser Question:\n${cleanQuestion}\n\nPlease provide a grounded, direct answer:`;
+          const prompt = `Context:\n${contextBlocks}\n\nUser Question:\n${cleanQuestion}\n\nPlease provide a grounded, direct answer:`;
 
-      const genRes = await ai.models.generateContent({
-        model: "gemini-3.1-flash-lite",
-        contents: prompt,
-        config: {
-          systemInstruction,
-          temperature: 0.2,
-        },
-      });
+          const genRes = await ai.models.generateContent({
+            model: "gemini-3.1-flash-lite",
+            contents: prompt,
+            config: {
+              systemInstruction,
+              temperature: 0.2,
+            },
+          });
 
-      const answer = genRes.text || "No response generated.";
+          answer = genRes.text || "No response generated.";
+        } catch (genError: any) {
+          console.warn("[RAG] Gemini generation failed, returning grounded chunk:", genError.message);
+          answer = `${retrieved[0].chunk}`;
+        }
+      }
+
       const totalTimeMs = Date.now() - startTime;
 
       res.json({

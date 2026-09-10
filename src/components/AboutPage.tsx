@@ -76,18 +76,21 @@ export default function AboutPage({
 
           <div className="md:col-span-5 flex justify-center md:justify-end">
             <div className="relative w-full max-w-[340px] sm:max-w-[380px] md:max-w-full aspect-[4/5] rounded-[24px] overflow-hidden border border-[#042718]/15 shadow-xl bg-[#042718]/5 group">
-              <img
-                src="/deepak_portrait_4x5.jpg"
-                alt="Deepak Prasad - Senior Product Manager"
-                referrerPolicy="no-referrer"
-                className="w-full h-full object-cover object-top group-hover:scale-[1.02] transition-transform duration-500"
-                onError={(e) => {
-                  const target = e.currentTarget;
-                  target.style.display = "none";
-                  const fallback = target.parentElement?.querySelector(".about-portrait-fallback");
-                  if (fallback) (fallback as HTMLElement).style.display = "flex";
-                }}
-              />
+              <picture>
+                <source srcSet="/deepak_portrait_4x5.webp" type="image/webp" />
+                <img
+                  src="/deepak_portrait_4x5.jpg"
+                  alt="Deepak Prasad - Senior Product Manager"
+                  referrerPolicy="no-referrer"
+                  className="w-full h-full object-cover object-top group-hover:scale-[1.02] transition-transform duration-500"
+                  onError={(e) => {
+                    const target = e.currentTarget;
+                    target.style.display = "none";
+                    const fallback = target.parentElement?.parentElement?.querySelector(".about-portrait-fallback");
+                    if (fallback) (fallback as HTMLElement).style.display = "flex";
+                  }}
+                />
+              </picture>
               <div className="about-portrait-fallback hidden w-full h-full flex-col items-center justify-center p-6 text-center bg-gradient-to-b from-[#042718] to-[#0A3D24] text-white">
                 <div className="w-16 h-16 rounded-full bg-[#188E39]/20 border-2 border-[#01bc7c]/40 flex items-center justify-center font-onest font-bold text-2xl text-white mb-3">
                   DP
