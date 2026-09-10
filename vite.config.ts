@@ -101,7 +101,10 @@ export default defineConfig(() => {
       modulePreload: {
         resolveDependencies(filename, deps, { hostId, hostType }) {
           return deps.filter(
-            (dep) => !dep.includes('shaders') && !dep.includes('ShaderCanvas')
+            (dep) =>
+              !dep.includes('shaders') &&
+              !dep.includes('ShaderCanvas') &&
+              !dep.includes('CopilotDrawer')
           );
         },
       },

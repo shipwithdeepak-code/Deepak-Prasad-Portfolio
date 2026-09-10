@@ -24,7 +24,13 @@
     <meta name="twitter:image" content="/images/deepak-prasad.jpg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Onest:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap" rel="stylesheet" />
+    <!-- Critical above-the-fold fonts for immediate FCP/LCP render -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Onest:wght@700&family=Playfair+Display:ital,wght@0,500;1,500&display=swap" />
+    <!-- Non-critical below-the-fold font variants loaded asynchronously without render blocking -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Onest:wght@400;500;600;800&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Onest:wght@400;500;600;800&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&display=swap" />
+    </noscript>
   </head>
   <body>
     <div id="root"></div>
