@@ -159,7 +159,7 @@ export default function Footer({}: FooterProps) {
   return (
     <footer
       ref={footerRef}
-      className="relative w-full overflow-hidden min-h-[85vh] md:min-h-screen flex flex-col justify-center items-center bg-[#FAF8F5] contain-[layout_paint_style] content-visibility-auto contain-intrinsic-size-[100vh] footer-containment"
+      className="relative w-full overflow-hidden min-h-[85vh] md:min-h-screen flex flex-col justify-center items-center bg-[#FAF8F5] contain-[layout_paint_style] footer-containment"
     >
       {/* FIX A — permanent base layer UNDER the canvas so there is no empty state at any point */}
       <div
@@ -167,10 +167,10 @@ export default function Footer({}: FooterProps) {
         aria-hidden="true"
       />
 
-      {/* CAUSE B: Ambient 3D Scene Layer (Z-0) — visibility toggled to throttle rAF off-screen */}
+      {/* CAUSE B: Ambient 3D Scene Layer (Z-0) — visibility toggled to throttle rAF only AFTER settled */}
       <div
         ref={sceneRef}
-        style={{ visibility: isNear ? "visible" : "hidden" }}
+        style={{ visibility: (!settled || isNear) ? "visible" : "hidden" }}
         className={`absolute inset-0 z-0 pointer-events-none overflow-hidden transition-opacity duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] ${
           visible ? "opacity-100" : "opacity-0"
         }`}
@@ -193,7 +193,7 @@ export default function Footer({}: FooterProps) {
         aria-hidden="true"
       />
 
-      {/* CAUSE A: Watermark closing mark of the whole page (Z-1) — blend mode applied ONLY when on-screen */}
+      {/* CAUSE A: Watermark closing mark of the whole page (Z-1) — embossed overlay blend mode applied ONLY when on-screen */}
       <div
         className="absolute inset-x-0 bottom-[4%] z-[1] pointer-events-none select-none flex justify-center"
         aria-hidden="true"
@@ -201,7 +201,7 @@ export default function Footer({}: FooterProps) {
         <span
           className={`font-onest font-bold tracking-[-0.04em] text-[clamp(3.5rem,15vw,13rem)] leading-none whitespace-nowrap transition-colors duration-300 ${
             inView
-              ? "text-[#042718]/[0.55] mix-blend-soft-light"
+              ? "text-[#FAF8F5]/[0.42] mix-blend-overlay [text-shadow:0_1px_0_rgba(255,255,255,0.22),0_-1px_0_rgba(4,39,24,0.3)]"
               : "text-[#042718]/[0.28]"
           }`}
         >

@@ -12,8 +12,6 @@ html, body {
 
 .footer-containment {
   contain: layout paint style;
-  content-visibility: auto;
-  contain-intrinsic-size: 100vh;
 }
 
 /* =========================================================================
