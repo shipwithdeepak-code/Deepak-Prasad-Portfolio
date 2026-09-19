@@ -1,135 +1,100 @@
-import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import {
-  Compass,
-  Layers,
-  Target,
-  Radio,
-  Zap,
-  Users,
-  ArrowRight,
-} from "lucide-react";
+import React, { useState } from "react";
+import { ArrowRight } from "lucide-react";
 import { CaseStudyDetail } from "../types";
-import { ShaderOrb } from "./ShaderOrb";
 
-interface PrincipleItem {
+interface PrincipleNote {
   id: string;
-  number: string;
+  num: string;
+  category: string;
   title: string;
-  hook: string;
+  summary: string;
   body: string;
-  icon: React.ComponentType<{
-    size?: number;
-    className?: string;
-    strokeWidth?: number;
-    style?: React.CSSProperties;
-  }>;
-  iconColor: string;
-  group: "left" | "right";
-  translateX: string;
-  translateY: string;
-  rotate: string;
-  zIndex: number;
-  delayIndex: number;
-  className: string;
+  bg: string;
+  rotation: string;
+  pinGradient: string;
+  // Desktop grid coordinates (≥1025px)
+  desktopCol: number;
+  desktopRow: number;
 }
 
-const PRINCIPLES_DATA: PrincipleItem[] = [
+const PRINCIPLES: PrincipleNote[] = [
   {
     id: "01",
-    number: "01",
-    title: "Start with the real problem",
-    hook: "Field research over dashboards, every time.",
-    body: "I've traveled to cocoon collection centres in Ramanagara and Sidlaghatta before writing a single spec. Aggregate analytics don't show you why a buyer walks away mid-negotiation. Being on the floor at 4:30 AM does.",
-    icon: Compass,
-    iconColor: "#f59e0b",
-    group: "left",
-    translateX: "0px",
-    translateY: "0px",
-    rotate: "-3deg",
-    zIndex: 1,
-    delayIndex: 0,
-    className: "principles-card-01",
+    num: "01",
+    category: "EVIDENCE & DISCOVERY",
+    title: "Start with the real problem.",
+    summary: "Field research over dashboards, every time.",
+    body: "I've travelled to cocoon collection centres in Ramanagara and Sidlaghatta before writing a single spec. Aggregate analytics don't show you why a buyer walks away mid-negotiation. Being on the floor at 4:30 AM does.",
+    bg: "#F6F1E4",
+    rotation: "-1.6deg",
+    pinGradient: "radial-gradient(circle at 34% 30%, #EE9184, #A2382B)",
+    desktopCol: 1,
+    desktopRow: 1,
   },
   {
     id: "02",
-    number: "02",
-    title: "Make complexity usable",
-    hook: "Five disconnected systems, one governed workflow.",
-    body: "At ReshaMandi, farmers, buyers, finance, and five separate systems (CRM, SAP, Camunda, Razorpay) ran on fragmented offline processes. I turned that into one connected flow: Scan → Bid → Watch → Win → Pay.",
-    icon: Layers,
-    iconColor: "#14b8a6",
-    group: "left",
-    translateX: "0px",
-    translateY: "0px",
-    rotate: "2deg",
-    zIndex: 3,
-    delayIndex: 1,
-    className: "principles-card-02",
-  },
-  {
-    id: "03",
-    number: "03",
-    title: "Build toward the smallest useful system",
-    hook: "Prove it with 100 users before you scale it to thousands.",
-    body: "Before opening the AI Coach to everyone, I shipped it to a 100-user beta first, then ran an A/B test comparing voice input to text-only, to learn what people actually wanted rather than assume it.",
-    icon: Target,
-    iconColor: "#0ea5e9",
-    group: "left",
-    translateX: "0px",
-    translateY: "0px",
-    rotate: "-1.5deg",
-    zIndex: 2,
-    delayIndex: 2,
-    className: "principles-card-03",
+    num: "02",
+    category: "SYSTEMS & WORKFLOWS",
+    title: "Make complexity usable.",
+    summary: "Five disconnected systems, one governed workflow.",
+    body: "Farmers, buyers, finance and five separate systems (CRM, SAP, Camunda, Razorpay) ran on fragmented offline processes. I turned that into one connected flow: Scan → Bid → Watch → Win → Pay.",
+    bg: "#EFCBB9",
+    rotation: "1.4deg",
+    pinGradient: "radial-gradient(circle at 34% 30%, #EE9184, #A2382B)",
+    desktopCol: 3,
+    desktopRow: 1,
   },
   {
     id: "04",
-    number: "04",
-    title: "Distribution is the real skill",
-    hook: "In the AI era, building is easy. Getting seen is the hard part.",
-    body: "I designed an AI-assisted content-localisation workflow that took video production from a 3-4 month manual process down to under 3 weeks, shipping the same content across Italian, French, and Spanish markets simultaneously. Building one good version is easy now. The real discipline is making sure it reaches everyone who needs it.",
-    icon: Radio,
-    iconColor: "#6366f1",
-    group: "right",
-    translateX: "0px",
-    translateY: "0px",
-    rotate: "3deg",
-    zIndex: 1,
-    delayIndex: 3,
-    className: "principles-card-04",
+    num: "04",
+    category: "SIGNALS & IMPACT",
+    title: "Measure what changed.",
+    summary: "Decide from signals, not assumptions.",
+    body: "A 35% uplift in pilot is not a 35% uplift. I wrote it unqualified once and had to walk it back in a review. Every number on this site now carries the conditions it was measured under.",
+    bg: "#C6DADC",
+    rotation: "1deg",
+    pinGradient: "radial-gradient(circle at 34% 30%, #8FCBCB, #2E7476)",
+    desktopCol: 1,
+    desktopRow: 2,
+  },
+  {
+    id: "03",
+    num: "03",
+    category: "0→1 & SCALE",
+    title: "Build the smallest useful system.",
+    summary: "Prove it with 100 users before you scale to thousands.",
+    body: "Before opening the AI Coach to everyone I shipped it to a 100-user beta, then A/B tested voice input against text-only, to learn what people actually wanted rather than assume it.",
+    bg: "#D2E0D5",
+    rotation: "-1.2deg",
+    pinGradient: "radial-gradient(circle at 34% 30%, #A3CFAE, #3C7A50)",
+    desktopCol: 3,
+    desktopRow: 2,
   },
   {
     id: "05",
-    number: "05",
-    title: "Use technology where it creates leverage",
-    hook: "Adapt fast, or get left behind.",
-    body: "I shipped a conversational AI feature while the underlying models were still maturing, not after they'd become standard. The AI Coach runs on Gemini but falls back to ChatGPT when confidence is low. Waiting for the \"perfect\" model is how you fall behind the competitor who shipped an imperfect one first.",
-    icon: Zap,
-    iconColor: "#a855f7",
-    group: "right",
-    translateX: "0px",
-    translateY: "0px",
-    rotate: "-2deg",
-    zIndex: 3,
-    delayIndex: 4,
-    className: "principles-card-05",
+    num: "05",
+    category: "AI & LEVERAGE",
+    title: "Use technology where it creates leverage.",
+    summary: "Adapt fast, or get left behind.",
+    body: "I shipped a conversational AI feature while the models were still maturing. The AI Coach runs on Gemini but falls back to ChatGPT when confidence is low. Waiting for the perfect model is how you lose to whoever shipped an imperfect one first.",
+    bg: "#F0BCAC",
+    rotation: "-1deg",
+    pinGradient: "radial-gradient(circle at 34% 30%, #EE9184, #A2382B)",
+    desktopCol: 1,
+    desktopRow: 3,
   },
   {
     id: "06",
-    number: "06",
-    title: "Grow the team, not just the roadmap",
-    hook: "You can't build something great alone.",
-    body: "I directly managed a 6-person cross-functional pod at Sportstech: three PMs, a growth manager, a content manager. I didn't hand down a roadmap and check it off. I built shared ownership sprint after sprint, until the priorities felt like theirs as much as mine. A roadmap without a team that grows alongside it is just a document.",
-    icon: Users,
-    iconColor: "#fb7185",
-    group: "right",
-    translateX: "0px",
-    translateY: "0px",
-    rotate: "1.5deg",
-    zIndex: 2,
-    delayIndex: 5,
-    className: "principles-card-06",
+    num: "06",
+    category: "DECISIONS & ALIGNMENT",
+    title: "Stay close to people and the business.",
+    summary: "You can't build something great alone.",
+    body: "I managed a 6-person cross-functional pod at Sportstech: three PMs, a growth manager, a content manager. I built shared ownership sprint after sprint until the priorities felt like theirs. A roadmap without a team that grows alongside it is just a document.",
+    bg: "#E9E5D8",
+    rotation: "1.5deg",
+    pinGradient: "radial-gradient(circle at 34% 30%, #EDEDED, #8A8A8A)",
+    desktopCol: 3,
+    desktopRow: 3,
   },
 ];
 
@@ -141,166 +106,483 @@ interface OperatingPrinciplesProps {
 export const OperatingPrinciples: React.FC<OperatingPrinciplesProps> = ({
   onNavigate,
 }) => {
-  // This section renders the orb twice below — once for the mobile stacked
-  // layout, once for the desktop fanned layout — and swaps which one is
-  // visible purely with lg:hidden / hidden lg:grid CSS. CSS "hidden"
-  // doesn't stop the offscreen copy from running its live WebGPU shader,
-  // so without this, desktop visitors silently pay for two animated
-  // shaders at once, one of them never seen. Track which layout is
-  // actually active so the offscreen orb can fall back to its static
-  // CSS gradient instead of doing real shader work for nothing.
-  const [isDesktopLayout, setIsDesktopLayout] = useState(
-    () => typeof window !== "undefined" && window.matchMedia("(min-width: 1024px)").matches
-  );
+  const [openId, setOpenId] = useState<string | null>(null);
 
-  useEffect(() => {
-    const mq = window.matchMedia("(min-width: 1024px)");
-    const handleChange = (e: MediaQueryListEvent) => setIsDesktopLayout(e.matches);
-    mq.addEventListener("change", handleChange);
-    return () => mq.removeEventListener("change", handleChange);
-  }, []);
-
-  // Render a single principle card
-  const renderItem = (
-    item: PrincipleItem,
-    isMobile = false
-  ) => {
-    const Icon = item.icon;
-
-    return (
-      <motion.div
-        key={item.id}
-        initial={isMobile ? { opacity: 0, y: 16 } : { opacity: 0 }}
-        whileInView={isMobile ? { opacity: 1, y: 0 } : { opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.45, delay: isMobile ? item.delayIndex * 0.06 : 0.1 }}
-        style={
-          !isMobile
-            ? ({
-                "--x": item.translateX,
-                "--y": item.translateY,
-                "--rot": item.rotate,
-                zIndex: item.zIndex,
-              } as React.CSSProperties)
-            : undefined
-        }
-        className={
-          isMobile
-            ? "principle-card w-full max-w-sm flex flex-col"
-            : `principle-card card-${item.number} ${item.className} flex flex-col`
-        }
-      >
-        {/* 1. Icon + Title (inline, colored icon glyph) */}
-        <div className="flex items-center gap-2 mb-1">
-          <Icon
-            size={16}
-            strokeWidth={2.2}
-            style={{ color: item.iconColor }}
-            className="shrink-0"
-          />
-          <h3 className="font-onest font-bold text-[#042619] text-[13.5px] sm:text-[14px] leading-snug tracking-tight">
-            {item.title}
-          </h3>
-        </div>
-
-        {/* 2. Subtitle hook — italic, one short line */}
-        <p className="font-inter italic text-[11px] sm:text-[11.5px] text-[#042619]/65 leading-snug mb-1">
-          {item.hook}
-        </p>
-
-        {/* 3. Body paragraph — full original copy, clear line-height */}
-        <p className="font-inter text-[11px] sm:text-[11.5px] text-[#042619]/80 leading-[1.38]">
-          {item.body}
-        </p>
-      </motion.div>
-    );
+  const toggleNote = (id: string) => {
+    setOpenId((prev) => (prev === id ? null : id));
   };
-
-  const leftItems = PRINCIPLES_DATA.slice(0, 3);
-  const rightItems = PRINCIPLES_DATA.slice(3, 6);
 
   return (
     <section
       id="principles"
-      className="py-6 md:py-8 lg:py-8 bg-transparent scroll-mt-20 relative overflow-x-clip w-full"
+      className="relative overflow-x-clip min-h-0 min-[1025px]:min-h-screen flex flex-col justify-center bg-[#F7F3EA] py-[clamp(52px,7vw,96px)]"
     >
-      <div className="principles-section relative z-10">
-        {/* =========================================================================
-            1. SECTION HEADING (Tightened vertical spacing for 800px+ laptop viewports)
-            ========================================================================= */}
-        <div className="flex flex-col items-center text-center mb-6 md:mb-8">
-          {/* Headline with italic accent styling */}
-          <motion.h2
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, delay: 0.08 }}
-            viewport={{ once: true }}
-            className="text-[34px] sm:text-[44px] md:text-[54px] font-onest font-semibold text-[#042718] leading-[1.12] tracking-tight md:tracking-[-2px] max-w-3xl text-center"
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&display=swap');
+
+        .principles-pin-card {
+          position: relative;
+          z-index: 2;
+          text-align: left;
+          width: 100%;
+          padding: 17px 18px 14px;
+          border-radius: 3px;
+          color: #241F19;
+          box-shadow: 0 9px 24px rgba(80, 66, 44, 0.14), 0 2px 5px rgba(80, 66, 44, 0.1);
+          transition: transform 420ms cubic-bezier(0.23, 1, 0.32, 1), box-shadow 420ms cubic-bezier(0.23, 1, 0.32, 1);
+          cursor: pointer;
+        }
+
+        @media (hover: hover) and (pointer: fine) {
+          .principles-pin-card:hover {
+            transform: translateY(-7px) rotate(0deg) !important;
+            box-shadow: 0 16px 36px rgba(80, 66, 44, 0.2), 0 3px 8px rgba(80, 66, 44, 0.12) !important;
+          }
+          .principles-pin-card:hover .note-arrow {
+            transform: translate(2px, -2px);
+          }
+        }
+
+        .principles-pin-card.is-open {
+          transform: rotate(0deg) !important;
+          box-shadow: 0 16px 36px rgba(80, 66, 44, 0.22), 0 4px 10px rgba(80, 66, 44, 0.14) !important;
+        }
+
+        .principles-grid-board {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: clamp(16px, 2.2vw, 34px);
+          align-items: center;
+          position: relative;
+          width: 100%;
+          max-width: 1140px;
+          margin-inline: auto;
+        }
+
+        @media (min-width: 641px) and (max-width: 1024px) {
+          .principles-grid-board {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: clamp(16px, 2.2vw, 34px) clamp(18px, 3.4vw, 36px);
+          }
+        }
+
+        @media (min-width: 1025px) {
+          .principles-grid-board {
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr) minmax(0, 1fr);
+            gap: clamp(16px, 2.2vw, 34px) clamp(26px, 4.6vw, 76px);
+          }
+        }
+
+        @media (max-width: 1440px) {
+          .principles-scrawl-gutter {
+            display: none !important;
+          }
+        }
+
+        @media (max-width: 1180px) {
+          .principles-marginalia {
+            display: none !important;
+          }
+        }
+
+        .principles-hub-heading .principles-hub-em,
+        .hub-cell h2 em {
+          font-family: "Playfair Display", Georgia, serif;
+          font-style: italic;
+          font-weight: 400;
+          letter-spacing: -0.01em;
+          color: rgba(4, 39, 24, 0.76);
+          font-size: 1.03em;
+        }
+      `}</style>
+
+      {/* ───────────────────────────────────────────────────────────────────────
+          FOUR ABSOLUTE LAYERS INSIDE (pointer-events-none)
+         ─────────────────────────────────────────────────────────────────────── */}
+
+      {/* a) Drafting grid, opacity .34 */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-[0.34]"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(4,39,24,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(4,39,24,0.045) 1px, transparent 1px)",
+          backgroundSize: "56px 56px",
+        }}
+        aria-hidden="true"
+      />
+
+      {/* b) Paper grain — inline SVG feTurbulence, baseFrequency .85, numOctaves 4, opacity .4, mix-blend-mode: multiply */}
+      <svg
+        className="absolute inset-0 w-full h-full pointer-events-none opacity-40 mix-blend-multiply"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+      >
+        <filter id="principles-board-grain">
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0.85"
+            numOctaves="4"
+            stitchTiles="stitch"
+          />
+          <feColorMatrix type="saturate" values="0" />
+        </filter>
+        <rect width="100%" height="100%" filter="url(#principles-board-grain)" />
+      </svg>
+
+      {/* c) TOP fade, 130px tall, anchored top: seamless blend with Capabilities */}
+      <div
+        className="absolute top-0 inset-x-0 h-[130px] pointer-events-none z-[1]"
+        style={{
+          background:
+            "linear-gradient(to bottom, #FAF8F5 0%, rgba(250,248,245,0.55) 46%, rgba(250,248,245,0) 100%)",
+        }}
+        aria-hidden="true"
+      />
+
+      {/* d) BOTTOM fade, 130px tall, anchored bottom: seamless blend with Footer */}
+      <div
+        className="absolute bottom-0 inset-x-0 h-[130px] pointer-events-none z-[1]"
+        style={{
+          background:
+            "linear-gradient(to top, #FAF8F5 0%, rgba(250,248,245,0.55) 46%, rgba(250,248,245,0) 100%)",
+        }}
+        aria-hidden="true"
+      />
+
+      {/* ───────────────────────────────────────────────────────────────────────
+          BOARD CONTENT CONTAINER
+         ─────────────────────────────────────────────────────────────────────── */}
+      <div className="w-full max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 relative z-[2]">
+        {/* ───────────────────────────────────────────────────────────────────
+            5. CONNECTORS AND MARGINALIA (Hidden in stages)
+           ─────────────────────────────────────────────────────────────────── */}
+        <div className="principles-marginalia absolute inset-0 pointer-events-none z-0 select-none">
+          {/* Absolutely positioned SVG behind the notes: inset 0, viewBox 0 0 1000 620 */}
+          <svg
+            className="absolute inset-0 w-full h-full pointer-events-none z-0"
+            viewBox="0 0 1000 620"
+            preserveAspectRatio="none"
+            aria-hidden="true"
           >
-            The real thinking behind{" "}
-            <span className="font-playfair italic font-medium text-black/60">
-              7+ years in the field
+            {/* Six dashed curves, each from a note toward the hub */}
+            <path
+              d="M250,110 C360,150 400,220 452,268"
+              fill="none"
+              stroke="rgba(4,39,24,0.2)"
+              strokeWidth="1.4"
+              strokeDasharray="6 7"
+              strokeLinecap="round"
+            />
+            <path
+              d="M750,110 C640,150 600,220 548,268"
+              fill="none"
+              stroke="rgba(4,39,24,0.2)"
+              strokeWidth="1.4"
+              strokeDasharray="6 7"
+              strokeLinecap="round"
+            />
+            <path
+              d="M250,310 C340,310 380,310 440,310"
+              fill="none"
+              stroke="rgba(4,39,24,0.2)"
+              strokeWidth="1.4"
+              strokeDasharray="6 7"
+              strokeLinecap="round"
+            />
+            <path
+              d="M750,310 C660,310 620,310 560,310"
+              fill="none"
+              stroke="rgba(4,39,24,0.2)"
+              strokeWidth="1.4"
+              strokeDasharray="6 7"
+              strokeLinecap="round"
+            />
+            <path
+              d="M250,512 C360,472 400,400 452,352"
+              fill="none"
+              stroke="rgba(4,39,24,0.2)"
+              strokeWidth="1.4"
+              strokeDasharray="6 7"
+              strokeLinecap="round"
+            />
+            <path
+              d="M750,512 C640,472 600,400 548,352"
+              fill="none"
+              stroke="rgba(4,39,24,0.2)"
+              strokeWidth="1.4"
+              strokeDasharray="6 7"
+              strokeLinecap="round"
+            />
+          </svg>
+
+          {/* Six handwritten scrawls, Caveat, colour rgba(4,39,24,.46) with emphasised line in #A8711A */}
+          {/* Top centre, above the hub */}
+          <div
+            className="absolute text-center whitespace-nowrap"
+            style={{
+              top: "-3.5%",
+              left: "50%",
+              transform: "translateX(-50%) rotate(-1deg)",
+              maxWidth: "46ch",
+              fontFamily: "'Caveat', cursive",
+              fontSize: "1.08rem",
+              color: "rgba(4,39,24,0.46)",
+            }}
+          >
+            Better problems.{" "}
+            <span style={{ color: "#A8711A" }}>Better products.</span> More useful systems.
+          </div>
+
+          {/* Far left gutter */}
+          <div
+            className="absolute whitespace-nowrap principles-scrawl-gutter"
+            style={{
+              top: "31%",
+              left: "calc(50% - 660px)",
+              transform: "rotate(-4deg)",
+              fontFamily: "'Caveat', cursive",
+              fontSize: "1.15rem",
+              color: "rgba(4,39,24,0.46)",
+              lineHeight: 1.2,
+            }}
+          >
+            Adoption? / <span style={{ color: "#A8711A" }}>Retention?</span> / Real impact?
+          </div>
+
+          {/* Far right gutter */}
+          <div
+            className="absolute whitespace-nowrap principles-scrawl-gutter"
+            style={{
+              bottom: "29%",
+              left: "calc(50% + 590px)",
+              transform: "rotate(3deg)",
+              fontFamily: "'Caveat', cursive",
+              fontSize: "1.15rem",
+              color: "rgba(4,39,24,0.46)",
+              lineHeight: 1.2,
+            }}
+          >
+            Users. / <span style={{ color: "#A8711A" }}>Operators.</span> / Business.
+          </div>
+
+          {/* Bottom centre, below the hub */}
+          <div
+            className="absolute text-center whitespace-nowrap"
+            style={{
+              bottom: "-4.5%",
+              left: "50%",
+              transform: "translateX(-50%) rotate(1deg)",
+              fontFamily: "'Caveat', cursive",
+              fontSize: "1.22rem",
+              color: "rgba(4,39,24,0.46)",
+            }}
+          >
+            Scan → <span style={{ color: "#A8711A" }}>Bid → Watch → Win</span> → Pay
+          </div>
+
+          {/* Left column gap */}
+          <div
+            className="absolute whitespace-nowrap"
+            style={{
+              top: "19%",
+              left: "50%",
+              marginLeft: "-330px",
+              transform: "rotate(-2deg)",
+              fontFamily: "'Caveat', cursive",
+              fontSize: "0.92rem",
+              color: "rgba(4,39,24,0.46)",
+            }}
+          >
+            <span style={{ color: "#A8711A" }}>4:30 AM.</span> / Ramanagara.
+          </div>
+
+          {/* Right column gap */}
+          <div
+            className="absolute whitespace-nowrap"
+            style={{
+              bottom: "20%",
+              left: "50%",
+              marginLeft: "330px",
+              transform: "rotate(1.5deg)",
+              fontFamily: "'Caveat', cursive",
+              fontSize: "0.92rem",
+              color: "rgba(4,39,24,0.46)",
+            }}
+          >
+            <span style={{ color: "#A8711A" }}>100 users</span> / before thousands.
+          </div>
+
+          {/* Two small inline SVG doodles at opacity .38 */}
+          {/* Three-bar chart in amber and green */}
+          <svg
+            width="32"
+            height="28"
+            viewBox="0 0 32 28"
+            fill="none"
+            className="absolute pointer-events-none opacity-[0.38]"
+            style={{ top: "8%", left: "calc(50% - 300px)", transform: "rotate(-4deg)" }}
+            aria-hidden="true"
+          >
+            <rect x="4" y="14" width="5" height="11" rx="1" fill="#A8711A" />
+            <rect x="13" y="8" width="5" height="17" rx="1" fill="#3C7A50" />
+            <rect x="22" y="3" width="5" height="22" rx="1" fill="#D9A94C" />
+            <line
+              x1="1"
+              y1="26"
+              x2="30"
+              y2="26"
+              stroke="#042718"
+              strokeWidth="1.2"
+              strokeLinecap="round"
+            />
+          </svg>
+
+          {/* Curved arrow in amber */}
+          <svg
+            width="38"
+            height="26"
+            viewBox="0 0 38 26"
+            fill="none"
+            className="absolute pointer-events-none opacity-[0.38]"
+            style={{ bottom: "7%", left: "calc(50% + 268px)", transform: "rotate(8deg)" }}
+            aria-hidden="true"
+          >
+            <path
+              d="M4 20C13 6 25 7 34 14M34 14L27 11M34 14L29 20"
+              stroke="#A8711A"
+              strokeWidth="1.6"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </div>
+
+        {/* ───────────────────────────────────────────────────────────────────
+            THE GRID: 6 NOTES AROUND CENTRE HUB
+           ─────────────────────────────────────────────────────────────────── */}
+        <div className="principles-grid-board">
+          {/* 3. HUB (centre cell, text-centre, z-3, padding-inline 6px) */}
+          <div
+            className="hub-cell z-[3] text-center px-[6px] col-span-1 min-[641px]:col-span-2 min-[1025px]:col-span-1 min-[1025px]:col-start-2 min-[1025px]:row-start-2 mb-3 min-[1025px]:mb-0 flex flex-col items-center justify-center"
+          >
+            {/* eyebrow "How I work" — mono, 10px, uppercase, #A8711A, tracking .24em */}
+            <span className="font-mono text-[10px] uppercase text-[#A8711A] tracking-[0.24em] font-semibold block">
+              How I work
             </span>
-          </motion.h2>
 
-          {/* Subcopy */}
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, delay: 0.15 }}
-            viewport={{ once: true }}
-            className="font-inter text-[15px] md:text-[18px] text-[#042718]/80 leading-relaxed max-w-[640px] font-normal mt-4 text-center"
-          >
-            Six consistent principles, refined by doing the work, not writing about it.
-          </motion.p>
-        </div>
+            {/* h2 "Six principles I keep coming back to." */}
+            <h2 className="font-onest font-bold text-[clamp(1.45rem,2.9vw,2.35rem)] leading-[1.08] text-[#042718] mt-3 tracking-tight principles-hub-heading">
+              Six principles I keep coming{" "}
+              <em className="principles-hub-em not-italic">back to.</em>
+            </h2>
 
-        {/* =========================================================================
-            2. MOBILE FALLBACK (< lg): Orb first (centered), then 6 cards stacked
-            ========================================================================= */}
-        <div className="lg:hidden flex flex-col items-center gap-6 w-full max-w-md mx-auto mt-6">
-          {/* Centered compact orb with interactive caption */}
-          <div className="flex flex-col items-center justify-center py-1">
-            <ShaderOrb forceFallback={isDesktopLayout} />
-            <p className="font-inter text-[11px] text-[#042619]/70 text-center select-none mt-4">
-              A shader I hand-built. Click to cycle through the principles.
+            {/* p "Not a framework I downloaded. A working set of rules shaped by shipping real products." */}
+            <p className="font-inter text-[14.2px] text-[#042718]/[0.76] max-w-[34ch] mx-auto mt-3 leading-normal">
+              Not a framework I downloaded. A working set of rules shaped by shipping real products.
+            </p>
+
+            {/* p Caveat, 1.22rem, #A8711A, margin-top 14px: "Things I write down before I ship." */}
+            <p
+              className="mt-[14px] text-[1.22rem] text-[#A8711A]"
+              style={{ fontFamily: "'Caveat', cursive" }}
+            >
+              Things I write down before I ship.
             </p>
           </div>
 
-          {/* All 6 cards in numeric order 01 → 06 */}
-          <div className="flex flex-col gap-3.5 w-full items-center">
-            {PRINCIPLES_DATA.map((item) =>
-              renderItem(item, true)
-            )}
-          </div>
+          {/* 4. THE SIX NOTES */}
+          {PRINCIPLES.map((item) => {
+            const isOpen = openId === item.id;
+            return (
+              <div
+                key={item.id}
+                className={`w-full ${
+                  item.desktopCol === 1
+                    ? "min-[1025px]:col-start-1"
+                    : "min-[1025px]:col-start-3"
+                } ${
+                  item.desktopRow === 1
+                    ? "min-[1025px]:row-start-1"
+                    : item.desktopRow === 2
+                    ? "min-[1025px]:row-start-2"
+                    : "min-[1025px]:row-start-3"
+                }`}
+              >
+                <button
+                  type="button"
+                  id={`principle-note-${item.num}`}
+                  aria-expanded={isOpen}
+                  onClick={() => toggleNote(item.id)}
+                  className={`principles-pin-card ${isOpen ? "is-open" : ""}`}
+                  style={{
+                    backgroundColor: item.bg,
+                    transform: isOpen ? "rotate(0deg)" : `rotate(${item.rotation})`,
+                  }}
+                >
+                  {/* Pin: 14px circle, top:-8px, left:50%, translate:-50% 0 */}
+                  <div
+                    className="absolute -top-[8px] left-1/2 -translate-x-1/2 w-[14px] h-[14px] rounded-full pointer-events-none z-10"
+                    style={{
+                      background: item.pinGradient,
+                      boxShadow: "0 3px 6px rgba(80,66,44,0.36)",
+                    }}
+                    aria-hidden="true"
+                  />
+
+                  {/* Row: number in mono 12px #5A5044 | category mono 8px uppercase #7E7365, right */}
+                  <div className="flex items-center justify-between">
+                    <span className="font-mono text-[12px] text-[#5A5044] font-medium leading-none">
+                      {item.num}
+                    </span>
+                    <span className="font-mono text-[8px] uppercase tracking-wider text-[#7E7365] font-semibold leading-none">
+                      {item.category}
+                    </span>
+                  </div>
+
+                  {/* h3: Caveat 1.42rem 700, #1E1A14, line-height 1.1, margin-top 10px, border-bottom 1px rgba(80,66,44,.2), padding-bottom 9px */}
+                  <h3
+                    className="text-[1.42rem] font-bold text-[#1E1A14] leading-[1.1] mt-[10px] pb-[9px] border-b border-[rgba(80,66,44,0.2)]"
+                    style={{ fontFamily: "'Caveat', cursive" }}
+                  >
+                    {item.title}
+                  </h3>
+
+                  {/* span: one-line summary, 12.8px, #544B40, margin-top 9px */}
+                  <span className="block text-[12.8px] text-[#544B40] mt-[9px] leading-snug">
+                    {item.summary}
+                  </span>
+
+                  {/* div: full paragraph — max-height 0, overflow hidden, expanding to 300px with margin-top 9px when open */}
+                  <div
+                    className={`overflow-hidden transition-[max-height,opacity,margin-top] duration-[420ms] ease-[cubic-bezier(0.23,1,0.32,1)] ${
+                      isOpen
+                        ? "max-h-[300px] opacity-100 mt-[9px]"
+                        : "max-h-0 opacity-0 mt-0"
+                    }`}
+                  >
+                    <p className="font-inter text-[12.8px] text-[#241F19]/90 leading-[1.55]">
+                      {item.body}
+                    </p>
+                  </div>
+
+                  {/* foot: "Explore" / "Close" mono 8.5px uppercase tracking .16em #6E6458, and a ↗ on the right */}
+                  <div className="flex items-center justify-between pt-[10px] mt-[12px] border-t border-[rgba(80,66,44,0.16)]">
+                    <span className="font-mono text-[8.5px] uppercase tracking-[0.16em] text-[#6E6458] font-medium whitespace-nowrap">
+                      {isOpen ? "Close" : "Explore"}
+                    </span>
+                    <span className="note-arrow text-[12px] text-[#6E6458] font-mono transition-transform duration-[420ms] ease-[cubic-bezier(0.23,1,0.32,1)] inline-block">
+                      ↗
+                    </span>
+                  </div>
+                </button>
+              </div>
+            );
+          })}
         </div>
 
-        {/* =========================================================================
-            3. DESKTOP 3-LEFT / 3-RIGHT FANNED CLUSTER AROUND THE ORB (lg and up)
-            ========================================================================= */}
-        <div className="hidden lg:grid principles-layout">
-          {/* Left column (overlapping fanned stack: 01, 02 in front, 03) */}
-          <div className="principles-left principles-cluster">
-            {leftItems.map((item) => renderItem(item, false))}
-          </div>
-
-          {/* Center column: the orb wrapper with interactive caption */}
-          <div className="principles-orb-wrapper flex flex-col items-center justify-center">
-            <ShaderOrb forceFallback={!isDesktopLayout} />
-            <p className="font-inter text-[11px] text-[#042619]/70 text-center select-none max-w-[220px] mt-4 sm:mt-5">
-              A shader I hand-built. Click to cycle through the principles.
-            </p>
-          </div>
-
-          {/* Right column (overlapping fanned stack: 04, 05 in front, 06) */}
-          <div className="principles-right principles-cluster">
-            {rightItems.map((item) => renderItem(item, false))}
-          </div>
-        </div>
-
-        {/* Footer Link to About */}
+        {/* Optional navigation link to About */}
         {onNavigate && (
-          <div className="mt-8 md:mt-10 text-center">
+          <div className="mt-8 md:mt-12 text-center relative z-[2]">
             <button
               type="button"
               onClick={() => onNavigate("/about")}
