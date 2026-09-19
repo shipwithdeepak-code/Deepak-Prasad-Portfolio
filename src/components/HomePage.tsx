@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { motion, useInView, useReducedMotion } from "framer-motion";
+import { motion, useInView, useReducedMotion, Variants } from "framer-motion";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -347,14 +347,143 @@ export default function HomePage({
     };
   }, []);
 
-  const domainPills = [
-    "ReshaMandi B2B Ecosystem",
-    "Instant Payouts Engine (99.9%)",
-    "Computer Vision ML Grading",
-    "Sportstech B2C SaaS",
-    "0→1 AI Product Advisory",
-    "Multi-Tier Supply Chain",
-    "Dynamic Bidding Auctions (>35%)",
+  const domainChips = [
+    { name: "ReshaMandi B2B Ecosystem", metric: "₹20 Cr+/mo" },
+    { name: "Instant Payouts Engine", metric: "99.9%" },
+    { name: "Computer Vision ML Grading", metric: "4 grades" },
+    { name: "Sportstech B2C SaaS", metric: "12,401 members" },
+    { name: "0→1 AI Product Advisory", metric: "3 months" },
+    { name: "Multi-Tier Supply Chain", metric: "80K+ farmers" },
+    { name: "Dynamic Bidding Auctions", metric: "35% uplift" },
+    { name: "AI Localisation", metric: "200+ videos" },
+  ];
+
+  const DIPA_QUESTIONS = [
+    "What did he ship at Ultrahuman?",
+    "How did the escrow pipeline work?",
+    "Has he taken an AI feature to production?",
+    "What did he get wrong first?",
+    "What would he want to own next?",
+  ];
+
+  const [questionIndex, setQuestionIndex] = useState(0);
+  const [charIndex, setCharIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+  const askDipaButtonRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (shouldReduceMotion) return;
+
+    if (isPaused) {
+      const pauseTimer = setTimeout(() => {
+        setIsPaused(false);
+        setIsDeleting(true);
+      }, 3200);
+      return () => clearTimeout(pauseTimer);
+    }
+
+    const currentQuestion = DIPA_QUESTIONS[questionIndex];
+
+    if (!isDeleting) {
+      if (charIndex < currentQuestion.length) {
+        const typeTimer = setTimeout(() => {
+          setCharIndex((prev) => prev + 1);
+        }, 28);
+        return () => clearTimeout(typeTimer);
+      } else {
+        setIsPaused(true);
+      }
+    } else {
+      if (charIndex > 0) {
+        const deleteTimer = setTimeout(() => {
+          setCharIndex((prev) => prev - 1);
+        }, 13);
+        return () => clearTimeout(deleteTimer);
+      } else {
+        setIsDeleting(false);
+        setQuestionIndex((prev) => (prev + 1) % DIPA_QUESTIONS.length);
+      }
+    }
+  }, [charIndex, isDeleting, isPaused, questionIndex, shouldReduceMotion]);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "/" && !e.ctrlKey && !e.metaKey && !e.altKey) {
+        const activeEl = document.activeElement;
+        const isInput =
+          activeEl instanceof HTMLInputElement ||
+          activeEl instanceof HTMLTextAreaElement ||
+          activeEl?.getAttribute("contenteditable") === "true";
+        if (!isInput) {
+          e.preventDefault();
+          askDipaButtonRef.current?.focus();
+          if (typeof window !== "undefined") {
+            window.dispatchEvent(new CustomEvent("open-copilot"));
+          }
+        }
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
+  const displayedQuestionText = shouldReduceMotion
+    ? DIPA_QUESTIONS[0]
+    : DIPA_QUESTIONS[questionIndex].slice(0, charIndex);
+
+  const headlineContainerVariants: Variants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: shouldReduceMotion ? 0 : 0.045,
+      },
+    },
+  };
+
+  const headlineWordVariants: Variants = {
+    hidden: shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: shouldReduceMotion
+        ? { duration: 0 }
+        : { duration: 0.64, ease: [0.23, 1, 0.32, 1] as [number, number, number, number] },
+    },
+  };
+
+  const headlineWords: Array<{ id: string; content: React.ReactNode }> = [
+    { id: "w1", content: "I'm" },
+    { id: "w2", content: "mostly" },
+    { id: "w3", content: "just" },
+    { id: "w4", content: "someone" },
+    { id: "w5", content: "who" },
+    { id: "w6", content: "stays" },
+    {
+      id: "w7",
+      content: (
+        <span className="inline-block whitespace-nowrap">
+          <span className="font-playfair italic font-medium text-[#042718] relative inline-block px-[3px] headline-curious-marker">
+            curious
+          </span>
+          .
+        </span>
+      ),
+    },
+    {
+      id: "w8",
+      content: (
+        <span className="font-playfair font-medium text-[#042718] inline-block">
+          Stubborn
+        </span>
+      ),
+    },
+    { id: "w9", content: "enough" },
+    { id: "w10", content: "not" },
+    { id: "w11", content: "to" },
+    { id: "w12", content: "stop" },
+    { id: "w13", content: "asking" },
+    { id: "w14", content: "'why.'" },
   ];
 
   const proofStripMetrics = [
@@ -391,12 +520,12 @@ export default function HomePage({
   ];
 
   return (
-    <div className="w-full bg-[#FAFDFB] text-[#042718]">
+    <div className="w-full bg-[#FAF8F5] text-[#042718]">
       {/* =========================================================================
           1. HERO SECTION (CENTERED COMPOSITION INTEGRATED WITH TOP NAVIGATION)
           ========================================================================= */}
-      <section className="relative -mt-20 pt-28 pb-16 md:pt-36 md:pb-24 min-h-[calc(100vh)] flex flex-col justify-center items-center overflow-hidden bg-[#FAFDFB]">
-        {/* Background Video with Instant Lightweight Poster for LCP */}
+      <section className="relative pt-[168px] md:pt-[210px] pb-16 md:pb-24 min-h-screen flex flex-col justify-center items-center overflow-hidden bg-[#FAF8F5]">
+        {/* Background Video/Image band full bleed cover */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <picture>
             <source srcSet="/images/hero-bg-poster.webp" type="image/webp" />
@@ -405,9 +534,9 @@ export default function HomePage({
               alt=""
               aria-hidden="true"
               fetchPriority="high"
-              width="1920"
-              height="1080"
-              className="w-full h-full object-cover"
+              width="720"
+              height="544"
+              className="w-full h-full object-cover object-[50%_60%]"
             />
           </picture>
           {canPlayHeroVideo && (
@@ -419,7 +548,7 @@ export default function HomePage({
               preload="auto"
               poster="/images/hero-bg-poster.webp"
               aria-hidden="true"
-              className="absolute inset-0 w-full h-full object-cover"
+              className="absolute inset-0 w-full h-full object-cover object-[50%_60%]"
             >
               <source
                 src="https://cdn.jiro.build/Amox/All%20Images/P01-Header-01-BG.mp4"
@@ -429,170 +558,161 @@ export default function HomePage({
           )}
         </div>
 
-        {/* Soft gradient fade at bottom to blend smoothly into stats section background */}
+        {/* Soft bottom fade only */}
         <div
-          className="absolute bottom-0 left-0 right-0 h-24 md:h-28 bg-gradient-to-b from-transparent via-[#FAF8F5]/60 to-[#FAF8F5] pointer-events-none z-1"
+          className="absolute bottom-0 left-0 right-0 h-28 md:h-32 z-[1] pointer-events-none bg-[linear-gradient(to_bottom,rgba(250,248,245,0)_0%,rgba(250,248,245,0.35)_55%,rgba(250,248,245,0.92)_88%,#FAF8F5_100%)]"
           aria-hidden="true"
         />
 
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center text-center my-auto w-full">
-          {/* Eyebrow badge / Credential chip */}
+          {/* Eyebrow badge / Credential chip - green dot removed, px-[18px] py-2 text-[13px] */}
           <motion.div
-            initial={{ opacity: 0, y: 12 }}
+            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-full bg-white/90 backdrop-blur-xs border border-[#042718]/10 text-[11px] xs:text-xs sm:text-sm font-inter font-semibold text-[#042718] mb-6 shadow-2xs mx-auto max-w-full text-center flex-wrap justify-center leading-normal"
+            transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.4 }}
+            className="inline-flex items-center gap-2 px-[18px] py-2 rounded-full bg-white/90 backdrop-blur-xs border border-[#042718]/10 text-[13px] font-inter font-semibold text-[#042718] mb-6 md:mb-8 shadow-2xs mx-auto max-w-full text-center leading-normal"
           >
-            <span className="w-2 h-2 rounded-full bg-[#188E39] shrink-0" />
-            <span className="break-words">Senior Product Manager · AI · 0→1 · B2B & B2C</span>
+            <span>Senior Product Manager · AI · 0→1 · B2B & B2C</span>
           </motion.div>
 
-          {/* Main Headline */}
+          {/* Main Headline - Word cascade */}
           <motion.h1
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45, delay: 0.05 }}
-            className="font-onest text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-[#042718] leading-[1.1] mb-6 max-w-4xl mx-auto text-center"
+            variants={headlineContainerVariants}
+            initial="hidden"
+            animate="visible"
+            className="font-onest text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-[#042718] leading-[1.12] mb-6 max-w-4xl mx-auto text-center [overflow-wrap:anywhere]"
           >
-            I&apos;m mostly just someone who stays{" "}
-            <span className="font-playfair italic font-medium text-[#042718]/70">
-              curious
-            </span>
-            .{" "}
-            <span className="font-playfair font-medium text-[#042718]/70">
-              Stubborn
-            </span>{" "}
-            enough not to stop asking &apos;why.&apos;
+            {headlineWords.map((word) => (
+              <motion.span
+                key={word.id}
+                variants={headlineWordVariants}
+                className="inline-block mr-[0.26em]"
+              >
+                {word.content}
+              </motion.span>
+            ))}
           </motion.h1>
 
-          {/* Supporting Copy */}
+          {/* Supporting Copy - Exact copy, max-w-[64ch], no em-dashes */}
           <motion.p
-            initial={{ opacity: 0, y: 14 }}
+            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45, delay: 0.1 }}
-            className="font-inter text-lg sm:text-xl text-[#042718]/80 leading-relaxed mb-8 max-w-3xl mx-auto text-center font-normal"
+            transition={
+              shouldReduceMotion
+                ? { duration: 0 }
+                : { duration: 0.6, ease: [0.23, 1, 0.32, 1], delay: 0.95 }
+            }
+            className="font-inter text-[15px] md:text-lg text-[#042718]/80 leading-[1.62] md:leading-relaxed mb-8 max-w-full md:max-w-[58ch] lg:max-w-[64ch] mx-auto text-center font-normal"
           >
             I&apos;m{" "}
             <span className="font-playfair italic font-medium text-[#042718] text-xl sm:text-2xl inline-block">
               Deepak
             </span>
-            , a Senior Product Manager. Most days, it feels like staying curious long enough to build things that actually work. 7+ years across marketplaces, AI features, and subscription products. I kept asking questions until the product matches reality.
+            , a Senior Product Manager. Seven years across marketplaces, AI and subscription products. I&apos;ve built systems that move{" "}
+            <span className="text-[#042718] font-semibold whitespace-nowrap">
+              ₹20 to 25 Cr a month
+            </span>
+            , and an AI coach that went from{" "}
+            <span className="text-[#042718] font-semibold whitespace-nowrap">
+              300 to 3,200 daily actives
+            </span>{" "}
+            in three months. I kept asking questions until the product matched reality.
           </motion.p>
 
-          {/* CTAs */}
+          {/* Ask Dīpa Glass Capsule CTA - only action in fold */}
           <motion.div
-            initial={{ opacity: 0, y: 14 }}
+            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45, delay: 0.15 }}
-            className="flex flex-col items-center justify-center gap-4 mb-12 sm:mb-16"
+            transition={
+              shouldReduceMotion
+                ? { duration: 0 }
+                : { duration: 0.55, ease: [0.23, 1, 0.32, 1], delay: 1.2 }
+            }
+            className="flex flex-col items-center justify-center mb-12 sm:mb-14 w-full"
           >
-            <div className="flex flex-wrap items-center justify-center gap-4">
-              <button
-                type="button"
-                id="hero-view-work-cta"
-                onClick={() => onNavigate("/work")}
-                className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full bg-[#042718] hover:bg-[#063b25] text-white font-inter text-sm font-semibold transition-[background-color,box-shadow] duration-200 shadow-sm hover:shadow cursor-pointer"
-              >
-                <span>View Selected Work</span>
+            <button
+              type="button"
+              ref={askDipaButtonRef}
+              id="hero-ask-dipa-capsule"
+              onClick={() => {
+                if (typeof window !== "undefined") {
+                  window.dispatchEvent(new CustomEvent("open-copilot"));
+                }
+              }}
+              className="ask-dipa-capsule relative isolate overflow-hidden w-[min(94vw,680px)] md:w-[min(92vw,600px)] lg:w-[min(94vw,680px)] rounded-full pl-[22px] pr-[10px] py-[10px] bg-white/[0.84] backdrop-blur-[12px] backdrop-saturate-[1.55] border border-white/85 shadow-[inset_0_1px_0_rgba(255,255,255,0.85),0_14px_40px_rgba(4,39,24,0.13)] flex items-center gap-3 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A8711A] focus-visible:ring-offset-2 select-none"
+              aria-label="Ask Dīpa about my work"
+            >
+              {/* Amber sparkle */}
+              <span className="text-[#A8711A] text-[16px] leading-none shrink-0" aria-hidden="true">
+                ✦
+              </span>
+
+              {/* ASK DĪPA label (hidden under 820px) */}
+              <span className="hidden min-[820px]:inline-block font-inter uppercase text-[11px] tracking-[0.15em] font-bold text-[#A8711A] shrink-0">
+                ASK DĪPA
+              </span>
+
+              {/* 1px x 20px divider (hidden under 820px) */}
+              <span className="hidden min-[820px]:block w-[1px] h-[20px] bg-[#042718]/19 shrink-0" aria-hidden="true" />
+
+              {/* Rotating Question with amber caret */}
+              <span className="font-inter text-[15.5px] text-[#042718]/76 flex-1 text-left truncate whitespace-nowrap overflow-hidden text-ellipsis" aria-hidden="true">
+                {displayedQuestionText}
+                <span className="amber-caret" aria-hidden="true" />
+              </span>
+
+              {/* "/" Key Hint (hidden under 820px) */}
+              <span className="hidden min-[820px]:inline-flex items-center font-inter text-[10.5px] text-[#042718]/60 border border-[#042718]/19 rounded-md px-[9px] py-1 shrink-0" aria-hidden="true">
+                /
+              </span>
+
+              {/* 38px Circular Send Button */}
+              <span className="w-[38px] h-[38px] rounded-full bg-[#042718] text-[#FAFDFB] flex items-center justify-center shrink-0 ask-dipa-send-btn shadow-2xs" aria-hidden="true">
                 <ArrowRight size={16} />
-              </button>
+              </span>
+            </button>
 
-              <button
-                type="button"
-                id="hero-about-cta"
-                onClick={() => onNavigate("/about")}
-                className="inline-flex items-center gap-2 px-5 py-3.5 rounded-full bg-white/90 hover:bg-white border border-[#042718]/15 text-[#042718] font-inter text-sm font-semibold transition-colors duration-200 cursor-pointer shadow-2xs backdrop-blur-xs"
-              >
-                <span>About Me</span>
-                <ArrowUpRight size={15} className="text-[#042718]/60" />
-              </button>
-            </div>
-
-            {/* Hero CTA line for Dīpa */}
-            <div className="flex flex-col items-center gap-2 mt-0.5">
-              <GlowCTA>
-                <button
-                  type="button"
-                  id="hero-ask-dipa-cta"
-                  onClick={() => {
-                    if (typeof window !== "undefined") {
-                      window.dispatchEvent(new CustomEvent("open-copilot"));
-                    }
-                  }}
-                  onMouseEnter={() => {
-                    if (typeof window !== "undefined") {
-                      window.dispatchEvent(
-                        new CustomEvent("dipa-cta-hover", { detail: { hovering: true } })
-                      );
-                    }
-                  }}
-                  onMouseLeave={() => {
-                    if (typeof window !== "undefined") {
-                      window.dispatchEvent(
-                        new CustomEvent("dipa-cta-hover", { detail: { hovering: false } })
-                      );
-                    }
-                  }}
-                  onFocus={() => {
-                    if (typeof window !== "undefined") {
-                      window.dispatchEvent(
-                        new CustomEvent("dipa-cta-hover", { detail: { hovering: true } })
-                      );
-                    }
-                  }}
-                  onBlur={() => {
-                    if (typeof window !== "undefined") {
-                      window.dispatchEvent(
-                        new CustomEvent("dipa-cta-hover", { detail: { hovering: false } })
-                      );
-                    }
-                  }}
-                  className="group inline-flex items-center gap-2 text-sm sm:text-base font-semibold text-[#065F46] hover:text-[#042718] transition-colors cursor-pointer py-1.5 px-4 rounded-full hover:bg-[#065F46]/8 [text-shadow:0_1px_8px_rgba(250,253,251,0.9)]"
-                  aria-label="Ask Dīpa about my work"
-                >
-                  <span>
-                    ✦ Ask Dīpa about my work →
-                  </span>
-                </button>
-              </GlowCTA>
-
-              <p
-                id="hero-dipa-supporting-text"
-                className="text-xs sm:text-[13px] font-inter font-semibold text-[#042718] text-center max-w-md mt-2.5 px-3.5 py-1 rounded-full bg-[#FAFDFB]/95 backdrop-blur-xs border border-[#042718]/12 shadow-2xs [text-shadow:0_1px_4px_rgba(250,253,251,0.9)]"
-              >
-                Curious about the thinking behind it?
-              </p>
-            </div>
+            {/* Caption underneath - plain text with soft white halo, no pill */}
+            <motion.p
+              initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={
+                shouldReduceMotion
+                  ? { duration: 0 }
+                  : { duration: 0.45, ease: [0.23, 1, 0.32, 1], delay: 1.4 }
+              }
+              className="font-playfair italic text-[13px] text-[#042718]/75 text-center mt-4 mx-auto max-w-md [text-shadow:0_1px_2px_rgba(255,255,255,0.95),0_0_14px_rgba(255,255,255,0.8)]"
+            >
+              Trained on my own case studies. It tells you when it doesn&apos;t know.
+            </motion.p>
           </motion.div>
 
-          {/* Domain Ticker Marquee */}
-          <div
-            className="w-full max-w-4xl mx-auto overflow-hidden py-1"
-            style={{
-              maskImage:
-                "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
-            } as React.CSSProperties}
+          {/* Marquee Ticker with metrics */}
+          <motion.div
+            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={
+              shouldReduceMotion
+                ? { duration: 0 }
+                : { duration: 0.5, ease: [0.23, 1, 0.32, 1], delay: 1.6 }
+            }
+            className="w-full max-w-4xl mx-auto overflow-hidden py-1 hero-marquee-container [mask-image:linear-gradient(90deg,transparent,#000_9%,#000_91%,transparent)] [-webkit-mask-image:linear-gradient(90deg,transparent,#000_9%,#000_91%,transparent)]"
           >
-            <motion.div
-              animate={{ x: ["0%", "-50%"] }}
-              transition={{
-                duration: 24,
-                ease: "linear",
-                repeat: Infinity,
-              }}
-              className="flex items-center gap-3 w-fit whitespace-nowrap mx-auto"
-            >
-              {[...domainPills, ...domainPills].map((pill, i) => (
+            <div className="hero-marquee-track flex items-center gap-3 w-fit whitespace-nowrap">
+              {[...domainChips, ...domainChips].map((chip, i) => (
                 <div
                   key={i}
-                  className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/70 backdrop-blur-xs border border-[#042718]/10 shadow-2xs text-xs sm:text-sm font-medium text-[#042718]"
+                  className="hero-marquee-chip flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/80 backdrop-blur-[8px] backdrop-saturate-[1.5] border border-[#042718]/10 shadow-2xs text-xs sm:text-sm font-medium text-[#042718] shrink-0"
                 >
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#188E39]" />
-                  <span>{pill}</span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#188E39] shrink-0" />
+                  <span>{chip.name}</span>
+                  <span className="text-[#A8711A] text-[11px] font-bold tabular-nums">
+                    {chip.metric}
+                  </span>
                 </div>
               ))}
-            </motion.div>
-          </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
@@ -602,7 +722,7 @@ export default function HomePage({
       <section
         ref={statsSectionRef}
         id="methodology"
-        className="py-12 md:py-16 bg-[#FAF8F5] scroll-mt-24 relative z-10"
+        className="pt-20 md:pt-28 pb-12 md:pb-16 bg-[#FAF8F5] scroll-mt-24 relative z-10"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-y-6 sm:gap-y-8 md:gap-y-0">
