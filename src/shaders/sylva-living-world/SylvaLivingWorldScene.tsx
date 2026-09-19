@@ -1565,7 +1565,7 @@ export function SylvaLivingWorldScene({
         }
         iframeRef.current?.contentWindow?.postMessage({ inView: isIntersecting }, "*");
       },
-      { rootMargin: "800px" }
+      { rootMargin: "2500px" }
     );
     observer.observe(host);
     return () => observer.disconnect();

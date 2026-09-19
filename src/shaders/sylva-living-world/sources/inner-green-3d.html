@@ -4332,7 +4332,7 @@ window.__seek   = v => { clock = v; drawn = null; };
     emitSpray(dt);
 
     renderer.render(scene, camera);
-    if (++frames >= 180 && !sylvaSettled) {
+    if (++frames >= 540 && !scanning && !sylvaSettled) {
       sylvaSettled = true;
       try {
         window.parent.postMessage({ type: 'sylva-settled' }, '*');

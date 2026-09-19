@@ -42,6 +42,8 @@ export default function Footer({}: FooterProps) {
 
   // FIX C — reveal on approach, at 800px rootMargin, 700ms fade cubic-bezier(0.23,1,0.32,1)
   const [inView, setInView] = useState(false);
+  // CAUSE B — tighter 200px rootMargin observer to toggle visibility and throttle rAF off-screen
+  const [isNear, setIsNear] = useState(false);
 
   // Reveal ONLY when settled AND in view
   const visible = settled && inView;
@@ -84,7 +86,14 @@ export default function Footer({}: FooterProps) {
     };
   }, [prefersReducedMotion]);
 
-  // FIX C: Keep the IntersectionObserver ONLY for the opacity reveal on approach
+  // Settled safeguard
+  useEffect(() => {
+    if (!mounted) return;
+    const t = setTimeout(() => setSettled(true), 4000);
+    return () => clearTimeout(t);
+  }, [mounted]);
+
+  // FIX C: Opacity reveal on approach (800px)
   useEffect(() => {
     if (prefersReducedMotion || !isDesktop) return;
 
@@ -93,9 +102,7 @@ export default function Footer({}: FooterProps) {
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setInView(true);
-        }
+        setInView(entry.isIntersecting);
       },
       { rootMargin: "800px" }
     );
@@ -104,24 +111,55 @@ export default function Footer({}: FooterProps) {
     return () => observer.disconnect();
   }, [prefersReducedMotion, isDesktop]);
 
-  // Ensure scene camera & canvas update layout if footer aspect ratio resizes
+  // CAUSE B & FIX B: Release rAF render throttle during the 2500px approach
+  useEffect(() => {
+    if (prefersReducedMotion || !isDesktop) return;
+
+    const el = footerRef.current;
+    if (!el || typeof IntersectionObserver === "undefined") return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsNear(entry.isIntersecting);
+      },
+      { rootMargin: "2500px" }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [prefersReducedMotion, isDesktop]);
+
+  // CAUSE C: Debounce ResizeObserver to 200ms and skip if size hasn't changed
   useEffect(() => {
     const el = footerRef.current;
     if (!el || typeof ResizeObserver === "undefined") return;
 
-    const ro = new ResizeObserver(() => {
-      const iframe = sceneRef.current?.querySelector("iframe");
-      iframe?.contentWindow?.postMessage({ type: "resize" }, "*");
+    let last = { w: 0, h: 0 };
+    let t: number;
+    const ro = new ResizeObserver((entries) => {
+      if (!entries[0]) return;
+      const { width: w, height: h } = entries[0].contentRect;
+      if (Math.abs(w - last.w) < 2 && Math.abs(h - last.h) < 2) return;
+      last = { w, h };
+      clearTimeout(t);
+      t = window.setTimeout(() => {
+        sceneRef.current
+          ?.querySelector("iframe")
+          ?.contentWindow?.postMessage({ type: "resize" }, "*");
+      }, 200);
     });
 
     ro.observe(el);
-    return () => ro.disconnect();
+    return () => {
+      clearTimeout(t);
+      ro.disconnect();
+    };
   }, []);
 
   return (
     <footer
       ref={footerRef}
-      className="relative w-full overflow-hidden min-h-[85vh] md:min-h-screen flex flex-col justify-center items-center bg-[#FAF8F5]"
+      className="relative w-full overflow-hidden min-h-[85vh] md:min-h-screen flex flex-col justify-center items-center bg-[#FAF8F5] contain-[layout_paint_style] content-visibility-auto contain-intrinsic-size-[100vh] footer-containment"
     >
       {/* FIX A — permanent base layer UNDER the canvas so there is no empty state at any point */}
       <div
@@ -129,12 +167,13 @@ export default function Footer({}: FooterProps) {
         aria-hidden="true"
       />
 
-      {/* Ambient 3D Scene Layer (Z-0) — Fades in on top of base layer ONLY when settled AND in view */}
+      {/* CAUSE B: Ambient 3D Scene Layer (Z-0) — visibility toggled to throttle rAF off-screen */}
       <div
+        ref={sceneRef}
+        style={{ visibility: isNear ? "visible" : "hidden" }}
         className={`absolute inset-0 z-0 pointer-events-none overflow-hidden transition-opacity duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] ${
           visible ? "opacity-100" : "opacity-0"
         }`}
-        ref={sceneRef}
       >
         {mounted && (
           <Suspense fallback={null}>
@@ -154,18 +193,24 @@ export default function Footer({}: FooterProps) {
         aria-hidden="true"
       />
 
-      {/* Watermark closing mark of the whole page (Z-1) */}
+      {/* CAUSE A: Watermark closing mark of the whole page (Z-1) — blend mode applied ONLY when on-screen */}
       <div
         className="absolute inset-x-0 bottom-[4%] z-[1] pointer-events-none select-none flex justify-center"
         aria-hidden="true"
       >
-        <span className="font-onest font-bold tracking-[-0.04em] text-[clamp(3.5rem,15vw,13rem)] leading-none text-[#042718]/[0.55] mix-blend-soft-light whitespace-nowrap">
+        <span
+          className={`font-onest font-bold tracking-[-0.04em] text-[clamp(3.5rem,15vw,13rem)] leading-none whitespace-nowrap transition-colors duration-300 ${
+            inView
+              ? "text-[#042718]/[0.55] mix-blend-soft-light"
+              : "text-[#042718]/[0.28]"
+          }`}
+        >
           Deepak Prasad
         </span>
       </div>
 
-      {/* Existing Footer Content Centered (Z-2) */}
-      <div className="relative z-[2] w-full flex flex-col items-center justify-center my-auto">
+      {/* Existing Footer Content positioned in upper portion (Z-2) */}
+      <div className="relative z-[2] w-full flex flex-col items-center justify-center mt-[8vh] sm:mt-[12vh] md:mt-[10vh] mb-auto">
         {/* CTA SECTION */}
         <section className="w-full relative py-12 sm:py-16 md:py-20 overflow-hidden flex flex-col items-center justify-center">
           <div className="max-w-[1440px] w-full mx-auto px-6 lg:px-[96px] relative z-10 flex flex-col items-center">
@@ -191,11 +236,18 @@ export default function Footer({}: FooterProps) {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
                 viewport={{ once: true }}
-                className="w-full max-w-[640px] text-center text-[#042718]/85 font-inter text-[15px] md:text-[18px] leading-relaxed mb-10 [text-shadow:0_1px_2px_rgba(250,248,245,0.9),0_0_16px_rgba(250,248,245,0.75)]"
+                className="w-full max-w-[52ch] text-center text-[#042718]/85 font-inter text-[15px] md:text-[18px] leading-[1.62] mb-10 [text-shadow:0_1px_2px_rgba(250,248,245,0.9),0_0_16px_rgba(250,248,245,0.75)] mx-auto"
               >
-                Looking for a Senior Product Manager who thrives in ambiguity,
-                talks to real users, and builds resilient physical-digital
-                systems? Let’s connect.
+                Four of the systems on this page are{" "}
+                <span className="text-[#042718] font-semibold">
+                  still running today
+                </span>
+                . If you&apos;re building something that has to{" "}
+                <span className="text-[#042718] font-semibold">
+                  keep working long after launch
+                </span>
+                , I&apos;d like to hear about it. I&apos;ll tell you honestly
+                whether I&apos;m the right fit.
               </motion.p>
 
               {/* Action Buttons Row */}
