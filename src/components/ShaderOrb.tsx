@@ -278,14 +278,26 @@ export const ShaderOrb: React.FC<ShaderOrbProps> = ({
         } rounded-full shrink-0 select-none principles-orb-glow ${
           shouldReduceMotion ? "principles-orb-static" : "principles-orb-breathe"
         }`}
+        style={{
+          boxShadow: `0 0 22px ${currentPhase.glowRgba}, inset 0 0 14px rgba(255, 255, 255, 0.25)`,
+          borderRadius: "9999px",
+        }}
       >
         {/* Clipped circular canvas / fallback container */}
-        <div className="w-full h-full rounded-full overflow-hidden relative">
-          {/* Base CSS gradient fallback: always rendered for instant 0ms first paint */}
+        <div
+          className="w-full h-full rounded-full overflow-hidden relative"
+          style={{
+            borderRadius: "9999px",
+            boxShadow: `0 0 22px ${currentPhase.glowRgba}, inset 0 0 14px rgba(255, 255, 255, 0.25)`,
+          }}
+        >
+          {/* Base CSS gradient fallback: soft gradient sphere with an off-centre highlight, subtle rim and ambient glow */}
           <div
             className="absolute inset-0 w-full h-full rounded-full transition-all duration-700 ease-in-out"
             style={{
-              background: `radial-gradient(circle at 62% 8%, #fef3c7 0%, rgba(254, 243, 199, 0.45) 18%, transparent 35%), radial-gradient(circle at 45% 35%, ${currentPhase.light} 0%, ${currentPhase.mid} 50%, ${currentPhase.accent} 100%)`,
+              background: `radial-gradient(circle at 34% 30%, ${currentPhase.light} 0%, ${currentPhase.mid} 45%, ${currentPhase.accent} 100%)`,
+              boxShadow: `0 0 22px ${currentPhase.glowRgba}, inset 0 0 14px rgba(255, 255, 255, 0.25)`,
+              borderRadius: "9999px",
             }}
           />
 

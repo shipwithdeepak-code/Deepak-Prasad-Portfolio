@@ -90,6 +90,8 @@ export default defineConfig(() => {
     plugins: [react(), tailwindcss(), aistudioMediaPlugin(), downloadResumePlugin()],
     resolve: {
       alias: {
+        '@designcodeio/threeui/style.css': path.resolve(__dirname, './src/shaders/threeui.css'),
+        '@designcodeio/threeui': path.resolve(__dirname, './src/shaders/index.ts'),
         '@': path.resolve(__dirname, './src'),
       },
     },
@@ -104,7 +106,10 @@ export default defineConfig(() => {
             (dep) =>
               !dep.includes('shaders') &&
               !dep.includes('ShaderCanvas') &&
-              !dep.includes('CopilotDrawer')
+              !dep.includes('CopilotDrawer') &&
+              !dep.includes('sylva') &&
+              !dep.includes('threeui') &&
+              !dep.includes('three')
           );
         },
       },
@@ -120,6 +125,13 @@ export default defineConfig(() => {
             }
             if (id.includes('node_modules/framer-motion')) {
               return 'motion-vendor';
+            }
+            if (
+              id.includes('sylva-living-world') ||
+              id.includes('threeui') ||
+              id.includes('node_modules/three')
+            ) {
+              return 'sylva-living-world';
             }
           },
         },
