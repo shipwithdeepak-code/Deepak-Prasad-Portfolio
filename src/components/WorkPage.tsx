@@ -1,16 +1,9 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
 import {
-  ArrowRight,
-  ArrowUpRight,
-  CheckCircle2,
-  Sparkles,
-  FileText,
-  Filter,
-  Terminal,
-  Activity,
-  Cpu,
   Database,
+  Activity,
+  Terminal,
+  Cpu,
 } from "lucide-react";
 import {
   ALL_FLAGSHIP_CASE_STUDIES,
@@ -37,45 +30,192 @@ export default function WorkPage({
     { id: "connected", label: "Connected Products" },
   ];
 
+  const getPrimaryTag = (study: CaseStudyDetail): string => {
+    if (study.slug === "reshamandi") return "B2B Marketplace";
+    if (study.slug === "ai-coach") return "Conversational AI";
+    if (study.slug === "subscription-growth") return "Monetization";
+    if (study.slug === "performance-score") return "Algorithms";
+    if (study.slug === "ai-localization") return "AI Operations";
+    return study.tags[0] || "Product";
+  };
+
+  const getCardDisplayData = (study: CaseStudyDetail) => {
+    switch (study.slug) {
+      case "reshamandi":
+        return {
+          h3: "ReshaMandi",
+          desc: "Rebuilt a fragmented offline silk trade into one governed flow across farmers, yards and finance.",
+          figure: "₹20–25 Cr",
+          qual: "per month, at 99.9% reliability",
+          imagePrefix: "/images/reshamandi-hero",
+        };
+      case "ai-coach":
+        return {
+          h3: "Sportstech AI Coach",
+          desc: "Took an ambiguous AI opportunity to production in three months, behind hard safety guardrails.",
+          figure: "3,200+",
+          qual: "daily actives, up from 300",
+          imagePrefix: "/images/ai-coach-hero",
+        };
+      case "subscription-growth":
+        return {
+          h3: "Sportstech Subscription",
+          desc: "Built the subscription business from zero: packaging, paywalls, trial mechanics and win-back.",
+          figure: "€659K",
+          qual: "FY25, up 81.9% YoY",
+          imagePrefix: "/images/subscription-hero",
+        };
+      case "performance-score":
+        return {
+          h3: "Performance Score",
+          desc: "Four surfaces sampled at different cadences and disagreed about the same body. Reconciling cadence was the product.",
+          figure: "174,000",
+          qual: "users on one score, five surfaces",
+          imagePrefix: "/images/performance-score-hero",
+        };
+      case "ai-localization":
+        return {
+          h3: "AI Localization",
+          desc: "Re-architected a manual video workflow into an AI-assisted pipeline across three languages.",
+          figure: "2 weeks",
+          qual: "turnaround, down from 3–4 months",
+          imagePrefix: "/images/ai-localization-hero",
+        };
+      default:
+        return {
+          h3: study.title,
+          desc: study.description,
+          figure: study.keyStats?.[0]?.value || "Live",
+          qual: study.keyStats?.[0]?.label || "Product Impact",
+          imagePrefix: "/images/hero-bg-poster",
+        };
+    }
+  };
+
   const filteredStudies = ALL_FLAGSHIP_CASE_STUDIES.filter((study) => {
     if (selectedCategory === "all") return true;
-    if (selectedCategory === "b2b") return study.tags.includes("B2B") || study.tags.includes("Marketplace");
-    if (selectedCategory === "ai") return study.tags.includes("AI") || study.tags.includes("Conversational AI");
-    if (selectedCategory === "monetization") return study.tags.includes("Growth") || study.tags.includes("Monetization");
-    if (selectedCategory === "connected") return study.tags.includes("Connected Products") || study.tags.includes("Product Strategy");
+    if (selectedCategory === "b2b")
+      return study.tags.includes("B2B") || study.tags.includes("Marketplace");
+    if (selectedCategory === "ai")
+      return (
+        study.tags.includes("AI") || study.tags.includes("Conversational AI")
+      );
+    if (selectedCategory === "monetization")
+      return (
+        study.tags.includes("Growth") || study.tags.includes("Monetization")
+      );
+    if (selectedCategory === "connected")
+      return (
+        study.tags.includes("Connected Products") ||
+        study.tags.includes("Product Strategy")
+      );
     return true;
   });
 
   const getCategoryIcon = (category: string) => {
-    if (category.includes("B2B")) return <Database size={16} className="text-[#15803D]" />;
-    if (category.includes("Sports")) return <Activity size={16} className="text-[#0268A1]" />;
-    if (category.includes("Automation")) return <Terminal size={16} className="text-[#7E22CE]" />;
+    if (category.includes("B2B"))
+      return <Database size={16} className="text-[#15803D]" />;
+    if (category.includes("Sports"))
+      return <Activity size={16} className="text-[#0268A1]" />;
+    if (category.includes("Automation"))
+      return <Terminal size={16} className="text-[#7E22CE]" />;
     return <Cpu size={16} className="text-[#B45209]" />;
-  };
-
-  const getTagBadgeClass = (tag: string) => {
-    const t = tag.toLowerCase();
-    if (t.includes("ai")) return "bg-[#E0F3FE] text-[#0268A1]";
-    if (t.includes("b2b") || t.includes("marketplace")) return "bg-[#DCFCE7] text-[#15803D]";
-    if (t.includes("growth") || t.includes("monetization") || t.includes("subscription"))
-      return "bg-[#FEF2C6] text-[#B45209]";
-    if (t.includes("strategy") || t.includes("connected")) return "bg-[#F3E8FF] text-[#7E22CE]";
-    return "bg-[#042718]/5 text-[#042718]/70";
   };
 
   return (
     <div className="w-full bg-[#FAFDFB] text-[#042718] py-12 md:py-20">
+      <style>{`
+        .work-index-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(min(100%, 430px), 1fr));
+          gap: clamp(18px, 2.4vw, 34px);
+        }
+        .work-icard {
+          background: #F1F1EC;
+          border-radius: 20px;
+          padding: 10px;
+          display: flex;
+          gap: 20px;
+          cursor: pointer;
+          transition: transform 240ms ease, background 240ms ease, box-shadow 240ms ease;
+          text-decoration: none;
+        }
+        .work-icard-image {
+          flex: 0 0 46%;
+          border-radius: 12px;
+          object-fit: cover;
+          align-self: stretch;
+          overflow: hidden;
+          background: #E5E5DF;
+        }
+        .work-icard-image img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+          transition: transform 1.2s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .work-icard-body {
+          flex: 1;
+          padding: 14px 14px 14px 0;
+          display: flex;
+          flex-direction: column;
+        }
+
+        @media (hover: hover) and (pointer: fine) {
+          .work-icard:hover {
+            transform: translateY(-4px);
+            background: #EDEDE7;
+            box-shadow: 0 12px 32px rgba(4, 39, 24, 0.08);
+          }
+          .work-icard:hover .work-icard-image img {
+            transform: scale(1.05);
+          }
+        }
+
+        @media (max-width: 560px) {
+          .work-icard {
+            flex-direction: column;
+            gap: 14px;
+          }
+          .work-icard-image {
+            flex: none;
+            width: 100%;
+            height: clamp(170px, 44vw, 220px);
+          }
+          .work-icard-body {
+            padding: 4px 6px 10px;
+          }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .work-icard {
+            transition: none !important;
+          }
+          .work-icard:hover {
+            transform: none !important;
+          }
+          .work-icard-image img {
+            transition: none !important;
+            transform: none !important;
+          }
+        }
+      `}</style>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Page Header */}
         <div className="max-w-3xl mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#042718]/5 text-xs font-inter font-semibold text-[#042718]/80 mb-4">
-            <span>Portfolio & Product Case Studies</span>
-          </div>
+          <span className="font-mono text-[10px] sm:text-[11px] uppercase text-[#A8711A] tracking-[0.24em] font-semibold mb-3 block">
+            All work
+          </span>
           <h1 className="font-onest text-4xl sm:text-5xl font-bold tracking-tight text-[#042718] leading-[1.15] mb-4">
-            Selected Work & Case Studies
+            Everything that went live, and{" "}
+            <em className="font-playfair italic font-medium text-[#042718]/70 not-italic">
+              what it moved
+            </em>
           </h1>
           <p className="font-inter text-base sm:text-lg text-[#042718]/70 leading-relaxed font-normal">
-            A comprehensive record of products I’ve taken from ambiguity to launch, scale or development-ready strategy. Click any case study to read the deep-dive narrative.
+            Five have a page of their own. The rest are listed underneath.
           </p>
         </div>
 
@@ -97,91 +237,73 @@ export default function WorkPage({
           ))}
         </div>
 
-        {/* Flagship Case Studies List */}
-        <div className="flex flex-col gap-8 mb-24">
-          {filteredStudies.map((study, idx) => (
-            <motion.article
-              key={study.id}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: idx * 0.05 }}
-              onClick={() => {
-                onSelectCaseStudy(study);
-                onNavigate(`/work/${study.slug}`);
-              }}
-              className="group cursor-pointer rounded-[24px] bg-white border border-[#042718]/10 p-6 sm:p-10 transition-[border-color,box-shadow] duration-300 hover:border-[#188E39]/40 hover:shadow-[0_20px_50px_rgba(4,39,24,0.06)] flex flex-col justify-between relative"
-            >
-              <div>
-                {/* Header row */}
-                <div className="flex items-center justify-between gap-4 mb-4">
-                  <div className="flex items-center gap-3">
-                    <span className="font-onest font-bold text-sm text-[#042718]/40">
-                      CASE {study.number}
-                    </span>
-                    <span className="w-1 h-1 rounded-full bg-[#042718]/30" />
-                    <span className="font-inter text-xs text-[#042718]/60 font-medium">
-                      {study.category}
+        {/* Flagship Case Studies Grid */}
+        <div className="work-index-grid mb-24">
+          {filteredStudies.map((study, idx) => {
+            const isFirst = idx === 0;
+            const isEager = idx < 2;
+            const cardData = getCardDisplayData(study);
+            const primaryTag = getPrimaryTag(study);
+
+            return (
+              <article
+                key={study.id}
+                onClick={() => {
+                  onSelectCaseStudy(study);
+                  onNavigate(`/work/${study.slug}`);
+                }}
+                className="work-icard"
+              >
+                {/* Left Image (flex: 0 0 46%) */}
+                <div className="work-icard-image">
+                  <img
+                    src={`${cardData.imagePrefix}.webp`}
+                    srcSet={`${cardData.imagePrefix}-480.webp 480w, ${cardData.imagePrefix}-800.webp 800w, ${cardData.imagePrefix}.webp 1600w`}
+                    sizes="(max-width: 560px) 100vw, 46vw"
+                    alt={cardData.h3}
+                    width={480}
+                    height={320}
+                    loading={isEager ? "eager" : "lazy"}
+                    decoding={isEager ? "sync" : "async"}
+                    {...(isFirst ? { fetchPriority: "high" } : {})}
+                  />
+                </div>
+
+                {/* Right Body Content */}
+                <div className="work-icard-body">
+                  {/* One pill tag only */}
+                  <div className="mb-2.5">
+                    <span className="inline-block rounded-[100px] bg-[#042718] text-white px-2.5 py-1 text-[12px] font-inter font-medium leading-none">
+                      {primaryTag}
                     </span>
                   </div>
 
-                  {study.isStrategyOnly ? (
-                    <span className="px-2.5 py-1 rounded-full bg-[#F3E8FF] text-[#7E22CE] text-xs font-inter font-semibold">
-                      Development-Ready Strategy
-                    </span>
-                  ) : (
-                    <span className="font-inter text-xs text-[#042718]/50">
-                      {study.timeline}
-                    </span>
-                  )}
-                </div>
+                  {/* Title */}
+                  <h3 className="font-onest font-semibold text-[24px] leading-[28.8px] tracking-[-0.48px] text-[#042718] mb-2">
+                    {cardData.h3}
+                  </h3>
 
-                {/* Title and Subtitle */}
-                <h2 className="font-onest text-2xl sm:text-3xl font-bold text-[#042718] group-hover:text-[#188E39] transition-colors leading-snug mb-2">
-                  {study.title}
-                </h2>
-                <p className="font-inter text-sm sm:text-base font-medium text-[#042718]/80 mb-4 max-w-3xl">
-                  {study.subtitle}
-                </p>
+                  {/* Description */}
+                  <p className="font-inter text-[14px] leading-[19px] text-[#042718]/56 line-clamp-3">
+                    {cardData.desc}
+                  </p>
 
-                {/* Description */}
-                <p className="font-inter text-sm text-[#042718]/65 leading-relaxed mb-6 max-w-3xl">
-                  {study.description}
-                </p>
+                  {/* Spacer */}
+                  <div className="flex-1 min-h-[16px]" />
 
-                {/* Tags */}
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {study.tags.map((tag, tIdx) => (
-                    <span
-                      key={tIdx}
-                      className={`px-2.5 py-1 rounded-md text-xs font-inter font-medium ${getTagBadgeClass(
-                        tag
-                      )}`}
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Footer Proof & CTA */}
-              <div className="pt-6 border-t border-[#042718]/8 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                <div className="flex flex-wrap items-center gap-x-5 gap-y-1 text-xs sm:text-[13px] font-inter">
-                  {study.proofPoints.map((proof, pIdx) => (
-                    <div key={pIdx} className="flex items-center gap-1.5 text-[#042718]/85 font-medium">
-                      <CheckCircle2 size={14} className="text-[#188E39] shrink-0" />
-                      <span>{proof}</span>
+                  {/* Figure & Qualifier */}
+                  <div className="pt-3 border-t border-[#042718]/8">
+                    <div className="font-onest font-semibold text-[32px] leading-tight tracking-[-0.64px] text-[#042718] tabular-nums">
+                      {cardData.figure}
                     </div>
-                  ))}
+                    <div className="font-inter text-[14px] text-[#042718]/56">
+                      {cardData.qual}
+                    </div>
+                  </div>
                 </div>
-
-                <div className="inline-flex items-center gap-1.5 text-sm font-inter font-semibold text-[#042718] group-hover:text-[#188E39] transition-colors shrink-0">
-                  <span>Read full case study</span>
-                  <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" />
-                </div>
-              </div>
-            </motion.article>
-          ))}
+              </article>
+            );
+          })}
         </div>
 
         {/* =========================================================================
@@ -251,3 +373,4 @@ export default function WorkPage({
     </div>
   );
 }
+

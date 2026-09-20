@@ -8,7 +8,6 @@ import {
 } from "lucide-react";
 import { ALL_FLAGSHIP_CASE_STUDIES } from "../data/caseStudies";
 import { CaseStudyDetail } from "../types";
-import { CaseFileCarousel } from "./CaseFileCarousel";
 import { OperatingPrinciples } from "./OperatingPrinciples";
 
 interface HomePageProps {
@@ -358,7 +357,7 @@ export default function HomePage({
   ];
 
   const DIPA_QUESTIONS = [
-    "What did he ship at Ultrahuman?",
+    "What did he ship at Sportstech?",
     "How did the escrow pipeline work?",
     "Has he taken an AI feature to production?",
     "What did he get wrong first?",
@@ -802,32 +801,317 @@ export default function HomePage({
       </section>
 
       {/* =========================================================================
-          3. SELECTED WORK SECTION (5 FLAGSHIP CASE STUDIES)
+          3. SELECTED WORK SECTION (5 FLAGSHIP CASE STUDIES - OVERTAKE STICKY DECK)
           ========================================================================= */}
       <section id="selected-work" className="py-14 md:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col items-center text-center mb-8 md:mb-12">
-          <h2 className="font-onest text-[34px] sm:text-[44px] md:text-[54px] font-semibold text-[#042718] leading-[1.12] tracking-tight md:tracking-[-2px] max-w-3xl text-center">
-            From silk mandis to <span className="font-playfair italic font-medium text-black/60">conversational AI</span>
-          </h2>
-          <p className="font-inter text-[15px] md:text-[18px] text-[#042718]/80 leading-relaxed max-w-[640px] font-normal mt-4 text-center">
-            From complex marketplaces to AI powered products and everything in between.
-          </p>
+        <style>{`
+          .work-deck-slot {
+            position: sticky;
+            top: 120px;
+            margin-bottom: clamp(18px, 2.6vw, 42px);
+          }
+          .work-deck-card {
+            position: relative;
+            border-radius: 30px;
+            overflow: clip;
+            padding: 10px;
+            aspect-ratio: 964 / 473;
+            width: 100%;
+            background: #042718;
+          }
+          .work-deck-shot {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            overflow: hidden;
+          }
+          .work-deck-shot img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 1.2s cubic-bezier(0.23, 1, 0.32, 1);
+          }
+          .work-deck-panel {
+            position: relative;
+            z-index: 1;
+            margin-left: auto;
+            width: 360px;
+            height: 100%;
+            border-radius: 26px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            background: #042718;
+            color: #FFFFFF;
+          }
+          .work-deck-cta {
+            height: 47px;
+            border-radius: 100px;
+            background: #FFFFFF;
+            color: #042718;
+            padding: 8px 8px 8px 24px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: space-between;
+            text-decoration: none;
+            cursor: pointer;
+            transition: transform 240ms ease, box-shadow 240ms ease;
+          }
+          .work-deck-cta-arrow {
+            width: 31px;
+            height: 31px;
+            border-radius: 50%;
+            background: #042718;
+            color: #FFFFFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 240ms ease;
+          }
+
+          @media (hover: hover) and (pointer: fine) {
+            .work-deck-card:hover .work-deck-shot img {
+              transform: scale(1.04);
+            }
+            .work-deck-card:hover .work-deck-cta {
+              transform: translateY(-2px);
+              box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+            }
+            .work-deck-card:hover .work-deck-cta-arrow {
+              transform: rotate(45deg);
+            }
+          }
+
+          @media (max-width: 900px) {
+            .work-deck-slot {
+              position: static;
+              margin-bottom: 20px;
+            }
+            .work-deck-card {
+              aspect-ratio: auto;
+              display: flex;
+              flex-direction: column;
+              padding: 8px;
+              border-radius: 24px;
+            }
+            .work-deck-shot {
+              position: relative;
+              inset: auto;
+              width: 100%;
+              height: clamp(180px, 40vw, 260px);
+              border-radius: 18px;
+            }
+            .work-deck-panel {
+              width: 100%;
+              height: auto;
+              margin: 8px 0 0;
+              padding: 22px;
+              border-radius: 18px;
+            }
+          }
+
+          @media (prefers-reduced-motion: reduce) {
+            .work-deck-slot {
+              position: static;
+            }
+            .work-deck-shot img {
+              transition: none !important;
+            }
+            .work-deck-cta, .work-deck-cta-arrow {
+              transition: none !important;
+            }
+          }
+        `}</style>
+
+        {/* Section Header */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-10 md:mb-14">
+          <div className="max-w-2xl">
+            <span className="font-mono text-[10px] sm:text-[11px] uppercase text-[#A8711A] tracking-[0.24em] font-semibold mb-3 block">
+              Selected work
+            </span>
+            <h2 className="font-onest text-[34px] sm:text-[44px] md:text-[54px] font-bold text-[#042718] leading-[1.12] tracking-tight md:tracking-[-2px]">
+              From silk mandis to <em className="font-playfair italic font-medium text-[#042718]/70 not-italic">conversational AI</em>
+            </h2>
+            <p className="font-inter text-[15px] md:text-[18px] text-[#042718]/80 leading-relaxed max-w-[640px] font-normal mt-4">
+              Five with a page of their own. Every one went live and moved a number you can check.
+            </p>
+          </div>
 
           <button
             type="button"
             onClick={() => onNavigate("/work")}
-            className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white border border-[#042718]/10 shadow-xs hover:bg-[#FAFDFB] text-sm font-inter font-semibold text-[#042718] hover:text-[#188E39] transition-colors cursor-pointer group mt-6"
+            className="self-start sm:self-auto shrink-0 h-[47px] px-6 rounded-full bg-[#042718] text-white hover:bg-[#0B3322] font-inter text-sm font-semibold inline-flex items-center gap-2 transition-colors cursor-pointer"
           >
-            <span>All work</span>
-            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+            <span>All case studies</span>
+            <span className="text-base leading-none">↗</span>
           </button>
         </div>
 
-        {/* 3D Case-File Carousel */}
-        <CaseFileCarousel
-          onNavigate={onNavigate}
-          onSelectCaseStudy={onSelectCaseStudy}
-        />
+        {/* The 5 Stacked Cards */}
+        <div className="relative w-full">
+          {[
+            {
+              slug: "reshamandi",
+              title: "ReshaMandi",
+              tags: ["B2B marketplace", "Escrow & payments"],
+              role: "PM, core marketplace",
+              year: "2021–23",
+              description:
+                "Rebuilt a fragmented offline silk trade into one governed flow across farmers, yards and finance.",
+              figure: "₹20–25 Cr",
+              qualifier: "per month, at 99.9% reliability",
+              imagePrefix: "/images/reshamandi-hero",
+              imgAlt: "ReshaMandi B2B marketplace workflow",
+            },
+            {
+              slug: "ai-coach",
+              title: "Sportstech AI Coach",
+              tags: ["Conversational AI", "Consumer health"],
+              role: "PM, applied AI & safety",
+              year: "2024–26",
+              description:
+                "Took an ambiguous AI opportunity to production in three months, behind hard safety guardrails.",
+              figure: "3,200+",
+              qualifier: "daily actives, up from 300",
+              imagePrefix: "/images/ai-coach-hero",
+              imgAlt: "Sportstech AI Coach conversational interface",
+            },
+            {
+              slug: "subscription-growth",
+              title: "Sportstech Subscription",
+              tags: ["Monetization", "B2C SaaS"],
+              role: "PM, monetization",
+              year: "2023–26",
+              description:
+                "Built the subscription business from zero: packaging, paywalls, trial mechanics and win-back.",
+              figure: "€659K",
+              qualifier: "FY25, up 81.9% YoY",
+              imagePrefix: "/images/subscription-hero",
+              imgAlt: "Sportstech Subscription checkout and growth screens",
+            },
+            {
+              slug: "performance-score",
+              title: "Performance Score",
+              tags: ["Connected hardware", "Algorithms"],
+              role: "PM, algorithms & hardware",
+              year: "2025",
+              description:
+                "Four surfaces sampled at different cadences and disagreed about the same body. Reconciling cadence was the product.",
+              figure: "174,000",
+              qualifier: "users on one score, five surfaces",
+              imagePrefix: "/images/performance-score-hero",
+              imgAlt: "Performance Score algorithm visualization",
+            },
+            {
+              slug: "ai-localization",
+              title: "AI Localization",
+              tags: ["AI operations", "European expansion"],
+              role: "PM, media automation",
+              year: "2025",
+              description:
+                "Re-architected a manual video workflow into an AI-assisted pipeline across three languages.",
+              figure: "2 weeks",
+              qualifier: "turnaround, down from 3–4 months",
+              imagePrefix: "/images/ai-localization-hero",
+              imgAlt: "AI video localization pipeline",
+            },
+          ].map((item, idx) => {
+            const isFirst = idx === 0;
+            const isEager = idx < 2;
+            const targetStudy = ALL_FLAGSHIP_CASE_STUDIES.find(
+              (s) => s.slug === item.slug
+            );
+
+            return (
+              <div key={item.slug} className="work-deck-slot">
+                <article
+                  onClick={() => {
+                    if (targetStudy) onSelectCaseStudy(targetStudy);
+                    onNavigate(`/work/${item.slug}`);
+                  }}
+                  className="work-deck-card cursor-pointer group shadow-[0_24px_64px_rgba(4,39,24,0.12)]"
+                >
+                  {/* Full-bleed background image behind the whole card */}
+                  <div className="work-deck-shot">
+                    <img
+                      src={`${item.imagePrefix}.webp`}
+                      srcSet={`${item.imagePrefix}-480.webp 480w, ${item.imagePrefix}-800.webp 800w, ${item.imagePrefix}.webp 1600w`}
+                      sizes="(max-width: 900px) 100vw, 964px"
+                      alt={item.imgAlt}
+                      width={964}
+                      height={473}
+                      loading={isEager ? "eager" : "lazy"}
+                      decoding={isEager ? "sync" : "async"}
+                      {...(isFirst ? { fetchPriority: "high" } : {})}
+                    />
+
+                    {/* Gradient shade on mobile for contrast if needed */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#042718]/40 via-transparent to-black/20 pointer-events-none" />
+
+                    {/* Stamp: Role (top-left) */}
+                    <div className="absolute top-3 sm:top-4 left-3 sm:left-4 z-10 px-3 py-1 rounded-full bg-[rgba(4,39,24,0.58)] backdrop-blur-[8px] text-[11px] sm:text-xs font-mono text-white/90 select-none border border-white/10">
+                      {item.role}
+                    </div>
+
+                    {/* Stamp: Year (right: 392px on desktop to clear 360px panel + 10px + gap, right: 16px on mobile) */}
+                    <div className="absolute top-3 sm:top-4 right-3 sm:right-4 min-[901px]:right-[392px] z-10 px-3 py-1 rounded-full bg-[rgba(4,39,24,0.58)] backdrop-blur-[8px] text-[11px] sm:text-xs font-mono text-white/90 select-none border border-white/10">
+                      {item.year}
+                    </div>
+                  </div>
+
+                  {/* Floating Panel on top of image, inset right */}
+                  <div className="work-deck-panel">
+                    {/* Tag pills */}
+                    <div className="flex flex-wrap gap-1.5 mb-3.5">
+                      {item.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="rounded-[100px] px-2.5 py-1 text-[12px] font-inter font-medium leading-none bg-[#0B3322] text-[#B7BCBC]"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* H3 Title */}
+                    <h3 className="font-onest font-semibold text-[22px] sm:text-[26px] leading-[26px] sm:leading-[31.2px] tracking-[-0.78px] text-[#FFFFFF] mb-2.5">
+                      {item.title}
+                    </h3>
+
+                    {/* Description */}
+                    <p className="font-inter text-[14px] sm:text-[16px] leading-[19.2px] text-[#B7BCBC] font-normal">
+                      {item.description}
+                    </p>
+
+                    {/* Flex spacer */}
+                    <div className="flex-1 min-h-[20px] sm:min-h-[28px]" />
+
+                    {/* Metric row */}
+                    <div className="pt-[18px] border-t border-[rgba(255,255,255,0.14)] flex items-baseline justify-between gap-3 mb-5">
+                      <div className="font-onest font-semibold text-[34px] sm:text-[42px] leading-none tracking-[-0.84px] text-[#E8C48A] tabular-nums">
+                        {item.figure}
+                      </div>
+                      <div className="font-inter text-[13px] sm:text-[16px] leading-snug text-[#B7BCBC] text-right max-w-[15ch]">
+                        {item.qualifier}
+                      </div>
+                    </div>
+
+                    {/* CTA button */}
+                    <div className="work-deck-cta">
+                      <span className="font-inter font-semibold text-[14px] text-[#042718]">
+                        Read case study
+                      </span>
+                      <span className="work-deck-cta-arrow font-sans text-sm font-semibold">
+                        ↗
+                      </span>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            );
+          })}
+        </div>
       </section>
 
       {/* =========================================================================
