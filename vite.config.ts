@@ -95,17 +95,12 @@ export default defineConfig(() => {
         '@': path.resolve(__dirname, './src'),
       },
     },
-    optimizeDeps: {
-      include: ['shaders/react'],
-    },
     build: {
       target: 'esnext',
       modulePreload: {
         resolveDependencies(filename, deps, { hostId, hostType }) {
           return deps.filter(
             (dep) =>
-              !dep.includes('shaders') &&
-              !dep.includes('ShaderCanvas') &&
               !dep.includes('CopilotDrawer') &&
               !dep.includes('sylva') &&
               !dep.includes('threeui') &&

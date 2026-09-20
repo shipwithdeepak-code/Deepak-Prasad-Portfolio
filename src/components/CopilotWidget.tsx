@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, lazy, Suspense } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
-import { ShaderOrb } from "./ShaderOrb";
+import DipaLauncher from "./DipaLauncher";
 import { DipaAvatar } from "./DipaAvatar";
 
 const CopilotDrawer = lazy(() => import("./CopilotDrawer"));
@@ -256,10 +256,10 @@ export default function CopilotWidget({
         )}
       </AnimatePresence>
 
-      {/* Floating Circular Trigger (desktop >=768px only, toggles open/close) */}
+      {/* Floating Circular Trigger (toggles open/close) */}
       <div
         id="copilot-launcher-btn"
-        className={`hidden md:block fixed sm:bottom-20 right-5 z-40 transition-[transform,opacity] duration-300 ease-out ${
+        className={`block fixed bottom-[max(16px,env(safe-area-inset-bottom))] right-4 md:bottom-6 md:right-6 z-40 transition-[transform,opacity] duration-300 ease-out ${
           isCtaHovering && !shouldReduceMotion
             ? "scale-[1.08] -translate-y-1"
             : "scale-100 translate-y-0"
@@ -273,21 +273,9 @@ export default function CopilotWidget({
             : undefined
         }
       >
-        <ShaderOrb
-          fixedLabel=""
-          disableClickAdvance
-          sizeClassName="w-[52px] h-[52px]"
-          title={
-            isOpen
-              ? "Close Dīpa"
-              : "Dīpa: illuminate the thinking. Ask about Deepak's work."
-          }
-          ariaLabel={
-            isOpen
-              ? "Close Dīpa"
-              : "Open Dīpa, Deepak's AI assistant"
-          }
-          onOrbClick={() => {
+        <DipaLauncher
+          isOpen={isOpen}
+          onClick={() => {
             setIsOpen((prev) => !prev);
             dismissIntroTooltip();
             dismissScrollNudge();
