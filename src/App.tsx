@@ -21,6 +21,40 @@ const ResumeModal = lazy(() => import("./components/ResumeModal"));
 const ProductJuryPost = lazy(() => import("./components/ProductJuryPost"));
 const CopilotWidget = lazy(() => import("./components/CopilotWidget"));
 
+const SITE = "https://deepak-prasad.ai.studio";
+const DEFAULT_TITLE =
+  "Deepak Prasad — Senior Product Manager | AI, 0→1 & Product Strategy";
+const DEFAULT_DESC =
+  "Senior Product Manager building AI, B2B and B2C products across marketplaces, subscription platforms, connected products and workflow automation.";
+
+const ROUTE_META: Record<string, { title: string; description: string }> = {
+  "/": { title: DEFAULT_TITLE, description: DEFAULT_DESC },
+  "/work": {
+    title: "Selected Work — Deepak Prasad",
+    description:
+      "Flagship product work across marketplaces, AI coaching, subscriptions and connected fitness hardware.",
+  },
+  "/about": {
+    title: "About — Deepak Prasad",
+    description:
+      "Seven years building products across marketplaces, AI and subscription platforms. How I work and what I care about.",
+  },
+  "/resume": {
+    title: "Résumé — Deepak Prasad",
+    description:
+      "Senior Product Manager. Experience, impact and the systems I have shipped.",
+  },
+  "/contact": {
+    title: "Contact — Deepak Prasad",
+    description: "Get in touch about product roles, advisory work or a conversation.",
+  },
+  "/writing/product-jury": {
+    title: "Product Jury: a decision workspace that argues back — Deepak Prasad",
+    description:
+      "How I built a multi-agent critique engine that grades every claim by the evidence behind it, and declines when it cannot establish an answer.",
+  },
+};
+
 export default function App() {
   const [currentPath, setCurrentPath] = useState<string>(() => {
     if (typeof window !== "undefined") {
@@ -35,6 +69,30 @@ export default function App() {
     useState<CaseStudyDetail>(RESHAMANDI_CASE_STUDY);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const [isResumeModalOpen, setIsResumeModalOpen] = useState(false);
+
+  useEffect(() => {
+    const meta =
+      ROUTE_META[currentPath] ??
+      (currentPath.startsWith("/work/")
+        ? {
+            title: "Case Study — Deepak Prasad",
+            description: DEFAULT_DESC,
+          }
+        : { title: DEFAULT_TITLE, description: DEFAULT_DESC });
+
+    document.title = meta.title;
+
+    const set = (selector: string, attr: string, value: string) => {
+      const el = document.querySelector(selector);
+      if (el) el.setAttribute(attr, value);
+    };
+
+    set('meta[name="description"]', "content", meta.description);
+    set('link[rel="canonical"]', "href", SITE + currentPath);
+    set('meta[property="og:url"]', "content", SITE + currentPath);
+    set('meta[property="og:title"]', "content", meta.title);
+    set('meta[property="og:description"]', "content", meta.description);
+  }, [currentPath]);
 
   // Sync state with browser popstate
   useEffect(() => {
@@ -194,6 +252,13 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex flex-col bg-[#FAFDFB] text-[#042718] selection:bg-[#188E39]/20 selection:text-[#042718]">
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:rounded-full focus:bg-[#042718] focus:text-white focus:text-sm focus:font-semibold"
+      >
+        Skip to content
+      </a>
+
       {/* Persistent Navigation */}
       <Navigation
         currentPath={currentPath}
@@ -203,7 +268,7 @@ export default function App() {
       />
 
       {/* Main Page View */}
-      <main className="flex-1 w-full">
+      <main id="main-content" className="flex-1 w-full">
         <Suspense fallback={null}>{renderCurrentView()}</Suspense>
       </main>
 

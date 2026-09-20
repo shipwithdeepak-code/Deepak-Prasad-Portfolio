@@ -579,6 +579,7 @@ export default function HomePage({
             variants={headlineContainerVariants}
             initial="hidden"
             animate="visible"
+            aria-label="I'm mostly just someone who stays curious. Stubborn enough not to stop asking 'why.'"
             className="font-onest text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-[#042718] leading-[1.12] mb-6 max-w-4xl mx-auto text-center [overflow-wrap:anywhere]"
           >
             {headlineWords.map((word) => (

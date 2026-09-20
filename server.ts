@@ -313,10 +313,31 @@ CRITICAL IDENTITY & CONVERSATION RULES:
     // Everything else in dist: revalidate, but allow a cached copy.
     app.use(express.static(distPath, { maxAge: "1h" }));
 
-    // index.html must never be cached, or a deploy won't reach returning visitors.
-    app.get("*", (_req, res) => {
+    const CASE_STUDY_SLUGS = [
+      "reshamandi",
+      "ai-coach",
+      "subscription",
+      "performance-score",
+      "ai-localization",
+      "behind-ai-copilot",
+    ];
+    const KNOWN_ROUTES = new Set([
+      "/",
+      "/work",
+      "/about",
+      "/resume",
+      "/contact",
+      "/writing/product-jury",
+      ...CASE_STUDY_SLUGS.map((s) => `/work/${s}`),
+    ]);
+
+    app.get("*", (req, res) => {
+      const clean = req.path.replace(/\/+$/, "") || "/";
+      const known = KNOWN_ROUTES.has(clean);
       res.setHeader("Cache-Control", "no-cache");
-      res.sendFile(path.join(distPath, "index.html"));
+      // The SPA shell is served either way so the client can render a view;
+      // only the status code differs, which is what crawlers read.
+      res.status(known ? 200 : 404).sendFile(path.join(distPath, "index.html"));
     });
   }
 
