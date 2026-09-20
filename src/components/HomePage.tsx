@@ -932,7 +932,7 @@ export default function HomePage({
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-10 md:mb-14">
           <div className="max-w-2xl">
-            <span className="font-mono text-[10px] sm:text-[11px] uppercase text-[#A8711A] tracking-[0.24em] font-semibold mb-3 block">
+            <span className="font-mono text-[10px] sm:text-[11px] uppercase text-[#8A5A16] tracking-[0.24em] font-semibold mb-3 block">
               Selected work
             </span>
             <h2 className="font-onest text-[34px] sm:text-[44px] md:text-[54px] font-bold text-[#042718] leading-[1.12] tracking-tight md:tracking-[-2px]">
@@ -968,6 +968,7 @@ export default function HomePage({
               qualifier: "per month, at 99.9% reliability",
               imagePrefix: "/images/reshamandi-hero",
               imgAlt: "ReshaMandi B2B marketplace workflow",
+              has1200: false,
             },
             {
               slug: "ai-coach",
@@ -981,6 +982,7 @@ export default function HomePage({
               qualifier: "daily actives, up from 300",
               imagePrefix: "/images/ai-coach-hero",
               imgAlt: "Sportstech AI Coach conversational interface",
+              has1200: true,
             },
             {
               slug: "subscription-growth",
@@ -994,6 +996,7 @@ export default function HomePage({
               qualifier: "FY25, up 81.9% YoY",
               imagePrefix: "/images/subscription-hero",
               imgAlt: "Sportstech Subscription checkout and growth screens",
+              has1200: true,
             },
             {
               slug: "performance-score",
@@ -1007,6 +1010,7 @@ export default function HomePage({
               qualifier: "users on one score, five surfaces",
               imagePrefix: "/images/performance-score-hero",
               imgAlt: "Performance Score algorithm visualization",
+              has1200: true,
             },
             {
               slug: "ai-localization",
@@ -1020,6 +1024,7 @@ export default function HomePage({
               qualifier: "turnaround, down from 3–4 months",
               imagePrefix: "/images/ai-localization-hero",
               imgAlt: "AI video localization pipeline",
+              has1200: true,
             },
           ].map((item, idx) => {
             const isFirst = idx === 0;
@@ -1041,7 +1046,11 @@ export default function HomePage({
                   <div className="work-deck-shot">
                     <img
                       src={`${item.imagePrefix}.webp`}
-                      srcSet={`${item.imagePrefix}-480.webp 480w, ${item.imagePrefix}-800.webp 800w, ${item.imagePrefix}.webp 1600w`}
+                      srcSet={
+                        item.has1200
+                          ? `${item.imagePrefix}-480.webp 480w, ${item.imagePrefix}-800.webp 800w, ${item.imagePrefix}-1200.webp 1200w, ${item.imagePrefix}.webp 1600w`
+                          : `${item.imagePrefix}-480.webp 480w, ${item.imagePrefix}-800.webp 800w, ${item.imagePrefix}.webp 1600w`
+                      }
                       sizes="(max-width: 900px) 100vw, 964px"
                       alt={item.imgAlt}
                       width={964}
@@ -1124,7 +1133,7 @@ export default function HomePage({
           ========================================================================= */}
       <section id="ai-builds" className="py-14 md:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center text-center mb-8 md:mb-12">
-          <span className="font-mono text-[10px] sm:text-[11px] uppercase text-[#A8711A] tracking-[0.24em] font-semibold mb-3">
+          <span className="font-mono text-[10px] sm:text-[11px] uppercase text-[#8A5A16] tracking-[0.24em] font-semibold mb-3">
             Things I built myself
           </span>
           <h2 className="font-onest text-[34px] sm:text-[44px] md:text-[54px] font-bold text-[#042718] leading-[1.12] tracking-tight md:tracking-[-2px] max-w-3xl text-center">

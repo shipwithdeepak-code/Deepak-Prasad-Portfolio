@@ -100,10 +100,10 @@ export default function AiBuilds({ onNavigate }: { onNavigate: (path: string) =>
       <article className="ai-card">
         <div className="flex items-center gap-3 mb-6 flex-wrap">
           <Grade grade="fact" label="Product Jury" />
-          <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#042718]/40">
+          <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#042718]/60">
             Preview v0.1
           </span>
-          <span className="ml-auto font-mono text-[10px] uppercase tracking-[0.18em] text-[#042718]/40">
+          <span className="ml-auto font-mono text-[10px] uppercase tracking-[0.18em] text-[#042718]/60">
             Deliberating
           </span>
         </div>

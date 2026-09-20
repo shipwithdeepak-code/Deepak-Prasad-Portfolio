@@ -9,6 +9,7 @@ const VALID_EXTS = new Set([".png", ".jpg", ".jpeg", ".webp"]);
 
 const VARIANTS = [
   { suffix: "", width: 1600, quality: 82 },
+  { suffix: "-1200", width: 1200, quality: 81 },
   { suffix: "-800", width: 800, quality: 80 },
   { suffix: "-480", width: 480, quality: 78 },
 ];
