@@ -9,6 +9,7 @@ import {
 import { ALL_FLAGSHIP_CASE_STUDIES } from "../data/caseStudies";
 import { CaseStudyDetail } from "../types";
 import { OperatingPrinciples } from "./OperatingPrinciples";
+import AiBuilds from "./AiBuilds";
 
 interface HomePageProps {
   onNavigate: (path: string) => void;
@@ -1131,7 +1132,9 @@ export default function HomePage({
         </div>
 
         {/* Empty container ready for the project cards */}
-        <div id="ai-builds-grid" className="w-full"></div>
+        <div id="ai-builds-grid" className="w-full">
+          <AiBuilds />
+        </div>
 
         {/* Builder's Stack Tool Strip */}
         <div className="mt-12 flex flex-col items-center gap-3">
