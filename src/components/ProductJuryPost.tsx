@@ -12,17 +12,10 @@ const STEPS = [
 ];
 
 const AGENTS = [
-  ["UX & user advocacy", "Mental models, cognitive load, adoption friction. Finds where complexity is offloaded onto the user rather than absorbed by the system."],
-  ["Product strategy & moat", "Positioning, differentiation, opportunity cost. Whether this advances a durable advantage or matches a competitor's minor feature."],
-  ["Evidence & data quality", "Telemetry validity, sample bias, vanity metrics. Separates correlation from causal pain and demands guardrails before shipping."],
-  ["Engineering feasibility", "State complexity, latency, external API reliability, maintenance debt. Flags impossible SLAs and single points of failure."],
-  ["Business & unit economics", "Monetisation, pricing power, CAC and LTV dynamics, cannibalisation risk. Insists on a path to economic durability."],
-];
-
-const PERSONAS = [
-  ["Elena Rostova", "UX Researcher", "Carries user advocacy and evidence quality. Speaks to friction, to anxiety, and to what the research can and cannot support."],
-  ["Marcus Vance", "Product Manager", "Carries strategy, feasibility and economics. Argues sequencing, and whether value arrives before patience runs out."],
-  ["Siddharth Roy", "Design Critic", "Carries interface judgement. Hierarchy, affordance, and the gap between what a screen offers and what it appears to offer."],
+  ["UX Researcher", "Phase 1 · parallel", "Mental models, cognitive load, adoption friction. Finds where complexity is offloaded onto the user rather than absorbed by the system."],
+  ["Product Strategist", "Phase 1 · parallel", "Positioning, differentiation, opportunity cost. Whether this advances a durable advantage or matches a competitor's minor feature."],
+  ["Evidence Auditor", "Phase 2 · cross-examines", "Reads what the other two claimed and grades every statement: fact, inference, assumption or unknown. This is the agent that makes the rest trustworthy."],
+  ["Jury Decision Agent", "Phase 3 · synthesises", "Takes all three, weighs the disagreement, and returns the verdict with a confidence figure. It is forbidden from overriding a dissent just because it is outnumbered."],
 ];
 
 type Tone = "fact" | "inference" | "assumption" | "unknown";
@@ -51,7 +44,7 @@ const DOSSIER = [
 const DECISIONS = [
   ["Artifacts, not briefs", "The first version took a written brief. People wrote the brief they wished were true, and the jury dutifully critiqued a product that did not exist. A screenshot cannot flatter itself. Moving to artifact-first removed an entire class of useless review."],
   ["Asynchronous deliberation over a live chat room", "Early prototypes streamed the agents talking to each other in real time. Entertaining, and useless. Attention went on reading banter instead of evaluating the decision. A structured dossier produces something you can take into a room."],
-  ["Five agents, three voices", "Five separate opinions in a verdict is unreadable. Collapsing them into three personas kept the analytical coverage while giving the reader a panel they can actually follow."],
+  ["A DAG, not a panel", "The obvious design is five agents voting. What works better is two running in parallel, a third auditing what they said, and a fourth synthesising. Every agent also ships a typed fallback, so one failing degrades the review instead of killing it."],
   ["Preserving dissent instead of averaging it", "Most tools flatten everything into consensus. Here the disagreement stays visible, and the synthesiser is forbidden from overriding a seat's warning because the others are enthusiastic."],
 ];
 
@@ -89,9 +82,9 @@ export default function ProductJuryPost({ onNavigate }: ProductJuryPostProps) {
           </h1>
 
           <p className="font-inter text-base sm:text-lg text-[#042718]/70 mt-5 leading-relaxed">
-            Product Jury takes a product screen, runs five specialist agents across it, and returns a
-            verdict through three jury personas. Every claim is graded by the evidence behind it, and
-            the grade that matters most is the one where it declines to answer.
+            Product Jury takes a product screen, runs it through a three-stage agent pipeline, and
+            returns a verdict graded by the evidence behind it. The grade that matters most is the
+            one where it declines to answer.
           </p>
 
           <div className="mt-8 pt-6 border-t border-[#042718]/10 flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-[11px] text-[#042718]/55">
@@ -156,16 +149,17 @@ export default function ProductJuryPost({ onNavigate }: ProductJuryPostProps) {
           </P>
         </S>
 
-        <S n="03" t="Five agents, three voices">
+        <S n="03" t="Three agents, and the one that audits them">
           <P>
-            There are two layers here, and conflating them was the mistake in my first write-up. Five
-            specialist agents do the analysis. Three named personas carry it to whoever is reading.
+            This is a directed graph, not a flat panel, and that shape is the whole design. Two
+            specialists run in parallel on the same artifact. A third then reads what both of them
+            claimed and audits it. Only then does a fourth synthesise a verdict.
           </P>
           <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3">
-            {AGENTS.map(([role, body], i) => (
+            {AGENTS.map(([role, phase, body]) => (
               <div key={role} className="rounded-[20px] bg-white border border-[#042718]/8 p-5">
                 <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-[#A8711A]">
-                  Agent {String(i + 1).padStart(2, "0")}
+                  {phase}
                 </span>
                 <h3 className="font-onest text-base font-bold text-[#042718] mt-2 leading-snug">{role}</h3>
                 <p className="font-inter text-[13.5px] text-[#042718]/70 leading-relaxed mt-2">{body}</p>
@@ -173,28 +167,17 @@ export default function ProductJuryPost({ onNavigate }: ProductJuryPostProps) {
             ))}
           </div>
           <P className="mt-8">
-            Five separate voices in a verdict is unreadable, so the synthesis layer collapses them
-            into three personas, each owning a coherent point of view rather than a department. The
-            disagreement between them is real, because it inherits the disagreement underneath.
+            The auditor is the part I would build first if I started again. Two agents reasoning
+            independently will contradict each other, and without something whose only job is to
+            grade those claims against the evidence, you get two confident opinions and no way to
+            choose. The audit stage is what turns disagreement into a decision.
           </P>
-          <div className="mt-5 space-y-3">
-            {PERSONAS.map(([name, role, body]) => (
-              <div key={name} className="rounded-[18px] bg-[#FAF8F5] border border-[#042718]/8 p-5 flex flex-col sm:flex-row sm:items-start gap-4">
-                <span className="shrink-0 w-10 h-10 rounded-full bg-[#042718] text-white font-onest text-xs font-bold grid place-items-center">
-                  {name.split(" ").map((w) => w[0]).join("")}
-                </span>
-                <div>
-                  <h3 className="font-onest text-base font-bold text-[#042718] leading-snug">
-                    {name}
-                    <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-[#A8711A] ml-2.5 align-middle">
-                      {role}
-                    </span>
-                  </h3>
-                  <p className="font-inter text-[14px] text-[#042718]/70 leading-relaxed mt-1.5">{body}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+          <P>
+            The panel you read in the dossier is not a fixed cast. The Jury Decision Agent's
+            response schema includes a <code>roleTitle</code> and an <code>agentName</code> for each
+            seat, so the synthesiser names and frames the panel for the artifact in front of it. The
+            reasoning underneath is always the same three agents.
+          </P>
         </S>
 
         <S n="04" t="Every claim is graded">
@@ -255,9 +238,9 @@ export default function ProductJuryPost({ onNavigate }: ProductJuryPostProps) {
               {[
                 "Artifact ingest, multimodal inspection and scope extraction",
                 "Context confirmation against what the screen actually supports",
-                "Parallel agent analysis, five concurrent workers with divergent mandates",
-                "Round-robin cross-examination between agents",
-                "Synthesis into three personas, deterministic scoring, verdict",
+                "Phase 1 — UX Researcher and Product Strategist, in parallel",
+                "Phase 2 — Evidence Auditor grades every claim the two made",
+                "Phase 3 — Jury Decision Agent synthesises the verdict and confidence",
               ].map((step, i, arr) => (
                 <li key={step}>
                   <div className="flex gap-3.5 items-start">

@@ -112,8 +112,8 @@ export default function AiBuilds({ onNavigate }: { onNavigate: (path: string) =>
           A jury that grades its own certainty
         </h3>
         <p className="font-inter text-[14.5px] text-[#042718]/70 leading-relaxed mt-2.5 max-w-[46ch]">
-          Hand it a product screen. Five specialist agents argue through three jury personas, and
-          every claim comes back marked by the evidence behind it.
+          Hand it a product screen. Two specialists examine it in parallel, a third audits their
+          claims, and a fourth returns a verdict graded by the evidence behind it.
         </p>
 
         <ul className="flex flex-col gap-3 list-none m-0 p-0 mt-7">
