@@ -44,7 +44,7 @@ export default function Footer({}: FooterProps) {
   const [graceDone, setGraceDone] = useState(false);
   useEffect(() => {
     if (!settled) return;
-    const t = window.setTimeout(() => setGraceDone(true), 2200);
+    const t = window.setTimeout(() => setGraceDone(true), 600);
     return () => window.clearTimeout(t);
   }, [settled]);
 
@@ -179,7 +179,7 @@ export default function Footer({}: FooterProps) {
       <div
         ref={sceneRef}
         style={{ visibility: (!settled || !graceDone || isNear) ? "visible" : "hidden" }}
-        className={`absolute inset-0 z-0 pointer-events-none overflow-hidden transition-opacity duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] ${
+        className={`absolute inset-0 z-0 pointer-events-none overflow-hidden transition-opacity duration-1000 ease-[cubic-bezier(0.23,1,0.32,1)] ${
           visible ? "opacity-100" : "opacity-0"
         }`}
       >
