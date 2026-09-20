@@ -1,4 +1,5 @@
 import express from "express";
+import compression from "compression";
 import path from "path";
 import fs from "fs";
 import { createServer as createViteServer } from "vite";
@@ -86,6 +87,7 @@ async function startServer() {
   const app = express();
   const PORT = 3000;
 
+  app.use(compression());
   app.use(express.json());
 
   // -------------------------------------------------------------
@@ -297,8 +299,23 @@ CRITICAL IDENTITY & CONVERSATION RULES:
     app.use(vite.middlewares);
   } else {
     const distPath = path.join(process.cwd(), "dist");
-    app.use(express.static(distPath));
+
+    // Vite emits content-hashed filenames into /assets, so those are safe to
+    // cache forever. A new build produces a new filename.
+    app.use(
+      "/assets",
+      express.static(path.join(distPath, "assets"), {
+        immutable: true,
+        maxAge: "1y",
+      })
+    );
+
+    // Everything else in dist: revalidate, but allow a cached copy.
+    app.use(express.static(distPath, { maxAge: "1h" }));
+
+    // index.html must never be cached, or a deploy won't reach returning visitors.
     app.get("*", (_req, res) => {
+      res.setHeader("Cache-Control", "no-cache");
       res.sendFile(path.join(distPath, "index.html"));
     });
   }

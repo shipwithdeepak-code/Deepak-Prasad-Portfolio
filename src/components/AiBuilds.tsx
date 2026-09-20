@@ -190,7 +190,7 @@ export default function AiBuilds({ onNavigate }: { onNavigate: (path: string) =>
           Dīpa
         </h3>
         <p className="font-inter text-[14.5px] text-[#042718]/70 leading-relaxed mt-2.5">
-          The orb in the corner of this page. It answers questions about my work from 45 chunks of my
+          Running on this page right now. It answers questions about my work from 45 chunks of my
           own writing, cites what it used, and declines when the evidence is thin.
         </p>
 
@@ -208,7 +208,7 @@ export default function AiBuilds({ onNavigate }: { onNavigate: (path: string) =>
         <button
           type="button"
           onClick={() => window.dispatchEvent(new CustomEvent("open-copilot"))}
-          aria-label="Open Dīpa and ask about my work"
+          aria-label="Ask it something — open Dīpa"
           className="mt-auto pt-7 inline-flex items-center gap-2 font-inter text-sm font-semibold text-[#2F7A4F] hover:text-[#042718] transition-colors cursor-pointer self-start focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A8711A] focus-visible:ring-offset-2 rounded-sm"
         >
           <span className="border-b border-[#2F7A4F]/40 pb-0.5">Ask it something</span>
