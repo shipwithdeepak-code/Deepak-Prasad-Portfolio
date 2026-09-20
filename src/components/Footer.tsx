@@ -44,7 +44,7 @@ export default function Footer({}: FooterProps) {
   const [graceDone, setGraceDone] = useState(false);
   useEffect(() => {
     if (!settled) return;
-    const t = window.setTimeout(() => setGraceDone(true), 600);
+    const t = window.setTimeout(() => setGraceDone(true), 300);
     return () => window.clearTimeout(t);
   }, [settled]);
 
@@ -171,7 +171,7 @@ export default function Footer({}: FooterProps) {
     >
       {/* FIX A — permanent base layer UNDER the canvas so there is no empty state at any point */}
       <div
-        className="absolute inset-0 z-0 bg-[radial-gradient(120%_90%_at_50%_100%,#DDE6DA_0%,#EEF1EA_45%,#FAF8F5_100%)]"
+        className="absolute inset-0 z-0 bg-[radial-gradient(60%_46%_at_50%_100%,rgba(232,251,168,0.52)_0%,rgba(143,212,74,0.22)_30%,transparent_62%),radial-gradient(110%_70%_at_50%_108%,rgba(11,60,33,0.62)_0%,rgba(20,90,48,0.30)_40%,transparent_74%),linear-gradient(180deg,#F6F8F3_0%,#E9F1E6_42%,#C8DCC4_74%,#9CBE99_100%)]"
         aria-hidden="true"
       />
 
@@ -210,7 +210,7 @@ export default function Footer({}: FooterProps) {
           className={`font-onest font-bold tracking-[-0.04em] text-[clamp(3.5rem,15vw,13rem)] leading-none whitespace-nowrap transition-colors duration-300 ${
             inView
               ? "text-[#FAF8F5]/[0.42] mix-blend-overlay [text-shadow:0_1px_0_rgba(255,255,255,0.22),0_-1px_0_rgba(4,39,24,0.3)]"
-              : "text-[#042718]/[0.28]"
+              : "text-[#FAF8F5]/[0.34] [text-shadow:0_1px_0_rgba(255,255,255,0.18)]"
           }`}
         >
           Deepak Prasad

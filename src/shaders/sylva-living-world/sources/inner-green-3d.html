@@ -4285,6 +4285,7 @@ window.__seek   = v => { clock = v; drawn = null; };
 
   /* ── frame ─────────────────────────────────────────────────────────── */
   var frames = 0;
+  var sceneElapsed = 0;
   function renderFrame() {
     var dt = Math.min(clock.getDelta(), 1 / 30);
     if (!REDUCED) uTime.value += dt;
@@ -4325,7 +4326,9 @@ window.__seek   = v => { clock = v; drawn = null; };
     emitSpray(dt);
 
     renderer.render(scene, camera);
-    if (++frames >= 540 && !scanning && !sylvaSettled) {
+    ++frames;
+    sceneElapsed += dt;
+    if ((frames >= 240 || sceneElapsed >= 4) && !scanning && !sylvaSettled) {
       sylvaSettled = true;
       try {
         window.parent.postMessage({ type: 'sylva-settled' }, '*');
