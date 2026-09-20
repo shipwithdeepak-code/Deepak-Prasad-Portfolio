@@ -136,7 +136,7 @@ const CHUNKS = [
     source: "Sportstech AI Coach Case Study — Metrics",
     category: "AI Coach",
     title: "AI Coach Scale & User Growth",
-    chunk: "Deepak took the AI Coach from an ambiguous 'add AI' executive mandate to production, scaling daily active users from ~300 to ~2,000 DAU within ~3 months of launch, while lifting 30-day user workout completion rates and app engagement across 174,000+ total registered users."
+    chunk: "Deepak took the AI Coach from an ambiguous 'add AI' executive mandate to production, scaling daily active users from ~300 to 3,200+ DAU within ~3 months of launch, while lifting 30-day user workout completion rates and app engagement across 174,000+ total registered users."
   },
   {
     id: "cs2-dual-model-architecture",
@@ -356,7 +356,7 @@ const CHUNKS = [
     source: "Resume — Experience at Sportstech & Connected Fitness",
     category: "Experience",
     title: "Lead Product Manager — AI Coach & Connected Platform",
-    chunk: "At Sportstech, Deepak served as Lead Product Manager for the AI Coach and Connected Platform (Oct 2024 – May 2026), spearheading conversational AI guidance, dynamic telemetry integrations, multi-model failover (Gemini + ChatGPT fallback), and scaling DAU from 300 to 2,000+ within 3 months."
+    chunk: "At Sportstech, Deepak served as Lead Product Manager for the AI Coach and Connected Platform (Oct 2024 – May 2026), spearheading conversational AI guidance, dynamic telemetry integrations, multi-model failover (Gemini + ChatGPT fallback), and scaling DAU from 300 to 3,200+ within 3 months."
   },
   {
     id: "resume-role-b2b-saas",
