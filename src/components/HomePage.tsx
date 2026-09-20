@@ -438,7 +438,7 @@ export default function HomePage({
     hidden: {},
     visible: {
       transition: {
-        staggerChildren: shouldReduceMotion ? 0 : 0.045,
+        staggerChildren: shouldReduceMotion ? 0 : 0.03,
       },
     },
   };
@@ -603,7 +603,7 @@ export default function HomePage({
             transition={
               shouldReduceMotion
                 ? { duration: 0 }
-                : { duration: 0.6, ease: [0.23, 1, 0.32, 1], delay: 0.95 }
+                : { duration: 0.5, ease: [0.23, 1, 0.32, 1], delay: 0.42 }
             }
             className="font-inter text-[15px] md:text-lg text-[#042718]/80 leading-[1.62] md:leading-relaxed mb-8 max-w-full md:max-w-[58ch] lg:max-w-[64ch] mx-auto text-center font-normal"
           >
@@ -629,7 +629,7 @@ export default function HomePage({
             transition={
               shouldReduceMotion
                 ? { duration: 0 }
-                : { duration: 0.55, ease: [0.23, 1, 0.32, 1], delay: 1.2 }
+                : { duration: 0.5, ease: [0.23, 1, 0.32, 1], delay: 0.62 }
             }
             className="flex flex-col items-center justify-center mb-7 sm:mb-8 w-full"
           >
@@ -682,7 +682,7 @@ export default function HomePage({
               transition={
                 shouldReduceMotion
                   ? { duration: 0 }
-                  : { duration: 0.45, ease: [0.23, 1, 0.32, 1], delay: 1.4 }
+                  : { duration: 0.4, ease: [0.23, 1, 0.32, 1], delay: 0.78 }
               }
               className="font-playfair italic text-[13px] text-[#042718]/75 text-center mt-4 mx-auto max-w-md [text-shadow:0_1px_2px_rgba(255,255,255,0.95),0_0_14px_rgba(255,255,255,0.8)]"
             >
@@ -697,7 +697,7 @@ export default function HomePage({
             transition={
               shouldReduceMotion
                 ? { duration: 0 }
-                : { duration: 0.5, ease: [0.23, 1, 0.32, 1], delay: 1.6 }
+                : { duration: 0.45, ease: [0.23, 1, 0.32, 1], delay: 0.9 }
             }
             className="w-full max-w-4xl mx-auto overflow-hidden py-1 hero-marquee-container [mask-image:linear-gradient(90deg,transparent,#000_9%,#000_91%,transparent)] [-webkit-mask-image:linear-gradient(90deg,transparent,#000_9%,#000_91%,transparent)]"
           >

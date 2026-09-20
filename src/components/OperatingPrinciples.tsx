@@ -118,8 +118,6 @@ export const OperatingPrinciples: React.FC<OperatingPrinciplesProps> = ({
       className="relative overflow-x-clip min-h-0 min-[1025px]:min-h-screen flex flex-col justify-center bg-[#F7F3EA] py-[clamp(52px,7vw,96px)]"
     >
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&display=swap');
-
         .principles-pin-card {
           position: relative;
           z-index: 2;

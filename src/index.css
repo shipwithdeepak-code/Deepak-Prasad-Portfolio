@@ -1,3 +1,7 @@
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/onest";
+@import "@fontsource-variable/playfair-display";
+@import "@fontsource-variable/playfair-display/wght-italic.css";
 @import "tailwindcss";
 
 @theme {
