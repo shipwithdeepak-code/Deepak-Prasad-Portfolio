@@ -21,7 +21,11 @@ const SylvaLivingWorldScene = React.lazy(() =>
   import("@designcodeio/threeui").then((m) => ({ default: m.SylvaLivingWorldScene }))
 );
 
-export default function Footer({}: FooterProps) {
+export default function Footer({
+  onNavigate,
+  onOpenResumeModal,
+  onOpenContactModal,
+}: FooterProps) {
   const footerRef = useRef<HTMLElement>(null);
   const sceneRef = useRef<HTMLDivElement>(null);
 

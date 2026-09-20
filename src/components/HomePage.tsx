@@ -577,23 +577,30 @@ export default function HomePage({
             <span>Senior Product Manager · AI · 0→1 · B2B & B2C</span>
           </motion.div>
 
-          {/* Main Headline - Word cascade */}
+          {/* Main Headline - Word cascade with screen-reader friendly text */}
           <motion.h1
-            variants={headlineContainerVariants}
-            initial="hidden"
-            animate="visible"
-            aria-label="I'm mostly just someone who stays curious. Stubborn enough not to stop asking 'why.'"
             className="font-onest text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-[#042718] leading-[1.12] mb-5 max-w-4xl mx-auto text-center [overflow-wrap:anywhere]"
           >
-            {headlineWords.map((word) => (
-              <motion.span
-                key={word.id}
-                variants={headlineWordVariants}
-                className="inline-block mr-[0.26em]"
-              >
-                {word.content}
-              </motion.span>
-            ))}
+            <span className="sr-only">
+              I'm mostly just someone who stays curious. Stubborn enough not to stop asking 'why.'
+            </span>
+            <motion.span
+              aria-hidden="true"
+              variants={headlineContainerVariants}
+              initial="hidden"
+              animate="visible"
+              className="inline"
+            >
+              {headlineWords.map((word) => (
+                <motion.span
+                  key={word.id}
+                  variants={headlineWordVariants}
+                  className="inline-block mr-[0.26em]"
+                >
+                  {word.content}
+                </motion.span>
+              ))}
+            </motion.span>
           </motion.h1>
 
           {/* Supporting Copy - Exact copy, max-w-[64ch], no em-dashes */}
@@ -1035,12 +1042,18 @@ export default function HomePage({
 
             return (
               <div key={item.slug} className="work-deck-slot">
-                <article
-                  onClick={() => {
+                <a
+                  href={`/work/${item.slug}`}
+                  onClick={(e) => {
+                    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) {
+                      return;
+                    }
+                    e.preventDefault();
                     if (targetStudy) onSelectCaseStudy(targetStudy);
                     onNavigate(`/work/${item.slug}`);
                   }}
-                  className="work-deck-card cursor-pointer group shadow-[0_24px_64px_rgba(4,39,24,0.12)]"
+                  className="work-deck-card block text-inherit no-underline cursor-pointer group shadow-[0_24px_64px_rgba(4,39,24,0.12)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#188E39] focus-visible:ring-offset-4"
+                  aria-label={`Read case study: ${item.title}`}
                 >
                   {/* Full-bleed background image behind the whole card */}
                   <div className="work-deck-shot">
@@ -1121,7 +1134,7 @@ export default function HomePage({
                       </span>
                     </div>
                   </div>
-                </article>
+                </a>
               </div>
             );
           })}

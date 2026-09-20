@@ -144,10 +144,11 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
                 <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block font-inter text-xs font-medium text-[#042718]/70 mb-1.5">
+                      <label htmlFor="contact-name-input" className="block font-inter text-xs font-medium text-[#042718]/70 mb-1.5">
                         Your Name *
                       </label>
                       <input
+                        id="contact-name-input"
                         type="text"
                         required
                         value={formData.name}
@@ -158,10 +159,11 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
                     </div>
 
                     <div>
-                      <label className="block font-inter text-xs font-medium text-[#042718]/70 mb-1.5">
+                      <label htmlFor="contact-email-input" className="block font-inter text-xs font-medium text-[#042718]/70 mb-1.5">
                         Your Email *
                       </label>
                       <input
+                        id="contact-email-input"
                         type="email"
                         required
                         value={formData.email}
@@ -173,10 +175,11 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
                   </div>
 
                   <div>
-                    <label className="block font-inter text-xs font-medium text-[#042718]/70 mb-1.5">
+                    <label htmlFor="contact-subject-input" className="block font-inter text-xs font-medium text-[#042718]/70 mb-1.5">
                       Subject
                     </label>
                     <input
+                      id="contact-subject-input"
                       type="text"
                       value={formData.subject}
                       onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
@@ -186,10 +189,11 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
                   </div>
 
                   <div>
-                    <label className="block font-inter text-xs font-medium text-[#042718]/70 mb-1.5">
+                    <label htmlFor="contact-message-input" className="block font-inter text-xs font-medium text-[#042718]/70 mb-1.5">
                       Message *
                     </label>
                     <textarea
+                      id="contact-message-input"
                       required
                       rows={4}
                       value={formData.message}

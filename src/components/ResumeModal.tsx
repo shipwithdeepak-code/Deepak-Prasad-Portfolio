@@ -249,10 +249,11 @@ export default function ResumeModal({
             </div>
 
             {/* Direct Download Button */}
-            <button
-              type="button"
+            <a
+              href="/Deepak_Prasad_Senior_Product_Manager_Resume.pdf"
+              download="Deepak_Prasad_Senior_Product_Manager_Resume.pdf"
               onClick={handleDownload}
-              className="px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-[#188E39] hover:bg-[#188E39]/90 text-white font-inter text-xs font-semibold transition-colors cursor-pointer flex items-center gap-1 sm:gap-1.5 shadow-2xs"
+              className="px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-[#188E39] hover:bg-[#188E39]/90 text-white font-inter text-xs font-semibold transition-colors cursor-pointer flex items-center gap-1 sm:gap-1.5 shadow-2xs no-underline"
               title="Download Resume PDF"
             >
               <Download size={13} />
@@ -263,7 +264,7 @@ export default function ResumeModal({
                   ? "Downloaded!"
                   : "Download PDF"}
               </span>
-            </button>
+            </a>
 
             <a
               href={CALENDLY_URL}

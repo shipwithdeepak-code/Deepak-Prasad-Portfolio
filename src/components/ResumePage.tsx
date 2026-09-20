@@ -64,15 +64,15 @@ export default function ResumePage({
             </p>
 
             <div className="flex flex-wrap items-center gap-3">
-              <button
-                type="button"
+              <a
+                href={resumePdfPath}
+                download="Deepak_Prasad_Senior_Product_Manager_Resume.pdf"
                 id="resume-page-direct-download"
-                onClick={handleDownload}
-                className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full bg-[#188E39] hover:bg-[#15803D] text-white font-inter text-sm font-semibold transition-colors duration-200 shadow cursor-pointer"
+                className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full bg-[#188E39] hover:bg-[#15803D] text-white font-inter text-sm font-semibold transition-colors duration-200 shadow cursor-pointer no-underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#042718]"
               >
                 <FileDown size={16} />
                 <span>Download resume (PDF)</span>
-              </button>
+              </a>
 
               {onOpenResumeModal && (
                 <button

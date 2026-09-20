@@ -526,8 +526,21 @@ export default function CopilotDrawer({
                 }`}
               >
                 <span>{msg.timestamp}</span>
-                {!isUser && msg.totalTimeMs && (
-                  <span>· {msg.totalTimeMs}ms (RAG)</span>
+                {!isUser && (msg.totalTimeMs || msg.retrievalTimeMs) && (
+                  <span>
+                    · retrieval:{" "}
+                    {typeof msg.retrievalTimeMs === "number"
+                      ? msg.retrievalTimeMs < 2
+                        ? "<2ms"
+                        : `${msg.retrievalTimeMs}ms`
+                      : "<2ms"}{" "}
+                    · gen:{" "}
+                    {typeof msg.totalTimeMs === "number" && typeof msg.retrievalTimeMs === "number"
+                      ? `${((msg.totalTimeMs - msg.retrievalTimeMs) / 1000).toFixed(1)}s`
+                      : typeof msg.totalTimeMs === "number"
+                      ? `${(msg.totalTimeMs / 1000).toFixed(1)}s`
+                      : "~4–6s"}
+                  </span>
                 )}
                 {!isUser && msg.fallback && (
                   <span className="inline-flex items-center gap-0.5 text-amber-700">

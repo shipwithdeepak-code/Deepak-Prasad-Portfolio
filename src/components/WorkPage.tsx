@@ -246,13 +246,19 @@ export default function WorkPage({
             const primaryTag = getPrimaryTag(study);
 
             return (
-              <article
+              <a
                 key={study.id}
-                onClick={() => {
+                href={`/work/${study.slug}`}
+                onClick={(e) => {
+                  if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) {
+                    return;
+                  }
+                  e.preventDefault();
                   onSelectCaseStudy(study);
                   onNavigate(`/work/${study.slug}`);
                 }}
-                className="work-icard"
+                className="work-icard focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#188E39] focus-visible:ring-offset-2"
+                aria-label={`Read case study: ${cardData.h3}`}
               >
                 {/* Left Image (flex: 0 0 46%) */}
                 <div className="work-icard-image">
@@ -301,7 +307,7 @@ export default function WorkPage({
                     </div>
                   </div>
                 </div>
-              </article>
+              </a>
             );
           })}
         </div>

@@ -40,6 +40,43 @@ export const RESHAMANDI_CASE_STUDY: CaseStudyDetail = {
     { label: 'Bidding Value Uplift', value: '>35%', detail: 'Demonstrated in pilot auction discovery' },
     { label: 'Payout Reliability', value: '99.9%', detail: 'Zero un-reconciled escrow losses' },
   ],
+  tradeOff: {
+    considered:
+      'Replacing physical mandi floor staff with a self-serve mobile app for farmers to upload cocoon photos, submit bids, and request payouts directly on their smartphones.',
+    chose:
+      'I chose an "assisted-digitization" model: keeping trained ReshaMandi personnel on the floor with dedicated, high-contrast, oversized-tap touch terminals wired directly to IoT weighbridges and instant banking APIs, notifying farmers via simple vernacular SMS.',
+    why:
+      'At 4:30 AM on a noisy, crowded mandi floor with shouting auctioneers, farmers are carrying heavy perishable cocoon crates and managing high-stakes transactions. Forcing hurried rural producers to install apps, navigate forms, and trust a phone screen on poor connectivity would have caused immediate adoption failure.',
+    gaveUp:
+      'We gave up the pure "zero-marginal-cost" software scalability that hands-off consumer platforms boast; the model required deploying and training staff at every trading hub.',
+    outcome:
+      'Built immediate operational trust, scaling monthly disbursement volume from ₹10–15 Cr to ₹20–25 Cr across 80,000+ farmers with 99.9% payout reliability and zero unreconciled escrow losses.',
+  },
+  artifacts: {
+    title: 'Mandi Floor PRD & Automated Gatepass Specification',
+    subtitle: 'Production specification bridging physical weighbridge telemetry with escrow banking APIs',
+    type: 'spec',
+    items: [
+      {
+        label: 'Weighbridge Load-Cell Telemetry Contract',
+        value: 'Direct Serial / IoT Ingestion',
+        desc: 'PRD specification mandating hardware-level tare and net weight lock to prevent manual operator tampering.',
+        code: '{ lot_id: "LOT-84920", tare_kg: 14.2, gross_kg: 168.4, net_kg: 154.2, timestamp_epoch: 1682910400 }',
+      },
+      {
+        label: 'Automated Escrow Disbursement Pipeline',
+        value: 'Instant UPI / IMPS Trigger',
+        desc: 'Settlement triggered upon Center Manager 1-tap validation; automated retry queue guarantees sub-minute settlement before the farmer exits the gate.',
+        code: 'POST /v1/escrow/disburse -> { farmer_vpa, lot_id, agreed_rate_per_kg: 485, net_payout_inr: 74787, gatepass_status: "CLEARED" }',
+      },
+      {
+        label: 'Computer Vision Quality Scoring Schema',
+        value: 'Objective Defect Grading',
+        desc: 'Replaced arbitrary broker thumb-checks with calibrated shell ratio, moisture percentage, and stained cocoon classification.',
+        code: '{ shell_ratio_pct: 18.6, stained_defect_pct: 1.2, recommended_grade: "GRADE_A", price_band_inr: [475, 495] }',
+      },
+    ],
+  },
   sections: [
     {
       id: 'context',
@@ -87,8 +124,8 @@ export const RESHAMANDI_CASE_STUDY: CaseStudyDetail = {
       title: 'My Role: Product Ownership Across the Value Chain',
       subtitle: 'Designing connected systems from ground research to deployment',
       content: [
-        'As Product Manager for Core Marketplace and Workflows, I owned product discovery, system specifications (PRDs), cross-functional execution, and operational deployment across 5 value-chain tiers.',
-        'Working alongside engineering, field operations, and domain experts, I translated messy physical bottlenecks into resilient digital systems spanning intake, grading, auctioning, weighing, escrow release, and downstream logistics.',
+        'As Product Manager for Core Marketplace and Workflows, I personally owned product discovery, system specifications (PRDs), floor terminal UX, weighbridge IoT data contracts, and escrow settlement release triggers.',
+        'To make these systems survive the physical reality of rural trading yards, I partnered closely with cross-functional teams: our 12-person engineering pod built the services, field operations staffed the physical centers, warehouse managers handled transport logistics, and executive finance managed banking credit lines. I served as the single orchestrator aligning code to real-world mandi constraints.',
       ],
       highlights: [
         {
@@ -336,6 +373,42 @@ export const AI_COACH_CASE_STUDY: CaseStudyDetail = {
     { label: 'Fallback LLM', value: 'ChatGPT', detail: 'High-availability failover architecture' },
     { label: 'Core Principle', value: 'Safety First', detail: 'Deterministic guardrails over open generation' },
   ],
+  tradeOff: {
+    considered:
+      'An open-ended generative chat assistant that would freely converse on injuries, diet prescriptions, and unrestricted training advice without programmatic guardrails.',
+    chose:
+      'I chose to enforce strict deterministic safety failovers: restricting recommendations exclusively to certified platform workouts, requiring clarifying constraint taps, and immediately bypassing LLM generation for any query touching acute pain, eating disorders, or clinical rehabilitation.',
+    why:
+      'Generative LLMs are prone to sycophancy and plausible medical hallucinations. In fitness and sports medicine, bad advice causes muscle tears, cardiac distress, or legal liability. Our core product principle was "Safety before engagement."',
+    gaveUp:
+      'We gave up open-ended conversational flair, unconstrained banter, and longer conversational session times that might have looked flattering on vanity engagement dashboards.',
+    outcome:
+      'Maintained 0 safety incidents or medical escalations while scaling organic adoption from ~300 to 3,200+ DAU in ~3 months, establishing high user trust across the community.',
+  },
+  artifacts: {
+    title: 'Safety Guardrail Decision Matrix & System Prompt Contract',
+    subtitle: 'Deterministic triage schemas and runtime safety interceptors for consumer health',
+    type: 'schema',
+    items: [
+      {
+        label: 'Deterministic Medical Interceptor Schema',
+        value: 'Zero-LLM Hard Failover',
+        desc: 'Keywords matching physical trauma, chest pain, or clinical conditions bypass inference entirely to return verified emergency advisories.',
+        code: 'IF query MATCHES (chest_pain | acute_joint | eating_disorder) -> RETURN { action: "HARD_HALT", disclaimer_code: "MED_EMERGENCY_V2", hotlines: [...] }',
+      },
+      {
+        label: 'Structured Recommendation Payload',
+        value: 'Validated Deep-Link Catalog JSON',
+        desc: 'Model outputs strict JSON schema mapping directly to verified platform workout IDs, preventing hallucinated exercises.',
+        code: '{ workout_id: "wk_hiit_20m_04", equipment: ["dumbbells"], duration_min: 20, intensity: "moderate", coach_rationale: "Matches user 20-min dumbbell preference" }',
+      },
+      {
+        label: 'Telemetry Feedback Hook',
+        value: 'Thumbs-Up / Down + Correction Loop',
+        desc: 'Every response embeds telemetry tokens linking user rating, latency, and prompt version to weekly tuning triage.',
+      },
+    ],
+  },
   sections: [
     {
       id: 'concept',
@@ -364,7 +437,7 @@ export const AI_COACH_CASE_STUDY: CaseStudyDetail = {
       title: 'V1 Scope: What the AI Coach Should and Should Not Do',
       subtitle: 'Disciplined use-case scoping for version 1.0',
       content: [
-        'To ensure high reliability, we explicitly bounded the V1 capabilities into five core domains:',
+        'To ensure high reliability, I explicitly bounded the V1 capabilities into five core domains while working in close alignment with our content and coaching leads:',
         '1. Workout Recommendations: Tailored routines based on user equipment, available time, and fitness level.',
         '2. Multi-Week Programs: Guiding users toward structured training paths matching their goals.',
         '3. Nutrition & Hydration Guidance: General dietary best practices aligned with training intensity.',
@@ -388,7 +461,7 @@ export const AI_COACH_CASE_STUDY: CaseStudyDetail = {
       title: 'Safety Guardrails: Safety Before Engagement',
       subtitle: 'Six product principles governing consumer health AI',
       content: [
-        'In a fitness and wellness context, a generative model dispensing bad advice can cause physical injury or severe medical harm. We instituted six foundational product safety principles:',
+        'In a fitness and wellness context, a generative model dispensing bad advice can cause physical injury or severe medical harm. I instituted six foundational product safety principles that guided engineering, coaching, and design:',
       ],
       diagramType: 'safety',
       highlights: [
@@ -424,9 +497,9 @@ export const AI_COACH_CASE_STUDY: CaseStudyDetail = {
       title: 'Model Strategy & Provider Partnership',
       subtitle: 'Gemini primary with ChatGPT fallback for cost, speed, and resilience',
       content: [
-        'Partnering closely with engineering, we evaluated model providers across inference latency, token cost, prompt-adherence, and availability.',
-        'We selected Google Gemini as the primary inference engine due to its superior speed and cost profile on structured prompts, with OpenAI ChatGPT configured as an automated fallback to ensure 99.9% consumer uptime.',
-        'Engineering and technical teams partnered closely on provider APIs, prompt caching, token budgets, and edge failover logic.',
+        'I led the provider evaluation alongside our engineering lead, benchmarking models across inference latency, token cost, prompt-adherence, and availability.',
+        'I selected Google Gemini as the primary inference engine due to its superior speed and cost profile on structured prompts, with OpenAI ChatGPT configured as an automated fallback to ensure 99.9% consumer uptime.',
+        'Our engineering team implemented the provider APIs, prompt caching, token budgets, and edge failover logic according to this specification.',
       ],
       highlights: [
         {
@@ -445,7 +518,7 @@ export const AI_COACH_CASE_STUDY: CaseStudyDetail = {
       title: 'Testing, Beta & Honest Hallucination Management',
       subtitle: 'Internal dogfooding → 100-user closed beta → production rollout',
       content: [
-        'We progressed through disciplined rollout stages: internal team testing, followed by a closed beta with 100 highly active community members, followed by tiered production rollout.',
+        'I structured a three-phase rollout: internal team dogfooding, followed by a closed beta with 100 highly active community members, followed by tiered production rollout.',
         'Hallucinations occurred during early testing, such as inventing workout durations or assuming equipment the user did not own. Rather than concealing this reality, we implemented structured post-launch enhancements:',
         '• Mandatory clarifying prompts before generating complex suggestions.',
         '• Voice input support for post-workout hands-free queries.',
@@ -471,7 +544,7 @@ export const AI_COACH_CASE_STUDY: CaseStudyDetail = {
       subtitle: 'Scaling from ~300 to 3,200+ DAU within roughly 3 months',
       content: [
         'Within approximately 3 months of launch, daily active usage of the AI Coach scaled from ~300 DAU to 3,200+ DAU, becoming a primary discovery surface for workouts and nutrition guides.',
-        'Importantly, we maintain disciplined attribution: while overall platform engagement and subscriber numbers grew during this period, we do not make unsubstantiated claims that the AI Coach alone drove company-wide subscription revenue.',
+        'Importantly, I maintain disciplined attribution: while overall platform engagement and subscriber numbers grew during this period, I do not make unsubstantiated claims that the AI Coach alone drove company-wide subscription revenue. My role was defining the boundaries, safety, and product architecture; our engineering team brought the real-time failovers to life.',
         'The primary achievement was transforming an ambiguous AI novelty into a dependable, safe, and heavily utilized product utility.',
       ],
       highlights: [
@@ -512,15 +585,27 @@ export const SUBSCRIPTION_CASE_STUDY: CaseStudyDetail = {
   tags: ['Growth', 'Monetization', 'Subscription', 'B2C'],
   proofPoints: [
     '12,401 paid subscribers',
-    '€659K FY2025 subscription revenue',
+    '€659K FY25 subscription revenue',
     '81.9% YoY subscriber growth',
   ],
   keyStats: [
     { label: 'Paying Subscribers', value: '12,401', detail: 'Active digital subscribers in FY2025' },
-    { label: 'Subscription Revenue', value: '€659K', detail: 'FY2025 platform subscription revenue' },
+    { label: 'Subscription Revenue', value: '€659K', detail: 'FY25 platform subscription revenue' },
     { label: 'YoY Growth', value: '81.9%', detail: 'Annual subscriber expansion' },
     { label: 'Yearly Plan Retention', value: '96.8%', detail: 'Annual cohort commitment' },
   ],
+  tradeOff: {
+    considered:
+      'A hard registration paywall locking the entire application upon first download, or immediately walling all existing video workouts behind a monthly charge.',
+    chose:
+      'I chose a progressive value-realization funnel: keeping core hardware pairing free, offering a transparent 7-day trial with upfront renewal countdowns, and locking advanced personalized scheduling and streak retention systems rather than passive video files.',
+    why:
+      'Hardware customers who spent hundreds of euros on connected fitness equipment felt entitled to free companion software. Hard paywalls triggered fierce customer backlash, negative App Store reviews, and hardware return threats. European consumers also demand strict billing transparency under EU regulations.',
+    gaveUp:
+      'We gave up the artificial short-term conversion spike that aggressive hard paywalls produce in week one (which is usually wiped out by 30-day churn).',
+    outcome:
+      'Grew active paying subscribers from zero to 12,401 with €659K FY25 revenue, an 81.9% YoY subscriber growth, and 96.8% yearly-plan retention.',
+  },
   sections: [
     {
       id: 'starting-point',
@@ -671,6 +756,18 @@ export const PERFORMANCE_SCORE_CASE_STUDY: CaseStudyDetail = {
     { label: 'Score Paradigm', value: '0–100 Reliability', detail: 'Athletic Reliability Metric' },
     { label: 'Data Architecture', value: 'Dual-Write / Read', detail: 'Zero-downtime database migration path' },
   ],
+  tradeOff: {
+    considered:
+      'Gating the Performance Score exclusively to owners of expensive connected hardware (Smart Gym or sPulse sensors), and running a single big-bang database migration to replace legacy workout tables.',
+    chose:
+      'I chose a three-tier hardware-agnostic telemetry architecture (Tier 1 functions with zero hardware using RPE and duration) and a four-phase dual-write / shadow-validation migration roadmap.',
+    why:
+      'Over 80% of the mobile user base did not own hardware; locking the flagship score behind equipment would have alienated the vast majority of our community. A big-bang database overhaul carried unacceptable risk of live session sync failures across thousands of concurrent workouts.',
+    gaveUp:
+      'We gave up a simpler, single-path algorithm and faster engineering delivery, having to build 3 parallel scoring pipelines and support dual data ingestion contracts.',
+    outcome:
+      'Delivered a comprehensive, development-ready cross-platform PRD aligned across 5 engineering surfaces (iOS, Android, Display, Smart Gym, Firmware) with zero data-loss risk.',
+  },
   sections: [
     {
       id: 'the-problem',
@@ -700,7 +797,7 @@ export const PERFORMANCE_SCORE_CASE_STUDY: CaseStudyDetail = {
       title: 'The Product Vision: One Score, One Activity Feed, One Ecosystem',
       subtitle: 'Introducing the 0–100 Athletic Reliability Metric',
       content: [
-        'We conceptualized the Performance Score: a normalized 0–100 index measuring Athletic Reliability. Rather than rewarding reckless over-exertion, the score weighed three balanced pillars: Consistency, Strain Management, and Recovery Adherence.',
+        'I designed and specified the Performance Score: a normalized 0–100 index measuring Athletic Reliability. Working closely with sports scientists and engineering leads, I established the scoring formula weighing three balanced pillars: Consistency, Strain Management, and Recovery Adherence.',
         'The score anchored a redesigned "My Activity" ecosystem spanning mobile and equipment touchscreens:',
         '• Longitudinal Trends & Weekly Comparisons.',
         '• Streak Health & Consistency Tracking.',
@@ -724,7 +821,7 @@ export const PERFORMANCE_SCORE_CASE_STUDY: CaseStudyDetail = {
       title: 'Technical Foundation: The Dual-Write Migration Strategy',
       subtitle: 'Fixing underlying data fragmentation before launching front-end experiences',
       content: [
-        'A user-facing metric is only as credible as the data pipeline underneath. The PRD outlined a phased data migration strategy to unify fragmented backend systems without breaking active customer sessions:',
+        'A user-facing metric is only as credible as the data pipeline underneath. In the PRD, I authored a phased data migration strategy alongside our backend architect to unify fragmented backend systems without breaking active customer sessions:',
       ],
       diagramType: 'architecture',
       workflowSteps: [
@@ -809,6 +906,18 @@ export const AI_LOCALIZATION_CASE_STUDY: CaseStudyDetail = {
     { label: 'Production Window', value: '~3 Weeks', detail: 'Turnaround from source video to live catalog' },
     { label: 'Production Velocity', value: '~10× Faster', detail: 'Compared to traditional studio filming benchmarks' },
   ],
+  tradeOff: {
+    considered:
+      'A fully automated, zero-touch dubbing pipeline that pushed AI-translated videos directly to the mobile app without human intervention, or sticking with traditional European studio filming.',
+    chose:
+      'I chose a hybrid operating model: leveraging generative voice cloning (ElevenLabs) and lip-sync (HeyGen), but enforcing a mandatory 15-minute native-speaker human review gate and building a 500+ fitness cue translation glossary.',
+    why:
+      'Fitness instruction relies on nuanced colloquial encouragement and strict anatomical cues. Machine translations regularly generated comical, awkward, or physiologically unsafe instructions ("break your knees" instead of "soft bend in the knees"). Traditional studio filming was too slow (3–4 months) and too expensive.',
+    gaveUp:
+      'We gave up the illusion of instantaneous zero-cost software publishing; every video required scheduling human reviewers.',
+    outcome:
+      'Successfully localized 200+ high-production videos across Italian, French, and Spanish in ~3 weeks (~10× faster than studio benchmarks) with 0 brand reputation or translation complaints.',
+  },
   sections: [
     {
       id: 'the-challenge',
@@ -818,7 +927,7 @@ export const AI_LOCALIZATION_CASE_STUDY: CaseStudyDetail = {
       content: [
         'To drive European subscriber acquisition, the platform needed native-language workout content for Italy, France, and Spain. However, traditional studio production was cost-prohibitive and painfully slow.',
         'Producing just 20 workout videos in a single foreign language historically required 3 to 4 months of studio time: casting native-speaking fitness trainers, booking European studio space, filming, editing, color grading, and dubbing.',
-        'To localize a 200+ video library across three languages, traditional production would have cost hundreds of thousands of euros and taken over a year. We needed an AI-assisted operating model.',
+        'To localize a 200+ video library across three languages, traditional production would have cost hundreds of thousands of euros and taken over a year. I was tasked with designing an AI-assisted operating model that could deliver equivalent quality in a fraction of the time.',
       ],
       highlights: [
         {
@@ -837,7 +946,7 @@ export const AI_LOCALIZATION_CASE_STUDY: CaseStudyDetail = {
       title: 'Tool Evaluation & Model Selection Dimensions',
       subtitle: 'Rigorous benchmarking of HeyGen, ElevenLabs, and custom dubbing pipelines',
       content: [
-        'We benchmarked leading generative video and voice synthesis technologies across six objective product dimensions:',
+        'I benchmarked leading generative video and voice synthesis technologies across six objective product dimensions alongside our production team:',
         '• Lip-Sync Naturalness: Did mouth movements accurately match translated phonemes without uncanny-valley distortions?',
         '• Voice Timbre & Trainer Authenticity: Did the synthetic voice preserve the trainer’s original energetic motivational cadence?',
         '• Idiomatic Language Quality: Did the translation sound like natural gym coaching rather than robotic literal translations?',
@@ -896,7 +1005,7 @@ export const AI_LOCALIZATION_CASE_STUDY: CaseStudyDetail = {
       subtitle: 'Why pure automation fails in high-energy fitness instruction',
       content: [
         'Fitness coaching relies heavily on colloquial idioms, motivational cadence, and exact anatomical cues (e.g., "engage your core", "hinge at the hips"). Direct machine translations frequently botched these phrases with comical or confusing results.',
-        'We built a strict human-in-the-loop protocol: native-speaking fitness reviewers conducted a fast 15-minute verification pass per video, correcting script anomalies and ensuring the synthetic trainer sounded authentic and motivating.',
+        'I built a strict human-in-the-loop governance protocol: native-speaking fitness reviewers conducted a fast 15-minute verification pass per video, correcting script anomalies and ensuring the synthetic trainer sounded authentic and motivating.',
       ],
       highlights: [
         {
@@ -924,7 +1033,7 @@ export const AI_LOCALIZATION_CASE_STUDY: CaseStudyDetail = {
       highlights: [
         {
           title: 'Grounded Attribution',
-          desc: 'We do not claim localization alone generated company revenue; the verified outcome is an order-of-magnitude increase in operational velocity.',
+          desc: 'I do not claim localization alone generated company revenue; the verified outcome is an order-of-magnitude increase in operational velocity.',
         },
         {
           title: 'Repeatable Playbook',
@@ -1147,13 +1256,13 @@ export const BEHIND_COPILOT_CASE_STUDY: CaseStudyDetail = {
   number: '06',
   title: 'Behind the AI Copilot: Transparent In-Memory RAG',
   subtitle:
-    'Why vector databases are often premature optimization: Building a zero-latency, 100% grounded portfolio assistant with Gemini Flash Lite, build-time embeddings, and confidence gating.',
+    'Why vector databases are often premature optimization: Building an ultra-fast retrieval, 100% grounded portfolio assistant with Gemini Flash Lite, build-time embeddings, and confidence gating.',
   description:
     'An architectural deep dive into why RAG beats fine-tuning for domain portfolios, why in-memory cosine beats external vector databases at this scale, semantic chunking, and safety-first confidence gating.',
   thesis:
     'Architecture before infrastructure: For sub-10,000 document scale, an in-memory cosine index outperforms vector databases in latency, deterministic accuracy, zero cost, and zero operational surface area.',
   centralQuestion:
-    'How do you build a domain-specific portfolio copilot with zero hallucination risk, verifiable citation provenance, and sub-second end-to-end response times?',
+    'How do you build a domain-specific portfolio copilot with zero hallucination risk, verifiable citation provenance, and honest latency (retrieval <2 ms, generation ~4–6 s)?',
   productPhilosophy:
     'Grounding over guessing. When an AI does not know, the most trustworthy product response is not a plausible hallucination. It is an honest, immediate escalation to human connection.',
   category: 'Applied AI & Systems Architecture',
@@ -1161,17 +1270,29 @@ export const BEHIND_COPILOT_CASE_STUDY: CaseStudyDetail = {
   timeline: '2025',
   tags: ['Applied AI', 'RAG', 'Gemini', 'Zero Hallucination', 'Systems Design'],
   proofPoints: [
-    '<2ms retrieval latency',
+    'Retrieval <2ms · Gen ~4–6s',
     '0 external DB dependencies',
     '100% citation grounding',
     '95% golden set accuracy (19/20)',
   ],
   keyStats: [
-    { label: 'Retrieval Latency', value: '<2ms', detail: 'In-memory cosine calculation across 512-dim vectors' },
+    { label: 'Retrieval Latency', value: '<2ms', detail: 'In-memory cosine calculation (generation takes ~4–6s)' },
     { label: 'Vector DB Cost', value: '$0 / mo', detail: 'Zero cloud database or cluster maintenance' },
     { label: 'Grounding Precision', value: '100%', detail: 'Every generation mapped to verified source chunks' },
     { label: 'Golden Benchmark', value: '19/20', detail: '95% pass rate with 0% hallucination rate' },
   ],
+  tradeOff: {
+    considered:
+      'Spinning up a managed external vector database (e.g. Pinecone, Weaviate, Milvus) and using a large frontier model with unconstrained chat generation.',
+    chose:
+      'I chose an in-memory cosine index over build-time 512-dim embeddings paired with Gemini Flash Lite and strict confidence thresholding (<0.70 similarity prompts honest fallback rather than guessing).',
+    why:
+      'For a domain portfolio corpus under 10,000 document chunks, network hops to a remote vector database introduce 40–120ms of unnecessary network latency, monthly SaaS costs, and another operational failure point. In-memory cosine search across typed Float32 arrays runs in under 2 milliseconds directly in server process memory.',
+    gaveUp:
+      'We gave up dynamic live document ingestion from external websites (updates are baked at build-time via deterministic JSON).',
+    outcome:
+      'Achieved 100% citation grounding, 0% hallucination rate across our 20-question golden test suite, $0/month vector infrastructure bill, and sub-2ms retrieval performance.',
+  },
   sections: [
     {
       id: 'rag-vs-finetuning',

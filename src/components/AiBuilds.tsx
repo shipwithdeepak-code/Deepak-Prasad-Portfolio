@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Github } from "lucide-react";
 
 /**
  * Fills the existing #ai-builds-grid scaffold in HomePage.
@@ -164,6 +164,16 @@ export default function AiBuilds({ onNavigate }: { onNavigate: (path: string) =>
           >
             <span>Read how I built it</span>
             <ArrowRight size={16} />
+          </a>
+          <a
+            href="https://github.com/shipwithdeepak-code/product-jury"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 h-[47px] px-5 rounded-[100px] border border-[#042718]/14 text-[#042718]/70 hover:text-[#042718] hover:bg-[#042718]/5 font-inter text-sm font-semibold transition-colors duration-200"
+            title="View Product Jury source on GitHub"
+          >
+            <Github size={15} />
+            <span>GitHub ↗</span>
           </a>
         </div>
       </article>

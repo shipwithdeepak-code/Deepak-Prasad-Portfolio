@@ -93,6 +93,25 @@ export default function ProductJuryPost({ onNavigate }: ProductJuryPostProps) {
             <span>Gemini Pro &amp; Flash</span>
             <span className="text-[#042718]/25">/</span>
             <span>Structured schemas, TypeScript</span>
+            <span className="text-[#042718]/25">/</span>
+            <a
+              href="https://github.com/shipwithdeepak-code/product-jury"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-[#042718] hover:text-[#188E39] underline underline-offset-2 transition-colors"
+            >
+              <span>GitHub Repository</span>
+              <ArrowUpRight size={11} />
+            </a>
+            <span className="text-[#042718]/25">/</span>
+            <a
+              href="https://product-jury.ai.studio/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-[#042718] hover:text-[#188E39] underline underline-offset-2 transition-colors"
+            >
+              <span>Built by Deepak Prasad ↗</span>
+            </a>
           </div>
         </div>
       </header>
@@ -331,7 +350,16 @@ export default function ProductJuryPost({ onNavigate }: ProductJuryPostProps) {
               className="inline-flex items-center gap-2.5 h-[47px] px-6 rounded-[100px] bg-white text-[#042718] hover:bg-[#FAFDFB] font-inter text-sm font-semibold transition-colors duration-200"
             >
               <span className="w-[7px] h-[7px] rounded-full bg-[#A8711A] shrink-0" />
-              <span>Try Product Jury</span>
+              <span>Try Product Jury ↗</span>
+              <ArrowUpRight size={16} />
+            </a>
+            <a
+              href="https://github.com/shipwithdeepak-code/product-jury"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2.5 h-[47px] px-6 rounded-[100px] border border-white/25 text-white hover:bg-white/10 font-inter text-sm font-semibold transition-colors duration-200"
+            >
+              <span>GitHub Repo ↗</span>
               <ArrowUpRight size={16} />
             </a>
             <button

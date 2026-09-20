@@ -53,6 +53,19 @@ export interface CaseStudyDetail {
   url?: string;
   label?: string;
   keyStats: CaseStudyStat[];
+  tradeOff?: {
+    considered: string;
+    chose: string;
+    why: string;
+    gaveUp: string;
+    outcome: string;
+  };
+  artifacts?: {
+    title: string;
+    subtitle?: string;
+    type: 'spec' | 'schema' | 'telemetry' | 'decision';
+    items: { label: string; value: string; desc?: string; code?: string }[];
+  };
   sections: CaseStudySection[];
 }
 

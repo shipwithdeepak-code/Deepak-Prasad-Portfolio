@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { ArrowUpRight, FileText } from "lucide-react";
+import React, { useState, useEffect, useRef } from "react";
+import { ArrowUpRight, FileText, Menu, X } from "lucide-react";
 import { CALENDLY_URL } from "../utils/calendly";
 
 interface NavigationProps {
@@ -16,6 +16,40 @@ export default function Navigation({
 }: NavigationProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const navContainerRef = useRef<HTMLDivElement>(null);
+
+  // Close mobile menu on path changes
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [currentPath]);
+
+  // Close mobile menu on click outside or escape key
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        navContainerRef.current &&
+        !navContainerRef.current.contains(event.target as Node)
+      ) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    if (isMobileMenuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener("keydown", handleKeyDown);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isMobileMenuOpen]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -150,8 +184,8 @@ export default function Navigation({
             })}
           </nav>
 
-          {/* Action CTAs: Résumé and Let's Talk on the right */}
-          <div className="flex items-center gap-2.5 sm:gap-3">
+          {/* Action CTAs: Résumé and Let's Talk on the right, plus Mobile Menu Toggle on small screens */}
+          <div className="flex items-center gap-2 sm:gap-3">
             {/* Résumé Button */}
             <button
               type="button"
@@ -177,7 +211,7 @@ export default function Navigation({
               target="_blank"
               rel="noopener"
               id="nav-contact-cta"
-              className="nav-btn-hover inline-flex items-center gap-2.5 py-1 pl-3.5 pr-1.5 rounded-full bg-white/80 hover:bg-white backdrop-blur-md border border-[#042718]/15 cursor-pointer relative h-10 transition-[background-color,border-color,box-shadow] duration-300 shadow-2xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A8711A] focus-visible:ring-offset-2"
+              className="nav-btn-hover inline-flex items-center gap-2 py-1 pl-3 pr-1.5 sm:pl-3.5 sm:pr-1.5 rounded-full bg-white/80 hover:bg-white backdrop-blur-md border border-[#042718]/15 cursor-pointer relative h-10 transition-[background-color,border-color,box-shadow] duration-300 shadow-2xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A8711A] focus-visible:ring-offset-2"
             >
               <span className="block h-[18px] overflow-hidden pointer-events-none">
                 <span className="block nav-label-stack">
@@ -193,8 +227,100 @@ export default function Navigation({
                 <ArrowUpRight className="w-3.5 h-3.5 text-white" />
               </div>
             </a>
+
+            {/* Mobile Menu Toggle (375px compact screens) */}
+            <button
+              type="button"
+              id="mobile-nav-toggle"
+              onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+              aria-expanded={isMobileMenuOpen}
+              aria-controls="mobile-nav-dropdown"
+              aria-label={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+              className="md:hidden flex items-center justify-center w-10 h-10 rounded-full bg-white/80 hover:bg-white text-[#042718] border border-[#042718]/15 shadow-2xs transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A8711A] focus-visible:ring-offset-2"
+            >
+              {isMobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
+            </button>
           </div>
         </div>
+
+        {/* Compact Mobile Navigation Dropdown (< md) */}
+        {isMobileMenuOpen && (
+          <div
+            id="mobile-nav-dropdown"
+            className="pointer-events-auto md:hidden w-full max-w-[1120px] mx-auto mt-2 rounded-[24px] p-2.5 bg-white/95 backdrop-blur-[24px] border border-white/80 shadow-[0_16px_40px_rgba(4,39,24,0.16)] transition-all duration-200"
+          >
+            <nav className="flex flex-col gap-1 font-inter text-sm" aria-label="Mobile Navigation">
+              <a
+                href="/work"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsMobileMenuOpen(false);
+                  onNavigate("/work");
+                }}
+                className={`flex items-center justify-between px-4 py-2.5 rounded-xl transition-colors ${
+                  currentPath.startsWith("/work")
+                    ? "bg-[#042718]/10 text-[#042718] font-semibold"
+                    : "text-[#042718]/80 hover:bg-[#042718]/5 font-medium"
+                }`}
+              >
+                <span>Work</span>
+                <span className="text-[11px] text-[#042718]/45">Case Studies</span>
+              </a>
+
+              <a
+                href="/about"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsMobileMenuOpen(false);
+                  onNavigate("/about");
+                }}
+                className={`flex items-center justify-between px-4 py-2.5 rounded-xl transition-colors ${
+                  currentPath.startsWith("/about")
+                    ? "bg-[#042718]/10 text-[#042718] font-semibold"
+                    : "text-[#042718]/80 hover:bg-[#042718]/5 font-medium"
+                }`}
+              >
+                <span>About</span>
+                <span className="text-[11px] text-[#042718]/45">Background & Strategy</span>
+              </a>
+
+              <a
+                href="/resume"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsMobileMenuOpen(false);
+                  if (onOpenResumeModal) onOpenResumeModal();
+                  else onNavigate("/resume");
+                }}
+                className={`flex items-center justify-between px-4 py-2.5 rounded-xl transition-colors ${
+                  currentPath.startsWith("/resume")
+                    ? "bg-[#042718]/10 text-[#042718] font-semibold"
+                    : "text-[#042718]/80 hover:bg-[#042718]/5 font-medium"
+                }`}
+              >
+                <span>Résumé</span>
+                <span className="text-[11px] text-[#042718]/45">Full CV</span>
+              </a>
+
+              <a
+                href="/contact"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsMobileMenuOpen(false);
+                  onNavigate("/contact");
+                }}
+                className={`flex items-center justify-between px-4 py-2.5 rounded-xl transition-colors ${
+                  currentPath.startsWith("/contact")
+                    ? "bg-[#042718]/10 text-[#042718] font-semibold"
+                    : "text-[#042718]/80 hover:bg-[#042718]/5 font-medium"
+                }`}
+              >
+                <span>Contact</span>
+                <span className="text-[11px] text-[#042718]/45">Get in Touch</span>
+              </a>
+            </nav>
+          </div>
+        )}
       </header>
     </>
   );

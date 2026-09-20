@@ -362,6 +362,124 @@ export default function CaseStudyDetailPage({
       </section>
 
       {/* =========================================================================
+          THE TRADE-OFF: WHAT I CHOSE NOT TO BUILD
+          ========================================================================= */}
+      {caseStudy.tradeOff && (
+        <section className="py-10 border-t border-[#042718]/8">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="p-7 sm:p-9 rounded-[24px] bg-[#042718] text-white shadow-sm relative overflow-hidden">
+              <div className="flex items-center gap-2 mb-3">
+                <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.2em] font-semibold text-[#D9A94C]">
+                  Product Strategy & Discipline
+                </span>
+              </div>
+              <h3 className="font-onest text-2xl sm:text-3xl font-bold tracking-tight mb-6">
+                The Trade-Off: What I Chose Not to Build
+              </h3>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2 border-t border-white/10">
+                <div>
+                  <span className="text-[11px] font-mono uppercase tracking-wider text-white/50 block mb-1">
+                    What we considered
+                  </span>
+                  <p className="font-inter text-sm sm:text-[15px] text-white/80 leading-relaxed">
+                    {caseStudy.tradeOff.considered}
+                  </p>
+                </div>
+
+                <div>
+                  <span className="text-[11px] font-mono uppercase tracking-wider text-[#A7F3D0] block mb-1">
+                    What I chose
+                  </span>
+                  <p className="font-inter text-sm sm:text-[15px] text-white leading-relaxed font-medium">
+                    {caseStudy.tradeOff.chose}
+                  </p>
+                </div>
+
+                <div>
+                  <span className="text-[11px] font-mono uppercase tracking-wider text-[#D9A94C] block mb-1">
+                    Why (Constraint & Evidence)
+                  </span>
+                  <p className="font-inter text-sm sm:text-[15px] text-white/80 leading-relaxed">
+                    {caseStudy.tradeOff.why}
+                  </p>
+                </div>
+
+                <div>
+                  <span className="text-[11px] font-mono uppercase tracking-wider text-[#F87171] block mb-1">
+                    What we gave up
+                  </span>
+                  <p className="font-inter text-sm sm:text-[15px] text-white/80 leading-relaxed">
+                    {caseStudy.tradeOff.gaveUp}
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-6 pt-5 border-t border-white/10">
+                <span className="text-[11px] font-mono uppercase tracking-wider text-[#6EE7B7] block mb-1">
+                  What happened (Outcome)
+                </span>
+                <p className="font-inter text-sm sm:text-[15px] text-white/90 leading-relaxed">
+                  {caseStudy.tradeOff.outcome}
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* =========================================================================
+          PRODUCT ARTIFACTS & SPECIFICATIONS
+          ========================================================================= */}
+      {caseStudy.artifacts && (
+        <section className="py-8 border-t border-[#042718]/8">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="mb-6">
+              <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.2em] font-semibold text-[#8A5A16] mb-1 block">
+                Product Evidence & Schemas
+              </span>
+              <h3 className="font-onest text-2xl sm:text-3xl font-bold text-[#042718] tracking-tight">
+                {caseStudy.artifacts.title}
+              </h3>
+              {caseStudy.artifacts.subtitle && (
+                <p className="font-inter text-sm text-[#042718]/70 mt-1">
+                  {caseStudy.artifacts.subtitle}
+                </p>
+              )}
+            </div>
+
+            <div className="flex flex-col gap-4">
+              {caseStudy.artifacts.items.map((item, aIdx) => (
+                <div
+                  key={aIdx}
+                  className="p-5 sm:p-6 rounded-[20px] bg-white border border-[#042718]/10 shadow-2xs"
+                >
+                  <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-2">
+                    <h4 className="font-onest font-bold text-base text-[#042718]">
+                      {item.label}
+                    </h4>
+                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-mono font-medium bg-[#042718]/5 text-[#042718]">
+                      {item.value}
+                    </span>
+                  </div>
+                  {item.desc && (
+                    <p className="font-inter text-xs sm:text-sm text-[#042718]/70 leading-relaxed mb-3">
+                      {item.desc}
+                    </p>
+                  )}
+                  {item.code && (
+                    <div className="p-3.5 rounded-xl bg-[#042718] text-[#A7F3D0] font-mono text-xs overflow-x-auto leading-relaxed border border-white/10">
+                      <code>{item.code}</code>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* =========================================================================
           PREVIOUS / NEXT CASE STUDY PAGINATION
           ========================================================================= */}
       <section className="py-12">

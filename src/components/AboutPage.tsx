@@ -329,17 +329,14 @@ export default function AboutPage({
           </div>
 
           <div className="flex items-center gap-3 shrink-0">
-            <button
-              type="button"
-              onClick={() => {
-                if (onOpenResumeModal) onOpenResumeModal();
-                else onNavigate("/resume");
-              }}
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-[#188E39] hover:bg-[#15803D] text-white font-inter text-sm font-semibold transition-colors cursor-pointer"
+            <a
+              href="/Deepak_Prasad_Senior_Product_Manager_Resume.pdf"
+              download="Deepak_Prasad_Senior_Product_Manager_Resume.pdf"
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-[#188E39] hover:bg-[#15803D] text-white font-inter text-sm font-semibold transition-colors cursor-pointer no-underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#042718]"
             >
               <FileDown size={16} />
               <span>Download resume</span>
-            </button>
+            </a>
             <button
               type="button"
               onClick={() => onNavigate("/contact")}

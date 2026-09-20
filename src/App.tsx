@@ -20,6 +20,7 @@ const ContactModal = lazy(() => import("./components/ContactModal"));
 const ResumeModal = lazy(() => import("./components/ResumeModal"));
 const ProductJuryPost = lazy(() => import("./components/ProductJuryPost"));
 const CopilotWidget = lazy(() => import("./components/CopilotWidget"));
+const NotFoundPage = lazy(() => import("./components/NotFoundPage"));
 
 const SITE = "https://deepak-prasad.ai.studio";
 const DEFAULT_TITLE =
@@ -71,19 +72,53 @@ export default function App() {
   const [isResumeModalOpen, setIsResumeModalOpen] = useState(false);
 
   useEffect(() => {
-    const meta =
-      ROUTE_META[currentPath] ??
-      (currentPath.startsWith("/work/")
-        ? {
-            title: "Case Study — Deepak Prasad",
-            description: DEFAULT_DESC,
-          }
-        : { title: DEFAULT_TITLE, description: DEFAULT_DESC });
+    let meta: { title: string; description: string } = {
+      title: DEFAULT_TITLE,
+      description: DEFAULT_DESC,
+    };
+    let isArticle = false;
+
+    if (ROUTE_META[currentPath]) {
+      meta = ROUTE_META[currentPath];
+      if (currentPath.startsWith("/writing/")) {
+        isArticle = true;
+      }
+    } else if (currentPath.startsWith("/work/")) {
+      const slug = currentPath.replace("/work/", "").toLowerCase();
+      const matched = ALL_FLAGSHIP_CASE_STUDIES.find(
+        (c) => c.slug.toLowerCase() === slug || c.id.toLowerCase() === slug
+      );
+      if (matched) {
+        meta = {
+          title: `${matched.title} — Deepak Prasad Case Study`,
+          description: matched.subtitle || matched.description || DEFAULT_DESC,
+        };
+        isArticle = true;
+      } else {
+        meta = {
+          title: "Page Not Found — Deepak Prasad",
+          description: "The requested case study could not be found.",
+        };
+      }
+    } else {
+      meta = {
+        title: "Page Not Found — Deepak Prasad",
+        description: "The requested page could not be found.",
+      };
+    }
 
     document.title = meta.title;
 
     const set = (selector: string, attr: string, value: string) => {
-      const el = document.querySelector(selector);
+      let el = document.querySelector(selector);
+      if (!el && selector.startsWith("meta")) {
+        el = document.createElement("meta");
+        const parts = selector.match(/meta\[([^=]+)="([^"]+)"\]/);
+        if (parts) {
+          el.setAttribute(parts[1], parts[2]);
+          document.head.appendChild(el);
+        }
+      }
       if (el) el.setAttribute(attr, value);
     };
 
@@ -92,6 +127,9 @@ export default function App() {
     set('meta[property="og:url"]', "content", SITE + currentPath);
     set('meta[property="og:title"]', "content", meta.title);
     set('meta[property="og:description"]', "content", meta.description);
+    set('meta[property="og:type"]', "content", isArticle ? "article" : "website");
+    set('meta[name="twitter:title"]', "content", meta.title);
+    set('meta[name="twitter:description"]', "content", meta.description);
   }, [currentPath]);
 
   // Sync state with browser popstate
@@ -191,13 +229,7 @@ export default function App() {
           <CaseStudyDetailPage caseStudy={matched} onNavigate={navigate} />
         );
       }
-      // Fallback to ReshaMandi if slug not recognized
-      return (
-        <CaseStudyDetailPage
-          caseStudy={RESHAMANDI_CASE_STUDY}
-          onNavigate={navigate}
-        />
-      );
+      return <NotFoundPage onNavigate={navigate} />;
     }
 
     // 2. Work Index Page: /work
@@ -240,14 +272,19 @@ export default function App() {
       return <ContactPage onNavigate={navigate} />;
     }
 
-    // Default: Homepage: /
-    return (
-      <HomePage
-        onNavigate={navigate}
-        onSelectCaseStudy={handleSelectCaseStudy}
-        onOpenResumeModal={() => downloadResumePDF()}
-      />
-    );
+    // 7. Homepage: /
+    if (currentPath === "/" || currentPath === "") {
+      return (
+        <HomePage
+          onNavigate={navigate}
+          onSelectCaseStudy={handleSelectCaseStudy}
+          onOpenResumeModal={() => downloadResumePDF()}
+        />
+      );
+    }
+
+    // 8. 404 Fallback for unknown routes
+    return <NotFoundPage onNavigate={navigate} />;
   };
 
   return (
