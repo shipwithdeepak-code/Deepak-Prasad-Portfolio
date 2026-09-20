@@ -8,7 +8,6 @@ import {
 } from "lucide-react";
 import { ALL_FLAGSHIP_CASE_STUDIES } from "../data/caseStudies";
 import { CaseStudyDetail } from "../types";
-import ProductStack from "./ProductStack";
 import { CaseFileCarousel } from "./CaseFileCarousel";
 import { OperatingPrinciples } from "./OperatingPrinciples";
 
@@ -832,9 +831,51 @@ export default function HomePage({
       </section>
 
       {/* =========================================================================
-          CORE COMPETENCIES & CRAFT
+          4. AI BUILDS SECTION (SCAFFOLD)
           ========================================================================= */}
-      <ProductStack />
+      <section id="ai-builds" className="py-14 md:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col items-center text-center mb-8 md:mb-12">
+          <span className="font-mono text-[10px] sm:text-[11px] uppercase text-[#A8711A] tracking-[0.24em] font-semibold mb-3">
+            Things I built myself
+          </span>
+          <h2 className="font-onest text-[34px] sm:text-[44px] md:text-[54px] font-bold text-[#042718] leading-[1.12] tracking-tight md:tracking-[-2px] max-w-3xl text-center">
+            The AI I didn't just <em className="font-playfair italic font-medium text-[#042718]/70 not-italic">manage</em>
+          </h2>
+          <p className="font-inter text-[15px] md:text-[18px] text-[#042718]/80 leading-relaxed max-w-[640px] font-normal mt-4 text-center">
+            Two products I designed, wrote and deployed on my own. One is answering questions on this page right now.
+          </p>
+        </div>
+
+        {/* Empty container ready for the project cards */}
+        <div id="ai-builds-grid" className="w-full"></div>
+
+        {/* Builder's Stack Tool Strip */}
+        <div className="mt-12 flex flex-col items-center gap-3">
+          <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-[#042718]/45">
+            Built with
+          </span>
+          <div className="flex flex-wrap items-center justify-center gap-2 max-w-3xl">
+            {[
+              "Figma & Design Systems",
+              "Lovable AI",
+              "n8n",
+              "Claude Code",
+              "Google AI Studio",
+              "Power BI",
+              "Google Analytics",
+              "Amplitude",
+              "SQL",
+            ].map((tool) => (
+              <span
+                key={tool}
+                className="font-mono text-xs px-2.5 py-1 rounded-md border text-[rgba(4,39,24,0.56)] border-[rgba(4,39,24,0.10)] bg-transparent"
+              >
+                {tool}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* =========================================================================
           4. HOW I WORK (6 PRINCIPLES — SYMMETRIC GRID & ORB)
