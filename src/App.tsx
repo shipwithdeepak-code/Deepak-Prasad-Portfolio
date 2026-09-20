@@ -18,6 +18,7 @@ const ContactPage = lazy(() => import("./components/ContactPage"));
 const CaseStudyModal = lazy(() => import("./components/CaseStudyModal"));
 const ContactModal = lazy(() => import("./components/ContactModal"));
 const ResumeModal = lazy(() => import("./components/ResumeModal"));
+const ProductJuryPost = lazy(() => import("./components/ProductJuryPost"));
 const CopilotWidget = lazy(() => import("./components/CopilotWidget"));
 
 export default function App() {
@@ -171,7 +172,12 @@ export default function App() {
       );
     }
 
-    // 5. Contact Page: /contact
+    // 5. Product Jury build note: /writing/product-jury
+    if (currentPath === "/writing/product-jury") {
+      return <ProductJuryPost onNavigate={navigate} />;
+    }
+
+    // 6. Contact Page: /contact
     if (currentPath === "/contact") {
       return <ContactPage onNavigate={navigate} />;
     }

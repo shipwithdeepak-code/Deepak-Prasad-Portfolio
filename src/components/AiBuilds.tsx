@@ -47,7 +47,7 @@ function Grade({ grade, label }: { grade: Grade; label: string }) {
   );
 }
 
-export default function AiBuilds() {
+export default function AiBuilds({ onNavigate }: { onNavigate: (path: string) => void }) {
   return (
     <div className="ai-builds-grid-inner">
       <style>{`
@@ -154,17 +154,16 @@ export default function AiBuilds() {
             <span>Judge your own screen</span>
             <ArrowUpRight size={16} />
           </a>
-          {/* Points at the published essay. When the essay is ported into this
-              repo at /writing/product-jury, swap href and add the onNavigate
-              handler used elsewhere in this file. */}
           <a
-            href="https://deepakprasad.ai.studio/product-jury"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/writing/product-jury"
+            onClick={(e) => {
+              e.preventDefault();
+              onNavigate("/writing/product-jury");
+            }}
             className="inline-flex items-center gap-2.5 h-[47px] px-6 rounded-[100px] border border-[#042718]/14 text-[#042718] hover:bg-[#042718]/5 font-inter text-sm font-semibold transition-colors duration-200"
           >
             <span>Read how I built it</span>
-            <ArrowUpRight size={16} />
+            <ArrowRight size={16} />
           </a>
         </div>
       </article>

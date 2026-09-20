@@ -1133,7 +1133,7 @@ export default function HomePage({
 
         {/* Empty container ready for the project cards */}
         <div id="ai-builds-grid" className="w-full">
-          <AiBuilds />
+          <AiBuilds onNavigate={onNavigate} />
         </div>
 
         {/* Builder's Stack Tool Strip */}
