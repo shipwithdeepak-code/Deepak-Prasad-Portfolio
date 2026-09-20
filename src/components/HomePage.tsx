@@ -523,7 +523,7 @@ export default function HomePage({
       {/* =========================================================================
           1. HERO SECTION (CENTERED COMPOSITION INTEGRATED WITH TOP NAVIGATION)
           ========================================================================= */}
-      <section className="relative pt-[168px] md:pt-[210px] pb-16 md:pb-24 min-h-screen flex flex-col justify-center items-center overflow-hidden bg-[#FAF8F5]">
+      <section className="relative pt-[112px] md:pt-[136px] pb-8 md:pb-12 min-h-[100svh] flex flex-col justify-center items-center overflow-hidden bg-[#FAF8F5]">
         {/* Background Video/Image band full bleed cover */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <picture>
@@ -569,7 +569,7 @@ export default function HomePage({
             initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.4 }}
-            className="inline-flex items-center gap-2 px-[18px] py-2 rounded-full bg-white/90 backdrop-blur-xs border border-[#042718]/10 text-[13px] font-inter font-semibold text-[#042718] mb-6 md:mb-8 shadow-2xs mx-auto max-w-full text-center leading-normal"
+            className="inline-flex items-center gap-2 px-[18px] py-2 rounded-full bg-white/90 backdrop-blur-xs border border-[#042718]/10 text-[13px] font-inter font-semibold text-[#042718] mb-4 md:mb-6 shadow-2xs mx-auto max-w-full text-center leading-normal"
           >
             <span>Senior Product Manager · AI · 0→1 · B2B & B2C</span>
           </motion.div>
@@ -580,7 +580,7 @@ export default function HomePage({
             initial="hidden"
             animate="visible"
             aria-label="I'm mostly just someone who stays curious. Stubborn enough not to stop asking 'why.'"
-            className="font-onest text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-[#042718] leading-[1.12] mb-6 max-w-4xl mx-auto text-center [overflow-wrap:anywhere]"
+            className="font-onest text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-[#042718] leading-[1.12] mb-5 max-w-4xl mx-auto text-center [overflow-wrap:anywhere]"
           >
             {headlineWords.map((word) => (
               <motion.span
@@ -628,7 +628,7 @@ export default function HomePage({
                 ? { duration: 0 }
                 : { duration: 0.55, ease: [0.23, 1, 0.32, 1], delay: 1.2 }
             }
-            className="flex flex-col items-center justify-center mb-12 sm:mb-14 w-full"
+            className="flex flex-col items-center justify-center mb-7 sm:mb-8 w-full"
           >
             <button
               type="button"

@@ -140,14 +140,14 @@ export default function DipaLauncher({ onClick, isOpen, className = "" }: DipaLa
       <style>{`
         .dipa-l { position: relative; }
         .dipa-l__btn {
-          display: inline-flex; align-items: center; gap: 10px;
+          display: inline-flex; align-items: center; gap: 8px;
           border: none; background: transparent; padding: 0; cursor: pointer;
           border-radius: 9999px; outline: none; font-family: inherit;
           transition: transform .3s cubic-bezier(.23,1,.32,1);
           -webkit-tap-highlight-color: transparent;
         }
         .dipa-l__btn--pill {
-          background: #FFFFFF; padding: 0 20px 0 6px;
+          background: #FFFFFF; padding: 0 16px 0 4px;
           border: 1px solid rgba(4,39,24,.12);
           box-shadow: 0 8px 26px rgba(4,39,24,.16);
         }
@@ -166,16 +166,17 @@ export default function DipaLauncher({ onClick, isOpen, className = "" }: DipaLa
         .dipa-c__lid, .dipa-c__glance { transform-box: fill-box; }
 
         .dipa-c__body   { transform-origin: 50% 88%; animation: dipa-bob 4.4s cubic-bezier(.4,0,.5,1) infinite; }
-        .dipa-c__lid    { transform-origin: 50% 50%; animation: dipa-blink 5.4s steps(1,end) infinite; }
+        .dipa-c__lid    { transform-origin: 50% 50%; animation: dipa-blink 5.4s cubic-bezier(.4,0,.6,1) infinite; }
         .dipa-c__antL   { transform-origin: 100% 100%; animation: dipa-antl 6.2s cubic-bezier(.23,1,.32,1) infinite; }
         .dipa-c__antR   { transform-origin: 0% 100%;  animation: dipa-antr 6.2s cubic-bezier(.23,1,.32,1) infinite; }
         .dipa-c__glance { transform-origin: 50% 50%; animation: dipa-glance 7.4s cubic-bezier(.23,1,.32,1) infinite; }
 
         @keyframes dipa-bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-2.2px); } }
         @keyframes dipa-blink {
-          0%, 93%    { transform: scaleY(0); }
-          95%, 97.5% { transform: scaleY(1); }
-          100%       { transform: scaleY(0); }
+          0%, 88%  { transform: scaleY(0); }
+          92%      { transform: scaleY(1); }
+          95%      { transform: scaleY(1); }
+          100%     { transform: scaleY(0); }
         }
         @keyframes dipa-antl {
           0%,66% { transform: rotate(0deg); } 74% { transform: rotate(-7deg); }
@@ -197,13 +198,8 @@ export default function DipaLauncher({ onClick, isOpen, className = "" }: DipaLa
         .dipa-l[data-paused="1"] .dipa-c__glance { animation-play-state: paused; }
 
         .dipa-l__label {
-          font-size: 14.5px; font-weight: 600; color: #042718;
-          white-space: nowrap; text-align: left; line-height: 1.2;
-        }
-        .dipa-l__label span {
-          display: block; font-size: 9.5px; font-weight: 500; letter-spacing: .1em;
-          text-transform: uppercase; color: #188E39; margin-top: 2px;
-          font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+          font-size: 13.5px; font-weight: 600; color: #042718;
+          white-space: nowrap; line-height: 1;
         }
 
         @media (hover: hover) and (pointer: fine) {
@@ -229,10 +225,7 @@ export default function DipaLauncher({ onClick, isOpen, className = "" }: DipaLa
           <DipaCharacter />
         </span>
         {showLabel && (
-          <span className="dipa-l__label">
-            Ask Dīpa
-            <span>about my work</span>
-          </span>
+          <span className="dipa-l__label">Ask Dīpa</span>
         )}
       </button>
     </div>
