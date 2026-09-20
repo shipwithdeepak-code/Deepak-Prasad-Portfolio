@@ -302,7 +302,7 @@ export default function CopilotDrawer({
   return (
     <div
       id="copilot-window"
-      className="fixed bottom-4 sm:bottom-[152px] right-4 sm:right-5 left-4 sm:left-auto z-50 w-auto sm:w-[460px] h-[calc(100dvh-32px)] sm:h-[620px] max-h-[calc(100dvh-32px)] sm:max-h-[calc(100dvh-176px)] flex flex-col rounded-[24px] overflow-hidden font-inter transition-[opacity,transform] duration-300"
+      className="fixed bottom-4 sm:bottom-[104px] right-4 sm:right-5 left-4 sm:left-auto z-50 w-auto sm:w-[460px] h-[calc(100dvh-32px)] sm:h-[620px] max-h-[calc(100dvh-32px)] sm:max-h-[calc(100dvh-128px)] flex flex-col rounded-[24px] overflow-hidden font-inter transition-[opacity,transform] duration-300"
       style={{
         background: "color-mix(in oklch, #FAFDFB 55%, transparent)",
         backdropFilter: "blur(24px) saturate(160%)",

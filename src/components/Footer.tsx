@@ -39,6 +39,14 @@ export default function Footer({}: FooterProps) {
   // FIX B — warm it up on idle, not on scroll. Move the mount off the IntersectionObserver entirely
   const [mounted, setMounted] = useState(false);
   const [settled, setSettled] = useState(false);
+  // The scene reports 'settled' at frame 540, but late-stage growth can still be
+  // running. Hold the reveal a further 2.2s so the fade never uncovers a build.
+  const [graceDone, setGraceDone] = useState(false);
+  useEffect(() => {
+    if (!settled) return;
+    const t = window.setTimeout(() => setGraceDone(true), 2200);
+    return () => window.clearTimeout(t);
+  }, [settled]);
 
   // FIX C — reveal on approach, at 800px rootMargin, 700ms fade cubic-bezier(0.23,1,0.32,1)
   const [inView, setInView] = useState(false);
@@ -46,7 +54,7 @@ export default function Footer({}: FooterProps) {
   const [isNear, setIsNear] = useState(false);
 
   // Reveal ONLY when settled AND in view
-  const visible = settled && inView;
+  const visible = settled && graceDone && inView;
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -170,7 +178,7 @@ export default function Footer({}: FooterProps) {
       {/* CAUSE B: Ambient 3D Scene Layer (Z-0) — visibility toggled to throttle rAF only AFTER settled */}
       <div
         ref={sceneRef}
-        style={{ visibility: (!settled || isNear) ? "visible" : "hidden" }}
+        style={{ visibility: (!settled || !graceDone || isNear) ? "visible" : "hidden" }}
         className={`absolute inset-0 z-0 pointer-events-none overflow-hidden transition-opacity duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] ${
           visible ? "opacity-100" : "opacity-0"
         }`}

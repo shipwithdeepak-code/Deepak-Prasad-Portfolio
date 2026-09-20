@@ -170,7 +170,7 @@ export default function App() {
         isSamePage ? 40 : 100
       );
     } else {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
     }
   };
 

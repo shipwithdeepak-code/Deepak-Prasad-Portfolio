@@ -366,9 +366,12 @@ export default function HomePage({
   ];
 
   const [questionIndex, setQuestionIndex] = useState(0);
-  const [charIndex, setCharIndex] = useState(0);
+  // Seed the first question fully typed. Starting at 0 left the Ask Dīpa field
+  // visibly empty on arrival — on a slow connection that is several seconds of
+  // a blank CTA.
+  const [charIndex, setCharIndex] = useState(() => DIPA_QUESTIONS[0].length);
   const [isDeleting, setIsDeleting] = useState(false);
-  const [isPaused, setIsPaused] = useState(false);
+  const [isPaused, setIsPaused] = useState(true);
   const askDipaButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {

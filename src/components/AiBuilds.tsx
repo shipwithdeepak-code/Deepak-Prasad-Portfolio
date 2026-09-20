@@ -79,10 +79,10 @@ export default function AiBuilds({ onNavigate }: { onNavigate: (path: string) =>
           7%, 58%   { opacity: 1; transform: none; }
           70%, 100% { opacity: 0; transform: translateY(9px) scale(0.97); }
         }
-        @keyframes ai-orb-spin { to { transform: rotate(360deg); } }
+        @keyframes ai-orb-bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-2.4px); } }
         .ai-line   { animation: ai-line 8s cubic-bezier(0.23, 1, 0.32, 1) infinite both; }
         .ai-verdict{ animation: ai-verdict 8s cubic-bezier(0.23, 1, 0.32, 1) 3.5s infinite both; }
-        .ai-orb    { animation: ai-orb-spin 24s linear infinite; }
+        .ai-orb    { transform-box: fill-box; transform-origin: 50% 88%; animation: ai-orb-bob 4.4s cubic-bezier(.4,0,.5,1) infinite; }
         @media (max-width: 900px) {
           .ai-builds-grid-inner { grid-template-columns: minmax(0, 1fr); }
           .ai-card { padding: 22px; }
@@ -177,14 +177,37 @@ export default function AiBuilds({ onNavigate }: { onNavigate: (path: string) =>
           </span>
         </div>
 
-        <span
-          className="ai-orb w-14 h-14 rounded-full shrink-0 shadow-[0_10px_28px_-10px_rgba(47,122,79,0.6)]"
-          style={{
-            background:
-              "radial-gradient(circle at 34% 30%, rgba(255,255,255,.95), transparent 44%), conic-gradient(from 0deg, #6FBE8C, #CDEBD8, #2F7A4F, #8FD3A8, #6FBE8C)",
-          }}
-          aria-hidden="true"
-        />
+        <span className="ai-orb-wrap w-16 h-16 flex items-center justify-center shrink-0" aria-hidden="true">
+          <svg viewBox="0 0 64 64" className="w-full h-full block overflow-visible">
+            <defs>
+              <linearGradient id="aiDipaVisor" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stopColor="#C8F07A" />
+                <stop offset="45%" stopColor="#8FD44A" />
+                <stop offset="100%" stopColor="#3C9A48" />
+              </linearGradient>
+              <radialGradient id="aiDipaGlow" cx="50%" cy="40%" r="60%">
+                <stop offset="0" stopColor="#E8FBA8" stopOpacity=".9" />
+                <stop offset="100%" stopColor="#8FD44A" stopOpacity="0" />
+              </radialGradient>
+              <linearGradient id="aiDipaShell" x1=".3" y1="0" x2=".7" y2="1">
+                <stop offset="0" stopColor="#11482C" />
+                <stop offset="55%" stopColor="#08301E" />
+                <stop offset="100%" stopColor="#042718" />
+              </linearGradient>
+            </defs>
+            <g className="ai-orb">
+              <path d="M24 15 18 5" stroke="#9FD9B4" strokeWidth="2.8" strokeLinecap="round" />
+              <circle cx="17.4" cy="4" r="3.4" fill="#C9EBD6" />
+              <path d="M40 15 46 5.5" stroke="#9FD9B4" strokeWidth="2.8" strokeLinecap="round" />
+              <circle cx="46.6" cy="4.5" r="3.4" fill="#C9EBD6" />
+              <path d="M32 8c13.3 0 23 10.2 23 24.5C55 45.3 45.3 54 32 54S9 45.3 9 32.5C9 18.2 18.7 8 32 8Z" fill="url(#aiDipaShell)" />
+              <ellipse cx="32" cy="32" rx="18" ry="11" fill="url(#aiDipaVisor)" />
+              <ellipse cx="32" cy="31" rx="16" ry="9.5" fill="url(#aiDipaGlow)" />
+              <ellipse cx="32" cy="32" rx="6.4" ry="6.8" fill="#06301B" />
+              <circle cx="29.8" cy="29.8" r="1.9" fill="#EAF6EE" />
+            </g>
+          </svg>
+        </span>
 
         <h3 className="font-onest text-[22px] font-bold text-[#042718] leading-[1.15] tracking-tight mt-5">
           Dīpa
