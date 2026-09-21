@@ -1,4 +1,5 @@
-import { ALL_FLAGSHIP_CASE_STUDIES } from "../data/caseStudies";
+import { ALL_CASE_STUDIES } from "../data/caseStudies";
+import { MORE_PRODUCT_WORK_ITEMS } from "../data/moreProductWork";
 
 export const SITE_ORIGIN = "https://deepak-prasad.ai.studio";
 export const DEFAULT_TITLE =
@@ -59,6 +60,25 @@ const STATIC_ROUTES: Record<
       "How I built a multi-agent critique engine that grades every claim by the evidence behind it, and declines when it cannot establish an answer.",
     ogType: "article",
   },
+  "/work/product-jury": {
+    title:
+      "Product Jury: a decision workspace that argues back — Deepak Prasad",
+    description:
+      "How I built a multi-agent critique engine that grades every claim by the evidence behind it, and declines when it cannot establish an answer.",
+    ogType: "article",
+  },
+  "/work/dipa": {
+    title: "Dīpa: An AI-Native Portfolio Assistant — Deepak Prasad",
+    description:
+      "How I built an AI assistant grounded in my portfolio using sub-2ms in-memory cosine retrieval, zero vector database dependencies, and strict confidence gating.",
+    ogType: "article",
+  },
+  "/work/behind-copilot": {
+    title: "Dīpa: An AI-Native Portfolio Assistant — Deepak Prasad",
+    description:
+      "How I built an AI assistant grounded in my portfolio using sub-2ms in-memory cosine retrieval, zero vector database dependencies, and strict confidence gating.",
+    ogType: "article",
+  },
 };
 
 const CASE_STUDY_NAMES: Record<string, string> = {
@@ -100,9 +120,35 @@ export function getRouteMetadata(rawPath: string): RouteMetadata {
     };
   }
 
+  if (cleanPath.startsWith("/work/more/")) {
+    const slug = cleanPath.replace("/work/more/", "").toLowerCase();
+    const matched = MORE_PRODUCT_WORK_ITEMS.find(
+      (m) => m.slug.toLowerCase() === slug || m.id.toLowerCase() === slug
+    );
+
+    if (matched) {
+      const title = `${matched.title} — Deepak Prasad`;
+      const description = matched.description || matched.problem || DEFAULT_DESC;
+      const canonical = `${SITE_ORIGIN}/work/more/${matched.slug}`;
+
+      return {
+        title,
+        description,
+        canonical,
+        ogType: "article",
+        ogUrl: canonical,
+        ogTitle: title,
+        ogDescription: description,
+        twitterTitle: title,
+        twitterDescription: description,
+        is404: false,
+      };
+    }
+  }
+
   if (cleanPath.startsWith("/work/")) {
     const slug = cleanPath.replace("/work/", "").toLowerCase();
-    const matched = ALL_FLAGSHIP_CASE_STUDIES.find(
+    const matched = ALL_CASE_STUDIES.find(
       (c) => c.slug.toLowerCase() === slug || c.id.toLowerCase() === slug
     );
 

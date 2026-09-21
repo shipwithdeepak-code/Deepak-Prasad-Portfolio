@@ -109,6 +109,61 @@ export interface MoreWorkCategory {
   items: MoreWorkItem[];
 }
 
+export type MoreWorkCategoryType =
+  | 'B2B & Platforms'
+  | 'AI & Data'
+  | 'Growth & Monetization'
+  | 'Connected Products'
+  | 'Operations & Automation';
+
+export interface MoreProductWorkItem {
+  id: string;
+  slug: string;
+  title: string;
+  shortTitle?: string;
+  description: string;
+  storyAngle: string;
+  company: string;
+  period?: string;
+  role: string;
+  primaryCategory: MoreWorkCategoryType;
+  tags: string[];
+  metrics?: {
+    value: string;
+    label: string;
+    context?: string;
+  }[];
+  problem: string;
+  whyItMattered: string;
+  myRole?: string;
+  myOwnership: string;
+  keyDecision: {
+    title: string;
+    decision: string;
+    tradeoff?: string;
+    why?: string;
+  } | string;
+  solution: {
+    summary: string;
+    steps?: { label: string; desc?: string }[];
+    details?: string[];
+  };
+  outcome: {
+    summary: string;
+    type?: string;
+    metrics?: { label: string; value: string }[];
+  };
+  reflection: string;
+  heroImage?: string;
+  relatedProjects: {
+    title: string;
+    slug: string;
+    category: string;
+    route: string;
+  }[];
+  route: string;
+}
+
 export interface ExperienceRole {
   title: string;
   company: string;

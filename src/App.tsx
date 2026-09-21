@@ -6,13 +6,16 @@ import { openCalendly } from "./utils/calendly";
 import { downloadResumePDF } from "./utils/downloadResume";
 import {
   ALL_FLAGSHIP_CASE_STUDIES,
+  ALL_CASE_STUDIES,
   RESHAMANDI_CASE_STUDY,
 } from "./data/caseStudies";
+import { MORE_PRODUCT_WORK_ITEMS } from "./data/moreProductWork";
 import { CaseStudyDetail } from "./types";
 import { getRouteMetadata } from "./utils/seo";
 
 const WorkPage = lazy(() => import("./components/WorkPage"));
 const CaseStudyDetailPage = lazy(() => import("./components/CaseStudyDetailPage"));
+const MoreWorkDetailPage = lazy(() => import("./components/MoreWorkDetailPage"));
 const AboutPage = lazy(() => import("./components/AboutPage"));
 const ResumePage = lazy(() => import("./components/ResumePage"));
 const ContactPage = lazy(() => import("./components/ContactPage"));
@@ -20,6 +23,7 @@ const CaseStudyModal = lazy(() => import("./components/CaseStudyModal"));
 const ContactModal = lazy(() => import("./components/ContactModal"));
 const ResumeModal = lazy(() => import("./components/ResumeModal"));
 const ProductJuryPost = lazy(() => import("./components/ProductJuryPost"));
+const DipaBuildPage = lazy(() => import("./components/DipaBuildPage"));
 const CopilotWidget = lazy(() => import("./components/CopilotWidget"));
 const NotFoundPage = lazy(() => import("./components/NotFoundPage"));
 
@@ -152,10 +156,49 @@ export default function App() {
 
   // Resolve current active route
   const renderCurrentView = () => {
-    // 1. Case Study Dedicated Page: /work/:slug
+    // 1. More Product Work Dedicated Page: /work/more/:slug
+    if (currentPath.startsWith("/work/more/")) {
+      const moreSlug = currentPath.replace("/work/more/", "").toLowerCase();
+      const matchedMore = MORE_PRODUCT_WORK_ITEMS.find(
+        (m) => m.slug.toLowerCase() === moreSlug || m.id.toLowerCase() === moreSlug
+      );
+      if (matchedMore) {
+        return (
+          <MoreWorkDetailPage item={matchedMore} onNavigate={navigate} />
+        );
+      }
+      return <NotFoundPage onNavigate={navigate} />;
+    }
+
+    if (currentPath === "/work/more" || currentPath === "/work/more/") {
+      return (
+        <WorkPage
+          onNavigate={navigate}
+          onSelectCaseStudy={handleSelectCaseStudy}
+        />
+      );
+    }
+
+    // 2. Dedicated Applied AI Build Stories
+    if (
+      currentPath === "/work/dipa" ||
+      currentPath === "/work/behind-copilot" ||
+      currentPath === "/work/behind-ai-copilot"
+    ) {
+      return <DipaBuildPage onNavigate={navigate} />;
+    }
+
+    if (
+      currentPath === "/work/product-jury" ||
+      currentPath === "/writing/product-jury"
+    ) {
+      return <ProductJuryPost onNavigate={navigate} />;
+    }
+
+    // 3. Case Study Dedicated Page: /work/:slug
     if (currentPath.startsWith("/work/")) {
       const slug = currentPath.replace("/work/", "").toLowerCase();
-      const matched = ALL_FLAGSHIP_CASE_STUDIES.find(
+      const matched = ALL_CASE_STUDIES.find(
         (c) => c.slug.toLowerCase() === slug || c.id.toLowerCase() === slug
       );
       if (matched) {
@@ -166,7 +209,7 @@ export default function App() {
       return <NotFoundPage onNavigate={navigate} />;
     }
 
-    // 2. Work Index Page: /work
+    // 3. Work Index Page: /work
     if (currentPath === "/work") {
       return (
         <WorkPage
@@ -250,7 +293,7 @@ export default function App() {
         onOpenContactModal={() => setIsContactModalOpen(true)}
         onSelectCaseStudy={(id) => {
           const found =
-            ALL_FLAGSHIP_CASE_STUDIES.find(
+            ALL_CASE_STUDIES.find(
               (c) => c.id === id || c.slug === id
             ) || RESHAMANDI_CASE_STUDY;
           setSelectedModalCaseStudy(found);

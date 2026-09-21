@@ -510,9 +510,9 @@ export default function HomePage({
       detail: "Built the subscription business from 0",
     },
     {
-      value: "300 → 3,200+",
-      label: "DAU growth",
-      detail: "AI Coach adoption since launch",
+      value: "~300 → 3,200+ DAU",
+      label: "Active scale",
+      detail: "in ~3 months",
     },
     {
       value: "15 days → under 2 hrs",
@@ -622,11 +622,11 @@ export default function HomePage({
             <span className="text-[#042718] font-semibold whitespace-nowrap">
               ₹20 to 25 Cr a month
             </span>
-            , and an AI coach that went from{" "}
+            , and an AI coach that scaled from{" "}
             <span className="text-[#042718] font-semibold whitespace-nowrap">
-              300 to 3,200 daily actives
+              ~300 to 3,200+ DAU
             </span>{" "}
-            in three months. I kept asking questions until the product matched reality.
+            in ~3 months. I kept asking questions until the product matched reality.
           </motion.p>
 
           {/* Ask Dīpa Glass Capsule CTA - only action in fold */}
@@ -938,7 +938,7 @@ export default function HomePage({
               From silk mandis to <em className="font-playfair italic font-medium text-[#042718]/70 not-italic">conversational AI</em>
             </h2>
             <p className="font-inter text-[15px] md:text-[18px] text-[#042718]/80 leading-relaxed max-w-[640px] font-normal mt-4">
-              Five with a page of their own. Every one went live and moved a number you can check.
+              Five flagship projects with a deeper look — plus the broader work behind them.
             </p>
           </div>
 
@@ -947,7 +947,7 @@ export default function HomePage({
             onClick={() => onNavigate("/work")}
             className="self-start sm:self-auto shrink-0 h-[47px] px-6 rounded-full bg-[#042718] text-white hover:bg-[#0B3322] font-inter text-sm font-semibold inline-flex items-center gap-2 transition-colors cursor-pointer"
           >
-            <span>All case studies</span>
+            <span>All work</span>
             <span className="text-base leading-none">↗</span>
           </button>
         </div>
@@ -978,7 +978,7 @@ export default function HomePage({
               description:
                 "Took an ambiguous AI opportunity to production in three months, behind hard safety guardrails.",
               figure: "3,200+",
-              qualifier: "daily actives, up from 300",
+              qualifier: "daily actives, up from ~300",
               imagePrefix: "/images/ai-coach-hero",
               imgAlt: "Sportstech AI Coach conversational interface",
               has1200: true,
@@ -1000,13 +1000,13 @@ export default function HomePage({
             {
               slug: "performance-score",
               title: "Performance Score",
-              tags: ["Connected hardware", "Algorithms"],
+              tags: ["Strategy / PRD", "Connected hardware"],
               role: "PM, algorithms & hardware",
               year: "2025",
               description:
-                "Four surfaces sampled at different cadences and disagreed about the same body. Reconciling cadence was the product.",
-              figure: "174,000",
-              qualifier: "users on one score, five surfaces",
+                "Designed one progress system across a fragmented connected-fitness ecosystem.",
+              figure: "5 surfaces",
+              qualifier: "one shared product and data model",
               imagePrefix: "/images/performance-score-hero",
               imgAlt: "Performance Score algorithm visualization",
               has1200: true,

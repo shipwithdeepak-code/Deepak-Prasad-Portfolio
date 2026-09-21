@@ -50,7 +50,7 @@ export default function AboutPage({
     { title: "B2B Marketplace", context: "ReshaMandi 80K+ farmers" },
     { title: "Workflow & Payments", context: "Instant Payouts & KYC" },
     { title: "Subscription & Growth", context: "Sportstech 12K+ subscribers" },
-    { title: "Connected Products", context: "Performance Score P0" },
+    { title: "Connected Products", context: "Performance Score Strategy" },
     { title: "AI Products", context: "Conversational Coach & Localization" },
   ];
 

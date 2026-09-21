@@ -1,15 +1,13 @@
 import React, { useState } from "react";
 import {
-  Database,
-  Activity,
-  Terminal,
-  Cpu,
+  ArrowRight,
+  ArrowUpRight,
+  Layers,
+  Sparkles,
 } from "lucide-react";
-import {
-  ALL_FLAGSHIP_CASE_STUDIES,
-  MORE_WORK_CATEGORIES,
-} from "../data/caseStudies";
-import { CaseStudyDetail } from "../types";
+import { ALL_FLAGSHIP_CASE_STUDIES } from "../data/caseStudies";
+import { MORE_PRODUCT_WORK_ITEMS } from "../data/moreProductWork";
+import { CaseStudyDetail, MoreWorkCategoryType } from "../types";
 
 interface WorkPageProps {
   onNavigate: (path: string) => void;
@@ -20,21 +18,28 @@ export default function WorkPage({
   onNavigate,
   onSelectCaseStudy,
 }: WorkPageProps) {
-  const [selectedCategory, setSelectedCategory] = useState<string>("all");
+  // More Product Work filter state (exactly 6 categories: All + 5 primary categories)
+  const [selectedCategory, setSelectedCategory] = useState<string>("All");
 
-  const categories = [
-    { id: "all", label: "All Flagships" },
-    { id: "b2b", label: "B2B & Platforms" },
-    { id: "ai", label: "AI & Consumer" },
-    { id: "monetization", label: "Monetization & Growth" },
-    { id: "connected", label: "Connected Products" },
+  const moreWorkFilters = [
+    "All",
+    "B2B & Platforms",
+    "AI & Data",
+    "Growth & Monetization",
+    "Connected Products",
+    "Operations & Automation",
   ];
+
+  const filteredMoreWork = MORE_PRODUCT_WORK_ITEMS.filter((item) => {
+    if (selectedCategory === "All") return true;
+    return item.primaryCategory === selectedCategory;
+  });
 
   const getPrimaryTag = (study: CaseStudyDetail): string => {
     if (study.slug === "reshamandi") return "B2B Marketplace";
     if (study.slug === "ai-coach") return "Conversational AI";
     if (study.slug === "subscription") return "Monetization";
-    if (study.slug === "performance-score") return "Algorithms";
+    if (study.slug === "performance-score") return "Product Strategy / System Design";
     if (study.slug === "ai-localization") return "AI Operations";
     return study.tags[0] || "Product";
   };
@@ -52,9 +57,9 @@ export default function WorkPage({
       case "ai-coach":
         return {
           h3: "Sportstech AI Coach",
-          desc: "Took an ambiguous AI opportunity to production in three months, behind hard safety guardrails.",
+          desc: "Took an ambiguous AI opportunity to production in three months, scaling from ~300 to 3,200+ DAU behind hard safety guardrails with zero reported safety incidents or medical escalations during the observed launch period.",
           figure: "3,200+",
-          qual: "daily actives, up from 300",
+          qual: "daily actives, up from ~300",
           imagePrefix: "/images/ai-coach-hero",
         };
       case "subscription":
@@ -68,9 +73,9 @@ export default function WorkPage({
       case "performance-score":
         return {
           h3: "Performance Score",
-          desc: "Four surfaces sampled at different cadences and disagreed about the same body. Reconciling cadence was the product.",
-          figure: "174,000",
-          qual: "users on one score, five surfaces",
+          desc: "Designed one progress system across a fragmented connected-fitness ecosystem.",
+          figure: "5 surfaces",
+          qual: "one shared product and data model",
           imagePrefix: "/images/performance-score-hero",
         };
       case "ai-localization":
@@ -90,36 +95,6 @@ export default function WorkPage({
           imagePrefix: "/images/hero-bg-poster",
         };
     }
-  };
-
-  const filteredStudies = ALL_FLAGSHIP_CASE_STUDIES.filter((study) => {
-    if (selectedCategory === "all") return true;
-    if (selectedCategory === "b2b")
-      return study.tags.includes("B2B") || study.tags.includes("Marketplace");
-    if (selectedCategory === "ai")
-      return (
-        study.tags.includes("AI") || study.tags.includes("Conversational AI")
-      );
-    if (selectedCategory === "monetization")
-      return (
-        study.tags.includes("Growth") || study.tags.includes("Monetization")
-      );
-    if (selectedCategory === "connected")
-      return (
-        study.tags.includes("Connected Products") ||
-        study.tags.includes("Product Strategy")
-      );
-    return true;
-  });
-
-  const getCategoryIcon = (category: string) => {
-    if (category.includes("B2B"))
-      return <Database size={16} className="text-[#15803D]" />;
-    if (category.includes("Sports"))
-      return <Activity size={16} className="text-[#0268A1]" />;
-    if (category.includes("Automation"))
-      return <Terminal size={16} className="text-[#7E22CE]" />;
-    return <Cpu size={16} className="text-[#B45209]" />;
   };
 
   return (
@@ -203,175 +178,333 @@ export default function WorkPage({
       `}</style>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Page Header */}
-        <div className="max-w-3xl mb-12">
+        {/* =========================================================================
+            PAGE HEADER
+            ========================================================================= */}
+        <div className="max-w-3xl mb-14 md:mb-16">
           <span className="font-mono text-[10px] sm:text-[11px] uppercase text-[#A8711A] tracking-[0.24em] font-semibold mb-3 block">
-            All work
+            Work
           </span>
           <h1 className="font-onest text-4xl sm:text-5xl font-bold tracking-tight text-[#042718] leading-[1.15] mb-4">
-            Everything that went live, and{" "}
+            Products, decisions, and{" "}
             <em className="font-playfair italic font-medium text-[#042718]/70 not-italic">
-              what it moved
+              what changed
             </em>
           </h1>
           <p className="font-inter text-base sm:text-lg text-[#042718]/70 leading-relaxed font-normal">
-            Five have a page of their own. The rest are listed underneath.
+            Five flagship projects with a deeper look — plus the broader work behind them.
           </p>
         </div>
 
-        {/* Filter Pills */}
-        <div className="flex flex-wrap items-center gap-2 mb-12 border-b border-[#042718]/8 pb-6">
-          {categories.map((cat) => (
-            <button
-              key={cat.id}
-              type="button"
-              onClick={() => setSelectedCategory(cat.id)}
-              className={`px-4 py-2 rounded-full text-xs sm:text-sm font-inter font-medium transition-[background-color,color,border-color,box-shadow] cursor-pointer ${
-                selectedCategory === cat.id
-                  ? "bg-[#042718] text-white shadow-xs"
-                  : "bg-white text-[#042718]/70 hover:text-[#042718] border border-[#042718]/10 hover:border-[#042718]/20"
-              }`}
-            >
-              {cat.label}
-            </button>
-          ))}
-        </div>
+        {/* =========================================================================
+            SECTION 1: FLAGSHIP WORK (Curated 5 Flagships — No Top-Level Database Filter)
+            ========================================================================= */}
+        <section className="mb-20 md:mb-28">
+          <div className="mb-8">
+            <span className="font-mono text-[10px] sm:text-[11px] uppercase text-[#A8711A] tracking-[0.2em] font-semibold block mb-1">
+              Flagship Work
+            </span>
+            <h2 className="font-onest text-2xl sm:text-3xl font-bold text-[#042718] tracking-tight">
+              Five deep PM stories
+            </h2>
+          </div>
 
-        {/* Flagship Case Studies Grid */}
-        <div className="work-index-grid mb-24">
-          {filteredStudies.map((study, idx) => {
-            const isFirst = idx === 0;
-            const isEager = idx < 2;
-            const cardData = getCardDisplayData(study);
-            const primaryTag = getPrimaryTag(study);
+          <div className="work-index-grid">
+            {ALL_FLAGSHIP_CASE_STUDIES.map((study, idx) => {
+              const isFirst = idx === 0;
+              const isEager = idx < 2;
+              const cardData = getCardDisplayData(study);
+              const primaryTag = getPrimaryTag(study);
 
-            return (
+              return (
+                <a
+                  key={study.id}
+                  href={`/work/${study.slug}`}
+                  onClick={(e) => {
+                    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) {
+                      return;
+                    }
+                    e.preventDefault();
+                    onSelectCaseStudy(study);
+                    onNavigate(`/work/${study.slug}`);
+                  }}
+                  className="work-icard focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#188E39] focus-visible:ring-offset-2"
+                  aria-label={`Explore flagship work: ${cardData.h3}`}
+                >
+                  {/* Left Image (flex: 0 0 46%) */}
+                  <div className="work-icard-image">
+                    <img
+                      src={`${cardData.imagePrefix}.webp`}
+                      srcSet={`${cardData.imagePrefix}-480.webp 480w, ${cardData.imagePrefix}-800.webp 800w, ${cardData.imagePrefix}.webp 1600w`}
+                      sizes="(max-width: 560px) 100vw, 46vw"
+                      alt={cardData.h3}
+                      width={480}
+                      height={320}
+                      loading={isEager ? "eager" : "lazy"}
+                      decoding={isEager ? "sync" : "async"}
+                      {...(isFirst ? { fetchPriority: "high" } : {})}
+                    />
+                  </div>
+
+                  {/* Right Body Content */}
+                  <div className="work-icard-body">
+                    <div className="mb-2.5">
+                      <span className="inline-block rounded-[100px] bg-[#042718] text-white px-2.5 py-1 text-[12px] font-inter font-medium leading-none">
+                        {primaryTag}
+                      </span>
+                    </div>
+
+                    <h3 className="font-onest font-semibold text-[24px] leading-[28.8px] tracking-[-0.48px] text-[#042718] mb-2">
+                      {cardData.h3}
+                    </h3>
+
+                    <p className="font-inter text-[14px] leading-[19px] text-[#042718]/56 line-clamp-3">
+                      {cardData.desc}
+                    </p>
+
+                    <div className="flex-1 min-h-[16px]" />
+
+                    <div className="pt-3 border-t border-[#042718]/8">
+                      <div className="font-onest font-semibold text-[32px] leading-tight tracking-[-0.64px] text-[#042718] tabular-nums">
+                        {cardData.figure}
+                      </div>
+                      <div className="font-inter text-[14px] text-[#042718]/56">
+                        {cardData.qual}
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              );
+            })}
+          </div>
+        </section>
+
+        {/* =========================================================================
+            SECTION 2: APPLIED AI (Things I built)
+            ========================================================================= */}
+        <section className="mb-20 md:mb-28 pt-10 border-t border-[#042718]/10">
+          <div className="max-w-3xl mb-8">
+            <span className="font-mono text-[10px] sm:text-[11px] uppercase text-[#A8711A] tracking-[0.2em] font-semibold block mb-1">
+              APPLIED AI
+            </span>
+            <h2 className="font-onest text-2xl sm:text-3xl font-bold text-[#042718] tracking-tight">
+              Things I built.
+            </h2>
+            <p className="font-inter text-sm sm:text-base text-[#042718]/70 leading-relaxed mt-2">
+              AI products I designed and built to explore decision intelligence and AI-native product experiences.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+            {/* ── 01. Product Jury ─────────────────────────────────── */}
+            <div className="bg-[#F1F1EC] rounded-[20px] p-6 sm:p-7 border border-[#042718]/8 flex flex-col justify-between transition-all duration-240 hover:-translate-y-1 hover:bg-[#EDEDE7] hover:shadow-[0_12px_32px_rgba(4,39,24,0.08)]">
+              <div>
+                <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.2em] font-semibold text-[#A8711A] block mb-2">
+                  01 · PRODUCT JURY
+                </span>
+
+                <h3 className="font-onest font-semibold text-[22px] sm:text-[24px] leading-[28px] tracking-[-0.48px] text-[#042718] mb-2">
+                  AI decision intelligence for product teams
+                </h3>
+
+                <p className="font-inter text-[14px] leading-[20px] text-[#042718]/70 mb-4 line-clamp-3">
+                  A multi-agent product decision workspace that examines a product screen, separates evidence from inference and assumption, and produces a structured product verdict.
+                </p>
+
+                <div className="pt-3.5 border-t border-[#042718]/8 mb-5">
+                  <p className="font-inter text-xs text-[#042718]/65 font-medium leading-relaxed">
+                    Multi-agent deliberation · Evidence classification · Structured verdicts
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex flex-wrap items-center gap-2.5 pt-2">
+                <a
+                  href="https://product-jury.ai.studio/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 h-9 px-4 rounded-[100px] bg-[#042718] text-white hover:bg-[#0B3322] font-inter text-xs font-semibold transition-colors duration-200 shadow-xs"
+                >
+                  <span>TRY PRODUCT JURY</span>
+                  <ArrowUpRight size={13} />
+                </a>
+                <a
+                  href="/work/product-jury"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate("/work/product-jury");
+                  }}
+                  className="inline-flex items-center gap-1.5 h-9 px-4 rounded-[100px] border border-[#042718]/15 text-[#042718] hover:bg-[#042718]/5 font-inter text-xs font-semibold transition-colors duration-200"
+                >
+                  <span>HOW I BUILT IT</span>
+                  <ArrowRight size={13} />
+                </a>
+              </div>
+            </div>
+
+            {/* ── 02. Dīpa ─────────────────────────────────────────── */}
+            <div className="bg-[#F1F1EC] rounded-[20px] p-6 sm:p-7 border border-[#042718]/8 flex flex-col justify-between transition-all duration-240 hover:-translate-y-1 hover:bg-[#EDEDE7] hover:shadow-[0_12px_32px_rgba(4,39,24,0.08)]">
+              <div>
+                <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.2em] font-semibold text-[#A8711A] block mb-2">
+                  02 · DĪPA
+                </span>
+
+                <h3 className="font-onest font-semibold text-[22px] sm:text-[24px] leading-[28px] tracking-[-0.48px] text-[#042718] mb-2">
+                  An AI-native portfolio assistant
+                </h3>
+
+                <p className="font-inter text-[14px] leading-[20px] text-[#042718]/70 mb-4 line-clamp-3">
+                  An AI assistant grounded in my own portfolio and product work, designed to answer questions using retrieved source material without hallucinating.
+                </p>
+
+                <div className="pt-3.5 border-t border-[#042718]/8 mb-5">
+                  <p className="font-inter text-xs text-[#042718]/65 font-medium leading-relaxed">
+                    Grounded retrieval · Portfolio-aware answers · Source-aware responses
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex flex-wrap items-center gap-2.5 pt-2">
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (typeof window !== "undefined") {
+                      window.dispatchEvent(new CustomEvent("open-copilot"));
+                    }
+                  }}
+                  className="inline-flex items-center gap-1.5 h-9 px-4 rounded-[100px] bg-[#042718] text-white hover:bg-[#0B3322] font-inter text-xs font-semibold transition-colors duration-200 cursor-pointer shadow-xs"
+                >
+                  <span>TRY DĪPA</span>
+                  <ArrowRight size={13} />
+                </button>
+                <a
+                  href="/work/dipa"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate("/work/dipa");
+                  }}
+                  className="inline-flex items-center gap-1.5 h-9 px-4 rounded-[100px] border border-[#042718]/15 text-[#042718] hover:bg-[#042718]/5 font-inter text-xs font-semibold transition-colors duration-200"
+                >
+                  <span>HOW I BUILT IT</span>
+                  <ArrowRight size={13} />
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* =========================================================================
+            SECTION 3: MORE PRODUCT WORK (Filterable Library of 23 Structured Stories)
+            ========================================================================= */}
+        <section id="more-work" className="pt-10 border-t border-[#042718]/10">
+          <div className="max-w-3xl mb-8">
+            <span className="font-mono text-[10px] sm:text-[11px] uppercase text-[#A8711A] tracking-[0.2em] font-semibold block mb-1">
+              Library
+            </span>
+            <h2 className="font-onest text-3xl sm:text-4xl font-bold text-[#042718] tracking-tight">
+              More product work
+            </h2>
+            <p className="font-inter text-base text-[#042718]/80 leading-relaxed mt-2">
+              Smaller PM stories across the products, platforms and systems I&apos;ve worked on.
+            </p>
+            <p className="font-inter text-sm text-[#042718]/60 mt-1">
+              Explore by problem space, product type or capability.
+            </p>
+          </div>
+
+          {/* Filter Pills (Exactly 6 primary filters) + Dynamic Project Counter */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 border-b border-[#042718]/8 pb-6">
+            <div className="flex flex-wrap items-center gap-2">
+              {moreWorkFilters.map((cat) => (
+                <button
+                  key={cat}
+                  type="button"
+                  onClick={() => setSelectedCategory(cat)}
+                  className={`px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-inter font-medium transition-[background-color,color,border-color,box-shadow] cursor-pointer ${
+                    selectedCategory === cat
+                      ? "bg-[#042718] text-white shadow-xs"
+                      : "bg-white text-[#042718]/70 hover:text-[#042718] border border-[#042718]/10 hover:border-[#042718]/20"
+                  }`}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+
+            <span className="font-mono text-xs text-[#042718]/50 font-medium shrink-0">
+              {filteredMoreWork.length} {filteredMoreWork.length === 1 ? "project" : "projects"}
+            </span>
+          </div>
+
+          {/* Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {filteredMoreWork.map((item) => (
               <a
-                key={study.id}
-                href={`/work/${study.slug}`}
+                key={item.id}
+                href={item.route}
                 onClick={(e) => {
                   if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) {
                     return;
                   }
                   e.preventDefault();
-                  onSelectCaseStudy(study);
-                  onNavigate(`/work/${study.slug}`);
+                  onNavigate(item.route);
                 }}
-                className="work-icard focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#188E39] focus-visible:ring-offset-2"
-                aria-label={`Explore work: ${cardData.h3}`}
+                className="group rounded-[20px] bg-white border border-[#042718]/8 hover:border-[#188E39]/40 hover:shadow-md p-6 transition-all flex flex-col justify-between text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#188E39]"
+                aria-label={`Read story: ${item.title}`}
               >
-                {/* Left Image (flex: 0 0 46%) */}
-                <div className="work-icard-image">
-                  <img
-                    src={`${cardData.imagePrefix}.webp`}
-                    srcSet={`${cardData.imagePrefix}-480.webp 480w, ${cardData.imagePrefix}-800.webp 800w, ${cardData.imagePrefix}.webp 1600w`}
-                    sizes="(max-width: 560px) 100vw, 46vw"
-                    alt={cardData.h3}
-                    width={480}
-                    height={320}
-                    loading={isEager ? "eager" : "lazy"}
-                    decoding={isEager ? "sync" : "async"}
-                    {...(isFirst ? { fetchPriority: "high" } : {})}
-                  />
-                </div>
-
-                {/* Right Body Content */}
-                <div className="work-icard-body">
-                  {/* One pill tag only */}
-                  <div className="mb-2.5">
-                    <span className="inline-block rounded-[100px] bg-[#042718] text-white px-2.5 py-1 text-[12px] font-inter font-medium leading-none">
-                      {primaryTag}
+                <div>
+                  {/* Category & Company */}
+                  <div className="flex items-center justify-between gap-2 mb-2.5">
+                    <span className="font-mono text-[10px] uppercase tracking-wider font-semibold text-[#A8711A]">
+                      {item.primaryCategory}
+                    </span>
+                    <span className="font-inter text-[11px] text-[#042718]/50">
+                      {item.company}
                     </span>
                   </div>
 
                   {/* Title */}
-                  <h3 className="font-onest font-semibold text-[24px] leading-[28.8px] tracking-[-0.48px] text-[#042718] mb-2">
-                    {cardData.h3}
+                  <h3 className="font-onest text-lg sm:text-xl font-bold text-[#042718] mb-1 group-hover:text-[#188E39] transition-colors">
+                    {item.title}
                   </h3>
 
-                  {/* Description */}
-                  <p className="font-inter text-[14px] leading-[19px] text-[#042718]/56 line-clamp-3">
-                    {cardData.desc}
+                  {/* Story Angle */}
+                  <p className="font-inter text-xs sm:text-[13px] font-medium text-[#042718]/75 mb-2.5">
+                    {item.storyAngle}
                   </p>
 
-                  {/* Spacer */}
-                  <div className="flex-1 min-h-[16px]" />
+                  {/* Verified Impact / Metric highlight */}
+                  {item.metrics && item.metrics.length > 0 && (
+                    <div className="font-mono text-[11px] text-[#A8711A] font-semibold mb-3 leading-snug">
+                      {item.metrics
+                        .filter((m) => m.value && m.label)
+                        .slice(0, 2)
+                        .map((m) => `${m.value} ${m.label}`)
+                        .join(" · ")}
+                    </div>
+                  )}
+                </div>
 
-                  {/* Figure & Qualifier */}
-                  <div className="pt-3 border-t border-[#042718]/8">
-                    <div className="font-onest font-semibold text-[32px] leading-tight tracking-[-0.64px] text-[#042718] tabular-nums">
-                      {cardData.figure}
-                    </div>
-                    <div className="font-inter text-[14px] text-[#042718]/56">
-                      {cardData.qual}
-                    </div>
+                <div>
+                  {/* Tags (Max 3 concise tags) */}
+                  <div className="flex flex-wrap items-center gap-1.5 pt-3 border-t border-[#042718]/6 mb-3 font-inter text-[11px] text-[#042718]/60">
+                    {item.tags.slice(0, 3).map((t, tIdx) => (
+                      <span
+                        key={tIdx}
+                        className="text-[10px] font-inter font-medium px-2 py-0.5 rounded bg-[#042718]/4 text-[#042718]/70 border border-[#042718]/6"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* CTA link */}
+                  <div className="inline-flex items-center gap-1.5 text-xs font-inter font-semibold text-[#188E39] group-hover:translate-x-0.5 transition-transform">
+                    <span>Read the story</span>
+                    <ArrowRight size={14} />
                   </div>
                 </div>
               </a>
-            );
-          })}
-        </div>
-
-        {/* =========================================================================
-            MORE WORK (SECTION 13)
-            ========================================================================= */}
-        <section id="more-work" className="pt-8 border-t border-[#042718]/10">
-          <div className="max-w-3xl mb-8 md:mb-12">
-            <h2 className="font-onest text-[34px] sm:text-[44px] md:text-[54px] font-semibold text-[#042718] leading-[1.12] tracking-tight md:tracking-[-2px]">
-              More work
-            </h2>
-            <p className="font-inter text-[15px] md:text-[18px] text-[#042718]/80 leading-relaxed max-w-[640px] mt-4">
-              A record of platform extensions, operational pipelines, CRM/ERP integrations, and earlier hardware product initiatives.
-            </p>
-          </div>
-
-          <div className="flex flex-col gap-12">
-            {MORE_WORK_CATEGORIES.map((cat, cIdx) => (
-              <div key={cIdx} className="bg-white rounded-[24px] border border-[#042718]/8 p-6 sm:p-8 shadow-2xs">
-                <div className="flex items-center gap-3 mb-2">
-                  {getCategoryIcon(cat.category)}
-                  <h3 className="font-onest text-xl sm:text-2xl font-bold text-[#042718]">
-                    {cat.category}
-                  </h3>
-                </div>
-                <p className="font-inter text-xs sm:text-sm text-[#042718]/60 mb-6">
-                  {cat.description}
-                </p>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {cat.items.map((item, iIdx) => (
-                    <div
-                      key={iIdx}
-                      className="rounded-[16px] bg-[#FAFDFB] hover:bg-[#F4FAFA] border border-[#042718]/6 p-5 transition-colors flex flex-col justify-between"
-                    >
-                      <div>
-                        <div className="flex items-start justify-between gap-2 mb-2">
-                          <h4 className="font-onest text-base font-bold text-[#042718]">
-                            {item.title}
-                          </h4>
-                          <span className="text-[11px] font-inter font-semibold text-[#188E39] px-2 py-0.5 rounded-full bg-[#188E39]/10 shrink-0">
-                            {item.scope}
-                          </span>
-                        </div>
-                        <p className="font-inter text-xs sm:text-[13px] text-[#042718]/70 leading-relaxed mb-4">
-                          {item.description}
-                        </p>
-                      </div>
-
-                      <div className="flex flex-wrap gap-1.5 pt-2 border-t border-[#042718]/5">
-                        {item.tags.map((t, tIdx) => (
-                          <span
-                            key={tIdx}
-                            className="text-[10px] font-inter font-medium px-2 py-0.5 rounded bg-white text-[#042718]/60 border border-[#042718]/5"
-                          >
-                            {t}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
             ))}
           </div>
         </section>
@@ -379,4 +512,3 @@ export default function WorkPage({
     </div>
   );
 }
-

@@ -437,7 +437,7 @@ export const AI_COACH_CASE_STUDY: CaseStudyDetail = {
     myOwnership:
       'I owned use-case scoping, safety guardrail specifications, system prompt contracts, multi-model evaluation, and the iterative feedback telemetry loop from concept to production.',
     whatChanged:
-      'Scaled organic adoption from ~300 to 3,200+ DAU in ~3 months with 0 safety incidents or medical escalations, establishing a trusted AI discovery layer for certified workouts.',
+      'Scaled organic adoption from ~300 to 3,200+ DAU in ~3 months with 0 reported safety incidents or medical escalations during the observed launch period, establishing a trusted AI discovery layer for certified workouts.',
   },
   tradeOff: {
     considered:
@@ -449,7 +449,7 @@ export const AI_COACH_CASE_STUDY: CaseStudyDetail = {
     gaveUp:
       'We gave up open-ended conversational flair, unconstrained banter, and longer conversational session times that might have looked flattering on vanity engagement dashboards.',
     outcome:
-      'Maintained 0 safety incidents or medical escalations while scaling organic adoption from ~300 to 3,200+ DAU in ~3 months, establishing high user trust across the community.',
+      'Maintained 0 reported safety incidents or medical escalations during the observed launch period while scaling organic adoption from ~300 to 3,200+ DAU in ~3 months, establishing high user trust across the community.',
   },
   artifacts: {
     title: 'Safety Guardrail Decision Matrix & System Prompt Contract',
@@ -538,7 +538,7 @@ export const AI_COACH_CASE_STUDY: CaseStudyDetail = {
         tradeoff:
           'Gave up open-ended conversational banter, unrestricted injury diagnosis, and artificially lengthened session durations that might have looked flattering on vanity analytics dashboards.',
         result:
-          'Maintained a 0-incident safety record across 3,200+ daily active users while building deep community and clinical trust.',
+          'Maintained 0 reported safety incidents or medical escalations during the observed launch period across 3,200+ daily active users while building deep community and clinical trust.',
       },
       diagramType: 'safety',
       highlights: [
@@ -644,7 +644,7 @@ export const AI_COACH_CASE_STUDY: CaseStudyDetail = {
         {
           category: 'User Outcome',
           metric: '0 Escalations',
-          desc: 'Zero medical or physical safety incidents across thousands of daily sessions; sub-minute workout discovery.',
+          desc: '0 reported safety incidents or medical escalations during the observed launch period across thousands of daily sessions; sub-minute workout discovery.',
         },
         {
           category: 'Operational Outcome',
@@ -887,9 +887,9 @@ export const PERFORMANCE_SCORE_CASE_STUDY: CaseStudyDetail = {
   number: '04',
   title: 'One Body. One Score. One Ecosystem.',
   subtitle:
-    'Designing a unified progress and activity experience across app, Smart Gym and connected devices, while fixing the underlying data fragmentation first.',
+    'Designed one progress system across a fragmented connected-fitness ecosystem.',
   description:
-    'Designing a unified progress and activity experience across app, Smart Gym and connected devices, while fixing the underlying data fragmentation first.',
+    'Designed one progress system across a fragmented connected-fitness ecosystem.',
   thesis:
     'Before promising users one measure of progress, we needed to make the ecosystem behave like one product.',
   centralQuestion:
@@ -898,21 +898,21 @@ export const PERFORMANCE_SCORE_CASE_STUDY: CaseStudyDetail = {
     'Hardware should be an aspiration, not a gate. Data fragmentation must be resolved at the architecture level before designing the UI.',
   category: 'Product Strategy & Connected Ecosystems',
   role: 'Senior Product Manager · Connected Ecosystem Strategy',
-  timeline: '2025 (Development-Ready Strategy)',
+  timeline: '2025 (Product Strategy & PRD)',
   tags: ['Product Strategy', 'Connected Products', 'Data', '0→1'],
   proofPoints: [
-    'Development-ready P0 strategy',
+    'Strategy / PRD',
+    '5 surfaces',
     'iOS · Android · Display · Smart Gym · Firmware',
-    'Comprehensive Cross-Platform PRD',
   ],
   isStrategyOnly: true,
   statusNotice:
-    'Note: This initiative represents a development-ready P0 product strategy, systems architecture, and comprehensive PRD. It is presented here as a product strategy and systems-thinking case study, without post-launch adoption or revenue impact claims.',
+    'Note: This initiative represents a product strategy, systems architecture, and comprehensive PRD. It is presented here as a product strategy and systems-thinking case study, not a launched feature, without post-launch adoption or revenue impact claims.',
   keyStats: [
-    { label: 'Strategy Status', value: 'P0 Development-Ready', detail: 'Comprehensive cross-platform PRD' },
-    { label: 'Platforms Aligned', value: '5 Surfaces', detail: 'iOS, Android, Display, Smart Gym, Firmware' },
-    { label: 'Score Paradigm', value: '0–100 Reliability', detail: 'Athletic Reliability Metric' },
-    { label: 'Data Architecture', value: 'Dual-Write / Read', detail: 'Zero-downtime database migration path' },
+    { label: 'Surfaces', value: '5 Surfaces', detail: 'iOS, Android, Display, Smart Gym, Firmware' },
+    { label: 'Migration Architecture', value: '3-Phase', detail: 'Phase 1 — Dual-write, Phase 2 — Unified read, Phase 3 — Decommission' },
+    { label: 'System Model', value: 'One Shared Model', detail: 'One shared product + data contract across ecosystem' },
+    { label: 'Deliverable', value: 'Strategy & PRD', detail: 'Comprehensive cross-platform systems architecture' },
   ],
   quickContext: {
     problem:
@@ -920,21 +920,21 @@ export const PERFORMANCE_SCORE_CASE_STUDY: CaseStudyDetail = {
     whyItMattered:
       'Users had no singular answer to "Am I getting fitter or burning out?", while engineering teams faced mounting technical debt supporting siloed hardware endpoints.',
     myOwnership:
-      'I authored the comprehensive P0 cross-platform PRD, specified the 0–100 Athletic Reliability scoring algorithm, and designed the 4-phase data migration strategy across 5 engineering surfaces.',
+      'I authored the comprehensive cross-platform PRD, specified the 0–100 Athletic Reliability scoring algorithm, and designed the 3-phase data migration strategy across 5 engineering surfaces.',
     whatChanged:
-      'Delivered a development-ready, executive-aligned architecture uniting mobile, display, Smart Gym, and firmware under a unified data contract—without requiring users to buy expensive hardware.',
+      'Delivered an executive-aligned systems architecture uniting mobile, display, Smart Gym, and firmware under a unified data contract—without requiring users to buy expensive hardware.',
   },
   tradeOff: {
     considered:
       'Gating the Performance Score exclusively to owners of expensive connected hardware (Smart Gym or sPulse sensors), and running a single big-bang database migration to replace legacy workout tables.',
     chose:
-      'I chose a three-tier hardware-agnostic telemetry architecture (Tier 1 functions with zero hardware using RPE and duration) and a four-phase dual-write / shadow-validation migration roadmap.',
+      'I chose a three-tier hardware-agnostic telemetry architecture (Tier 1 functions with zero hardware using RPE and duration) and a 3-phase data migration roadmap (Phase 1 — Dual-write, Phase 2 — Unified read, Phase 3 — Decommission legacy).',
     why:
       'Over 80% of the mobile user base did not own hardware; locking the flagship score behind equipment would have alienated the vast majority of our community. A big-bang database overhaul carried unacceptable risk of live session sync failures across thousands of concurrent workouts.',
     gaveUp:
       'We gave up a simpler, single-path algorithm and faster engineering delivery, having to build 3 parallel scoring pipelines and support dual data ingestion contracts.',
     outcome:
-      'Delivered a comprehensive, development-ready cross-platform PRD aligned across 5 engineering surfaces (iOS, Android, Display, Smart Gym, Firmware) with zero data-loss risk.',
+      'Delivered a comprehensive cross-platform PRD aligned across 5 engineering surfaces (iOS, Android, Display, Smart Gym, Firmware) with zero data-loss risk.',
   },
   sections: [
     {
@@ -986,15 +986,15 @@ export const PERFORMANCE_SCORE_CASE_STUDY: CaseStudyDetail = {
     {
       id: 'architecture',
       number: '03',
-      title: 'Technical Foundation: The Dual-Write Migration Strategy',
-      subtitle: 'Fixing underlying data fragmentation before launching front-end experiences',
+      title: 'Technical Foundation: The 3-Phase Data Migration Strategy',
+      subtitle: 'Fixing underlying data fragmentation with a 3-phase migration before launching front-end experiences',
       content: [
         'A user-facing metric is only as credible as the data pipeline underneath. In the PRD, I authored a phased data migration strategy alongside our backend architect to unify fragmented backend systems without breaking active customer sessions:',
       ],
       decision: {
-        title: '4-Phase Dual-Write Data Migration vs Single Big-Bang Cutover',
+        title: '3-Phase Data Migration vs Single Big-Bang Cutover',
         decision:
-          'Authored a 4-phase data migration architecture (Dual-Write → Shadow Validation → Unified Read → Deprecate) rather than executing a single big-bang database cutover.',
+          'Authored a 3-phase data migration architecture (Dual-Write with shadow validation → Unified Read → Decommission Legacy) rather than executing a single big-bang database cutover.',
         why:
           'Thousands of concurrent live workouts could not tolerate dropped Bluetooth packets or database lockups during a migration. Legacy tables had disparate schemas that required runtime verification.',
         tradeoff:
@@ -1004,10 +1004,9 @@ export const PERFORMANCE_SCORE_CASE_STUDY: CaseStudyDetail = {
       },
       diagramType: 'architecture',
       workflowSteps: [
-        { label: 'Phase 1: Dual-Write', desc: 'Incoming workout events write to both legacy tables and unified activity service' },
-        { label: 'Phase 2: Shadow Validation', desc: 'Verify score calculation idempotency and event deduplication against legacy logs' },
-        { label: 'Phase 3: Unified Read', desc: 'Switch client queries to the unified activity service across iOS, Android, and Web' },
-        { label: 'Phase 4: Decommission', desc: 'Gracefully deprecate siloed hardware logging endpoints' },
+        { label: 'Phase 1: Dual-Write', desc: 'Incoming workout events write to both legacy tables and unified activity service with shadow validation' },
+        { label: 'Phase 2: Unified Read', desc: 'Switch client queries to the unified activity service across iOS, Android, and displays' },
+        { label: 'Phase 3: Decommission Legacy', desc: 'Gracefully deprecate siloed hardware and workout logging endpoints' },
       ],
     },
     {
@@ -1066,8 +1065,8 @@ export const PERFORMANCE_SCORE_CASE_STUDY: CaseStudyDetail = {
         },
         {
           category: 'Operational Outcome',
-          metric: 'P0 Blueprint',
-          desc: 'Delivered development-ready PRD, schema contracts, and idempotent data migration path with zero live workout sync risk.',
+          metric: 'Systems Blueprint',
+          desc: 'Delivered cross-platform PRD, schema contracts, and idempotent data migration path with zero live workout sync risk.',
         },
       ],
       reflection:
@@ -1121,7 +1120,7 @@ export const AI_LOCALIZATION_CASE_STUDY: CaseStudyDetail = {
     whyItMattered:
       'Multi-month studio bottlenecks delayed European subscriber acquisition, while unconstrained machine translations mangled colloquial gym cues, threatening trainer credibility.',
     myOwnership:
-      'I evaluated and selected commercial AI tooling, redesigned the operational workflow, authored the 500+ term fitness translation glossary, and managed the end-to-end multi-language rollout.',
+      'I evaluated and selected commercial AI tooling, redesigned the operational workflow, established standardized fitness coaching terminology, and managed the end-to-end multi-language rollout.',
     whatChanged:
       'Shipped 200+ high-production workout videos across Italian, French, and Spanish in ~3 weeks (~10× faster than studio benchmarks) with 0 translation complaints or brand issues.',
   },
@@ -1129,7 +1128,7 @@ export const AI_LOCALIZATION_CASE_STUDY: CaseStudyDetail = {
     considered:
       'A fully automated, zero-touch dubbing pipeline that pushed AI-translated videos directly to the mobile app without human intervention, or sticking with traditional European studio filming.',
     chose:
-      'I chose a hybrid operating model: leveraging generative voice cloning (ElevenLabs) and lip-sync (HeyGen), but enforcing a mandatory 15-minute native-speaker human review gate and building a 500+ fitness cue translation glossary.',
+      'I chose a hybrid operating model: leveraging generative voice cloning (ElevenLabs) and lip-sync (HeyGen), but enforcing a mandatory native-speaker human review gate and standardized fitness coaching terminology.',
     why:
       'Fitness instruction relies on nuanced colloquial encouragement and strict anatomical cues. Machine translations regularly generated comical, awkward, or physiologically unsafe instructions ("break your knees" instead of "soft bend in the knees"). Traditional studio filming was too slow (3–4 months) and too expensive.',
     gaveUp:
@@ -1235,12 +1234,12 @@ export const AI_LOCALIZATION_CASE_STUDY: CaseStudyDetail = {
       subtitle: 'Why pure automation fails in high-energy fitness instruction',
       content: [
         'Fitness coaching relies heavily on colloquial idioms, motivational cadence, and exact anatomical cues (e.g., "engage your core", "hinge at the hips"). Direct machine translations frequently botched these phrases with comical or confusing results.',
-        'I built a strict human-in-the-loop governance protocol: native-speaking fitness reviewers conducted a fast 15-minute verification pass per video, correcting script anomalies and ensuring the synthetic trainer sounded authentic and motivating.',
+        'I built a strict human-in-the-loop governance protocol: native-speaking fitness reviewers conducted a focused verification pass per video, correcting script anomalies and ensuring the synthetic trainer sounded authentic and motivating.',
       ],
       decision: {
         title: 'Mandatory Native-Speaker Review Gate vs Zero-Touch Publishing',
         decision:
-          'Enforced a mandatory 15-minute native-speaker review pass for every video before catalog release, backed by a proprietary 500+ fitness cue translation glossary.',
+          'Enforced a mandatory native-speaker review pass for every video before catalog release, backed by standardized fitness coaching terminology.',
         why:
           'Fitness instruction relies on nuanced colloquial encouragement and precise anatomical idioms ("hinge at the hips", "soft bend in the knees"). Unchecked machine translations produced bizarre or physiologically dangerous cues ("break your knees").',
         tradeoff:
@@ -1250,8 +1249,8 @@ export const AI_LOCALIZATION_CASE_STUDY: CaseStudyDetail = {
       },
       highlights: [
         {
-          title: 'Fitness Idiom Glossary',
-          desc: 'Built a proprietary translation memory of 500+ standard fitness cues across Italian, French, and Spanish.',
+          title: 'Fitness Terminology Standards',
+          desc: 'Established standardized domain terminology for fitness coaching cues across Italian, French, and Spanish.',
         },
         {
           title: 'Zero Brand Damage',
@@ -1532,14 +1531,14 @@ export const BEHIND_COPILOT_CASE_STUDY: CaseStudyDetail = {
   proofPoints: [
     'Retrieval <2ms · Gen ~4–6s',
     '0 external DB dependencies',
-    '100% citation grounding',
+    '100% citation grounding across the evaluation set',
     '95% golden set accuracy (19/20)',
   ],
   keyStats: [
     { label: 'Retrieval Latency', value: '<2ms', detail: 'In-memory cosine calculation (generation takes ~4–6s)' },
     { label: 'Vector DB Cost', value: '$0 / mo', detail: 'Zero cloud database or cluster maintenance' },
-    { label: 'Grounding Precision', value: '100%', detail: 'Every generation mapped to verified source chunks' },
-    { label: 'Golden Benchmark', value: '19/20', detail: '95% pass rate with 0% hallucination rate' },
+    { label: 'Grounding Precision', value: '100%', detail: '100% citation grounding across the evaluation set' },
+    { label: 'Golden Benchmark', value: '19/20', detail: '95% pass rate with 0 hallucinations across the 20-query golden evaluation set' },
   ],
   quickContext: {
     problem:
@@ -1549,19 +1548,19 @@ export const BEHIND_COPILOT_CASE_STUDY: CaseStudyDetail = {
     myOwnership:
       'Architected and implemented the entire end-to-end RAG system: build-time semantic chunking, 512-dim embedding generation, in-memory cosine ranking, confidence gating, and golden test evaluation.',
     whatChanged:
-      'Sub-2ms local retrieval, 100% citation grounding, $0 cloud database costs, and an adversarial fallback gate directing unknown queries to direct scheduling.',
+      'Sub-2ms local retrieval, 100% citation grounding across the evaluation set, $0 cloud database costs, and an adversarial fallback gate directing unknown queries to direct scheduling.',
   },
   tradeOff: {
     considered:
       'Spinning up a managed external vector database (e.g. Pinecone, Weaviate, Milvus) and using a large frontier model with unconstrained chat generation.',
     chose:
-      'I chose an in-memory cosine index over build-time 512-dim embeddings paired with Gemini Flash Lite and strict confidence thresholding (<0.70 similarity prompts honest fallback rather than guessing).',
+      'I chose an in-memory cosine index over build-time 512-dim embeddings paired with Gemini Flash Lite and strict confidence thresholding (0.68 cosine similarity threshold prompts honest fallback rather than guessing).',
     why:
       'For a domain portfolio corpus under 10,000 document chunks, network hops to a remote vector database introduce 40–120ms of unnecessary network latency, monthly SaaS costs, and another operational failure point. In-memory cosine search across typed Float32 arrays runs in under 2 milliseconds directly in server process memory.',
     gaveUp:
       'We gave up dynamic live document ingestion from external websites (updates are baked at build-time via deterministic JSON).',
     outcome:
-      'Achieved 100% citation grounding, 0% hallucination rate across our 20-question golden test suite, $0/month vector infrastructure bill, and sub-2ms retrieval performance.',
+      'Achieved 100% citation grounding across the evaluation set, 0 hallucinations across the 20-query golden evaluation set, $0/month vector infrastructure bill, and sub-2ms retrieval performance.',
   },
   sections: [
     {
@@ -1676,7 +1675,7 @@ export const BEHIND_COPILOT_CASE_STUDY: CaseStudyDetail = {
         tradeoff:
           'The copilot refuses to entertain conversational chit-chat, trivia, or non-portfolio questions.',
         result:
-          '0% hallucination rate across our 20-question golden evaluation set and graceful conversion of out-of-domain queries into high-intent hiring chats.',
+          '0 hallucinations across the 20-query golden evaluation set and graceful conversion of out-of-domain queries into high-intent hiring chats.',
       },
       highlights: [
         {
@@ -1697,7 +1696,7 @@ export const BEHIND_COPILOT_CASE_STUDY: CaseStudyDetail = {
       content: [
         'To scientifically evaluate the RAG pipeline prior to release, we constructed a 20-question golden test set encompassing factual career metrics, product philosophies, technical architecture, and adversarial out-of-domain edge cases.',
         'Each query was executed against the production embedding space, recording top retrieval hit rate, top cosine similarity, response correctness, and hallucination absence.',
-        'The architecture achieved a 95% pass rate (19/20 passes), with a 0% hallucination rate and an average retrieval latency of 1.4 milliseconds.',
+        'The architecture achieved a 95% pass rate (19/20 passes), with 0 hallucinations across the 20-query golden evaluation set and an average retrieval latency of 1.4 milliseconds.',
       ],
       evaluationTable: COPILOT_GOLDEN_EVALUATION_SET,
       outcomeHierarchy: [
@@ -1714,7 +1713,7 @@ export const BEHIND_COPILOT_CASE_STUDY: CaseStudyDetail = {
         {
           category: 'Product Outcome',
           metric: '19/20 Passes',
-          desc: '95% golden set accuracy with 0% hallucination rate across 20 rigorous test queries, including adversarial prompts.',
+          desc: '95% golden set accuracy with 0 hallucinations across the 20-query golden evaluation set, including adversarial prompts.',
         },
         {
           category: 'User Outcome',
@@ -1723,7 +1722,7 @@ export const BEHIND_COPILOT_CASE_STUDY: CaseStudyDetail = {
         },
       ],
       reflection:
-        'Initially, we experimented with a 0.60 similarity threshold to allow more casual queries through, but observed marginal hallucination creep on ambiguous questions. Tightening the threshold to 0.68 eliminated hallucinations entirely, trading off casual chit-chat in favor of bulletproof executive credibility.',
+        'Initially, we experimented with a 0.60 similarity threshold to allow more casual queries through, but observed marginal hallucination creep on ambiguous questions. Tightening the threshold to 0.68 eliminated hallucinations on our test suite, trading off casual chit-chat in favor of bulletproof executive credibility.',
       highlights: [
         {
           title: '100% Grounded Sourcing',
@@ -1751,13 +1750,18 @@ export const BEHIND_COPILOT_CASE_STUDY: CaseStudyDetail = {
   ],
 };
 
-// Array of all Flagship Case Studies (now including Behind the AI Copilot)
+// Array of 5 Primary Flagship Case Studies
 export const ALL_FLAGSHIP_CASE_STUDIES: CaseStudyDetail[] = [
   RESHAMANDI_CASE_STUDY,
   AI_COACH_CASE_STUDY,
   SUBSCRIPTION_CASE_STUDY,
   PERFORMANCE_SCORE_CASE_STUDY,
   AI_LOCALIZATION_CASE_STUDY,
+];
+
+// All Case Studies (including Behind the Copilot deep dive)
+export const ALL_CASE_STUDIES: CaseStudyDetail[] = [
+  ...ALL_FLAGSHIP_CASE_STUDIES,
   BEHIND_COPILOT_CASE_STUDY,
 ];
 
@@ -1946,7 +1950,7 @@ export const EXPERIENCE_ROLES: ExperienceRole[] = [
     highlights: [
       'Spearheaded 0→1 development of conversational in-app AI Coach (Gemini primary, ChatGPT fallback); scaled adoption from ~300 to 3,200+ DAU within roughly 3 months.',
       'Managed subscription strategy across 174,180 freemium and 12,401 paying users; drove 81.9% YoY subscriber growth and 96.8% yearly-plan retention (€659K FY25 subscription revenue).',
-      'Architected comprehensive development-ready P0 strategy for Performance Score (0–100 Athletic Reliability) uniting mobile, Smart Gym, and wearable telemetry.',
+      'Architected comprehensive cross-platform strategy and PRD for Performance Score (0–100 Athletic Reliability) uniting mobile, Smart Gym, and wearable telemetry.',
       'Designed AI-assisted content localization pipeline shipping 200+ workout videos in ~3 weeks (~10× faster) across Italian, French, and Spanish.',
       'Led and mentored a 6-person cross-functional pod (3 PMs, Growth, Content) in an ODC model partnering with Germany HQ leadership.',
     ],
@@ -2073,7 +2077,7 @@ export const HOW_I_WORK_PRINCIPLES: HowIWorkPrinciple[] = [
     detail:
       'The fastest way to kill an early-stage product is premature complexity. Ruthlessly isolate the atomic value loop, validate PMF signals, and expand only when the core mechanism is airtight.',
     aphorism: 'Ruthlessly isolate the atomic value loop before expanding.',
-    evidence: 'Sportstech AI Coach · 300 → 3,200+ DAU',
+    evidence: 'Sportstech AI Coach · ~300 → 3,200+ DAU',
     evidenceLink: '/work/ai-coach',
   },
   {

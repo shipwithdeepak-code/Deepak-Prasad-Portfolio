@@ -57,7 +57,7 @@ export default function CaseStudyDetailPage({
             className="inline-flex items-center gap-2 text-xs sm:text-sm font-inter font-medium text-[#042718]/60 hover:text-[#188E39] mb-8 transition-colors cursor-pointer"
           >
             <ArrowLeft size={16} />
-            <span>Back to selected work</span>
+            <span>Back to all work</span>
           </button>
 
           {/* Eyebrow & Status Notice */}
@@ -67,7 +67,7 @@ export default function CaseStudyDetailPage({
             </span>
             {caseStudy.isStrategyOnly && (
               <span className="px-3 py-1 rounded-full bg-[#F3E8FF] text-[#7E22CE] text-xs font-inter font-semibold">
-                Development-Ready Strategy
+                Product Strategy · Systems Architecture
               </span>
             )}
           </div>
@@ -137,7 +137,7 @@ export default function CaseStudyDetailPage({
               </div>
               <div className="p-3.5 rounded-xl bg-[#FAFDFB] border border-[#042718]/6">
                 <span className="text-[11px] font-inter font-bold uppercase tracking-wider text-[#042718] block mb-1">
-                  What Changed
+                  {caseStudy.slug === 'performance-score' ? 'Designed System' : 'What Changed'}
                 </span>
                 <p className="text-xs sm:text-sm font-inter text-[#042718] leading-relaxed font-medium">
                   {caseStudy.quickContext.whatChanged}
@@ -569,7 +569,7 @@ export default function CaseStudyDetailPage({
 
               <div className="mt-6 pt-5 border-t border-white/10">
                 <span className="text-[11px] font-mono uppercase tracking-wider text-[#6EE7B7] block mb-1">
-                  What happened (Outcome)
+                  {caseStudy.slug === 'performance-score' ? 'Delivered System Architecture' : 'What happened (Outcome)'}
                 </span>
                 <p className="font-inter text-sm sm:text-[15px] text-white/90 leading-relaxed">
                   {caseStudy.tradeOff.outcome}
@@ -649,7 +649,7 @@ export default function CaseStudyDetailPage({
               <ArrowLeft size={20} className="text-[#188E39]" />
               <div>
                 <span className="text-[11px] font-inter font-semibold uppercase tracking-wider text-[#042718]/40 block">
-                  Previous Case
+                  Previous project
                 </span>
                 <span className="font-onest font-bold text-sm text-[#042718]">
                   {prevStudy.title}
@@ -666,7 +666,7 @@ export default function CaseStudyDetailPage({
               }}
               className="text-xs font-inter font-semibold text-[#042718]/60 hover:text-[#042718] transition-colors"
             >
-              All Case Studies
+              All work
             </a>
 
             <a
@@ -680,7 +680,7 @@ export default function CaseStudyDetailPage({
             >
               <div>
                 <span className="text-[11px] font-inter font-semibold uppercase tracking-wider text-[#042718]/40 block">
-                  Next Case
+                  Next project
                 </span>
                 <span className="font-onest font-bold text-sm text-[#042718]">
                   {nextStudy.title}
