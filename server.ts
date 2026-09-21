@@ -88,7 +88,7 @@ async function startServer() {
   const app = express();
   const PORT = 3000;
 
-  app.use(compression());
+  app.use(compression() as unknown as express.RequestHandler);
   app.use(express.json());
 
   // -------------------------------------------------------------
