@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import { CaseStudyDetail } from "../types";
 import { ALL_FLAGSHIP_CASE_STUDIES } from "../data/caseStudies";
+import { MechanismVisual, MechanismSlug } from "./MechanismVisual";
 
 interface CaseStudyDetailPageProps {
   caseStudy: CaseStudyDetail;
@@ -235,11 +236,38 @@ export default function CaseStudyDetailPage({
                   })}
                 </div>
 
+                {/* Product Mechanism Visual if this is the pivotal mechanism section */}
+                {((caseStudy.slug === "reshamandi" && sec.id === "instant-payout") ||
+                  (caseStudy.slug === "ai-coach" && sec.id === "safety") ||
+                  (caseStudy.slug === "subscription" && sec.id === "product-journey") ||
+                  (caseStudy.slug === "performance-score" &&
+                    (sec.id === "the-vision" ||
+                      sec.id === "architecture" ||
+                      sec.id === "hardware-tiers")) ||
+                  (caseStudy.slug === "ai-localization" && sec.id === "pipeline-redesign")) && (
+                  <div className="my-8">
+                    <MechanismVisual
+                      slug={caseStudy.slug as MechanismSlug}
+                      variant="detail"
+                      theme="light"
+                      moment={
+                        caseStudy.slug === "performance-score"
+                          ? sec.id === "the-vision"
+                            ? "ecosystem"
+                            : sec.id === "architecture"
+                            ? "migration"
+                            : "hardware-tiers"
+                          : undefined
+                      }
+                    />
+                  </div>
+                )}
+
                 {/* Inline Decision Moment if attached to section */}
                 {sec.decision && (
-                  <div className="my-6 p-6 sm:p-7 rounded-[20px] bg-white border border-[#042718]/12 shadow-2xs">
-                    <div className="flex items-center gap-2 mb-4 pb-3 border-b border-[#042718]/8">
-                      <span className="text-[11px] font-mono uppercase tracking-wider text-[#8A5A16] font-semibold">
+                  <div className="my-7 rounded-[20px] bg-white border-l-4 border-l-[#188E39] border-y border-r border-[#042718]/10 p-6 sm:p-7 shadow-xs">
+                    <div className="flex flex-wrap items-center gap-2 mb-4 pb-3 border-b border-[#042718]/8">
+                      <span className="text-[11px] font-mono uppercase tracking-wider text-[#188E39] font-bold">
                         Key Product Decision
                       </span>
                       {sec.decision.title && (
@@ -256,7 +284,7 @@ export default function CaseStudyDetailPage({
                         <span className="text-[11px] font-inter font-bold uppercase tracking-wider text-[#042718] block mb-1">
                           The Decision
                         </span>
-                        <p className="font-inter text-[#042718]/85 leading-relaxed font-medium">
+                        <p className="font-inter text-[#042718]/90 leading-relaxed font-medium">
                           {sec.decision.decision}
                         </p>
                       </div>
@@ -319,8 +347,8 @@ export default function CaseStudyDetailPage({
 
                 {/* Section Retrospective Reflection if present */}
                 {sec.reflection && (
-                  <div className="my-6 p-5 sm:p-6 rounded-[20px] bg-[#FAFDFB] border border-[#042718]/12">
-                    <span className="text-xs font-inter font-bold uppercase tracking-wider text-[#8A5A16] block mb-1.5">
+                  <div className="my-6 p-5 sm:p-6 rounded-[20px] bg-[#FAFDFB] border-l-4 border-l-[#8A5A16] border-y border-r border-[#042718]/12 shadow-2xs">
+                    <span className="text-[11px] font-mono font-semibold uppercase tracking-wider text-[#8A5A16] block mb-2">
                       What I'd Change (Retrospective Insight)
                     </span>
                     <p className="font-inter text-xs sm:text-sm text-[#042718]/85 leading-relaxed italic">
@@ -329,8 +357,12 @@ export default function CaseStudyDetailPage({
                   </div>
                 )}
 
-                {/* Workflow Steps Diagram */}
-                {sec.workflowSteps && (
+                {/* Workflow Steps Diagram (only if not handled by custom mechanism visual) */}
+                {sec.workflowSteps &&
+                  !(
+                    (caseStudy.slug === "performance-score" && sec.id === "architecture") ||
+                    (caseStudy.slug === "reshamandi" && sec.id === "instant-payout")
+                  ) && (
                   <div className="my-8 p-6 rounded-[20px] bg-white border border-[#042718]/10 shadow-2xs">
                     <span className="text-xs font-inter font-semibold uppercase tracking-wider text-[#042718]/50 block mb-4">
                       Execution Flow

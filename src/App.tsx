@@ -3,7 +3,6 @@ import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import HomePage from "./components/HomePage";
 import { openCalendly } from "./utils/calendly";
-import { downloadResumePDF } from "./utils/downloadResume";
 import {
   ALL_FLAGSHIP_CASE_STUDIES,
   ALL_CASE_STUDIES,
@@ -224,7 +223,7 @@ export default function App() {
       return (
         <AboutPage
           onNavigate={navigate}
-          onOpenResumeModal={() => downloadResumePDF()}
+          onOpenResumeModal={() => setIsResumeModalOpen(true)}
         />
       );
     }
@@ -234,7 +233,7 @@ export default function App() {
       return (
         <ResumePage
           onNavigate={navigate}
-          onOpenResumeModal={() => downloadResumePDF()}
+          onOpenResumeModal={() => setIsResumeModalOpen(true)}
         />
       );
     }
@@ -255,7 +254,7 @@ export default function App() {
         <HomePage
           onNavigate={navigate}
           onSelectCaseStudy={handleSelectCaseStudy}
-          onOpenResumeModal={() => downloadResumePDF()}
+          onOpenResumeModal={() => setIsResumeModalOpen(true)}
         />
       );
     }
@@ -277,7 +276,7 @@ export default function App() {
       <Navigation
         currentPath={currentPath}
         onNavigate={navigate}
-        onOpenResumeModal={() => downloadResumePDF()}
+        onOpenResumeModal={() => setIsResumeModalOpen(true)}
         onOpenContactModal={() => openCalendly()}
       />
 
@@ -289,7 +288,7 @@ export default function App() {
       {/* Persistent Footer */}
       <Footer
         onNavigate={navigate}
-        onOpenResumeModal={() => downloadResumePDF()}
+        onOpenResumeModal={() => setIsResumeModalOpen(true)}
         onOpenContactModal={() => setIsContactModalOpen(true)}
         onSelectCaseStudy={(id) => {
           const found =

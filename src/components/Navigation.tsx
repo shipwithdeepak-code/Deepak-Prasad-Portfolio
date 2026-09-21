@@ -264,7 +264,7 @@ export default function Navigation({
                 }`}
               >
                 <span>Work</span>
-                <span className="text-[11px] text-[#042718]/45">Case Studies</span>
+                <span className="text-[11px] text-[#042718]/45">Selected work</span>
               </a>
 
               <a

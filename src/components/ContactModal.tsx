@@ -49,7 +49,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
   const subjectOptions = [
     "Senior Product Leadership (Full-Time)",
     "0→1 Product Discovery & MVP Sprint",
-    "Marketplace & Escrow Systems Advisory",
+    "Marketplace & Payout Systems Advisory",
     "Coffee / Casual Strategy Chat",
   ];
 
