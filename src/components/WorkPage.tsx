@@ -2,12 +2,10 @@ import React, { useState } from "react";
 import {
   ArrowRight,
   ArrowUpRight,
-  Layers,
-  Sparkles,
 } from "lucide-react";
 import { ALL_FLAGSHIP_CASE_STUDIES } from "../data/caseStudies";
 import { MORE_PRODUCT_WORK_ITEMS } from "../data/moreProductWork";
-import { CaseStudyDetail, MoreWorkCategoryType } from "../types";
+import { CaseStudyDetail } from "../types";
 
 interface WorkPageProps {
   onNavigate: (path: string) => void;

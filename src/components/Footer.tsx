@@ -4,7 +4,6 @@ import {
   Linkedin,
   Github,
   Mail,
-  Sparkles,
   ArrowUpRight,
   Calendar,
 } from "lucide-react";
@@ -14,7 +13,6 @@ interface FooterProps {
   onNavigate?: (path: string) => void;
   onOpenResumeModal?: () => void;
   onOpenContactModal?: () => void;
-  onSelectCaseStudy?: (id?: string) => void;
 }
 
 const SylvaLivingWorldScene = React.lazy(() =>

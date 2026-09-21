@@ -6,7 +6,6 @@ interface NavigationProps {
   currentPath: string;
   onNavigate: (path: string) => void;
   onOpenResumeModal?: () => void;
-  onOpenContactModal?: () => void;
 }
 
 export default function Navigation({

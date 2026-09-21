@@ -10,7 +10,6 @@ import {
   Github,
   Phone,
   MapPin,
-  Building,
   CheckCircle2,
   GraduationCap,
   Sparkles,
@@ -19,7 +18,6 @@ import {
   Layers,
   Wrench,
   Download,
-  Check,
 } from "lucide-react";
 import { EXPERIENCE_ROLES } from "@/data/caseStudies";
 import { downloadResumePDF } from "@/utils/downloadResume";
@@ -101,11 +99,9 @@ export default function ResumeModal({
         onClose();
       }
     };
-    document.addEventListener("keydown", handleKeyDown, true);
-    window.addEventListener("keydown", handleKeyDown, true);
+    window.addEventListener("keydown", handleKeyDown);
     return () => {
-      document.removeEventListener("keydown", handleKeyDown, true);
-      window.removeEventListener("keydown", handleKeyDown, true);
+      window.removeEventListener("keydown", handleKeyDown);
     };
   }, [isOpen, onClose]);
 

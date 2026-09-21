@@ -4,7 +4,6 @@ import Footer from "./components/Footer";
 import HomePage from "./components/HomePage";
 import { openCalendly } from "./utils/calendly";
 import {
-  ALL_FLAGSHIP_CASE_STUDIES,
   ALL_CASE_STUDIES,
   RESHAMANDI_CASE_STUDY,
 } from "./data/caseStudies";
@@ -80,6 +79,8 @@ export default function App() {
           const el = document.getElementById(h);
           if (el) el.scrollIntoView({ behavior: "smooth" });
         }, 150);
+      } else {
+        window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
       }
     };
 
@@ -100,7 +101,7 @@ export default function App() {
     }
   }, []);
 
-  // Global Escape key listener for modals
+  // Global Escape key listener for modals (window only, preventing duplicate triggers)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape" || e.key === "Esc") {
@@ -109,12 +110,8 @@ export default function App() {
         if (isResumeModalOpen) setIsResumeModalOpen(false);
       }
     };
-    document.addEventListener("keydown", handleKeyDown, true);
-    window.addEventListener("keydown", handleKeyDown, true);
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown, true);
-      window.removeEventListener("keydown", handleKeyDown, true);
-    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isCaseStudyModalOpen, isContactModalOpen, isResumeModalOpen]);
 
   const scrollToHash = (hash: string, attempts = 0) => {
@@ -136,7 +133,7 @@ export default function App() {
 
     if (targetHash) {
       if (!isSamePage) {
-        window.scrollTo({ top: 0 });
+        window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
       }
       setTimeout(
         () => {
@@ -145,6 +142,7 @@ export default function App() {
         isSamePage ? 40 : 100
       );
     } else {
+      // Instant reset to top for clean route transitions without unwanted sliding animations
       window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
     }
   };
@@ -155,9 +153,11 @@ export default function App() {
 
   // Resolve current active route
   const renderCurrentView = () => {
+    const cleanPath = currentPath.split("?")[0].replace(/\/+$/, "") || "/";
+
     // 1. More Product Work Dedicated Page: /work/more/:slug
-    if (currentPath.startsWith("/work/more/")) {
-      const moreSlug = currentPath.replace("/work/more/", "").toLowerCase();
+    if (cleanPath.startsWith("/work/more/")) {
+      const moreSlug = cleanPath.slice("/work/more/".length).toLowerCase();
       const matchedMore = MORE_PRODUCT_WORK_ITEMS.find(
         (m) => m.slug.toLowerCase() === moreSlug || m.id.toLowerCase() === moreSlug
       );
@@ -169,7 +169,7 @@ export default function App() {
       return <NotFoundPage onNavigate={navigate} />;
     }
 
-    if (currentPath === "/work/more" || currentPath === "/work/more/") {
+    if (cleanPath === "/work/more") {
       return (
         <WorkPage
           onNavigate={navigate}
@@ -180,23 +180,31 @@ export default function App() {
 
     // 2. Dedicated Applied AI Build Stories
     if (
-      currentPath === "/work/dipa" ||
-      currentPath === "/work/behind-copilot" ||
-      currentPath === "/work/behind-ai-copilot"
+      cleanPath === "/work/dipa" ||
+      cleanPath === "/work/behind-copilot" ||
+      cleanPath === "/work/behind-ai-copilot"
     ) {
       return <DipaBuildPage onNavigate={navigate} />;
     }
 
     if (
-      currentPath === "/work/product-jury" ||
-      currentPath === "/writing/product-jury"
+      cleanPath === "/work/product-jury" ||
+      cleanPath === "/writing/product-jury"
     ) {
       return <ProductJuryPost onNavigate={navigate} />;
     }
 
     // 3. Case Study Dedicated Page: /work/:slug
-    if (currentPath.startsWith("/work/")) {
-      const slug = currentPath.replace("/work/", "").toLowerCase();
+    if (cleanPath.startsWith("/work/")) {
+      const slug = cleanPath.slice("/work/".length).toLowerCase();
+      if (!slug) {
+        return (
+          <WorkPage
+            onNavigate={navigate}
+            onSelectCaseStudy={handleSelectCaseStudy}
+          />
+        );
+      }
       const matched = ALL_CASE_STUDIES.find(
         (c) => c.slug.toLowerCase() === slug || c.id.toLowerCase() === slug
       );
@@ -205,11 +213,12 @@ export default function App() {
           <CaseStudyDetailPage caseStudy={matched} onNavigate={navigate} />
         );
       }
+      // Explicit 404 for invalid work slug - never silently default to ReshaMandi
       return <NotFoundPage onNavigate={navigate} />;
     }
 
-    // 3. Work Index Page: /work
-    if (currentPath === "/work") {
+    // 4. Work Index Page: /work
+    if (cleanPath === "/work") {
       return (
         <WorkPage
           onNavigate={navigate}
@@ -218,8 +227,8 @@ export default function App() {
       );
     }
 
-    // 3. About Page: /about
-    if (currentPath === "/about") {
+    // 5. About Page: /about
+    if (cleanPath === "/about") {
       return (
         <AboutPage
           onNavigate={navigate}
@@ -228,8 +237,8 @@ export default function App() {
       );
     }
 
-    // 4. Resume Page: /resume
-    if (currentPath === "/resume") {
+    // 6. Resume Page: /resume
+    if (cleanPath === "/resume") {
       return (
         <ResumePage
           onNavigate={navigate}
@@ -238,18 +247,13 @@ export default function App() {
       );
     }
 
-    // 5. Product Jury build note: /writing/product-jury
-    if (currentPath === "/writing/product-jury") {
-      return <ProductJuryPost onNavigate={navigate} />;
-    }
-
-    // 6. Contact Page: /contact
-    if (currentPath === "/contact") {
+    // 7. Contact Page: /contact
+    if (cleanPath === "/contact") {
       return <ContactPage onNavigate={navigate} />;
     }
 
-    // 7. Homepage: /
-    if (currentPath === "/" || currentPath === "") {
+    // 8. Homepage: /
+    if (cleanPath === "/") {
       return (
         <HomePage
           onNavigate={navigate}
@@ -259,7 +263,7 @@ export default function App() {
       );
     }
 
-    // 8. 404 Fallback for unknown routes
+    // 9. 404 Fallback for unknown routes
     return <NotFoundPage onNavigate={navigate} />;
   };
 
@@ -277,30 +281,34 @@ export default function App() {
         currentPath={currentPath}
         onNavigate={navigate}
         onOpenResumeModal={() => setIsResumeModalOpen(true)}
-        onOpenContactModal={() => openCalendly()}
       />
 
-      {/* Main Page View */}
-      <main id="main-content" className="flex-1 w-full">
-        <Suspense fallback={null}>{renderCurrentView()}</Suspense>
-      </main>
+      {/* Shared Suspense Boundary: Ensures footer never renders before lazy-loaded route content finishes */}
+      <Suspense
+        fallback={
+          <div
+            className="flex-1 w-full min-h-[70vh] flex items-center justify-center"
+            aria-busy="true"
+            aria-live="polite"
+          >
+            <div className="w-5 h-5 border-2 border-[#188E39]/20 border-t-[#188E39] rounded-full animate-spin" />
+          </div>
+        }
+      >
+        {/* Main Page View */}
+        <main id="main-content" className="flex-1 w-full">
+          {renderCurrentView()}
+        </main>
 
-      {/* Persistent Footer */}
-      <Footer
-        onNavigate={navigate}
-        onOpenResumeModal={() => setIsResumeModalOpen(true)}
-        onOpenContactModal={() => setIsContactModalOpen(true)}
-        onSelectCaseStudy={(id) => {
-          const found =
-            ALL_CASE_STUDIES.find(
-              (c) => c.id === id || c.slug === id
-            ) || RESHAMANDI_CASE_STUDY;
-          setSelectedModalCaseStudy(found);
-          setIsCaseStudyModalOpen(true);
-        }}
-      />
+        {/* Persistent Footer */}
+        <Footer
+          onNavigate={navigate}
+          onOpenResumeModal={() => setIsResumeModalOpen(true)}
+          onOpenContactModal={() => setIsContactModalOpen(true)}
+        />
+      </Suspense>
 
-      {/* Interactive Modals */}
+      {/* Interactive Modals & Copilot */}
       <Suspense fallback={null}>
         {isCaseStudyModalOpen && (
           <CaseStudyModal

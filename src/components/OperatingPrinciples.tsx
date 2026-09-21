@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { ArrowRight } from "lucide-react";
-import { CaseStudyDetail } from "../types";
 
 interface PrincipleNote {
   id: string;
@@ -100,7 +98,6 @@ const PRINCIPLES: PrincipleNote[] = [
 
 interface OperatingPrinciplesProps {
   onNavigate?: (path: string) => void;
-  onSelectCaseStudy?: (caseStudy: CaseStudyDetail) => void;
 }
 
 export const OperatingPrinciples: React.FC<OperatingPrinciplesProps> = ({

@@ -2,14 +2,9 @@ import React, { useEffect } from 'react';
 import {
   ArrowLeft,
   ArrowRight,
-  CheckCircle2,
-  GitCommit,
   Building2,
   Calendar,
   User,
-  ExternalLink,
-  Layers,
-  Sparkles,
 } from 'lucide-react';
 import { MoreProductWorkItem } from '../types';
 import { MORE_PRODUCT_WORK_ITEMS } from '../data/moreProductWork';
@@ -24,7 +19,8 @@ export default function MoreWorkDetailPage({
   onNavigate,
 }: MoreWorkDetailPageProps) {
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Instant scroll to top on mount to eliminate unwanted sliding animations during route transition
+    window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
   }, [item.id]);
 
   const currentIndex = MORE_PRODUCT_WORK_ITEMS.findIndex((p) => p.id === item.id);

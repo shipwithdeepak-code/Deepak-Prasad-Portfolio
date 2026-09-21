@@ -2,9 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import { motion, useInView, useReducedMotion, Variants } from "framer-motion";
 import {
   ArrowRight,
-  ArrowUpRight,
-  CheckCircle2,
-  FileText,
 } from "lucide-react";
 import { ALL_FLAGSHIP_CASE_STUDIES } from "../data/caseStudies";
 import { CaseStudyDetail } from "../types";
@@ -1176,7 +1173,6 @@ export default function HomePage({
           ========================================================================= */}
       <OperatingPrinciples
         onNavigate={onNavigate}
-        onSelectCaseStudy={onSelectCaseStudy}
       />
     </div>
   );

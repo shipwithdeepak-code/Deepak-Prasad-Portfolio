@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowLeft, ArrowRight, Home, Briefcase, Mail } from "lucide-react";
+import { Home, Briefcase, Mail } from "lucide-react";
 
 interface NotFoundPageProps {
   onNavigate: (path: string) => void;

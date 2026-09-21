@@ -3,14 +3,10 @@ import { motion } from "framer-motion";
 import {
   FileDown,
   ArrowRight,
-  CheckCircle2,
-  Briefcase,
   GraduationCap,
-  Sparkles,
-  ExternalLink,
   Eye,
 } from "lucide-react";
-import { EXPERIENCE_ROLES, CAPABILITY_GROUPS } from "../data/caseStudies";
+import { EXPERIENCE_ROLES } from "../data/caseStudies";
 
 interface ResumePageProps {
   onNavigate: (path: string) => void;

@@ -8,7 +8,6 @@ import {
   CheckCircle2,
   Clock,
   MapPin,
-  Sparkles,
 } from "lucide-react";
 
 interface ContactPageProps {

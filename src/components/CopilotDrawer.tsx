@@ -1,23 +1,15 @@
 import React, { useState, useRef, useEffect } from "react";
 import {
-  Sparkles,
   Send,
   X,
-  ChevronDown,
-  ChevronUp,
   Cpu,
   Database,
-  CheckCircle2,
   AlertTriangle,
   ArrowRight,
   Info,
-  Calendar,
   RotateCcw,
   BookOpen,
-  Layers,
-  Terminal,
 } from "lucide-react";
-import { CALENDLY_URL } from "../utils/calendly";
 import { DipaAvatar } from "./DipaAvatar";
 
 export interface RetrievedChunk {

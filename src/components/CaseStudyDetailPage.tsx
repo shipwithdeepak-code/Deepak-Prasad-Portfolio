@@ -6,17 +6,10 @@ import {
   CheckCircle2,
   AlertTriangle,
   Sparkles,
-  Layers,
-  ArrowUpRight,
-  ShieldCheck,
-  Cpu,
-  Clock,
-  Zap,
-  HelpCircle,
   Quote,
 } from "lucide-react";
 import { CaseStudyDetail } from "../types";
-import { ALL_FLAGSHIP_CASE_STUDIES } from "../data/caseStudies";
+import { ALL_FLAGSHIP_CASE_STUDIES, ALL_CASE_STUDIES } from "../data/caseStudies";
 import { MechanismVisual, MechanismSlug } from "./MechanismVisual";
 
 interface CaseStudyDetailPageProps {
@@ -29,20 +22,19 @@ export default function CaseStudyDetailPage({
   onNavigate,
 }: CaseStudyDetailPageProps) {
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    // Instant scroll to top on mount to eliminate unwanted sliding animations during route transition
+    window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
   }, [caseStudy.id]);
 
-  // Find adjacent case studies for next/previous navigation
-  const currentIndex = ALL_FLAGSHIP_CASE_STUDIES.findIndex(
-    (c) => c.id === caseStudy.id
-  );
-  const nextStudy =
-    ALL_FLAGSHIP_CASE_STUDIES[(currentIndex + 1) % ALL_FLAGSHIP_CASE_STUDIES.length];
+  // Find adjacent case studies for next/previous navigation safely
+  const studyList = ALL_FLAGSHIP_CASE_STUDIES.some((c) => c.id === caseStudy.id)
+    ? ALL_FLAGSHIP_CASE_STUDIES
+    : ALL_CASE_STUDIES;
+  const foundIndex = studyList.findIndex((c) => c.id === caseStudy.id);
+  const currentIndex = foundIndex >= 0 ? foundIndex : 0;
+  const nextStudy = studyList[(currentIndex + 1) % studyList.length];
   const prevStudy =
-    ALL_FLAGSHIP_CASE_STUDIES[
-      (currentIndex - 1 + ALL_FLAGSHIP_CASE_STUDIES.length) %
-        ALL_FLAGSHIP_CASE_STUDIES.length
-    ];
+    studyList[(currentIndex - 1 + studyList.length) % studyList.length];
 
   return (
     <div className="w-full bg-[#FAFDFB] text-[#042718]">

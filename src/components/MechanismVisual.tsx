@@ -1,25 +1,11 @@
 import React from "react";
 import {
   ArrowRight,
-  ArrowDown,
   CheckCircle2,
   ShieldAlert,
-  AlertTriangle,
-  Layers,
-  Smartphone,
-  Watch,
-  Dumbbell,
   Activity,
-  Tv,
-  Sparkles,
-  RefreshCw,
   Check,
-  X,
-  ShieldCheck,
-  FileText,
-  Lock,
   Scale,
-  CornerDownRight,
 } from "lucide-react";
 
 export type MechanismSlug =

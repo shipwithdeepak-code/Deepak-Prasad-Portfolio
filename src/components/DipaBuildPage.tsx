@@ -2,16 +2,6 @@ import React, { useEffect } from "react";
 import {
   ArrowLeft,
   ArrowRight,
-  ArrowUpRight,
-  Sparkles,
-  ShieldCheck,
-  Cpu,
-  Layers,
-  CheckCircle2,
-  AlertCircle,
-  HelpCircle,
-  Clock,
-  Terminal,
 } from "lucide-react";
 
 interface DipaBuildPageProps {
