@@ -15,6 +15,27 @@ export interface EvaluationRow {
   notes: string;
 }
 
+export interface CaseStudyDecision {
+  title?: string;
+  decision: string;
+  why: string;
+  tradeoff: string;
+  result: string;
+}
+
+export interface OutcomeItem {
+  category: 'Business Outcome' | 'Product Outcome' | 'User Outcome' | 'Operational Outcome';
+  metric?: string;
+  desc: string;
+}
+
+export interface CaseStudyQuickContext {
+  problem: string;
+  whyItMattered: string;
+  myOwnership: string;
+  whatChanged: string;
+}
+
 export interface CaseStudySection {
   id: string;
   number: string;
@@ -31,6 +52,9 @@ export interface CaseStudySection {
     after: { title: string; steps: string[] };
   };
   evaluationTable?: EvaluationRow[];
+  decision?: CaseStudyDecision;
+  outcomeHierarchy?: OutcomeItem[];
+  reflection?: string;
 }
 
 export interface CaseStudyDetail {
@@ -53,6 +77,7 @@ export interface CaseStudyDetail {
   url?: string;
   label?: string;
   keyStats: CaseStudyStat[];
+  quickContext?: CaseStudyQuickContext;
   tradeOff?: {
     considered: string;
     chose: string;
@@ -66,6 +91,8 @@ export interface CaseStudyDetail {
     type: 'spec' | 'schema' | 'telemetry' | 'decision';
     items: { label: string; value: string; desc?: string; code?: string }[];
   };
+  outcomeHierarchy?: OutcomeItem[];
+  reflection?: string;
   sections: CaseStudySection[];
 }
 

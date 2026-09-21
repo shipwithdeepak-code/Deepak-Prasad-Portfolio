@@ -108,6 +108,44 @@ export default function CaseStudyDetailPage({
             )}
           </div>
 
+          {/* Quick Context First-Screen Matrix (Problem, Why It Mattered, Ownership, What Changed) */}
+          {caseStudy.quickContext && (
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8 p-5 sm:p-6 rounded-[20px] bg-white border border-[#042718]/8 shadow-2xs">
+              <div className="p-3.5 rounded-xl bg-[#FAFDFB] border border-[#042718]/6">
+                <span className="text-[11px] font-inter font-bold uppercase tracking-wider text-[#042718]/50 block mb-1">
+                  The Problem
+                </span>
+                <p className="text-xs sm:text-sm font-inter text-[#042718]/80 leading-relaxed">
+                  {caseStudy.quickContext.problem}
+                </p>
+              </div>
+              <div className="p-3.5 rounded-xl bg-[#FAFDFB] border border-[#042718]/6">
+                <span className="text-[11px] font-inter font-bold uppercase tracking-wider text-[#8A5A16] block mb-1">
+                  Why It Mattered
+                </span>
+                <p className="text-xs sm:text-sm font-inter text-[#042718]/80 leading-relaxed">
+                  {caseStudy.quickContext.whyItMattered}
+                </p>
+              </div>
+              <div className="p-3.5 rounded-xl bg-[#FAFDFB] border border-[#042718]/6">
+                <span className="text-[11px] font-inter font-bold uppercase tracking-wider text-[#188E39] block mb-1">
+                  What I Personally Owned
+                </span>
+                <p className="text-xs sm:text-sm font-inter text-[#042718]/85 leading-relaxed font-medium">
+                  {caseStudy.quickContext.myOwnership}
+                </p>
+              </div>
+              <div className="p-3.5 rounded-xl bg-[#FAFDFB] border border-[#042718]/6">
+                <span className="text-[11px] font-inter font-bold uppercase tracking-wider text-[#042718] block mb-1">
+                  What Changed
+                </span>
+                <p className="text-xs sm:text-sm font-inter text-[#042718] leading-relaxed font-medium">
+                  {caseStudy.quickContext.whatChanged}
+                </p>
+              </div>
+            </div>
+          )}
+
           {/* Strategy Status Callout if applicable */}
           {caseStudy.statusNotice && (
             <div className="p-4 rounded-[16px] bg-[#F3E8FF]/40 border border-[#7E22CE]/20 flex items-start gap-3 text-xs sm:text-sm font-inter text-[#6B21A8] mb-8">
@@ -170,12 +208,126 @@ export default function CaseStudyDetailPage({
                   )}
                 </div>
 
-                {/* Narrative Paragraphs */}
+                {/* Narrative Paragraphs with Subheading Support */}
                 <div className="flex flex-col gap-4 font-inter text-base sm:text-lg text-[#042718]/80 leading-relaxed mb-6 font-normal">
-                  {sec.content.map((p, pIdx) => (
-                    <p key={pIdx}>{p}</p>
-                  ))}
+                  {sec.content.map((p, pIdx) => {
+                    if (p.startsWith("### ")) {
+                      return (
+                        <h3
+                          key={pIdx}
+                          className="font-onest font-bold text-lg sm:text-xl text-[#042718] mt-4 mb-0.5 tracking-tight"
+                        >
+                          {p.replace("### ", "")}
+                        </h3>
+                      );
+                    }
+                    if (p.startsWith("#### ")) {
+                      return (
+                        <h4
+                          key={pIdx}
+                          className="font-onest font-semibold text-base sm:text-lg text-[#042718] mt-3 mb-0.5"
+                        >
+                          {p.replace("#### ", "")}
+                        </h4>
+                      );
+                    }
+                    return <p key={pIdx}>{p}</p>;
+                  })}
                 </div>
+
+                {/* Inline Decision Moment if attached to section */}
+                {sec.decision && (
+                  <div className="my-6 p-6 sm:p-7 rounded-[20px] bg-white border border-[#042718]/12 shadow-2xs">
+                    <div className="flex items-center gap-2 mb-4 pb-3 border-b border-[#042718]/8">
+                      <span className="text-[11px] font-mono uppercase tracking-wider text-[#8A5A16] font-semibold">
+                        Key Product Decision
+                      </span>
+                      {sec.decision.title && (
+                        <>
+                          <span className="text-[#042718]/30">•</span>
+                          <span className="text-xs sm:text-sm font-onest font-bold text-[#042718]">
+                            {sec.decision.title}
+                          </span>
+                        </>
+                      )}
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs sm:text-sm">
+                      <div className="p-3.5 rounded-xl bg-[#FAFDFB] border border-[#042718]/6">
+                        <span className="text-[11px] font-inter font-bold uppercase tracking-wider text-[#042718] block mb-1">
+                          The Decision
+                        </span>
+                        <p className="font-inter text-[#042718]/85 leading-relaxed font-medium">
+                          {sec.decision.decision}
+                        </p>
+                      </div>
+                      <div className="p-3.5 rounded-xl bg-[#FAFDFB] border border-[#042718]/6">
+                        <span className="text-[11px] font-inter font-bold uppercase tracking-wider text-[#8A5A16] block mb-1">
+                          Why (Constraint & Evidence)
+                        </span>
+                        <p className="font-inter text-[#042718]/80 leading-relaxed">
+                          {sec.decision.why}
+                        </p>
+                      </div>
+                      <div className="p-3.5 rounded-xl bg-[#FAFDFB] border border-[#042718]/6">
+                        <span className="text-[11px] font-inter font-bold uppercase tracking-wider text-[#B45309] block mb-1">
+                          Tradeoff (What was given up)
+                        </span>
+                        <p className="font-inter text-[#042718]/80 leading-relaxed">
+                          {sec.decision.tradeoff}
+                        </p>
+                      </div>
+                      <div className="p-3.5 rounded-xl bg-[#FAFDFB] border border-[#042718]/6">
+                        <span className="text-[11px] font-inter font-bold uppercase tracking-wider text-[#188E39] block mb-1">
+                          Result
+                        </span>
+                        <p className="font-inter text-[#042718] font-medium leading-relaxed">
+                          {sec.decision.result}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Section Outcome Hierarchy if present */}
+                {sec.outcomeHierarchy && sec.outcomeHierarchy.length > 0 && (
+                  <div className="my-6 p-6 rounded-[20px] bg-white border border-[#042718]/10 shadow-2xs">
+                    <span className="text-xs font-inter font-bold uppercase tracking-wider text-[#042718]/50 block mb-4">
+                      Outcome Hierarchy
+                    </span>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                      {sec.outcomeHierarchy.map((item, oIdx) => (
+                        <div
+                          key={oIdx}
+                          className="flex flex-col p-3.5 rounded-xl bg-[#FAFDFB] border border-[#042718]/6"
+                        >
+                          <span className="text-[11px] font-inter font-bold uppercase tracking-wider text-[#188E39]">
+                            {item.category}
+                          </span>
+                          {item.metric && (
+                            <span className="font-onest text-xl sm:text-2xl font-bold text-[#042718] mt-1">
+                              {item.metric}
+                            </span>
+                          )}
+                          <span className="font-inter text-xs sm:text-sm text-[#042718]/75 mt-1 leading-relaxed">
+                            {item.desc}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Section Retrospective Reflection if present */}
+                {sec.reflection && (
+                  <div className="my-6 p-5 sm:p-6 rounded-[20px] bg-[#FAFDFB] border border-[#042718]/12">
+                    <span className="text-xs font-inter font-bold uppercase tracking-wider text-[#8A5A16] block mb-1.5">
+                      What I'd Change (Retrospective Insight)
+                    </span>
+                    <p className="font-inter text-xs sm:text-sm text-[#042718]/85 leading-relaxed italic">
+                      "{sec.reflection}"
+                    </p>
+                  </div>
+                )}
 
                 {/* Workflow Steps Diagram */}
                 {sec.workflowSteps && (
