@@ -25,9 +25,9 @@ const PRINCIPLES: PrincipleNote[] = [
     title: "Start with the real problem.",
     summary: "Field research over dashboards, every time.",
     body: "I've travelled to cocoon collection centres in Ramanagara and Sidlaghatta before writing a single spec. Aggregate analytics don't show you why a buyer walks away mid-negotiation. Being on the floor at 4:30 AM does.",
-    bg: "#F6F1E4",
+    bg: "#FEF6C7",
     rotation: "-1.6deg",
-    pinGradient: "radial-gradient(circle at 34% 30%, #EE9184, #A2382B)",
+    pinGradient: "radial-gradient(circle at 34% 30%, #F59E0B, #B45309)",
     desktopCol: 1,
     desktopRow: 1,
   },
@@ -38,9 +38,9 @@ const PRINCIPLES: PrincipleNote[] = [
     title: "Make complexity usable.",
     summary: "Five disconnected systems, one governed workflow.",
     body: "Farmers, buyers, finance and five separate systems (CRM, SAP, Camunda, Razorpay) ran on fragmented offline processes. I turned that into one connected flow: Scan → Bid → Watch → Win → Pay.",
-    bg: "#EFCBB9",
+    bg: "#FCE7F3",
     rotation: "1.4deg",
-    pinGradient: "radial-gradient(circle at 34% 30%, #EE9184, #A2382B)",
+    pinGradient: "radial-gradient(circle at 34% 30%, #EC4899, #9D174D)",
     desktopCol: 3,
     desktopRow: 1,
   },
@@ -51,9 +51,9 @@ const PRINCIPLES: PrincipleNote[] = [
     title: "Measure what changed.",
     summary: "Decide from signals, not assumptions.",
     body: "A 35% uplift in pilot is not a 35% uplift. I wrote it unqualified once and had to walk it back in a review. Every number on this site now carries the conditions it was measured under.",
-    bg: "#C6DADC",
+    bg: "#E0F2FE",
     rotation: "1deg",
-    pinGradient: "radial-gradient(circle at 34% 30%, #8FCBCB, #2E7476)",
+    pinGradient: "radial-gradient(circle at 34% 30%, #38BDF8, #0369A1)",
     desktopCol: 1,
     desktopRow: 2,
   },
@@ -64,9 +64,9 @@ const PRINCIPLES: PrincipleNote[] = [
     title: "Build the smallest useful system.",
     summary: "Prove it with 100 users before you scale to thousands.",
     body: "Before opening the AI Coach to everyone I shipped it to a 100-user beta, then A/B tested voice input against text-only, to learn what people actually wanted rather than assume it.",
-    bg: "#D2E0D5",
+    bg: "#DCFCE7",
     rotation: "-1.2deg",
-    pinGradient: "radial-gradient(circle at 34% 30%, #A3CFAE, #3C7A50)",
+    pinGradient: "radial-gradient(circle at 34% 30%, #4ADE80, #15803D)",
     desktopCol: 3,
     desktopRow: 2,
   },
@@ -77,9 +77,9 @@ const PRINCIPLES: PrincipleNote[] = [
     title: "Use technology where it creates leverage.",
     summary: "Adapt fast, or get left behind.",
     body: "I shipped a conversational AI feature while the models were still maturing. The AI Coach runs on Gemini but falls back to ChatGPT when confidence is low. Waiting for the perfect model is how you lose to whoever shipped an imperfect one first.",
-    bg: "#F0BCAC",
+    bg: "#FFEDD5",
     rotation: "-1deg",
-    pinGradient: "radial-gradient(circle at 34% 30%, #EE9184, #A2382B)",
+    pinGradient: "radial-gradient(circle at 34% 30%, #FB923C, #C2410C)",
     desktopCol: 1,
     desktopRow: 3,
   },
@@ -90,9 +90,9 @@ const PRINCIPLES: PrincipleNote[] = [
     title: "Stay close to people and the business.",
     summary: "You can't build something great alone.",
     body: "I managed a 6-person cross-functional pod at Sportstech: three PMs, a growth manager, a content manager. I built shared ownership sprint after sprint until the priorities felt like theirs. A roadmap without a team that grows alongside it is just a document.",
-    bg: "#E9E5D8",
+    bg: "#EDE9FE",
     rotation: "1.5deg",
-    pinGradient: "radial-gradient(circle at 34% 30%, #EDEDED, #8A8A8A)",
+    pinGradient: "radial-gradient(circle at 34% 30%, #A78BFA, #6D28D9)",
     desktopCol: 3,
     desktopRow: 3,
   },
@@ -115,7 +115,7 @@ export const OperatingPrinciples: React.FC<OperatingPrinciplesProps> = ({
   return (
     <section
       id="principles"
-      className="relative overflow-x-clip min-h-0 min-[1025px]:min-h-screen flex flex-col justify-center bg-[#F7F3EA] py-[clamp(52px,7vw,96px)]"
+      className="relative overflow-x-clip min-h-0 min-[1025px]:min-h-screen flex flex-col justify-center bg-[#FAF8F5] py-[clamp(52px,7vw,96px)]"
     >
       <style>{`
         .principles-pin-card {
@@ -126,7 +126,7 @@ export const OperatingPrinciples: React.FC<OperatingPrinciplesProps> = ({
           padding: 17px 18px 14px;
           border-radius: 3px;
           color: #241F19;
-          box-shadow: 0 9px 24px rgba(80, 66, 44, 0.14), 0 2px 5px rgba(80, 66, 44, 0.1);
+          box-shadow: 0 8px 22px rgba(4, 39, 24, 0.08), 0 2px 5px rgba(4, 39, 24, 0.05);
           transition: transform 420ms cubic-bezier(0.23, 1, 0.32, 1), box-shadow 420ms cubic-bezier(0.23, 1, 0.32, 1);
           cursor: pointer;
         }
@@ -134,7 +134,7 @@ export const OperatingPrinciples: React.FC<OperatingPrinciplesProps> = ({
         @media (hover: hover) and (pointer: fine) {
           .principles-pin-card:hover {
             transform: translateY(-7px) rotate(0deg) !important;
-            box-shadow: 0 16px 36px rgba(80, 66, 44, 0.2), 0 3px 8px rgba(80, 66, 44, 0.12) !important;
+            box-shadow: 0 14px 32px rgba(4, 39, 24, 0.12), 0 3px 8px rgba(4, 39, 24, 0.08) !important;
           }
           .principles-pin-card:hover .note-arrow {
             transform: translate(2px, -2px);
@@ -143,7 +143,7 @@ export const OperatingPrinciples: React.FC<OperatingPrinciplesProps> = ({
 
         .principles-pin-card.is-open {
           transform: rotate(0deg) !important;
-          box-shadow: 0 16px 36px rgba(80, 66, 44, 0.22), 0 4px 10px rgba(80, 66, 44, 0.14) !important;
+          box-shadow: 0 14px 32px rgba(4, 39, 24, 0.14), 0 4px 10px rgba(4, 39, 24, 0.09) !important;
         }
 
         .principles-grid-board {
@@ -198,9 +198,9 @@ export const OperatingPrinciples: React.FC<OperatingPrinciplesProps> = ({
           FOUR ABSOLUTE LAYERS INSIDE (pointer-events-none)
          ─────────────────────────────────────────────────────────────────────── */}
 
-      {/* a) Drafting grid, opacity .34 */}
+      {/* a) Subtle drafting grid, soft opacity */}
       <div
-        className="absolute inset-0 pointer-events-none opacity-[0.34]"
+        className="absolute inset-0 pointer-events-none opacity-[0.14]"
         style={{
           backgroundImage:
             "linear-gradient(rgba(4,39,24,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(4,39,24,0.045) 1px, transparent 1px)",
@@ -208,24 +208,6 @@ export const OperatingPrinciples: React.FC<OperatingPrinciplesProps> = ({
         }}
         aria-hidden="true"
       />
-
-      {/* b) Paper grain — inline SVG feTurbulence, baseFrequency .85, numOctaves 4, opacity .4, mix-blend-mode: multiply */}
-      <svg
-        className="absolute inset-0 w-full h-full pointer-events-none opacity-40 mix-blend-multiply"
-        xmlns="http://www.w3.org/2000/svg"
-        aria-hidden="true"
-      >
-        <filter id="principles-board-grain">
-          <feTurbulence
-            type="fractalNoise"
-            baseFrequency="0.85"
-            numOctaves="4"
-            stitchTiles="stitch"
-          />
-          <feColorMatrix type="saturate" values="0" />
-        </filter>
-        <rect width="100%" height="100%" filter="url(#principles-board-grain)" />
-      </svg>
 
       {/* c) TOP fade, 130px tall, anchored top: seamless blend with Capabilities */}
       <div
@@ -578,17 +560,21 @@ export const OperatingPrinciples: React.FC<OperatingPrinciplesProps> = ({
           })}
         </div>
 
-        {/* Optional navigation link to About */}
+        {/* Understated integrated text link to About */}
         {onNavigate && (
-          <div className="mt-8 md:mt-12 text-center relative z-[2]">
-            <button
-              type="button"
-              onClick={() => onNavigate("/about")}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/90 backdrop-blur-md border border-[#042718]/10 shadow-xs hover:bg-white text-[13px] font-inter font-semibold text-[#042718] hover:text-[#188E39] transition-colors cursor-pointer"
+          <div className="mt-8 md:mt-10 text-center relative z-[2]">
+            <a
+              href="/about"
+              onClick={(e) => {
+                if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+                e.preventDefault();
+                onNavigate("/about");
+              }}
+              className="inline-flex items-center gap-1.5 text-[14px] font-inter font-medium text-[#042718]/70 hover:text-[#042718] transition-colors group cursor-pointer"
             >
-              <span>Learn more about my background and leadership approach</span>
-              <ArrowRight size={15} />
-            </button>
+              <span>More about how I work</span>
+              <span className="transition-transform duration-200 group-hover:translate-x-0.5">→</span>
+            </a>
           </div>
         )}
       </div>

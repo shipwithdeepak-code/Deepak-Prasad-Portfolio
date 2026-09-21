@@ -258,7 +258,7 @@ export default function WorkPage({
                   onNavigate(`/work/${study.slug}`);
                 }}
                 className="work-icard focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#188E39] focus-visible:ring-offset-2"
-                aria-label={`Read case study: ${cardData.h3}`}
+                aria-label={`Explore work: ${cardData.h3}`}
               >
                 {/* Left Image (flex: 0 0 46%) */}
                 <div className="work-icard-image">

@@ -173,9 +173,9 @@ export default function Footer({
       ref={footerRef}
       className="relative w-full overflow-hidden min-h-[85vh] md:min-h-screen flex flex-col justify-center items-center bg-[#FAF8F5] contain-[layout_paint_style] footer-containment"
     >
-      {/* FIX A — permanent base layer UNDER the canvas so there is no empty state at any point */}
+      {/* Atmospheric base layer: Seamless blend from #FAF8F5 into pale water blue and muted soft sage green */}
       <div
-        className="absolute inset-0 z-0 bg-[radial-gradient(60%_46%_at_50%_100%,rgba(232,251,168,0.52)_0%,rgba(143,212,74,0.22)_30%,transparent_62%),radial-gradient(110%_70%_at_50%_108%,rgba(11,60,33,0.62)_0%,rgba(20,90,48,0.30)_40%,transparent_74%),linear-gradient(180deg,#F6F8F3_0%,#E9F1E6_42%,#C8DCC4_74%,#9CBE99_100%)]"
+        className="absolute inset-0 z-0 bg-[radial-gradient(75%_55%_at_50%_100%,rgba(215,232,217,0.55)_0%,rgba(228,239,235,0.35)_45%,transparent_75%),radial-gradient(85%_50%_at_50%_35%,rgba(228,242,246,0.5)_0%,transparent_65%),linear-gradient(180deg,#FAF8F5_0%,#F3F8F8_32%,#EAF2EE_65%,#DFECE0_100%)]"
         aria-hidden="true"
       />
 
@@ -213,8 +213,8 @@ export default function Footer({
         <span
           className={`font-onest font-bold tracking-[-0.04em] text-[clamp(3.5rem,15vw,13rem)] leading-none whitespace-nowrap transition-colors duration-300 ${
             inView
-              ? "text-[#FAF8F5]/[0.42] mix-blend-overlay [text-shadow:0_1px_0_rgba(255,255,255,0.22),0_-1px_0_rgba(4,39,24,0.3)]"
-              : "text-[#FAF8F5]/[0.34] [text-shadow:0_1px_0_rgba(255,255,255,0.18)]"
+              ? "text-[#042718]/[0.06] [text-shadow:0_1px_0_rgba(255,255,255,0.7)]"
+              : "text-[#042718]/[0.04] [text-shadow:0_1px_0_rgba(255,255,255,0.4)]"
           }`}
         >
           Deepak Prasad

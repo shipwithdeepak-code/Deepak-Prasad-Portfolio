@@ -41,7 +41,7 @@ const STATIC_ROUTES: Record<
     ogType: "profile",
   },
   "/resume": {
-    title: "Résumé — Deepak Prasad",
+    title: "Resume — Deepak Prasad",
     description:
       "Senior Product Manager. Experience, impact and the systems I have shipped.",
     ogType: "profile",

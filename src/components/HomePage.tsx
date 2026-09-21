@@ -671,11 +671,6 @@ export default function HomePage({
                 <span className="amber-caret" aria-hidden="true" />
               </span>
 
-              {/* "/" Key Hint (hidden under 820px) */}
-              <span className="hidden min-[820px]:inline-flex items-center font-inter text-[10.5px] text-[#042718]/60 border border-[#042718]/19 rounded-md px-[9px] py-1 shrink-0" aria-hidden="true">
-                /
-              </span>
-
               {/* 38px Circular Send Button */}
               <span className="w-[38px] h-[38px] rounded-full bg-[#042718] text-[#FAFDFB] flex items-center justify-center shrink-0 ask-dipa-send-btn shadow-2xs" aria-hidden="true">
                 <ArrowRight size={16} />
@@ -939,9 +934,6 @@ export default function HomePage({
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-10 md:mb-14">
           <div className="max-w-2xl">
-            <span className="font-mono text-[10px] sm:text-[11px] uppercase text-[#8A5A16] tracking-[0.24em] font-semibold mb-3 block">
-              Selected work
-            </span>
             <h2 className="font-onest text-[34px] sm:text-[44px] md:text-[54px] font-bold text-[#042718] leading-[1.12] tracking-tight md:tracking-[-2px]">
               From silk mandis to <em className="font-playfair italic font-medium text-[#042718]/70 not-italic">conversational AI</em>
             </h2>
@@ -1053,7 +1045,7 @@ export default function HomePage({
                     onNavigate(`/work/${item.slug}`);
                   }}
                   className="work-deck-card block text-inherit no-underline cursor-pointer group shadow-[0_24px_64px_rgba(4,39,24,0.12)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#188E39] focus-visible:ring-offset-4"
-                  aria-label={`Read case study: ${item.title}`}
+                  aria-label={`Explore work: ${item.title}`}
                 >
                   {/* Full-bleed background image behind the whole card */}
                   <div className="work-deck-shot">
@@ -1075,11 +1067,6 @@ export default function HomePage({
 
                     {/* Gradient shade on mobile for contrast if needed */}
                     <div className="absolute inset-0 bg-gradient-to-t from-[#042718]/40 via-transparent to-black/20 pointer-events-none" />
-
-                    {/* Stamp: Role (top-left) */}
-                    <div className="absolute top-3 sm:top-4 left-3 sm:left-4 z-10 px-3 py-1 rounded-full bg-[rgba(4,39,24,0.58)] backdrop-blur-[8px] text-[11px] sm:text-xs font-mono text-white/90 select-none border border-white/10">
-                      {item.role}
-                    </div>
 
                     {/* Stamp: Year (right: 392px on desktop to clear 360px panel + 10px + gap, right: 16px on mobile) */}
                     <div className="absolute top-3 sm:top-4 right-3 sm:right-4 min-[901px]:right-[392px] z-10 px-3 py-1 rounded-full bg-[rgba(4,39,24,0.58)] backdrop-blur-[8px] text-[11px] sm:text-xs font-mono text-white/90 select-none border border-white/10">
@@ -1127,7 +1114,7 @@ export default function HomePage({
                     {/* CTA button */}
                     <div className="work-deck-cta">
                       <span className="font-inter font-semibold text-[14px] text-[#042718]">
-                        Read case study
+                        Explore the work
                       </span>
                       <span className="work-deck-cta-arrow font-sans text-sm font-semibold">
                         ↗
@@ -1146,9 +1133,6 @@ export default function HomePage({
           ========================================================================= */}
       <section id="ai-builds" className="py-14 md:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center text-center mb-8 md:mb-12">
-          <span className="font-mono text-[10px] sm:text-[11px] uppercase text-[#8A5A16] tracking-[0.24em] font-semibold mb-3">
-            Things I built myself
-          </span>
           <h2 className="font-onest text-[34px] sm:text-[44px] md:text-[54px] font-bold text-[#042718] leading-[1.12] tracking-tight md:tracking-[-2px] max-w-3xl text-center">
             The AI I didn't just <em className="font-playfair italic font-medium text-[#042718]/70 not-italic">manage</em>
           </h2>
@@ -1165,7 +1149,7 @@ export default function HomePage({
         {/* Builder's Stack Tool Strip */}
         <div className="mt-12 flex flex-col items-center gap-3">
           <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-[#042718]/45">
-            Built with
+            Tools I work with
           </span>
           <div className="flex flex-wrap items-center justify-center gap-2 max-w-3xl">
             {[
@@ -1175,9 +1159,6 @@ export default function HomePage({
               "Claude Code",
               "Google AI Studio",
               "Power BI",
-              "Google Analytics",
-              "Amplitude",
-              "SQL",
             ].map((tool) => (
               <span
                 key={tool}

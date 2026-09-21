@@ -36,12 +36,20 @@ const DOT_CLASS: Record<Grade, string> = {
   unknown: "border-[1.5px] border-dotted border-[#042718]/45",
 };
 
-function Grade({ grade, label }: { grade: Grade; label: string }) {
+function Grade({
+  grade,
+  label,
+  showDot = true,
+}: {
+  grade: Grade;
+  label: string;
+  showDot?: boolean;
+}) {
   return (
     <span
       className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 font-mono text-[9.5px] font-semibold uppercase tracking-[0.14em] whitespace-nowrap ${GRADE_CLASS[grade]}`}
     >
-      <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${DOT_CLASS[grade]}`} />
+      {showDot && <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${DOT_CLASS[grade]}`} />}
       {label}
     </span>
   );
@@ -99,7 +107,7 @@ export default function AiBuilds({ onNavigate }: { onNavigate: (path: string) =>
       {/* ── Product Jury ───────────────────────────────────── */}
       <article className="ai-card">
         <div className="flex items-center gap-3 mb-6 flex-wrap">
-          <Grade grade="fact" label="Product Jury" />
+          <Grade grade="fact" label="Product Jury" showDot={false} />
           <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#042718]/60">
             Preview v0.1
           </span>

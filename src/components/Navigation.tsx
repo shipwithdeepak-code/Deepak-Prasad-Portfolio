@@ -199,8 +199,8 @@ export default function Navigation({
               <FileText size={16} className="text-[#188E39] shrink-0" />
               <span className="block h-[18px] overflow-hidden pointer-events-none">
                 <span className="block nav-label-stack">
-                  <span className="block h-[18px] leading-[18px]">Résumé</span>
-                  <span className="block h-[18px] leading-[18px]">Résumé</span>
+                  <span className="block h-[18px] leading-[18px]">Resume</span>
+                  <span className="block h-[18px] leading-[18px]">Resume</span>
                 </span>
               </span>
             </button>
@@ -298,7 +298,7 @@ export default function Navigation({
                     : "text-[#042718]/80 hover:bg-[#042718]/5 font-medium"
                 }`}
               >
-                <span>Résumé</span>
+                <span>Resume</span>
                 <span className="text-[11px] text-[#042718]/45">Full CV</span>
               </a>
 
