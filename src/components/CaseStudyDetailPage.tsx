@@ -485,9 +485,11 @@ export default function CaseStudyDetailPage({
       <section className="py-12">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white/95 backdrop-blur-md rounded-2xl p-4 sm:p-6 border border-[#042718]/10 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-6">
-            <button
-              type="button"
-              onClick={() => {
+            <a
+              href={`/work/${prevStudy.slug}`}
+              onClick={(e) => {
+                if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+                e.preventDefault();
                 onNavigate(`/work/${prevStudy.slug}`);
               }}
               className="flex items-center gap-3 text-left p-3 rounded-xl hover:bg-[#FAFDFB] border border-transparent hover:border-[#042718]/10 transition-colors cursor-pointer w-full sm:w-auto"
@@ -501,19 +503,25 @@ export default function CaseStudyDetailPage({
                   {prevStudy.title}
                 </span>
               </div>
-            </button>
+            </a>
 
-            <button
-              type="button"
-              onClick={() => onNavigate("/work")}
+            <a
+              href="/work"
+              onClick={(e) => {
+                if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+                e.preventDefault();
+                onNavigate("/work");
+              }}
               className="text-xs font-inter font-semibold text-[#042718]/60 hover:text-[#042718] transition-colors"
             >
               All Case Studies
-            </button>
+            </a>
 
-            <button
-              type="button"
-              onClick={() => {
+            <a
+              href={`/work/${nextStudy.slug}`}
+              onClick={(e) => {
+                if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+                e.preventDefault();
                 onNavigate(`/work/${nextStudy.slug}`);
               }}
               className="flex items-center justify-end gap-3 text-right p-3 rounded-xl hover:bg-[#FAFDFB] border border-transparent hover:border-[#042718]/10 transition-colors cursor-pointer w-full sm:w-auto"
@@ -527,7 +535,7 @@ export default function CaseStudyDetailPage({
                 </span>
               </div>
               <ArrowRight size={20} className="text-[#188E39]" />
-            </button>
+            </a>
           </div>
         </div>
       </section>

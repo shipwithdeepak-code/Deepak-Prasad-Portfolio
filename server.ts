@@ -4,6 +4,7 @@ import path from "path";
 import fs from "fs";
 import { createServer as createViteServer } from "vite";
 import { GoogleGenAI } from "@google/genai";
+import { getRouteMetadata, injectMetadataIntoHtml } from "./src/utils/seo";
 
 interface KnowledgeChunk {
   id: string;
@@ -294,9 +295,33 @@ CRITICAL IDENTITY & CONVERSATION RULES:
   if (process.env.NODE_ENV !== "production") {
     const vite = await createViteServer({
       server: { middlewareMode: true },
-      appType: "spa",
+      appType: "custom",
     });
     app.use(vite.middlewares);
+
+    app.get("*", async (req, res, next) => {
+      const url = req.originalUrl;
+      if (url.startsWith("/api") || path.extname(url)) {
+        return next();
+      }
+      try {
+        const templatePath = path.resolve("index.html");
+        let template = fs.readFileSync(templatePath, "utf-8");
+        template = await vite.transformIndexHtml(url, template);
+        const meta = getRouteMetadata(req.path);
+        const html = injectMetadataIntoHtml(template, meta);
+        res
+          .status(meta.is404 ? 404 : 200)
+          .set({
+            "Content-Type": "text/html; charset=utf-8",
+            "Cache-Control": "no-cache",
+          })
+          .send(html);
+      } catch (e: any) {
+        vite.ssrFixStacktrace(e);
+        next(e);
+      }
+    });
   } else {
     const distPath = path.join(process.cwd(), "dist");
 
@@ -310,34 +335,26 @@ CRITICAL IDENTITY & CONVERSATION RULES:
       })
     );
 
-    // Everything else in dist: revalidate, but allow a cached copy.
-    app.use(express.static(distPath, { maxAge: "1h" }));
+    // Everything else in dist: revalidate, but do not automatically serve index.html
+    // so our route metadata injector handles all direct HTML requests.
+    app.use(express.static(distPath, { maxAge: "1h", index: false }));
 
-    const CASE_STUDY_SLUGS = [
-      "reshamandi",
-      "ai-coach",
-      "subscription",
-      "performance-score",
-      "ai-localization",
-      "behind-ai-copilot",
-    ];
-    const KNOWN_ROUTES = new Set([
-      "/",
-      "/work",
-      "/about",
-      "/resume",
-      "/contact",
-      "/writing/product-jury",
-      ...CASE_STUDY_SLUGS.map((s) => `/work/${s}`),
-    ]);
-
-    app.get("*", (req, res) => {
-      const clean = req.path.replace(/\/+$/, "") || "/";
-      const known = KNOWN_ROUTES.has(clean);
-      res.setHeader("Cache-Control", "no-cache");
-      // The SPA shell is served either way so the client can render a view;
-      // only the status code differs, which is what crawlers read.
-      res.status(known ? 200 : 404).sendFile(path.join(distPath, "index.html"));
+    app.get("*", (req, res, next) => {
+      const url = req.originalUrl;
+      if (url.startsWith("/api") || path.extname(url)) {
+        return next();
+      }
+      try {
+        const templatePath = path.join(distPath, "index.html");
+        const template = fs.readFileSync(templatePath, "utf-8");
+        const meta = getRouteMetadata(req.path);
+        const html = injectMetadataIntoHtml(template, meta);
+        res.setHeader("Cache-Control", "no-cache");
+        res.setHeader("Content-Type", "text/html; charset=utf-8");
+        res.status(meta.is404 ? 404 : 200).send(html);
+      } catch (err: any) {
+        next(err);
+      }
     });
   }
 

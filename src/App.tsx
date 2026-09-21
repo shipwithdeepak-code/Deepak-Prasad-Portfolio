@@ -9,6 +9,7 @@ import {
   RESHAMANDI_CASE_STUDY,
 } from "./data/caseStudies";
 import { CaseStudyDetail } from "./types";
+import { getRouteMetadata } from "./utils/seo";
 
 const WorkPage = lazy(() => import("./components/WorkPage"));
 const CaseStudyDetailPage = lazy(() => import("./components/CaseStudyDetailPage"));
@@ -21,40 +22,6 @@ const ResumeModal = lazy(() => import("./components/ResumeModal"));
 const ProductJuryPost = lazy(() => import("./components/ProductJuryPost"));
 const CopilotWidget = lazy(() => import("./components/CopilotWidget"));
 const NotFoundPage = lazy(() => import("./components/NotFoundPage"));
-
-const SITE = "https://deepak-prasad.ai.studio";
-const DEFAULT_TITLE =
-  "Deepak Prasad — Senior Product Manager | AI, 0→1 & Product Strategy";
-const DEFAULT_DESC =
-  "Senior Product Manager building AI, B2B and B2C products across marketplaces, subscription platforms, connected products and workflow automation.";
-
-const ROUTE_META: Record<string, { title: string; description: string }> = {
-  "/": { title: DEFAULT_TITLE, description: DEFAULT_DESC },
-  "/work": {
-    title: "Selected Work — Deepak Prasad",
-    description:
-      "Flagship product work across marketplaces, AI coaching, subscriptions and connected fitness hardware.",
-  },
-  "/about": {
-    title: "About — Deepak Prasad",
-    description:
-      "Seven years building products across marketplaces, AI and subscription platforms. How I work and what I care about.",
-  },
-  "/resume": {
-    title: "Résumé — Deepak Prasad",
-    description:
-      "Senior Product Manager. Experience, impact and the systems I have shipped.",
-  },
-  "/contact": {
-    title: "Contact — Deepak Prasad",
-    description: "Get in touch about product roles, advisory work or a conversation.",
-  },
-  "/writing/product-jury": {
-    title: "Product Jury: a decision workspace that argues back — Deepak Prasad",
-    description:
-      "How I built a multi-agent critique engine that grades every claim by the evidence behind it, and declines when it cannot establish an answer.",
-  },
-};
 
 export default function App() {
   const [currentPath, setCurrentPath] = useState<string>(() => {
@@ -72,40 +39,7 @@ export default function App() {
   const [isResumeModalOpen, setIsResumeModalOpen] = useState(false);
 
   useEffect(() => {
-    let meta: { title: string; description: string } = {
-      title: DEFAULT_TITLE,
-      description: DEFAULT_DESC,
-    };
-    let isArticle = false;
-
-    if (ROUTE_META[currentPath]) {
-      meta = ROUTE_META[currentPath];
-      if (currentPath.startsWith("/writing/")) {
-        isArticle = true;
-      }
-    } else if (currentPath.startsWith("/work/")) {
-      const slug = currentPath.replace("/work/", "").toLowerCase();
-      const matched = ALL_FLAGSHIP_CASE_STUDIES.find(
-        (c) => c.slug.toLowerCase() === slug || c.id.toLowerCase() === slug
-      );
-      if (matched) {
-        meta = {
-          title: `${matched.title} — Deepak Prasad Case Study`,
-          description: matched.subtitle || matched.description || DEFAULT_DESC,
-        };
-        isArticle = true;
-      } else {
-        meta = {
-          title: "Page Not Found — Deepak Prasad",
-          description: "The requested case study could not be found.",
-        };
-      }
-    } else {
-      meta = {
-        title: "Page Not Found — Deepak Prasad",
-        description: "The requested page could not be found.",
-      };
-    }
+    const meta = getRouteMetadata(currentPath);
 
     document.title = meta.title;
 
@@ -123,13 +57,13 @@ export default function App() {
     };
 
     set('meta[name="description"]', "content", meta.description);
-    set('link[rel="canonical"]', "href", SITE + currentPath);
-    set('meta[property="og:url"]', "content", SITE + currentPath);
-    set('meta[property="og:title"]', "content", meta.title);
-    set('meta[property="og:description"]', "content", meta.description);
-    set('meta[property="og:type"]', "content", isArticle ? "article" : "website");
-    set('meta[name="twitter:title"]', "content", meta.title);
-    set('meta[name="twitter:description"]', "content", meta.description);
+    set('link[rel="canonical"]', "href", meta.canonical);
+    set('meta[property="og:url"]', "content", meta.ogUrl);
+    set('meta[property="og:title"]', "content", meta.ogTitle);
+    set('meta[property="og:description"]', "content", meta.ogDescription);
+    set('meta[property="og:type"]', "content", meta.ogType);
+    set('meta[name="twitter:title"]', "content", meta.twitterTitle);
+    set('meta[name="twitter:description"]', "content", meta.twitterDescription);
   }, [currentPath]);
 
   // Sync state with browser popstate

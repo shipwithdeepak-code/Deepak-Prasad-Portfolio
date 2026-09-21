@@ -992,7 +992,7 @@ export default function HomePage({
               has1200: true,
             },
             {
-              slug: "subscription-growth",
+              slug: "subscription",
               title: "Sportstech Subscription",
               tags: ["Monetization", "B2C SaaS"],
               role: "PM, monetization",
@@ -1027,7 +1027,7 @@ export default function HomePage({
               year: "2025",
               description:
                 "Re-architected a manual video workflow into an AI-assisted pipeline across three languages.",
-              figure: "2 weeks",
+              figure: "~3 weeks",
               qualifier: "turnaround, down from 3–4 months",
               imagePrefix: "/images/ai-localization-hero",
               imgAlt: "AI video localization pipeline",

@@ -33,7 +33,7 @@ export default function WorkPage({
   const getPrimaryTag = (study: CaseStudyDetail): string => {
     if (study.slug === "reshamandi") return "B2B Marketplace";
     if (study.slug === "ai-coach") return "Conversational AI";
-    if (study.slug === "subscription-growth") return "Monetization";
+    if (study.slug === "subscription") return "Monetization";
     if (study.slug === "performance-score") return "Algorithms";
     if (study.slug === "ai-localization") return "AI Operations";
     return study.tags[0] || "Product";
@@ -57,7 +57,7 @@ export default function WorkPage({
           qual: "daily actives, up from 300",
           imagePrefix: "/images/ai-coach-hero",
         };
-      case "subscription-growth":
+      case "subscription":
         return {
           h3: "Sportstech Subscription",
           desc: "Built the subscription business from zero: packaging, paywalls, trial mechanics and win-back.",
@@ -77,7 +77,7 @@ export default function WorkPage({
         return {
           h3: "AI Localization",
           desc: "Re-architected a manual video workflow into an AI-assisted pipeline across three languages.",
-          figure: "2 weeks",
+          figure: "~3 weeks",
           qual: "turnaround, down from 3–4 months",
           imagePrefix: "/images/ai-localization-hero",
         };
