@@ -63,7 +63,7 @@ export function MechanismVisual({
 }
 
 // =========================================================================
-// 1. RESHAMANDI: BENCHMARK EDITORIAL MECHANISM & WORKFLOW SYSTEM
+// 1. RESHAMANDI: EDITORIAL SETTLEMENT WORKFLOW
 // =========================================================================
 function ReshaMandiEditorialWorkflow({
   theme,
@@ -74,501 +74,55 @@ function ReshaMandiEditorialWorkflow({
 }) {
   const isDark = theme === 'dark';
 
-  // Physical-to-Digital Interventions mapped across the Marketplace
-  const ecosystemInterventions = [
-    {
-      domain: 'Upstream Farmer Advisory',
-      product: 'ReshaFarms',
-      role: '25-day rearing guidance, climate alerts, disease diagnostic inputs, forward supply visibility',
-      metric: '80,000+ farmers served',
-      badge: 'Assisted Vernacular Guidance',
-    },
-    {
-      domain: 'Intake & Verification',
-      product: 'Weighbridge IoT Station',
-      role: 'Direct serial tare/gross locked to digital lot record with dual-party physical verification',
-      metric: 'Zero orphan lot discrepancies',
-      badge: 'Physical-to-Digital Lock',
-    },
-    {
-      domain: 'Discovery & Price Discovery',
-      product: 'Live Cocoon Bidding',
-      role: 'Scheduled digital multi-buyer auction windows (Scan → Bid → Watch → Win → Pay)',
-      metric: '>35% uplift in pilot',
-      badge: '~3 live sessions / day',
-    },
-    {
-      domain: 'Quality Baseline & Advisory',
-      product: 'ML Cocoon Grading',
-      role: 'Computer vision analysis of standardized sample trays (shell ratio & defects) feeding manager price band',
-      metric: 'Human-in-the-loop signoff',
-      badge: 'Objective Quality Baseline',
-    },
-    {
-      domain: 'Liquidity & Settlement',
-      product: 'Instant Payout Engine',
-      role: 'Tiered banking API trigger (<₹5L instant, >₹5L within 2 hours) locked to verified gatepass',
-      metric: '99.9% success · ₹20–25 Cr/mo',
-      badge: 'Deterministic Rail',
-    },
-    {
-      domain: 'Downstream Weaver Sourcing',
-      product: 'ReshaSathi',
-      role: 'Direct procurement of graded yarn with guaranteed denier consistency and certified quality',
-      metric: 'Standardized denier specs',
-      badge: 'Demand-Side Traceability',
-    },
-  ];
-
-  const oldSteps = [
-    { num: '01', name: 'Centre Incharge', role: 'Manual Paper Intake', risk: 'Unverified tare & gross weights' },
-    { num: '02', name: 'WhatsApp Strings', role: 'Unverified Chat Strings', risk: 'Lost lot records across shifts' },
-    { num: '03', name: 'Vertical Admin', role: 'Ad-hoc Manual Signoff', risk: 'Subjective appraisal & delays' },
-    { num: '04', name: 'Accounts Desk', role: 'Manual Bank Upload', risk: 'T+3 to T+15 settlement batch latency' },
-    { num: '05', name: 'Disjointed Ledger', role: 'Spreadsheet Reconcile', risk: 'Escrow mismatch & farmer distrust' },
-  ];
-
-  const newSteps = [
-    { num: '01', name: 'IoT Weighbridge Lock', desc: 'Direct serial capture of tare/gross weight into lot record' },
-    { num: '02', name: 'Manager Physical Audit', desc: 'On-floor lot verification & digital lot certification' },
-    { num: '03', name: 'Finance Clearance Desk', desc: 'Automated ledger check against procurement liquidity' },
-    { num: '04', name: 'Farmer SMS / Audio Ack', desc: 'Instant vernacular SMS confirmation on mobile' },
-    { num: '05', name: 'Bank Penny-Drop Ping', desc: 'Deterministic account validation before disbursal' },
-    { num: '06', name: 'Tiered API Disbursal', desc: '<₹5L instant UPI/IMPS; >₹5L within 2 hours' },
-    { num: '07', name: 'Reconciliation Queue', desc: 'Deterministic retry & complete audit log (99.9% success)' },
-  ];
-
-  const biddingSteps = [
-    {
-      num: '01',
-      step: 'SCAN',
-      desc: 'Lot QR & Graded Sample',
-      sub: 'Floor inspection station binds quality tier to digital lot identifier',
-    },
-    {
-      num: '02',
-      step: 'BID',
-      desc: 'Live Competitive Floor',
-      sub: 'Certified remote and on-floor reelers place live compliant bids',
-    },
-    {
-      num: '03',
-      step: 'WATCH',
-      desc: 'Real-Time Outbid Alerts',
-      sub: 'Dynamic countdown clock and push notifications prevent cartels',
-    },
-    {
-      num: '04',
-      step: 'WIN',
-      desc: 'Instant Lot Lock',
-      sub: 'Winning bidder bound; price locked to weighbridge net weight',
-    },
-    {
-      num: '05',
-      step: 'PAY',
-      desc: 'Escrow Settlement',
-      sub: 'Automated payout trigger release + digital gatepass generation',
-    },
-  ];
-
-  const mlPipelineSteps = [
-    {
-      stage: 'Sample Preparation',
-      actor: 'Station Operator',
-      action: 'Standardized sample tray loaded with randomized cocoon batch',
-      guardrail: 'Calibrated lighting chamber',
-    },
-    {
-      stage: 'Feature Extraction',
-      actor: 'CV Model',
-      action: 'Estimates shell ratio, moisture level, and surface defect %',
-      guardrail: 'Empirical bounds check',
-    },
-    {
-      stage: 'Advisory Price Band',
-      actor: 'Pricing Engine',
-      action: 'Outputs recommended baseline range [₹Min – ₹Max] per kg',
-      guardrail: 'Non-binding recommendation',
-    },
-    {
-      stage: 'Human Sign-Off',
-      actor: 'Center Manager',
-      action: 'Validates lot against visual reality; records audit reason if overriding',
-      guardrail: 'Mandatory override log',
-    },
-  ];
-
-  const fieldResearchStages = [
-    { step: '01', label: 'OBSERVE', detail: 'On-ground mandi immersion during 4:30 AM arrival rush' },
-    { step: '02', label: 'MAP WORKFLOW', detail: 'Trace paper chits, weighbridge slip handoffs & WhatsApp queues' },
-    { step: '03', label: 'IDENTIFY FRICTION', detail: 'Pinpoint 3–15 day payout delay and subjective grading collusion' },
-    { step: '04', label: 'DIGITISE', detail: 'Ruggedized assisted touch terminals wired directly to IoT weighbridges' },
-    { step: '05', label: 'AUTOMATE', detail: 'Governed banking API triggers & deterministic retry states' },
-    { step: '06', label: 'AUGMENT', detail: 'Computer vision quality bands + live multi-buyer auction floors' },
-  ];
-
   return (
     <div
-      className={`my-10 p-6 sm:p-8 md:p-10 rounded-[24px] border ${isDark ? "bg-[#042718] text-white border-white/10" : "bg-white text-[#042718] border-[#042718]/10 shadow-xs"} ${className}`}
-      aria-label="ReshaMandi Benchmark Marketplace Systems Architecture"
+      className={`my-8 p-6 rounded-2xl border ${
+        isDark ? "bg-[#042718] text-white border-white/10" : "bg-white text-[#042718] border-[#042718]/10 shadow-2xs"
+      } ${className}`}
+      aria-label="ReshaMandi Governed Payout Workflow"
     >
-      {/* SECTION 1: MASTER HERO & SYSTEM CONTEXT */}
-      <div className="flex flex-col md:flex-row md:items-baseline justify-between gap-4 mb-6 pb-6 border-b border-current/10">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 pb-4 border-b border-current/10">
         <div>
-          <div className="flex items-center gap-2 mb-2">
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full font-mono text-[10px] uppercase font-bold tracking-wider bg-[#188E39]/12 text-[#188E39]">
-              Flagship System Architecture
-            </span>
-            <span className="font-mono text-[11px] text-[#042718]/50">
-              Physical Marketplace → Governed Engine
-            </span>
-          </div>
-          <h3 className="font-onest text-xl sm:text-2xl md:text-3xl font-bold tracking-tight">
-            CONNECTING FRAGMENTED SILK SUPPLY CHAINS
-          </h3>
+          <span className="font-mono text-[10px] uppercase font-bold tracking-wider text-[#188E39]">
+            Settlement State Machine
+          </span>
+          <h4 className="font-onest text-lg font-bold mt-0.5">
+            Governed Payout Workflow
+          </h4>
         </div>
-
-        <div className="flex flex-wrap items-center gap-2 text-xs font-mono shrink-0">
-          <span className="px-3 py-1 rounded-full bg-[#188E39]/12 text-[#188E39] font-bold">
+        <div className="flex items-center gap-2 text-xs font-mono">
+          <span className="px-2.5 py-1 rounded-md bg-[#188E39]/12 text-[#188E39] font-bold">
             &lt;₹5L Instant · &gt;₹5L &lt;2h
           </span>
-          <span className="px-3 py-1 rounded-full bg-[#042718]/5 text-[#042718]/80 font-bold border border-current/10">
-            99.9% Payout Success
-          </span>
-          <span className="px-3 py-1 rounded-full bg-[#8A5A16]/10 text-[#8A5A16] font-bold">
-            ₹20–25 Cr/mo Volume
+          <span className="px-2.5 py-1 rounded-md bg-[#042718]/5 text-[#042718]/70 font-semibold">
+            99.9% Success
           </span>
         </div>
       </div>
 
-      <div className="max-w-3xl mb-8 font-inter text-sm sm:text-base text-[#042718]/80 leading-relaxed">
-        <p className="font-medium text-[#042718] mb-2">
-          "The product wasn't the app. The workflow was."
-        </p>
-        <p>
-          Rural sericulture had operated as an informal economy for generations. In a trading yard where silk cocoons perish within 48 hours, digitisation could not be a generic mobile form. The system restructured the entire operating chain—from rearing advisory and weighbridge telemetry to real-time bidding, machine learning quality bands, and tiered instant escrow disbursements.
-        </p>
-      </div>
-
-      <div className="flex flex-col gap-8">
-        {/* SECTION 2: END-TO-END MARKETPLACE ECOSYSTEM MAP */}
-        <div className="p-5 sm:p-6 rounded-2xl bg-[#FAFDFB] border border-[#042718]/10">
-          <div className="flex flex-wrap items-center justify-between gap-2 mb-4 pb-3 border-b border-[#042718]/8">
-            <div className="flex items-center gap-2">
-              <Layers size={16} className="text-[#188E39]" />
-              <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#042718]">
-                SYSTEM INTERVENTIONS ACROSS THE SILK VALUE CHAIN
-              </span>
-            </div>
-            <span className="font-mono text-[11px] text-[#188E39] font-semibold">
-              6 Interlocking Operational Nodes
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+        {[
+          { step: '01 · Intake', title: 'Weighbridge Lock', desc: 'Lot record captured directly at collection point' },
+          { step: '02 · Validation', title: 'Center Approval', desc: 'Dual verification by floor manager' },
+          { step: '03 · Liquidity', title: 'Finance Clearance', desc: 'Automated disbursal trigger via Razorpay integration' },
+          { step: '04 · Settlement', title: 'Payout & Receipt', desc: 'Instant vernacular SMS confirmation to farmer' },
+        ].map((s) => (
+          <div key={s.step} className="p-3.5 rounded-xl bg-[#FAFDFB] border border-[#042718]/8">
+            <span className="font-mono text-[10px] text-[#188E39] font-bold block mb-1">
+              {s.step}
             </span>
+            <h5 className="font-onest text-xs sm:text-sm font-bold text-[#042718] mb-1">
+              {s.title}
+            </h5>
+            <p className="font-inter text-xs text-[#042718]/70 leading-snug">
+              {s.desc}
+            </p>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-            {ecosystemInterventions.map((item, idx) => (
-              <div
-                key={idx}
-                className="p-4 rounded-xl bg-white border border-[#042718]/8 flex flex-col justify-between shadow-2xs"
-              >
-                <div>
-                  <div className="flex items-center justify-between gap-2 mb-2">
-                    <span className="font-mono text-[10px] text-[#188E39] font-bold">
-                      PHASE 0{idx + 1}
-                    </span>
-                    <span className="font-mono text-[10px] px-2 py-0.5 rounded-md bg-[#188E39]/8 text-[#188E39] font-semibold">
-                      {item.badge}
-                    </span>
-                  </div>
-                  <h4 className="font-onest text-sm font-bold text-[#042718]">
-                    {item.product}
-                  </h4>
-                  <span className="font-inter text-[11px] font-semibold text-[#042718]/55 block mt-0.5">
-                    {item.domain}
-                  </span>
-                  <p className="font-inter text-xs text-[#042718]/75 mt-2.5 leading-snug">
-                    {item.role}
-                  </p>
-                </div>
-                <div className="mt-3 pt-2.5 border-t border-[#042718]/6 flex items-center justify-between">
-                  <span className="font-mono text-[10px] text-[#042718]/50 uppercase">Verified Impact</span>
-                  <span className="font-mono text-[11px] font-bold text-[#042718]">{item.metric}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* SECTION 3: FIELD DISCOVERY METHODOLOGY */}
-        <div className="p-5 sm:p-6 rounded-2xl bg-white border border-[#042718]/10 shadow-2xs">
-          <div className="flex flex-wrap items-center justify-between gap-2 mb-3 pb-3 border-b border-[#042718]/8">
-            <div className="flex items-center gap-2">
-              <Eye size={16} className="text-[#188E39]" />
-              <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#042718]">
-                FIELD RESEARCH & GROUND DISCOVERY METHODOLOGY
-              </span>
-            </div>
-            <span className="font-mono text-[11px] text-[#042718]/60">
-              Immersion → Synthesis → Product Formulation
-            </span>
-          </div>
-
-          <p className="font-inter text-xs sm:text-sm text-[#042718]/75 mb-4 leading-relaxed max-w-3xl">
-            To understand why software failed on the mandi floor, discovery began with 4:30 AM immersions at regional collection yards. Farmers rejected digital tools not because of literacy, but because generic apps created friction in high-velocity physical operations.
-          </p>
-
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 text-center">
-            {fieldResearchStages.map((st, idx) => (
-              <div
-                key={idx}
-                className="p-3 rounded-xl bg-[#FAFDFB] border border-[#042718]/6 flex flex-col justify-between"
-              >
-                <div>
-                  <span className="font-mono text-[10px] text-[#188E39] font-bold block mb-1">
-                    Stage {st.step}
-                  </span>
-                  <span className="font-onest text-xs font-bold text-[#042718] block leading-tight mb-1.5">
-                    {st.label}
-                  </span>
-                </div>
-                <span className="font-inter text-[11px] text-[#042718]/70 leading-tight block">
-                  {st.detail}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* SECTION 4: THE CORE MECHANISM — GOVERNED PAYOUT PIPELINE (BEFORE vs AFTER) */}
-        <div className="p-5 sm:p-6 rounded-2xl bg-white border border-[#042718]/10 shadow-xs">
-          <div className="flex flex-wrap items-center justify-between gap-2 mb-4 pb-3 border-b border-[#042718]/8">
-            <div>
-              <div className="flex items-center gap-2">
-                <Clock size={16} className="text-[#188E39]" />
-                <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#042718]">
-                  CORE MECHANISM: GOVERNED INSTANT PAYOUT PIPELINE
-                </span>
-              </div>
-              <p className="font-inter text-xs text-[#042718]/60 mt-1">
-                Restructuring approval, telemetry validation, and tiered banking disbursement
-              </p>
-            </div>
-            <div className="flex items-center gap-2 font-mono text-[11px]">
-              <span className="px-2.5 py-0.5 rounded-full bg-[#188E39]/10 text-[#188E39] font-bold">
-                &lt;₹5L Instant
-              </span>
-              <span className="px-2.5 py-0.5 rounded-full bg-[#188E39]/10 text-[#188E39] font-bold">
-                &gt;₹5L &lt;2 Hours
-              </span>
-            </div>
-          </div>
-
-          {/* Comparative Blocks */}
-          <div className="flex flex-col gap-5">
-            {/* OLD INFORMAL PROCESS */}
-            <div className="p-4 sm:p-5 rounded-xl bg-[#FEF2F2]/80 border border-[#FCA5A5]/50">
-              <div className="flex flex-wrap items-center justify-between gap-2 mb-3 pb-2 border-b border-[#FCA5A5]/30">
-                <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-[#DC2626]" />
-                  <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#991B1B]">
-                    BEFORE: INFORMAL, UNVERIFIED HANDOFFS
-                  </span>
-                </div>
-                <span className="font-mono text-[11px] text-[#DC2626] font-semibold">
-                  3–15 Days Delay · Chat Strings · High Distrust
-                </span>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-2.5">
-                {oldSteps.map((step, idx) => (
-                  <div
-                    key={idx}
-                    className="p-3 rounded-lg bg-white/95 border border-[#FCA5A5]/40 flex flex-col justify-between shadow-2xs"
-                  >
-                    <div>
-                      <span className="font-mono text-[10px] text-[#DC2626] font-bold block mb-1">
-                        Handoff 0{idx + 1}
-                      </span>
-                      <h5 className="font-onest text-xs font-bold text-[#7F1D1D] leading-snug">
-                        {step.name}
-                      </h5>
-                      <span className="font-inter text-[11px] text-[#991B1B]/80 mt-1 block italic">
-                        {step.role}
-                      </span>
-                    </div>
-                    <span className="font-inter text-[10px] text-[#DC2626]/80 mt-2 block border-t border-[#FCA5A5]/20 pt-1">
-                      Risk: {step.risk}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* TRANSITION ARROW */}
-            <div className="flex items-center justify-center gap-3 py-0.5">
-              <div className="h-px bg-[#042718]/15 flex-1" />
-              <span className="font-mono text-[11px] uppercase tracking-wider font-bold text-[#188E39] px-3.5 py-1 rounded-full bg-[#188E39]/12">
-                Engineered Deterministic Pipeline ↓
-              </span>
-              <div className="h-px bg-[#042718]/15 flex-1" />
-            </div>
-
-            {/* NEW GOVERNED ENGINE */}
-            <div className="p-4 sm:p-5 rounded-xl bg-[#ECFDF5]/80 border border-[#6EE7B7]/60">
-              <div className="flex flex-wrap items-center justify-between gap-2 mb-3 pb-2 border-b border-[#6EE7B7]/40">
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 size={16} className="text-[#059669]" />
-                  <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#065F46]">
-                    AFTER: GOVERNED SETTLEMENT STATE MACHINE
-                  </span>
-                </div>
-                <span className="font-mono text-[11px] text-[#059669] font-bold">
-                  Deterministic Validation · 99.9% Payout Success · Zero Unreconciled Losses
-                </span>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-7 gap-2">
-                {newSteps.map((step, idx) => (
-                  <div
-                    key={idx}
-                    className="p-3 rounded-lg bg-white border border-[#188E39]/30 flex flex-col justify-between shadow-2xs"
-                  >
-                    <div>
-                      <div className="flex items-center justify-between mb-1">
-                        <span className="font-mono text-[10px] text-[#188E39] font-bold">
-                          {step.num}
-                        </span>
-                        {idx < newSteps.length - 1 && (
-                          <ArrowRight size={11} className="text-[#188E39]/40 hidden lg:block" />
-                        )}
-                      </div>
-                      <h5 className="font-onest text-xs font-bold text-[#042718] leading-tight">
-                        {step.name}
-                      </h5>
-                    </div>
-                    <p className="font-inter text-[10px] text-[#042718]/70 mt-2 leading-snug">
-                      {step.desc}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* SECTION 5: COCOON BIDDING & PRICE DISCOVERY MECHANISM */}
-        <div className="p-5 sm:p-6 rounded-2xl bg-[#FAFDFB] border border-[#042718]/10">
-          <div className="flex flex-wrap items-center justify-between gap-2 mb-3 pb-2 border-b border-[#042718]/8">
-            <div className="flex items-center gap-2">
-              <TrendingUp size={16} className="text-[#188E39]" />
-              <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#042718]">
-                COCOON BIDDING MECHANISM: REAL-TIME TRANSPARENT DISCOVERY
-              </span>
-            </div>
-            <div className="flex items-center gap-2 font-mono text-[11px]">
-              <span className="px-2.5 py-0.5 rounded-full bg-[#188E39]/10 text-[#188E39] font-bold">
-                ~3 Sessions / Day
-              </span>
-              <span className="px-2.5 py-0.5 rounded-full bg-[#8A5A16]/10 text-[#8A5A16] font-bold">
-                &gt;35% Uplift in Regional Pilot
-              </span>
-            </div>
-          </div>
-
-          <p className="font-inter text-xs sm:text-sm text-[#042718]/75 mb-4 leading-relaxed max-w-3xl">
-            Replaced manual broker appraisal and informal hall negotiation with an orderly 5-step digital auction cycle. Graded cocoon lots were opened to certified local and remote reelers simultaneously, breaking regional trader cartels.
-          </p>
-
-          <div className="grid grid-cols-1 sm:grid-cols-5 gap-2.5">
-            {biddingSteps.map((b, idx) => (
-              <div
-                key={idx}
-                className="p-3.5 rounded-xl bg-white border border-[#042718]/10 flex flex-col justify-between shadow-2xs"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-1.5">
-                    <span className="font-mono text-[10px] text-[#188E39] font-bold">
-                      Step 0{idx + 1}
-                    </span>
-                    <span className="font-mono text-[9px] px-1.5 py-0.5 rounded bg-[#042718]/5 text-[#042718]/70 font-semibold">
-                      {b.step}
-                    </span>
-                  </div>
-                  <h5 className="font-onest text-xs font-bold text-[#042718] leading-tight">
-                    {b.desc}
-                  </h5>
-                </div>
-                <p className="font-inter text-[11px] text-[#042718]/65 mt-2 leading-snug">
-                  {b.sub}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* SECTION 6: ML PRICING & QUALITY HUMAN-IN-THE-LOOP */}
-        <div className="p-5 sm:p-6 rounded-2xl bg-white border border-[#042718]/10 shadow-2xs">
-          <div className="flex flex-wrap items-center justify-between gap-2 mb-3 pb-2 border-b border-[#042718]/8">
-            <div className="flex items-center gap-2">
-              <Cpu size={16} className="text-[#188E39]" />
-              <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#042718]">
-                ML QUALITY BASELINE: HUMAN-IN-THE-LOOP PRICING
-              </span>
-            </div>
-            <span className="font-mono text-[11px] text-[#188E39] font-semibold">
-              Non-Binding Computer Vision Guidance
-            </span>
-          </div>
-
-          <p className="font-inter text-xs sm:text-sm text-[#042718]/75 mb-4 leading-relaxed max-w-3xl">
-            To remove subjective bias from cocoon appraisal without removing human floor accountability, computer vision models evaluated calibrated sample trays to recommend price bands that center managers verified.
-          </p>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-            {mlPipelineSteps.map((pipe, idx) => (
-              <div
-                key={idx}
-                className="p-3.5 rounded-xl bg-[#FAFDFB] border border-[#042718]/6 flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-1.5">
-                    <span className="font-mono text-[10px] text-[#188E39] font-bold">
-                      Step 0{idx + 1}
-                    </span>
-                    <span className="font-mono text-[9px] px-1.5 py-0.5 rounded bg-white text-[#042718]/70 border border-[#042718]/10 font-semibold">
-                      {pipe.actor}
-                    </span>
-                  </div>
-                  <h5 className="font-onest text-xs sm:text-sm font-bold text-[#042718] leading-tight">
-                    {pipe.stage}
-                  </h5>
-                  <p className="font-inter text-xs text-[#042718]/75 mt-2 leading-snug">
-                    {pipe.action}
-                  </p>
-                </div>
-                <div className="mt-3 pt-2 border-t border-[#042718]/6 flex items-center justify-between font-mono text-[10px]">
-                  <span className="text-[#042718]/50">Safety</span>
-                  <span className="font-semibold text-[#8A5A16]">{pipe.guardrail}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* FOOTER CAPTION & EVIDENCE SUMMARY */}
-      <div className="mt-8 pt-4 border-t border-current/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs font-inter text-[#042718]/70">
-        <p className="italic max-w-2xl">
-          "The intervention was not simply digitising payment. It was restructuring the workflow around approval, validation and settlement."
-        </p>
-        <span className="font-mono text-[11px] font-bold text-[#188E39] shrink-0">
-          Dual physical verification + serial IoT weighbridge telemetry
-        </span>
+        ))}
       </div>
     </div>
   );
 }
-
 // =========================================================================
 // 2. SPORTSTECH AI COACH: THE MODEL CAN GENERATE. THE PRODUCT DEFINES THE BOUNDARY.
 // =========================================================================

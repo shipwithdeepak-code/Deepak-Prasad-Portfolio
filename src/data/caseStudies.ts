@@ -38,11 +38,11 @@ export const RESHAMANDI_CASE_STUDY: CaseStudyDetail = {
     { label: 'Farmers Served', value: '80,000+', detail: 'Engaged through ReshaFarms advisory' },
     { label: 'Monthly Disbursements', value: '₹20–25 Cr', detail: 'Automated escrow payout pipeline' },
     { label: 'Bidding Value Uplift', value: '>35%', detail: 'Demonstrated in pilot auction discovery' },
-    { label: 'Payout Reliability', value: '99.9%', detail: 'Zero un-reconciled escrow losses' },
+    { label: 'Payout Reliability', value: '99.9%', detail: 'Audited payout reconciliations' },
   ],
   quickContext: {
     problem:
-      'Rural sericulture farmers operated in physical mandis where silk cocoons perish within 48 hours, leaving them exposed to subjective broker grading, volatile price swings, and delayed payment settlements.',
+      'Rural sericulture farmers operated in physical mandis where silk cocoons require timely processing and grading, leaving them exposed to subjective broker grading, volatile price swings, and delayed payment settlements.',
     whyItMattered:
       'Farmers absorbed production risk with limited financial predictability, often waiting days for payment while downstream reelers faced inconsistent cocoon quality.',
     myOwnership:
@@ -94,13 +94,13 @@ export const RESHAMANDI_CASE_STUDY: CaseStudyDetail = {
       title: 'Context: The Fragile Silk Value Chain',
       subtitle: 'High stakes, high perishability, and severe information asymmetry',
       content: [
-        'India is the world’s second-largest producer of silk, yet its raw materials supply chain historically operated as a deeply fragmented, informal economy. Sericulture farmers nurture fragile silkworms through tight 25-day rearing cycles, culminating in perishable batches of silk cocoons that must be harvested and sold within a 48-hour window.',
+        'India is the world’s second-largest producer of silk, yet its raw materials supply chain historically operated as a deeply fragmented, informal economy. Sericulture farmers nurture fragile silkworms through tight 25-day rearing cycles, culminating in batches of silk cocoons that must be harvested and sold promptly.',
         'At traditional physical mandis (trading yards), farmers faced severe structural asymmetry: arbitrary visual grading by brokers, no price transparency, rampant commission slicing, and payment settlements delayed by days or weeks. Farmers bore 100% of production risk with zero financial predictability, while reelers suffered from unpredictable batch quality and irregular feedstock supply.',
       ],
       highlights: [
         {
-          title: '48-Hour Perishable Window',
-          desc: 'Harvested cocoons lose moisture and shell quality rapidly; farmers had zero leverage to reject unfair offers.',
+          title: 'Time-Sensitive Cocoon Harvest',
+          desc: 'Harvested cocoons lose moisture and quality over time; farmers previously had limited leverage to negotiate unfair offers.',
         },
         {
           title: 'Liquidity Chokehold',
@@ -313,7 +313,7 @@ export const RESHAMANDI_CASE_STUDY: CaseStudyDetail = {
       title: 'Technology & Operating Model',
       subtitle: 'Assisted-first onboarding, offline-first client, and physical-digital twins',
       content: [
-        'Rural mandi yards frequently experienced cellular blackouts. We engineered the intake and weighing client with offline queueing and cryptographic local receipts, reconciling automatically upon reconnection without halting auctions.',
+        'Rural mandi yards frequently experienced cellular blackouts. We engineered the intake and weighing client with offline queueing and offline validation receipts, reconciling automatically upon reconnection without halting auctions.',
         'Rather than demanding rural farmers download complex apps, we placed tech-enabled ReshaMandi field executives at weigh stations. This "assisted-tech" model accelerated adoption from Day 1 while ensuring 100% data integrity.',
       ],
       decision: {
@@ -348,7 +348,7 @@ export const RESHAMANDI_CASE_STUDY: CaseStudyDetail = {
         '• 80,000+ Farmers Served: Supported across rearing stages through vernacular advisory on ReshaFarms.',
         '• ₹20–25 Cr Monthly Disbursements: Governed payout pipeline contributed to scaling volume from ₹10–15 Cr to ₹20–25 Cr per month with 99.9% payout success (<₹5L instant, >₹5L within 2 hours).',
         '• >35% Transaction Value Uplift: Demonstrated in pilot auction bidding through transparent multi-buyer price discovery.',
-        '• Zero Unreconciled Escrow Loss: Strict automated ledger validation and deterministic retry queues maintained complete audit integrity.',
+        '• High Reconciled Payout Accuracy: Automated ledger validation maintained complete audit integrity across disbursements.',
       ],
       outcomeHierarchy: [
         {
@@ -393,7 +393,7 @@ export const RESHAMANDI_CASE_STUDY: CaseStudyDetail = {
         'When you respect the operational rhythm of the floor and solve the user’s existential friction (in this case, payment delays and arbitrary grading), technology becomes an accelerator of human trust rather than an unwelcome imposition.',
       ],
       reflection:
-        'In hindsight, we initially relied on manual WhatsApp groups to triage edge-case connectivity timeouts on the floor before our offline queue was finalized. Designing local cryptographic receipt generation into the floor client from Day 1 would have eliminated weeks of manual reconciliation between field operations and accounts.',
+        'In hindsight, we initially relied on manual WhatsApp groups to triage edge-case connectivity timeouts on the floor before our offline queue was finalized. Designing reliable offline receipt generation into the floor client from Day 1 would have eliminated weeks of manual reconciliation between field operations and accounts.',
       quote:
         'The product wasn’t the app. The workflow was. Great operational products do not replace human trust with software; they use software to make human trust scalable and frictionless.',
     },

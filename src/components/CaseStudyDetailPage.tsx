@@ -11,6 +11,7 @@ import {
 import { CaseStudyDetail } from "../types";
 import { ALL_FLAGSHIP_CASE_STUDIES, ALL_CASE_STUDIES } from "../data/caseStudies";
 import { MechanismVisual, MechanismSlug } from "./MechanismVisual";
+import ReshaMandiEditorialPage from "./ReshaMandiEditorialPage";
 
 interface CaseStudyDetailPageProps {
   caseStudy: CaseStudyDetail;
@@ -25,6 +26,16 @@ export default function CaseStudyDetailPage({
     // Instant scroll to top on mount to eliminate unwanted sliding animations during route transition
     window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
   }, [caseStudy.id]);
+
+  // For ReshaMandi flagship, use the dedicated evidence-led editorial storytelling page
+  if (caseStudy.slug === "reshamandi" || caseStudy.id === "reshamandi") {
+    return (
+      <ReshaMandiEditorialPage
+        caseStudy={caseStudy}
+        onNavigate={onNavigate}
+      />
+    );
+  }
 
   // Find adjacent case studies for next/previous navigation safely
   const studyList = ALL_FLAGSHIP_CASE_STUDIES.some((c) => c.id === caseStudy.id)
