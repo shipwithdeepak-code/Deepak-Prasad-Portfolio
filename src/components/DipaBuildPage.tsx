@@ -1,91 +1,60 @@
 import React, { useEffect } from "react";
-import {
-  ArrowLeft,
-  ArrowRight,
-} from "lucide-react";
+import { ArrowLeft, ArrowRight, Sparkles, CheckCircle2 } from "lucide-react";
+import { DipaArchitectureDiagram } from "./DipaArchitectureDiagram";
 
 interface DipaBuildPageProps {
   onNavigate: (path: string) => void;
 }
 
-const WHAT_I_BUILT = [
+const TECHNICAL_SPEC_ITEMS = [
   {
-    title: "Portfolio-Aware Grounded Answers",
-    description:
-      "Direct answers to recruiter and hiring manager questions regarding specific product ownership, verified metrics, timelines, and decision trade-offs.",
+    label: "Embedding",
+    value: "gemini-embedding-2-preview",
+    detail: "512 dimensions",
   },
   {
-    title: "Sub-2ms In-Memory Retrieval",
-    description:
-      "A deterministic in-memory vector index computing cosine similarity over typed Float32 arrays directly on CPU, bypassing hosted vector DB latency.",
+    label: "Knowledge index",
+    value: "ragKnowledgeBase.json",
+    detail: "32 curated semantic chunks",
   },
   {
-    title: "Strict Confidence Gating",
-    description:
-      "A similarity gate (threshold 0.40–0.68) that halts generation and declines to guess when queries drift out of domain, redirecting users to direct booking.",
+    label: "Retrieval",
+    value: "Cosine similarity",
+    detail: "In-memory exact dot-product on CPU",
   },
   {
-    title: "Verified Citation Provenance",
-    description:
-      "Every factual claim generated links back to source case studies, allowing readers to verify the underlying artifacts and context instantly.",
-  },
-];
-
-const WORKFLOW_STEPS = [
-  {
-    step: "01",
-    name: "Corpus Ingestion & Atomic Chunking",
-    desc: "45 curated semantic chunks extracted from flagship case studies, resume data, and product frameworks, strictly bounded to prevent metric leakage across unrelated projects.",
+    label: "Confidence gate",
+    value: "0.68",
+    detail: "Strict threshold for grounded generation",
   },
   {
-    step: "02",
-    name: "Precomputed Dense Embeddings",
-    desc: "text-embedding-004 generates 512-dimensional dense embeddings stored in a static JSON file baked at build time. Zero runtime embedding calls for known corpus texts.",
+    label: "Generation",
+    value: "gemini-3.1-flash-lite",
+    detail: "Constrained synthesis with direct citations",
   },
   {
-    step: "03",
-    name: "In-Memory Cosine Similarity Calculation",
-    desc: "When a user asks a question, the query vector is compared against all 45 stored vectors via dot-product in <2ms on CPU, completely eliminating remote database network hops.",
-  },
-  {
-    step: "04",
-    name: "Confidence Gate & Hallucination Guardrail",
-    desc: "Retrieval results below the similarity threshold trigger an honest fallback response: 'I don't have verified notes on that topic in Deepak's portfolio,' offering an email or booking link.",
-  },
-  {
-    step: "05",
-    name: "Grounded Synthesis with Direct Citations",
-    desc: "Gemini 2.5 Flash receives the top-ranked context chunks and synthesizes an objective, factual answer with clickable citation chips linking to the corresponding case studies.",
+    label: "Knowledge synchronization",
+    value: "Build-time / deployment",
+    detail: "Prebuild pipeline regenerates index",
   },
 ];
 
-const KEY_DECISIONS = [
+const WHAT_DIPA_ANSWERS = [
   {
-    title: "In-memory index over hosted vector databases",
-    decision:
-      "Stored precomputed embeddings in an in-memory JSON array rather than provisioning Pinecone, Weaviate, or Milvus.",
-    why:
-      "For a domain portfolio corpus of ~45–100 chunks, a remote database call adds 50–150ms of network latency, monthly SaaS bills, and operational failure points. Local CPU dot product executes in under 2ms with zero infrastructure overhead.",
-    tradeoff:
-      "Corpus updates cannot be streamed dynamically from external web scrapers; they are baked deterministically at build time.",
+    title: "Project Ownership & Decisions",
+    desc: "Direct answers to questions regarding Deepak's exact role, team boundaries, and strategic trade-offs across his flagship case studies.",
   },
   {
-    title: "Epistemic modesty: declining over plausible guessing",
-    decision:
-      "Configured strict prompt constraints and similarity gating to decline queries that lack direct source evidence.",
-    why:
-      "In a hiring portfolio, hallucinating an unverified metric or claiming ownership of unworked domains destroys credibility permanently. Saying 'I cannot establish this from the evidence' proves integrity.",
-    tradeoff:
-      "The assistant answers fewer speculative queries, prioritizing precision over chattiness.",
+    title: "Verified Case Study Metrics",
+    desc: "Specific numbers and operational context (e.g. ReshaMandi mandi workflows, instant payout adoption, Sportstech AI Coach primary/fallback mechanics).",
   },
   {
-    title: "Ambient companion UX over support widget",
-    decision:
-      "Designed Dīpa as an animated SVG character with subtle glances and visor states, integrated directly into hero search and drawer navigation.",
-    why:
-      "Standard floating intercom/zendesk widgets feel like customer service intrusions. An expressive, bespoke companion creates an engaging, exploratory product experience.",
-    tradeoff:
-      "Required custom SVG frame management and accessibility handling (reduced-motion fallbacks).",
+    title: "Operating Principles & Background",
+    desc: "His core design and engineering philosophies, domain experience, and technical perspectives.",
+  },
+  {
+    title: "Direct Citation Attribution",
+    desc: "Every grounded answer provides clickable citation tags mapping claims directly back to the verified source portfolio case studies.",
   },
 ];
 
@@ -103,7 +72,7 @@ export default function DipaBuildPage({ onNavigate }: DipaBuildPageProps) {
   return (
     <div className="w-full bg-[#FAFDFB] text-[#042718]">
       {/* =========================================================================
-          HERO & HEADER
+          HERO & HEADER (Calm, Editorial, Technical)
           ========================================================================= */}
       <header className="border-b border-[#042718]/8 bg-[#FAF8F5]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
@@ -120,7 +89,13 @@ export default function DipaBuildPage({ onNavigate }: DipaBuildPageProps) {
           {/* Tags */}
           <div className="flex items-center gap-3 flex-wrap mb-4">
             <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-[#A8711A]">
-              Applied AI · Build Story
+              DĪPA
+            </span>
+            <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-[#042718]/50">
+              ·
+            </span>
+            <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-[#2F7A4F]">
+              AI-native portfolio assistant
             </span>
             <span className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 font-mono text-[9.5px] font-semibold uppercase tracking-[0.14em] text-[#2F7A4F] border border-[#2F7A4F]/35 bg-[#6FBE8C]/12">
               <span className="w-1.5 h-1.5 rounded-full bg-[#6FBE8C] shrink-0" />
@@ -128,18 +103,18 @@ export default function DipaBuildPage({ onNavigate }: DipaBuildPageProps) {
             </span>
           </div>
 
-          {/* Title & Subtitle */}
+          {/* Title & Core Quote */}
           <h1 className="font-onest text-3xl sm:text-5xl font-bold tracking-tight text-[#042718] leading-[1.1] text-balance">
             Dīpa
           </h1>
-          <p className="font-onest text-xl sm:text-2xl font-medium text-[#042718]/80 mt-2">
-            An AI-native portfolio assistant
+          <p className="font-onest text-xl sm:text-2xl font-medium text-[#042718]/85 mt-3 leading-snug">
+            &ldquo;An AI copilot grounded in my actual product work — not generic model knowledge.&rdquo;
           </p>
 
           <p className="font-inter text-base sm:text-lg text-[#042718]/70 mt-5 leading-relaxed max-w-3xl">
-            An AI assistant grounded in my own portfolio and product work, designed to answer
-            questions using retrieved source material without hallucinating or requiring external
-            vector databases.
+            Dīpa answers questions about Deepak&apos;s product work, experience, and portfolio using a
+            curated, verified knowledge base. It does not scrape the portfolio live at query time; its
+            knowledge is synchronized deterministically during each build and deployment.
           </p>
 
           {/* Metadata bar */}
@@ -148,208 +123,154 @@ export default function DipaBuildPage({ onNavigate }: DipaBuildPageProps) {
             <span className="text-[#042718]/25">/</span>
             <span>Product Architect &amp; Builder</span>
             <span className="text-[#042718]/25">/</span>
-            <span>Gemini 2.5 Flash</span>
+            <span>gemini-embedding-2-preview (512-dim)</span>
             <span className="text-[#042718]/25">/</span>
-            <span>In-Memory Cosine RAG</span>
+            <span>gemini-3.1-flash-lite</span>
           </div>
 
-          {/* CTA actions */}
-          <div className="mt-8 flex flex-wrap gap-3">
+          {/* Interactive Launcher Action */}
+          <div className="mt-8 flex flex-wrap items-center gap-3">
             <button
               type="button"
               onClick={handleOpenDipa}
               className="inline-flex items-center gap-2 h-11 px-6 rounded-[100px] bg-[#042718] text-white hover:bg-[#0B3322] font-inter text-sm font-semibold transition-colors duration-200 cursor-pointer shadow-xs"
             >
-              <span>Try Dīpa now</span>
+              <Sparkles size={15} className="text-[#C8F07A]" />
+              <span>Ask Dīpa a question</span>
               <ArrowRight size={15} />
             </button>
-            <a
-              href="/work/product-jury"
-              onClick={(e) => {
-                e.preventDefault();
-                onNavigate("/work/product-jury");
-              }}
-              className="inline-flex items-center gap-2 h-11 px-6 rounded-[100px] border border-[#042718]/15 text-[#042718] hover:bg-[#042718]/5 font-inter text-sm font-semibold transition-colors duration-200"
-            >
-              <span>Read Product Jury build</span>
-              <ArrowRight size={15} />
-            </a>
+            <span className="font-inter text-xs text-[#042718]/60 ml-2">
+              Opens the conversational drawer directly on this page
+            </span>
           </div>
         </div>
       </header>
 
       {/* =========================================================================
-          ARTICLE CONTENT
+          EDITORIAL CONTENT & ARCHITECTURE
           ========================================================================= */}
       <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-        {/* SECTION 1: CONTEXT & PURPOSE */}
+        {/* SECTION 1: WHAT DĪPA ANSWERS */}
         <section className="mb-14 pb-12 border-b border-[#042718]/10">
           <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-[#A8711A] block mb-2">
-            01 · Context &amp; Purpose
+            01 · Grounded Scope
           </span>
           <h2 className="font-onest text-2xl sm:text-3xl font-bold text-[#042718] tracking-tight mb-4">
-            Why build an assistant for a personal portfolio?
+            What Dīpa can answer
           </h2>
-          <div className="space-y-4 font-inter text-[15px] sm:text-base text-[#042718]/75 leading-relaxed">
-            <p>
-              Standard product portfolios force hiring managers and collaborators to read through
-              thousands of words of linear case studies to answer specific questions:{" "}
-              <em>&ldquo;What was Deepak&apos;s direct ownership at ReshaMandi?&rdquo;</em>,{" "}
-              <em>&ldquo;Did he launch the Performance Score architecture?&rdquo;</em>, or{" "}
-              <em>&ldquo;What were the exact trade-offs on instant payouts?&rdquo;</em>
-            </p>
-            <p>
-              Most conversational agents deployed on portfolios make one of two fatal errors: they
-              either connect a frontier model directly to raw ungrounded prompts—which hallucinate
-              metrics and credentials—or they over-engineer a complex hosted vector database pipeline
-              (Pinecone, Weaviate) that adds 100ms+ network lag and ongoing maintenance.
-            </p>
-            <p>
-              I built Dīpa as an AI-native portfolio assistant that proves grounded retrieval can be
-              blazingly fast, deterministic, zero-cost to maintain, and fundamentally truthful.
-            </p>
-          </div>
-        </section>
+          <p className="font-inter text-sm sm:text-base text-[#042718]/70 leading-relaxed mb-6">
+            Dīpa is built specifically for recruiters, engineering leaders, and founders reviewing this portfolio.
+            It provides factual, sourced answers to specific operational and strategic inquiries:
+          </p>
 
-        {/* SECTION 2: WHAT I BUILT */}
-        <section className="mb-14 pb-12 border-b border-[#042718]/10">
-          <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-[#A8711A] block mb-2">
-            02 · Scope
-          </span>
-          <h2 className="font-onest text-2xl sm:text-3xl font-bold text-[#042718] tracking-tight mb-6">
-            What I built
-          </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {WHAT_I_BUILT.map((item) => (
+            {WHAT_DIPA_ANSWERS.map((item) => (
               <div
                 key={item.title}
-                className="p-5 rounded-[18px] bg-white border border-[#042718]/8 flex flex-col justify-between"
+                className="p-5 rounded-[18px] bg-white border border-[#042718]/8 flex flex-col justify-start"
               >
-                <h3 className="font-onest text-base font-bold text-[#042718] mb-2">
-                  {item.title}
-                </h3>
+                <div className="flex items-center gap-2 mb-2">
+                  <CheckCircle2 size={16} className="text-[#2F7A4F] shrink-0" />
+                  <h3 className="font-onest text-base font-bold text-[#042718]">
+                    {item.title}
+                  </h3>
+                </div>
                 <p className="font-inter text-xs sm:text-[13.5px] text-[#042718]/70 leading-relaxed">
-                  {item.description}
+                  {item.desc}
                 </p>
               </div>
             ))}
           </div>
         </section>
 
-        {/* SECTION 3: MY ROLE */}
+        {/* SECTION 2: HOW IT WORKS */}
         <section className="mb-14 pb-12 border-b border-[#042718]/10">
           <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-[#A8711A] block mb-2">
-            03 · Ownership
+            02 · System Flow
           </span>
-          <h2 className="font-onest text-2xl sm:text-3xl font-bold text-[#042718] tracking-tight mb-4">
-            My role
-          </h2>
-          <div className="space-y-4 font-inter text-[15px] sm:text-base text-[#042718]/75 leading-relaxed">
-            <p>
-              <strong>Sole Architect &amp; Builder.</strong> I owned Dīpa end-to-end: from defining
-              the semantic chunking boundaries across my career documents and writing the retrieval
-              algorithms, to creating the custom SVG character animations and evaluating retrieval
-              accuracy with automated golden benchmarks.
-            </p>
-          </div>
-        </section>
-
-        {/* SECTION 4: HOW IT WORKS (SUPPORTED BY ACTUAL REPO) */}
-        <section className="mb-14 pb-12 border-b border-[#042718]/10">
-          <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-[#A8711A] block mb-2">
-            04 · Technical Architecture
-          </span>
-          <h2 className="font-onest text-2xl sm:text-3xl font-bold text-[#042718] tracking-tight mb-4">
+          <h2 className="font-onest text-2xl sm:text-3xl font-bold text-[#042718] tracking-tight mb-2">
             How it works
           </h2>
-          <p className="font-inter text-sm sm:text-base text-[#042718]/70 leading-relaxed mb-8">
-            The retrieval pipeline operates deterministically directly within the application
-            runtime, without external vector service dependencies.
+          <p className="font-onest text-lg sm:text-xl font-medium text-[#042718]/80 mb-4">
+            &ldquo;From verified portfolio content to grounded answers.&rdquo;
+          </p>
+          <p className="font-inter text-sm sm:text-base text-[#042718]/70 leading-relaxed max-w-3xl">
+            The system separates knowledge ingestion from query execution. Content is converted to dense vectors
+            at build time, enabling fast local cosine retrieval and strict confidence evaluation before model generation.
           </p>
 
-          <div className="space-y-4">
-            {WORKFLOW_STEPS.map((step) => (
-              <div
-                key={step.step}
-                className="p-5 rounded-[18px] bg-white border border-[#042718]/8 flex gap-4 items-start"
-              >
-                <span className="font-mono text-xs font-bold text-[#A8711A] bg-[#A8711A]/10 px-2 py-1 rounded-md shrink-0">
-                  {step.step}
-                </span>
-                <div>
-                  <h3 className="font-onest text-base font-bold text-[#042718] mb-1">
-                    {step.name}
-                  </h3>
-                  <p className="font-inter text-xs sm:text-[13.5px] text-[#042718]/70 leading-relaxed">
-                    {step.desc}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
+          {/* Architecture Visual */}
+          <DipaArchitectureDiagram />
         </section>
 
-        {/* SECTION 5: KEY PRODUCT DECISIONS */}
+        {/* SECTION 3: HOW DĪPA STAYS UP TO DATE */}
         <section className="mb-14 pb-12 border-b border-[#042718]/10">
           <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-[#A8711A] block mb-2">
-            05 · Trade-Offs
-          </span>
-          <h2 className="font-onest text-2xl sm:text-3xl font-bold text-[#042718] tracking-tight mb-6">
-            Key product decisions
-          </h2>
-
-          <div className="space-y-6">
-            {KEY_DECISIONS.map((d) => (
-              <div
-                key={d.title}
-                className="p-6 rounded-[20px] bg-[#FAF8F5] border border-[#042718]/8 space-y-3"
-              >
-                <h3 className="font-onest text-lg font-bold text-[#042718]">
-                  {d.title}
-                </h3>
-                <div className="text-xs sm:text-sm font-inter text-[#042718]/80 leading-relaxed">
-                  <span className="font-semibold text-[#042718]">Decision: </span>
-                  {d.decision}
-                </div>
-                <div className="text-xs sm:text-sm font-inter text-[#042718]/70 leading-relaxed">
-                  <span className="font-semibold text-[#042718]">Why: </span>
-                  {d.why}
-                </div>
-                <div className="text-xs sm:text-sm font-inter text-[#042718]/60 leading-relaxed">
-                  <span className="font-semibold text-[#042718]">Trade-off accepted: </span>
-                  {d.tradeoff}
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* SECTION 6: WHAT I LEARNED */}
-        <section className="mb-14 pb-12 border-b border-[#042718]/10">
-          <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-[#A8711A] block mb-2">
-            06 · Synthesis
+            03 · Knowledge Synchronization
           </span>
           <h2 className="font-onest text-2xl sm:text-3xl font-bold text-[#042718] tracking-tight mb-4">
-            What I learned
+            How Dīpa stays up to date
+          </h2>
+
+          <div className="p-6 sm:p-7 rounded-[20px] bg-[#FAF8F5] border border-[#042718]/10 space-y-4">
+            <p className="font-inter text-base sm:text-[17px] text-[#042718]/85 leading-relaxed">
+              Dīpa does not scrape my portfolio live. Instead, it uses a deterministic build-time synchronization process.
+              When verified portfolio content changes, the prebuild pipeline regenerates the knowledge base and creates new
+              512-dimensional embeddings, stored in the local <code className="font-mono text-xs px-1.5 py-0.5 rounded bg-white border border-[#042718]/15 text-[#042718]">ragKnowledgeBase.json</code>.
+              Each deployment therefore ships with a knowledge index generated from the same canonical source as the portfolio.
+            </p>
+            <p className="font-inter text-sm sm:text-base text-[#042718]/75 leading-relaxed font-medium">
+              This keeps Dīpa&apos;s knowledge aligned with the canonical, verified source at each deployment.
+            </p>
+          </div>
+        </section>
+
+        {/* SECTION 4: TECHNICAL DETAILS */}
+        <section className="mb-14 pb-12 border-b border-[#042718]/10">
+          <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-[#A8711A] block mb-2">
+            04 · Architecture Specifications
+          </span>
+          <h2 className="font-onest text-2xl sm:text-3xl font-bold text-[#042718] tracking-tight mb-6">
+            Technical details
+          </h2>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            {TECHNICAL_SPEC_ITEMS.map((item) => (
+              <div
+                key={item.label}
+                className="p-5 rounded-[18px] bg-white border border-[#042718]/8 flex flex-col justify-between"
+              >
+                <div className="font-mono text-[10.5px] font-semibold uppercase tracking-[0.14em] text-[#A8711A] mb-1">
+                  {item.label}
+                </div>
+                <div className="font-onest text-base font-bold text-[#042718] my-1">
+                  {item.value}
+                </div>
+                <div className="font-inter text-xs text-[#042718]/65 mt-1 leading-snug">
+                  {item.detail}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* SECTION 5: EPISTEMIC MODESTY / CONFIDENCE GATE */}
+        <section className="mb-14 pb-12 border-b border-[#042718]/10">
+          <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-[#A8711A] block mb-2">
+            05 · Safety &amp; Grounding
+          </span>
+          <h2 className="font-onest text-2xl sm:text-3xl font-bold text-[#042718] tracking-tight mb-4">
+            Epistemic modesty: declining over guessing
           </h2>
           <div className="space-y-4 font-inter text-[15px] sm:text-base text-[#042718]/75 leading-relaxed">
             <p>
-              <strong>1. Granularity beats parameter scale:</strong> The single biggest factor in
-              RAG answer quality is chunk boundary cleanliness. When chunks combine multiple
-              unrelated projects or vague summaries, LLMs mix details. Single-concept chunks with
-              explicit metric anchors prevent retrieval confusion.
+              In an executive portfolio, a plausible hallucination destroys credibility far faster than an honest abstention.
+              If a visitor asks about topics not covered in the verified corpus—such as non-work personal trivia or
+              unworked domains—the top cosine similarity falls below the <strong>0.68</strong> threshold.
             </p>
             <p>
-              <strong>2. Epistemic modesty builds more trust than omniscient prose:</strong> Users are
-              conditioned to expect AI chatbots to make things up. When Dīpa plainly states,{" "}
-              <em>&ldquo;I don&apos;t have verified data on that in Deepak&apos;s writing,&rdquo;</em>{" "}
-              it immediately authenticates all the other answers where it cites concrete evidence.
-            </p>
-            <p>
-              <strong>3. Vector DBs are often premature optimization:</strong> For finite corpora
-              (&lt;1,000 documents), running vector math in-memory on CPU delivers single-digit
-              millisecond latency, zero monthly infrastructure bills, and zero external dependency
-              downtime.
+              When this happens, Dīpa deliberately suppresses model generation and returns a transparent fallback message
+              offering a direct channel to book time or email Deepak. Grounding is prioritized over chattiness.
             </p>
           </div>
         </section>
@@ -359,8 +280,9 @@ export default function DipaBuildPage({ onNavigate }: DipaBuildPageProps) {
           <button
             type="button"
             onClick={handleOpenDipa}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 h-11 px-6 rounded-[100px] bg-[#042718] text-white hover:bg-[#0B3322] font-inter text-sm font-semibold transition-colors duration-200 cursor-pointer"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 h-11 px-6 rounded-[100px] bg-[#042718] text-white hover:bg-[#0B3322] font-inter text-sm font-semibold transition-colors duration-200 cursor-pointer shadow-xs"
           >
+            <Sparkles size={15} className="text-[#C8F07A]" />
             <span>Try Dīpa</span>
             <ArrowRight size={15} />
           </button>

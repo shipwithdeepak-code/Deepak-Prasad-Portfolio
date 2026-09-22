@@ -70,13 +70,13 @@ const STATIC_ROUTES: Record<
   "/work/dipa": {
     title: "Dīpa: An AI-Native Portfolio Assistant — Deepak Prasad",
     description:
-      "How I built an AI assistant grounded in my portfolio using sub-2ms in-memory cosine retrieval, zero vector database dependencies, and strict confidence gating.",
+      "How I built an AI assistant grounded in my portfolio using in-memory cosine retrieval, zero vector database dependencies, and strict confidence gating.",
     ogType: "article",
   },
   "/work/behind-copilot": {
     title: "Dīpa: An AI-Native Portfolio Assistant — Deepak Prasad",
     description:
-      "How I built an AI assistant grounded in my portfolio using sub-2ms in-memory cosine retrieval, zero vector database dependencies, and strict confidence gating.",
+      "How I built an AI assistant grounded in my portfolio using in-memory cosine retrieval, zero vector database dependencies, and strict confidence gating.",
     ogType: "article",
   },
 };

@@ -7,7 +7,7 @@
     "dev": "tsx server.ts",
     "images": "node scripts/generateImageVariants.mjs",
     "embeddings": "tsx scripts/generateEmbeddings.js",
-    "prebuild": "node scripts/generateImageVariants.mjs",
+    "prebuild": "npm run embeddings && node scripts/generateImageVariants.mjs",
     "build": "vite build && esbuild server.ts --bundle --platform=node --format=cjs --packages=external --sourcemap --outfile=dist/server.cjs",
     "start": "node dist/server.cjs",
     "preview": "vite preview",

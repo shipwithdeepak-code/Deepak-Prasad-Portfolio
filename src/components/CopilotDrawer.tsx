@@ -395,7 +395,7 @@ export default function CopilotDrawer({
       {/* How it Works architectural explainer popover */}
       {isHowItWorksOpen && (
         <div
-          className="relative z-20 px-4 py-3 text-xs leading-relaxed shrink-0 max-h-48 overflow-y-auto"
+          className="relative z-20 px-4 py-3 text-xs leading-relaxed shrink-0 max-h-52 overflow-y-auto"
           style={{
             background: "color-mix(in oklch, #FAFDFB 88%, transparent)",
             backdropFilter: "blur(20px)",
@@ -415,21 +415,21 @@ export default function CopilotDrawer({
             </button>
           </div>
           <p className="text-[#042718]/80 mb-2">
-            Rather than relying on model pretraining, Dīpa indexes 45 curated chunks from
-            Deepak&apos;s case studies, resume, and product notes.
+            Dīpa does not scrape the portfolio live. It uses a deterministic build-time synchronization process,
+            generating 512-dimensional embeddings stored in the local <code className="font-mono text-[10px] px-1 py-0.5 rounded bg-white/70 border border-[#042718]/10">ragKnowledgeBase.json</code>.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 font-mono text-[10px] text-[#042718]/80">
             <div className="p-2 rounded-lg bg-white/60 border border-[#042718]/5">
               <div className="font-bold text-[#065F46] mb-0.5">1. Embeddings</div>
-              text-embedding-004 vector space with cosine distance matching.
+              gemini-embedding-2-preview (512-dim) generated at build time.
             </div>
             <div className="p-2 rounded-lg bg-white/60 border border-[#042718]/5">
-              <div className="font-bold text-[#065F46] mb-0.5">2. Retrieval</div>
-              Top-K ranked chunks filtered above a strict 0.40 similarity gate.
+              <div className="font-bold text-[#065F46] mb-0.5">2. Retrieval &amp; Gate</div>
+              In-memory cosine similarity evaluated against a 0.68 confidence gate.
             </div>
             <div className="p-2 rounded-lg bg-white/60 border border-[#042718]/5">
               <div className="font-bold text-[#065F46] mb-0.5">3. Grounding</div>
-              Gemini 2.5 Flash synthesized with citations directly to source case studies.
+              gemini-3.1-flash-lite generates grounded answers with source citations.
             </div>
           </div>
         </div>

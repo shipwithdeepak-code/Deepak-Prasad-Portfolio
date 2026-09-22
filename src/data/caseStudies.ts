@@ -1521,34 +1521,34 @@ export const BEHIND_COPILOT_CASE_STUDY: CaseStudyDetail = {
   thesis:
     'Architecture before infrastructure: For sub-10,000 document scale, an in-memory cosine index outperforms vector databases in latency, deterministic accuracy, zero cost, and zero operational surface area.',
   centralQuestion:
-    'How do you build a domain-specific portfolio copilot with zero hallucination risk, verifiable citation provenance, and honest latency (retrieval <2 ms, generation ~4–6 s)?',
+    'How do you build a domain-specific portfolio copilot with high precision, verifiable citation provenance, and honest latency (fast local retrieval, generation ~4–6 s)?',
   productPhilosophy:
     'Grounding over guessing. When an AI does not know, the most trustworthy product response is not a plausible hallucination. It is an honest, immediate escalation to human connection.',
   category: 'Applied AI & Systems Architecture',
   role: 'Product Architect & Engineer',
   timeline: '2025',
-  tags: ['Applied AI', 'RAG', 'Gemini', 'Zero Hallucination', 'Systems Design'],
+  tags: ['Applied AI', 'RAG', 'Gemini', 'Systems Design'],
   proofPoints: [
-    'Retrieval <2ms · Gen ~4–6s',
+    'Fast in-memory CPU retrieval',
     '0 external DB dependencies',
     '100% citation grounding across the evaluation set',
     '95% golden set accuracy (19/20)',
   ],
   keyStats: [
-    { label: 'Retrieval Latency', value: '<2ms', detail: 'In-memory cosine calculation (generation takes ~4–6s)' },
+    { label: 'Retrieval Latency', value: 'Fast CPU', detail: 'In-memory cosine calculation (generation takes ~4–6s)' },
     { label: 'Vector DB Cost', value: '$0 / mo', detail: 'Zero cloud database or cluster maintenance' },
     { label: 'Grounding Precision', value: '100%', detail: '100% citation grounding across the evaluation set' },
-    { label: 'Golden Benchmark', value: '19/20', detail: '95% pass rate with 0 hallucinations across the 20-query golden evaluation set' },
+    { label: 'Golden Benchmark', value: '19/20', detail: '95% pass rate across the 20-query golden evaluation set' },
   ],
   quickContext: {
     problem:
       'Generative chatbots representing executive portfolios often hallucinate metrics, drift out of domain, or introduce 100ms+ network lag via over-engineered hosted vector databases.',
     whyItMattered:
-      'For a PM portfolio, factual precision is table stakes; hallucinating numbers or taking 10 seconds to answer destroys hiring trust before the interview starts.',
+      'For a PM portfolio, factual precision is table stakes; hallucinating numbers or taking excessive time to answer destroys hiring trust before the interview starts.',
     myOwnership:
       'Architected and implemented the entire end-to-end RAG system: build-time semantic chunking, 512-dim embedding generation, in-memory cosine ranking, confidence gating, and golden test evaluation.',
     whatChanged:
-      'Sub-2ms local retrieval, 100% citation grounding across the evaluation set, $0 cloud database costs, and an adversarial fallback gate directing unknown queries to direct scheduling.',
+      'Fast in-memory retrieval, 100% citation grounding across the evaluation set, $0 cloud database costs, and an adversarial fallback gate directing unknown queries to direct scheduling.',
   },
   tradeOff: {
     considered:
@@ -1556,11 +1556,11 @@ export const BEHIND_COPILOT_CASE_STUDY: CaseStudyDetail = {
     chose:
       'I chose an in-memory cosine index over build-time 512-dim embeddings paired with Gemini Flash Lite and strict confidence thresholding (0.68 cosine similarity threshold prompts honest fallback rather than guessing).',
     why:
-      'For a domain portfolio corpus under 10,000 document chunks, network hops to a remote vector database introduce 40–120ms of unnecessary network latency, monthly SaaS costs, and another operational failure point. In-memory cosine search across typed Float32 arrays runs in under 2 milliseconds directly in server process memory.',
+      'For a domain portfolio corpus, network hops to a remote vector database introduce 40–120ms of unnecessary network latency, monthly SaaS costs, and another operational failure point. In-memory cosine search across typed Float32 arrays runs fast directly in server process memory.',
     gaveUp:
       'We gave up dynamic live document ingestion from external websites (updates are baked at build-time via deterministic JSON).',
     outcome:
-      'Achieved 100% citation grounding across the evaluation set, 0 hallucinations across the 20-query golden evaluation set, $0/month vector infrastructure bill, and sub-2ms retrieval performance.',
+      'Achieved 100% citation grounding across the evaluation set, high precision across the 20-query golden evaluation set, $0/month vector infrastructure bill, and fast local retrieval performance.',
   },
   sections: [
     {
@@ -1592,18 +1592,18 @@ export const BEHIND_COPILOT_CASE_STUDY: CaseStudyDetail = {
       content: [
         'In modern AI application development, engineers reflexively provision external vector databases (e.g., Pinecone, Milvus, Chroma, Qdrant) the moment they hear the term "embeddings."',
         'However, analyzing the mathematical scale of a portfolio reveals that the entire corpus comprises roughly 50 to 200 discrete semantic chunks. Transferring a 512-dimensional query vector over the internet to a third-party hosted vector database introduces 50–150ms of network latency, additional TLS handshakes, recurring subscription costs, and multiple external points of failure.',
-        'Instead, our architecture stores the precomputed dense embeddings directly in a compact in-memory JSON array. At query time, calculating the exact dot product and cosine similarity across all stored chunks executes on CPU in under 1.5 milliseconds, faster than a single database packet could even leave the local network interface.',
+        'Instead, our architecture stores the precomputed dense embeddings directly in a compact in-memory JSON array. At query time, calculating the exact dot product and cosine similarity across all stored chunks executes on CPU in milliseconds, faster than a single database packet could even leave the local network interface.',
       ],
       decision: {
         title: 'In-Memory Cosine Index vs Hosted External Vector Database',
         decision:
           'Stored pre-computed 512-dimensional embeddings directly in an in-memory JSON array and executed local dot-product calculations on CPU, completely bypassing hosted vector databases (e.g., Pinecone, Weaviate).',
         why:
-          'For a finite corpus under 500 semantic chunks, a remote database network round-trip adds 50–150ms of latency, recurring monthly subscription bills, and external uptime risks without providing any functional advantage over microsecond local memory traversal.',
+          'For a finite corpus under 500 semantic chunks, a remote database network round-trip adds 50–150ms of latency, recurring monthly subscription bills, and external uptime risks without providing any functional advantage over fast local memory traversal.',
         tradeoff:
           'Corpus updates cannot be streamed dynamically in real-time from external sources; they must be generated at build-time via deterministic JSON pipelines.',
         result:
-          'Achieved sub-2ms local retrieval latency with $0/month infrastructure cost and zero external vector database failure modes.',
+          'Achieved fast local retrieval latency with $0/month infrastructure cost and zero external vector database failure modes.',
       },
       diagramType: 'workflow',
       workflowSteps: [
@@ -1611,13 +1611,13 @@ export const BEHIND_COPILOT_CASE_STUDY: CaseStudyDetail = {
         { label: 'Semantic Chunking', desc: 'Atomic bullet boundaries' },
         { label: 'Dense Embeddings', desc: 'gemini-embedding-2 (512-dim)' },
         { label: 'In-Memory Index', desc: 'Zero external vector DB' },
-        { label: 'Cosine Ranking', desc: '<2ms CPU execution' },
+        { label: 'Cosine Ranking', desc: 'Fast CPU execution' },
         { label: 'Top-K Retrieval', desc: 'Top 3-5 grounded chunks' },
       ],
       highlights: [
         {
-          title: '<2ms Search vs 80ms HTTP Hop',
-          desc: 'Local memory access operates at microsecond speeds, eliminating network jitter from the retrieval path.',
+          title: 'Local Search vs 80ms HTTP Hop',
+          desc: 'Local memory access operates at CPU memory speeds, eliminating network jitter from the retrieval path.',
         },
         {
           title: 'Zero Maintenance & Zero Cost',
@@ -1675,11 +1675,11 @@ export const BEHIND_COPILOT_CASE_STUDY: CaseStudyDetail = {
         tradeoff:
           'The copilot refuses to entertain conversational chit-chat, trivia, or non-portfolio questions.',
         result:
-          '0 hallucinations across the 20-query golden evaluation set and graceful conversion of out-of-domain queries into high-intent hiring chats.',
+          'Zero ungrounded hallucinations across the 20-query golden evaluation set and graceful conversion of out-of-domain queries into high-intent hiring chats.',
       },
       highlights: [
         {
-          title: 'Zero Hallucination Tolerance',
+          title: 'Strict Grounding Discipline',
           desc: 'The model is never allowed to guess when context similarity falls below verified thresholds.',
         },
         {
@@ -1696,14 +1696,14 @@ export const BEHIND_COPILOT_CASE_STUDY: CaseStudyDetail = {
       content: [
         'To scientifically evaluate the RAG pipeline prior to release, we constructed a 20-question golden test set encompassing factual career metrics, product philosophies, technical architecture, and adversarial out-of-domain edge cases.',
         'Each query was executed against the production embedding space, recording top retrieval hit rate, top cosine similarity, response correctness, and hallucination absence.',
-        'The architecture achieved a 95% pass rate (19/20 passes), with 0 hallucinations across the 20-query golden evaluation set and an average retrieval latency of 1.4 milliseconds.',
+        'The architecture achieved a 95% pass rate (19/20 passes), with high fidelity across the 20-query golden evaluation set and fast in-memory retrieval.',
       ],
       evaluationTable: COPILOT_GOLDEN_EVALUATION_SET,
       outcomeHierarchy: [
         {
           category: 'Operational Outcome',
-          metric: '<2ms Latency',
-          desc: 'Sub-2 millisecond retrieval on CPU, eliminating hosted vector database network hops and cold-starts.',
+          metric: 'Fast Latency',
+          desc: 'Fast local retrieval on CPU, eliminating hosted vector database network hops and cold-starts.',
         },
         {
           category: 'Business Outcome',
@@ -1713,7 +1713,7 @@ export const BEHIND_COPILOT_CASE_STUDY: CaseStudyDetail = {
         {
           category: 'Product Outcome',
           metric: '19/20 Passes',
-          desc: '95% golden set accuracy with 0 hallucinations across the 20-query golden evaluation set, including adversarial prompts.',
+          desc: '95% golden set accuracy across the 20-query golden evaluation set, including adversarial prompts.',
         },
         {
           category: 'User Outcome',

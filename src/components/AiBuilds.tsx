@@ -231,12 +231,12 @@ export default function AiBuilds({ onNavigate }: { onNavigate: (path: string) =>
           Dīpa
         </h3>
         <p className="font-inter text-[14.5px] text-[#042718]/70 leading-relaxed mt-2.5">
-          Running on this page right now. It answers questions about my work from 45 chunks of my
-          own writing, cites what it used, and declines when the evidence is thin.
+          Running on this page right now. It answers questions about my work from 32 curated chunks
+          of verified writing, cites what it used, and declines when the evidence is thin.
         </p>
 
         <div className="mt-5 flex flex-wrap gap-1.5">
-          {["45 chunks", "512-dim", "cosine", "confidence-gated"].map((t) => (
+          {["32 chunks", "512-dim", "cosine", "confidence-gated"].map((t) => (
             <span
               key={t}
               className="font-mono text-[10px] px-2 py-1 rounded-md border text-[rgba(4,39,24,0.56)] border-[rgba(4,39,24,0.10)]"
