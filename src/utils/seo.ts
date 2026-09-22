@@ -55,16 +55,16 @@ const STATIC_ROUTES: Record<
   },
   "/writing/product-jury": {
     title:
-      "Product Jury 2.0: A Decision System for Product Managers — Deepak Prasad",
+      "Product Jury: A Decision System for Product Managers — Deepak Prasad",
     description:
-      "Product Jury 2.0 PRD: A decision system for product managers that turns a product judgement into a defensible record.",
+      "Product Jury: A decision system for product managers that turns a product judgement into a defensible record.",
     ogType: "article",
   },
   "/work/product-jury": {
     title:
-      "Product Jury 2.0: A Decision System for Product Managers — Deepak Prasad",
+      "Product Jury: A Decision System for Product Managers — Deepak Prasad",
     description:
-      "Product Jury 2.0 PRD: A decision system for product managers that turns a product judgement into a defensible record.",
+      "Product Jury: A decision system for product managers that turns a product judgement into a defensible record.",
     ogType: "article",
   },
   "/work/dipa": {
