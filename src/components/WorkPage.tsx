@@ -318,23 +318,14 @@ export default function WorkPage({
 
               <div className="flex flex-wrap items-center gap-2.5 pt-2">
                 <a
-                  href="https://product-jury.ai.studio/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 h-9 px-4 rounded-[100px] bg-[#042718] text-white hover:bg-[#0B3322] font-inter text-xs font-semibold transition-colors duration-200 shadow-xs"
-                >
-                  <span>TRY PRODUCT JURY</span>
-                  <ArrowUpRight size={13} />
-                </a>
-                <a
                   href="/work/product-jury"
                   onClick={(e) => {
                     e.preventDefault();
                     onNavigate("/work/product-jury");
                   }}
-                  className="inline-flex items-center gap-1.5 h-9 px-4 rounded-[100px] border border-[#042718]/15 text-[#042718] hover:bg-[#042718]/5 font-inter text-xs font-semibold transition-colors duration-200"
+                  className="inline-flex items-center gap-1.5 h-9 px-4 rounded-[100px] bg-[#042718] text-white hover:bg-[#0B3322] font-inter text-xs font-semibold transition-colors duration-200 shadow-xs"
                 >
-                  <span>HOW I BUILT IT</span>
+                  <span>Check what I&apos;m building</span>
                   <ArrowRight size={13} />
                 </a>
               </div>

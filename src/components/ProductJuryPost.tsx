@@ -1,416 +1,661 @@
-import React from "react";
-import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  ArrowUpRight,
+  Github,
+  ChevronDown,
+  ChevronRight,
+  ShieldCheck,
+  AlertTriangle,
+  RotateCcw,
+  Scale,
+  FileText,
+  UserCheck,
+  CheckCircle2,
+  Lock,
+  Layers,
+  Search,
+} from "lucide-react";
+import {
+  PRD_METADATA,
+  CORE_PRINCIPLES,
+  CAPABILITIES,
+  CapabilitySpec,
+} from "../data/productJuryPrdData";
+import { ProductJuryCoreLoop } from "./ProductJuryCoreLoop";
 
 interface ProductJuryPostProps {
   onNavigate: (path: string) => void;
 }
 
-const STEPS = [
-  ["Provide a screen artifact", "Upload a screenshot or point it at a URL. Not a written brief, an actual interface, because the whole method depends on there being pixels to argue about."],
-  ["Artifact understanding", "The model reads the screen back to you: what it thinks this is, what it can see, what it cannot make out. You correct it here rather than discovering the misread in the verdict."],
-  ["Confirm critical context", "You state what the product is meant to do and who it is for. This becomes the thing the jury checks the screen against, instead of the standard against which it judges you."],
-];
-
-const AGENTS = [
-  ["UX Researcher", "Phase 1 · parallel", "Mental models, cognitive load, adoption friction. Finds where complexity is offloaded onto the user rather than absorbed by the system."],
-  ["Product Strategist", "Phase 1 · parallel", "Positioning, differentiation, opportunity cost. Whether this advances a durable advantage or matches a competitor's minor feature."],
-  ["Evidence Auditor", "Phase 2 · cross-examines", "Reads what the other two claimed and grades every statement: fact, inference, assumption or unknown. This is the agent that makes the rest trustworthy."],
-  ["Jury Decision Agent", "Phase 3 · synthesises", "Takes all three, weighs the disagreement, and returns the verdict with a confidence figure. It is forbidden from overriding a dissent just because it is outnumbered."],
-];
-
-type Tone = "fact" | "inference" | "assumption" | "unknown";
-const TIERS: [string, Tone, string][] = [
-  ["Fact", "fact", "Directly observable in the artifact, or backed by telemetry and transcripts supplied with it."],
-  ["Inference", "inference", "A structured conclusion derived from patterns in the evidence. Carries less weight than a fact, and says so."],
-  ["Assumption", "assumption", "A working belief about cause and effect that has not been validated against behaviour."],
-  ["Unknown", "unknown", "Needed for a confident decision and not establishable from what was provided. Returned as a gap to measure, never as an estimate."],
-];
-const TIER_CLASS: Record<Tone, string> = {
-  fact: "bg-[#042718] text-white border border-[#042718]",
-  inference: "text-[#A8711A] border border-[#A8711A]/55 bg-[#A8711A]/10",
-  assumption: "text-[#A8711A] border border-dashed border-[#A8711A]/65",
-  unknown: "text-[#042718]/45 border border-dashed border-[#042718]/25",
-};
-
-const DOSSIER = [
-  ["Jury decision", "One of ship, iterate, test or kill. The three rejected options stay on screen, because which verdicts were on the table is part of the finding."],
-  ["Executive summary", "The argument in a paragraph, with an epistemic confidence percentage and a sentence explaining what would raise it."],
-  ["Priority opportunities", "The top problems ranked by friction times impact, each graded and each carrying its user impact, business impact and evidence basis."],
-  ["Specialist panel", "Each persona's key observation, recommendation and reasoning, with its own confidence figure."],
-  ["Consensus & divergence", "Where they agree, where they split and why, and a separate list of what is still unknown."],
-  ["Immediate PM action", "One recommended next step, and the reasoning that produced it."],
-];
-
-const DECISIONS = [
-  ["Artifacts, not briefs", "The first version took a written brief. People wrote the brief they wished were true, and the jury dutifully critiqued a product that did not exist. A screenshot cannot flatter itself. Moving to artifact-first removed an entire class of useless review."],
-  ["Asynchronous deliberation over a live chat room", "Early prototypes streamed the agents talking to each other in real time. Entertaining, and useless. Attention went on reading banter instead of evaluating the decision. A structured dossier produces something you can take into a room."],
-  ["A DAG, not a panel", "The obvious design is five agents voting. What works better is two running in parallel, a third auditing what they said, and a fourth synthesising. Every agent also ships a typed fallback, so one failing degrades the review instead of killing it."],
-  ["Preserving dissent instead of averaging it", "Most tools flatten everything into consensus. Here the disagreement stays visible, and the synthesiser is forbidden from overriding a seat's warning because the others are enthusiastic."],
-];
-
-const NEXT = [
-  ["Context alignment in the verdict", "Step three already compares what you claimed the product does against what the screenshot actually supports. That comparison does not survive into the dossier, and it is the most defensible thing the tool does. It belongs at the top of the verdict."],
-  ["Surfacing the remaining two lenses", "Engineering feasibility and unit economics inform the analysis but have no voice in the panel. A screenshot supports them weakly, so they need either their own evidence input or an honest label saying their read is thin."],
-  ["Decision readiness, and a challenge loop", "A single score for how ready this decision is, and a way to push back on the verdict and make the jury defend it rather than restate it."],
-];
-
 export default function ProductJuryPost({ onNavigate }: ProductJuryPostProps) {
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
+  }, []);
+
+  const [expandedCaps, setExpandedCaps] = useState<Record<string, boolean>>({
+    "CAP-01": true,
+    "CAP-06": true,
+    "CAP-07": true,
+    "CAP-11": true,
+    "CAP-15": true,
+  });
+
+  const toggleCap = (id: string) => {
+    setExpandedCaps((prev) => ({ ...prev, [id]: !prev[id] }));
+  };
+
+  const expandAllCaps = () => {
+    const all: Record<string, boolean> = {};
+    CAPABILITIES.forEach((c) => {
+      all[c.id] = true;
+    });
+    setExpandedCaps(all);
+  };
+
+  const collapseAllCaps = () => {
+    setExpandedCaps({});
+  };
+
   return (
-    <div className="bg-[#FAFDFB]">
+    <div className="w-full bg-[#FAFDFB] text-[#042718]">
+      {/* =========================================================================
+          HEADER & METADATA BAR
+          ========================================================================= */}
       <header className="border-b border-[#042718]/8 bg-[#FAF8F5]">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+          {/* Back Button */}
           <button
             type="button"
-            onClick={() => onNavigate("/")}
-            className="inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-[#042718]/50 hover:text-[#042718] transition-colors mb-8 cursor-pointer"
+            onClick={() => onNavigate("/work")}
+            className="inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-[#042718]/60 hover:text-[#042718] transition-colors mb-8 cursor-pointer"
           >
             <ArrowLeft size={14} />
-            <span>Back to portfolio</span>
+            <span>Back to all work</span>
           </button>
 
-          <div className="flex items-center gap-3 flex-wrap mb-4">
-            <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-[#A8711A]">
-              Build note
+          {/* Tags & Document Status */}
+          <div className="flex items-center gap-2.5 flex-wrap mb-4">
+            <span className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-[#A8711A]">
+              PRODUCT JURY 2.0
             </span>
-            <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.16em] px-2.5 py-1 rounded-full border border-[#042718]/15 text-[#042718]/50">
-              Preview v0.1
+            <span className="text-[#042718]/30">·</span>
+            <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-[#2F7A4F]">
+              PRD v1.1
+            </span>
+            <span className="text-[#042718]/30">·</span>
+            <span className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 font-mono text-[9.5px] font-semibold uppercase tracking-[0.14em] text-[#042718]/70 border border-[#042718]/15 bg-white">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#D9A94C] shrink-0" />
+              Amended baseline · 22 September 2026
             </span>
           </div>
 
-          <h1 className="font-onest text-[32px] sm:text-[48px] font-bold tracking-tight text-[#042718] leading-[1.06] text-balance">
-            I built a jury that tells me what it cannot prove
+          {/* Main Title & Thesis */}
+          <h1 className="font-onest text-3xl sm:text-5xl font-bold tracking-tight text-[#042718] leading-[1.08] text-balance">
+            Product Jury 2.0
           </h1>
-
-          <p className="font-inter text-base sm:text-lg text-[#042718]/70 mt-5 leading-relaxed">
-            Product Jury takes a product screen, runs it through a three-stage agent pipeline, and
-            returns a verdict graded by the evidence behind it. The grade that matters most is the
-            one where it declines to answer.
+          <p className="font-onest text-xl sm:text-2xl font-medium text-[#042718]/85 mt-2.5 leading-snug">
+            A decision system for product managers.
           </p>
 
-          <div className="mt-8 pt-6 border-t border-[#042718]/10 flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-[11px] text-[#042718]/55">
-            <span className="font-semibold text-[#042718]">Deepak Prasad</span>
+          <blockquote className="my-6 pl-5 border-l-2 border-[#D9A94C] font-playfair italic text-lg sm:text-2xl text-[#042718] leading-[1.4]">
+            &ldquo;{PRD_METADATA.thesis}&rdquo;
+          </blockquote>
+
+          <p className="font-inter text-base sm:text-lg text-[#042718]/75 mt-4 leading-relaxed max-w-3xl">
+            Not an AI critique tool. Product Jury is being built as a decision system that makes a
+            product call checkable, challengeable, and revisitable.
+          </p>
+
+          {/* Metadata bar */}
+          <div className="mt-8 pt-6 border-t border-[#042718]/10 flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-[11px] text-[#042718]/65">
+            <span className="font-semibold text-[#042718]">Author: product, for design &amp; engineering</span>
             <span className="text-[#042718]/25">/</span>
-            <span>Gemini Pro &amp; Flash</span>
+            <span>Category: {PRD_METADATA.category}</span>
             <span className="text-[#042718]/25">/</span>
-            <span>Structured schemas, TypeScript</span>
+            <span>Tagline: &ldquo;{PRD_METADATA.tagline}&rdquo;</span>
             <span className="text-[#042718]/25">/</span>
+            <span>Status: {PRD_METADATA.status}</span>
+          </div>
+
+          {/* Header Action Buttons (GitHub CTA + Work navigation) */}
+          <div className="mt-8 flex flex-wrap items-center gap-3">
             <a
               href="https://github.com/shipwithdeepak-code/product-jury"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-[#042718] hover:text-[#188E39] underline underline-offset-2 transition-colors"
+              className="inline-flex items-center gap-2 h-11 px-5 rounded-[100px] bg-[#042718] text-white hover:bg-[#0B3322] font-inter text-sm font-semibold transition-colors duration-200 shadow-xs cursor-pointer"
             >
-              <span>GitHub Repository</span>
-              <ArrowUpRight size={11} />
+              <Github size={16} />
+              <span>View on GitHub ↗</span>
             </a>
-            <span className="text-[#042718]/25">/</span>
-            <a
-              href="https://product-jury.ai.studio/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-[#042718] hover:text-[#188E39] underline underline-offset-2 transition-colors"
-            >
-              <span>Built by Deepak Prasad ↗</span>
-            </a>
+            <span className="font-inter text-xs text-[#042718]/60 ml-2">
+              Official repository: shipwithdeepak-code/product-jury
+            </span>
           </div>
         </div>
       </header>
 
-      <article className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20">
-        <Note>
-          This describes what is shipped and usable today. It is a preview, not a finished product,
-          and the last section says plainly what is missing.
-        </Note>
-
-        <S n="01" t="The problem is that AI agrees with you">
-          <Pull>
-            Ask any assistant what it thinks of your product idea and it will encourage you, restate
-            your own premises back at you, and add a few surface suggestions. That is not review.
-            That is a mirror with better vocabulary.
-          </Pull>
-          <P>
-            Across seven years of product work I kept meeting the same failure: decisions are almost
-            never stress-tested at the point where changing them is still cheap. Engineers hesitate to
-            challenge strategy early. Business stakeholders price the upside and not the debt.
-            Research surfaces friction that gets deprioritised in a rush to ship. Everyone is being
-            reasonable, and the bad decision survives anyway.
-          </P>
-          <P>
-            I wanted the sharpest cross-functional room I could imagine, available at eleven at night,
-            before three sprints go into something that should have been reshaped or dropped. The
-            hard part was never generating opinions. It was making the opinions disagree with each
-            other honestly, and making them admit the limits of what they could see.
-          </P>
-        </S>
-
-        <S n="02" t="How a review actually runs">
-          <P>
-            The single most consequential decision was making it artifact-first. You do not describe
-            your product to it. You show it one.
-          </P>
-          <ol className="mt-6 space-y-5 list-none p-0">
-            {STEPS.map(([t, b], i) => (
-              <li key={t} className="flex gap-4">
-                <span className="shrink-0 w-7 h-7 rounded-full bg-[#042718] text-white font-onest text-xs font-bold grid place-items-center mt-0.5">
-                  {i + 1}
-                </span>
-                <div>
-                  <h3 className="font-onest text-base font-bold text-[#042718]">{t}</h3>
-                  <p className="font-inter text-[15px] text-[#042718]/70 leading-relaxed mt-1.5">{b}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
-          <P className="mt-6">
-            Then it deliberates, and returns a dossier. The whole run takes a couple of minutes, and
-            there is a sample case loaded if you want to read an output before uploading anything of
-            your own.
-          </P>
-        </S>
-
-        <S n="03" t="Three agents, and the one that audits them">
-          <P>
-            This is a directed graph, not a flat panel, and that shape is the whole design. Two
-            specialists run in parallel on the same artifact. A third then reads what both of them
-            claimed and audits it. Only then does a fourth synthesise a verdict.
-          </P>
-          <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3">
-            {AGENTS.map(([role, phase, body]) => (
-              <div key={role} className="rounded-[20px] bg-white border border-[#042718]/8 p-5">
-                <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-[#A8711A]">
-                  {phase}
-                </span>
-                <h3 className="font-onest text-base font-bold text-[#042718] mt-2 leading-snug">{role}</h3>
-                <p className="font-inter text-[13.5px] text-[#042718]/70 leading-relaxed mt-2">{body}</p>
-              </div>
-            ))}
-          </div>
-          <P className="mt-8">
-            The auditor is the part I would build first if I started again. Two agents reasoning
-            independently will contradict each other, and without something whose only job is to
-            grade those claims against the evidence, you get two confident opinions and no way to
-            choose. The audit stage is what turns disagreement into a decision.
-          </P>
-          <P>
-            The panel you read in the dossier is not a fixed cast. The Jury Decision Agent's
-            response schema includes a <code>roleTitle</code> and an <code>agentName</code> for each
-            seat, so the synthesiser names and frames the panel for the artifact in front of it. The
-            reasoning underneath is always the same three agents.
-          </P>
-        </S>
-
-        <S n="04" t="Every claim is graded">
-          <P>
-            The main vulnerability in any LLM workflow is invented evidence. Agents here are forbidden
-            from fabricating customer quotes, benchmarks or statistics. Every claim carries a grade,
-            and the grade travels with it into every section of the dossier.
-          </P>
-          <div className="mt-6 space-y-3">
-            {TIERS.map(([k, tone, body]) => (
-              <div key={k} className="rounded-[18px] bg-[#FAF8F5] border border-[#042718]/8 p-5 flex flex-col sm:flex-row sm:items-start gap-4">
-                <span className={`shrink-0 self-start inline-flex items-center rounded-full px-3 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] ${TIER_CLASS[tone]}`}>
-                  {k}
-                </span>
-                <p className="font-inter text-[14.5px] text-[#042718]/75 leading-relaxed">{body}</p>
-              </div>
-            ))}
-          </div>
-          <Pull>
-            The fourth grade is what makes the other three trustworthy. A tool that can only return
-            answers will always return an answer.
-          </Pull>
-          <P>
-            This is the part people react to. Being told that a question cannot be settled from the
-            evidence provided is more useful than a confident number, and it is the reason the
-            confident numbers are worth anything when they do appear.
-          </P>
-        </S>
-
-        <S n="05" t="What comes back">
-          <P>The dossier has six sections, in this order.</P>
-          <div className="mt-6 divide-y divide-[#042718]/8 border-t border-[#042718]/8">
-            {DOSSIER.map(([t, b], i) => (
-              <div key={t} className="py-4 flex gap-4">
-                <span className="shrink-0 font-mono text-[11px] font-semibold text-[#A8711A] tabular-nums pt-1 w-6">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <div>
-                  <h3 className="font-onest text-[15px] font-bold text-[#042718]">{t}</h3>
-                  <p className="font-inter text-[14px] text-[#042718]/70 leading-relaxed mt-1">{b}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </S>
-
-        <S n="06" t="Architecture">
-          <P>
-            Gemini Pro handles the analytical reasoning, Gemini Flash runs the rapid cross-examination
-            passes. Every output conforms to a strict JSON schema, so each agent returns a formatted
-            risk matrix, confidence interval and prerequisite checklist rather than prose.
-          </P>
-          <div className="mt-6 rounded-[20px] bg-[#042718] p-6 sm:p-7">
-            <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-[#D9A94C]/75">
-              Pipeline
-            </span>
-            <ol className="mt-4 list-none p-0">
-              {[
-                "Artifact ingest, multimodal inspection and scope extraction",
-                "Context confirmation against what the screen actually supports",
-                "Phase 1 — UX Researcher and Product Strategist, in parallel",
-                "Phase 2 — Evidence Auditor grades every claim the two made",
-                "Phase 3 — Jury Decision Agent synthesises the verdict and confidence",
-              ].map((step, i, arr) => (
-                <li key={step}>
-                  <div className="flex gap-3.5 items-start">
-                    <span className="shrink-0 font-mono text-[11px] font-semibold text-[#D9A94C] tabular-nums mt-0.5 w-5">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <span className="font-inter text-[14.5px] text-white/85 leading-relaxed">{step}</span>
-                  </div>
-                  {i < arr.length - 1 && (
-                    <span className="block w-px h-4 bg-white/20 ml-[9px] my-1.5" aria-hidden="true" />
-                  )}
-                </li>
-              ))}
-            </ol>
-          </div>
-        </S>
-
-        <S n="07" t="Decisions I made while building">
-          <div className="divide-y divide-[#042718]/8">
-            {DECISIONS.map(([t, b], i) => (
-              <div key={t} className="py-6 first:pt-2">
-                <div className="flex items-baseline gap-3">
-                  <span className="font-mono text-[11px] font-semibold text-[#A8711A] tabular-nums">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <h3 className="font-onest text-lg font-bold text-[#042718] leading-snug">{t}</h3>
-                </div>
-                <p className="font-inter text-[15px] text-[#042718]/70 leading-relaxed mt-2.5 sm:pl-7">{b}</p>
-              </div>
-            ))}
-          </div>
-        </S>
-
-        <S n="08" t="What I learned">
-          <Pull>
-            Agent specialisation and adversarial tension consistently beat one monolithic prompt.
-          </Pull>
-          <P>
-            Ask a single model to be a great strategist, think about friction, consider architecture
-            and verify economics, and you get an averaged compromise that offends nobody and helps
-            nobody. Instantiate separate agents whose explicit job is to defend their own boundary,
-            and the debate starts to resemble a good executive review.
-          </P>
-          <P>
-            The thing I did not anticipate is how much the refusals matter. I built the unknown grade
-            as a safety measure against hallucination. It turned out to be the feature people trust
-            the tool for.
-          </P>
-        </S>
-
-        <S n="09" t="What is missing">
-          <P>
-            This is a preview, and pretending otherwise would be a strange way to write about a tool
-            whose entire point is admitting what it cannot establish. Three things are known gaps.
-          </P>
-          <div className="mt-6 space-y-3">
-            {NEXT.map(([t, b], i) => (
-              <div key={t} className="rounded-[18px] border border-dashed border-[#042718]/20 p-5">
-                <div className="flex items-baseline gap-3">
-                  <span className="font-mono text-[11px] font-semibold text-[#042718]/40 tabular-nums">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <h3 className="font-onest text-base font-bold text-[#042718] leading-snug">{t}</h3>
-                </div>
-                <p className="font-inter text-[14.5px] text-[#042718]/70 leading-relaxed mt-2 sm:pl-7">{b}</p>
-              </div>
-            ))}
-          </div>
-        </S>
-      </article>
-
-      <section className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
-        <div className="rounded-[30px] bg-[#042718] text-white p-8 sm:p-10">
-          <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-[#D9A94C]/75">
-            Live preview
-          </span>
-          <h2 className="font-onest text-2xl sm:text-3xl font-bold leading-tight mt-3">
-            Hand it one of your own screens
-          </h2>
-          <p className="font-inter text-sm sm:text-base text-white/70 leading-relaxed mt-3 max-w-lg">
-            There is a sample case loaded if you would rather read a finished dossier first.
-          </p>
-          <div className="mt-7 flex flex-wrap gap-3">
-            <a
-              href="https://product-jury.ai.studio/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2.5 h-[47px] px-6 rounded-[100px] bg-white text-[#042718] hover:bg-[#FAFDFB] font-inter text-sm font-semibold transition-colors duration-200"
-            >
-              <span className="w-[7px] h-[7px] rounded-full bg-[#A8711A] shrink-0" />
-              <span>Try Product Jury ↗</span>
-              <ArrowUpRight size={16} />
-            </a>
-            <a
-              href="https://github.com/shipwithdeepak-code/product-jury"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2.5 h-[47px] px-6 rounded-[100px] border border-white/25 text-white hover:bg-white/10 font-inter text-sm font-semibold transition-colors duration-200"
-            >
-              <span>GitHub Repo ↗</span>
-              <ArrowUpRight size={16} />
-            </a>
-            <button
-              type="button"
-              onClick={() => onNavigate("/work")}
-              className="inline-flex items-center gap-2.5 h-[47px] px-6 rounded-[100px] border border-white/25 text-white hover:bg-white/10 font-inter text-sm font-semibold transition-colors duration-200 cursor-pointer"
-            >
-              <span>Explore other shipped work</span>
-              <ArrowRight size={16} />
-            </button>
+      {/* =========================================================================
+          PRD EDITORIAL ARTICLE
+          ========================================================================= */}
+      <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        {/* Callout: Status & Intent */}
+        <div className="mb-12 p-6 rounded-[20px] bg-[#FAF8F5] border border-[#A8711A]/20">
+          <div className="flex items-start gap-3">
+            <Scale size={20} className="text-[#A8711A] shrink-0 mt-0.5" />
+            <div>
+              <h2 className="font-onest text-sm font-bold uppercase tracking-wider text-[#A8711A]">
+                Product Requirements Document · Canonical Baseline
+              </h2>
+              <p className="font-inter text-sm text-[#042718]/80 leading-relaxed mt-1.5">
+                This document is the authoritative product specification for Product Jury 2.0. It
+                represents an active, evidence-led product system currently in research, architecture,
+                and validation. It establishes the functional and quality contracts for implementation.
+              </p>
+            </div>
           </div>
         </div>
-      </section>
-    </div>
-  );
-}
 
-function S({ n, t, children }: { n: string; t: string; children: React.ReactNode }) {
-  return (
-    <section className="mb-14 sm:mb-16 last:mb-0">
-      <div className="flex items-baseline gap-3 mb-4">
-        <span className="font-mono text-[11px] font-semibold text-[#A8711A] tabular-nums tracking-wider">{n}</span>
-        <h2 className="font-onest text-2xl sm:text-[28px] font-bold tracking-tight text-[#042718] leading-tight">
-          {t}
-        </h2>
-      </div>
-      {children}
-    </section>
-  );
-}
+        {/* =========================================================================
+            FIVE PRIORITIZED PRODUCT IDEAS (VISUAL CALLOUT CARDS)
+            ========================================================================= */}
+        <section className="mb-16 pb-12 border-b border-[#042718]/10">
+          <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-[#A8711A] block mb-2">
+            Foundational Axioms
+          </span>
+          <h2 className="font-onest text-2xl sm:text-3xl font-bold text-[#042718] tracking-tight mb-3">
+            Five core ideas that define this system
+          </h2>
+          <p className="font-inter text-sm sm:text-base text-[#042718]/70 leading-relaxed mb-6">
+            Product Jury rejects the standard paradigm of conversational AI feedback. These five
+            architectural principles govern every capability and interface state:
+          </p>
 
-function P({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  return (
-    <p className={`font-inter text-[15.5px] sm:text-base text-[#042718]/75 leading-[1.75] mt-4 first:mt-0 ${className}`}>
-      {children}
-    </p>
-  );
-}
+          <div className="space-y-4">
+            {CORE_PRINCIPLES.map((p) => (
+              <div
+                key={p.letter}
+                className="p-5 sm:p-6 rounded-[20px] bg-white border border-[#042718]/10 shadow-xs flex flex-col sm:flex-row gap-4 items-start"
+              >
+                <span className="w-8 h-8 rounded-full bg-[#042718] text-white font-mono text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">
+                  {p.letter}
+                </span>
+                <div className="space-y-1.5">
+                  <h3 className="font-onest text-lg font-bold text-[#042718] flex items-center gap-2 flex-wrap">
+                    <span>{p.title}</span>
+                  </h3>
+                  <div className="font-mono text-xs font-semibold text-[#A8711A]">
+                    &ldquo;{p.statement}&rdquo;
+                  </div>
+                  <p className="font-inter text-xs sm:text-[13.5px] text-[#042718]/70 leading-relaxed pt-1">
+                    {p.desc}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
 
-function Pull({ children }: { children: React.ReactNode }) {
-  return (
-    <blockquote className="my-6 pl-5 border-l-2 border-[#D9A94C] font-playfair italic text-lg sm:text-xl text-[#042718] leading-[1.5]">
-      {children}
-    </blockquote>
-  );
-}
+        {/* =========================================================================
+            PART I — WHY IT EXISTS
+            ========================================================================= */}
+        <section className="mb-16 pb-12 border-b border-[#042718]/10">
+          <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-[#A8711A] block mb-2">
+            Part I · Strategic Thesis
+          </span>
+          <h2 className="font-onest text-2xl sm:text-3xl font-bold text-[#042718] tracking-tight mb-6">
+            Why it exists
+          </h2>
 
-function Note({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="mb-12 rounded-[18px] bg-[#A8711A]/8 border border-[#A8711A]/25 px-5 py-4">
-      <p className="font-inter text-[14px] text-[#042718]/80 leading-relaxed">{children}</p>
+          <div className="space-y-8">
+            {/* 01 Executive Summary */}
+            <div className="p-6 rounded-[20px] bg-[#FAF8F5] border border-[#042718]/8">
+              <span className="font-mono text-[11px] font-bold text-[#A8711A] block mb-1">
+                01 · Executive Summary
+              </span>
+              <h3 className="font-onest text-lg font-bold text-[#042718] mb-2">
+                Eleven Behaviours of a Decision System
+              </h3>
+              <p className="font-inter text-sm sm:text-[15px] text-[#042718]/80 leading-relaxed">
+                {PRD_METADATA.elevenBehaviours}
+              </p>
+              <div className="mt-4 pt-3 border-t border-[#042718]/10 font-inter text-xs sm:text-sm font-semibold text-[#2F7A4F]">
+                {PRD_METADATA.humanDecides}
+              </div>
+            </div>
+
+            {/* 02 & 03 Problem & Vision */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="p-5 rounded-[18px] bg-white border border-[#042718]/8">
+                <span className="font-mono text-[10px] font-semibold uppercase tracking-wider text-[#A8711A] block mb-1">
+                  02 · Product Vision
+                </span>
+                <h4 className="font-onest text-base font-bold text-[#042718] mb-2">
+                  Institutional Memory for Judgement
+                </h4>
+                <p className="font-inter text-xs sm:text-[13.5px] text-[#042718]/70 leading-relaxed">
+                  To give product leaders a rigorous, repeatable method for defending product
+                  decisions before engineering cycles are burned—and preserving that defence so
+                  learnings compound across subsequent product generations.
+                </p>
+              </div>
+
+              <div className="p-5 rounded-[18px] bg-white border border-[#042718]/8">
+                <span className="font-mono text-[10px] font-semibold uppercase tracking-wider text-[#A8711A] block mb-1">
+                  03 · Problem Statement
+                </span>
+                <h4 className="font-onest text-base font-bold text-[#042718] mb-2">
+                  The Ephemeral Judgement Vacuum
+                </h4>
+                <p className="font-inter text-xs sm:text-[13.5px] text-[#042718]/70 leading-relaxed">
+                  Decisions are made in Slack threads, whiteboards, and verbal syncs. When a release
+                  fails three months later, nobody remembers which trade-offs were deliberate, which
+                  risks were accepted, or what evidence was missing.
+                </p>
+              </div>
+            </div>
+
+            {/* 04–06 Target Users, JTBD, Pain Points */}
+            <div className="space-y-4">
+              <h3 className="font-onest text-lg font-bold text-[#042718]">
+                04–06 · Users, JTBD &amp; Pain Points
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div className="p-4 rounded-xl bg-white border border-[#042718]/8">
+                  <div className="font-onest text-xs font-bold text-[#042718] mb-1">Target Users</div>
+                  <p className="font-inter text-xs text-[#042718]/70 leading-snug">
+                    Senior Product Managers, Group PMs, and technical founders who must justify roadmap commitments to executives and engineering leads.
+                  </p>
+                </div>
+                <div className="p-4 rounded-xl bg-white border border-[#042718]/8">
+                  <div className="font-onest text-xs font-bold text-[#042718] mb-1">Jobs to be Done</div>
+                  <p className="font-inter text-xs text-[#042718]/70 leading-snug">
+                    When framing a high-stakes release, help me pressure-test my rationale against hostile edge cases so I can defend my decision in review.
+                  </p>
+                </div>
+                <div className="p-4 rounded-xl bg-white border border-[#042718]/8">
+                  <div className="font-onest text-xs font-bold text-[#042718] mb-1">Primary Pain Point</div>
+                  <p className="font-inter text-xs text-[#042718]/70 leading-snug">
+                    Confirmation bias and sycophantic peer feedback that rubber-stamps proposals without auditing the empirical validity of core assumptions.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* 07–09 Why General AI is Insufficient */}
+            <div className="p-6 rounded-[20px] bg-white border border-[#042718]/8 space-y-3">
+              <span className="font-mono text-[11px] font-bold text-[#A8711A] block mb-1">
+                07–09 · The Critique Tool Failure Mode
+              </span>
+              <h3 className="font-onest text-lg font-bold text-[#042718]">
+                Why General AI is Insufficient for Product Decision-Making
+              </h3>
+              <p className="font-inter text-sm text-[#042718]/75 leading-relaxed">
+                Standard conversational LLMs are sycophantic by design: they praise the user&apos;s
+                prompt, rephrase assumptions as validated facts, and offer ungrounded aesthetic advice.
+                When asked whether to ship, they generate generic SaaS platitudes and invent plausible metrics.
+              </p>
+              <div className="p-4 rounded-xl bg-[#FAF8F5] border border-[#042718]/8 text-xs font-mono text-[#042718]/80 leading-relaxed">
+                <strong>Differentiation:</strong> Critique tools give you an opinion and keep nothing.
+                Product Jury enforces epistemic boundaries, audits facts vs assumptions, provides a
+                binding confidence ceiling, and records the entire deliberative defence into a durable object.
+              </div>
+            </div>
+
+            {/* 10–11 Positioning & Category */}
+            <div className="p-5 rounded-[18px] bg-[#FAF8F5] border border-[#042718]/8 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+              <div>
+                <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[#A8711A] block mb-0.5">
+                  10–11 · Positioning &amp; Category
+                </span>
+                <div className="font-onest text-base font-bold text-[#042718]">
+                  Category: &ldquo;{PRD_METADATA.category}&rdquo;
+                </div>
+                <div className="font-inter text-xs text-[#042718]/70 mt-0.5">
+                  Tagline: &ldquo;{PRD_METADATA.tagline}&rdquo;
+                </div>
+              </div>
+              <div className="font-mono text-[11px] px-3 py-1.5 rounded-lg bg-white border border-[#042718]/15 text-[#042718] shrink-0">
+                Not a copilot · Not a critique tool
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* =========================================================================
+            PART II — THE EXPERIENCE & CORE LOOP
+            ========================================================================= */}
+        <section className="mb-16 pb-12 border-b border-[#042718]/10">
+          <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-[#A8711A] block mb-2">
+            Part II · The Experience
+          </span>
+          <h2 className="font-onest text-2xl sm:text-3xl font-bold text-[#042718] tracking-tight mb-2">
+            12 · The Core Product Loop
+          </h2>
+          <p className="font-inter text-sm sm:text-base text-[#042718]/70 leading-relaxed mb-4 max-w-3xl">
+            The decision system models the exact progression of rigorous product reasoning. The
+            human product manager is seated directly at the decision point—evaluating arguments,
+            defending choices, and persisting the record.
+          </p>
+
+          {/* Render Visual Core Loop Diagram */}
+          <ProductJuryCoreLoop />
+
+          {/* 13–16 Experience Milestones */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
+            <div className="p-4 rounded-xl bg-white border border-[#042718]/8">
+              <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[#A8711A] block mb-1">
+                13 · Ideal 30 Seconds
+              </span>
+              <p className="font-inter text-xs text-[#042718]/70 leading-relaxed">
+                Drop in a screen artifact. The system extracts observable interface elements and explicitly surfaces what it cannot see, avoiding initial misreads.
+              </p>
+            </div>
+            <div className="p-4 rounded-xl bg-white border border-[#042718]/8">
+              <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[#A8711A] block mb-1">
+                14 · Ideal 5 Minutes
+              </span>
+              <p className="font-inter text-xs text-[#042718]/70 leading-relaxed">
+                Jury cross-examination runs, the Auditor sets confidence ceilings, and a Red Team attacks the proposal with hostile user scenarios.
+              </p>
+            </div>
+            <div className="p-4 rounded-xl bg-white border border-[#042718]/8">
+              <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[#A8711A] block mb-1">
+                15 · The Revisit (Wedge)
+              </span>
+              <p className="font-inter text-xs text-[#042718]/70 leading-relaxed">
+                Months later, new telemetry is uploaded. The system re-judges the original decision against its Falsification Contract and explains what changed.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* =========================================================================
+            PART III — THE DECISION SYSTEM & CAPABILITIES
+            ========================================================================= */}
+        <section className="mb-16 pb-12 border-b border-[#042718]/10">
+          <div className="flex items-center justify-between flex-wrap gap-4 mb-2">
+            <div>
+              <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-[#A8711A] block mb-1">
+                Part III · System Architecture
+              </span>
+              <h2 className="font-onest text-2xl sm:text-3xl font-bold text-[#042718] tracking-tight">
+                17–33 · Capabilities &amp; The Decision Object
+              </h2>
+            </div>
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={expandAllCaps}
+                className="font-mono text-[10px] uppercase font-semibold px-2.5 py-1 rounded bg-white border border-[#042718]/15 hover:bg-[#042718]/5 text-[#042718]"
+              >
+                Expand all
+              </button>
+              <button
+                type="button"
+                onClick={collapseAllCaps}
+                className="font-mono text-[10px] uppercase font-semibold px-2.5 py-1 rounded bg-white border border-[#042718]/15 hover:bg-[#042718]/5 text-[#042718]"
+              >
+                Collapse all
+              </button>
+            </div>
+          </div>
+
+          <p className="font-inter text-sm sm:text-base text-[#042718]/70 leading-relaxed mb-6">
+            The canonical capability set retains all original v1.0 specifications alongside the
+            architectural additions (CAP-17 Decision Success Condition, CAP-18 Early Sufficiency Gate,
+            and CAP-19 Open Loops).
+          </p>
+
+          {/* Capabilities List with Progressive Disclosure */}
+          <div className="space-y-3">
+            {CAPABILITIES.map((cap) => {
+              const isOpen = !!expandedCaps[cap.id];
+              return (
+                <div
+                  key={cap.id}
+                  className="rounded-[18px] bg-white border border-[#042718]/10 overflow-hidden transition-all shadow-xs"
+                >
+                  <button
+                    type="button"
+                    onClick={() => toggleCap(cap.id)}
+                    className="w-full text-left p-4 sm:p-5 flex items-start justify-between gap-3 hover:bg-[#FAF8F5] transition-colors cursor-pointer"
+                  >
+                    <div className="flex items-start gap-3">
+                      <span className="font-mono text-xs font-bold px-2 py-0.5 rounded bg-[#042718]/5 border border-[#042718]/10 text-[#042718] shrink-0 mt-0.5">
+                        {cap.id}
+                      </span>
+                      <div>
+                        <h3 className="font-onest text-base font-bold text-[#042718]">
+                          {cap.name}
+                        </h3>
+                        <p className="font-inter text-xs sm:text-[13px] text-[#042718]/70 mt-0.5 leading-snug">
+                          {cap.summary}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="text-[#042718]/40 hover:text-[#042718] shrink-0 mt-1">
+                      {isOpen ? <ChevronDown size={18} /> : <ChevronRight size={18} />}
+                    </div>
+                  </button>
+
+                  {isOpen && cap.rules && cap.rules.length > 0 && (
+                    <div className="px-5 pb-5 pt-1 border-t border-[#042718]/8 bg-[#FAFDFB]">
+                      <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[#A8711A] block my-2">
+                        Execution Specifications &amp; Invariants:
+                      </span>
+                      <ul className="space-y-1.5 list-none p-0 m-0">
+                        {cap.rules.map((rule, idx) => (
+                          <li
+                            key={idx}
+                            className="flex items-start gap-2 font-inter text-xs sm:text-[13px] text-[#042718]/80 leading-relaxed"
+                          >
+                            <span className="w-1.5 h-1.5 rounded-full bg-[#2F7A4F] shrink-0 mt-1.5" />
+                            <span>{rule}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </section>
+
+        {/* =========================================================================
+            PART IV — REQUIREMENTS & TRUST CONTRACT
+            ========================================================================= */}
+        <section className="mb-16 pb-12 border-b border-[#042718]/10">
+          <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-[#A8711A] block mb-2">
+            Part IV · Engineering Specifications
+          </span>
+          <h2 className="font-onest text-2xl sm:text-3xl font-bold text-[#042718] tracking-tight mb-6">
+            34–53 · Requirements, Trust &amp; Untrusted Content
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="p-5 rounded-[18px] bg-white border border-[#042718]/8 space-y-2">
+              <div className="flex items-center gap-2">
+                <FileText size={16} className="text-[#A8711A]" />
+                <h3 className="font-onest text-sm font-bold text-[#042718]">
+                  34–35 · Functional &amp; Non-Functional
+                </h3>
+              </div>
+              <p className="font-inter text-xs text-[#042718]/70 leading-relaxed">
+                Deterministic JSON schemas for all agent outputs. Asynchronous pipeline execution to prevent blocking on slow model calls. Offline capability for local cached decisions.
+              </p>
+            </div>
+
+            <div className="p-5 rounded-[18px] bg-white border border-[#042718]/8 space-y-2">
+              <div className="flex items-center gap-2">
+                <Lock size={16} className="text-[#2F7A4F]" />
+                <h3 className="font-onest text-sm font-bold text-[#042718]">
+                  36–38 · Trust, Privacy &amp; Security
+                </h3>
+              </div>
+              <p className="font-inter text-xs text-[#042718]/70 leading-relaxed">
+                Customer artifacts are never used for model training. Strict data hygiene for uploaded customer screenshots, telemetry logs, and private PRDs.
+              </p>
+            </div>
+
+            <div className="p-5 rounded-[18px] bg-white border border-[#042718]/8 space-y-2">
+              <div className="flex items-center gap-2">
+                <ShieldCheck size={16} className="text-[#042718]" />
+                <h3 className="font-onest text-sm font-bold text-[#042718]">
+                  51–52 · Quality Contract &amp; Prompt Injection
+                </h3>
+              </div>
+              <p className="font-inter text-xs text-[#042718]/70 leading-relaxed">
+                Screen text is treated strictly as untrusted data. Embedded adversarial instructions inside UI screenshots cannot override auditor grading rules or force positive verdicts.
+              </p>
+            </div>
+
+            <div className="p-5 rounded-[18px] bg-white border border-[#042718]/8 space-y-2">
+              <div className="flex items-center gap-2">
+                <AlertTriangle size={16} className="text-[#A8711A]" />
+                <h3 className="font-onest text-sm font-bold text-[#042718]">
+                  53 · Explicit Limitations
+                </h3>
+              </div>
+              <p className="font-inter text-xs text-[#042718]/70 leading-relaxed">
+                Product Jury cannot replace physical user testing or market validation. It audits logic, exposes assumptions, and flags operational friction; it cannot simulate human irrationality.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* =========================================================================
+            PART V — HOW WE KNOW & EVALUATION
+            ========================================================================= */}
+        <section className="mb-16 pb-12 border-b border-[#042718]/10">
+          <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-[#A8711A] block mb-2">
+            Part V · Evaluation &amp; Telemetry
+          </span>
+          <h2 className="font-onest text-2xl sm:text-3xl font-bold text-[#042718] tracking-tight mb-4">
+            41–56 · AI Quality, Calibration &amp; Success Metrics
+          </h2>
+          <p className="font-inter text-sm sm:text-base text-[#042718]/70 leading-relaxed mb-6">
+            Evaluating a decision intelligence system requires metrics distinct from generative chatbots.
+            Success is defined by decision defensibility, audit accuracy, and revisit frequency:
+          </p>
+
+          <div className="overflow-x-auto rounded-[18px] border border-[#042718]/10 bg-white">
+            <table className="w-full text-left font-inter text-xs">
+              <thead className="bg-[#FAF8F5] border-b border-[#042718]/10 font-mono text-[10px] uppercase text-[#042718]/60 tracking-wider">
+                <tr>
+                  <th className="p-3.5 sm:p-4">Dimension</th>
+                  <th className="p-3.5 sm:p-4">Metric Focus</th>
+                  <th className="p-3.5 sm:p-4">Target Standard</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-[#042718]/8">
+                <tr>
+                  <td className="p-3.5 sm:p-4 font-bold text-[#042718]">41 Success Metrics</td>
+                  <td className="p-3.5 sm:p-4 text-[#042718]/80">Decision Defensibility Rate</td>
+                  <td className="p-3.5 sm:p-4 font-mono text-[#2F7A4F]">PM affirms &gt;85% of audited claims</td>
+                </tr>
+                <tr>
+                  <td className="p-3.5 sm:p-4 font-bold text-[#042718]">42 AI Quality</td>
+                  <td className="p-3.5 sm:p-4 text-[#042718]/80">Hallucination Rejection</td>
+                  <td className="p-3.5 sm:p-4 font-mono text-[#2F7A4F]">Zero fabricated telemetry numbers</td>
+                </tr>
+                <tr>
+                  <td className="p-3.5 sm:p-4 font-bold text-[#042718]">43 Calibration</td>
+                  <td className="p-3.5 sm:p-4 text-[#042718]/80">Refusal Correctness</td>
+                  <td className="p-3.5 sm:p-4 font-mono text-[#2F7A4F]">100% INSUFFICIENT on ungrounded inputs</td>
+                </tr>
+                <tr>
+                  <td className="p-3.5 sm:p-4 font-bold text-[#042718]">54–56 Telemetry</td>
+                  <td className="p-3.5 sm:p-4 text-[#042718]/80">The Revisit Loop</td>
+                  <td className="p-3.5 sm:p-4 font-mono text-[#2F7A4F]">Post-launch telemetry re-evaluations</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        {/* =========================================================================
+            PART VI — SCOPE, ROADMAP & RISKS
+            ========================================================================= */}
+        <section className="mb-16 pb-12 border-b border-[#042718]/10">
+          <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-[#A8711A] block mb-2">
+            Part VI · Scope &amp; Staging
+          </span>
+          <h2 className="font-onest text-2xl sm:text-3xl font-bold text-[#042718] tracking-tight mb-6">
+            44–50 · Release Phasing &amp; Non-Goals
+          </h2>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
+            <div className="p-4 rounded-xl bg-white border border-[#2F7A4F]/25 shadow-xs">
+              <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[#2F7A4F] block mb-1">
+                MVP Baseline
+              </span>
+              <div className="font-onest text-sm font-bold text-[#042718] mb-1">Core Deliberation Engine</div>
+              <p className="font-inter text-xs text-[#042718]/70 leading-snug">
+                CAP-01 through CAP-11: Screen artifact ingestion, Evidence Model, Auditor authority, Red Team attacks, and PM response gate.
+              </p>
+            </div>
+
+            <div className="p-4 rounded-xl bg-white border border-[#A8711A]/20 shadow-xs">
+              <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[#A8711A] block mb-1">
+                Phase 1 (P1)
+              </span>
+              <div className="font-onest text-sm font-bold text-[#042718] mb-1">Persistence &amp; Versioning</div>
+              <p className="font-inter text-xs text-[#042718]/70 leading-snug">
+                CAP-12 through CAP-14: Durable Decision object persistence, immutable decision logs, and multi-version differential comparisons.
+              </p>
+            </div>
+
+            <div className="p-4 rounded-xl bg-white border border-[#042718]/10 shadow-xs">
+              <span className="font-mono text-[10px] font-semibold uppercase tracking-wider text-[#042718]/50 block mb-1">
+                Phase 2 (P2)
+              </span>
+              <div className="font-onest text-sm font-bold text-[#042718] mb-1">The Revisit &amp; Open Loops</div>
+              <p className="font-inter text-xs text-[#042718]/70 leading-snug">
+                CAP-15 and CAP-19: Post-launch telemetry re-judgement, automated falsification trigger detection, and scheduled calibration nudges.
+              </p>
+            </div>
+          </div>
+
+          <div className="p-5 rounded-[18px] bg-[#FAF8F5] border border-[#042718]/8">
+            <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[#A8711A] block mb-1">
+              47 · Explicit Non-Goals
+            </span>
+            <ul className="space-y-1 font-inter text-xs text-[#042718]/75 list-disc pl-4 leading-relaxed">
+              <li>Autonomous decision-making: The system will never make an executive call on behalf of the team.</li>
+              <li>Figma plugins for visual micro-tweaks: We do not critique color palette or icon padding; we critique user flows and trade-offs.</li>
+              <li>Marketing copy generator: The system will not rewrite marketing headlines or promotional hero banners.</li>
+            </ul>
+          </div>
+        </section>
+
+        {/* =========================================================================
+            BOTTOM NAVIGATION & GITHUB CALL TO ACTION
+            ========================================================================= */}
+        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <a
+            href="https://github.com/shipwithdeepak-code/product-jury"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 h-11 px-6 rounded-[100px] bg-[#042718] text-white hover:bg-[#0B3322] font-inter text-sm font-semibold transition-colors duration-200 cursor-pointer shadow-xs"
+          >
+            <Github size={15} />
+            <span>View on GitHub ↗</span>
+          </a>
+
+          <button
+            type="button"
+            onClick={() => onNavigate("/work")}
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 h-11 px-6 rounded-[100px] border border-[#042718]/15 text-[#042718] hover:bg-[#042718]/5 font-inter text-sm font-semibold transition-colors duration-200 cursor-pointer"
+          >
+            <ArrowLeft size={15} />
+            <span>Back to all work</span>
+          </button>
+        </div>
+      </article>
     </div>
   );
 }

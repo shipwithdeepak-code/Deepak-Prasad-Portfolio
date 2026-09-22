@@ -1,59 +1,22 @@
 import React from "react";
-import { ArrowRight, ArrowUpRight, Github } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 
 /**
  * Fills the existing #ai-builds-grid scaffold in HomePage.
  *
- * Two products, deliberately unequal: Product Jury is the new thing to try and
- * read about, so it takes the wide card and the looping dossier. Dipa is already
- * running in the corner of the page, so it only has to be recognised.
- *
- * The loop is CSS keyframes rather than Framer Motion because it is predetermined
- * motion on a page that also runs the Sylva footer scene, so it must stay off the
- * main thread. Styles are component-local, matching the work-deck convention.
+ * Two distinct AI stories:
+ * 1. Dīpa: LIVE BUILD — An AI-native portfolio assistant grounded in verified product work.
+ * 2. Product Jury: PRODUCT IN BUILD — A decision system for product managers in active research & development.
  */
 
-type Grade = "fact" | "inference" | "assumption" | "unknown";
-
-const CLAIMS: { grade: Grade; label: string; text: string; conf: string }[] = [
-  { grade: "fact", label: "Fact", text: "Schema mapping is demanded before any value is shown", conf: "88%" },
-  { grade: "inference", label: "Inference", text: "Setup is optimised over the first-mile win", conf: "74%" },
-  { grade: "assumption", label: "Assumption", text: "Primary action loses to four competing buttons", conf: "62%" },
-  { grade: "unknown", label: "Unknown", text: "Dwell time before abandonment at step 3", conf: "no data" },
+const EXPLORING_POINTS = [
+  "Evidence quality and unknowns",
+  "Structured product judgement",
+  "Multi-perspective challenge",
+  "Red-team dissent",
+  "Decision records",
+  "Re-judging when new evidence appears",
 ];
-
-const GRADE_CLASS: Record<Grade, string> = {
-  fact: "bg-[#042718] text-white border border-[#042718]",
-  inference: "text-[#A8711A] border border-[#A8711A]/55 bg-[#A8711A]/10",
-  assumption: "text-[#A8711A] border border-dashed border-[#A8711A]/65",
-  unknown: "text-[#042718]/45 border border-dashed border-[#042718]/25",
-};
-
-const DOT_CLASS: Record<Grade, string> = {
-  fact: "bg-[#D9A94C]",
-  inference: "bg-[#A8711A]",
-  assumption: "border-[1.5px] border-[#A8711A]",
-  unknown: "border-[1.5px] border-dotted border-[#042718]/45",
-};
-
-function Grade({
-  grade,
-  label,
-  showDot = true,
-}: {
-  grade: Grade;
-  label: string;
-  showDot?: boolean;
-}) {
-  return (
-    <span
-      className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 font-mono text-[9.5px] font-semibold uppercase tracking-[0.14em] whitespace-nowrap ${GRADE_CLASS[grade]}`}
-    >
-      {showDot && <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${DOT_CLASS[grade]}`} />}
-      {label}
-    </span>
-  );
-}
 
 export default function AiBuilds({ onNavigate }: { onNavigate: (path: string) => void }) {
   return (
@@ -61,7 +24,7 @@ export default function AiBuilds({ onNavigate }: { onNavigate: (path: string) =>
       <style>{`
         .ai-builds-grid-inner {
           display: grid;
-          grid-template-columns: minmax(0, 1.72fr) minmax(0, 1fr);
+          grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
           gap: 16px;
           align-items: stretch;
         }
@@ -75,28 +38,16 @@ export default function AiBuilds({ onNavigate }: { onNavigate: (path: string) =>
           flex-direction: column;
         }
         .ai-card--dipa {
-          background: linear-gradient(180deg, #FFFFFF 0%, rgba(111, 190, 140, 0.10) 100%);
-        }
-        @keyframes ai-line {
-          0%        { opacity: 0; transform: translateX(-10px); }
-          6%, 72%   { opacity: 1; transform: none; }
-          84%, 100% { opacity: 0; transform: translateX(-10px); }
-        }
-        @keyframes ai-verdict {
-          0%        { opacity: 0; transform: translateY(9px) scale(0.97); }
-          7%, 58%   { opacity: 1; transform: none; }
-          70%, 100% { opacity: 0; transform: translateY(9px) scale(0.97); }
+          background: linear-gradient(180deg, #FFFFFF 0%, rgba(111, 190, 140, 0.08) 100%);
         }
         @keyframes ai-orb-bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-2.4px); } }
-        .ai-line   { animation: ai-line 8s cubic-bezier(0.23, 1, 0.32, 1) infinite both; }
-        .ai-verdict{ animation: ai-verdict 8s cubic-bezier(0.23, 1, 0.32, 1) 3.5s infinite both; }
         .ai-orb    { transform-box: fill-box; transform-origin: 50% 88%; animation: ai-orb-bob 4.4s cubic-bezier(.4,0,.5,1) infinite; }
         @media (max-width: 900px) {
           .ai-builds-grid-inner { grid-template-columns: minmax(0, 1fr); }
           .ai-card { padding: 22px; }
         }
         @media (prefers-reduced-motion: reduce) {
-          .ai-line, .ai-verdict, .ai-orb {
+          .ai-orb {
             animation: none;
             opacity: 1;
             transform: none;
@@ -104,94 +55,12 @@ export default function AiBuilds({ onNavigate }: { onNavigate: (path: string) =>
         }
       `}</style>
 
-      {/* ── Product Jury ───────────────────────────────────── */}
-      <article className="ai-card">
-        <div className="flex items-center gap-3 mb-6 flex-wrap">
-          <Grade grade="fact" label="Product Jury" showDot={false} />
-          <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#042718]/60">
-            Preview v0.1
-          </span>
-          <span className="ml-auto font-mono text-[10px] uppercase tracking-[0.18em] text-[#042718]/60">
-            Deliberating
-          </span>
-        </div>
-
-        <h3 className="font-onest text-[22px] sm:text-[26px] font-bold text-[#042718] leading-[1.15] tracking-tight">
-          A jury that grades its own certainty
-        </h3>
-        <p className="font-inter text-[14.5px] text-[#042718]/70 leading-relaxed mt-2.5 max-w-[46ch]">
-          Hand it a product screen. Two specialists examine it in parallel, a third audits their
-          claims, and a fourth returns a verdict graded by the evidence behind it.
-        </p>
-
-        <ul className="flex flex-col gap-3 list-none m-0 p-0 mt-7">
-          {CLAIMS.map((c, i) => (
-            <li
-              key={c.label}
-              className="ai-line flex items-center gap-3 flex-wrap"
-              style={{ animationDelay: `${0.3 + i * 0.8}s` }}
-            >
-              <Grade grade={c.grade} label={c.label} />
-              <span className="font-inter text-[13.5px] text-[#042718]/80 leading-snug flex-1 min-w-[150px]">
-                {c.text}
-              </span>
-              <span className="font-mono text-[11px] text-[#042718]/45 tabular-nums shrink-0">
-                {c.conf}
-              </span>
-            </li>
-          ))}
-        </ul>
-
-        <div className="mt-6 pt-5 border-t border-[#042718]/10 flex items-end gap-5 flex-wrap">
-          <span className="ai-verdict font-onest text-[40px] sm:text-[52px] font-bold tracking-[-0.05em] leading-[0.9] text-[#042718]">
-            ITERATE
-          </span>
-          <p className="font-inter text-[13px] text-[#042718]/60 leading-relaxed flex-1 min-w-[190px]">
-            68% confidence. The fourth line never gets a number, because the jury will not guess.
-          </p>
-        </div>
-
-        <div className="mt-7 flex flex-wrap gap-2.5">
-          <a
-            href="https://product-jury.ai.studio/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2.5 h-[47px] px-6 rounded-[100px] bg-[#042718] text-white hover:bg-[#0B3322] font-inter text-sm font-semibold transition-colors duration-200"
-          >
-            <span className="w-[7px] h-[7px] rounded-full bg-[#D9A94C] ring-3 ring-[#D9A94C]/25 shrink-0" />
-            <span>Judge your own screen</span>
-            <ArrowUpRight size={16} />
-          </a>
-          <a
-            href="/writing/product-jury"
-            onClick={(e) => {
-              e.preventDefault();
-              onNavigate("/writing/product-jury");
-            }}
-            className="inline-flex items-center gap-2.5 h-[47px] px-6 rounded-[100px] border border-[#042718]/14 text-[#042718] hover:bg-[#042718]/5 font-inter text-sm font-semibold transition-colors duration-200"
-          >
-            <span>Read how I built it</span>
-            <ArrowRight size={16} />
-          </a>
-          <a
-            href="https://github.com/shipwithdeepak-code/product-jury"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 h-[47px] px-5 rounded-[100px] border border-[#042718]/14 text-[#042718]/70 hover:text-[#042718] hover:bg-[#042718]/5 font-inter text-sm font-semibold transition-colors duration-200"
-            title="View Product Jury source on GitHub"
-          >
-            <Github size={15} />
-            <span>GitHub ↗</span>
-          </a>
-        </div>
-      </article>
-
-      {/* ── Dipa ───────────────────────────────────────────── */}
+      {/* ── CARD 1: DĪPA (LIVE BUILD) ───────────────────────── */}
       <article className="ai-card ai-card--dipa">
         <div className="flex items-center gap-2.5 mb-6">
           <span className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 font-mono text-[9.5px] font-semibold uppercase tracking-[0.14em] text-[#2F7A4F] border border-[#2F7A4F]/35 bg-[#6FBE8C]/12 whitespace-nowrap">
             <span className="w-1.5 h-1.5 rounded-full bg-[#6FBE8C] shrink-0" />
-            Live now
+            LIVE BUILD
           </span>
         </div>
 
@@ -227,10 +96,13 @@ export default function AiBuilds({ onNavigate }: { onNavigate: (path: string) =>
           </svg>
         </span>
 
-        <h3 className="font-onest text-[22px] font-bold text-[#042718] leading-[1.15] tracking-tight mt-5">
+        <h3 className="font-onest text-[22px] sm:text-[24px] font-bold text-[#042718] leading-[1.15] tracking-tight mt-5">
           Dīpa
         </h3>
-        <p className="font-inter text-[14.5px] text-[#042718]/70 leading-relaxed mt-2.5">
+        <p className="font-inter text-[14.5px] font-medium text-[#042718]/85 mt-1 leading-snug">
+          An AI-native portfolio assistant grounded in my verified product work.
+        </p>
+        <p className="font-inter text-[14px] text-[#042718]/70 leading-relaxed mt-2.5">
           Running on this page right now. It answers questions about my work from 32 curated chunks
           of verified writing, cites what it used, and declines when the evidence is thin.
         </p>
@@ -246,16 +118,103 @@ export default function AiBuilds({ onNavigate }: { onNavigate: (path: string) =>
           ))}
         </div>
 
-        <button
-          type="button"
-          onClick={() => window.dispatchEvent(new CustomEvent("open-copilot"))}
-          aria-label="Ask it something — open Dīpa"
-          className="mt-auto pt-7 inline-flex items-center gap-2 font-inter text-sm font-semibold text-[#2F7A4F] hover:text-[#042718] transition-colors cursor-pointer self-start focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A8711A] focus-visible:ring-offset-2 rounded-sm"
-        >
-          <span className="border-b border-[#2F7A4F]/40 pb-0.5">Ask it something</span>
-          <ArrowRight size={15} />
-        </button>
+        {/* CTAs: Primary = Open Dīpa ↗, Secondary = How I built this → */}
+        <div className="mt-auto pt-7 flex flex-wrap items-center gap-3">
+          <button
+            type="button"
+            onClick={() => window.dispatchEvent(new CustomEvent("open-copilot"))}
+            aria-label="Open Dīpa copilot"
+            className="inline-flex items-center gap-2 h-[45px] px-5 rounded-[100px] bg-[#042718] text-white hover:bg-[#0B3322] font-inter text-sm font-semibold transition-colors duration-200 cursor-pointer shadow-xs"
+          >
+            <span>Open Dīpa</span>
+            <ArrowUpRight size={15} />
+          </button>
+          <a
+            href="/work/dipa"
+            onClick={(e) => {
+              e.preventDefault();
+              onNavigate("/work/dipa");
+            }}
+            className="inline-flex items-center gap-2 h-[45px] px-5 rounded-[100px] border border-[#042718]/15 text-[#042718] hover:bg-[#042718]/5 font-inter text-sm font-semibold transition-colors duration-200"
+          >
+            <span>How I built this</span>
+            <ArrowRight size={15} />
+          </a>
+        </div>
+      </article>
+
+      {/* ── CARD 2: PRODUCT JURY (PRODUCT IN BUILD) ────────── */}
+      <article className="ai-card">
+        <div className="flex items-center gap-2.5 mb-6">
+          <span className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 font-mono text-[9.5px] font-semibold uppercase tracking-[0.14em] text-[#A8711A] border border-[#A8711A]/40 bg-[#A8711A]/10 whitespace-nowrap">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#A8711A] shrink-0" />
+            PRODUCT IN BUILD
+          </span>
+        </div>
+
+        <div>
+          <h3 className="font-onest text-[22px] sm:text-[26px] font-bold text-[#042718] leading-[1.15] tracking-tight">
+            Product Jury
+          </h3>
+          <p className="font-inter text-[14.5px] font-medium text-[#042718]/85 mt-1 leading-snug">
+            A decision system for product managers.
+          </p>
+          <blockquote className="my-3 pl-3.5 border-l-2 border-[#D9A94C] font-playfair italic text-[15px] sm:text-[16px] text-[#042718] leading-[1.35]">
+            &ldquo;Make a product call you can defend — and keep the defence.&rdquo;
+          </blockquote>
+        </div>
+
+        <p className="font-inter text-[13.5px] text-[#042718]/75 leading-relaxed mt-1">
+          Product Jury is an early-stage product I’m researching and building around a simple
+          problem: product decisions often disappear after the meeting. The reasoning, evidence,
+          assumptions, objections and trade-offs are rarely preserved as a decision record.
+        </p>
+        <p className="font-inter text-[13.5px] text-[#042718]/75 leading-relaxed mt-2.5">
+          Instead of giving PMs another AI opinion, Product Jury is being designed to turn a product
+          judgement into a defensible decision record.
+        </p>
+
+        {/* Concise Product Loop */}
+        <div className="mt-5 p-3 rounded-xl bg-[#FAF8F5] border border-[#042718]/8">
+          <span className="font-mono text-[9.5px] font-bold uppercase tracking-[0.16em] text-[#A8711A] block mb-1">
+            Product Loop
+          </span>
+          <div className="font-inter text-xs font-semibold text-[#042718]/90 leading-snug">
+            Artifact → Evidence → Jury → Decision → Red Team → Record → Revisit
+          </div>
+        </div>
+
+        {/* What I'm exploring */}
+        <div className="mt-5">
+          <span className="font-mono text-[9.5px] font-bold uppercase tracking-[0.16em] text-[#042718]/50 block mb-2">
+            What I&apos;m exploring
+          </span>
+          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-3 gap-y-1.5 list-none m-0 p-0 font-inter text-xs text-[#042718]/75">
+            {EXPLORING_POINTS.map((pt) => (
+              <li key={pt} className="flex items-center gap-1.5">
+                <span className="w-1 h-1 rounded-full bg-[#A8711A] shrink-0" />
+                <span className="truncate">{pt}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Single Primary CTA: Check what I'm building → */}
+        <div className="mt-auto pt-7 flex flex-wrap items-center">
+          <a
+            href="/writing/product-jury"
+            onClick={(e) => {
+              e.preventDefault();
+              onNavigate("/writing/product-jury");
+            }}
+            className="inline-flex items-center gap-2.5 h-[45px] px-6 rounded-[100px] bg-[#042718] text-white hover:bg-[#0B3322] font-inter text-sm font-semibold transition-colors duration-200 shadow-xs"
+          >
+            <span>Check what I&apos;m building</span>
+            <ArrowRight size={15} />
+          </a>
+        </div>
       </article>
     </div>
   );
 }
+

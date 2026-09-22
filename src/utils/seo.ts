@@ -55,16 +55,16 @@ const STATIC_ROUTES: Record<
   },
   "/writing/product-jury": {
     title:
-      "Product Jury: a decision workspace that argues back — Deepak Prasad",
+      "Product Jury 2.0: A Decision System for Product Managers — Deepak Prasad",
     description:
-      "How I built a multi-agent critique engine that grades every claim by the evidence behind it, and declines when it cannot establish an answer.",
+      "Product Jury 2.0 PRD: A decision system for product managers that turns a product judgement into a defensible record.",
     ogType: "article",
   },
   "/work/product-jury": {
     title:
-      "Product Jury: a decision workspace that argues back — Deepak Prasad",
+      "Product Jury 2.0: A Decision System for Product Managers — Deepak Prasad",
     description:
-      "How I built a multi-agent critique engine that grades every claim by the evidence behind it, and declines when it cannot establish an answer.",
+      "Product Jury 2.0 PRD: A decision system for product managers that turns a product judgement into a defensible record.",
     ogType: "article",
   },
   "/work/dipa": {
