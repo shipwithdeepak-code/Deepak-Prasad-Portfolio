@@ -104,10 +104,10 @@ export default function Navigation({
       {/* Detached Floating Glass Pill Header */}
       <header className="fixed top-0 left-0 right-0 z-50 w-full px-4 sm:px-6 pt-3 sm:pt-4 pointer-events-none">
         <div
-          className={`pointer-events-auto w-full max-w-[1120px] mx-auto rounded-full h-16 pl-4 pr-2 flex items-center justify-between backdrop-blur-[22px] backdrop-saturate-[1.8] transition-[background-color,border-color,box-shadow] duration-300 nav-glass-pill ${
+          className={`pointer-events-auto w-full max-w-[1120px] mx-auto rounded-full h-16 pl-4 pr-2 flex items-center justify-between backdrop-blur-[20px] backdrop-saturate-[1.8] transition-[background-color,border-color,box-shadow] duration-300 nav-glass-pill ${
             isScrolled
-              ? "bg-white/[0.72] border border-white/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.85),0_12px_36px_rgba(4,39,24,0.12)]"
-              : "bg-white/[0.42] border border-white/55 shadow-[inset_0_1px_0_rgba(255,255,255,0.7),0_8px_32px_rgba(4,39,24,0.08)]"
+              ? "bg-white/[0.85] border border-white/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.9),0_12px_36px_rgba(4,39,24,0.10)]"
+              : "bg-white/[0.65] border border-white/65 shadow-[inset_0_1px_0_rgba(255,255,255,0.75),0_8px_24px_rgba(4,39,24,0.06)]"
           }`}
         >
           {/* Avatar Photo Logo - Untouched */}

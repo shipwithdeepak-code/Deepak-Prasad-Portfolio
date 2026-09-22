@@ -10,6 +10,9 @@ import {
   RotateCcw,
   CheckCircle2,
 } from "lucide-react";
+import GlassButton from "./ui/GlassButton";
+import Tag from "./ui/Tag";
+import SectionLabel from "./ui/SectionLabel";
 import { ProductSummary } from "./product-jury/ProductSummary";
 import { DecisionLoopVisual } from "./product-jury/DecisionLoopVisual";
 import { ComparisonVisual } from "./product-jury/ComparisonVisual";
@@ -74,10 +77,9 @@ export default function ProductJuryPost({ onNavigate }: ProductJuryPostProps) {
 
           {/* Eyebrow: PRODUCT IN BUILD */}
           <div className="flex items-center gap-2.5 flex-wrap mb-4">
-            <span className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 font-mono text-[9.5px] font-semibold uppercase tracking-[0.14em] text-[#A8711A] border border-[#A8711A]/40 bg-[#A8711A]/10 whitespace-nowrap">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#A8711A] shrink-0" />
+            <Tag variant="amber" icon={<span className="w-1.5 h-1.5 rounded-full bg-[#A8711A] shrink-0" />}>
               PRODUCT IN BUILD
-            </span>
+            </Tag>
             <span className="text-[#042718]/30">·</span>
             <span className="font-mono text-[10px] font-medium text-[#042718]/65">
               An active product exploration
@@ -109,14 +111,15 @@ export default function ProductJuryPost({ onNavigate }: ProductJuryPostProps) {
 
           {/* Action Row: CTA to loop + Status Indicator (Strictly NO GitHub) */}
           <div className="mt-8 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 pt-6 border-t border-[#042718]/10">
-            <button
-              type="button"
+            <GlassButton
+              variant="primary"
+              size="md"
+              icon={<ArrowDown size={15} className="group-hover:translate-y-0.5 transition-transform" />}
               onClick={() => scrollToSection("the-loop")}
-              className="inline-flex items-center justify-center gap-2 h-11 px-6 rounded-[100px] bg-[#042718] text-white hover:bg-[#0B3322] font-inter text-sm font-semibold transition-all duration-200 shadow-xs cursor-pointer group"
+              className="group"
             >
-              <span>See how the decision loop works</span>
-              <ArrowDown size={15} className="group-hover:translate-y-0.5 transition-transform" />
-            </button>
+              See how the decision loop works
+            </GlassButton>
 
             <div className="inline-flex items-center gap-2 font-mono text-[11px] text-[#042718]/65">
               <span className="w-2 h-2 rounded-full bg-[#2F7A4F] shrink-0" />
@@ -203,14 +206,16 @@ export default function ProductJuryPost({ onNavigate }: ProductJuryPostProps) {
             </p>
 
             <div className="flex justify-center">
-              <button
-                type="button"
+              <GlassButton
+                variant="secondary"
+                size="md"
+                icon={<ArrowLeft size={15} />}
+                iconPosition="left"
                 onClick={() => onNavigate("/work")}
-                className="inline-flex items-center gap-2 h-11 px-6 rounded-[100px] bg-white text-[#042718] hover:bg-[#FAF8F5] font-inter text-sm font-semibold transition-colors duration-200 cursor-pointer shadow-xs"
+                className="!bg-white !text-[#042718] hover:!bg-white/90"
               >
-                <ArrowLeft size={15} />
-                <span>Back to all work</span>
-              </button>
+                Back to all work
+              </GlassButton>
             </div>
           </div>
         </section>

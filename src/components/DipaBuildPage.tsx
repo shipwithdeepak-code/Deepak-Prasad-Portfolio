@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
 import { ArrowLeft, ArrowRight, Sparkles, CheckCircle2 } from "lucide-react";
 import { DipaArchitectureDiagram } from "./DipaArchitectureDiagram";
+import GlassButton from "./ui/GlassButton";
+import Tag from "./ui/Tag";
+import SectionLabel from "./ui/SectionLabel";
 
 interface DipaBuildPageProps {
   onNavigate: (path: string) => void;
@@ -87,7 +90,7 @@ export default function DipaBuildPage({ onNavigate }: DipaBuildPageProps) {
           </button>
 
           {/* Tags */}
-          <div className="flex items-center gap-3 flex-wrap mb-4">
+          <div className="flex items-center gap-2.5 flex-wrap mb-4">
             <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-[#A8711A]">
               DĪPA
             </span>
@@ -97,10 +100,9 @@ export default function DipaBuildPage({ onNavigate }: DipaBuildPageProps) {
             <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-[#2F7A4F]">
               AI-native portfolio assistant
             </span>
-            <span className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 font-mono text-[9.5px] font-semibold uppercase tracking-[0.14em] text-[#2F7A4F] border border-[#2F7A4F]/35 bg-[#6FBE8C]/12">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#6FBE8C] shrink-0" />
+            <Tag variant="live" icon={<span className="w-1.5 h-1.5 rounded-full bg-[#6FBE8C] shrink-0" />}>
               Live on portfolio
-            </span>
+            </Tag>
           </div>
 
           {/* Title & Core Quote */}
@@ -130,15 +132,22 @@ export default function DipaBuildPage({ onNavigate }: DipaBuildPageProps) {
 
           {/* Interactive Launcher Action */}
           <div className="mt-8 flex flex-wrap items-center gap-3">
-            <button
-              type="button"
+            <GlassButton
+              variant="primary"
+              size="md"
+              icon={
+                <span className="flex items-center gap-1.5">
+                  <Sparkles size={15} className="text-[#C8F07A]" />
+                </span>
+              }
+              iconPosition="left"
               onClick={handleOpenDipa}
-              className="inline-flex items-center gap-2 h-11 px-6 rounded-[100px] bg-[#042718] text-white hover:bg-[#0B3322] font-inter text-sm font-semibold transition-colors duration-200 cursor-pointer shadow-xs"
             >
-              <Sparkles size={15} className="text-[#C8F07A]" />
-              <span>Ask Dīpa a question</span>
-              <ArrowRight size={15} />
-            </button>
+              <span className="flex items-center gap-1.5">
+                <span>Ask Dīpa a question</span>
+                <ArrowRight size={15} />
+              </span>
+            </GlassButton>
             <span className="font-inter text-xs text-[#042718]/60 ml-2">
               Opens the conversational drawer directly on this page
             </span>
@@ -277,24 +286,29 @@ export default function DipaBuildPage({ onNavigate }: DipaBuildPageProps) {
 
         {/* BOTTOM CTA BAR */}
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <button
-            type="button"
+          <GlassButton
+            variant="primary"
+            size="md"
+            icon={<ArrowRight size={15} />}
             onClick={handleOpenDipa}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 h-11 px-6 rounded-[100px] bg-[#042718] text-white hover:bg-[#0B3322] font-inter text-sm font-semibold transition-colors duration-200 cursor-pointer shadow-xs"
+            className="w-full sm:w-auto"
           >
-            <Sparkles size={15} className="text-[#C8F07A]" />
-            <span>Try Dīpa</span>
-            <ArrowRight size={15} />
-          </button>
+            <span className="flex items-center gap-2">
+              <Sparkles size={15} className="text-[#C8F07A]" />
+              <span>Try Dīpa</span>
+            </span>
+          </GlassButton>
 
-          <button
-            type="button"
+          <GlassButton
+            variant="secondary"
+            size="md"
+            icon={<ArrowLeft size={15} />}
+            iconPosition="left"
             onClick={() => onNavigate("/work")}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 h-11 px-6 rounded-[100px] border border-[#042718]/15 text-[#042718] hover:bg-[#042718]/5 font-inter text-sm font-semibold transition-colors duration-200 cursor-pointer"
+            className="w-full sm:w-auto"
           >
-            <ArrowLeft size={15} />
-            <span>Back to all work</span>
-          </button>
+            Back to all work
+          </GlassButton>
         </div>
       </article>
     </div>

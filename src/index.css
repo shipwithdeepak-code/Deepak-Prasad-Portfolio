@@ -10,8 +10,114 @@
   --font-playfair: 'Playfair Display', Georgia, serif;
 }
 
+/* =========================================================================
+   GLOBAL DESIGN SYSTEM: EDITORIAL GREEN × SOFT GLASS × POLISHED MOTION
+   ========================================================================= */
+
+:root {
+  /* Surface & Canvas Tokens */
+  --ds-bg: #FAFDFB;
+  --ds-bg-subtle: #F3F8F5;
+  --ds-surface: #FFFFFF;
+  --ds-surface-secondary: #F6FAF7;
+  
+  /* Ink & Typography Tokens */
+  --ds-ink: #042718;
+  --ds-ink-secondary: rgba(4, 39, 24, 0.76);
+  --ds-ink-muted: rgba(4, 39, 24, 0.54);
+  --ds-ink-faint: rgba(4, 39, 24, 0.28);
+  
+  /* Brand Green Spectrum */
+  --ds-green: #188E39;
+  --ds-green-hover: #15803D;
+  --ds-green-deep: #042718;
+  --ds-green-subtle: rgba(24, 142, 57, 0.08);
+  --ds-green-border: rgba(24, 142, 57, 0.22);
+  --ds-green-accent: #2F7A4F;
+  --ds-green-live: #6FBE8C;
+  --ds-green-lime: #C8F07A;
+  
+  /* Amber / Gold Accents */
+  --ds-amber: #A8711A;
+  --ds-amber-subtle: rgba(168, 113, 26, 0.10);
+  --ds-amber-border: rgba(168, 113, 26, 0.26);
+
+  /* Border & Outline Tokens */
+  --ds-border-hairline: rgba(4, 39, 24, 0.06);
+  --ds-border-light: rgba(4, 39, 24, 0.10);
+  --ds-border-medium: rgba(4, 39, 24, 0.16);
+  --ds-border-strong: rgba(4, 39, 24, 0.24);
+
+  /* Glass Material Tokens */
+  --ds-glass-bg: rgba(255, 255, 255, 0.88);
+  --ds-glass-bg-subtle: rgba(255, 255, 255, 0.72);
+  --ds-glass-bg-solid: rgba(255, 255, 255, 0.95);
+  --ds-glass-border: rgba(4, 39, 24, 0.10);
+  --ds-glass-border-highlight: rgba(255, 255, 255, 0.70);
+  --ds-glass-blur: blur(14px);
+  --ds-glass-blur-lg: blur(20px);
+
+  /* Elevation Shadows */
+  --ds-shadow-xs: 0 1px 3px rgba(4, 39, 24, 0.04);
+  --ds-shadow-sm: 0 3px 8px rgba(4, 39, 24, 0.05), 0 1px 2px rgba(4, 39, 24, 0.03);
+  --ds-shadow-md: 0 8px 24px rgba(4, 39, 24, 0.07), 0 2px 6px rgba(4, 39, 24, 0.04);
+  --ds-shadow-lg: 0 18px 48px rgba(4, 39, 24, 0.09), 0 6px 14px rgba(4, 39, 24, 0.05);
+  --ds-shadow-xl: 0 28px 72px rgba(4, 39, 24, 0.12), 0 8px 20px rgba(4, 39, 24, 0.06);
+
+  /* Motion & Easing Curves */
+  --ds-ease: cubic-bezier(0.23, 1, 0.32, 1);
+  --ds-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ds-duration-fast: 150ms;
+  --ds-duration-base: 220ms;
+  --ds-duration-slow: 360ms;
+
+  /* Border Radii */
+  --ds-radius-sm: 8px;
+  --ds-radius-md: 14px;
+  --ds-radius-lg: 20px;
+  --ds-radius-xl: 26px;
+  --ds-radius-2xl: 32px;
+  --ds-radius-pill: 9999px;
+
+  /* Focus Ring */
+  --ds-focus-ring: 0 0 0 3px rgba(24, 142, 57, 0.35);
+  --ds-focus-ring-amber: 0 0 0 3px rgba(168, 113, 26, 0.35);
+}
+
 html, body {
   overflow-x: clip;
+  background-color: var(--ds-bg);
+  color: var(--ds-ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Reusable Glass Utility Classes */
+.glass-surface {
+  background: var(--ds-glass-bg);
+  backdrop-filter: var(--ds-glass-blur);
+  -webkit-backdrop-filter: var(--ds-glass-blur);
+  border: 1px solid var(--ds-glass-border);
+}
+
+.glass-surface-solid {
+  background: var(--ds-glass-bg-solid);
+  backdrop-filter: var(--ds-glass-blur-lg);
+  -webkit-backdrop-filter: var(--ds-glass-blur-lg);
+  border: 1px solid var(--ds-glass-border);
+}
+
+.glass-surface-subtle {
+  background: var(--ds-glass-bg-subtle);
+  backdrop-filter: var(--ds-glass-blur);
+  -webkit-backdrop-filter: var(--ds-glass-blur);
+  border: 1px solid var(--ds-border-hairline);
+}
+
+/* Common Interactive Focus Helper */
+.interactive-focus:focus-visible {
+  outline: none;
+  box-shadow: var(--ds-focus-ring);
 }
 
 .footer-containment {
@@ -167,7 +273,10 @@ html, body {
 @media (prefers-reduced-transparency: reduce) {
   .nav-glass-pill,
   .ask-dipa-capsule,
-  .hero-marquee-chip {
+  .hero-marquee-chip,
+  .glass-surface,
+  .glass-surface-solid,
+  .glass-surface-subtle {
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
     background-color: #ffffff !important;
@@ -178,7 +287,10 @@ html, body {
 /* Accessibility: prefers-contrast: more */
 @media (prefers-contrast: more) {
   .nav-glass-pill,
-  .ask-dipa-capsule {
+  .ask-dipa-capsule,
+  .glass-surface,
+  .glass-surface-solid,
+  .glass-surface-subtle {
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
     background-color: #ffffff !important;

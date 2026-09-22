@@ -8,6 +8,7 @@ import {
   Calendar,
 } from "lucide-react";
 import { CALENDLY_URL } from "../utils/calendly";
+import GlassButton from "./ui/GlassButton";
 
 interface FooterProps {
   onNavigate?: (path: string) => void;
@@ -269,49 +270,65 @@ export default function Footer({
                 className="flex flex-wrap items-center justify-center gap-3 sm:gap-4"
               >
                 {/* Full CTA button */}
-                <a
+                <GlassButton
+                  as="a"
                   href={CALENDLY_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   id="footer-book-strategy-chat-cta"
-                  className="h-14 px-8 rounded-full bg-[#042718] text-white font-inter font-semibold text-base shadow-lg hover:bg-[#042718]/90 transition-colors flex items-center gap-3 group cursor-pointer"
+                  variant="primary"
+                  size="lg"
+                  icon={
+                    <span className="flex items-center gap-1.5">
+                      <Calendar size={18} className="text-[#34D399]" />
+                    </span>
+                  }
+                  iconPosition="left"
+                  className="shadow-lg group"
                 >
-                  <Calendar size={18} className="text-[#34D399]" />
-                  <span>Let&apos;s Talk</span>
-                  <ArrowUpRight
-                    size={16}
-                    className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
-                  />
-                </a>
+                  <span className="flex items-center gap-2">
+                    <span>Let&apos;s Talk</span>
+                    <ArrowUpRight
+                      size={16}
+                      className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
+                    />
+                  </span>
+                </GlassButton>
 
                 {/* Three icon-only circular buttons */}
-                <a
+                <GlassButton
+                  as="a"
                   href="https://www.linkedin.com/in/prasad-deepak/"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="LinkedIn"
-                  className="h-14 w-14 rounded-full bg-white/70 backdrop-blur-md border border-[#042718]/15 hover:bg-white text-[#042718] transition-colors flex items-center justify-center cursor-pointer shadow-xs shrink-0"
+                  variant="icon"
+                  className="h-13 w-13 !rounded-full"
                 >
                   <Linkedin size={20} className="text-[#042718]" />
-                </a>
+                </GlassButton>
 
-                <a
+                <GlassButton
+                  as="a"
                   href="https://github.com/shipwithdeepak-code"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="GitHub"
-                  className="h-14 w-14 rounded-full bg-white/70 backdrop-blur-md border border-[#042718]/15 hover:bg-white text-[#042718] transition-colors flex items-center justify-center cursor-pointer shadow-xs shrink-0"
+                  variant="icon"
+                  className="h-13 w-13 !rounded-full"
                 >
                   <Github size={20} className="text-[#042718]" />
-                </a>
+                </GlassButton>
 
-                <a
+                <GlassButton
+                  as="a"
                   href="mailto:shipwithdeepak@gmail.com"
                   aria-label="Email"
-                  className="h-14 w-14 rounded-full bg-white/70 backdrop-blur-md border border-[#042718]/15 hover:bg-white text-[#042718] transition-colors flex items-center justify-center cursor-pointer shadow-xs shrink-0"
+                  variant="icon"
+                  className="h-13 w-13 !rounded-full"
                 >
                   <Mail size={20} className="text-[#042718]" />
-                </a>
+                </GlassButton>
               </motion.div>
             </div>
           </div>

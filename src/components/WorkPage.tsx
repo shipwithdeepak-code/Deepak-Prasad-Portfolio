@@ -6,6 +6,9 @@ import {
 import { ALL_FLAGSHIP_CASE_STUDIES } from "../data/caseStudies";
 import { MORE_PRODUCT_WORK_ITEMS } from "../data/moreProductWork";
 import { CaseStudyDetail } from "../types";
+import GlassButton from "./ui/GlassButton";
+import Tag from "./ui/Tag";
+import SectionLabel from "./ui/SectionLabel";
 
 interface WorkPageProps {
   onNavigate: (path: string) => void;
@@ -199,9 +202,7 @@ export default function WorkPage({
             ========================================================================= */}
         <section className="mb-20 md:mb-28">
           <div className="mb-8">
-            <span className="font-mono text-[10px] sm:text-[11px] uppercase text-[#A8711A] tracking-[0.2em] font-semibold block mb-1">
-              Flagship Work
-            </span>
+            <SectionLabel label="Flagship Work" color="amber" />
             <h2 className="font-onest text-2xl sm:text-3xl font-bold text-[#042718] tracking-tight">
               Five deep PM stories
             </h2>
@@ -247,9 +248,9 @@ export default function WorkPage({
                   {/* Right Body Content */}
                   <div className="work-icard-body">
                     <div className="mb-2.5">
-                      <span className="inline-block rounded-[100px] bg-[#042718] text-white px-2.5 py-1 text-[12px] font-inter font-medium leading-none">
+                      <Tag variant="default" className="!bg-[#042718] !text-white !border-transparent">
                         {primaryTag}
-                      </span>
+                      </Tag>
                     </div>
 
                     <h3 className="font-onest font-semibold text-[24px] leading-[28.8px] tracking-[-0.48px] text-[#042718] mb-2">
@@ -282,9 +283,7 @@ export default function WorkPage({
             ========================================================================= */}
         <section className="mb-20 md:mb-28 pt-10 border-t border-[#042718]/10">
           <div className="max-w-3xl mb-8">
-            <span className="font-mono text-[10px] sm:text-[11px] uppercase text-[#A8711A] tracking-[0.2em] font-semibold block mb-1">
-              APPLIED AI
-            </span>
+            <SectionLabel label="Applied AI" color="amber" />
             <h2 className="font-onest text-2xl sm:text-3xl font-bold text-[#042718] tracking-tight">
               Things I built.
             </h2>
@@ -297,9 +296,7 @@ export default function WorkPage({
             {/* ── 01. Product Jury ─────────────────────────────────── */}
             <div className="bg-[#F1F1EC] rounded-[20px] p-6 sm:p-7 border border-[#042718]/8 flex flex-col justify-between transition-all duration-240 hover:-translate-y-1 hover:bg-[#EDEDE7] hover:shadow-[0_12px_32px_rgba(4,39,24,0.08)]">
               <div>
-                <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.2em] font-semibold text-[#A8711A] block mb-2">
-                  01 · PRODUCT JURY
-                </span>
+                <SectionLabel number="01" label="Product Jury" color="amber" />
 
                 <h3 className="font-onest font-semibold text-[22px] sm:text-[24px] leading-[28px] tracking-[-0.48px] text-[#042718] mb-2">
                   AI decision intelligence for product teams
@@ -317,26 +314,26 @@ export default function WorkPage({
               </div>
 
               <div className="flex flex-wrap items-center gap-2.5 pt-2">
-                <a
+                <GlassButton
+                  as="a"
                   href="/work/product-jury"
+                  variant="primary"
+                  size="sm"
+                  icon={<ArrowRight size={13} />}
                   onClick={(e) => {
                     e.preventDefault();
                     onNavigate("/work/product-jury");
                   }}
-                  className="inline-flex items-center gap-1.5 h-9 px-4 rounded-[100px] bg-[#042718] text-white hover:bg-[#0B3322] font-inter text-xs font-semibold transition-colors duration-200 shadow-xs"
                 >
-                  <span>Check what I&apos;m building</span>
-                  <ArrowRight size={13} />
-                </a>
+                  Check what I&apos;m building
+                </GlassButton>
               </div>
             </div>
 
             {/* ── 02. Dīpa ─────────────────────────────────────────── */}
             <div className="bg-[#F1F1EC] rounded-[20px] p-6 sm:p-7 border border-[#042718]/8 flex flex-col justify-between transition-all duration-240 hover:-translate-y-1 hover:bg-[#EDEDE7] hover:shadow-[0_12px_32px_rgba(4,39,24,0.08)]">
               <div>
-                <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.2em] font-semibold text-[#A8711A] block mb-2">
-                  02 · DĪPA
-                </span>
+                <SectionLabel number="02" label="Dīpa" color="amber" />
 
                 <h3 className="font-onest font-semibold text-[22px] sm:text-[24px] leading-[28px] tracking-[-0.48px] text-[#042718] mb-2">
                   An AI-native portfolio assistant
@@ -354,29 +351,31 @@ export default function WorkPage({
               </div>
 
               <div className="flex flex-wrap items-center gap-2.5 pt-2">
-                <button
-                  type="button"
+                <GlassButton
+                  variant="primary"
+                  size="sm"
+                  icon={<ArrowRight size={13} />}
                   onClick={() => {
                     if (typeof window !== "undefined") {
                       window.dispatchEvent(new CustomEvent("open-copilot"));
                     }
                   }}
-                  className="inline-flex items-center gap-1.5 h-9 px-4 rounded-[100px] bg-[#042718] text-white hover:bg-[#0B3322] font-inter text-xs font-semibold transition-colors duration-200 cursor-pointer shadow-xs"
                 >
-                  <span>TRY DĪPA</span>
-                  <ArrowRight size={13} />
-                </button>
-                <a
+                  TRY DĪPA
+                </GlassButton>
+                <GlassButton
+                  as="a"
                   href="/work/dipa"
+                  variant="secondary"
+                  size="sm"
+                  icon={<ArrowRight size={13} />}
                   onClick={(e) => {
                     e.preventDefault();
                     onNavigate("/work/dipa");
                   }}
-                  className="inline-flex items-center gap-1.5 h-9 px-4 rounded-[100px] border border-[#042718]/15 text-[#042718] hover:bg-[#042718]/5 font-inter text-xs font-semibold transition-colors duration-200"
                 >
-                  <span>HOW I BUILT IT</span>
-                  <ArrowRight size={13} />
-                </a>
+                  HOW I BUILT IT
+                </GlassButton>
               </div>
             </div>
           </div>
@@ -387,9 +386,7 @@ export default function WorkPage({
             ========================================================================= */}
         <section id="more-work" className="pt-10 border-t border-[#042718]/10">
           <div className="max-w-3xl mb-8">
-            <span className="font-mono text-[10px] sm:text-[11px] uppercase text-[#A8711A] tracking-[0.2em] font-semibold block mb-1">
-              Library
-            </span>
+            <SectionLabel label="Library" color="amber" />
             <h2 className="font-onest text-3xl sm:text-4xl font-bold text-[#042718] tracking-tight">
               More product work
             </h2>
@@ -409,7 +406,7 @@ export default function WorkPage({
                   key={cat}
                   type="button"
                   onClick={() => setSelectedCategory(cat)}
-                  className={`px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-inter font-medium transition-[background-color,color,border-color,box-shadow] cursor-pointer ${
+                  className={`px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-inter font-medium transition-[background-color,color,border-color,box-shadow] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#188E39]/40 ${
                     selectedCategory === cat
                       ? "bg-[#042718] text-white shadow-xs"
                       : "bg-white text-[#042718]/70 hover:text-[#042718] border border-[#042718]/10 hover:border-[#042718]/20"
@@ -438,7 +435,7 @@ export default function WorkPage({
                   e.preventDefault();
                   onNavigate(item.route);
                 }}
-                className="group rounded-[20px] bg-white border border-[#042718]/8 hover:border-[#188E39]/40 hover:shadow-md p-6 transition-all flex flex-col justify-between text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#188E39]"
+                className="group rounded-[20px] bg-white border border-[#042718]/8 hover:border-[#188E39]/40 hover:shadow-[0_8px_24px_rgba(4,39,24,0.06)] p-6 transition-all flex flex-col justify-between text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#188E39]"
                 aria-label={`Read story: ${item.title}`}
               >
                 <div>

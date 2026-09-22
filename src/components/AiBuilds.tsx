@@ -1,5 +1,7 @@
 import React from "react";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
+import GlassButton from "./ui/GlassButton";
+import Tag from "./ui/Tag";
 
 /**
  * Fills the existing #ai-builds-grid scaffold in HomePage.
@@ -58,10 +60,9 @@ export default function AiBuilds({ onNavigate }: { onNavigate: (path: string) =>
       {/* ── CARD 1: DĪPA (LIVE BUILD) ───────────────────────── */}
       <article className="ai-card ai-card--dipa">
         <div className="flex items-center gap-2.5 mb-6">
-          <span className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 font-mono text-[9.5px] font-semibold uppercase tracking-[0.14em] text-[#2F7A4F] border border-[#2F7A4F]/35 bg-[#6FBE8C]/12 whitespace-nowrap">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#6FBE8C] shrink-0" />
+          <Tag variant="live" icon={<span className="w-1.5 h-1.5 rounded-full bg-[#6FBE8C] shrink-0" />}>
             LIVE BUILD
-          </span>
+          </Tag>
         </div>
 
         <span className="ai-orb-wrap w-16 h-16 flex items-center justify-center shrink-0" aria-hidden="true">
@@ -109,47 +110,45 @@ export default function AiBuilds({ onNavigate }: { onNavigate: (path: string) =>
 
         <div className="mt-5 flex flex-wrap gap-1.5">
           {["32 chunks", "512-dim", "cosine", "confidence-gated"].map((t) => (
-            <span
-              key={t}
-              className="font-mono text-[10px] px-2 py-1 rounded-md border text-[rgba(4,39,24,0.56)] border-[rgba(4,39,24,0.10)]"
-            >
+            <Tag key={t} variant="outline" className="font-mono text-[10px] py-0.5 px-2">
               {t}
-            </span>
+            </Tag>
           ))}
         </div>
 
         {/* CTAs: Primary = Open Dīpa ↗, Secondary = How I built this → */}
         <div className="mt-auto pt-7 flex flex-wrap items-center gap-3">
-          <button
-            type="button"
+          <GlassButton
+            variant="primary"
+            size="md"
+            icon={<ArrowUpRight size={15} />}
             onClick={() => window.dispatchEvent(new CustomEvent("open-copilot"))}
             aria-label="Open Dīpa copilot"
-            className="inline-flex items-center gap-2 h-[45px] px-5 rounded-[100px] bg-[#042718] text-white hover:bg-[#0B3322] font-inter text-sm font-semibold transition-colors duration-200 cursor-pointer shadow-xs"
           >
-            <span>Open Dīpa</span>
-            <ArrowUpRight size={15} />
-          </button>
-          <a
+            Open Dīpa
+          </GlassButton>
+          <GlassButton
+            as="a"
             href="/work/dipa"
+            variant="secondary"
+            size="md"
+            icon={<ArrowRight size={15} />}
             onClick={(e) => {
               e.preventDefault();
               onNavigate("/work/dipa");
             }}
-            className="inline-flex items-center gap-2 h-[45px] px-5 rounded-[100px] border border-[#042718]/15 text-[#042718] hover:bg-[#042718]/5 font-inter text-sm font-semibold transition-colors duration-200"
           >
-            <span>How I built this</span>
-            <ArrowRight size={15} />
-          </a>
+            How I built this
+          </GlassButton>
         </div>
       </article>
 
       {/* ── CARD 2: PRODUCT JURY (PRODUCT IN BUILD) ────────── */}
       <article className="ai-card">
         <div className="flex items-center gap-2.5 mb-6">
-          <span className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 font-mono text-[9.5px] font-semibold uppercase tracking-[0.14em] text-[#A8711A] border border-[#A8711A]/40 bg-[#A8711A]/10 whitespace-nowrap">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#A8711A] shrink-0" />
+          <Tag variant="amber" icon={<span className="w-1.5 h-1.5 rounded-full bg-[#A8711A] shrink-0" />}>
             PRODUCT IN BUILD
-          </span>
+          </Tag>
         </div>
 
         <div>
@@ -201,17 +200,19 @@ export default function AiBuilds({ onNavigate }: { onNavigate: (path: string) =>
 
         {/* Single Primary CTA: Check what I'm building → */}
         <div className="mt-auto pt-7 flex flex-wrap items-center">
-          <a
+          <GlassButton
+            as="a"
             href="/writing/product-jury"
+            variant="primary"
+            size="md"
+            icon={<ArrowRight size={15} />}
             onClick={(e) => {
               e.preventDefault();
               onNavigate("/writing/product-jury");
             }}
-            className="inline-flex items-center gap-2.5 h-[45px] px-6 rounded-[100px] bg-[#042718] text-white hover:bg-[#0B3322] font-inter text-sm font-semibold transition-colors duration-200 shadow-xs"
           >
-            <span>Check what I&apos;m building</span>
-            <ArrowRight size={15} />
-          </a>
+            Check what I&apos;m building
+          </GlassButton>
         </div>
       </article>
     </div>
