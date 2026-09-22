@@ -9,6 +9,7 @@ import {
   Clock,
   MapPin,
 } from "lucide-react";
+import GlassButton from "./ui/GlassButton";
 
 interface ContactPageProps {
   onNavigate: (path: string) => void;
@@ -202,14 +203,18 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
                     />
                   </div>
 
-                  <button
-                    type="submit"
-                    id="contact-form-submit"
-                    className="mt-2 w-full py-3 rounded-xl bg-[#042718] hover:bg-[#063b25] text-white font-inter text-sm font-semibold transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-xs"
-                  >
-                    <Send size={15} />
-                    <span>Send Message</span>
-                  </button>
+                  <div className="mt-2">
+                    <GlassButton
+                      type="submit"
+                      id="contact-form-submit"
+                      variant="primary"
+                      size="md"
+                      icon={<Send size={14} />}
+                      className="w-full"
+                    >
+                      Send Message
+                    </GlassButton>
+                  </div>
                 </form>
               )}
             </div>

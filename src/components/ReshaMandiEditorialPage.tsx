@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { ArrowLeft, ArrowRight, CheckCircle2, ChevronRight, Play } from "lucide-react";
 import { CaseStudyDetail } from "../types";
 import { ALL_FLAGSHIP_CASE_STUDIES, ALL_CASE_STUDIES } from "../data/caseStudies";
+import GlassButton from "./ui/GlassButton";
 
 interface ReshaMandiEditorialPageProps {
   caseStudy: CaseStudyDetail;
@@ -756,14 +757,16 @@ export default function ReshaMandiEditorialPage({
                       className="w-full h-auto max-h-[380px] object-cover"
                     />
                     <div className="absolute inset-0 bg-[#042718]/40 flex items-center justify-center">
-                      <button
+                      <GlassButton
                         type="button"
                         onClick={() => setIsPlayingDemo(true)}
-                        className="px-5 py-2.5 rounded-full bg-white text-[#042718] font-inter text-xs font-bold shadow-lg hover:bg-[#FAFDFB] transition-transform group-hover:scale-105 flex items-center gap-2 cursor-pointer"
+                        variant="secondary"
+                        size="md"
+                        icon={<Play size={14} className="fill-current" />}
+                        iconPosition="left"
                       >
-                        <Play size={14} className="fill-current" />
-                        <span>Watch Transaction Demo Video</span>
-                      </button>
+                        Watch Transaction Demo Video
+                      </GlassButton>
                     </div>
                   </div>
                 )}

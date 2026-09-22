@@ -22,6 +22,7 @@ import {
 import { EXPERIENCE_ROLES } from "@/data/caseStudies";
 import { downloadResumePDF } from "@/utils/downloadResume";
 import { CALENDLY_URL } from "@/utils/calendly";
+import GlassButton from "./ui/GlassButton";
 
 interface ResumeModalProps {
   isOpen: boolean;
@@ -262,15 +263,18 @@ export default function ResumeModal({
               </span>
             </a>
 
-            <a
+            <GlassButton
+              as="a"
               href={CALENDLY_URL}
               target="_blank"
               rel="noopener"
-              className="px-4 py-1.5 rounded-full bg-[#042718] text-white font-inter text-xs font-semibold hover:bg-[#042718]/90 transition-colors cursor-pointer hidden lg:flex items-center gap-1.5"
+              variant="primary"
+              size="sm"
+              icon={<ArrowRight size={13} />}
+              className="hidden lg:inline-flex"
             >
-              <span>Let's Talk</span>
-              <ArrowRight size={13} />
-            </a>
+              Let&apos;s Talk
+            </GlassButton>
 
             <button
               type="button"
@@ -541,15 +545,17 @@ export default function ResumeModal({
               </span>
             </button>
 
-            <a
+            <GlassButton
+              as="a"
               href={CALENDLY_URL}
               target="_blank"
               rel="noopener"
-              className="px-5 py-2 rounded-full bg-[#042718] hover:bg-[#042718]/90 text-white font-inter text-xs font-semibold transition-colors cursor-pointer flex items-center gap-2"
+              variant="primary"
+              size="sm"
+              icon={<ArrowRight size={13} />}
             >
-              <span>Discuss Role / Interview</span>
-              <ArrowRight size={14} />
-            </a>
+              Discuss Role / Interview
+            </GlassButton>
           </div>
         </div>
       </motion.div>

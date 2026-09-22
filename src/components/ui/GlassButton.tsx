@@ -44,30 +44,24 @@ export const GlassButton: React.FC<GlassButtonProps> = ({
   onClick,
   ...props
 }) => {
-  const baseStyles =
-    "inline-flex items-center justify-center font-inter font-semibold transition-all duration-200 cursor-pointer select-none no-underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#188E39]/40 focus-visible:ring-offset-2 active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none";
+  const baseStyles = "glass-btn-base";
 
   const sizeStyles = {
-    sm: "text-xs h-9 px-3.5 gap-1.5 rounded-full",
-    md: "text-sm h-11 px-5 gap-2 rounded-full",
-    lg: "text-base h-13 px-6 gap-2.5 rounded-full",
+    sm: "text-xs h-9 px-3.5 gap-1.5",
+    md: "text-sm h-11 px-5 gap-2",
+    lg: "text-base h-13 px-6 gap-2.5",
   };
 
   const variantStyles = {
-    primary:
-      "bg-[#042718] text-white hover:bg-[#0B3322] border border-[#042718] shadow-[0_2px_8px_rgba(4,39,24,0.12)]",
-    secondary:
-      "bg-white/90 backdrop-blur-[12px] text-[#042718] hover:bg-white border border-[#042718]/15 shadow-[0_2px_6px_rgba(4,39,24,0.04)] hover:border-[#042718]/25",
-    dark:
-      "bg-[#042718] text-white hover:bg-[#073D26] border border-white/10 shadow-[0_4px_16px_rgba(4,39,24,0.2)]",
-    ghost:
-      "bg-transparent text-[#042718]/70 hover:text-[#042718] hover:bg-[#042718]/5 border border-transparent",
-    icon:
-      "p-2 rounded-full bg-white/90 backdrop-blur-[10px] text-[#042718]/70 hover:text-[#042718] hover:bg-white border border-[#042718]/10 shadow-xs",
+    primary: "glass-btn-primary",
+    secondary: "glass-btn-secondary",
+    dark: "glass-btn-dark",
+    ghost: "glass-btn-ghost",
+    icon: "glass-btn-icon !p-0 !w-10 !h-10",
   };
 
   const finalClass = `${baseStyles} ${
-    variant === "icon" ? "w-10 h-10 p-0" : sizeStyles[size]
+    variant === "icon" ? "" : sizeStyles[size]
   } ${variantStyles[variant]} ${className}`;
 
   if (as === "a" && href) {

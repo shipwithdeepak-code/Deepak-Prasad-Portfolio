@@ -6,6 +6,7 @@ import {
   GraduationCap,
   Eye,
 } from "lucide-react";
+import GlassButton from "./ui/GlassButton";
 import { EXPERIENCE_ROLES } from "../data/caseStudies";
 
 interface ResumePageProps {
@@ -60,26 +61,31 @@ export default function ResumePage({
             </p>
 
             <div className="flex flex-wrap items-center gap-3">
-              <a
+              <GlassButton
+                as="a"
                 href={resumePdfPath}
                 download="Deepak_Prasad_Senior_Product_Manager_Resume.pdf"
                 id="resume-page-direct-download"
-                className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full bg-[#188E39] hover:bg-[#15803D] text-white font-inter text-sm font-semibold transition-colors duration-200 shadow cursor-pointer no-underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#042718]"
+                variant="primary"
+                size="md"
+                icon={<FileDown size={16} />}
+                iconPosition="left"
               >
-                <FileDown size={16} />
-                <span>Download resume (PDF)</span>
-              </a>
+                Download resume (PDF)
+              </GlassButton>
 
               {onOpenResumeModal && (
-                <button
+                <GlassButton
                   type="button"
                   id="resume-page-preview-modal"
                   onClick={onOpenResumeModal}
-                  className="inline-flex items-center gap-2 px-5 py-3.5 rounded-full bg-white/10 hover:bg-white/15 text-white font-inter text-sm font-semibold transition-colors duration-200 cursor-pointer"
+                  variant="secondary"
+                  size="md"
+                  icon={<Eye size={16} />}
+                  iconPosition="left"
                 >
-                  <Eye size={16} />
-                  <span>Preview in-app</span>
-                </button>
+                  Preview in-app
+                </GlassButton>
               )}
             </div>
           </div>

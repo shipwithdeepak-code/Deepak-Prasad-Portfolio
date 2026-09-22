@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { X, Calendar, Mail, Linkedin, Github, Send, CheckCircle2 } from "lucide-react";
+import GlassButton from "./ui/GlassButton";
 
 interface ContactModalProps {
   isOpen: boolean;
@@ -205,13 +206,15 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                 </a>
               </div>
 
-              <button
+              <GlassButton
                 type="submit"
-                className="w-full sm:w-auto px-6 py-3 rounded-full bg-[#042718] hover:bg-[#042718]/90 text-white font-inter font-semibold text-xs shadow-md transition-[background-color,transform] flex items-center justify-center gap-2 cursor-pointer active:scale-95"
+                variant="primary"
+                size="sm"
+                icon={<Send size={13} />}
+                className="w-full sm:w-auto"
               >
-                <span>Send Message</span>
-                <Send size={14} />
-              </button>
+                Send Message
+              </GlassButton>
             </div>
           </form>
         )}

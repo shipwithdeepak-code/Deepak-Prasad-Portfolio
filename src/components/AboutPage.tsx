@@ -9,6 +9,7 @@ import {
   Briefcase,
   Layers,
 } from "lucide-react";
+import GlassButton from "./ui/GlassButton";
 import {
   EXPERIENCE_ROLES,
   LEADERSHIP_SECTION,
@@ -324,23 +325,27 @@ export default function AboutPage({
             </p>
           </div>
 
-          <div className="flex items-center gap-3 shrink-0">
-            <a
+          <div className="flex flex-wrap items-center gap-3 shrink-0">
+            <GlassButton
+              as="a"
               href="/Deepak_Prasad_Senior_Product_Manager_Resume.pdf"
               download="Deepak_Prasad_Senior_Product_Manager_Resume.pdf"
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-[#188E39] hover:bg-[#15803D] text-white font-inter text-sm font-semibold transition-colors cursor-pointer no-underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#042718]"
+              variant="primary"
+              size="md"
+              icon={<FileDown size={16} />}
+              iconPosition="left"
             >
-              <FileDown size={16} />
-              <span>Download resume</span>
-            </a>
-            <button
+              Download resume
+            </GlassButton>
+            <GlassButton
               type="button"
               onClick={() => onNavigate("/contact")}
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white/10 hover:bg-white/15 text-white font-inter text-sm font-semibold transition-colors cursor-pointer"
+              variant="secondary"
+              size="md"
+              icon={<ArrowRight size={15} />}
             >
-              <span>Contact</span>
-              <ArrowRight size={15} />
-            </button>
+              Contact
+            </GlassButton>
           </div>
         </div>
       </div>

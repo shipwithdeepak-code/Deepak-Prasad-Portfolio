@@ -7,6 +7,7 @@ import { ALL_FLAGSHIP_CASE_STUDIES } from "../data/caseStudies";
 import { CaseStudyDetail } from "../types";
 import { OperatingPrinciples } from "./OperatingPrinciples";
 import AiBuilds from "./AiBuilds";
+import GlassButton from "./ui/GlassButton";
 
 interface HomePageProps {
   onNavigate: (path: string) => void;
@@ -136,164 +137,6 @@ function StatNumberDisplay({ idx, isInView, shouldReduceMotion }: StatNumberDisp
   }
 
   return null;
-}
-
-interface GlowCTAProps {
-  children: React.ReactNode;
-  className?: string;
-}
-
-function GlowCTA({ children, className = "" }: GlowCTAProps) {
-  const [isActive, setIsActive] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const stateRef = useRef({
-    x: 0,
-    targetX: 0,
-    velocity: 0,
-    rafId: 0,
-    lastTime: 0,
-    isRunning: false,
-  });
-
-  const prefersReducedMotion =
-    typeof window !== "undefined" &&
-    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  useEffect(() => {
-    if (containerRef.current) {
-      containerRef.current.style.setProperty("--light-x", "0px");
-    }
-    return () => {
-      if (stateRef.current.rafId) {
-        cancelAnimationFrame(stateRef.current.rafId);
-      }
-    };
-  }, []);
-
-  const updateSpring = (time: number) => {
-    const s = stateRef.current;
-    if (!s.isRunning) return;
-
-    if (!s.lastTime) s.lastTime = time;
-    const dt = Math.min((time - s.lastTime) / 1000, 0.033);
-    s.lastTime = time;
-
-    const displacement = s.x - s.targetX;
-    // Critically damped spring math (frequency ~3.4, damping ~0.78)
-    const springForce = -11.56 * displacement;
-    const dampingForce = -5.304 * s.velocity;
-    const acceleration = springForce + dampingForce;
-
-    s.velocity += acceleration * dt;
-    s.x += s.velocity * dt;
-
-    if (containerRef.current) {
-      containerRef.current.style.setProperty("--light-x", `${s.x.toFixed(2)}px`);
-    }
-
-    if (Math.abs(s.velocity) < 0.05 && Math.abs(displacement) < 0.1) {
-      s.x = s.targetX;
-      s.velocity = 0;
-      s.isRunning = false;
-      if (containerRef.current) {
-        containerRef.current.style.setProperty("--light-x", `${s.x.toFixed(2)}px`);
-      }
-      return;
-    }
-
-    s.rafId = requestAnimationFrame(updateSpring);
-  };
-
-  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
-    if (prefersReducedMotion || !containerRef.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const halfWidth = rect.width / 2;
-    const offsetX = e.clientX - centerX;
-    const clampedX = Math.max(-halfWidth, Math.min(halfWidth, offsetX));
-
-    stateRef.current.targetX = clampedX;
-    if (!stateRef.current.isRunning) {
-      stateRef.current.isRunning = true;
-      stateRef.current.lastTime = 0;
-      stateRef.current.rafId = requestAnimationFrame(updateSpring);
-    }
-  };
-
-  const handlePointerLeave = () => {
-    setIsActive(false);
-    if (prefersReducedMotion) return;
-    stateRef.current.targetX = 0;
-    if (!stateRef.current.isRunning) {
-      stateRef.current.isRunning = true;
-      stateRef.current.lastTime = 0;
-      stateRef.current.rafId = requestAnimationFrame(updateSpring);
-    }
-  };
-
-  return (
-    <div
-      ref={containerRef}
-      onPointerEnter={() => setIsActive(true)}
-      onPointerMove={handlePointerMove}
-      onPointerLeave={handlePointerLeave}
-      onFocus={() => setIsActive(true)}
-      onBlur={() => setIsActive(false)}
-      className={`relative inline-flex items-center justify-center ${className}`}
-      style={{ "--light-x": "0px" } as React.CSSProperties}
-    >
-      {/* Glow Layer 1: Cursor-left edge tone & mid-intensity glow */}
-      <div
-        className={`absolute -inset-1 rounded-full pointer-events-none transition-opacity duration-300 blur-[8px] ${
-          isActive ? "opacity-55" : "opacity-0"
-        }`}
-        style={{
-          background:
-            "radial-gradient(ellipse 60% 85% at calc(50% + var(--light-x) - 18px) 50%, rgba(52, 211, 153, 0.45) 0%, rgba(1, 188, 124, 0.28) 45%, rgba(24, 142, 57, 0.12) 75%, transparent 100%)",
-        }}
-        aria-hidden="true"
-      />
-
-      {/* Glow Layer 2: Cursor-right edge tone & mid-intensity glow */}
-      <div
-        className={`absolute -inset-1 rounded-full pointer-events-none transition-opacity duration-300 blur-[10px] ${
-          isActive ? "opacity-50" : "opacity-0"
-        }`}
-        style={{
-          background:
-            "radial-gradient(ellipse 60% 85% at calc(50% + var(--light-x) + 18px) 50%, rgba(1, 188, 124, 0.4) 0%, rgba(52, 211, 153, 0.25) 45%, rgba(24, 142, 57, 0.1) 75%, transparent 100%)",
-        }}
-        aria-hidden="true"
-      />
-
-      {/* Top light shimmer streak: soft mint-white core fading to transparent */}
-      <div
-        className={`absolute -inset-[2px] rounded-full pointer-events-none transition-opacity duration-300 blur-[4px] ${
-          isActive ? "opacity-60" : "opacity-0"
-        }`}
-        style={{
-          background:
-            "radial-gradient(ellipse 55px 22px at calc(50% + var(--light-x)) 0%, #FAFDFB 0%, #ECFDF5 35%, rgba(1, 188, 124, 0.3) 65%, transparent 100%)",
-        }}
-        aria-hidden="true"
-      />
-
-      {/* Subtle border outline ring accent that catches the edge halo */}
-      <div
-        className={`absolute inset-0 rounded-full pointer-events-none border border-[#01bc7c]/30 transition-opacity duration-300 ${
-          isActive ? "opacity-100" : "opacity-0"
-        }`}
-        style={{
-          boxShadow:
-            "inset 0 1px 2px rgba(250, 253, 251, 0.5), 0 0 12px -2px rgba(1, 188, 124, 0.22)",
-        }}
-        aria-hidden="true"
-      />
-
-      {/* Render children in front of glow */}
-      <div className="relative z-10">{children}</div>
-    </div>
-  );
 }
 
 export default function HomePage({
@@ -939,14 +782,15 @@ export default function HomePage({
             </p>
           </div>
 
-          <button
-            type="button"
+          <GlassButton
+            variant="primary"
+            size="md"
+            icon={<ArrowRight size={15} />}
             onClick={() => onNavigate("/work")}
-            className="self-start sm:self-auto shrink-0 h-[47px] px-6 rounded-full bg-[#042718] text-white hover:bg-[#0B3322] font-inter text-sm font-semibold inline-flex items-center gap-2 transition-colors cursor-pointer"
+            className="self-start sm:self-auto shrink-0"
           >
-            <span>All work</span>
-            <span className="text-base leading-none">↗</span>
-          </button>
+            All work
+          </GlassButton>
         </div>
 
         {/* The 5 Stacked Cards */}
