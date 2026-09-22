@@ -120,7 +120,7 @@ export const MORE_PRODUCT_WORK_ITEMS: MoreProductWorkItem[] = [
     tags: ['B2B', 'KYC', 'Workflow', 'Operations'],
     metrics: [
       { value: 'Thousands', label: 'verified rural suppliers', context: 'assisted onboarding hubs' },
-      { value: '0', label: 'bank routing failures', context: 'penny-drop verification' },
+      { value: 'Automated', label: 'bank validation check', context: 'penny-drop pre-verification' },
     ],
     problem: 'Rural suppliers and reelers rarely possessed formal corporate registrations, leading to unverified entities, billing errors, and payment routing failures.',
     whyItMattered: 'Without verified legal identities and bank account ownership, the marketplace could not disburse tens of crores monthly through automated banking rails.',
@@ -273,7 +273,7 @@ export const MORE_PRODUCT_WORK_ITEMS: MoreProductWorkItem[] = [
     tags: ['B2B', 'Workflow', 'Operations'],
     metrics: [
       { value: '7-state', label: 'transaction lifecycle', context: 'quotation to fulfillment' },
-      { value: '0', label: 'untracked price breaches', context: 'immutable contract state machine' },
+      { value: 'Governed', label: 'contract state machine', context: 'preventing untracked price amendments' },
     ],
     problem: 'Purchase agreements, credit terms, and delivery schedules were negotiated via WhatsApp and phone calls, resulting in verbal contract breaches and untracked cancellations.',
     whyItMattered: 'Without a standardized transactional state machine, inventory reservations and credit allocations could not be enforced programmatically.',
@@ -322,7 +322,7 @@ export const MORE_PRODUCT_WORK_ITEMS: MoreProductWorkItem[] = [
     tags: ['B2B', 'Logistics', 'Operations'],
     metrics: [
       { value: 'Thousands', label: 'monthly dispatches digitised', context: 'rural truck routes' },
-      { value: 'Zero-tamper', label: 'weighbridge gatepass sync', context: 'eliminating weight fraud' },
+      { value: 'Automated', label: 'weighbridge gatepass sync', context: 'connecting load cells to transit records' },
     ],
     problem: 'Trucks arrived at mandi centers without coordinated pickup schedules, leading to loading yard congestion, perishable cargo spoilage, and manual paper gatepasses.',
     whyItMattered: 'Cocoon batches degrade within hours; logistics delays directly ruined product quality before delivery to reeler factories.',
@@ -986,7 +986,7 @@ export const MORE_PRODUCT_WORK_ITEMS: MoreProductWorkItem[] = [
     tags: ['Enterprise', 'Integrations', 'B2B'],
     metrics: [
       { value: 'Async bus', label: 'resilient event integration', context: 'decoupling mandi ops from ERP' },
-      { value: 'Zero drift', label: 'automated ledger reconciliation', context: 'cryptographic transaction audit' },
+      { value: 'Automated', label: 'ledger reconciliation', context: 'idempotent transaction sync' },
     ],
     problem: 'Front-end mandi procurement was operating at high digital velocity, but financial reconciliation required finance teams to manually transcribe CSVs into enterprise SAP systems.',
     whyItMattered: 'Manual transcription created audit risks, delayed monthly closing, and produced inventory discrepancy headaches across regional hubs.',

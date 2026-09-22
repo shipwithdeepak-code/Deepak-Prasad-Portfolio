@@ -42,47 +42,47 @@ export const RESHAMANDI_CASE_STUDY: CaseStudyDetail = {
   ],
   quickContext: {
     problem:
-      'Rural sericulture farmers operated in informal physical mandis where silk cocoons perish within 48 hours, leaving them exposed to arbitrary broker grading, opaque price slicing, and 3–15 day payment delays.',
+      'Rural sericulture farmers operated in physical mandis where silk cocoons perish within 48 hours, leaving them exposed to subjective broker grading, volatile price swings, and delayed payment settlements.',
     whyItMattered:
-      'Farmers absorbed 100% of production risk with zero financial predictability, forcing reliance on predatory local moneylenders while downstream reelers suffered from volatile batch quality.',
+      'Farmers absorbed production risk with limited financial predictability, often waiting days for payment while downstream reelers faced inconsistent cocoon quality.',
     myOwnership:
-      'I personally owned product discovery, PRDs, weighbridge IoT data contracts, floor terminal UX, and escrow settlement release triggers across our core marketplace.',
+      'I owned product requirements, weighbridge integration workflows, procurement intake touchpoints, and the governed payout approval pipeline across the core marketplace.',
     whatChanged:
-      'Scaled monthly disbursements from ₹10–15 Cr to ₹20–25 Cr with 99.9% payout reliability and zero unreconciled escrow losses across 80,000+ farmers, with >35% transaction-value uplift in pilot auctions.',
+      'Replaced ad-hoc manual spreadsheets and WhatsApp handoffs with a governed payout pipeline settling disbursements <₹5L instantly and >₹5L within 2 hours at 99.9% reliability, contributing to scaling monthly volume from ₹10–15 Cr to ₹20–25 Cr.',
   },
-  tradeOff: {
+    tradeOff: {
     considered:
       'Replacing physical mandi floor staff with a self-serve mobile app for farmers to upload cocoon photos, submit bids, and request payouts directly on their smartphones.',
     chose:
-      'I chose an "assisted-digitization" model: keeping trained ReshaMandi personnel on the floor with dedicated, high-contrast, oversized-tap touch terminals wired directly to IoT weighbridges and instant banking APIs, notifying farmers via simple vernacular SMS.',
+      'I chose an assisted-digitization model: keeping trained ReshaMandi personnel on the floor with dedicated, high-contrast touch terminals wired directly to IoT weighbridges and instant banking APIs, notifying farmers via simple vernacular SMS.',
     why:
-      'At 4:30 AM on a noisy, crowded mandi floor with shouting auctioneers, farmers are carrying heavy perishable cocoon crates and managing high-stakes transactions. Forcing hurried rural producers to install apps, navigate forms, and trust a phone screen on poor connectivity would have caused immediate adoption failure.',
+      'On a noisy, crowded mandi floor, farmers are handling perishable cocoon crates and managing high-stakes transactions. Forcing rural producers to install apps and navigate forms on patchy connectivity would have caused severe adoption friction.',
     gaveUp:
-      'We gave up the pure "zero-marginal-cost" software scalability that hands-off consumer platforms boast; the model required deploying and training staff at every trading hub.',
+      'We gave up hands-off software distribution; the operational model required trained on-ground staff at trading hubs.',
     outcome:
-      'Built immediate operational trust, scaling monthly disbursement volume from ₹10–15 Cr to ₹20–25 Cr across 80,000+ farmers with 99.9% payout reliability and zero unreconciled escrow losses.',
+      'Established immediate operational trust, contributing to scaling monthly disbursements from ₹10–15 Cr to ₹20–25 Cr at 99.9% payout reliability (<₹5L instant, >₹5L within 2 hours).',
   },
   artifacts: {
-    title: 'Mandi Floor PRD & Automated Gatepass Specification',
+    title: 'Mandi Floor PRD & Payout Workflow Specification',
     subtitle: 'Production specification bridging physical weighbridge telemetry with escrow banking APIs',
     type: 'spec',
     items: [
       {
-        label: 'Weighbridge Load-Cell Telemetry Contract',
+        label: 'Weighbridge Telemetry Integration Contract',
         value: 'Direct Serial / IoT Ingestion',
-        desc: 'PRD specification mandating hardware-level tare and net weight lock to prevent manual operator tampering.',
+        desc: 'PRD specification capturing tare and gross weights directly from weighbridge indicators into the lot record.',
         code: '{ lot_id: "LOT-84920", tare_kg: 14.2, gross_kg: 168.4, net_kg: 154.2, timestamp_epoch: 1682910400 }',
       },
       {
-        label: 'Automated Escrow Disbursement Pipeline',
+        label: 'Governed Escrow Disbursement Pipeline',
         value: 'Instant UPI / IMPS Trigger',
-        desc: 'Settlement triggered upon Center Manager 1-tap validation; automated retry queue guarantees sub-minute settlement before the farmer exits the gate.',
+        desc: 'Settlement triggered via center manager approval and finance clearance; tiered routing ensures <₹5L settles instantly and >₹5L within 2 hours.',
         code: 'POST /v1/escrow/disburse -> { farmer_vpa, lot_id, agreed_rate_per_kg: 485, net_payout_inr: 74787, gatepass_status: "CLEARED" }',
       },
       {
-        label: 'Computer Vision Quality Scoring Schema',
-        value: 'Objective Defect Grading',
-        desc: 'Replaced arbitrary broker thumb-checks with calibrated shell ratio, moisture percentage, and stained cocoon classification.',
+        label: 'Quality Assessment Feature Schema',
+        value: 'Standardized Defect & Shell Grading',
+        desc: 'Structured quality inputs capturing shell ratio, moisture estimate, and defect percentage to inform baseline pricing bands.',
         code: '{ shell_ratio_pct: 18.6, stained_defect_pct: 1.2, recommended_grade: "GRADE_A", price_band_inr: [475, 495] }',
       },
     ],
@@ -112,19 +112,19 @@ export const RESHAMANDI_CASE_STUDY: CaseStudyDetail = {
       id: 'problem',
       number: '02',
       title: 'Problem: Why Generic Software Fails on the Mandi Floor',
-      subtitle: 'Ground reality at 4:30 AM in Ramanagara and Sidlaghatta',
+      subtitle: 'Ground reality during physical trading hours in regional mandis',
       content: [
-        'Rather than designing software from a remote boardroom, our product discovery started on the damp, crowded floors of Ramanagara, Sidlaghatta, and Dharmapuri mandis before dawn.',
-        'Observing hundreds of live transactions revealed a vital operational truth: farmers and commission agents were not resistant to technology because of literacy. They rejected digital tools because generic apps ignored their high-speed, high-stress physical operating reality. In a crowded auction floor with shouting traders and moving crates, any tool requiring more than 2 taps or 5 seconds of latency was dead on arrival.',
+        'Our product discovery began on the ground across regional mandis, observing live trade dynamics, weighbridge handoffs, and payment settlements.',
+        'Observing live transactions revealed a key operational truth: participants were not resistant to technology because of digital literacy. They rejected digital tools because generic apps ignored their high-speed, high-stress physical operating reality. In a crowded trading yard with rapid physical handling and perishability constraints, any tool that created friction or latency was rejected immediately.',
       ],
       highlights: [
         {
           title: 'High-Stress Physical Environment',
-          desc: 'Noisy trading yards where seconds matter; UI needed extreme contrast, oversized tap targets, and zero blocking latency.',
+          desc: 'Fast-paced trading yards where seconds matter; interfaces required extreme contrast, clear tap targets, and responsive local feedback.',
         },
         {
-          title: 'Trust Deficit',
-          desc: 'Farmers trusted cash in hand over promise-based app ledgers. Digital trust had to be proven with immediate liquidity.',
+          title: 'Liquidity & Trust',
+          desc: 'Farmers relied on dependable settlement over paper slips or delayed promises. Digital trust had to be proven through reliable execution.',
         },
       ],
     },
@@ -134,13 +134,13 @@ export const RESHAMANDI_CASE_STUDY: CaseStudyDetail = {
       title: 'My Role: Product Ownership Across the Value Chain',
       subtitle: 'Designing connected systems from ground research to deployment',
       content: [
-        'As Product Manager for Core Marketplace and Workflows, I personally owned product discovery, system specifications (PRDs), floor terminal UX, weighbridge IoT data contracts, and escrow settlement release triggers.',
-        'To make these systems survive the physical reality of rural trading yards, I partnered closely with cross-functional teams: our 12-person engineering pod built the services, field operations staffed the physical centers, warehouse managers handled transport logistics, and executive finance managed banking credit lines. I served as the single orchestrator aligning code to real-world mandi constraints.',
+        'As Product Manager for Core Marketplace and Workflows, I owned product requirements (PRDs), intake workflows, weighbridge telemetry integration, and the governed payout approval pipeline.',
+        'To ensure these systems functioned reliably in daily operations, I partnered across engineering, on-ground center teams, logistics coordinators, and finance operations, aligning product workflows with operational realities.',
       ],
       highlights: [
         {
           title: 'Field-to-Code Alignment',
-          desc: 'Direct field research embedded with mandi managers, weigh operators, finance desks, and farmers.',
+          desc: 'Direct operational research embedded with mandi managers, weighbridge operators, finance desks, and farmers.',
         },
         {
           title: 'Zero-Disruption Migration',
@@ -155,15 +155,15 @@ export const RESHAMANDI_CASE_STUDY: CaseStudyDetail = {
       subtitle: 'Physical/offline marketplace → structured workflows → automated controls → AI leverage',
       content: [
         'Our strategy was anchored in a clear discipline: digitise the process, not blindly replace people. We preserved domain expertise while structuring accountability, automated checks, and machine learning recommendations.',
-        'The resulting system harmonized physical custody handoffs with immutable digital states across the complete lifecycle:',
+        'The resulting system harmonized physical custody handoffs with digital states across the complete lifecycle:',
       ],
       diagramType: 'workflow',
       workflowSteps: [
-        { label: 'Field Research', desc: '4:30 AM mandi immersion' },
+        { label: 'Field Research', desc: 'On-ground operational discovery' },
         { label: 'Bottleneck Mapping', desc: 'Identify operational latency' },
-        { label: 'Digitise Workflows', desc: 'Replace informal paper & WhatsApp' },
-        { label: 'Automate Controls', desc: 'Weighbridge & escrow triggers' },
-        { label: 'AI Leverage', desc: 'Objective CV cocoon grading' },
+        { label: 'Digitise Workflows', desc: 'Replace informal paper & chat handoffs' },
+        { label: 'Automate Controls', desc: 'Weighbridge & governed payout triggers' },
+        { label: 'AI Leverage', desc: 'Objective quality-based pricing bands' },
         { label: 'Connect Systems', desc: 'Unified transaction backbone' },
       ],
     },
@@ -191,21 +191,21 @@ export const RESHAMANDI_CASE_STUDY: CaseStudyDetail = {
       id: 'instant-payout',
       number: '06',
       title: 'Instant Payout: Engineering Trust Through Speed',
-      subtitle: 'Scaling disbursements from ₹10–15 Cr to ₹20–25 Cr/month with 99.9% reliability',
+      subtitle: 'Disbursing <₹5L instantly and >₹5L within 2 hours with 99.9% payout success',
       content: [
-        'Historically, farmers waited up to 15 days to receive payment from private brokers. In an informal agrarian economy, delay breeds distrust. We re-engineered the disbursement architecture to trigger payouts automatically at the weighbridge.',
-        'By integrating banking APIs directly with weighbridge load cells and role-based approval queues, payouts were settled directly to farmer bank accounts via UPI/IMPS before they exited the mandi gate.',
+        'Historically, farmers waited days to receive payment from private commission brokers. In an informal agrarian economy, delay breeds distrust. We restructured the disbursement architecture around approval, validation, and settlement directly linked to weighbridge verification.',
+        'By integrating banking APIs with center manager validation and finance clearance, disbursements <₹5L settled instantly and amounts >₹5L settled within 2 hours, reaching 99.9% payout success.',
       ],
       decision: {
-        title: 'Instant Weighbridge Settlement vs Batch Accounts Processing',
+        title: 'Tiered Payout Routing vs Manual Batch Processing',
         decision:
-          'Engineered automated banking API triggers directly into weighbridge load-cell events, locking tare and gross weights and disbursing payments via UPI/IMPS before the farmer left the mandi yard.',
+          'Engineered automated banking API triggers directly tied to center approval and weighbridge verification: transactions under ₹5L processed instantly, while transactions over ₹5L settled within 2 hours via governed clearance.',
         why:
-          'At traditional mandis, farmers waited 3–15 days for payment, forcing reliance on local moneylenders. In an informal agrarian economy, digital trust is earned through immediate liquidity, not app ledgers.',
+          'In traditional mandis, farmers faced unpredictable multi-day delays. In an agrarian market, liquidity is the product; digital adoption required immediate, dependable settlement.',
         tradeoff:
-          'Gave up offline batch settlement convenience and required maintaining live escrow credit balances with zero tolerance for reconciliation lag.',
+          'Required real-time liquidity management and continuous reconciliation across banking partner rails.',
         result:
-          'Disbursement reliability reached 99.9% with zero unreconciled escrow losses, scaling payout throughput from ₹10–15 Cr to ₹20–25 Cr per month.',
+          'Achieved 99.9% payout success with zero unreconciled escrow losses, acting as a key operational lever that contributed to growing monthly volume from ₹10–15 Cr to ₹20–25 Cr.',
       },
       diagramType: 'comparison',
       comparison: {
@@ -216,18 +216,18 @@ export const RESHAMANDI_CASE_STUDY: CaseStudyDetail = {
             'Photos sent via WhatsApp groups',
             'Vertical Admin manual review',
             'Accounts manually enters payments',
-            'Manual reference update (3–15 days)',
+            'Manual spreadsheet reconciliation',
           ],
         },
         after: {
-          title: 'New Digitised Payout Engine',
+          title: 'New Governed Payout Engine',
           steps: [
             'Agent creates lot at weighbridge',
             'Centre Manager one-tap approval',
-            'Finance desk approval',
-            'Farmer SMS/app acknowledgement',
+            'Finance desk clearance',
+            'Farmer confirmation via SMS',
             'Bank/account automated validation',
-            'Instant payout with automated retry (99.9%)',
+            'Tiered payout (<₹5L instant, >₹5L <2h; 99.9% success)',
           ],
         },
       },
@@ -274,17 +274,17 @@ export const RESHAMANDI_CASE_STUDY: CaseStudyDetail = {
       id: 'ml-pricing',
       number: '09',
       title: 'ML Cocoon Pricing: Algorithmic Quality Baseline',
-      subtitle: 'Eliminating subjective visual bias with computer vision image grading',
+      subtitle: 'Supporting objective price discovery with structured quality metrics',
       content: [
-        'Cocoon value is determined by shell ratio, defect percentage, and expected silk yield (renditta). In the manual world, brokers exploited subjective visual inspection to slash farmer payouts.',
-        'Working closely with computer vision engineers and sericulture domain experts, we productized an automated imaging and grading workflow. By capturing standardized sample images at testing stations, computer vision algorithms analyzed cocoon shape uniformity, defalcation, and estimated yield, generating an objective baseline recommendation.',
+        'Cocoon value is determined by shell ratio, defect percentage, and expected silk yield. In the manual world, subjective visual appraisal often led to inconsistent pricing and farmer distrust.',
+        'Working with the data science team, we productized an objective evaluation workflow. By analyzing standardized sample tray images, computer vision models estimated shell ratio and detected surface defects, feeding into recommended baseline price bands that center managers reviewed.',
       ],
       diagramType: 'workflow',
       workflowSteps: [
-        { label: 'Human Inspection', desc: 'Sample tray loaded at station' },
-        { label: 'Image + Historical Data', desc: 'Standardized overhead capture' },
-        { label: 'ML Recommendation', desc: 'Yield & shell ratio score (>90% accuracy)' },
-        { label: 'Human Decision', desc: 'Assisted operator confirms baseline' },
+        { label: 'Sample Inspection', desc: 'Standardized sample tray loaded at station' },
+        { label: 'Feature Extraction', desc: 'Overhead image captured under calibrated light' },
+        { label: 'Advisory Price Band', desc: 'Model generates recommended quality-based baseline' },
+        { label: 'Manager Sign-Off', desc: 'Center manager confirms or records override' },
       ],
     },
     {
@@ -346,30 +346,30 @@ export const RESHAMANDI_CASE_STUDY: CaseStudyDetail = {
       content: [
         'The digitisation of the sericulture marketplace delivered substantial, measurable improvements across operational reliability, transparency, and stakeholder trust:',
         '• 80,000+ Farmers Served: Supported across rearing stages through vernacular advisory on ReshaFarms.',
-        '• ₹20–25 Cr Monthly Disbursements: Automated escrow payout pipeline scaled from ₹10–15 Cr to ₹20–25 Cr per month with 99.9% reliability.',
+        '• ₹20–25 Cr Monthly Disbursements: Governed payout pipeline contributed to scaling volume from ₹10–15 Cr to ₹20–25 Cr per month with 99.9% payout success (<₹5L instant, >₹5L within 2 hours).',
         '• >35% Transaction Value Uplift: Demonstrated in pilot auction bidding through transparent multi-buyer price discovery.',
-        '• Zero Reconciled Escrow Loss: Multi-bank fallback architecture eliminated payment reconciliation gaps.',
+        '• Zero Unreconciled Escrow Loss: Strict automated ledger validation and deterministic retry queues maintained complete audit integrity.',
       ],
       outcomeHierarchy: [
         {
           category: 'Business Outcome',
           metric: '₹20–25 Cr/mo',
-          desc: 'Monthly disbursement volume scaled from ₹10–15 Cr to ₹20–25 Cr; >35% bidding transaction value uplift in pilot centers.',
+          desc: 'Monthly disbursement volume scaled from ₹10–15 Cr to ₹20–25 Cr with Instant Payout as a core contributing intervention; >35% transaction-value uplift in pilot auctions.',
         },
         {
           category: 'Operational Outcome',
           metric: '99.9%',
-          desc: 'Payout reliability across automated banking rails with zero unreconciled escrow losses.',
+          desc: 'Payout success rate (<₹5L instant, >₹5L within 2 hours) with zero unreconciled escrow losses.',
         },
         {
           category: 'User Outcome',
           metric: '80,000+',
-          desc: 'Smallholder farmers decoupled from predatory local debt cycles through guaranteed same-day digital liquidity.',
+          desc: 'Smallholder farmers supported with crop advisory and predictable, dependable digital liquidity upon weighbridge clearance.',
         },
         {
           category: 'Product Outcome',
-          metric: '4-Tier Sync',
-          desc: 'Unified physical custody and trade data across farmers, mandi weighbridges, reelers, and weavers.',
+          metric: 'Unified Workflow',
+          desc: 'Connected physical weighbridge telemetry, center manager validation, and banking rails into one auditable state machine.',
         },
       ],
       highlights: [

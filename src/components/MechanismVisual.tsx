@@ -96,7 +96,7 @@ function ReshaMandiEditorialWorkflow({
   ];
 
   const fieldResearchStages = [
-    { label: "FIELD", detail: "4:30 AM mandi visits" },
+    { label: "FIELD", detail: "On-ground mandi immersion" },
     { label: "OBSERVE", detail: "Cash handoff friction" },
     { label: "MAP WORKFLOW", detail: "Weighbridge to bank" },
     { label: "DIGITISE", detail: "Assisted touch terminal" },
