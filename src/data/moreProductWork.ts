@@ -145,7 +145,7 @@ export const MORE_PRODUCT_WORK_ITEMS: MoreProductWorkItem[] = [
       ]
     },
     outcome: {
-      summary: 'Onboarded thousands of rural suppliers into verified digital profiles with zero banking routing failures and compliant audit-ready ledgers.',
+      summary: 'Onboarded thousands of rural suppliers into verified digital profiles with high banking routing success and compliant audit-ready ledgers.',
       type: 'Operational Integrity'
     },
     reflection: 'In emerging markets, onboarding design is not about minimizing steps; it is about building verification mechanisms that respect local realities.',
@@ -244,11 +244,11 @@ export const MORE_PRODUCT_WORK_ITEMS: MoreProductWorkItem[] = [
       details: [
         'Engineered an idempotent payout retry queue handling transient banking switch timeouts.',
         'Integrated automated SMS alerts in local vernacular languages confirming transfer reference numbers.',
-        'Maintained 99.9% settlement reliability with zero unreconciled escrow balance losses.',
+        'Maintained 99.9% settlement reliability with audited escrow balance reconciliations.',
       ]
     },
     outcome: {
-      summary: 'Disbursed ₹20–25 Cr monthly with 99.9% payout reliability and zero unreconciled escrow losses, cementing farmer trust across rural mandis.',
+      summary: 'Maintained 99.9% payout reliability across ₹20–25 Cr monthly disbursement volume, cementing farmer trust across rural mandis.',
       type: 'Core Business Impact'
     },
     reflection: 'In physical commodity marketplaces, liquidity is the product. Speed of settlement builds stronger customer loyalty than any marketing incentive.',

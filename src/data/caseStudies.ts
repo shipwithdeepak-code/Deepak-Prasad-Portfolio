@@ -17,18 +17,18 @@ export const RESHAMANDI_CASE_STUDY: CaseStudyDetail = {
   number: '01',
   title: 'Digitising a Complex B2B Marketplace',
   subtitle:
-    'How I transformed fragmented, offline silk-market workflows into connected digital products across farmers, buyers, operations, payments and pricing.',
+    'I went into the physical marketplace and realised the product problem was much bigger than the app.',
   description:
-    'Transforming fragmented offline silk-market workflows across farmers, buyers, operations, payments and pricing into connected digital products.',
+    'Understanding ground-level silk trading workflows and designing connected digital products across farmers, collection centres, payments, and pricing.',
   thesis: 'The product wasn’t the app. The workflow was.',
   centralQuestion:
-    'How do you digitise a physical marketplace without breaking the workflow that makes it work?',
+    'How do you digitise a physical marketplace without breaking the informal trust and fast-paced operational rhythm that makes it function?',
   productPhilosophy:
-    'Digitise the process, not blindly replace people. Preserve domain expertise while structuring workflow, controls, automation and AI.',
+    'Digitise the process, not blindly replace people. Understand the physical system well enough to know what should change, what should stay human, and where technology can remove friction without breaking trust.',
   category: 'B2B Marketplace & Operational Systems',
   role: 'Product Manager · Core Marketplace, Workflows & Payments',
   timeline: 'June 2021 – Sept 2023',
-  tags: ['B2B', 'Marketplace', 'Workflow', 'AI', '0→1'],
+  tags: ['B2B', 'Marketplace', 'Workflow', 'Operations', '0→1'],
   proofPoints: [
     '80K+ farmers',
     '₹20–25 Cr/month disbursement volume',
@@ -36,54 +36,54 @@ export const RESHAMANDI_CASE_STUDY: CaseStudyDetail = {
   ],
   keyStats: [
     { label: 'Farmers Served', value: '80,000+', detail: 'Engaged through ReshaFarms advisory' },
-    { label: 'Monthly Disbursements', value: '₹20–25 Cr', detail: 'Automated escrow payout pipeline' },
-    { label: 'Bidding Value Uplift', value: '>35%', detail: 'Demonstrated in pilot auction discovery' },
-    { label: 'Payout Reliability', value: '99.9%', detail: 'Audited payout reconciliations' },
+    { label: 'Monthly Disbursements', value: '₹20–25 Cr', detail: 'Marketplace volume context scaled during this period' },
+    { label: 'Bidding Value Uplift', value: '>35%', detail: 'Observed in pilot auction price discovery' },
+    { label: 'Payout Reliability', value: '99.9%', detail: 'Disbursement success rate across banking rails' },
   ],
   quickContext: {
     problem:
-      'Rural sericulture farmers operated in physical mandis where silk cocoons require timely processing and grading, leaving them exposed to subjective broker grading, volatile price swings, and delayed payment settlements.',
+      'I went into regional silk trading hubs expecting an app problem. What I found was an informal operating web where lot tracking, weight checks, and pricing ran through paper notebooks and WhatsApp photos, and where farmers faced multi-day payment delays.',
     whyItMattered:
-      'Farmers absorbed production risk with limited financial predictability, often waiting days for payment while downstream reelers faced inconsistent cocoon quality.',
+      'Silk cocoons are perishable and represent a farmer’s entire month of labor. When weighing is done informally and payments take days to clear, farmers are forced into high-interest credit from local intermediaries.',
     myOwnership:
-      'I owned product requirements, weighbridge integration workflows, procurement intake touchpoints, and the governed payout approval pipeline across the core marketplace.',
+      'I owned product requirements for collection centre intake, digital lot management, pricing workflows, and the governed payout pipeline connecting ground validation to banking rails.',
     whatChanged:
-      'Replaced ad-hoc manual spreadsheets and WhatsApp handoffs with a governed payout pipeline settling disbursements <₹5L instantly and >₹5L within 2 hours at 99.9% reliability, contributing to scaling monthly volume from ₹10–15 Cr to ₹20–25 Cr.',
+      'Replaced ad-hoc paper notes and WhatsApp handoffs with a structured digital lot record and a governed payout flow (<₹5L settled instantly, >₹5L within 2 hours at 99.9% success), contributing to scaling monthly marketplace volume from ₹10–15 Cr to ₹20–25 Cr.',
   },
-    tradeOff: {
+  tradeOff: {
     considered:
-      'Replacing physical mandi floor staff with a self-serve mobile app for farmers to upload cocoon photos, submit bids, and request payouts directly on their smartphones.',
+      'Building a self-serve mobile app and expecting farmers to download it, create lots, and request payouts on their own smartphones.',
     chose:
-      'I chose an assisted-digitization model: keeping trained ReshaMandi personnel on the floor with dedicated, high-contrast touch terminals wired directly to IoT weighbridges and instant banking APIs, notifying farmers via simple vernacular SMS.',
+      'I chose an assisted workflow: placing software in the hands of trained ReshaMandi centre staff at the collection points, keeping the interaction fast and physical for the farmer, and sending instant transaction confirmations via SMS.',
     why:
-      'On a noisy, crowded mandi floor, farmers are handling perishable cocoon crates and managing high-stakes transactions. Forcing rural producers to install apps and navigate forms on patchy connectivity would have caused severe adoption friction.',
+      'Farmers arrived early in the morning carrying heavy, perishable crates into noisy, crowded trading hubs. Expecting them to navigate a smartphone app on spotty 2G connectivity while negotiating trades would have killed adoption on day one.',
     gaveUp:
-      'We gave up hands-off software distribution; the operational model required trained on-ground staff at trading hubs.',
+      'We gave up the pure software margin of a zero-touch consumer app, accepting that scaling required operational presence at regional hubs.',
     outcome:
-      'Established immediate operational trust, contributing to scaling monthly disbursements from ₹10–15 Cr to ₹20–25 Cr at 99.9% payout reliability (<₹5L instant, >₹5L within 2 hours).',
+      'Gained immediate ground adoption across collection hubs, enabling reliable intake and predictable payout execution that supported scaling monthly transaction volume to ₹20–25 Cr.',
   },
   artifacts: {
-    title: 'Mandi Floor PRD & Payout Workflow Specification',
-    subtitle: 'Production specification bridging physical weighbridge telemetry with escrow banking APIs',
+    title: 'Mandi Intake & Governed Payout Workflow Specification',
+    subtitle: 'Connecting physical lot arrival, weight capture, center sign-off, and banking disbursement rails',
     type: 'spec',
     items: [
       {
-        label: 'Weighbridge Telemetry Integration Contract',
-        value: 'Direct Serial / IoT Ingestion',
-        desc: 'PRD specification capturing tare and gross weights directly from weighbridge indicators into the lot record.',
-        code: '{ lot_id: "LOT-84920", tare_kg: 14.2, gross_kg: 168.4, net_kg: 154.2, timestamp_epoch: 1682910400 }',
+        label: 'Lot Intake & Weight Capture Schema',
+        value: 'Structured Operational Record',
+        desc: 'Product specification binding physical crate weights, tare deductions, and lot identity into a searchable record.',
+        code: '{ lot_id: "LOT-84920", tare_kg: 14.2, gross_kg: 168.4, net_kg: 154.2, mandi_hub: "RMN-04" }',
       },
       {
-        label: 'Governed Escrow Disbursement Pipeline',
-        value: 'Instant UPI / IMPS Trigger',
-        desc: 'Settlement triggered via center manager approval and finance clearance; tiered routing ensures <₹5L settles instantly and >₹5L within 2 hours.',
-        code: 'POST /v1/escrow/disburse -> { farmer_vpa, lot_id, agreed_rate_per_kg: 485, net_payout_inr: 74787, gatepass_status: "CLEARED" }',
+        label: 'Governed Payout Approval Pipeline',
+        value: 'Tiered Banking Rails',
+        desc: 'Disbursement triggered after center manager verification; payouts <₹5L processed instantly, >₹5L settled within 2 hours.',
+        code: 'POST /v1/payouts/disburse -> { farmer_id, lot_id, rate_per_kg: 485, net_payout_inr: 74787, clearance: "VERIFIED" }',
       },
       {
-        label: 'Quality Assessment Feature Schema',
-        value: 'Standardized Defect & Shell Grading',
-        desc: 'Structured quality inputs capturing shell ratio, moisture estimate, and defect percentage to inform baseline pricing bands.',
-        code: '{ shell_ratio_pct: 18.6, stained_defect_pct: 1.2, recommended_grade: "GRADE_A", price_band_inr: [475, 495] }',
+        label: 'Quality Grading Decision Support',
+        value: 'Sample Assessment & Advisory Band',
+        desc: 'Advisory price recommendation based on sample tray image metrics, reviewed and signed off by the on-ground centre manager.',
+        code: '{ sample_id: "SMP-104", shell_ratio_est: 18.6, defect_pct: 1.2, advisory_price_range: [475, 495] }',
       },
     ],
   },
@@ -91,311 +91,221 @@ export const RESHAMANDI_CASE_STUDY: CaseStudyDetail = {
     {
       id: 'context',
       number: '01',
-      title: 'Context: The Fragile Silk Value Chain',
-      subtitle: 'High stakes, high perishability, and severe information asymmetry',
+      title: 'Ground Reality: The Physical Marketplace',
+      subtitle: 'Walking into the trading hubs and seeing how silk actually moved',
       content: [
-        'India is the world’s second-largest producer of silk, yet its raw materials supply chain historically operated as a deeply fragmented, informal economy. Sericulture farmers nurture fragile silkworms through tight 25-day rearing cycles, culminating in batches of silk cocoons that must be harvested and sold promptly.',
-        'At traditional physical mandis (trading yards), farmers faced severe structural asymmetry: arbitrary visual grading by brokers, no price transparency, rampant commission slicing, and payment settlements delayed by days or weeks. Farmers bore 100% of production risk with zero financial predictability, while reelers suffered from unpredictable batch quality and irregular feedstock supply.',
+        'India is the second-largest silk producer in the world, but its supply chain historically ran on informal, fragile relationships. Farmers spend roughly 25 days carefully rearing silkworms, feeding them fresh mulberry leaves around the clock until they spin cocoons. Once harvested, cocoons are perishable: within days, the moth inside emerges and damages the continuous silk filament.',
+        'When I first visited the regional trading hubs, I expected to find an app problem. What I quickly realized was that the marketplace was far bigger than any screen. Hundreds of farmers arrived early in the morning with crates of cocoons. Transactions were loud, fast, and intensely physical. Handshakes sealed trades, but the actual record-keeping was scattered across paper notebooks, memory, and personal chat threads.',
       ],
       highlights: [
         {
-          title: 'Time-Sensitive Cocoon Harvest',
-          desc: 'Harvested cocoons lose moisture and quality over time; farmers previously had limited leverage to negotiate unfair offers.',
+          title: 'Perishable Window',
+          desc: 'Cocoons must be graded and sold quickly before the cocoon shell quality degrades, leaving farmers with little leverage to walk away.',
         },
         {
           title: 'Liquidity Chokehold',
-          desc: 'Delayed cash settlements trapped smallholder farmers in cyclical high-interest debt cycles with local lenders.',
+          desc: 'Payment delays of several days or weeks forced farmers into debt cycles with informal local moneylenders between harvest batches.',
         },
       ],
     },
     {
       id: 'problem',
       number: '02',
-      title: 'Problem: Why Generic Software Fails on the Mandi Floor',
-      subtitle: 'Ground reality during physical trading hours in regional mandis',
+      title: 'The Workflow Behind the Chaos: The Informal Baseline',
+      subtitle: 'Where digital assumptions broke down on the trading floor',
       content: [
-        'Our product discovery began on the ground across regional mandis, observing live trade dynamics, weighbridge handoffs, and payment settlements.',
-        'Observing live transactions revealed a key operational truth: participants were not resistant to technology because of digital literacy. They rejected digital tools because generic apps ignored their high-speed, high-stress physical operating reality. In a crowded trading yard with rapid physical handling and perishability constraints, any tool that created friction or latency was rejected immediately.',
+        'Before writing any specifications, I spent time on the floor documenting how a single lot moved from arrival to payment. The real workflow was an ad-hoc chain:',
+        '1. A farmer arrived and unloaded crates at the collection center.',
+        '2. The center in-charge jotted down weights and lot numbers in a pocket notebook.',
+        '3. During trading pauses, someone snapped a smartphone photo of the notebook page and shared it in a WhatsApp group.',
+        '4. Regional coordinators and finance teams scrolled through chat threads, manually retyping numbers into spreadsheets.',
+        '5. Payouts were initiated days later, once accounts reconciled conflicting records and phone calls.',
+        'This informal chain functioned when daily volume was small. But during peak harvest surges, the cracks were obvious: photos got lost in chat streams, bag weights were contested, price-related queries went unanswered, and farmers waited days without knowing when their money would arrive.',
       ],
       highlights: [
         {
-          title: 'High-Stress Physical Environment',
-          desc: 'Fast-paced trading yards where seconds matter; interfaces required extreme contrast, clear tap targets, and responsive local feedback.',
+          title: 'Notebook → Photo → WhatsApp → Call',
+          desc: 'The informal pattern that held together transactions before software brought structure to the floor.',
         },
         {
-          title: 'Liquidity & Trust',
-          desc: 'Farmers relied on dependable settlement over paper slips or delayed promises. Digital trust had to be proven through reliable execution.',
+          title: 'The Real Product Insight',
+          desc: 'Technology failed whenever it added friction to the floor. If software took longer than a pencil on paper, operators bypassed it.',
         },
       ],
     },
     {
       id: 'role',
       number: '03',
-      title: 'My Role: Product Ownership Across the Value Chain',
-      subtitle: 'Designing connected systems from ground research to deployment',
+      title: 'My Role & Ownership: Ground Research to Operating Rails',
+      subtitle: 'Deciding what to digitise and what to keep human',
       content: [
-        'As Product Manager for Core Marketplace and Workflows, I owned product requirements (PRDs), intake workflows, weighbridge telemetry integration, and the governed payout approval pipeline.',
-        'To ensure these systems functioned reliably in daily operations, I partnered across engineering, on-ground center teams, logistics coordinators, and finance operations, aligning product workflows with operational realities.',
+        'As Product Manager for Core Marketplace and Workflows, I owned product discovery, requirements, and the digital workflows connecting collection centre operations with central finance.',
+        'My primary responsibility was bridging the gap between two very different worlds: the frantic reality of ground collection centers and the audit and liquidity requirements of our engineering and finance teams.',
+        'The critical design challenge was deciding what should be digitised and what should remain human: we digitised the lot identity, weight capture, status tracking, and payment clearance, while keeping human relationship management, physical inspection, and operational sign-offs with on-ground center operators.',
       ],
       highlights: [
         {
-          title: 'Field-to-Code Alignment',
-          desc: 'Direct operational research embedded with mandi managers, weighbridge operators, finance desks, and farmers.',
+          title: 'Assisted over Self-Serve',
+          desc: 'Equipped our center operators with the software rather than forcing busy farmers to download apps on the trading floor.',
         },
         {
-          title: 'Zero-Disruption Migration',
-          desc: 'Progressively digitised existing physical workflows without halting daily live mandi trading.',
+          title: 'Floor-First Specifications',
+          desc: 'Built intake interfaces with high contrast and minimal tap steps so weighing lots never slowed down morning intake.',
         },
       ],
     },
     {
       id: 'interventions',
       number: '04',
-      title: 'Product Interventions: The Connected Architecture',
-      subtitle: 'Physical/offline marketplace → structured workflows → automated controls → AI leverage',
+      title: 'The Interventions: Building Trust Where It Mattered Most',
+      subtitle: 'Focusing product leverage on three friction points: liquidity, price discovery, and quality',
       content: [
-        'Our strategy was anchored in a clear discipline: digitise the process, not blindly replace people. We preserved domain expertise while structuring accountability, automated checks, and machine learning recommendations.',
-        'The resulting system harmonized physical custody handoffs with digital states across the complete lifecycle:',
+        'Rather than attempting to rebuild every physical interaction at once, I focused our product strategy on three critical points of operational leverage where technology could eliminate existential friction:',
+        '• Instant Payouts: Removing payment uncertainty by tying disbursement triggers directly to weighbridge verification and center sign-off.',
+        '• Cocoon Bidding: Structuring open digital bidding sessions to bring multi-buyer price discovery to rural centers.',
+        '• Quality Support: Introducing computer-vision-assisted grading as an advisory baseline for human center managers.',
       ],
       diagramType: 'workflow',
       workflowSteps: [
-        { label: 'Field Research', desc: 'On-ground operational discovery' },
-        { label: 'Bottleneck Mapping', desc: 'Identify operational latency' },
-        { label: 'Digitise Workflows', desc: 'Replace informal paper & chat handoffs' },
-        { label: 'Automate Controls', desc: 'Weighbridge & governed payout triggers' },
-        { label: 'AI Leverage', desc: 'Objective quality-based pricing bands' },
-        { label: 'Connect Systems', desc: 'Unified transaction backbone' },
-      ],
-    },
-    {
-      id: 'reshafarms',
-      number: '05',
-      title: 'ReshaFarms: Upstream Advisory & Supply Visibility',
-      subtitle: 'Serving 80,000+ farmers across the 25-day rearing lifecycle',
-      content: [
-        'ReshaFarms was designed as the farmer’s companion across the 25-day rearing lifecycle. It provided vernacular crop advisory, climate alerts, disease diagnostic guides, and streamlined access to certified mulberry inputs and disinfectants.',
-        'By tracking rearing stage milestones in real-time, the platform gave ReshaMandi predictable forward-looking harvest volumes, enabling supply planning before cocoons even arrived at the physical mandi.',
-      ],
-      highlights: [
-        {
-          title: '80K+ Farmers Served',
-          desc: 'Vernacular mobile guidance on humidity control and feed timing during critical instar rearing stages.',
-        },
-        {
-          title: 'Predictive Harvest Pipeline',
-          desc: 'Mandi hubs received 72-hour advance signals of incoming regional supply for labor and liquidity planning.',
-        },
+        { label: 'Ground Discovery', desc: 'Observe intake friction and WhatsApp bottlenecks' },
+        { label: 'Structured Lot Record', desc: 'Replace informal notebook entries with searchable lot IDs' },
+        { label: 'Intake Verification', desc: 'Capture net weights directly at collection points' },
+        { label: 'Governed Payout Rail', desc: 'Disburse <₹5L instantly and >₹5L within 2 hours' },
+        { label: 'Competitive Bidding', desc: 'Scheduled auction windows for verified buyers' },
+        { label: 'ML Price Guidance', desc: 'Non-binding advisory baseline for center managers' },
       ],
     },
     {
       id: 'instant-payout',
-      number: '06',
-      title: 'Instant Payout: Engineering Trust Through Speed',
-      subtitle: 'Disbursing <₹5L instantly and >₹5L within 2 hours with 99.9% payout success',
+      number: '05',
+      title: 'Instant Payout: Liquidity as a Product',
+      subtitle: 'Settling <₹5L instantly and >₹5L within 2 hours with 99.9% reliability',
       content: [
-        'Historically, farmers waited days to receive payment from private commission brokers. In an informal agrarian economy, delay breeds distrust. We restructured the disbursement architecture around approval, validation, and settlement directly linked to weighbridge verification.',
-        'By integrating banking APIs with center manager validation and finance clearance, disbursements <₹5L settled instantly and amounts >₹5L settled within 2 hours, reaching 99.9% payout success.',
+        'In rural agriculture, payment speed is not a convenience feature — it is the product. When farmers sell cocoons, they need immediate cash to pay laborers, buy silkworm seed for the next cycle, and manage household expenses.',
+        'Historically, waiting days for payment created deep anxiety and made farmers vulnerable to private middlemen. We redesigned the settlement flow into a governed pipeline:',
+        '• As soon as the lot was weighed and the center manager confirmed the transaction, the payout request was generated.',
+        '• Payouts under ₹5 Lakh were routed through automated banking rails for instant disbursement directly to the farmer\'s verified bank account.',
+        '• Larger transactions (>₹5 Lakh) underwent an expedited two-hour review with finance desk clearance.',
+        'This eliminated days of waiting and achieved a 99.9% payout success rate, transforming farmer trust and acting as a primary operational lever that helped grow monthly marketplace volume from ₹10–15 Cr to ₹20–25 Cr.',
       ],
       decision: {
-        title: 'Tiered Payout Routing vs Manual Batch Processing',
+        title: 'Tiered Automated Payouts vs Manual End-of-Day Batching',
         decision:
-          'Engineered automated banking API triggers directly tied to center approval and weighbridge verification: transactions under ₹5L processed instantly, while transactions over ₹5L settled within 2 hours via governed clearance.',
+          'Engineered banking API triggers directly connected to centre manager lot verification: transactions under ₹5L processed instantly, while transactions over ₹5L settled within 2 hours through a rapid clearance queue.',
         why:
-          'In traditional mandis, farmers faced unpredictable multi-day delays. In an agrarian market, liquidity is the product; digital adoption required immediate, dependable settlement.',
+          'In traditional mandis, farmers had to trust informal promises and wait days. In an informal agrarian economy, immediate liquidity creates immediate loyalty and eliminates adoption reluctance.',
         tradeoff:
-          'Required real-time liquidity management and continuous reconciliation across banking partner rails.',
+          'Required real-time liquidity management and close operational monitoring across banking partner rails.',
         result:
-          'Achieved 99.9% payout success with zero unreconciled escrow losses, acting as a key operational lever that contributed to growing monthly volume from ₹10–15 Cr to ₹20–25 Cr.',
+          'Achieved 99.9% payout reliability, serving as a core product intervention that helped expand monthly marketplace volume from ₹10–15 Cr to ₹20–25 Cr.',
       },
       diagramType: 'comparison',
       comparison: {
         before: {
           title: 'Old Informal Workflow',
           steps: [
-            'Center Incharge writes Purchase IDs',
-            'Photos sent via WhatsApp groups',
-            'Vertical Admin manual review',
-            'Accounts manually enters payments',
-            'Manual spreadsheet reconciliation',
+            'Lot details written in pocket notebooks',
+            'Photos shared over WhatsApp channels',
+            'Evening spreadsheet reconciliation',
+            'Manual finance desk payment preparation',
+            'Multi-day waiting and uncertainty (3–15 days)',
           ],
         },
         after: {
-          title: 'New Governed Payout Engine',
+          title: 'New Governed Payout Flow',
           steps: [
-            'Agent creates lot at weighbridge',
-            'Centre Manager one-tap approval',
-            'Finance desk clearance',
-            'Farmer confirmation via SMS',
-            'Bank/account automated validation',
-            'Tiered payout (<₹5L instant, >₹5L <2h; 99.9% success)',
+            'Staff creates lot record at collection station',
+            'Center Manager verifies weight and quality',
+            'Automated banking rail disbursement trigger',
+            'SMS confirmation sent directly to farmer',
+            'Disbursement complete (<₹5L instant, >₹5L <2h; 99.9% success)',
           ],
         },
       },
     },
     {
-      id: 'vendor-kyc',
-      number: '07',
-      title: 'Vendor KYC & Rapid Onboarding',
-      subtitle: 'Creating verified digital identities for informal suppliers in under 3 minutes',
-      content: [
-        'Informal suppliers and smallholder farmers frequently lacked formal corporate documentation, making standard fintech KYC flows impossible.',
-        'We designed an assisted, low-friction digital onboarding protocol utilizing Aadhaar-based verification, geo-tagged farm verification, and localized bank verification. In under 3 minutes, a farmer gained a verified digital trader identity, establishing a formal trade ledger that opened future access to institutional credit.',
-      ],
-      highlights: [
-        {
-          title: '3-Minute Assisted Onboarding',
-          desc: 'Field agents verified farmers directly on-site with simple mobile inspection kits.',
-        },
-        {
-          title: 'Verifiable Trade Ledger',
-          desc: 'Every transaction accumulated into an official trade history for formal banking partners.',
-        },
-      ],
-    },
-    {
       id: 'cocoon-bidding',
-      number: '08',
-      title: 'Cocoon Bidding: Transparent Price Discovery',
-      subtitle: 'Scan → Bid → Watch → Win → Pay across 3 daily live auction sessions',
+      number: '06',
+      title: 'Cocoon Bidding: Bringing Price Discovery to Rural Hubs',
+      subtitle: 'Scan → Bid → Watch → Win across structured auction windows',
       content: [
-        'Traditional mandi auctions were prone to local trader collusion, where informal cartels kept bidding artificially low. We built a live digital auction system that allowed certified reelers, both physically present and participating remotely, to place transparent bids on graded cocoon lots.',
-        'In pilot deployments across target mandi centers, this transparent competitive auction mechanism drove a >35% improvement in realized transaction value for high-quality lots compared to unorganized cartel averages.',
+        'In traditional mandis, price discovery was informal and opaque. Small groups of local buyers negotiated in private, leaving farmers with little visibility into prevailing market demand in larger urban centres.',
+        'We introduced a structured digital auction workflow. When a lot was created at a collection center, verified buyers—both in the center and in downstream weaving clusters—could inspect the verified lot details and participate in timed bidding windows.',
+        'In pilot deployments across target collection centres, opening up transparent multi-buyer bidding demonstrated a >35% improvement in realized transaction value for high-quality cocoon lots.',
       ],
       diagramType: 'bidding',
       workflowSteps: [
-        { label: 'Scan', desc: 'Scan lot QR at inspection station' },
-        { label: 'Bid', desc: 'Place competitive bid in live window' },
-        { label: 'Watch', desc: 'Real-time outbid notifications' },
-        { label: 'Win', desc: 'Lot locked to highest compliant bidder' },
-        { label: 'Pay', desc: 'Escrow settlement & gatepass generation' },
+        { label: 'Scan', desc: 'Operator scans lot record at inspection tray' },
+        { label: 'Bid', desc: 'Verified buyers submit offers in timed window' },
+        { label: 'Watch', desc: 'Real-time outbid notifications keep bidding active' },
+        { label: 'Win', desc: 'Lot awarded to highest compliant bid' },
+        { label: 'Settle', desc: 'Disbursement triggered upon delivery clearance' },
       ],
     },
     {
       id: 'ml-pricing',
-      number: '09',
-      title: 'ML Cocoon Pricing: Algorithmic Quality Baseline',
-      subtitle: 'Supporting objective price discovery with structured quality metrics',
+      number: '07',
+      title: 'ML-assisted Cocoon Pricing: Decision Support, Not Autopilot',
+      subtitle: 'Helping center managers structure a subjective physical appraisal',
       content: [
-        'Cocoon value is determined by shell ratio, defect percentage, and expected silk yield. In the manual world, subjective visual appraisal often led to inconsistent pricing and farmer distrust.',
-        'Working with the data science team, we productized an objective evaluation workflow. By analyzing standardized sample tray images, computer vision models estimated shell ratio and detected surface defects, feeding into recommended baseline price bands that center managers reviewed.',
+        'Cocoon quality depends on physical traits: shell ratio, moisture content, and the percentage of defective or stained cocoons. Traditionally, appraisal was done purely by eye and touch, leading to arguments between farmers and buyers.',
+        'I worked with the machine learning team to productize a computer-vision-assisted grading and pricing workflow. An overhead camera on a standardized sample tray analyzed cocoon surface features to estimate defect percentage and shell ratio, suggesting an advisory price band.',
+        'Crucially, we designed this as decision support, not an unreviewable automated verdict: the on-ground centre manager always reviewed the recommendation and retained authority to adjust for local lot characteristics. This preserved operator accountability and built trust with skeptical farmers.',
       ],
       diagramType: 'workflow',
       workflowSteps: [
-        { label: 'Sample Inspection', desc: 'Standardized sample tray loaded at station' },
-        { label: 'Feature Extraction', desc: 'Overhead image captured under calibrated light' },
-        { label: 'Advisory Price Band', desc: 'Model generates recommended quality-based baseline' },
-        { label: 'Manager Sign-Off', desc: 'Center manager confirms or records override' },
-      ],
-    },
-    {
-      id: 'reshasathi',
-      number: '10',
-      title: 'ReshaSathi: Downstream Weaver Enablement',
-      subtitle: 'Securing certified raw silk yarn with guaranteed denier consistency',
-      content: [
-        'The sericulture journey did not end with raw cocoons. Reelers convert cocoons into raw silk yarn, which is then purchased by master weavers. ReshaSathi provided downstream weavers with direct access to graded, certified silk yarn with guaranteed denier consistency.',
-        'Weavers could order standardized yarn batches on demand, track delivery status, and inspect test reports, eliminating the counterfeit and adulterated yarn prevalent in secondary open markets.',
-      ],
-      highlights: [
-        {
-          title: 'Guaranteed Purity & Denier',
-          desc: 'Standardized yarn specifications backed by lab testing certificates.',
-        },
-        {
-          title: 'Direct Procurement',
-          desc: 'Eliminated multi-layered middleman markups for handloom and powerloom clusters.',
-        },
-      ],
-    },
-    {
-      id: 'tech-operating-model',
-      number: '11',
-      title: 'Technology & Operating Model',
-      subtitle: 'Assisted-first onboarding, offline-first client, and physical-digital twins',
-      content: [
-        'Rural mandi yards frequently experienced cellular blackouts. We engineered the intake and weighing client with offline queueing and offline validation receipts, reconciling automatically upon reconnection without halting auctions.',
-        'Rather than demanding rural farmers download complex apps, we placed tech-enabled ReshaMandi field executives at weigh stations. This "assisted-tech" model accelerated adoption from Day 1 while ensuring 100% data integrity.',
-      ],
-      decision: {
-        title: 'Assisted Floor Terminals vs Farmer Self-Serve Mobile App',
-        decision:
-          'Deployed ruggedized, high-contrast touch terminals operated by trained ReshaMandi personnel rather than mandating a self-serve smartphone app for farmers.',
-        why:
-          'Farmers arrived at 4:30 AM in noisy, crowded yards carrying perishable crates with wet hands and intermittent 2G connectivity. Forcing app downloads and form inputs would cause immediate transaction bottlenecks and drop-off.',
-        tradeoff:
-          'Forfeited zero-marginal-cost software distribution; required physical hardware deployment and onsite staffing at every hub.',
-        result:
-          'Achieved Day 1 floor adoption without transaction friction, eliminating digital literacy barriers for 80,000+ smallholder farmers.',
-      },
-      highlights: [
-        {
-          title: 'Offline-First Resilience',
-          desc: 'Local queueing ensured weighing and auctioning never halted during connectivity drops.',
-        },
-        {
-          title: 'Assisted-First Model',
-          desc: 'Field executives bridged the gap between physical operators and software state.',
-        },
+        { label: 'Sample Tray', desc: 'Batch sample spread evenly under calibrated lighting' },
+        { label: 'Image Assessment', desc: 'Model identifies surface defects and estimates shell ratio' },
+        { label: 'Advisory Band', desc: 'System calculates recommended price baseline' },
+        { label: 'Manager Review', desc: 'Centre operator confirms or adjusts with reason' },
       ],
     },
     {
       id: 'impact',
-      number: '12',
-      title: 'Verified Business & Ecosystem Impact',
-      subtitle: 'Real-world evidence from digitised market operations',
+      number: '08',
+      title: 'What Changed & Verified Business Impact',
+      subtitle: 'Reflecting on operational scale, trade volumes, and ecosystem adoption',
       content: [
-        'The digitisation of the sericulture marketplace delivered substantial, measurable improvements across operational reliability, transparency, and stakeholder trust:',
-        '• 80,000+ Farmers Served: Supported across rearing stages through vernacular advisory on ReshaFarms.',
-        '• ₹20–25 Cr Monthly Disbursements: Governed payout pipeline contributed to scaling volume from ₹10–15 Cr to ₹20–25 Cr per month with 99.9% payout success (<₹5L instant, >₹5L within 2 hours).',
-        '• >35% Transaction Value Uplift: Demonstrated in pilot auction bidding through transparent multi-buyer price discovery.',
-        '• High Reconciled Payout Accuracy: Automated ledger validation maintained complete audit integrity across disbursements.',
+        'The transition from informal notebook-and-chat handoffs to structured digital workflows yielded measurable operational results:',
+        '• 80,000+ Farmers Engaged: Supported across rearing stages through vernacular advisory on ReshaFarms.',
+        '• ₹20–25 Cr Monthly Disbursements: Governed payout flow helped scale volume from ₹10–15 Cr to ₹20–25 Cr per month with 99.9% payout success (<₹5L instant, >₹5L within 2 hours).',
+        '• >35% Transaction Value Uplift: Observed in pilot auction bidding through transparent multi-buyer price discovery.',
+        '• Structured Auditability: Replaced informal chats with searchable digital lot records across all active collection hubs.',
       ],
       outcomeHierarchy: [
         {
           category: 'Business Outcome',
           metric: '₹20–25 Cr/mo',
-          desc: 'Monthly disbursement volume scaled from ₹10–15 Cr to ₹20–25 Cr with Instant Payout as a core contributing intervention; >35% transaction-value uplift in pilot auctions.',
+          desc: 'Monthly disbursement volume scaled from ₹10–15 Cr to ₹20–25 Cr, with Instant Payout as a core contributing product intervention.',
         },
         {
           category: 'Operational Outcome',
           metric: '99.9%',
-          desc: 'Payout success rate (<₹5L instant, >₹5L within 2 hours) with zero unreconciled escrow losses.',
+          desc: 'Payout reliability across automated banking rails (<₹5L instant, >₹5L within 2 hours).',
         },
         {
           category: 'User Outcome',
           metric: '80,000+',
-          desc: 'Smallholder farmers supported with crop advisory and predictable, dependable digital liquidity upon weighbridge clearance.',
+          desc: 'Smallholder sericulture farmers engaged with rearing guidance and dependable same-day liquidity.',
         },
         {
-          category: 'Product Outcome',
-          metric: 'Unified Workflow',
-          desc: 'Connected physical weighbridge telemetry, center manager validation, and banking rails into one auditable state machine.',
+          category: 'Business Outcome',
+          metric: '>35%',
+          desc: 'Transaction-value uplift observed in pilot auctions through open, multi-buyer bidding.',
         },
       ],
       highlights: [
         {
           title: 'Financial Predictability',
-          desc: 'Decoupled farmers from predatory informal lenders through same-day liquidity.',
+          desc: 'Decoupled farmers from predatory informal lenders through dependable same-day liquidity.',
         },
         {
-          title: 'Traceable Supply Chain',
-          desc: 'Connected 4 tiers from cocoon rearing shed to finished handloom silk reel.',
+          title: 'Operational Backbone',
+          desc: 'Unified intake, lot verification, bidding, and banking rails into one predictable operating system.',
         },
       ],
-    },
-    {
-      id: 'reflection',
-      number: '13',
-      title: 'Reflection & Product Philosophy',
-      subtitle: 'What building physical-digital systems teaches you about technology',
-      content: [
-        'Digitising a complex marketplace isn’t about putting an offline process on a screen. It’s about deciding which parts should remain human, which deterministic, and where technology creates leverage.',
-        'When you respect the operational rhythm of the floor and solve the user’s existential friction (in this case, payment delays and arbitrary grading), technology becomes an accelerator of human trust rather than an unwelcome imposition.',
-      ],
       reflection:
-        'In hindsight, we initially relied on manual WhatsApp groups to triage edge-case connectivity timeouts on the floor before our offline queue was finalized. Designing reliable offline receipt generation into the floor client from Day 1 would have eliminated weeks of manual reconciliation between field operations and accounts.',
-      quote:
-        'The product wasn’t the app. The workflow was. Great operational products do not replace human trust with software; they use software to make human trust scalable and frictionless.',
+        'The hardest part of digitising a marketplace isn’t building the software. It’s understanding the physical system well enough to know what should change, what should stay human, and where technology can remove friction without breaking trust. The product wasn’t the app. The workflow was.',
     },
   ],
 };
@@ -721,13 +631,13 @@ export const SUBSCRIPTION_CASE_STUDY: CaseStudyDetail = {
   number: '03',
   title: 'Turning a Free Fitness App into a Subscription Business',
   subtitle:
-    'How I designed the end-to-end subscription experience: from packaging and paywalls to onboarding, value realization, conversion and retention.',
+    'We had a free fitness product. Management wanted monetization. The difficult part wasn’t simply deciding what to charge — it was figuring out what users would actually pay for without breaking the trust we had already built.',
   description:
-    'Designing the end-to-end monetization experience: from pricing and packaging to onboarding, paywalls, conversion and retention.',
+    'Designing the end-to-end monetization experience: from packaging and paywalls to onboarding, value realization, conversion, and retention.',
   thesis:
-    'Monetization is fundamentally a product problem, not just a pricing problem. The shift: from "What should we put behind the paywall?" to "What recurring value can we create that users would genuinely miss if they left?"',
+    'Monetization is fundamentally a product problem, not just a pricing problem. The shift: from "What can we put behind a paywall?" to "What recurring value will users genuinely miss if they leave?"',
   centralQuestion:
-    'How do you transition an audience accustomed to free hardware-bundled content into loyal, paying digital subscribers without eroding brand trust?',
+    'How do you transition an audience accustomed to free hardware companion software into paying digital subscribers without eroding brand trust?',
   productPhilosophy:
     'Perceived value precedes the paywall. Conversion without retention is just expensive churn.',
   category: 'Monetization, Growth & B2C SaaS',
@@ -747,44 +657,43 @@ export const SUBSCRIPTION_CASE_STUDY: CaseStudyDetail = {
   ],
   quickContext: {
     problem:
-      'The platform was originally a 100% free companion app with zero monetization infrastructure; existing hardware buyers felt entitled to perpetual free content, threatening 1-star reviews and hardware returns when paywalls were introduced.',
+      'We had a free fitness product originally built as a companion app for hardware buyers. Management needed recurring software revenue, but existing equipment buyers felt entitled to perpetual free content. Early paywall tests triggered immediate backlash, 1-star App Store reviews, and hardware return threats.',
     whyItMattered:
-      'Company leadership required predictable recurring software revenue for institutional funding milestones, but aggressive paywalls risked catastrophic churn and EU regulatory backlash.',
+      'The business needed predictable subscription revenue to justify ongoing app and content investments, but an aggressive gating strategy threatened the core hardware business and ran into strict European consumer transparency regulations.',
     myOwnership:
-      'As the first PM for monetization, I owned the end-to-end subscription journey: onboarding questionnaires, paywall triggers, pricing/packaging models, trial retention loops, and billing management UX.',
+      'As PM for monetization, I owned the subscription funnel: onboarding questions, paywall placement and triggers, packaging and pricing tests, trial countdown UX, and retention mechanics post-conversion.',
     whatChanged:
-      'Scaled from zero to 12,401 active paying subscribers generating €659K in FY25 subscription revenue, with an 81.9% YoY subscriber growth rate and 96.8% yearly-plan retention.',
+      'Shifted monetization from gating passive video workouts to charging for dynamic habit progression and accountability. Supported growing the subscription engine to 12,401 paid subscribers and €659K FY25 revenue at 81.9% YoY growth and 96.8% yearly-plan retention.',
   },
   tradeOff: {
     considered:
-      'A hard registration paywall locking the entire application upon first download, or immediately walling all existing video workouts behind a monthly charge.',
+      'Slapping a hard paywall across the app immediately on download, locking existing workouts behind a monthly paywall to force fast trial starts.',
     chose:
-      'I chose a progressive value-realization funnel: keeping core hardware pairing free, offering a transparent 7-day trial with upfront renewal countdowns, and locking advanced personalized scheduling and streak retention systems rather than passive video files.',
+      'I chose a progressive value-realization funnel: keeping hardware pairing and baseline workouts free, introducing the 7-day trial only after users experienced a personalized routine, and putting dynamic multi-week habit progression and live telemetry behind the subscription.',
     why:
-      'Hardware customers who spent hundreds of euros on connected fitness equipment felt entitled to free companion software. Hard paywalls triggered fierce customer backlash, negative App Store reviews, and hardware return threats. European consumers also demand strict billing transparency under EU regulations.',
+      'Users who bought expensive fitness equipment felt cheated when greeted by a hard paywall before even pairing their device. European consumers also demand explicit billing transparency; opaque trial traps result in chargebacks and refund disputes rather than sticky subscribers.',
     gaveUp:
-      'We gave up the artificial short-term conversion spike that aggressive hard paywalls produce in week one (which is usually wiped out by 30-day churn).',
+      'We gave up the short-term conversion spike that aggressive Day-1 hard paywalls generate, which typically collapses into heavy 30-day cancellation spikes.',
     outcome:
-      'Grew active paying subscribers from zero to 12,401 with €659K FY25 revenue, an 81.9% YoY subscriber growth, and 96.8% yearly-plan retention.',
+      'Maintained brand goodwill, kept refund disputes near zero, and supported scaling to 12,401 active paying subscribers with 96.8% yearly-plan retention.',
   },
   sections: [
     {
       id: 'starting-point',
       number: '01',
-      title: 'Context: The Shift from Free Utility to Business Engine',
-      subtitle: 'Monetizing a legacy hardware user base during funding milestones',
+      title: 'Context: The Shift from Free Utility to Recurring Revenue',
+      subtitle: 'When the business asks for subscriptions from an audience used to zero cost',
       content: [
-        'The mobile application had originally been built as a 100% free companion app for smart fitness hardware. There was no subscription infrastructure, no paywall, and no billing pipeline.',
-        'As company leadership prepared for major institutional funding rounds, establishing predictable recurring software revenue became a critical strategic mandate.',
-        'I was brought on as the first Product Manager to design and ship the end-to-end monetization experience from scratch.',
+        'The mobile application had originally been built as a free companion app for connected fitness hardware. There was no subscription infrastructure, no paywall, and no billing pipeline. If you bought hardware, the app was just the screen you used to control it.',
+        'As company leadership prepared for major institutional funding rounds, establishing predictable recurring software revenue became an urgent priority. I joined as Product Manager for subscription, monetization, and onboarding to figure out how to transition from free utility to recurring revenue without alienating our community.',
       ],
       highlights: [
         {
           title: 'Zero Pre-Existing Monetization',
-          desc: 'No billing rails, no trial logic, and an audience conditioned to believe all app content was free forever.',
+          desc: 'No billing rails, no trial logic, and an audience conditioned to believe all companion software was permanently free.',
         },
         {
-          title: 'Strategic Imperative',
+          title: 'Strategic Mandate',
           desc: 'Prove that software could generate independent recurring revenue alongside hardware sales.',
         },
       ],
@@ -792,14 +701,14 @@ export const SUBSCRIPTION_CASE_STUDY: CaseStudyDetail = {
     {
       id: 'core-tension',
       number: '02',
-      title: 'The Core Tension: Trust vs Monetization',
-      subtitle: 'Navigating hardware customer backlash and perceived value',
+      title: 'The Core Tension: Hardware Expectations vs Subscription Gating',
+      subtitle: 'Why locking video archives triggered an immediate backlash',
       content: [
-        'Introducing paywalls to an existing hardware customer base generated immediate friction:',
-        '• Existing hardware purchasers felt entitled to perpetual free software, with some even threatening hardware returns.',
-        '• Merely locking existing video workouts behind a paywall failed: content volume alone did not justify a monthly fee.',
-        '• European consumers demanded complete transparency around cancellation policies and renewal terms.',
-        '• App Store and Google Play refund policies created chargeback friction if trial terms were ambiguous.',
+        'Our earliest monetization tests were humbling. The initial instinct inside the company was simple: lock our video library behind a paywall. The reaction was swift and negative:',
+        '• Equipment buyers had just spent hundreds of euros on hardware; being blocked from workouts felt like a bait-and-switch, leading to 1-star reviews and return threats.',
+        '• Users pointed out that passive workout videos were already free on YouTube. Volume of content was not a compelling reason to pay monthly.',
+        '• Under European consumer regulations, auto-renewing trials without crystal-clear terms and effortless cancellation brought regulatory scrutiny and payment disputes.',
+        'I realized that gating existing content wouldn\'t work. We had to figure out what users would genuinely pay for on an ongoing basis.',
       ],
       decision: {
         title: 'Progressive Value Realization vs Day-1 Hard App Install Paywall',
@@ -810,7 +719,7 @@ export const SUBSCRIPTION_CASE_STUDY: CaseStudyDetail = {
         tradeoff:
           'Gave up the artificial short-term conversion spike that aggressive Day-1 hard paywalls generate (which typically leads to high 30-day churn).',
         result:
-          'Secured high customer goodwill and European consumer regulatory compliance, anchoring an 81.9% YoY subscriber growth trajectory with minimal refund disputes.',
+          'Secured customer trust and European consumer regulatory compliance, anchoring an 81.9% YoY subscriber growth trajectory with minimal refund disputes.',
       },
       highlights: [
         {
@@ -819,7 +728,7 @@ export const SUBSCRIPTION_CASE_STUDY: CaseStudyDetail = {
         },
         {
           title: 'Regulatory & App Store UX',
-          desc: 'Architected one-tap subscription management and transparent trial countdowns complying with EU consumer laws.',
+          desc: 'Designed one-tap subscription management and transparent trial countdowns complying with EU consumer laws.',
         },
       ],
     },
@@ -827,9 +736,13 @@ export const SUBSCRIPTION_CASE_STUDY: CaseStudyDetail = {
       id: 'product-journey',
       number: '03',
       title: 'The End-to-End Monetization Journey',
-      subtitle: 'From initial signup to long-term habit renewal',
+      subtitle: 'From initial onboarding to habit formation and renewal',
       content: [
-        'Rather than slamming users with an immediate paywall at account creation, we designed a progressive value-realization funnel:',
+        'Rather than forcing an immediate paywall at account creation, we designed a progressive onboarding flow:',
+        '1. Intent & Equipment Assessment: Asking users about their fitness goals and what hardware they had at home.',
+        '2. Instant First Plan: Generating a customized weekly training schedule before asking for payment details.',
+        '3. Transparent 7-Day Trial: Clearly showing billing dates, pricing tiers, and a prominent reminder countdown.',
+        '4. Habit Anchor: Guiding the user to complete their first 3 workouts within week one.',
       ],
       diagramType: 'funnel',
       workflowSteps: [
@@ -849,11 +762,12 @@ export const SUBSCRIPTION_CASE_STUDY: CaseStudyDetail = {
       title: 'The Strategic Shift: Recurring Value Over Content Walls',
       subtitle: 'Moving from "What can we gate?" to "What will users genuinely miss?"',
       content: [
-        'Early experimentation taught us that paywalls don’t create value. They only capture it. If the product didn’t build daily active habits during the 7-day trial, users cancelled before the first charge.',
-        'We overhauled the post-paywall experience around three retention engines:',
+        'Early experimentation taught us that paywalls don’t create value; they only capture it. If the product didn’t build daily active habits during the 7-day trial, users cancelled before the first charge.',
+        'We overhauled the post-paywall experience around three retention pillars:',
         '1. Adaptive Scheduling: Workouts automatically shortened if the user logged late in the evening.',
         '2. Cross-Device Connectivity: Syncing with heart rate monitors and Smart Gym hardware to show live effort telemetry.',
-        '3. Proactive Milestone Nudges: In-app celebrations at Workout #3 and Workout #5, the critical threshold where cohort retention stabilized.',
+        '3. Habit Milestones: Celebrating Workout #3 and Workout #5, the critical threshold where cohort retention stabilized.',
+        'We also discovered a distinct renewal churn pattern: when users who received a bundled 12-month hardware subscription reached their anniversary, their motivation had often changed. Retaining them required proactive value recaps showing total sweat equity and personal progress.',
       ],
       decision: {
         title: 'Gating Dynamic Habit Adaptation vs Locking Video Archives',
@@ -883,7 +797,7 @@ export const SUBSCRIPTION_CASE_STUDY: CaseStudyDetail = {
       title: 'Verified Business Outcomes (FY2025)',
       subtitle: 'Company-level performance during the product ownership period',
       content: [
-        'During the period of my product leadership across monetization, onboarding, and subscription funnels, the platform achieved substantial business milestones:',
+        'During the period of my product ownership across monetization, onboarding, and subscription funnels, the platform achieved substantial business milestones:',
         '• 12,401 Paid Subscribers: Active paying subscriber base established from zero.',
         '• €659K FY2025 Subscription Revenue: High-margin recurring software revenue stream.',
         '• 81.9% Year-over-Year Subscriber Growth: Sustained customer acquisition and funnel optimization.',
@@ -931,42 +845,42 @@ export const PERFORMANCE_SCORE_CASE_STUDY: CaseStudyDetail = {
   number: '04',
   title: 'One Body. One Score. One Ecosystem.',
   subtitle:
-    'Designed one progress system across a fragmented connected-fitness ecosystem.',
+    'This wasn’t a feature I shipped. It was the product architecture I believed we needed to build.',
   description:
-    'Designed one progress system across a fragmented connected-fitness ecosystem.',
+    'A development-ready product strategy and cross-platform PRD uniting a fragmented connected-fitness ecosystem under a single progress model.',
   thesis:
     'Before promising users one measure of progress, we needed to make the ecosystem behave like one product.',
   centralQuestion:
-    'How do you unite fragmented hardware telemetry and siloed databases into a single, cohesive metric of athletic reliability without gating users behind expensive sensors?',
+    'How do you unite fragmented hardware telemetry and siloed databases into a single, cohesive metric of progress without gating users behind expensive sensors?',
   productPhilosophy:
-    'Hardware should be an aspiration, not a gate. Data fragmentation must be resolved at the architecture level before designing the UI.',
+    'Hardware should be an aspiration, not a gate. Data fragmentation must be resolved at the schema and architecture level before designing the interface.',
   category: 'Product Strategy & Connected Ecosystems',
   role: 'Senior Product Manager · Connected Ecosystem Strategy',
-  timeline: '2025 (Product Strategy & PRD)',
-  tags: ['Product Strategy', 'Connected Products', 'Data', '0→1'],
+  timeline: '2025 (Product Strategy & Development-Ready PRD)',
+  tags: ['Product Strategy', 'Connected Products', 'Data', 'PRD', '0→1'],
   proofPoints: [
-    'Strategy / PRD',
+    'Strategy / PRD (Unlaunched)',
     '5 surfaces',
     'iOS · Android · Display · Smart Gym · Firmware',
   ],
   isStrategyOnly: true,
   statusNotice:
-    'Note: This initiative represents a product strategy, systems architecture, and comprehensive PRD. It is presented here as a product strategy and systems-thinking case study, not a launched feature, without post-launch adoption or revenue impact claims.',
+    'Status: This initiative represents a development-ready product strategy, systems architecture, and comprehensive PRD. It was not launched to market, and is presented here as an architectural and systems-thinking case study with zero post-launch adoption or revenue claims.',
   keyStats: [
-    { label: 'Surfaces', value: '5 Surfaces', detail: 'iOS, Android, Display, Smart Gym, Firmware' },
-    { label: 'Migration Architecture', value: '3-Phase', detail: 'Phase 1 — Dual-write, Phase 2 — Unified read, Phase 3 — Decommission' },
-    { label: 'System Model', value: 'One Shared Model', detail: 'One shared product + data contract across ecosystem' },
-    { label: 'Deliverable', value: 'Strategy & PRD', detail: 'Comprehensive cross-platform systems architecture' },
+    { label: 'Status', value: 'PRD Ready', detail: 'Development-ready specification; unlaunched' },
+    { label: 'Surfaces Mapped', value: '5 Surfaces', detail: 'iOS, Android, Display, Smart Gym, Firmware' },
+    { label: 'Migration Architecture', value: '3-Phase', detail: 'Dual-write → Unified read → Decommission' },
+    { label: 'Scoring Model', value: 'Hardware Agnostic', detail: 'Tier 1 RPE fallback through Tier 3 wearable HRV' },
   ],
   quickContext: {
     problem:
-      'Activity telemetry across mobile apps, Smart Gym machines, and cardio displays lived in isolated databases, creating fragmented metrics (reps, calories, heart rate) that caused user data fatigue without showing genuine progress.',
+      'The more data we gave users, the harder it became to understand whether they were actually progressing. Activity telemetry across mobile apps, Smart Gym strength machines, and cardio displays lived in isolated databases, creating fragmented numbers (reps, calories, heart rate) that caused data fatigue without showing genuine athletic momentum.',
     whyItMattered:
-      'Users had no singular answer to "Am I getting fitter or burning out?", while engineering teams faced mounting technical debt supporting siloed hardware endpoints.',
+      'Users had no singular answer to "Am I getting fitter or burning out?", while engineering teams faced mounting technical debt supporting siloed hardware endpoints and disparate database schemas.',
     myOwnership:
-      'I authored the comprehensive cross-platform PRD, specified the 0–100 Athletic Reliability scoring algorithm, and designed the 3-phase data migration strategy across 5 engineering surfaces.',
+      'This wasn’t a feature I shipped; it was the product architecture I believed we needed to build. I authored the cross-platform PRD, specified the 0–100 Athletic Reliability scoring algorithm, and designed the 3-phase data migration strategy across 5 engineering surfaces.',
     whatChanged:
-      'Delivered an executive-aligned systems architecture uniting mobile, display, Smart Gym, and firmware under a unified data contract—without requiring users to buy expensive hardware.',
+      'Delivered an executive-aligned, development-ready systems architecture uniting mobile, display, Smart Gym, and firmware under one data contract—ensuring progress tracking worked with or without expensive hardware.',
   },
   tradeOff: {
     considered:
@@ -976,21 +890,20 @@ export const PERFORMANCE_SCORE_CASE_STUDY: CaseStudyDetail = {
     why:
       'Over 80% of the mobile user base did not own hardware; locking the flagship score behind equipment would have alienated the vast majority of our community. A big-bang database overhaul carried unacceptable risk of live session sync failures across thousands of concurrent workouts.',
     gaveUp:
-      'We gave up a simpler, single-path algorithm and faster engineering delivery, having to build 3 parallel scoring pipelines and support dual data ingestion contracts.',
+      'We gave up a simpler, single-path algorithm and faster initial delivery, accepting the need to build 3 parallel scoring pipelines and support dual data ingestion contracts during migration.',
     outcome:
-      'Delivered a comprehensive cross-platform PRD aligned across 5 engineering surfaces (iOS, Android, Display, Smart Gym, Firmware) with zero data-loss risk.',
+      'Delivered a comprehensive, development-ready cross-platform PRD aligned across 5 engineering surfaces (iOS, Android, Display, Smart Gym, Firmware) with zero live workout sync risk.',
   },
   sections: [
     {
       id: 'the-problem',
       number: '01',
-      title: 'Context: The Fragmented User Experience',
-      subtitle: 'Three structural flaws undermining ecosystem engagement',
+      title: 'Context: The More Data We Gave, The Less Users Understood',
+      subtitle: 'Why adding more sensors and numbers created confusion instead of clarity',
       content: [
-        'The platform offered mobile applications (iOS/Android), embedded touchscreen displays on cardio equipment, connected Smart Gym strength machines, and optional Bluetooth heart-rate sensors. However, the user experience was fractured:',
-        '1. Progress Was Invisible: A workout on the treadmill didn’t speak to strength sets logged on the Smart Gym, leaving users with no unified sense of overall progress.',
-        '2. Data Fatigue Rather Than Insight: The apps displayed raw heart rate graphs, reps, and calories burned: numbers that overwhelmed casual users without delivering actionable guidance.',
-        '3. Siloed Hardware & Mobile Databases: Workout records lived in isolated database tables, causing sync discrepancies and user frustration.',
+        'The platform offered mobile applications (iOS/Android), embedded touchscreen displays on cardio equipment, connected Smart Gym strength machines, and optional Bluetooth heart-rate sensors. Yet as we added more connected touchpoints, a frustrating paradox emerged:',
+        'The more data we gave users, the harder it became to understand whether they were actually progressing.',
+        'A user would run on a treadmill, log a strength set on the Smart Gym, and track a walk with an Apple Watch. At the end of the day, they were greeted by separate graphs for heart rate, reps, wattage, and calories burned across disconnected screens. There was no single answer to the only question that mattered: "Am I getting fitter, maintaining, or burning out?"',
       ],
       highlights: [
         {
@@ -998,23 +911,22 @@ export const PERFORMANCE_SCORE_CASE_STUDY: CaseStudyDetail = {
           desc: 'Mobile app, Smart Gym hardware, and cardio displays each operated with separate session logging logic.',
         },
         {
-          title: 'The Strategic Mandate',
-          desc: 'Unify the entire platform under one comprehensive product strategy and a singular metric of progress.',
+          title: 'Data Fatigue vs Clarity',
+          desc: 'Raw metrics without context left casual and intermediate users feeling overwhelmed and uncertain.',
         },
       ],
     },
     {
       id: 'the-vision',
       number: '02',
-      title: 'The Product Vision: One Score, One Activity Feed, One Ecosystem',
-      subtitle: 'Introducing the 0–100 Athletic Reliability Metric',
+      title: 'The Core Concept: One Body. One Score. One Ecosystem.',
+      subtitle: 'Designing a single progress model that adapts to the human body',
       content: [
-        'I designed and specified the Performance Score: a normalized 0–100 index measuring Athletic Reliability. Working closely with sports scientists and engineering leads, I established the scoring formula weighing three balanced pillars: Consistency, Strain Management, and Recovery Adherence.',
-        'The score anchored a redesigned "My Activity" ecosystem spanning mobile and equipment touchscreens:',
-        '• Longitudinal Trends & Weekly Comparisons.',
-        '• Streak Health & Consistency Tracking.',
-        '• AI-Assisted Narrative Insights explaining score shifts in plain English.',
-        '• Activity Timeline with 1-Tap "Repeat Workout" shortcuts.',
+        'The human body doesn\'t compartmentalize cardio strain and muscular fatigue into separate silos. When you do a heavy leg workout in the morning and a sprint session in the evening, your central nervous system absorbs the cumulative load.',
+        'I designed the Performance Score around three foundational principles:',
+        '1. A Single Progress Model: A normalized 0–100 index measuring Athletic Reliability across three balanced pillars: Consistency, Strain Management, and Recovery Adherence.',
+        '2. Contextualization Matters: A high heart rate during a HIIT session is productive strain; an elevated resting heart rate on a rest day is a sign of under-recovery. The score interprets the context of exertion rather than rewarding raw volume.',
+        '3. Never Punish Inactivity: Traditional fitness streaks treat a rest day like a moral failure, resetting counters to zero. In athletic training, deliberate rest is when muscular adaptation occurs. We designed the recovery pillar so that taking a scheduled rest day preserves or boosts your score.',
       ],
       highlights: [
         {
@@ -1022,8 +934,8 @@ export const PERFORMANCE_SCORE_CASE_STUDY: CaseStudyDetail = {
           desc: 'A single, understandable number reflecting overall physical momentum and recovery balance.',
         },
         {
-          title: 'Unified Wellness Dashboard',
-          desc: 'Merged strength sets, cardio sessions, and wearable heart rate data into one clean timeline.',
+          title: 'Rest as a Feature',
+          desc: 'Preventing burnout by rewarding planned recovery rather than penalizing missed workout streaks.',
         },
       ],
     },
@@ -1031,9 +943,13 @@ export const PERFORMANCE_SCORE_CASE_STUDY: CaseStudyDetail = {
       id: 'architecture',
       number: '03',
       title: 'Technical Foundation: The 3-Phase Data Migration Strategy',
-      subtitle: 'Fixing underlying data fragmentation with a 3-phase migration before launching front-end experiences',
+      subtitle: 'Fixing underlying data fragmentation with a 3-phase migration before touching the UI',
       content: [
-        'A user-facing metric is only as credible as the data pipeline underneath. In the PRD, I authored a phased data migration strategy alongside our backend architect to unify fragmented backend systems without breaking active customer sessions:',
+        'A user-facing metric is only as credible as the data pipeline underneath. Workout records across mobile and Smart Gym machines lived in separate database tables with conflicting timestamp formats and session definitions.',
+        'In the PRD, I authored a 3-phase data migration strategy alongside our backend architect to unify these systems without risking live session drops:',
+        '• Phase 1 (Dual-Write): Workout events write simultaneously to legacy tables and the new unified activity service, running shadow validation to verify parity.',
+        '• Phase 2 (Unified Read): Switch mobile and display clients to read from the unified activity service once data parity is confirmed.',
+        '• Phase 3 (Decommission): Gracefully sunset legacy endpoints and archive obsolete schema tables.',
       ],
       decision: {
         title: '3-Phase Data Migration vs Single Big-Bang Cutover',
@@ -1061,9 +977,9 @@ export const PERFORMANCE_SCORE_CASE_STUDY: CaseStudyDetail = {
       content: [
         'A critical product principle governed this strategy: hardware should be an aspiration, not a gate. Users who did not own expensive hardware still deserved a first-class progress tracking experience.',
         'We engineered three progressive telemetry tiers:',
-        '• Tier 1 (No Hardware Fallback): Calculates score based on session duration, RPE (Rate of Perceived Exertion), and workout consistency.',
+        '• Tier 1 (No Hardware Fallback): Calculates score based on session duration, RPE (Rate of Perceived Exertion), and workout consistency. 100% of app users get a functioning score.',
         '• Tier 2 (sPulse HR-Enhanced): Integrates live heart-rate zone distribution and real-time cardiovascular strain calculations.',
-        '• Tier 3 (Tracker / Ring Bio-Centric): Seamlessly incorporates sleep duration, resting heart rate, and overnight HRV recovery metrics.',
+        '• Tier 3 (Smart Gym & Wearable Bio-Centric): Seamlessly incorporates motor resistance telemetry from the Smart Gym, alongside sleep duration, resting heart rate, and overnight HRV recovery.',
       ],
       decision: {
         title: 'Hardware-Agnostic Software Tier vs Sensor-Exclusivity Gating',
@@ -1082,47 +998,47 @@ export const PERFORMANCE_SCORE_CASE_STUDY: CaseStudyDetail = {
           desc: '100% of mobile users receive a functioning Performance Score, regardless of hardware ownership.',
         },
         {
-          title: 'Hardware Upsell Hook',
-          desc: 'Sensors unlock granular bio-feedback, creating natural organic upsell pull for hardware products.',
+          title: 'Smart Gym Integration',
+          desc: 'Connected motor resistance and rep tempo feed into the same strain model as cardio workouts.',
         },
       ],
     },
     {
       id: 'prds-and-status',
       number: '05',
-      title: 'Strategy Deliverables & Engineering Readiness',
-      subtitle: 'A development-ready blueprint across 5 engineering surfaces',
+      title: 'Strategy Deliverables & Development Readiness',
+      subtitle: 'Why this PRD was development-ready even if unlaunched',
       content: [
-        'The final deliverable was a comprehensive, development-ready Product Requirements Document (PRD) encompassing front-end specifications for iOS, Android, and equipment touchscreen displays, along with backend data schema contracts and firmware BLE synchronization protocols.',
-        'By resolving architectural ambiguity and aligning executive leadership around a cohesive user vision, the initiative prepared the organization to execute a unified ecosystem roadmap.',
+        'The deliverable was a comprehensive, development-ready Product Requirements Document (PRD) encompassing front-end specifications for iOS, Android, and equipment touchscreen displays, backend schema contracts, and BLE synchronization protocols.',
+        'Although organizational roadmap reprioritization meant this feature was not ultimately built and shipped to users, the work resolved fundamental architectural ambiguity across our 5 engineering surfaces. It demonstrated how to unify fragmented hardware lines under a coherent, empathetic customer experience.',
       ],
       outcomeHierarchy: [
         {
-          category: 'Product Outcome',
+          category: 'Operational Outcome',
           metric: '5 Surfaces',
           desc: 'Unified mobile (iOS/Android), embedded cardio displays, Smart Gym strength machines, and firmware under one Athletic Reliability schema.',
         },
         {
-          category: 'User Outcome',
+          category: 'Product Outcome',
           metric: '0–100 Index',
-          desc: 'Replaced fragmented rep/calorie numbers with a single, intuitive progress index accessible with or without hardware.',
+          desc: 'Modelled progress index accessible with or without hardware, designed never to punish healthy rest days.',
         },
         {
           category: 'Operational Outcome',
-          metric: 'Systems Blueprint',
-          desc: 'Delivered cross-platform PRD, schema contracts, and idempotent data migration path with zero live workout sync risk.',
+          metric: '3-Phase Path',
+          desc: 'Development-ready schema contracts and idempotent dual-write migration path with zero live workout sync risk.',
         },
       ],
       reflection:
-        'In early drafting, we debated incorporating nutrition and water tracking into the recovery pillar. During technical scoping with engineering, I decided to prune nutrition entirely to avoid self-reporting bias and prevent bloating the MVP schema, keeping the index strictly anchored in verifiable physical exertion and resting recovery.',
+        'This project taught me that the hardest part of product leadership in connected hardware is discipline: resisting the urge to show users every data point the sensors can capture. Great product architecture is about turning overwhelming sensor feeds into a single, humane insight that helps someone make a better decision today.',
       highlights: [
         {
           title: 'Systems-Thinking Focus',
           desc: 'Demonstrates deep PM capability in cross-platform systems design, hardware-software integration, and technical roadmapping.',
         },
         {
-          title: 'Non-Launched Discipline',
-          desc: 'Maintained strictly as a product strategy artifact; zero false claims of post-launch metrics or market adoption.',
+          title: 'Unlaunched Discipline',
+          desc: 'Maintained strictly as a product strategy artifact; zero false claims of post-launch adoption or market revenue.',
         },
       ],
     },
@@ -1138,15 +1054,15 @@ export const AI_LOCALIZATION_CASE_STUDY: CaseStudyDetail = {
   number: '05',
   title: 'Scaling Content Localization with AI',
   subtitle:
-    'How I redesigned a 3–4 month traditional video-production workflow into an AI-assisted localization pipeline across three European languages.',
+    'We had a content localization problem. Traditional production took months. The question was whether AI could remove enough of that production bottleneck without lowering the quality bar.',
   description:
     'Redesigning a traditional video-production workflow into an AI-assisted localization pipeline across three European languages.',
   thesis:
-    'The achievement was not simply translating videos faster. It was creating a repeatable operating model for cross-border expansion.',
+    'The achievement was not simply translating videos faster. It was creating a repeatable operating model for cross-border expansion without lowering the coaching bar.',
   centralQuestion:
-    'How do you expand a media-heavy consumer product into foreign European markets without incurring multi-month studio filming costs?',
+    'How do you expand a media-heavy consumer product into foreign European markets without incurring multi-month studio filming costs or mangling coaching cues?',
   productPhilosophy:
-    'Technology creates leverage when it reorganizes the operating model. AI models are components; the human review loop ensures brand integrity.',
+    'Technology creates leverage when it reorganizes the operating model. AI models provide throughput; domain-specific human review preserves brand integrity.',
   category: 'AI Operations & European Expansion',
   role: 'Senior Product Manager · AI Workflow & Content Pipeline',
   timeline: 'Oct 2024 – May 2026',
@@ -1160,13 +1076,13 @@ export const AI_LOCALIZATION_CASE_STUDY: CaseStudyDetail = {
   ],
   quickContext: {
     problem:
-      'Expanding into Italy, France, and Spain required 200+ native workout videos, but traditional European studio filming took 3–4 months and heavy capital expenditure for just 20 videos, stalling go-to-market deadlines.',
+      'We had a content localization problem. Traditional studio production took months: scouting local fitness trainers, renting sound stages in Europe, and reshooting workouts from scratch took 3–4 months just for 20 videos. The question was whether AI could remove enough of that production bottleneck without lowering our coaching and biomechanical quality bar.',
     whyItMattered:
-      'Multi-month studio bottlenecks delayed European subscriber acquisition, while unconstrained machine translations mangled colloquial gym cues, threatening trainer credibility.',
+      'Our international launch dates were locked, but we could not afford either the 12+ month timeline of physical studio production or the reputational risk of unvetted machine translations delivering confusing or unsafe exercise instructions.',
     myOwnership:
-      'I evaluated and selected commercial AI tooling, redesigned the operational workflow, established standardized fitness coaching terminology, and managed the end-to-end multi-language rollout.',
+      'I evaluated and benchmarked generative tools (HeyGen, ElevenLabs), designed the new human-in-the-loop operating model, structured pilot test batches, and established standardized multi-language fitness glossaries.',
     whatChanged:
-      'Shipped 200+ high-production workout videos across Italian, French, and Spanish in ~3 weeks (~10× faster than studio benchmarks) with 0 translation complaints or brand issues.',
+      'Shipped 200+ high-production workout videos across Italian, French, and Spanish in roughly 3 weeks (~10× faster than studio benchmarks), creating a repeatable operational blueprint for rapid market expansion.',
   },
   tradeOff: {
     considered:
@@ -1176,9 +1092,9 @@ export const AI_LOCALIZATION_CASE_STUDY: CaseStudyDetail = {
     why:
       'Fitness instruction relies on nuanced colloquial encouragement and strict anatomical cues. Machine translations regularly generated comical, awkward, or physiologically unsafe instructions ("break your knees" instead of "soft bend in the knees"). Traditional studio filming was too slow (3–4 months) and too expensive.',
     gaveUp:
-      'We gave up the illusion of instantaneous zero-cost software publishing; every video required scheduling human reviewers.',
+      'We gave up the illusion of instantaneous zero-touch software publishing; every video required scheduling and compensating human reviewers.',
     outcome:
-      'Successfully localized 200+ high-production videos across Italian, French, and Spanish in ~3 weeks (~10× faster than studio benchmarks) with 0 brand reputation or translation complaints.',
+      'Successfully localized 200+ high-production videos across Italian, French, and Spanish in ~3 weeks (~10× faster than studio benchmarks) while keeping coaching quality consistent across markets.',
   },
   sections: [
     {
@@ -1189,7 +1105,7 @@ export const AI_LOCALIZATION_CASE_STUDY: CaseStudyDetail = {
       content: [
         'To drive European subscriber acquisition, the platform needed native-language workout content for Italy, France, and Spain. However, traditional studio production was cost-prohibitive and painfully slow.',
         'Producing just 20 workout videos in a single foreign language historically required 3 to 4 months of studio time: casting native-speaking fitness trainers, booking European studio space, filming, editing, color grading, and dubbing.',
-        'To localize a 200+ video library across three languages, traditional production would have cost hundreds of thousands of euros and taken over a year. I was tasked with designing an AI-assisted operating model that could deliver equivalent quality in a fraction of the time.',
+        'To localize a 200+ video library across three languages, traditional production would have cost hundreds of thousands of euros and taken over a year. The question was whether AI could remove enough of that bottleneck without lowering the coaching bar.',
       ],
       highlights: [
         {
@@ -1205,16 +1121,16 @@ export const AI_LOCALIZATION_CASE_STUDY: CaseStudyDetail = {
     {
       id: 'tool-evaluation',
       number: '02',
-      title: 'Tool Evaluation & Model Selection Dimensions',
-      subtitle: 'Rigorous benchmarking of HeyGen, ElevenLabs, and custom dubbing pipelines',
+      title: 'Tool Evaluation & Model Benchmarking',
+      subtitle: 'Testing HeyGen, ElevenLabs, and translation quality in real pilot batches',
       content: [
-        'I benchmarked leading generative video and voice synthesis technologies across six objective product dimensions alongside our production team:',
-        '• Lip-Sync Naturalness: Did mouth movements accurately match translated phonemes without uncanny-valley distortions?',
-        '• Voice Timbre & Trainer Authenticity: Did the synthetic voice preserve the trainer’s original energetic motivational cadence?',
-        '• Idiomatic Language Quality: Did the translation sound like natural gym coaching rather than robotic literal translations?',
-        '• Production Processing Speed: Batch processing throughput for 30-minute workout videos.',
-        '• Human Review Effort: How much manual editing was required per localized video?',
-        '• Scalability & Cost: Licensing and GPU render costs per minute of finished footage.',
+        'We didn’t jump straight into bulk production. We ran controlled pilot batches of 5 to 10 videos to stress-test leading commercial tools across six core dimensions:',
+        '• Vocal Cadence & Emotion (ElevenLabs): Did the synthetic voice maintain the trainer’s motivating energy and tempo during high-intensity intervals?',
+        '• Lip-Sync Naturalness (HeyGen): Did the mouth rendering hold up on 4K fitness displays without distracting uncanny-valley artifacts?',
+        '• Idiomatic Biomechanical Cues: Did the model translate fitness idioms correctly, or did it produce awkward literal phrases?',
+        '• Batch Processing Velocity: How fast could the API render 30-minute high-resolution workouts during queue spikes?',
+        '• Review Cycle Overhead: How many edits did a native speaker have to make per video?',
+        '• Unit Economics: Evaluating render cost per finished minute versus studio filming day-rates.',
       ],
       decision: {
         title: 'Commercial Best-of-Breed Tool Orchestration vs Custom In-House ML',
@@ -1233,8 +1149,8 @@ export const AI_LOCALIZATION_CASE_STUDY: CaseStudyDetail = {
           desc: 'Combined ElevenLabs for dynamic voice cloning and emotional cadence with HeyGen for realistic lip-sync rendering.',
         },
         {
-          title: 'Not Building Models: Orchestrating Leverage',
-          desc: 'Disciplined PM focus on selecting, integrating, and evaluating commercial tools rather than reinventing underlying ML.',
+          title: 'Pilot-First Validation',
+          desc: 'Tested small batches of 5–10 videos first to catch edge-case artifacts before committing to the full 200+ library.',
         },
       ],
     },
@@ -1244,7 +1160,7 @@ export const AI_LOCALIZATION_CASE_STUDY: CaseStudyDetail = {
       title: 'The Operating Model Transformation',
       subtitle: 'Old studio filming vs new AI-assisted localization pipeline',
       content: [
-        "The true innovation wasn't the generative algorithms. It was the restructured operational workflow connecting automated synthesis with human quality control.",
+        "The real leverage wasn't the generative algorithms alone. It was the restructured operational workflow connecting automated synthesis with human quality gates.",
       ],
       diagramType: 'comparison',
       comparison: {
@@ -1275,10 +1191,11 @@ export const AI_LOCALIZATION_CASE_STUDY: CaseStudyDetail = {
       id: 'human-in-the-loop',
       number: '04',
       title: 'Human-in-the-Loop Quality Governance',
-      subtitle: 'Why pure automation fails in high-energy fitness instruction',
+      subtitle: 'Why critical human review was essential for coaching cues and idioms',
       content: [
-        'Fitness coaching relies heavily on colloquial idioms, motivational cadence, and exact anatomical cues (e.g., "engage your core", "hinge at the hips"). Direct machine translations frequently botched these phrases with comical or confusing results.',
-        'I built a strict human-in-the-loop governance protocol: native-speaking fitness reviewers conducted a focused verification pass per video, correcting script anomalies and ensuring the synthetic trainer sounded authentic and motivating.',
+        'Fitness coaching relies heavily on colloquial cues, motivational rhythm, and exact anatomical instructions (e.g., "engage your core", "hinge at the hips"). Direct machine translations frequently failed on these phrases with comical or risky results.',
+        'For example, a common cue like "soft bend in the knees" was initially translated literally as "break your knees" — an alarming instruction for someone holding heavy dumbbells. Other times, motivational cues like "dig deep" became nonsensical literal excavations.',
+        'I instituted a strict human-in-the-loop governance protocol: native-speaking fitness reviewers conducted a focused verification pass per video against a standardized 500-term fitness glossary, ensuring the trainer sounded authentic, safe, and motivating.',
       ],
       decision: {
         title: 'Mandatory Native-Speaker Review Gate vs Zero-Touch Publishing',
@@ -1289,7 +1206,7 @@ export const AI_LOCALIZATION_CASE_STUDY: CaseStudyDetail = {
         tradeoff:
           'Gave up the vanity pitch of zero-touch automated publishing; required scheduling and compensating native fitness reviewers.',
         result:
-          'Maintained 100% brand safety with zero customer translation complaints across 200+ released workout videos.',
+          'Maintained high coaching quality and brand safety across 200+ released workout videos in Italian, French, and Spanish.',
       },
       highlights: [
         {
@@ -1297,8 +1214,8 @@ export const AI_LOCALIZATION_CASE_STUDY: CaseStudyDetail = {
           desc: 'Established standardized domain terminology for fitness coaching cues across Italian, French, and Spanish.',
         },
         {
-          title: 'Zero Brand Damage',
-          desc: 'Prevented awkward translated cues from entering the public catalog, protecting trainer brand integrity.',
+          title: 'Protecting Coach Authenticity',
+          desc: 'Ensured translated workouts preserved the trainer’s true voice, style, and physiological clarity.',
         },
       ],
     },
@@ -1311,7 +1228,7 @@ export const AI_LOCALIZATION_CASE_STUDY: CaseStudyDetail = {
         'The AI localization pipeline delivered transformative operational leverage:',
         '• 200+ Videos Localized: Shipped a complete, robust workout library across Italian, French, and Spanish.',
         '• ~3-Week Execution Window: Shrunk a project that would have taken over 12 months into under a month.',
-        '• ~10× Production Acceleration: Reduced time-to-market by a full order of magnitude.',
+        '• ~10× Production Acceleration: Reduced time-to-market by an order of magnitude compared to studio filming.',
         '• Repeatable Operating Blueprint: Established a scalable playbook the company can re-use for future geographic expansion.',
       ],
       outcomeHierarchy: [
@@ -1326,8 +1243,8 @@ export const AI_LOCALIZATION_CASE_STUDY: CaseStudyDetail = {
           desc: 'Enabled synchronized go-to-market catalog launch across Italy, France, and Spain at minimal capital expense.',
         },
         {
-          category: 'User Outcome',
-          metric: '0 Complaints',
+          category: 'Product Outcome',
+          metric: 'Coaching Parity',
           desc: 'Native-language workout experiences preserving original trainer vocal enthusiasm and accurate biomechanical cues.',
         },
       ],

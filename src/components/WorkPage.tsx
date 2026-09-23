@@ -58,7 +58,7 @@ export default function WorkPage({
       case "ai-coach":
         return {
           h3: "Sportstech AI Coach",
-          desc: "Took an ambiguous AI opportunity to production in three months, scaling from ~300 to 3,200+ DAU behind hard safety guardrails with zero reported safety incidents or medical escalations during the observed launch period.",
+          desc: "Took an ambiguous conversational AI opportunity to production in 3 months, scaling to 3,200+ DAU behind strict clinical safety guardrails.",
           figure: "3,200+",
           qual: "daily actives, up from ~300",
           imagePrefix: "/images/ai-coach-hero",
@@ -74,9 +74,9 @@ export default function WorkPage({
       case "performance-score":
         return {
           h3: "Performance Score",
-          desc: "Designed one progress system across a fragmented connected-fitness ecosystem.",
+          desc: "Unlaunched product strategy and development-ready PRD: unifying 5 fragmented surfaces into one shared fitness recovery engine.",
           figure: "5 surfaces",
-          qual: "one shared product and data model",
+          qual: "unlaunched PRD & system design",
           imagePrefix: "/images/performance-score-hero",
         };
       case "ai-localization":

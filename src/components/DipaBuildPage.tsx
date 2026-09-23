@@ -284,6 +284,65 @@ export default function DipaBuildPage({ onNavigate }: DipaBuildPageProps) {
           </div>
         </section>
 
+        {/* SECTION 6: TECHNICAL CHOICES & TRADE-OFFS */}
+        <section className="mb-14 pb-12 border-b border-[#042718]/10">
+          <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-[#A8711A] block mb-2">
+            06 · Technical Choices &amp; Trade-offs
+          </span>
+          <h2 className="font-onest text-2xl sm:text-3xl font-bold text-[#042718] tracking-tight mb-4">
+            Why in-memory, why Gemini, and why the golden evaluation set
+          </h2>
+          <div className="space-y-4 font-inter text-[15px] sm:text-base text-[#042718]/75 leading-relaxed">
+            <div className="p-5 rounded-[18px] bg-white border border-[#042718]/8">
+              <h3 className="font-onest text-base font-bold text-[#042718] mb-1">
+                Why In-Memory CPU Dot-Product vs Pinecone or pgvector?
+              </h3>
+              <p className="text-xs sm:text-sm text-[#042718]/75 leading-relaxed">
+                For a curated portfolio knowledge base of 32 chunks, running external vector database infrastructure (Pinecone, Weaviate, or pgvector) adds monthly costs, network hops (50–150ms latency), and external failure modes. A client-side or serverless in-memory cosine dot-product across 32 512-dimensional vectors executes in &lt;1 millisecond with zero cold-start overhead.
+              </p>
+            </div>
+
+            <div className="p-5 rounded-[18px] bg-white border border-[#042718]/8">
+              <h3 className="font-onest text-base font-bold text-[#042718] mb-1">
+                Why Gemini 3.1 Flash-Lite &amp; Embedding-2-Preview?
+              </h3>
+              <p className="text-xs sm:text-sm text-[#042718]/75 leading-relaxed">
+                Flash-Lite provides sub-second time-to-first-token while adhering strictly to negative system prompts (&ldquo;If the retrieved chunks do not contain the answer, say you do not know&rdquo;). Embedding-2-preview at 512 dimensions strikes the ideal balance between semantic nuance and compact payload size (~65KB for the entire precomputed index).
+              </p>
+            </div>
+
+            <div className="p-5 rounded-[18px] bg-white border border-[#042718]/8">
+              <h3 className="font-onest text-base font-bold text-[#042718] mb-1">
+                Why a Golden Evaluation Set?
+              </h3>
+              <p className="text-xs sm:text-sm text-[#042718]/75 leading-relaxed">
+                You cannot improve what you cannot benchmark. I created a 15-question golden test suite spanning career metrics, unlaunched project boundaries, and technical architecture questions to verify precision, recall, and strict adherence to refusal thresholds before shipping updates.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION 7: WHAT WORKED, WHAT BROKE & WHAT COMES NEXT */}
+        <section className="mb-14 pb-12 border-b border-[#042718]/10">
+          <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-[#A8711A] block mb-2">
+            07 · Reality Check
+          </span>
+          <h2 className="font-onest text-2xl sm:text-3xl font-bold text-[#042718] tracking-tight mb-4">
+            What worked, what broke, and what comes next
+          </h2>
+          <div className="space-y-4 font-inter text-[15px] sm:text-base text-[#042718]/75 leading-relaxed">
+            <p>
+              <strong>What worked:</strong> Grounding queries against verified case study chunks completely eliminated fabricated dates, inflated metrics, and inaccurate role attributions. Direct citation links give recruiters instant one-click proof.
+            </p>
+            <p>
+              <strong>What broke in early builds:</strong> Our initial chunking strategy sliced case studies by arbitrary paragraph length rather than semantic boundary. This separated key trade-off rationale from the eventual metric outcome, causing the retriever to occasionally miss context. Re-architecting the knowledge base around structured, semantic decision units fixed this immediately.
+            </p>
+            <p>
+              <strong>What comes next:</strong> Adding interactive follow-up nudges based on recruiter reading depth, exploring streaming conversational voice mode, and open-sourcing the prebuild portfolio-RAG harness for other product craftspeople.
+            </p>
+          </div>
+        </section>
+
         {/* BOTTOM CTA BAR */}
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <GlassButton

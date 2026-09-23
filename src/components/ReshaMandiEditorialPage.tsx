@@ -600,7 +600,7 @@ export default function ReshaMandiEditorialPage({
                     02 · DECISION
                   </span>
                   <p className="font-inter text-xs text-[#042718]/80 leading-relaxed">
-                    Selected Razorpay for the payment integration and engineered a tiered payout approval pipeline locked to weighbridge verification.
+                    Partnered with banking API rails and engineered a tiered payout approval pipeline linked to centre intake and manager verification.
                   </p>
                 </div>
 

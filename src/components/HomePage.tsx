@@ -845,9 +845,9 @@ export default function HomePage({
               role: "PM, algorithms & hardware",
               year: "2025",
               description:
-                "Designed one progress system across a fragmented connected-fitness ecosystem.",
+                "Unlaunched product strategy and development-ready PRD: unifying 5 fragmented surfaces into one shared fitness recovery engine.",
               figure: "5 surfaces",
-              qualifier: "one shared product and data model",
+              qualifier: "unlaunched PRD & system design",
               imagePrefix: "/images/performance-score-hero",
               imgAlt: "Performance Score algorithm visualization",
               has1200: true,

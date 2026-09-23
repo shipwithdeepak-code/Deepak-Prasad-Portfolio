@@ -102,10 +102,10 @@ export default function ProductJuryPost({ onNavigate }: ProductJuryPostProps) {
           {/* Short Explanation */}
           <div className="space-y-3 font-inter text-sm sm:text-base text-[#042718]/75 max-w-2xl leading-relaxed">
             <p>
-              Product decisions often disappear after the meeting. The reasoning, evidence, assumptions, objections and trade-offs rarely survive as a decision record.
+              Why I&apos;m building this: AI can generate 50 product ideas in 10 seconds. But who evaluates whether those ideas are any good?
             </p>
             <p>
-              Product Jury is being designed to turn that judgement into something a PM can challenge, defend, revisit and learn from.
+              Product decisions often disappear after the meeting. The reasoning, evidence, assumptions, objections, and trade-offs rarely survive as a persistent decision record. Product Jury is an active build and research project designed to turn that judgment into something a PM can challenge, defend, revisit, and learn from.
             </p>
           </div>
 
