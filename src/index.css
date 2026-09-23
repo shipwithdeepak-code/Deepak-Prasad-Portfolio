@@ -17,8 +17,9 @@
 :root {
   /* Surface & Canvas Tokens */
   --ds-bg: #FAFDFB;
-  --ds-bg-subtle: #F3F8F5;
   --ds-surface: #FFFFFF;
+  --ds-surface-soft: #F4FAFA;
+  --ds-bg-subtle: #F3F8F5;
   --ds-surface-secondary: #F6FAF7;
   
   /* Ink & Typography Tokens */
@@ -31,6 +32,7 @@
   --ds-green: #188E39;
   --ds-green-hover: #15803D;
   --ds-green-deep: #042718;
+  --ds-mint: #01BC7C;
   --ds-green-subtle: rgba(24, 142, 57, 0.08);
   --ds-green-border: rgba(24, 142, 57, 0.22);
   --ds-green-accent: #2F7A4F;
@@ -43,12 +45,15 @@
   --ds-amber-border: rgba(168, 113, 26, 0.26);
 
   /* Border & Outline Tokens */
+  --ds-border: rgba(4, 39, 24, 0.10);
+  --ds-border-strong: rgba(4, 39, 24, 0.16);
   --ds-border-hairline: rgba(4, 39, 24, 0.06);
   --ds-border-light: rgba(4, 39, 24, 0.10);
   --ds-border-medium: rgba(4, 39, 24, 0.16);
-  --ds-border-strong: rgba(4, 39, 24, 0.24);
 
   /* Glass Material Tokens */
+  --ds-glass-white: rgba(255, 255, 255, 0.72);
+  --ds-glass-green: rgba(4, 39, 24, 0.82);
   --ds-glass-bg: rgba(255, 255, 255, 0.88);
   --ds-glass-bg-subtle: rgba(255, 255, 255, 0.72);
   --ds-glass-bg-solid: rgba(255, 255, 255, 0.95);

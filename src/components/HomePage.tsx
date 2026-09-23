@@ -819,7 +819,7 @@ export default function HomePage({
               description:
                 "Took an ambiguous AI opportunity to production in three months, behind hard safety guardrails.",
               figure: "3,200+",
-              qualifier: "daily actives, up from ~300",
+              qualifier: "DAU during rollout period",
               imagePrefix: "/images/ai-coach-hero",
               imgAlt: "Sportstech AI Coach conversational interface",
               has1200: true,
@@ -841,7 +841,7 @@ export default function HomePage({
             {
               slug: "performance-score",
               title: "Performance Score",
-              tags: ["Strategy / PRD", "Connected hardware"],
+              tags: ["UNLAUNCHED · DEVELOPMENT-READY PRD", "Connected hardware"],
               role: "PM, algorithms & hardware",
               year: "2025",
               description:
@@ -922,7 +922,11 @@ export default function HomePage({
                       {item.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="rounded-[100px] px-2.5 py-1 text-[12px] font-inter font-medium leading-none bg-[#0B3322] text-[#B7BCBC]"
+                          className={
+                            tag.startsWith("UNLAUNCHED")
+                              ? "rounded-[100px] px-2.5 py-1 text-[11px] font-mono font-bold leading-none bg-[#3D2605] text-[#FDE68A] border border-[#F59E0B]/40"
+                              : "rounded-[100px] px-2.5 py-1 text-[12px] font-inter font-medium leading-none bg-[#0B3322] text-[#B7BCBC]"
+                          }
                         >
                           {tag}
                         </span>

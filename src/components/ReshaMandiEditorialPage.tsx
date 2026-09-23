@@ -311,13 +311,13 @@ export default function ReshaMandiEditorialPage({
                     [Field Dispatch Channel · Redacted for Privacy]
                   </span>
                 </div>
-                <span className="font-mono text-[10px] text-white/50 uppercase tracking-wider">
+                <span className="font-mono text-[10px] text-white/75 uppercase tracking-wider">
                   Operational Artifact
                 </span>
               </div>
             </div>
 
-            <p className="font-inter text-xs sm:text-sm text-[#042718]/70 text-center mt-4 max-w-2xl mx-auto italic">
+            <p className="font-inter text-xs sm:text-sm text-[#042718]/85 text-center mt-4 max-w-2xl mx-auto italic">
               “An example of how lot and dispatch information moved through handwritten records, WhatsApp and calls.”
             </p>
           </div>
@@ -625,7 +625,7 @@ export default function ReshaMandiEditorialPage({
 
               {/* Simple Before / After Workflow */}
               <div className="p-6 rounded-2xl bg-white border border-[#042718]/10 shadow-2xs">
-                <span className="font-mono text-[11px] uppercase tracking-wider font-bold text-[#042718]/60 block mb-4">
+                <span className="font-mono text-[11px] uppercase tracking-wider font-bold text-[#042718]/75 block mb-4">
                   Settlement Flow Comparison
                 </span>
 
@@ -809,7 +809,7 @@ export default function ReshaMandiEditorialPage({
                   className="w-full h-auto object-contain max-h-[500px] bg-[#FAF8F5]"
                   loading="lazy"
                 />
-                <div className="p-3.5 bg-white border-t border-[#042718]/8 font-mono text-[11px] text-[#042718]/60">
+                <div className="p-3.5 bg-white border-t border-[#042718]/8 font-mono text-[11px] text-[#042718]/75">
                   ARTIFACT · Physical Cocoon Quality Test Sheet
                 </div>
               </div>
@@ -857,7 +857,7 @@ export default function ReshaMandiEditorialPage({
                   ))}
                 </div>
 
-                <p className="font-inter text-xs text-[#042718]/60 mt-4 leading-relaxed">
+                <p className="font-inter text-xs text-[#042718]/75 mt-4 leading-relaxed">
                   Machine learning was deliberately implemented as non-binding decision support rather than unchecked automation, keeping accountability with on-ground center operators.
                 </p>
               </div>
@@ -915,7 +915,7 @@ export default function ReshaMandiEditorialPage({
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 mb-10">
             {/* 80K+ farmers */}
             <div className="p-6 rounded-2xl bg-white border border-[#042718]/8 shadow-2xs">
-              <span className="font-mono text-[10px] uppercase tracking-wider font-bold text-[#042718]/50 block mb-1">
+              <span className="font-mono text-[10px] uppercase tracking-wider font-bold text-[#042718]/70 block mb-1">
                 Platform Scale
               </span>
               <div className="font-onest text-3xl font-bold text-[#042718] mb-1">
@@ -980,7 +980,7 @@ export default function ReshaMandiEditorialPage({
 
             {/* Volume Context */}
             <div className="p-6 rounded-2xl bg-white border border-[#042718]/8 shadow-2xs">
-              <span className="font-mono text-[10px] uppercase tracking-wider font-bold text-[#042718]/50 block mb-1">
+              <span className="font-mono text-[10px] uppercase tracking-wider font-bold text-[#042718]/70 block mb-1">
                 Business Context
               </span>
               <div className="font-onest text-2xl sm:text-3xl font-bold text-[#042718] mb-1">
@@ -992,7 +992,7 @@ export default function ReshaMandiEditorialPage({
             </div>
           </div>
 
-          <p className="font-inter text-xs text-[#042718]/55 italic text-center max-w-xl mx-auto">
+          <p className="font-inter text-xs text-[#042718]/75 italic text-center max-w-xl mx-auto">
             Note: Instant Payout was one key product intervention that contributed to this marketplace volume growth alongside broader business, field, and commercial operations.
           </p>
         </div>
@@ -1017,7 +1017,7 @@ export default function ReshaMandiEditorialPage({
             <span className="font-onest text-lg font-bold text-[#188E39]">
               “The product wasn’t the app. The workflow was.”
             </span>
-            <span className="font-inter text-xs text-[#042718]/60">
+            <span className="font-inter text-xs text-[#042718]/75">
               Deepak Prasad · Product Manager
             </span>
           </div>
@@ -1041,7 +1041,7 @@ export default function ReshaMandiEditorialPage({
             >
               <ArrowLeft size={20} className="text-[#188E39]" />
               <div>
-                <span className="text-[11px] font-inter font-semibold uppercase tracking-wider text-[#042718]/40 block">
+                <span className="text-[11px] font-inter font-semibold uppercase tracking-wider text-[#042718]/65 block">
                   Previous project
                 </span>
                 <span className="font-onest font-bold text-sm text-[#042718]">
@@ -1072,7 +1072,7 @@ export default function ReshaMandiEditorialPage({
               className="flex items-center justify-end gap-3 text-right p-3 rounded-xl hover:bg-[#FAFDFB] border border-transparent hover:border-[#042718]/10 transition-colors cursor-pointer w-full sm:w-auto"
             >
               <div>
-                <span className="text-[11px] font-inter font-semibold uppercase tracking-wider text-[#042718]/40 block">
+                <span className="text-[11px] font-inter font-semibold uppercase tracking-wider text-[#042718]/65 block">
                   Next project
                 </span>
                 <span className="font-onest font-bold text-sm text-[#042718]">

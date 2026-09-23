@@ -153,12 +153,18 @@ export default function CopilotDrawer({
     if (!queryText) setInput("");
     setIsLoading(true);
 
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => {
+      controller.abort();
+    }, 12000);
+
     try {
       const fetchPromise = (async () => {
         const res = await fetch("/api/copilot/query", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ question: textToSend }),
+          signal: controller.signal,
         });
 
         if (!res.ok) {
@@ -203,6 +209,7 @@ export default function CopilotDrawer({
         },
       ]);
     } finally {
+      clearTimeout(timeoutId);
       setIsLoading(false);
     }
   };

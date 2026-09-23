@@ -84,12 +84,48 @@ function keywordFallbackScore(query: string, chunk: KnowledgeChunk): number {
   return (matches / qWords.length) * 0.75;
 }
 
+// In-Memory Rate Limiting for /api/copilot/query (20 req / minute / IP)
+interface RateLimitEntry {
+  count: number;
+  resetTime: number;
+}
+const rateLimitMap = new Map<string, RateLimitEntry>();
+const RATE_LIMIT_WINDOW_MS = 60 * 1000;
+const RATE_LIMIT_MAX_REQUESTS = 20;
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now();
+  const entry = rateLimitMap.get(ip);
+  if (!entry || now > entry.resetTime) {
+    rateLimitMap.set(ip, { count: 1, resetTime: now + RATE_LIMIT_WINDOW_MS });
+    return false;
+  }
+  if (entry.count >= RATE_LIMIT_MAX_REQUESTS) {
+    return true;
+  }
+  entry.count++;
+  return false;
+}
+
+// Periodic cleanup of stale rate-limit entries
+setInterval(() => {
+  const now = Date.now();
+  for (const [ip, entry] of rateLimitMap.entries()) {
+    if (now > entry.resetTime) {
+      rateLimitMap.delete(ip);
+    }
+  }
+}, 5 * 60 * 1000).unref();
+
 async function startServer() {
   const app = express();
   const PORT = 3000;
 
+  // Safe reverse-proxy configuration for Cloud Run / AI Studio hosting
+  app.set("trust proxy", 1);
+
   app.use(compression() as unknown as express.RequestHandler);
-  app.use(express.json());
+  app.use(express.json({ limit: "64kb" }));
 
   // -------------------------------------------------------------
   // API: Health Check
@@ -133,30 +169,55 @@ async function startServer() {
   app.post("/api/copilot/query", async (req, res) => {
     const startTime = Date.now();
     try {
+      // 0. In-Memory IP Rate Limiting (20 req / min / IP)
+      const clientIp = (req.ip || req.socket.remoteAddress || "unknown").toString();
+      if (isRateLimited(clientIp)) {
+        return res.status(429).json({
+          error: "Rate limit exceeded. Please wait a moment before asking another question.",
+          fallback: true,
+          retryAfter: 60,
+          answer: "I've received several questions in a short period. Please wait a minute before trying again, or feel free to click 'Let's Talk' to connect with Deepak directly.",
+        });
+      }
+
       const { question, topK = 4 } = req.body;
       if (!question || typeof question !== "string" || question.trim().length === 0) {
         return res.status(400).json({ error: "Question is required." });
       }
 
       const cleanQuestion = question.trim();
+      if (cleanQuestion.length > 1000) {
+        return res.status(400).json({ error: "Question must be under 1,000 characters." });
+      }
+
       let queryVector: number[] = [];
       let usedEmbeddingApi = false;
 
-      // 1. Compute Query Embedding
+      // 1. Compute Query Embedding with explicit 5s timeout
       try {
         const ai = getGeminiClient();
-        const embedRes = await ai.models.embedContent({
+        const embedPromise = ai.models.embedContent({
           model: "gemini-embedding-2-preview",
           contents: cleanQuestion,
           config: { outputDimensionality: 512 },
         });
 
-        if (embedRes.embeddings && embedRes.embeddings[0] && embedRes.embeddings[0].values) {
-          queryVector = embedRes.embeddings[0].values;
-          usedEmbeddingApi = true;
+        let embedTimer: NodeJS.Timeout;
+        const embedTimeout = new Promise<never>((_, reject) => {
+          embedTimer = setTimeout(() => reject(new Error("Embedding timed out")), 5000);
+        });
+
+        try {
+          const embedRes = await Promise.race([embedPromise, embedTimeout]);
+          if (embedRes.embeddings && embedRes.embeddings[0] && embedRes.embeddings[0].values) {
+            queryVector = embedRes.embeddings[0].values;
+            usedEmbeddingApi = true;
+          }
+        } finally {
+          clearTimeout(embedTimer!);
         }
       } catch (embedError: any) {
-        console.warn("[RAG] Query embedding API failed, falling back to lexical scoring:", embedError.message);
+        console.warn("[RAG] Query embedding API failed or timed out, falling back to lexical scoring:", embedError.message);
       }
 
       // 2. Compute Cosine Similarity against all stored chunks in memory
@@ -207,7 +268,7 @@ async function startServer() {
         });
       }
 
-      // 4. Grounded Generation with Gemini 3.1 Flash Lite
+      // 4. Grounded Generation with Gemini 3.1 Flash Lite (with explicit 10s timeout)
       const contextBlocks = retrieved
         .map(
           (c, idx) =>
@@ -235,7 +296,7 @@ CRITICAL IDENTITY & CONVERSATION RULES:
 
           const prompt = `Context:\n${contextBlocks}\n\nUser Question:\n${cleanQuestion}\n\nPlease provide a direct answer without any greeting, "Hello", or self-introduction:`;
 
-          const genRes = await ai.models.generateContent({
+          const generatePromise = ai.models.generateContent({
             model: "gemini-3.1-flash-lite",
             contents: prompt,
             config: {
@@ -244,16 +305,26 @@ CRITICAL IDENTITY & CONVERSATION RULES:
             },
           });
 
-          const rawText = genRes.text || "No response generated.";
-          // Guarantee no repeated greeting or self-introduction slips through
-          answer = rawText
-            .replace(
-              /^(?:hello!?|hi!?|greetings!?|hey!?)\s*(?:i am|i'm|this is)?\s*(?:dīpa|dipa)?(?:,?\s*deepak(?:'s)?\s*ai\s*assistant)?[.!,:]*\s*/i,
-              ""
-            )
-            .trim();
+          let genTimer: NodeJS.Timeout;
+          const generateTimeout = new Promise<never>((_, reject) => {
+            genTimer = setTimeout(() => reject(new Error("Gemini generation timed out")), 10000);
+          });
+
+          try {
+            const genRes = await Promise.race([generatePromise, generateTimeout]);
+            const rawText = genRes.text || "No response generated.";
+            // Guarantee no repeated greeting or self-introduction slips through
+            answer = rawText
+              .replace(
+                /^(?:hello!?|hi!?|greetings!?|hey!?)\s*(?:i am|i'm|this is)?\s*(?:dīpa|dipa)?(?:,?\s*deepak(?:'s)?\s*ai\s*assistant)?[.!,:]*\s*/i,
+                ""
+              )
+              .trim();
+          } finally {
+            clearTimeout(genTimer!);
+          }
         } catch (genError: any) {
-          console.warn("[RAG] Gemini generation failed, returning grounded chunk:", genError.message);
+          console.warn("[RAG] Gemini generation failed or timed out, returning grounded chunk:", genError.message);
           answer = `${retrieved[0].chunk}`;
         }
       }

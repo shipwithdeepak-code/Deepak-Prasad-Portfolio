@@ -70,8 +70,8 @@ export default function CaseStudyDetailPage({
               {caseStudy.category}
             </span>
             {caseStudy.isStrategyOnly && (
-              <span className="px-3 py-1 rounded-full bg-[#F3E8FF] text-[#7E22CE] text-xs font-inter font-semibold">
-                Product Strategy · Systems Architecture
+              <span className="px-3 py-1 rounded-full bg-[#FEF3C7] text-[#92400E] border border-[#F59E0B]/30 text-xs font-mono font-bold tracking-wide uppercase">
+                UNLAUNCHED · DEVELOPMENT-READY PRD
               </span>
             )}
           </div>
@@ -152,9 +152,14 @@ export default function CaseStudyDetailPage({
 
           {/* Strategy Status Callout if applicable */}
           {caseStudy.statusNotice && (
-            <div className="p-4 rounded-[16px] bg-[#F3E8FF]/40 border border-[#7E22CE]/20 flex items-start gap-3 text-xs sm:text-sm font-inter text-[#6B21A8] mb-8">
-              <AlertTriangle size={18} className="shrink-0 text-[#7E22CE] mt-0.5" />
-              <span>{caseStudy.statusNotice}</span>
+            <div className="p-4 rounded-[16px] bg-[#FEF3C7]/60 border border-[#F59E0B]/30 flex items-start gap-3 text-xs sm:text-sm font-inter text-[#92400E] mb-8">
+              <AlertTriangle size={18} className="shrink-0 text-[#D97706] mt-0.5" />
+              <div>
+                <span className="font-mono text-[11px] font-bold uppercase tracking-wider block text-[#B45309] mb-1">
+                  UNLAUNCHED · DEVELOPMENT-READY PRD
+                </span>
+                <span>{caseStudy.statusNotice}</span>
+              </div>
             </div>
           )}
 

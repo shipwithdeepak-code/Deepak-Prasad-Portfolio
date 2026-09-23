@@ -332,9 +332,9 @@ export const AI_COACH_CASE_STUDY: CaseStudyDetail = {
   role: 'Product Manager · AI & Consumer Engagement',
   timeline: 'Oct 2024 – May 2026',
   tags: ['AI', 'Conversational AI', '0→1', 'Consumer'],
-  proofPoints: ['~300 → 3,200+ DAU', 'in ~3 months', 'Gemini + ChatGPT Fallback'],
+  proofPoints: ['3,200+ DAU during rollout', 'in ~3 months', 'Gemini + ChatGPT Fallback'],
   keyStats: [
-    { label: 'Active User Scale', value: '~300 → 3,200+ DAU', detail: 'Scaled organically within ~3 months of launch' },
+    { label: 'Active User Scale', value: '3,200+ DAU', detail: 'During rollout period, supported by in-app prompts and coaching' },
     { label: 'Primary LLM', value: 'Gemini', detail: 'Chosen for speed, JSON adherence & cost' },
     { label: 'Fallback LLM', value: 'ChatGPT', detail: 'Automated failover for uptime resilience' },
     { label: 'Core Principle', value: 'Safety First', detail: 'Deterministic guardrails over open generation' },
@@ -347,7 +347,7 @@ export const AI_COACH_CASE_STUDY: CaseStudyDetail = {
     myOwnership:
       'I figured out what the assistant should and should not do, set our safety boundaries, worked with engineering on provider selection, and ran our testing loops to see where the product broke before rollout.',
     whatChanged:
-      'We scaled from an initial cohort of ~300 users to 3,200+ DAU in about 3 months, with 0 reported safety incidents or medical escalations during the launch period, turning an ambiguous concept into a daily workout discovery tool.',
+      'Supported reaching 3,200+ DAU during the product rollout period, supported by in-app workout prompts and conversational coaching, with 0 reported safety incidents or medical escalations during the launch period, turning an ambiguous concept into a daily workout discovery tool.',
   },
   tradeOff: {
     considered:
@@ -359,7 +359,7 @@ export const AI_COACH_CASE_STUDY: CaseStudyDetail = {
     gaveUp:
       'We gave up chatty conversational banter and longer session durations that might have looked good on vanity metrics dashboards.',
     outcome:
-      'We saw 0 reported safety incidents or medical escalations during the observed launch period and scaled active adoption from ~300 to 3,200+ DAU in ~3 months, because users and our coaching team trusted the recommendations.',
+      'We saw 0 reported safety incidents or medical escalations during the observed launch period and reached 3,200+ DAU during the product rollout period, supported by in-app workout prompts and conversational coaching, because users and our coaching team trusted the recommendations.',
   },
   artifacts: {
     title: 'Safety Interceptor Logic & Recommendation Schema',
@@ -587,8 +587,8 @@ export const AI_COACH_CASE_STUDY: CaseStudyDetail = {
       outcomeHierarchy: [
         {
           category: 'Product Outcome',
-          metric: '~300 → 3,200+ DAU',
-          desc: 'Grew active daily usage by more than 10x in ~3 months through organic discovery inside the workout tab.',
+          metric: '3,200+ DAU',
+          desc: 'Reached 3,200+ DAU during the product rollout period, supported by in-app workout prompts and conversational coaching.',
         },
         {
           category: 'User Outcome',

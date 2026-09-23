@@ -58,9 +58,9 @@ export default function WorkPage({
       case "ai-coach":
         return {
           h3: "Sportstech AI Coach",
-          desc: "Took an ambiguous conversational AI opportunity to production in 3 months, scaling to 3,200+ DAU behind strict clinical safety guardrails.",
+          desc: "Took an ambiguous conversational AI opportunity to production in 3 months; supported 3,200+ DAU during the product rollout period behind strict clinical safety guardrails.",
           figure: "3,200+",
-          qual: "daily actives, up from ~300",
+          qual: "DAU during rollout period",
           imagePrefix: "/images/ai-coach-hero",
         };
       case "subscription":
@@ -247,10 +247,15 @@ export default function WorkPage({
 
                   {/* Right Body Content */}
                   <div className="work-icard-body">
-                    <div className="mb-2.5">
+                    <div className="mb-2.5 flex flex-wrap items-center gap-2">
                       <Tag variant="default" className="!bg-[#042718] !text-white !border-transparent">
                         {primaryTag}
                       </Tag>
+                      {study.slug === "performance-score" && (
+                        <span className="font-mono text-[10px] tracking-wider uppercase font-bold px-2 py-0.5 rounded-full bg-[#FEF3C7] text-[#92400E] border border-[#F59E0B]/40 shadow-2xs">
+                          UNLAUNCHED · DEVELOPMENT-READY PRD
+                        </span>
+                      )}
                     </div>
 
                     <h3 className="font-onest font-semibold text-[24px] leading-[28.8px] tracking-[-0.48px] text-[#042718] mb-2">
