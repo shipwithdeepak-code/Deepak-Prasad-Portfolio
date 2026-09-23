@@ -182,7 +182,7 @@ function AiCoachEditorialBoundary({
         </div>
         <div className="flex flex-wrap items-center gap-2 text-xs font-mono shrink-0">
           <span className="px-3 py-1 rounded-full bg-[#188E39]/12 text-[#188E39] font-semibold">
-            ~2,000 DAU
+            3,200+ DAU
           </span>
           <span className="px-3 py-1 rounded-full bg-[#042718]/5 text-[#042718]/80 font-semibold border border-current/10">
             Scaled from ~300 in ~3 months
@@ -191,7 +191,7 @@ function AiCoachEditorialBoundary({
       </div>
 
       <p className="font-inter text-sm sm:text-base text-[#042718]/80 leading-relaxed mb-8 max-w-3xl">
-        "Building AI is easy. Building an AI experience people can trust is the product problem." AI product quality depended on defining where the model should act, where it must be constrained, and where deterministic code takes over.
+        Building AI is easy; building an experience people can actually trust while working out is the hard part. The model generates answers, but the product determines what gets shown, what gets blocked, and when deterministic code takes over.
       </p>
 
       {/* Boundary Architecture Diagram */}
@@ -330,7 +330,7 @@ function AiCoachEditorialBoundary({
               ITERATION LOOP · FROM AMBIGUOUS CHARTER TO CONTROLLED ROLLOUT
             </span>
             <span className="font-mono text-[11px] text-[#188E39] font-semibold">
-              ~300 → ~2,000 DAU in ~3 Months
+              ~300 → 3,200+ DAU in ~3 Months
             </span>
           </div>
 
@@ -422,7 +422,7 @@ function AiCoachEditorialBoundary({
           "The model can generate. The product defines the boundary."
         </p>
         <span className="font-mono text-[11px] font-semibold text-[#188E39] shrink-0">
-          Scaled from ~300 to ~2,000 DAU in ~3 months behind deterministic safety guardrails
+          Scaled from ~300 to 3,200+ DAU in ~3 months behind deterministic safety guardrails
         </span>
       </div>
     </div>
