@@ -156,7 +156,7 @@ export default function CopilotDrawer({
     const controller = new AbortController();
     const timeoutId = setTimeout(() => {
       controller.abort();
-    }, 12000);
+    }, 45000);
 
     try {
       const fetchPromise = (async () => {

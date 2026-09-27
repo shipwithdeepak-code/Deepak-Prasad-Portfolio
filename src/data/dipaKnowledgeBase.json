@@ -1,230 +1,230 @@
 {
-  "version": "2026-09-22.reshamandi-final",
-  "updatedAt": "2026-09-22",
+  "version": "2026-09-27.closed-world-grounding",
+  "updatedAt": "2026-09-27",
   "chunks": [
     {
-      "id": "deepak-bio-overview",
-      "source": "Resume — Executive Summary",
-      "category": "Background",
-      "title": "Deepak Prasad Profile & Background",
-      "chunk": "Deepak Prasad is a Senior Product Manager with 7+ years of product management experience building AI-native, data-driven products across B2B and B2C. He specializes in 0→1 products, marketplaces, subscription monetization, connected hardware systems, and operational workflow automation."
+      "id": "deepak-profile-overview",
+      "source": "Resume & Portfolio — Profile",
+      "category": "Profile",
+      "title": "Deepak Prasad: Senior Product Manager Profile & Positioning",
+      "chunk": "Deepak Prasad is a Senior Product Manager with 7+ years of experience building and scaling products across SaaS, conversational AI, B2B marketplaces, consumer subscriptions, connected hardware, and workflow automation. He specializes in 0→1 discovery from ambiguous charters, turning physical and operational bottlenecks into scalable digital platforms across B2B and B2C ecosystems."
     },
     {
-      "id": "deepak-education",
-      "source": "Resume — Education & Background",
-      "category": "Background",
-      "title": "Education & Technical Foundation",
-      "chunk": "Deepak holds a Bachelor of Technology (B.Tech) in Production Engineering from the National Institute of Technology, Tiruchirappalli (NIT Trichy), one of India's premier technical institutions, graduating with First Class Honors."
+      "id": "deepak-education-canonical",
+      "source": "Resume — Education",
+      "category": "Education",
+      "title": "Education: Bachelor of Engineering (B.E.) from VTU (2018)",
+      "chunk": "Deepak Prasad holds a Bachelor of Engineering (B.E.) from Visvesvaraya Technological University (VTU), graduating in 2018 with a technical foundation in systems engineering, signal processing, and computing."
     },
     {
-      "id": "deepak-product-positioning",
-      "source": "Resume & Portfolio — Positioning",
-      "category": "Background",
-      "title": "Product Positioning & Systems Philosophy",
-      "chunk": "Deepak positions himself as a Product Architect who bridges physical operational reality with scalable software systems. He focuses on understanding unvarnished ground truth before writing PRDs, designing deterministic fallbacks for AI systems, and building measurable business impact without superficial complexity."
+      "id": "career-chronology-overview",
+      "source": "Resume — Career History",
+      "category": "Career",
+      "title": "Complete Career History & Chronological Timeline",
+      "chunk": "Deepak's verified career chronology comprises five roles: 1) Associate Product Manager at LionCircuits (Jul 2018 – May 2020), 2) Product Manager at ReshaMandi (Jun 2021 – Sep 2023), 3) Product Manager at Sportstech (Aug 2023 – Sep 2024), 4) Senior Product Manager at Sportstech (Oct 2024 – May 2026), and 5) Product Consultant | Independent via Tejmonvi Softwares (May 2026 – Jul 2026). The verified resume lists no roles or activities for the gap between May 2020 and June 2021, and no details are inferred or assumed for that period."
     },
     {
-      "id": "reshamandi-thesis",
-      "source": "ReshaMandi Case Study: Overview",
+      "id": "career-lioncircuits",
+      "source": "Resume — LionCircuits",
+      "category": "Career",
+      "title": "Associate Product Manager at LionCircuits (Jul 2018 – May 2020)",
+      "chunk": "Deepak's earliest listed professional role in his resume is Associate Product Manager at LionCircuits in Bengaluru (Jul 2018 – May 2020). LionCircuits is an IoT, AI, and PCB manufacturing platform. Deepak led the concept-to-launch of a B2B Assembly Ordering Platform that contributed to a 40% increase in monthly orders, built an auto-quote generation and BOM-scrubbing tool, and developed a Raspberry Pi-based AI proof-of-concept for traffic monitoring."
+    },
+    {
+      "id": "career-reshamandi-role",
+      "source": "Resume — ReshaMandi",
+      "category": "Career",
+      "title": "Product Manager at ReshaMandi (Jun 2021 – Sep 2023)",
+      "chunk": "Deepak served as Product Manager at ReshaMandi (Jun 2021 – Sep 2023) in Bengaluru, owning core marketplace workflows and payments across ~1.1 Lakh stakeholders, including 80,000+ farmers via ReshaFarms. He digitized end-to-end operational workflows (LeadSquared CRM, Razorpay, SAP, Camunda), built an instant-payout workflow scaling monthly disbursements from ₹10–15 Cr to ₹20–25 Cr at 99.9% reliability, launched a real-time cocoon bidding auction 0→1 (>35% transaction uplift), and partnered with ML engineers to build a cocoon pricing model (>90% accuracy). Deepak's scope was strictly marketplace, field operations, and instant payouts; ReshaMudra credit products were not part of his ownership."
+    },
+    {
+      "id": "career-sportstech-pm",
+      "source": "Resume — Sportstech Product Manager",
+      "category": "Career",
+      "title": "Product Manager at Sportstech (Aug 2023 – Sep 2024)",
+      "chunk": "Deepak joined Sportstech in Bengaluru as the first Product Manager on the team (Aug 2023 – Sep 2024) and built the platform 0→1 from scratch. With no prior playbook, he designed user onboarding, signup, and end-to-end subscription monetization flows (pricing, packaging, trial mechanics, paywalls, and checkout), while establishing baseline conversion and retention metrics from first principles through direct customer interviews and PRDs."
+    },
+    {
+      "id": "career-sportstech-spm",
+      "source": "Resume — Sportstech Senior Product Manager",
+      "category": "Career",
+      "title": "Senior Product Manager at Sportstech (Oct 2024 – May 2026)",
+      "chunk": "As Senior Product Manager at Sportstech (Oct 2024 – May 2026), Deepak owned subscription strategy for a B2C fitness platform serving 174,180 freemium users and 12,401 paying subscribers, generating €659K in FY2025 subscription revenue with 81.9% YoY subscriber growth and 96.8% annual retention. He led the 0→1 development of the in-app AI Coach (scaling ~300 to ~2,000 DAU in ~3 months, Gemini primary / ChatGPT fallback), built an AI video localization workflow (200+ videos in ~3 weeks, ~10× faster), and managed/mentored a 6-person cross-functional pod (3 PMs, Growth, Content) in an ODC model partnering with Germany HQ leadership."
+    },
+    {
+      "id": "career-consulting",
+      "source": "Resume — Independent Product Consultant",
+      "category": "Career",
+      "title": "Product Consultant | Independent via Tejmonvi Softwares (May 2026 – Jul 2026)",
+      "chunk": "From May 2026 to Jul 2026, Deepak worked as an Independent Product Consultant via Tejmonvi Softwares in Bengaluru, advising early-stage ventures. He led product strategy for TNSQAI (a pre-commercial AI radiology diagnostics startup), benchmarking 7 global competitors and creating a Now/Next/Later roadmap based on ML evaluation metrics. He also advised early-stage founders on deal-flow digitization for an M&A marketplace and rights metadata management for a global music-rights platform."
+    },
+    {
+      "id": "deepak-competencies-tools",
+      "source": "Resume — Competencies & Tools",
+      "category": "Profile",
+      "title": "Core Competencies, Tools & Technical Platforms",
+      "chunk": "Deepak's competencies include Product Strategy (0→1 discovery, customer interviews, quarterly OKRs, roadmapping, PRDs, UAT, adoption tracking), B2B & B2C Monetization (SaaS, subscriptions, enterprise workflows, instant payouts), AI & Data (conversational AI, ML workflows with >90% accuracy, retention/churn modeling, telemetry), and Cross-functional Leadership (mentoring 6-person pods, ODC models). Tools: Jira, SAP (basic), Camunda, LeadSquared CRM, Razorpay, Figma, Firebase, Google Analytics, and Google Play Console."
+    },
+    {
+      "id": "reshamandi-thesis-discovery",
+      "source": "ReshaMandi Case Study: Overview & Discovery",
       "category": "ReshaMandi",
-      "title": "ReshaMandi Core Thesis",
-      "chunk": "The foundational thesis of ReshaMandi was: 'The product wasn't the app. The workflow was.' Software succeeded only when it fit seamlessly into high-friction physical mandi operations, fast-paced weighing, and cash-dependent trading rituals rather than forcing participants to adapt to a phone screen."
-    },
-    {
-      "id": "reshamandi-marketplace-scope",
-      "source": "ReshaMandi Case Study: Scope & Sericulture Value Chain",
-      "category": "ReshaMandi",
-      "title": "Marketplace Scope & Sericulture Value Chain",
-      "chunk": "ReshaMandi operated as India's first B2B farm-to-fashion digital ecosystem for natural fibers. The supply chain spanned silkworm rearers, mulberry farmers, collection centers, reelers, weavers, and fabric retailers. Deepak led product for the upstream sericulture marketplace and operational touchpoints."
-    },
-    {
-      "id": "reshamandi-stakeholder-scale",
-      "source": "ReshaMandi Case Study: Stakeholders & Impact",
-      "category": "ReshaMandi",
-      "title": "Stakeholder Reach & Transaction Scale",
-      "chunk": "The platform supported a network of 80,000+ farmers and reelers across southern silk clusters (Karnataka, Andhra Pradesh, Tamil Nadu). Under Deepak's product ownership, the upstream procurement and settlement platform processed ₹20–25 Cr in monthly transactions with 99.9% disbursement reliability."
-    },
-    {
-      "id": "reshamandi-field-research",
-      "source": "ReshaMandi Case Study: Discovery",
-      "category": "ReshaMandi",
-      "title": "Field Research & Ground Discovery",
-      "chunk": "Field research in Ramanagara and Sidlaghatta mandis revealed that traditional farmers were not desk workers: operations were noisy, rushed, and governed by informal habits. The dominant workflow was 'Notebook → Photo → WhatsApp → Call'. If a step took more than two taps in bright sunlight or required high typing effort, it was discarded."
+      "title": "ReshaMandi Thesis & Ground Field Research",
+      "chunk": "The foundational thesis of ReshaMandi was: 'The product wasn't the app. The workflow was.' Field research in Ramanagara and Sidlaghatta mandis revealed an informal operational web running on 'Notebook → Photo → WhatsApp → Call'. Farmers arrived early with perishable crates in bright sunlight; requiring them to use a complex self-serve smartphone app failed. Deepak chose an assisted model: placing digital tools in the hands of trained collection centre staff while farmers received instant SMS confirmations."
     },
     {
       "id": "reshamandi-instant-payout",
-      "source": "ReshaMandi Case Study: Instant Payout Engine",
+      "source": "ReshaMandi Case Study: Instant Payouts",
       "category": "ReshaMandi",
-      "title": "Instant Payout Engine & Settlement",
-      "chunk": "Historically, farmers faced settlement delays and opacity from middlemen. Deepak architected the Instant Payout workflow integrated with Razorpay banking rails: transactions under ₹5L settled immediately upon lot weighing and quality confirmation, while amounts over ₹5L cleared within 2 hours. This gave farmers immediate working capital."
+      "title": "ReshaMandi Instant Payout Engine & Settlement Rails",
+      "chunk": "At ReshaMandi, Deepak owned the instant-payout workflow integrating Razorpay banking rails and internal accounting systems: transactions under ₹5L settled immediately upon lot weighing and quality confirmation, while amounts over ₹5L cleared within 2 hours. Payout reliability reached 99.9%, as monthly disbursement volume scaled from ₹10–15 Cr to ₹20–25 Cr across 80,000+ farmers, eliminating predatory middlemen credit cycles."
     },
     {
-      "id": "reshamandi-cocoon-bidding",
-      "source": "ReshaMandi Case Study: Bidding Loop",
+      "id": "reshamandi-bidding-pricing",
+      "source": "ReshaMandi Case Study: Cocoon Bidding & ML Pricing",
       "category": "ReshaMandi",
-      "title": "Cocoon Bidding & Commercial Workflow",
-      "chunk": "Deepak structured the digital cocoon auction into a tight 4-step loop: Scan (weighbridge lot tagging) → Bid (transparent price discovery) → Watch (real-time bid updates) → Win (instant lot allotment and settlement). This replaced chaotic physical shouting auctions with clear digital tracking."
+      "title": "Cocoon Bidding System & Computer Vision Pricing",
+      "chunk": "Deepak built the real-time cocoon bidding workflow 0→1 (Scan → Bid → Watch → Win → Pay), replacing chaotic shouting auctions with structured bidding rules and lifting transaction value by >35% in pilot sessions. Alongside this, he partnered with ML engineers to build a computer vision pricing system analyzing cocoon samples for uniformity, discoloration, and shell ratio, providing benchmark pricing guidance (>90% accuracy)."
     },
     {
-      "id": "reshamandi-ml-pricing",
-      "source": "ReshaMandi Case Study: ML-Assisted Pricing",
+      "id": "reshamandi-ecosystem-expansion",
+      "source": "ReshaMandi Case Study: Ecosystem Expansion",
       "category": "ReshaMandi",
-      "title": "ML-Assisted Cocoon Quality Testing & Pricing",
-      "chunk": "Silk cocoon pricing traditionally relied on subjective visual appraisal and fingernail testing. Deepak introduced a computer vision decision-support pipeline that analyzed lot photo samples for cocoon size uniformity, discoloration, and shell ratio, providing non-binding benchmark pricing guidance to procurement officers."
+      "title": "ReshaFarms, ReshaSathi IoT Hardware & Farm Advisory",
+      "chunk": "To assist upstream silkworm rearing before mandi arrival, ReshaMandi introduced ReshaFarms advisory and the ReshaSathi IoT device. ReshaSathi monitored shed temperature and relative humidity during delicate larval cycles, alerting farmers via SMS to microclimatic variations that could ruin cocoon harvest quality and crop yield."
     },
     {
-      "id": "reshamandi-reshafarms-reshasathi",
-      "source": "ReshaMandi Case Study: Farm Touchpoints",
+      "id": "morework-reshayarns",
+      "source": "More Product Work: ReshaYarns",
       "category": "ReshaMandi",
-      "title": "ReshaFarms & ReshaSathi IoT Hardware",
-      "chunk": "To assist upstream rearing before mandi arrival, ReshaMandi introduced ReshaFarms (farmer advisory and input procurement) and the ReshaSathi IoT device. ReshaSathi monitored shed temperature and relative humidity during delicate silkworm larval cycles, alerting farmers to environmental conditions that could ruin crop yield."
+      "title": "ReshaYarns B2B Silk Yarn Marketplace (~₹40 Cr+ Monthly Volume)",
+      "chunk": "ReshaYarns was a B2B marketplace connecting yarn reelers with textile manufacturers and master weavers. Deepak led catalog denier standardization, order workflows, and fulfillment tracking across spinning mills and weaving clusters, standardizing commercial yarn exchange at ~₹40 Cr+ average monthly volume across 17K+ stakeholders."
     },
     {
-      "id": "ai-coach-thesis",
-      "source": "Sportstech AI Coach Case Study: Overview",
-      "category": "AI Coach",
-      "title": "AI Coach Product Thesis",
-      "chunk": "The product thesis for the Sportstech AI Coach was: 'Athletes don't need generic chatbot motivation; they need real-time, context-aware workout coaching grounded in physical performance data with uncompromising safety.' Live workout guidance must be conversational, precise, and medically responsible."
+      "id": "morework-cotton-marketplace",
+      "source": "More Product Work: Cotton Marketplace",
+      "category": "ReshaMandi",
+      "title": "Cotton Marketplace: Extensible Multi-Commodity Platform Rails",
+      "chunk": "Deepak architected the multi-commodity transaction schema, ginning floor allocation protocols, and multi-truck split dispatch workflows for ReshaMandi's cotton expansion. By parameterizing staple length, moisture, and trash percentage into a unified engine, the architecture proved commodity-agnostic and accelerated subsequent fiber expansions 2×."
     },
     {
-      "id": "ai-coach-ownership",
-      "source": "Sportstech AI Coach Case Study: Role",
-      "category": "AI Coach",
-      "title": "Deepak's Ownership & Scope in AI Coach",
-      "chunk": "Deepak served as Lead Product Manager for the AI Coach, driving end-to-end product strategy, multi-modal voice interaction design, athlete safety guardrails, prompt architecture, and performance benchmarking across mobile and connected gym hardware."
+      "id": "ai-coach-thesis-scope",
+      "source": "Sportstech AI Coach Case Study: Thesis & Scope",
+      "category": "Sportstech",
+      "title": "Sportstech AI Coach: Product Thesis & PM Ownership",
+      "chunk": "The AI Coach thesis was: 'Athletes don't need generic chatbot motivation; they need real-time, context-aware workout coaching grounded in physical performance data with uncompromising safety.' Deepak led product strategy, conversational flows, context data assembly (heart rate, historical loads, fatigue signals), athlete safety guardrails, and prompt architecture."
     },
     {
-      "id": "ai-coach-growth-scale",
-      "source": "Sportstech AI Coach Case Study: Growth",
-      "category": "AI Coach",
-      "title": "AI Coach Growth & Adoption Scale",
-      "chunk": "Under Deepak's product direction, the AI Coach scaled from an initial cohort of ~300 daily active users to 3,200+ DAU in approximately 3 months post-rollout, driven by personalized post-set adjustments and high workout completion rates."
+      "id": "ai-coach-growth-architecture",
+      "source": "Sportstech AI Coach Case Study: Growth & Models",
+      "category": "Sportstech",
+      "title": "AI Coach Growth, Beta Validation & Multi-Model Architecture",
+      "chunk": "The AI Coach followed a disciplined rollout: internal dogfooding with coaches, a 100-user phased beta, and production launch with a voice vs text A/B experiment. The feature scaled from an initial cohort of ~300 DAU to ~2,000 DAU in roughly 3 months through iterative improvements. It ran on a multi-model architecture using Gemini as the primary engine for multimodal reasoning with ChatGPT as reliable fallback."
     },
     {
-      "id": "ai-coach-safety",
-      "source": "Sportstech AI Coach Case Study: Safety Architecture",
-      "category": "AI Coach",
-      "title": "Athlete Safety & Medical Escalation Governance",
-      "chunk": "Safety governance adhered to the principle: 'Safety Before Engagement; AI is not a physician.' The system enforced strict physiological load caps, fatigue detection thresholds, and banned medical diagnosis. Across the entire observed launch period, the product achieved zero reported safety incidents or medical escalations."
-    },
-    {
-      "id": "ai-coach-rollout-iteration",
-      "source": "Sportstech AI Coach Case Study: Lifecycle",
-      "category": "AI Coach",
-      "title": "Iterative Rollout: Internal to Beta to Production",
-      "chunk": "The AI Coach followed a disciplined three-stage progression: dogfooding with internal strength coaches and trainers, a controlled closed beta with 300 active athletes to evaluate latency and adherence, and final production release with automated session summaries and voice guidance."
+      "id": "ai-coach-safety-governance",
+      "source": "Sportstech AI Coach Case Study: Safety",
+      "category": "Sportstech",
+      "title": "AI Coach Safety Governance & Medical Escalation Guardrails",
+      "chunk": "Safety governance followed the principle: 'Safety Before Engagement; AI is not a physician.' The system enforced strict physiological load caps, fatigue thresholds, prohibited medical diagnostic statements, and routed suspected injuries to human medical professionals. Across the launch period, the product recorded zero safety incidents or medical escalations."
     },
     {
       "id": "subscription-zero-to-one",
-      "source": "Subscription Monetization Case Study: Context",
-      "category": "Subscription",
-      "title": "Monetization 0→1: Starting from Completely Free",
-      "chunk": "Deepak led the transition of a historically 100% free consumer sports app into a sustainable paid subscription business. The core challenge was introducing a paywall without alienating organic users who had never been asked to pay for digital fitness tracking."
+      "source": "Sportstech Subscription Case Study: 0→1",
+      "category": "Sportstech",
+      "title": "B2C Subscription Monetization: 0→1 Architecture",
+      "chunk": "Deepak led the transition of a 100% free consumer sports app into a recurring subscription business with no prior playbook. He designed user onboarding, packaging tiers, paywall presentation triggers, European competitor pricing teardowns (Freeletics, Strava, Whoop), renewal-friction reduction, and checkout optimization from first principles."
     },
     {
-      "id": "subscription-ownership",
-      "source": "Subscription Monetization Case Study: Scope",
-      "category": "Subscription",
-      "title": "Deepak's Ownership in Subscription Strategy",
-      "chunk": "As Product Manager, Deepak owned the monetization roadmap: packaging tiers, paywall presentation triggers, European competitor pricing teardowns (Freeletics, Strava, Whoop), renewal-friction reduction, and checkout experience optimization."
+      "id": "subscription-metrics-performance",
+      "source": "Sportstech Subscription Case Study: Scale",
+      "category": "Sportstech",
+      "title": "Subscription Scale: 174K Users, 12.4K Paid, €659K FY25 Revenue",
+      "chunk": "Under Deepak's subscription ownership, the platform grew to 174,180 freemium users and 12,401 paying subscribers, generating €659K in FY2025 subscription revenue. Key performance metrics included 81.9% YoY subscriber growth, 96.8% annual plan retention, and a 39.4% conversion rate (172/437 users) in the mature trial cohort through renewal-friction reduction."
     },
     {
-      "id": "subscription-metrics-conversions",
-      "source": "Subscription Monetization Case Study: Growth & Performance",
-      "category": "Subscription",
-      "title": "Early Conversions & FY2025 Revenue Reporting",
-      "chunk": "Initial monetization efforts began generating ~100–200 paid conversions per month around February 2024. As cohorts matured, the subscription business grew into the company's FY2025 reported context of €659K in total annual recurring revenue."
+      "id": "sportstech-telemetry-funnels",
+      "source": "Sportstech Subscription Case Study: Telemetry",
+      "category": "Sportstech",
+      "title": "Sportstech Platform Telemetry: 3,033 DAU, 27,001 MAU",
+      "chunk": "Deepak owned product performance tracking across acquisition, engagement, and subscription funnels. Telemetry and cohort instrumentation tracked DAU, MAU, conversion, and churn to inform weekly prioritization. The overall consumer fitness platform scaled to 3,033 DAU and 27,001 MAU (an 11% DAU/MAU ratio)."
     },
     {
-      "id": "subscription-renewal-friction",
-      "source": "Subscription Monetization Case Study: Renewal Economics",
-      "category": "Subscription",
-      "title": "Renewal Friction Analysis & Cohort Conversion",
-      "chunk": "By analyzing renewal friction across payment instruments and introducing clear value-reinforcement screens prior to billing milestones, Deepak achieved a 39.4% conversion rate (172 out of 437 users) in the mature trial cohort."
+      "id": "ai-localization-pipeline",
+      "source": "Sportstech AI Localization Case Study: Workflow",
+      "category": "Sportstech",
+      "title": "AI-Assisted Video Localization: 200+ Videos in ~3 Weeks (~10× Faster)",
+      "chunk": "Traditional video dubbing required 3–4 months using external voice studios. Deepak designed an AI-assisted localization pipeline that shipped 200+ workout coaching videos across Italian, French, and Spanish in roughly 3 weeks (~10× faster) using ElevenLabs and HeyGen voice synthesis with human-in-the-loop native speaker quality checks for safety-critical cues."
     },
     {
-      "id": "performance-score-status",
-      "source": "Performance Score PRD: Status & Scope",
-      "category": "Performance Score",
-      "title": "Performance Score PRD: Scope & Development-Ready Status",
-      "chunk": "The Athletic Performance Score is a comprehensive, development-ready Product Requirements Document (PRD) designed by Deepak. It was fully architected and reviewed across engineering and sports science, but was NOT LAUNCHED into production. There are no production adoption or revenue claims."
+      "id": "sportstech-odc-leadership",
+      "source": "Resume & Case Study — Leadership",
+      "category": "Sportstech",
+      "title": "Cross-Border ODC Leadership & Pod Management",
+      "chunk": "At Sportstech, Deepak operated in an Offshore Development Center (ODC) model, leading the India-based product and engineering pod while business, sales, and operations sat at company headquarters in Germany. He directly managed and mentored a 6-person cross-functional pod (3 Product Managers, Growth Specialist, Content Specialist), defining roadmaps, setting quarterly OKRs, and reporting KPIs to executive leadership."
     },
     {
-      "id": "performance-score-concept",
-      "source": "Performance Score PRD: Thesis & Formula",
-      "category": "Performance Score",
-      "title": "'One Body. One Score. One Ecosystem.'",
-      "chunk": "The product thesis was 'One body. One score. One ecosystem.' It unified scattered metrics across strength, cardio, and recovery into a single 0–100 daily athletic score, giving members a single benchmark for readiness and training progression."
+      "id": "performance-score-prd",
+      "source": "Performance Score PRD: Scope & Status",
+      "category": "PRD Specification",
+      "title": "Athletic Performance Score: Architecture & PRD Status",
+      "chunk": "The Athletic Performance Score is an architectural specification and PRD designed by Deepak ('One Body. One Score. One Ecosystem.') unifying strength, cardio, and recovery metrics into a single 0–100 athletic readiness score across 5 surfaces (mobile, console, tablet, web, weekly digest). Status: It was fully architected and review-ready across engineering and sports science, but was NOT launched to production; there are no production metrics or adoption claims."
     },
     {
-      "id": "performance-score-architecture",
-      "source": "Performance Score PRD: Migration & Surfaces",
-      "category": "Performance Score",
-      "title": "Smart Gym Migration & Five Planned Surfaces",
-      "chunk": "The PRD detailed a three-phase data migration strategy for the connected Smart Gym ecosystem, feeding five planned touchpoints: mobile companion, connected console, trainer tablet, web dashboard, and automated weekly digest. It was strictly an architectural specification."
+      "id": "ai-build-jagr",
+      "source": "AI Systems I Built — Jagr",
+      "category": "AI Builds",
+      "title": "Jagr: Autonomous Context Reconstruction Engine for PMs",
+      "chunk": "Jagr is Deepak's flagship AI system built around the problem: 'Knowing what changed while I was away.' When product managers step away from Slack, GitHub, Linear, and Jira, context fractures across hundreds of messages, PRs, and tickets. Jagr continuously ingests team signals and operates on a 5-step loop: CONNECT → WATCH → INVESTIGATE → DECIDE → BRIEF. It strips noise, separates evidence into Observed vs Inferred vs Unknown, detects scope drift, and synthesizes an executive morning delta briefing with action items requiring PM sign-off. Throughout, human PM approval boundaries are enforced."
     },
     {
-      "id": "ai-localization-workflow",
-      "source": "AI Localization Case Study: Transformation",
-      "category": "AI Localization",
-      "title": "Traditional vs AI-Assisted Localization Workflow",
-      "chunk": "Traditional fitness video dubbing took 3–4 months using external voice actors, studio rentals, and manual sound sync. Deepak designed an AI-assisted localization pipeline that reduced production time to roughly 3 weeks (~10× faster), enabling rapid multi-market expansion."
+      "id": "ai-build-product-jury",
+      "source": "AI Systems I Built — Product Jury",
+      "category": "AI Builds",
+      "title": "Product Jury: Decision System for Product Managers",
+      "chunk": "Product Jury is an applied AI system designed by Deepak based on the thesis: 'Make a product call you can defend — and keep the defence.' It solves the problem of product decisions vanishing after meetings. The system turns product judgements into permanent, defensible decision records through an 11-step loop: Artifact → Evidence → Jury → Decision → Red Team → Record → Revisit. It convenes multi-perspective evidence-aware jury personas and subjects provisional verdicts to red-team challenge. Crucially, the human PM always decides; the system never issues instructions."
     },
     {
-      "id": "ai-localization-scope",
-      "source": "AI Localization Case Study: Scope & Languages",
-      "category": "AI Localization",
-      "title": "Scope: 200+ Videos in Italian, French, and Spanish",
-      "chunk": "Deepak managed the localization of 200+ premium workout coaching videos into Italian, French, and Spanish using HeyGen and ElevenLabs voice synthesis. A key operational constraint was retaining human native-speaker review for safety-critical cues and idiomatic fitness terminology."
+      "id": "ai-build-dipa-architecture",
+      "source": "AI Systems I Built — Dīpa Architecture",
+      "category": "AI Builds",
+      "title": "Dīpa: In-Memory Vectorless RAG Portfolio Assistant",
+      "chunk": "Dīpa is the AI assistant running directly on Deepak's portfolio website. It uses an in-memory vectorless RAG architecture: build-time dense vector generation using gemini-embedding-2-preview (512-dim), in-memory exact cosine similarity ranking on server startup (zero hosted vector database latency or cost), a strict 0.68 confidence threshold for honest abstention, and constrained synthesis via gemini-3.1-flash-lite strictly citing retrieved source chunks without external hallucinations."
     },
     {
-      "id": "dipa-architecture-overview",
-      "source": "Dīpa Architecture: Overview",
+      "id": "dipa-rag-vs-finetuning",
+      "source": "Dīpa Architecture: RAG vs Fine-Tuning",
       "category": "Dīpa",
-      "title": "Dīpa: In-Memory Build-Time RAG Architecture",
-      "chunk": "Dīpa is the AI-native portfolio assistant designed by Deepak. It does NOT scrape the live website on every question. Instead, it utilizes build-time embedding generation from a canonical verified knowledge source into a local JSON vector base, queried via in-memory cosine similarity."
+      "title": "Why RAG Over Fine-Tuning for Portfolio Knowledge",
+      "chunk": "Parametric weights in fine-tuned models are lossy and stochastic. When asked for precise historical metrics (such as ReshaMandi's ₹20–25 Cr monthly escrow disbursement or VTU engineering credentials), fine-tuned models frequently hallucinate plausible-sounding errors. In contrast, RAG cleanly separates knowledge storage from reasoning, guaranteeing 100% factual fidelity, instant updates without re-training, and verifiable citation provenance."
     },
     {
-      "id": "dipa-models-and-dimensions",
-      "source": "Dīpa Architecture: Models & Vectors",
+      "id": "dipa-grounding-abstention",
+      "source": "Dīpa Architecture: Grounding & Abstention",
       "category": "Dīpa",
-      "title": "Embedding & Generation Models",
-      "chunk": "Dīpa uses gemini-embedding-2-preview with output dimensionality set to 512 for dense vector representations. Generation is powered by gemini-3.1-flash-lite, strictly grounded on retrieved source chunks with explicit citation provenance."
+      "title": "Dīpa Grounding Contract & Difference Between Fact and Absence of Fact",
+      "chunk": "Dīpa operates under strict epistemic rules: it only answers from verified portfolio and resume evidence. If a fact is supported, it cites the source. If asked about facts not in the portfolio or resume, it clearly states: 'I don't have that in Deepak's verified portfolio material' rather than guessing. It distinguishes between fact and absence of fact: for example, LionCircuits is recognized as his earliest listed role, but not assumed to be his first job ever unless specified. For unlisted timeframes (like May 2020 – Jun 2021), it assumes nothing."
     },
     {
-      "id": "dipa-confidence-threshold",
-      "source": "Dīpa Architecture: Confidence Gate",
-      "category": "Dīpa",
-      "title": "0.68 Confidence Gate & Honest Abstention",
-      "chunk": "Dīpa enforces a strict 0.68 cosine similarity threshold. When a visitor asks an out-of-scope query, trivia, or a topic without sufficient portfolio evidence, Dīpa deliberately abstains from guessing and offers a direct link to book a chat or email Deepak."
+      "id": "deepak-operating-principles",
+      "source": "Portfolio — Operating Principles",
+      "category": "Principles",
+      "title": "Deepak's Operating Principles & Product Philosophy",
+      "chunk": "Deepak operates on three core principles: 1) Ground-Level Truth Over Boardroom Theories — spend time directly where products are used (in warehouses, silk mandis, gym floors), 2) Systems Architecture Before Feature Decoration — eliminate operational bottlenecks and design deterministic workflows before adding UI polish, and 3) Epistemic Modesty & Truthful Fallbacks — ground claims strictly in verifiable metrics, maintain clear audit trails, and design transparent system fallbacks."
     },
     {
-      "id": "dipa-sync-model",
-      "source": "Dīpa Architecture: Synchronization Lifecycle",
-      "category": "Dīpa",
-      "title": "Build-Time Knowledge Synchronization",
-      "chunk": "Rather than relying on live scraping or third-party hosted vector databases, Dīpa's knowledge base is synchronized deterministically during deployment: when portfolio facts are updated, prebuild scripts rebuild the 512-dimensional embeddings into ragKnowledgeBase.json."
-    },
-    {
-      "id": "dipa-vectorless-rationale",
-      "source": "Dīpa Architecture: In-Memory Index Rationale",
-      "category": "Dīpa",
-      "title": "Why In-Memory Cosine Over Hosted Vector Databases",
-      "chunk": "For a curated portfolio corpus of ~32 semantic chunks, provisioning an external vector database (Pinecone, Weaviate) introduces 50–150ms network latency, external failure points, and unnecessary recurring costs. Local CPU cosine calculation across 512-dim vectors runs directly in server memory without external dependencies."
-    },
-    {
-      "id": "portfolio-contact-booking",
-      "source": "Portfolio: Contact & Booking",
+      "id": "portfolio-contact-canonical",
+      "source": "Portfolio — Contact Information",
       "category": "Contact",
-      "title": "Contact, Booking & Collaboration Channels",
-      "chunk": "Visitors can connect with Deepak Prasad directly by clicking 'Let's Talk' in the portfolio navigation, scheduling a conversation via the booking modal, or emailing him directly at Anamadheyam@gmail.com. He is open to product leadership roles and advisory discussions."
+      "title": "Contact Channels, Location & Introductory Calls",
+      "chunk": "Deepak Prasad is based in Bengaluru, India. Official contact channels: email directly at shipwithdeepak@gmail.com, connect on LinkedIn at linkedin.com/in/prasad-deepak, view code on GitHub at github.com/shipwithdeepak-code, or schedule a direct 30-minute introductory call via Calendly at https://calendly.com/shipwithdeepak/chit-chat-with-deepak. He is open to product leadership roles (Senior PM / Head of Product) and advisory engagements."
     },
     {
-      "id": "operating-principles-summary",
-      "source": "Portfolio: Operating Principles",
-      "category": "Background",
-      "title": "Deepak's Operating Principles Summary",
-      "chunk": "Deepak operates on three core principles: 1) Ground-Level Truth Over Boardroom Theories (understanding real workflows directly in the field), 2) Systems Architecture Before Feature Decoration (solving operational bottlenecks before UI polish), and 3) Epistemic Modesty & Truthful Fallbacks (grounding claims in verifiable facts)."
+      "id": "morework-cocoon-bidding-deepdive",
+      "source": "More Product Work: Cocoon Bidding",
+      "category": "ReshaMandi",
+      "title": "Cocoon Bidding System: Real-Time Bidding Mechanics",
+      "chunk": "Deepak's cocoon bidding system replaced subjective buyer-seller bargaining with a digital auction mechanism. The workflow: farmers' cocoon crates were weighed on digital scales and assigned a QR lot tag (Scan); reelers placed sealed bids or competed in dynamic windows (Bid); prices updated on mobile and mandi displays (Watch); highest bidder won the lot (Win); and payment triggered immediately to the farmer via instant banking rails (Pay). Transaction value improved >35% over manual baseline."
     }
   ]
 }

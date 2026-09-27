@@ -8,6 +8,7 @@ import { CaseStudyDetail } from "../types";
 import { OperatingPrinciples } from "./OperatingPrinciples";
 import AiBuilds from "./AiBuilds";
 import GlassButton from "./ui/GlassButton";
+import SectionLabel from "./ui/SectionLabel";
 
 interface HomePageProps {
   onNavigate: (path: string) => void;
@@ -978,11 +979,12 @@ export default function HomePage({
           ========================================================================= */}
       <section id="ai-builds" className="py-14 md:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center text-center mb-8 md:mb-12">
+          <SectionLabel label="AI SYSTEMS I BUILT" color="green" className="mb-2" />
           <h2 className="font-onest text-[34px] sm:text-[44px] md:text-[54px] font-bold text-[#042718] leading-[1.12] tracking-tight md:tracking-[-2px] max-w-3xl text-center">
-            The AI I didn't just <em className="font-playfair italic font-medium text-[#042718]/70 not-italic">manage</em>
+            The AI I didn't just <em className="font-playfair italic font-medium text-[#042718]/70 not-italic">manage</em>. I built it.
           </h2>
-          <p className="font-inter text-[15px] md:text-[18px] text-[#042718]/80 leading-relaxed max-w-[640px] font-normal mt-4 text-center">
-            Two products I designed, wrote and deployed on my own. One is answering questions on this page right now.
+          <p className="font-inter text-[15px] md:text-[18px] text-[#042718]/80 leading-relaxed max-w-[680px] font-normal mt-4 text-center">
+            Three AI systems built around problems I've faced as a product manager — finding answers, challenging decisions, and knowing what changed while I was away.
           </p>
         </div>
 

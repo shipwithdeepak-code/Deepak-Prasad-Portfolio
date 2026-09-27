@@ -204,7 +204,7 @@ async function startServer() {
 
         let embedTimer: NodeJS.Timeout;
         const embedTimeout = new Promise<never>((_, reject) => {
-          embedTimer = setTimeout(() => reject(new Error("Embedding timed out")), 5000);
+          embedTimer = setTimeout(() => reject(new Error("Embedding timed out")), 12000);
         });
 
         try {
@@ -288,43 +288,90 @@ async function startServer() {
 CRITICAL IDENTITY & CONVERSATION RULES:
 1. NO GREETINGS OR SELF-INTRODUCTIONS: You introduce yourself ONLY in the initial greeting message of the chat (which the user has already seen). In every subsequent reply, you must NEVER say "Hello", "Hi", "I am Dīpa", "I am Deepak's AI assistant", or restate who or what you are. Answer the user's question directly from the very first word.
 2. ALWAYS REFER TO DEEPAK IN THE THIRD PERSON: Continue to refer to Deepak in the third person ("Deepak", "he", "his"). You are an AI agent speaking about Deepak and his work; you are not Deepak.
-3. STRICT GROUNDING: Answer strictly using ONLY the information provided in the context below.
-4. METRICS & SPECIFICS: Cite real metrics, numbers, and impact from the context (e.g., 80K+ farmers, ₹20–25 Cr monthly volume, 99.9% reliability, ~300 to 3,200+ DAU, 39.4% mature cohort conversion, etc.).
-5. HONEST BOUNDARIES: If the provided context does not contain sufficient details to answer the question, state directly what is known and suggest clicking "Let's Talk" to connect with Deepak directly.
-6. CONCISE STRUCTURE: Deliver crisp, professional, and well-structured answers (1-3 brief paragraphs or focused bullet points).
-7. NO HALLUCINATIONS: Never hallucinate previous employers, unmentioned technologies, or speculative claims.`;
+
+STRICT CLOSED-WORLD ASSUMPTION:
+3. CLOSED-WORLD EVIDENCE BOUNDARY:
+   - Your universe of factual knowledge is STRICTLY LIMITED to the provided Context below.
+   - You have zero outside knowledge, zero web knowledge, and zero model memory about Deepak's biography or personal details.
+   - If a fact is not explicitly supported by the retrieved Context, you must NEVER state it as fact.
+   - Never fill in missing biography, guess unmentioned details, or provide "common sense" corrections.
+
+NEGATIVE CLAIM RULE (ABSENCE OF EVIDENCE IS NOT EVIDENCE OF ABSENCE):
+4. ABSOLUTELY NO UNSUPPORTED NEGATIVE CLAIMS:
+   - The Context establishes what Deepak DID do, study, or build. It does NOT establish everything he DID NOT do.
+   - Absence from the knowledge base is NOT evidence of absence in reality.
+   - NEVER generate negative assertions (containing "did not", "never", "no", "not", "doesn't", "wasn't", "hasn't", "without", "never worked", "never studied", "never built", "never owned") UNLESS the retrieved Context explicitly contains that exact negative fact.
+   - When asked whether Deepak attended, worked at, or did something not mentioned in the Context (e.g., "Did Deepak study at [Institution]?", "Did Deepak work at [Company]?"):
+     * DO NOT say: "No, he didn't attend..." or "No, he never worked at...".
+     * INSTEAD state what IS verified in the portfolio, and state that you do not have verified portfolio information about the requested item.
+       Example: "The verified portfolio information I have lists a Bachelor of Engineering from Visvesvaraya Technological University (VTU), completed in 2018. I don't have verified portfolio information about [requested institution]."
+       Example: "I don't have verified information about that in the portfolio material."
+   - When asked a neutral or open question (e.g., "Where did he study?", "What was his role at X?"):
+     * State ONLY what is verified: e.g. "Deepak completed a Bachelor of Engineering from Visvesvaraya Technological University (VTU) in 2018."
+     * Do NOT volunteer unprompted negative claims (e.g., do NOT add "He did not attend [unmentioned institution]" or "He did not study [unmentioned field]").
+
+HANDLING MISSING & UNKNOWN INFORMATION:
+5. HONEST ABSTENTION ON ABSENT TOPICS:
+   - If the user asks about something not present in the Context (such as salary, high school, personal details, or unlisted companies):
+     Respond with: "I don't have verified [topic] information in the portfolio material." (e.g. "I don't have verified salary information in the portfolio material.")
+   - Never invent or assume facts from outside the context.
+
+FACT VS INFERENCE VS UNKNOWN:
+6. EPISTEMIC PRECISION:
+   - "First job" vs "Earliest listed role": If asked for his first job, state that his earliest listed professional role in his verified resume is Associate Product Manager at LionCircuits (July 2018 – May 2020). Do not assert it was definitely his first-ever employment if the source does not state that.
+   - Career gaps: If asked about unlisted periods (e.g., May 2020 – June 2021), state that the verified resume lists no roles or activities for that period; do not infer or invent any activities.
+
+METRICS & SPECIFICS:
+7. GROUNDED METRICS & TONE:
+   - Cite real metrics directly from the context (e.g., 80K+ farmers, ₹20–25 Cr monthly volume, 99.9% reliability, ~300 to ~2,000 DAU, 39.4% mature cohort conversion, €659K FY25 revenue, 200+ videos in ~3 weeks).
+   - Deliver crisp, natural, professional answers (1–3 brief paragraphs or focused bullet points) without robotic phrases like "According to chunk...".`;
 
           const prompt = `Context:\n${contextBlocks}\n\nUser Question:\n${cleanQuestion}\n\nPlease provide a direct answer without any greeting, "Hello", or self-introduction:`;
 
-          const generatePromise = ai.models.generateContent({
-            model: "gemini-3.1-flash-lite",
-            contents: prompt,
-            config: {
-              systemInstruction,
-              temperature: 0.2,
-            },
-          });
+          const candidateModels = ["gemini-3.1-flash-lite", "gemini-3.8-flash"];
+          let rawText = "";
 
-          let genTimer: NodeJS.Timeout;
-          const generateTimeout = new Promise<never>((_, reject) => {
-            genTimer = setTimeout(() => reject(new Error("Gemini generation timed out")), 10000);
-          });
+          for (const model of candidateModels) {
+            let genTimer: NodeJS.Timeout | undefined;
+            try {
+              const genPromise = ai.models.generateContent({
+                model,
+                contents: prompt,
+                config: {
+                  systemInstruction,
+                  temperature: 0.2,
+                },
+              });
 
-          try {
-            const genRes = await Promise.race([generatePromise, generateTimeout]);
-            const rawText = genRes.text || "No response generated.";
-            // Guarantee no repeated greeting or self-introduction slips through
+              const timeoutPromise = new Promise<never>((_, reject) => {
+                genTimer = setTimeout(() => reject(new Error(`${model} generation timed out`)), 25000);
+              });
+
+              const genRes = await Promise.race([genPromise, timeoutPromise]);
+              if (genRes.text) {
+                rawText = genRes.text;
+                break; // Succeeded!
+              }
+            } catch (modelErr: any) {
+              console.warn(`[RAG] Generation attempt with ${model} failed or timed out: ${modelErr.message}. Trying next candidate model...`);
+            } finally {
+              if (genTimer) clearTimeout(genTimer);
+            }
+          }
+
+          if (rawText) {
             answer = rawText
               .replace(
                 /^(?:hello!?|hi!?|greetings!?|hey!?)\s*(?:i am|i'm|this is)?\s*(?:dīpa|dipa)?(?:,?\s*deepak(?:'s)?\s*ai\s*assistant)?[.!,:]*\s*/i,
                 ""
               )
               .trim();
-          } finally {
-            clearTimeout(genTimer!);
+          } else {
+            console.warn("[RAG] All Gemini generation candidate models failed or timed out. Falling back to primary verified chunk.");
+            answer = `${retrieved[0].chunk}`;
           }
-        } catch (genError: any) {
-          console.warn("[RAG] Gemini generation failed or timed out, returning grounded chunk:", genError.message);
+        } catch (outerErr: any) {
+          console.warn("[RAG] Unexpected error in generation block:", outerErr.message);
           answer = `${retrieved[0].chunk}`;
         }
       }

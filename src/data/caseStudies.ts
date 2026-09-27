@@ -1346,7 +1346,7 @@ export const COPILOT_GOLDEN_EVALUATION_SET: EvaluationRow[] = [
     retrievalHitTop3: true,
     similarity: 0.88,
     status: "Pass",
-    notes: "B.Tech in Production Engineering from NIT Trichy (First Class Honors)."
+    notes: "Bachelor of Engineering (B.E.) from Visvesvaraya Technological University (VTU), 2018."
   },
   {
     id: 9,
@@ -1466,7 +1466,7 @@ export const COPILOT_GOLDEN_EVALUATION_SET: EvaluationRow[] = [
     retrievalHitTop3: true,
     similarity: 0.85,
     status: "Pass",
-    notes: "Retrieved Book Chat modal instructions and Anamadheyam@gmail.com."
+    notes: "Retrieved Book Chat modal instructions and shipwithdeepak@gmail.com."
   }
 ];
 
@@ -1531,7 +1531,7 @@ export const BEHIND_COPILOT_CASE_STUDY: CaseStudyDetail = {
       subtitle: 'The trade-offs between static parametric weights and dynamic non-parametric retrieval',
       content: [
         'When engineering an AI assistant to represent a professional portfolio, teams frequently debate whether to fine-tune an open model or implement Retrieval-Augmented Generation (RAG).',
-        'Fine-tuning alters model weights directly, but parametric memory is lossy and stochastic. When asked for precise historical metrics, such as ReshaMandi’s ₹20–25 Cr monthly escrow disbursement or NIT Trichy engineering credentials, a fine-tuned model frequently hallucinates plausible-sounding but erroneous figures.',
+        'Fine-tuning alters model weights directly, but parametric memory is lossy and stochastic. When asked for precise historical metrics, such as ReshaMandi’s ₹20–25 Cr monthly escrow disbursement or VTU engineering credentials, a fine-tuned model frequently hallucinates plausible-sounding but erroneous figures.',
         'Furthermore, whenever a case study is updated or a new role is added, fine-tuning requires complete dataset re-training. In contrast, RAG cleanly separates knowledge storage from reasoning, guaranteeing 100% factual fidelity, instant knowledge base updates, and auditable citation provenance.',
       ],
       highlights: [

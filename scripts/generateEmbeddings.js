@@ -222,7 +222,7 @@ async function main() {
     });
     const qVec = qRes.embeddings[0].values;
 
-    const scored = embeddedChunks.map(c => ({
+    const scored = finalChunks.map(c => ({
       title: c.title,
       source: c.source,
       score: cosineSimilarity(qVec, c.embedding)
