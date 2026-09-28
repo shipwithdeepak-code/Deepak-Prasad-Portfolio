@@ -332,7 +332,7 @@ export default function DipaBuildPage({ onNavigate }: DipaBuildPageProps) {
           </h2>
           <div className="space-y-4 font-inter text-[15px] sm:text-base text-[#042718]/75 leading-relaxed">
             <p>
-              <strong>What worked:</strong> Grounding queries against verified case study chunks completely eliminated fabricated dates, inflated metrics, and inaccurate role attributions. Direct citation links give recruiters instant one-click proof.
+              <strong>What worked:</strong> Grounding queries against verified case study chunks prevented fabricated dates, inflated metrics, and inaccurate role attributions. Direct citation links give recruiters instant one-click proof.
             </p>
             <p>
               <strong>What broke in early builds:</strong> Our initial chunking strategy sliced case studies by arbitrary paragraph length rather than semantic boundary. This separated key trade-off rationale from the eventual metric outcome, causing the retriever to occasionally miss context. Re-architecting the knowledge base around structured, semantic decision units fixed this immediately.

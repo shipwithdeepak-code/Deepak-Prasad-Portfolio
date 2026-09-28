@@ -16,34 +16,33 @@ interface HomePageProps {
   onOpenResumeModal?: () => void;
 }
 
-function useStatCountUp(
-  start: number,
+function useNumericCountUp(
   target: number,
   duration: number,
   delay: number,
   isInView: boolean,
   shouldReduceMotion: boolean
 ) {
-  const [value, setValue] = useState(shouldReduceMotion ? target : start);
+  // Always initialize with canonical target value so initial paint, SSR, and pre-animation state show the real metric
+  const [value, setValue] = useState(target);
+  const animatedRef = useRef(false);
 
   useEffect(() => {
-    if (shouldReduceMotion) {
-      setValue(target);
-      return;
-    }
-    if (!isInView) return;
+    if (shouldReduceMotion || !isInView || animatedRef.current) return;
+    animatedRef.current = true;
 
     let startTime: number | null = null;
     let animationFrameId: number;
 
     const timeoutId = setTimeout(() => {
+      setValue(0);
       const step = (timestamp: number) => {
         if (!startTime) startTime = timestamp;
         const elapsed = timestamp - startTime;
         const progress = Math.min(elapsed / duration, 1);
         // Cubic ease-out curve
         const easeOut = 1 - Math.pow(1 - progress, 3);
-        const current = Math.round(start + (target - start) * easeOut);
+        const current = Math.round(target * easeOut);
         setValue(current);
 
         if (progress < 1) {
@@ -60,84 +59,115 @@ function useStatCountUp(
       clearTimeout(timeoutId);
       if (animationFrameId) cancelAnimationFrame(animationFrameId);
     };
-  }, [start, target, duration, delay, isInView, shouldReduceMotion]);
+  }, [target, duration, delay, isInView, shouldReduceMotion]);
 
   return shouldReduceMotion ? target : value;
 }
 
+interface StatMetricItem {
+  value: string;
+  label: string;
+  detail: string;
+}
+
 interface StatNumberDisplayProps {
+  metric: StatMetricItem;
   idx: number;
   isInView: boolean;
   shouldReduceMotion: boolean;
 }
 
-function StatNumberDisplay({ idx, isInView, shouldReduceMotion }: StatNumberDisplayProps) {
-  const configs = [
-    { start: 0, target: 7, type: "years" },
-    { start: 0, target: 1, type: "zeroToOne" },
-    { start: 0, target: 80, type: "kPlus" },
-    { start: 0, target: 12, type: "kPlus" },
-    { start: 300, target: 3200, type: "dauGrowth" },
-    { start: 0, target: 2, type: "payoutTime" },
-  ];
+function NumericStatDisplay({
+  target,
+  suffix,
+  canonicalValue,
+  label,
+  delay,
+  isInView,
+  shouldReduceMotion,
+}: {
+  target: number;
+  suffix: string;
+  canonicalValue: string;
+  label: string;
+  delay: number;
+  isInView: boolean;
+  shouldReduceMotion: boolean;
+}) {
+  const count = useNumericCountUp(target, 1100, delay, isInView, shouldReduceMotion);
 
-  const cfg = configs[idx];
+  return (
+    <span
+      aria-label={`${canonicalValue} — ${label}`}
+      className="font-onest text-2xl sm:text-3xl font-bold tracking-tight text-[#042718]"
+    >
+      <span aria-hidden="true">
+        {count}
+        {suffix}
+      </span>
+    </span>
+  );
+}
+
+function StatNumberDisplay({
+  metric,
+  idx,
+  isInView,
+  shouldReduceMotion,
+}: StatNumberDisplayProps) {
   const delay = idx * 90;
-  const count = useStatCountUp(cfg.start, cfg.target, 1100, delay, isInView, shouldReduceMotion);
 
-  if (cfg.type === "years") {
-    return (
-      <span className="font-onest text-2xl sm:text-3xl font-bold tracking-tight text-[#042718]">
-        {count}+ years
-      </span>
-    );
-  }
+  // Semantic transitions containing "→" (e.g. "0→1", "~300 → 3,200+ DAU", "15 days → under 2 hrs")
+  // Render canonical text directly with editorial Playfair transition arrow — never coerce to numbers
+  if (metric.value.includes("→")) {
+    const parts = metric.value.split("→");
+    const left = parts[0].trim();
+    const right = parts[1].trim();
 
-  if (cfg.type === "zeroToOne") {
     return (
-      <span className="font-onest text-2xl sm:text-3xl font-bold tracking-tight text-[#042718] inline-flex items-center">
-        <span>0</span>
-        <span className="font-playfair italic font-normal text-[#042718]/70 mx-1 select-none">
-          →
+      <span
+        aria-label={`${metric.value} — ${metric.label}`}
+        className="font-onest text-2xl sm:text-3xl font-bold tracking-tight text-[#042718] inline-flex items-center"
+      >
+        <span aria-hidden="true" className="inline-flex items-center">
+          <span>{left}</span>
+          <span className="font-playfair italic font-normal text-[#042718]/70 mx-1.5 select-none">
+            →
+          </span>
+          <span>{right}</span>
         </span>
-        <span>{count}</span>
       </span>
     );
   }
 
-  if (cfg.type === "kPlus") {
+  // Pure count metrics with numeric prefix (e.g. "7+ years", "80K+", "12K+")
+  const match = metric.value.match(/^(\d+)(.*)$/);
+  if (match) {
+    const target = parseInt(match[1], 10);
+    const suffix = match[2];
+
     return (
-      <span className="font-onest text-2xl sm:text-3xl font-bold tracking-tight text-[#042718]">
-        {count}K+
-      </span>
+      <NumericStatDisplay
+        target={target}
+        suffix={suffix}
+        canonicalValue={metric.value}
+        label={metric.label}
+        delay={delay}
+        isInView={isInView}
+        shouldReduceMotion={shouldReduceMotion}
+      />
     );
   }
 
-  if (cfg.type === "dauGrowth") {
-    return (
-      <span className="font-onest text-2xl sm:text-3xl font-bold tracking-tight text-[#042718] inline-flex items-center">
-        <span>300</span>
-        <span className="font-playfair italic font-normal text-[#042718]/70 mx-1.5 select-none">
-          →
-        </span>
-        <span>{count.toLocaleString()}+</span>
-      </span>
-    );
-  }
-
-  if (cfg.type === "payoutTime") {
-    return (
-      <span className="font-onest text-2xl sm:text-3xl font-bold tracking-tight text-[#042718] inline-flex items-center">
-        <span>15 days</span>
-        <span className="font-playfair italic font-normal text-[#042718]/70 mx-1.5 select-none">
-          →
-        </span>
-        <span>under {count} hrs</span>
-      </span>
-    );
-  }
-
-  return null;
+  // Fallback: render canonical string directly
+  return (
+    <span
+      aria-label={`${metric.value} — ${metric.label}`}
+      className="font-onest text-2xl sm:text-3xl font-bold tracking-tight text-[#042718]"
+    >
+      {metric.value}
+    </span>
+  );
 }
 
 export default function HomePage({
@@ -191,7 +221,7 @@ export default function HomePage({
     { name: "ReshaMandi B2B Ecosystem", metric: "₹20 Cr+/mo" },
     { name: "Instant Payouts Engine", metric: "99.9%" },
     { name: "Computer Vision ML Grading", metric: "4 grades" },
-    { name: "Sportstech B2C SaaS", metric: "12,401 members" },
+    { name: "Sportstech B2C SaaS", metric: "12,401 subscribers" },
     { name: "0→1 AI Product Advisory", metric: "3 months" },
     { name: "Multi-Tier Supply Chain", metric: "80K+ farmers" },
     { name: "Dynamic Bidding Auctions", metric: "35% uplift" },
@@ -607,6 +637,7 @@ export default function HomePage({
                 }`}
               >
                 <StatNumberDisplay
+                  metric={item}
                   idx={idx}
                   isInView={isInView}
                   shouldReduceMotion={shouldReduceMotion}

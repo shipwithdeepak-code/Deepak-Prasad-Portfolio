@@ -317,7 +317,7 @@ function AiCoachEditorialBoundary({
                 APPROPRIATE GUIDANCE / DETERMINISTIC FALLBACK
               </h5>
               <p className="font-inter text-xs text-[#991B1B]/80 leading-relaxed">
-                Returns static, verified medical advisories and directs the user to certified clinical care, maintaining zero physical safety compromises.
+                Returns static, verified medical advisories and directs the user to certified clinical care, maintaining strict physical safety guardrails and medical escalation boundaries.
               </p>
             </div>
           </div>
@@ -1134,7 +1134,7 @@ function AiLocalizationEditorialOperatingModel({
               </span>
             </div>
             <span className="font-mono text-[11px] text-[#059669] font-medium">
-              ~3 Weeks Turnaround · ~10× Faster Velocity · 100% Brand Safe
+              ~3 Weeks Turnaround · ~10× Faster Velocity · Human-Validated Safety
             </span>
           </div>
 

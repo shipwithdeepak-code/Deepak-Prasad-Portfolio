@@ -152,11 +152,11 @@ export default function ResumePage({
             <div className="flex items-center gap-3 mb-2">
               <GraduationCap size={20} className="text-[#188E39]" />
               <h4 className="font-onest text-base sm:text-lg font-bold text-[#042718]">
-                Bachelor of Engineering (B.E.) in Electronics & Communication
+                Bachelor of Engineering (B.E.)
               </h4>
             </div>
             <p className="font-inter text-xs sm:text-sm text-[#042718]/70">
-              Visvesvaraya Technological University (VTU) · Technical foundation in signal processing, systems architecture, embedded computing, and software engineering.
+              Visvesvaraya Technological University (VTU) · 2018 · Technical foundation in systems engineering, computing, and software platforms.
             </p>
           </div>
         </section>

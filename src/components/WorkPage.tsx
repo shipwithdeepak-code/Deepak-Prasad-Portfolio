@@ -58,7 +58,7 @@ export default function WorkPage({
       case "ai-coach":
         return {
           h3: "Sportstech AI Coach",
-          desc: "Took an ambiguous conversational AI opportunity to production in 3 months; supported 3,200+ DAU during the product rollout period behind strict clinical safety guardrails.",
+          desc: "Took an ambiguous conversational AI opportunity to production in 3 months; supported 3,200+ DAU during the product rollout period behind medical escalation and physiological safety guardrails.",
           figure: "3,200+",
           qual: "DAU during rollout period",
           imagePrefix: "/images/ai-coach-hero",
