@@ -135,7 +135,7 @@ export default function AiBuilds({ onNavigate }: { onNavigate: (path: string) =>
                   LIVE BUILD
                 </Tag>
                 <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.16em] text-[#042718]/60 bg-[#042718]/5 px-2.5 py-1 rounded-full border border-[#042718]/8">
-                  Flagship AI System
+                  PM Context & Drift Engine
                 </span>
               </div>
               <span className="font-mono text-[11px] text-[#042718]/50 flex items-center gap-1.5">

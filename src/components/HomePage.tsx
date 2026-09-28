@@ -500,7 +500,51 @@ export default function HomePage({
             in ~3 months. I kept asking questions until the product matched reality.
           </motion.p>
 
-          {/* Ask Dīpa Glass Capsule CTA - only action in fold */}
+          {/* Primary Professional Action Row */}
+          <motion.div
+            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={
+              shouldReduceMotion
+                ? { duration: 0 }
+                : { duration: 0.45, ease: [0.23, 1, 0.32, 1], delay: 0.52 }
+            }
+            className="flex flex-wrap items-center justify-center gap-3 mb-6 relative z-10"
+          >
+            <GlassButton
+              variant="primary"
+              size="lg"
+              icon={<ArrowRight size={16} />}
+              onClick={() => {
+                const el = document.getElementById("selected-work");
+                if (el) {
+                  el.scrollIntoView({ behavior: "smooth" });
+                } else {
+                  onNavigate("/work");
+                }
+              }}
+              aria-label="Explore Flagship Shipped Work"
+            >
+              Explore Shipped Work
+            </GlassButton>
+
+            <GlassButton
+              variant="secondary"
+              size="lg"
+              onClick={() => {
+                if (onOpenResumeModal) {
+                  onOpenResumeModal();
+                } else {
+                  onNavigate("/resume");
+                }
+              }}
+              aria-label="View Deepak's Resume"
+            >
+              View Resume
+            </GlassButton>
+          </motion.div>
+
+          {/* Dīpa Conversational Discovery */}
           <motion.div
             initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
@@ -511,6 +555,11 @@ export default function HomePage({
             }
             className="flex flex-col items-center justify-center mb-7 sm:mb-8 w-full"
           >
+            <div className="flex items-center gap-2 mb-2.5">
+              <span className="font-mono text-[11px] uppercase tracking-wider text-[#042718]/60 font-semibold">
+                Or explore via conversational retrieval
+              </span>
+            </div>
             <button
               type="button"
               ref={askDipaButtonRef}
@@ -593,7 +642,7 @@ export default function HomePage({
       </section>
 
       {/* =========================================================================
-          2. HOMEPAGE PROOF STRIP (RESTRAINED, ELEGANT, NOT DASHBOARD-Y)
+          2. HOMEPAGE PROOF STRIP (MEASURABLE IMPACT & SCALE)
           ========================================================================= */}
       <section
         ref={statsSectionRef}
@@ -601,6 +650,19 @@ export default function HomePage({
         className="pt-20 md:pt-28 pb-12 md:pb-16 bg-[#FAF8F5] scroll-mt-24 relative z-10"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 pb-6 border-b border-[#042718]/8">
+            <div>
+              <span className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#188E39] block mb-2">
+                VERIFIED TRACK RECORD · 7+ YEARS SHIPPING PRODUCTION SYSTEMS
+              </span>
+              <h2 className="font-onest text-2xl sm:text-3xl font-bold tracking-tight text-[#042718]">
+                Measurable business & user impact at scale.
+              </h2>
+            </div>
+            <p className="font-inter text-xs sm:text-sm text-[#042718]/60 max-w-sm sm:text-right">
+              Validated across enterprise B2B marketplaces, consumer AI, and subscription platforms.
+            </p>
+          </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-y-6 sm:gap-y-8 md:gap-y-0">
             {proofStripMetrics.map((item, idx) => (
               <motion.div
@@ -806,11 +868,12 @@ export default function HomePage({
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-10 md:mb-14">
           <div className="max-w-2xl">
+            <SectionLabel label="FLAGSHIP SHIPPED PRODUCTS" color="green" className="mb-3" />
             <h2 className="font-onest text-[34px] sm:text-[44px] md:text-[54px] font-bold text-[#042718] leading-[1.12] tracking-tight md:tracking-[-2px]">
               From silk mandis to <em className="font-playfair italic font-medium text-[#042718]/70 not-italic">conversational AI</em>
             </h2>
             <p className="font-inter text-[15px] md:text-[18px] text-[#042718]/80 leading-relaxed max-w-[640px] font-normal mt-4">
-              Five flagship projects with a deeper look — plus the broader work behind them.
+              Core products I personally owned and shipped to production as Senior Product Manager — driving enterprise scale, B2C subscription growth, and applied AI guardrails.
             </p>
           </div>
 
@@ -949,8 +1012,18 @@ export default function HomePage({
 
                   {/* Floating Panel on top of image, inset right */}
                   <div className="work-deck-panel">
+                    {/* Role & Year Header */}
+                    <div className="flex items-center justify-between gap-2 mb-2 pb-2 border-b border-white/10">
+                      <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-[#E8C48A]">
+                        {item.role}
+                      </span>
+                      <span className="font-mono text-[11px] text-white/50">
+                        {item.year}
+                      </span>
+                    </div>
+
                     {/* Tag pills */}
-                    <div className="flex flex-wrap gap-1.5 mb-3.5">
+                    <div className="flex flex-wrap gap-1.5 mb-3">
                       {item.tags.map((tag) => (
                         <span
                           key={tag}
@@ -1006,16 +1079,16 @@ export default function HomePage({
       </section>
 
       {/* =========================================================================
-          4. AI BUILDS SECTION (SCAFFOLD)
+          4. APPLIED AI LAB & PRODUCT EXPERIMENTS (PM THINKING & MECHANISM TESTING)
           ========================================================================= */}
       <section id="ai-builds" className="py-14 md:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center text-center mb-8 md:mb-12">
-          <SectionLabel label="AI SYSTEMS I BUILT" color="green" className="mb-2" />
+          <SectionLabel label="APPLIED AI & PRODUCT MECHANISMS" color="amber" className="mb-2" />
           <h2 className="font-onest text-[34px] sm:text-[44px] md:text-[54px] font-bold text-[#042718] leading-[1.12] tracking-tight md:tracking-[-2px] max-w-3xl text-center">
-            The AI I didn't just <em className="font-playfair italic font-medium text-[#042718]/70 not-italic">manage</em>. I built it.
+            How I test mechanisms, evaluate models, and <em className="font-playfair italic font-medium text-[#042718]/70 not-italic">build with AI.</em>
           </h2>
-          <p className="font-inter text-[15px] md:text-[18px] text-[#042718]/80 leading-relaxed max-w-[680px] font-normal mt-4 text-center">
-            Three AI systems built around problems I've faced as a product manager — finding answers, challenging decisions, and knowing what changed while I was away.
+          <p className="font-inter text-[15px] md:text-[18px] text-[#042718]/80 leading-relaxed max-w-[700px] font-normal mt-4 text-center">
+            As an AI-native PM, I build working systems to validate product mechanics, stress-test models, and evaluate agentic workflows. These are applied tools created to solve real product management bottlenecks.
           </p>
         </div>
 
@@ -1027,7 +1100,7 @@ export default function HomePage({
         {/* Builder's Stack Tool Strip */}
         <div className="mt-12 flex flex-col items-center gap-3">
           <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-[#042718]/45">
-            Tools I work with
+            PM & AI Tooling
           </span>
           <div className="flex flex-wrap items-center justify-center gap-2 max-w-3xl">
             {[
