@@ -23,10 +23,32 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
     message: "",
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [copied, setCopied] = useState(false);
+
+  const mailtoSubject = encodeURIComponent(
+    `[Portfolio] ${formData.subject || "Product Leadership Inquiry"} — from ${formData.name || "Visitor"}`
+  );
+  const mailtoBody = encodeURIComponent(
+    `Hi Deepak,\n\n${formData.message}\n\n---\nSender: ${formData.name}\nEmail: ${formData.email}\nSubject: ${formData.subject || "Product Leadership Inquiry"}`
+  );
+  const mailtoUrl = `mailto:shipwithdeepak@gmail.com?subject=${mailtoSubject}&body=${mailtoBody}`;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (typeof window !== "undefined") {
+      window.location.href = mailtoUrl;
+    }
     setIsSubmitted(true);
+  };
+
+  const handleCopyNote = () => {
+    const textToCopy = `To: shipwithdeepak@gmail.com\nSubject: [Portfolio] ${formData.subject || "Product Leadership Inquiry"} — from ${formData.name}\n\nHi Deepak,\n\n${formData.message}\n\n---\nSender: ${formData.name}\nEmail: ${formData.email}`;
+    if (navigator?.clipboard) {
+      navigator.clipboard.writeText(textToCopy).then(() => {
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2500);
+      });
+    }
   };
 
   return (
@@ -123,12 +145,31 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
                   <div className="w-12 h-12 rounded-full bg-[#059669] text-white flex items-center justify-center">
                     <CheckCircle2 size={24} />
                   </div>
-                  <h4 className="font-onest text-lg font-bold text-[#065F46]">
-                    Message received!
+                  <h4 className="font-onest text-xl font-bold text-[#065F46]">
+                    Note Prepared for Deepak
                   </h4>
-                  <p className="font-inter text-xs sm:text-sm text-[#047857] max-w-sm">
-                    Thank you for getting in touch. I will review your note and respond to <span className="font-semibold">{formData.email}</span> within 24 hours.
+                  <p className="font-inter text-xs sm:text-sm text-[#047857] max-w-md leading-relaxed">
+                    Your email client was triggered with your note addressed to <strong className="font-semibold text-[#065F46]">shipwithdeepak@gmail.com</strong>. If your mail client didn&apos;t open automatically, use the buttons below:
                   </p>
+
+                  <div className="flex flex-col sm:flex-row items-center gap-3 w-full max-w-sm mt-3 mb-2">
+                    <a
+                      href={mailtoUrl}
+                      className="w-full sm:flex-1 py-2.5 px-4 rounded-xl bg-[#065F46] text-white font-inter text-xs font-semibold hover:bg-[#047857] transition-colors flex items-center justify-center gap-2 shadow-xs"
+                    >
+                      <Mail size={14} />
+                      <span>Open in Email App</span>
+                    </a>
+
+                    <button
+                      type="button"
+                      onClick={handleCopyNote}
+                      className="w-full sm:flex-1 py-2.5 px-4 rounded-xl border border-[#065F46]/30 bg-white hover:bg-[#FAFDFB] text-[#065F46] font-inter text-xs font-semibold transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-2xs"
+                    >
+                      <span>{copied ? "Copied to Clipboard!" : "Copy Note"}</span>
+                    </button>
+                  </div>
+
                   <button
                     type="button"
                     onClick={() => {

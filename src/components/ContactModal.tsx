@@ -16,6 +16,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [sent, setSent] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -33,16 +34,29 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
 
   if (!isOpen) return null;
 
+  const mailtoSubject = encodeURIComponent(`[Portfolio] ${subject} — from ${name || "Visitor"}`);
+  const mailtoBody = encodeURIComponent(
+    `Hi Deepak,\n\n${message}\n\n---\nSender: ${name}\nEmail: ${email}\nContext: ${subject}`
+  );
+  const mailtoUrl = `mailto:shipwithdeepak@gmail.com?subject=${mailtoSubject}&body=${mailtoBody}`;
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    // Attempt launching mail client directly
+    if (typeof window !== "undefined") {
+      window.location.href = mailtoUrl;
+    }
     setSent(true);
-    setTimeout(() => {
-      setSent(false);
-      onClose();
-      setName("");
-      setEmail("");
-      setMessage("");
-    }, 2500);
+  };
+
+  const handleCopyNote = () => {
+    const textToCopy = `To: shipwithdeepak@gmail.com\nSubject: [Portfolio] ${subject} — from ${name}\n\nHi Deepak,\n\n${message}\n\n---\nSender: ${name}\nEmail: ${email}`;
+    if (navigator?.clipboard) {
+      navigator.clipboard.writeText(textToCopy).then(() => {
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2500);
+      });
+    }
   };
 
   const subjectOptions = [
@@ -91,16 +105,55 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
         </div>
 
         {sent ? (
-          <div className="py-12 flex flex-col items-center text-center">
-            <div className="w-16 h-16 rounded-full bg-[#E4F2EB] flex items-center justify-center text-[#188E39] mb-4 animate-bounce">
+          <div className="py-8 flex flex-col items-center text-center">
+            <div className="w-16 h-16 rounded-full bg-[#E4F2EB] flex items-center justify-center text-[#188E39] mb-4">
               <CheckCircle2 size={32} />
             </div>
             <h4 className="font-onest text-2xl font-bold text-[#042718] mb-2">
-              Message Received!
+              Note Prepared for Deepak
             </h4>
-            <p className="font-inter text-sm text-[#042718]/70 max-w-xs">
-              Thank you for reaching out. Deepak will review your note and get back to you shortly.
+            <p className="font-inter text-sm text-[#042718]/80 max-w-md mb-6 leading-relaxed">
+              Your default email client was triggered with your note addressed to{" "}
+              <strong className="text-[#042718] font-semibold">shipwithdeepak@gmail.com</strong>.
+              If your client didn&apos;t open automatically, use the buttons below:
             </p>
+
+            <div className="flex flex-col sm:flex-row items-center gap-3 w-full max-w-sm mb-6">
+              <a
+                href={mailtoUrl}
+                className="w-full sm:flex-1 py-2.5 px-4 rounded-xl bg-[#042718] text-white font-inter text-xs font-semibold hover:bg-[#188E39] transition-colors flex items-center justify-center gap-2"
+              >
+                <Mail size={14} />
+                <span>Open in Email App</span>
+              </a>
+
+              <button
+                type="button"
+                onClick={handleCopyNote}
+                className="w-full sm:flex-1 py-2.5 px-4 rounded-xl border border-[#042718]/15 bg-[#FAFDFB] hover:bg-[#FAFDFB]/80 text-[#042718] font-inter text-xs font-semibold transition-colors flex items-center justify-center gap-2 cursor-pointer"
+              >
+                <span>{copied ? "Copied to Clipboard!" : "Copy Note"}</span>
+              </button>
+            </div>
+
+            <div className="pt-4 border-t border-[#042718]/10 w-full flex items-center justify-between text-xs font-inter text-[#042718]/60">
+              <button
+                type="button"
+                onClick={() => {
+                  setSent(false);
+                }}
+                className="hover:text-[#042718] underline cursor-pointer"
+              >
+                Edit message
+              </button>
+              <button
+                type="button"
+                onClick={onClose}
+                className="hover:text-[#042718] font-semibold cursor-pointer"
+              >
+                Done
+              </button>
+            </div>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">

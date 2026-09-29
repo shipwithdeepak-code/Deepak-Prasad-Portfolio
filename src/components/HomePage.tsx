@@ -395,23 +395,26 @@ export default function HomePage({
   return (
     <div className="w-full bg-[#FAF8F5] text-[#042718]">
       {/* =========================================================================
-          1. HERO SECTION (CENTERED COMPOSITION INTEGRATED WITH TOP NAVIGATION)
+          1. HERO SECTION (ORIGINAL HERO)
           ========================================================================= */}
       <section className="relative pt-[112px] md:pt-[136px] pb-8 md:pb-12 min-h-[100svh] flex flex-col justify-center items-center overflow-hidden bg-[#FAF8F5]">
         {/* Background Video/Image band full bleed cover */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-          <picture>
+          <picture className="w-full h-full block">
             <source srcSet="/images/hero-bg-poster.webp" type="image/webp" />
             <img
               src="/images/hero-bg-poster.jpg"
               alt=""
               aria-hidden="true"
               fetchPriority="high"
-              width="720"
-              height="544"
-              className="w-full h-full object-cover object-[50%_60%]"
+              loading="eager"
+              decoding="sync"
+              width={1440}
+              height={900}
+              className="w-full h-full object-cover object-center"
             />
           </picture>
+
           {canPlayHeroVideo && (
             <video
               autoPlay
@@ -421,7 +424,7 @@ export default function HomePage({
               preload="auto"
               poster="/images/hero-bg-poster.webp"
               aria-hidden="true"
-              className="absolute inset-0 w-full h-full object-cover object-[50%_60%]"
+              className="absolute inset-0 w-full h-full object-cover object-center"
             >
               <source
                 src="https://cdn.jiro.build/Amox/All%20Images/P01-Header-01-BG.mp4"
@@ -431,7 +434,7 @@ export default function HomePage({
           )}
         </div>
 
-        {/* Soft bottom fade only */}
+        {/* Restrained bottom edge: connects naturally to the next section without an aggressive white washout */}
         <div
           className="absolute bottom-0 left-0 right-0 h-28 md:h-32 z-[1] pointer-events-none bg-[linear-gradient(to_bottom,rgba(250,248,245,0)_0%,rgba(250,248,245,0.35)_55%,rgba(250,248,245,0.92)_88%,#FAF8F5_100%)]"
           aria-hidden="true"
@@ -450,7 +453,7 @@ export default function HomePage({
 
           {/* Main Headline - Word cascade with screen-reader friendly text */}
           <motion.h1
-            className="font-onest text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-[#042718] leading-[1.12] mb-5 max-w-4xl mx-auto text-center [overflow-wrap:anywhere]"
+            className="font-onest text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-[#042718] leading-[1.12] mb-5 max-w-4xl mx-auto text-center [overflow-wrap:anywhere] [text-shadow:0_1px_2px_rgba(255,255,255,0.95),0_0_24px_rgba(255,255,255,0.7)]"
           >
             <span className="sr-only">
               I'm mostly just someone who stays curious. Stubborn enough not to stop asking 'why.'
@@ -483,7 +486,7 @@ export default function HomePage({
                 ? { duration: 0 }
                 : { duration: 0.5, ease: [0.23, 1, 0.32, 1], delay: 0.42 }
             }
-            className="font-inter text-[15px] md:text-lg text-[#042718]/80 leading-[1.62] md:leading-relaxed mb-8 max-w-full md:max-w-[58ch] lg:max-w-[64ch] mx-auto text-center font-normal"
+            className="font-inter text-[15px] md:text-lg text-[#042718]/85 leading-[1.62] md:leading-relaxed mb-8 max-w-full md:max-w-[58ch] lg:max-w-[64ch] mx-auto text-center font-normal [text-shadow:0_1px_2px_rgba(255,255,255,0.95),0_0_16px_rgba(255,255,255,0.8)]"
           >
             I&apos;m{" "}
             <span className="font-playfair italic font-medium text-[#042718] text-xl sm:text-2xl inline-block">
@@ -519,7 +522,7 @@ export default function HomePage({
                 const el = document.getElementById("selected-work");
                 if (el) {
                   el.scrollIntoView({ behavior: "smooth" });
-                } else {
+                } else if (onNavigate) {
                   onNavigate("/work");
                 }
               }}
@@ -534,7 +537,7 @@ export default function HomePage({
               onClick={() => {
                 if (onOpenResumeModal) {
                   onOpenResumeModal();
-                } else {
+                } else if (onNavigate) {
                   onNavigate("/resume");
                 }
               }}
@@ -563,7 +566,6 @@ export default function HomePage({
             <button
               type="button"
               ref={askDipaButtonRef}
-              id="hero-ask-dipa-capsule"
               onClick={() => {
                 if (typeof window !== "undefined") {
                   window.dispatchEvent(new CustomEvent("open-copilot"));
@@ -626,14 +628,13 @@ export default function HomePage({
             <div className="hero-marquee-track flex items-center gap-3 w-fit whitespace-nowrap">
               {[...domainChips, ...domainChips].map((chip, i) => (
                 <div
-                  key={i}
+                  key={`${chip.name}-${i}`}
                   className="hero-marquee-chip flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/80 backdrop-blur-[8px] backdrop-saturate-[1.5] border border-[#042718]/10 shadow-2xs text-xs sm:text-sm font-medium text-[#042718] shrink-0"
                 >
                   <span className="w-1.5 h-1.5 rounded-full bg-[#188E39] shrink-0" />
                   <span>{chip.name}</span>
-                  <span className="text-[#A8711A] text-[11px] font-bold tabular-nums">
-                    {chip.metric}
-                  </span>
+                  <span className="text-[#042718]/40">·</span>
+                  <span className="font-semibold text-[#042718]/80">{chip.metric}</span>
                 </div>
               ))}
             </div>
@@ -1083,12 +1084,13 @@ export default function HomePage({
           ========================================================================= */}
       <section id="ai-builds" className="py-14 md:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center text-center mb-8 md:mb-12">
-          <SectionLabel label="APPLIED AI & PRODUCT MECHANISMS" color="amber" className="mb-2" />
-          <h2 className="font-onest text-[34px] sm:text-[44px] md:text-[54px] font-bold text-[#042718] leading-[1.12] tracking-tight md:tracking-[-2px] max-w-3xl text-center">
-            How I test mechanisms, evaluate models, and <em className="font-playfair italic font-medium text-[#042718]/70 not-italic">build with AI.</em>
+          <SectionLabel label="APPLIED AI & PRODUCT SYSTEMS" color="amber" className="mb-2" />
+          <h2 className="font-onest text-[32px] sm:text-[42px] md:text-[50px] font-bold text-[#042718] leading-[1.15] tracking-tight md:tracking-[-1.5px] max-w-3xl text-center">
+            I don&apos;t just use AI to make things. <br className="hidden sm:inline" />
+            <span className="font-playfair italic font-medium text-[#042718]/85">I use it to test how products should work.</span>
           </h2>
-          <p className="font-inter text-[15px] md:text-[18px] text-[#042718]/80 leading-relaxed max-w-[700px] font-normal mt-4 text-center">
-            As an AI-native PM, I build working systems to validate product mechanics, stress-test models, and evaluate agentic workflows. These are applied tools created to solve real product management bottlenecks.
+          <p className="font-inter text-[15px] md:text-[17.5px] text-[#042718]/80 leading-relaxed max-w-[720px] font-normal mt-4 text-center">
+            I prototype product mechanisms, challenge my assumptions, and build working systems with AI as an implementation partner &mdash; while keeping the product decisions, constraints, and validation loop mine.
           </p>
         </div>
 

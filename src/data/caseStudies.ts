@@ -677,6 +677,31 @@ export const SUBSCRIPTION_CASE_STUDY: CaseStudyDetail = {
     outcome:
       'Maintained brand goodwill, kept refund disputes near zero, and supported scaling to 12,401 active paying subscribers with 96.8% yearly-plan retention.',
   },
+  artifacts: {
+    title: 'Monetization Funnel & Cancellation Governance Schemas',
+    subtitle: 'Transparent European subscription lifecycle, trial countdown, and value gating logic',
+    type: 'spec',
+    items: [
+      {
+        label: 'Subscription Intent & Trial State Machine',
+        value: 'Lifecycle Contract',
+        desc: 'Product state machine governing progressive disclosure from guest experience to active 7-day trial and renewal confirmation.',
+        code: '{ state: "TRIAL_ACTIVE", days_remaining: 3, auto_renew_date: "2025-11-14T00:00:00Z", plan_tier: "annual_pro", currency: "EUR", amount: 79.99 }',
+      },
+      {
+        label: 'EU Consumer Protection 1-Tap Cancellation Schema',
+        value: 'Transparent Regulatory Endpoint',
+        desc: 'Compliant one-click unsubscribe contract with transparent reason capture and prorated refund confirmation.',
+        code: 'POST /v1/subscription/cancel -> { user_id: "usr_82910", cancellation_reason: "cost_adjustment", effective_date: "end_of_period", refund_eligible: false }',
+      },
+      {
+        label: 'Dynamic Gating & Habit Feature Flag Matrix',
+        value: 'Access Control Specification',
+        desc: 'Access configuration keeping core sensor pairing free while reserving dynamic scheduling and telemetry progression for subscribers.',
+        code: '{ feature: "sensor_telemetry_live", free_tier: true, feature: "adaptive_multiweek_habits", free_tier: false, paywall_trigger: "AFTER_FIRST_PLAN" }',
+      },
+    ],
+  },
   sections: [
     {
       id: 'starting-point',
@@ -894,6 +919,31 @@ export const PERFORMANCE_SCORE_CASE_STUDY: CaseStudyDetail = {
     outcome:
       'Delivered a comprehensive, development-ready cross-platform PRD aligned across 5 engineering surfaces (iOS, Android, Display, Smart Gym, Firmware) with zero live workout sync risk.',
   },
+  artifacts: {
+    title: 'Connected Progress Model & Multi-Surface PRD Specifications',
+    subtitle: 'Hardware-agnostic schema, 3-phase migration contract, and telemetry weighting matrix',
+    type: 'spec',
+    items: [
+      {
+        label: 'Athletic Reliability 0–100 Composite Vector',
+        value: 'Progress Algorithm Specification',
+        desc: 'Calculated across Strain Management (40%), Consistency (35%), and Scheduled Recovery Adherence (25%).',
+        code: '{ score: 84, strain_idx: 88, consistency_idx: 82, recovery_credit: 80, hardware_tier: "TIER_1_FALLBACK", confidence: 0.92 }',
+      },
+      {
+        label: '3-Phase Data Migration Event Payload',
+        value: 'Idempotent Dual-Write Contract',
+        desc: 'Cross-platform session schema shared between legacy workout tables and the unified activity service.',
+        code: '{ session_id: "ses_live_9481", surface: "SMART_GYM", duration_sec: 1820, rpe: 8, hr_mean_bpm: 154, timestamp: "2025-03-12T07:30:00Z", schema_ver: "v2.1" }',
+      },
+      {
+        label: 'Multi-Surface BLE Hardware Handshake Matrix',
+        value: 'Protocol Specification',
+        desc: 'Standardized packet parsing specifications uniting cardio displays, Smart Gym motors, and BLE heart rate monitors.',
+        code: '{ ble_device_type: "SPULSE_CHEST_STRAP", sample_rate_hz: 1, packet_format: "STANDARD_GATT_HR", fallback_strategy: "CLIENT_SIDE_INTERPOLATION" }',
+      },
+    ],
+  },
   sections: [
     {
       id: 'the-problem',
@@ -1095,6 +1145,31 @@ export const AI_LOCALIZATION_CASE_STUDY: CaseStudyDetail = {
       'We gave up the illusion of instantaneous zero-touch software publishing; every video required scheduling and compensating human reviewers.',
     outcome:
       'Successfully localized 200+ high-production videos across Italian, French, and Spanish in ~3 weeks (~10× faster than studio benchmarks) while keeping coaching quality consistent across markets.',
+  },
+  artifacts: {
+    title: 'AI Synthesis Pipeline & Human-in-the-Loop QA Contracts',
+    subtitle: 'Multi-vendor audio/video orchestration schemas and terminology validation protocols',
+    type: 'spec',
+    items: [
+      {
+        label: 'Orchestration Batch Render Contract',
+        value: 'ElevenLabs + HeyGen Pipeline',
+        desc: 'API payload combining source transcript, speaker voice profile ID, language target, and video rendering flags.',
+        code: '{ job_id: "loc_it_v208", source_video_id: "wk_spin_30m", voice_clone_id: "eleven_trainer_03", target_locale: "it-IT", render_engine: "heygen_lip_sync_v2" }',
+      },
+      {
+        label: 'Human-in-the-Loop Quality Gate Schema',
+        value: 'Native Speaker QA Sign-Off',
+        desc: 'Structured review checklist covering biomechanical phrasing accuracy, lip-sync naturalness, and audio-video tempo alignment.',
+        code: '{ qa_status: "PASSED_WITH_EDITS", reviewer_locale: "es-ES", cue_accuracy_score: 98, sync_offset_ms: -40, approved_for_production: true }',
+      },
+      {
+        label: 'Standardized Fitness Glossary Schema',
+        value: '500-Term Translation Memory',
+        desc: 'Pre-compiled domain dictionary mapping English fitness cues to culturally authentic, physiologically safe foreign phrases.',
+        code: '{ en_term: "soft bend in knees", it_cue: "ginocchia leggermente flesse", fr_cue: "genoux légèrement fléchis", es_cue: "rodillas suavemente flexionadas" }',
+      },
+    ],
   },
   sections: [
     {
