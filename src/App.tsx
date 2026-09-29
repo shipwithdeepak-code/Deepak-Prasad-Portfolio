@@ -5,7 +5,6 @@ import HomePage from "./components/HomePage";
 import { openCalendly } from "./utils/calendly";
 import {
   ALL_CASE_STUDIES,
-  RESHAMANDI_CASE_STUDY,
 } from "./data/caseStudies";
 import { MORE_PRODUCT_WORK_ITEMS } from "./data/moreProductWork";
 import { CaseStudyDetail } from "./types";
@@ -17,7 +16,6 @@ const MoreWorkDetailPage = lazy(() => import("./components/MoreWorkDetailPage"))
 const AboutPage = lazy(() => import("./components/AboutPage"));
 const ResumePage = lazy(() => import("./components/ResumePage"));
 const ContactPage = lazy(() => import("./components/ContactPage"));
-const CaseStudyModal = lazy(() => import("./components/CaseStudyModal"));
 const ContactModal = lazy(() => import("./components/ContactModal"));
 const ResumeModal = lazy(() => import("./components/ResumeModal"));
 const ProductJuryPost = lazy(() => import("./components/ProductJuryPost"));
@@ -34,9 +32,6 @@ export default function App() {
     return "/";
   });
 
-  const [isCaseStudyModalOpen, setIsCaseStudyModalOpen] = useState(false);
-  const [selectedModalCaseStudy, setSelectedModalCaseStudy] =
-    useState<CaseStudyDetail>(RESHAMANDI_CASE_STUDY);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const [isResumeModalOpen, setIsResumeModalOpen] = useState(false);
 
@@ -105,14 +100,13 @@ export default function App() {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape" || e.key === "Esc") {
-        if (isCaseStudyModalOpen) setIsCaseStudyModalOpen(false);
         if (isContactModalOpen) setIsContactModalOpen(false);
         if (isResumeModalOpen) setIsResumeModalOpen(false);
       }
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isCaseStudyModalOpen, isContactModalOpen, isResumeModalOpen]);
+  }, [isContactModalOpen, isResumeModalOpen]);
 
   const scrollToHash = (hash: string, attempts = 0) => {
     const el = document.getElementById(hash);
@@ -147,8 +141,8 @@ export default function App() {
     }
   };
 
-  const handleSelectCaseStudy = (caseStudy: CaseStudyDetail) => {
-    setSelectedModalCaseStudy(caseStudy);
+  const handleSelectCaseStudy = (_caseStudy: CaseStudyDetail) => {
+    // Navigation is handled via dedicated routes
   };
 
   // Resolve current active route
@@ -268,10 +262,10 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#FAFDFB] text-[#042718] selection:bg-[#188E39]/20 selection:text-[#042718]">
+    <div className="min-h-screen flex flex-col bg-[#FAF8F5] text-[#121517] selection:bg-[#C89B3C]/20 selection:text-[#121517]">
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:rounded-full focus:bg-[#042718] focus:text-white focus:text-sm focus:font-semibold"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:rounded-full focus:bg-[#121517] focus:text-white focus:text-sm focus:font-semibold"
       >
         Skip to content
       </a>
@@ -291,7 +285,7 @@ export default function App() {
             aria-busy="true"
             aria-live="polite"
           >
-            <div className="w-5 h-5 border-2 border-[#188E39]/20 border-t-[#188E39] rounded-full animate-spin" />
+            <div className="w-5 h-5 border-2 border-[#121517]/20 border-t-[#121517] rounded-full animate-spin" />
           </div>
         }
       >
@@ -310,18 +304,6 @@ export default function App() {
 
       {/* Interactive Modals & Copilot */}
       <Suspense fallback={null}>
-        {isCaseStudyModalOpen && (
-          <CaseStudyModal
-            caseStudy={selectedModalCaseStudy}
-            isOpen={isCaseStudyModalOpen}
-            onClose={() => setIsCaseStudyModalOpen(false)}
-            onOpenContact={() => {
-              setIsCaseStudyModalOpen(false);
-              setIsContactModalOpen(true);
-            }}
-          />
-        )}
-
         {isContactModalOpen && (
           <ContactModal
             isOpen={isContactModalOpen}

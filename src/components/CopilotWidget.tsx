@@ -197,10 +197,10 @@ export default function CopilotWidget({
             transition={{ duration: 0.22, ease: "easeOut" }}
             className="fixed bottom-[calc(216px_+_env(safe-area-inset-bottom))] sm:bottom-[148px] right-5 z-40 max-w-[300px] sm:max-w-[330px] p-3.5 rounded-2xl cursor-pointer text-left select-none"
             style={{
-              background: "color-mix(in oklch, #FAFDFB 82%, transparent)",
+              background: "color-mix(in oklch, #FAF8F5 82%, transparent)",
               backdropFilter: "blur(20px) saturate(160%)",
               WebkitBackdropFilter: "blur(20px) saturate(160%)",
-              border: "1px solid color-mix(in oklch, #042718 12%, transparent)",
+              border: "1px solid color-mix(in oklch, #121517 12%, transparent)",
               boxShadow:
                 "0 12px 30px -8px rgba(4,39,24,.22), 0 4px 10px -3px rgba(4,39,24,.1)",
             }}
@@ -213,7 +213,7 @@ export default function CopilotWidget({
             <div className="flex items-start gap-3">
               <DipaAvatar className="mt-0.5" />
               <div>
-                <p className="font-inter text-xs sm:text-[13px] font-medium text-[#042718] leading-snug">
+                <p className="font-inter text-xs sm:text-[13px] font-medium text-[#121517] leading-snug">
                   {showScrollNudge
                     ? "Curious about the thinking behind this? Ask Dīpa →"
                     : "I'm Dīpa. I know a little about Deepak's work. Ask me anything →"}
@@ -230,7 +230,7 @@ export default function CopilotWidget({
                     setInitialPrompt(promptText);
                     setIsOpen(true);
                   }}
-                  className="mt-2 text-left font-inter text-[11px] font-medium text-[#065F46] hover:text-[#042718] bg-[#ECFDF5]/85 hover:bg-[#ECFDF5] px-2.5 py-1 rounded-lg border border-[#01bc7c]/30 transition-colors block w-fit"
+                  className="mt-2 text-left font-inter text-[11px] font-medium text-[#065F46] hover:text-[#121517] bg-[#ECFDF5]/85 hover:bg-[#ECFDF5] px-2.5 py-1 rounded-lg border border-[#C89B3C]/30 transition-colors block w-fit"
                 >
                   Try:{" "}
                   <span className="font-semibold">
@@ -246,9 +246,9 @@ export default function CopilotWidget({
             <div
               className="absolute -bottom-1.5 right-6 w-3 h-3 rotate-45"
               style={{
-                background: "color-mix(in oklch, #FAFDFB 82%, transparent)",
-                borderRight: "1px solid color-mix(in oklch, #042718 12%, transparent)",
-                borderBottom: "1px solid color-mix(in oklch, #042718 12%, transparent)",
+                background: "color-mix(in oklch, #FAF8F5 82%, transparent)",
+                borderRight: "1px solid color-mix(in oklch, #121517 12%, transparent)",
+                borderBottom: "1px solid color-mix(in oklch, #121517 12%, transparent)",
               }}
             />
           </motion.div>

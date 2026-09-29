@@ -254,7 +254,7 @@ export default function CopilotDrawer({
           <li
             key={idx}
             className={`ml-4 list-disc text-sm my-1 leading-relaxed ${
-              isUser ? "text-white" : "text-[#042718]/90"
+              isUser ? "text-white" : "text-[#121517]/90"
             }`}
           >
             {renderBold(bulletText, isUser)}
@@ -268,7 +268,7 @@ export default function CopilotDrawer({
         <p
           key={idx}
           className={`text-sm leading-relaxed my-1 ${
-            isUser ? "text-white font-medium" : "text-[#042718]/90"
+            isUser ? "text-white font-medium" : "text-[#121517]/90"
           }`}
         >
           {renderBold(line, isUser)}
@@ -285,7 +285,7 @@ export default function CopilotDrawer({
           <strong
             key={i}
             className={`font-bold ${
-              isUser ? "text-white" : "text-[#042718]"
+              isUser ? "text-white" : "text-[#121517]"
             }`}
           >
             {part.slice(2, -2)}
@@ -303,10 +303,10 @@ export default function CopilotDrawer({
       id="copilot-window"
       className="fixed bottom-4 sm:bottom-[104px] right-4 sm:right-5 left-4 sm:left-auto z-50 w-auto sm:w-[460px] h-[calc(100dvh-32px)] sm:h-[620px] max-h-[calc(100dvh-32px)] sm:max-h-[calc(100dvh-128px)] flex flex-col rounded-[24px] overflow-hidden font-inter transition-[opacity,transform] duration-300"
       style={{
-        background: "color-mix(in oklch, #FAFDFB 55%, transparent)",
+        background: "color-mix(in oklch, #FAF8F5 55%, transparent)",
         backdropFilter: "blur(24px) saturate(160%)",
         WebkitBackdropFilter: "blur(24px) saturate(160%)",
-        border: "1px solid color-mix(in oklch, #042718 12%, transparent)",
+        border: "1px solid color-mix(in oklch, #121517 12%, transparent)",
         boxShadow:
           "0 16px 32px -16px rgba(4,39,24,.4), 0 4px 10px -4px rgba(4,39,24,.18)",
         ...(keyboardViewport &&
@@ -345,7 +345,7 @@ export default function CopilotDrawer({
       <div
         className="relative z-10 px-4 py-3 flex items-center justify-between shrink-0"
         style={{
-          borderBottom: "1px solid color-mix(in oklch, #042718 8%, transparent)",
+          borderBottom: "1px solid color-mix(in oklch, #121517 8%, transparent)",
           backgroundColor: "transparent",
         }}
       >
@@ -353,20 +353,20 @@ export default function CopilotDrawer({
           <div className="relative">
             <DipaAvatar />
             <span
-              className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-[#188E39] border-2 border-white ring-1 ring-[#188E39]/30"
+              className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-[#A8711A] border-2 border-white ring-1 ring-[#A8711A]/30"
               title="Online & Ready"
             />
           </div>
           <div>
             <div className="flex items-center gap-1.5">
-              <span className="font-onest font-semibold text-sm text-[#042718] tracking-tight">
+              <span className="font-onest font-semibold text-sm text-[#121517] tracking-tight">
                 Dīpa
               </span>
               <span className="px-1.5 py-0.5 rounded text-[10px] font-mono font-medium tracking-tight bg-[#ECFDF5] text-[#065F46] border border-[#A7F3D0]">
                 RAG v1.2
               </span>
             </div>
-            <p className="font-inter text-[11px] text-[#042718]/65 font-normal leading-tight">
+            <p className="font-inter text-[11px] text-[#121517]/65 font-normal leading-tight">
               Ask about Deepak&apos;s metrics, case studies, work
             </p>
           </div>
@@ -376,7 +376,7 @@ export default function CopilotDrawer({
           <button
             onClick={() => setIsHowItWorksOpen((prev) => !prev)}
             title="How Dīpa's architecture works"
-            className="p-1.5 rounded-lg text-[#042718]/60 hover:text-[#042718] hover:bg-white/40 transition-colors cursor-pointer"
+            className="p-1.5 rounded-lg text-[#121517]/60 hover:text-[#121517] hover:bg-white/40 transition-colors cursor-pointer"
             aria-label="Toggle architecture view"
           >
             <Info size={15} />
@@ -384,14 +384,14 @@ export default function CopilotDrawer({
           <button
             onClick={handleResetChat}
             title="Reset conversation"
-            className="p-1.5 rounded-lg text-[#042718]/60 hover:text-[#042718] hover:bg-white/40 transition-colors cursor-pointer"
+            className="p-1.5 rounded-lg text-[#121517]/60 hover:text-[#121517] hover:bg-white/40 transition-colors cursor-pointer"
             aria-label="Reset conversation"
           >
             <RotateCcw size={15} />
           </button>
           <button
             onClick={onClose}
-            className="p-1.5 rounded-lg text-[#042718]/60 hover:text-[#042718] hover:bg-white/40 transition-colors cursor-pointer"
+            className="p-1.5 rounded-lg text-[#121517]/60 hover:text-[#121517] hover:bg-white/40 transition-colors cursor-pointer"
             aria-label="Close Dīpa"
           >
             <X size={17} />
@@ -404,10 +404,10 @@ export default function CopilotDrawer({
         <div
           className="relative z-20 px-4 py-3 text-xs leading-relaxed shrink-0 max-h-52 overflow-y-auto"
           style={{
-            background: "color-mix(in oklch, #FAFDFB 88%, transparent)",
+            background: "color-mix(in oklch, #FAF8F5 88%, transparent)",
             backdropFilter: "blur(20px)",
             WebkitBackdropFilter: "blur(20px)",
-            borderBottom: "1px solid color-mix(in oklch, #042718 10%, transparent)",
+            borderBottom: "1px solid color-mix(in oklch, #121517 10%, transparent)",
           }}
         >
           <div className="flex items-start justify-between mb-1.5">
@@ -416,25 +416,25 @@ export default function CopilotDrawer({
             </span>
             <button
               onClick={() => setIsHowItWorksOpen(false)}
-              className="text-[#042718]/50 hover:text-[#042718] text-xs font-mono"
+              className="text-[#121517]/50 hover:text-[#121517] text-xs font-mono"
             >
               Close
             </button>
           </div>
-          <p className="text-[#042718]/80 mb-2">
+          <p className="text-[#121517]/80 mb-2">
             Dīpa does not scrape the portfolio live. It uses a deterministic build-time synchronization process,
-            generating 512-dimensional embeddings stored in the local <code className="font-mono text-[10px] px-1 py-0.5 rounded bg-white/70 border border-[#042718]/10">ragKnowledgeBase.json</code>.
+            generating 512-dimensional embeddings stored in the local <code className="font-mono text-[10px] px-1 py-0.5 rounded bg-white/70 border border-[#121517]/10">ragKnowledgeBase.json</code>.
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 font-mono text-[10px] text-[#042718]/80">
-            <div className="p-2 rounded-lg bg-white/60 border border-[#042718]/5">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 font-mono text-[10px] text-[#121517]/80">
+            <div className="p-2 rounded-lg bg-white/60 border border-[#121517]/5">
               <div className="font-bold text-[#065F46] mb-0.5">1. Embeddings</div>
               gemini-embedding-2-preview (512-dim) generated at build time.
             </div>
-            <div className="p-2 rounded-lg bg-white/60 border border-[#042718]/5">
+            <div className="p-2 rounded-lg bg-white/60 border border-[#121517]/5">
               <div className="font-bold text-[#065F46] mb-0.5">2. Retrieval &amp; Gate</div>
               In-memory cosine similarity evaluated against a 0.68 confidence gate.
             </div>
-            <div className="p-2 rounded-lg bg-white/60 border border-[#042718]/5">
+            <div className="p-2 rounded-lg bg-white/60 border border-[#121517]/5">
               <div className="font-bold text-[#065F46] mb-0.5">3. Grounding</div>
               gemini-3.1-flash-lite generates grounded answers with source citations.
             </div>
@@ -468,16 +468,16 @@ export default function CopilotDrawer({
                 <div
                   className={`rounded-2xl px-3.5 py-2.5 transition-all duration-200 ${
                     isUser
-                      ? "bg-[#042718] text-white shadow-xs max-w-[88%]"
-                      : "text-[#042718] shadow-xs max-w-[84%] sm:max-w-[88%]"
+                      ? "bg-[#121517] text-white shadow-xs max-w-[88%]"
+                      : "text-[#121517] shadow-xs max-w-[84%] sm:max-w-[88%]"
                   }`}
                   style={
                     !isUser
                       ? {
-                          background: "color-mix(in oklch, #FAFDFB 78%, transparent)",
+                          background: "color-mix(in oklch, #FAF8F5 78%, transparent)",
                           backdropFilter: "blur(12px)",
                           WebkitBackdropFilter: "blur(12px)",
-                          border: "1px solid color-mix(in oklch, #042718 10%, transparent)",
+                          border: "1px solid color-mix(in oklch, #121517 10%, transparent)",
                         }
                       : undefined
                   }
@@ -486,14 +486,14 @@ export default function CopilotDrawer({
 
                   {/* Retrieved chunks / citations drawer */}
                   {!isUser && msg.retrievedChunks && msg.retrievedChunks.length > 0 && (
-                    <div className="mt-2.5 pt-2 border-t border-[#042718]/8">
+                    <div className="mt-2.5 pt-2 border-t border-[#121517]/8">
                       <div className="flex items-center justify-between mb-1.5">
                         <span className="text-[10px] font-mono uppercase tracking-wider text-[#065F46] font-semibold flex items-center gap-1">
                           <Database size={11} /> Grounded in {msg.retrievedChunks.length} Source
                           {msg.retrievedChunks.length > 1 ? "s" : ""}
                         </span>
                         {msg.topSimilarity && (
-                          <span className="text-[10px] font-mono text-[#042718]/50">
+                          <span className="text-[10px] font-mono text-[#121517]/50">
                             Match: {Math.round(msg.topSimilarity * 100)}%
                           </span>
                         )}
@@ -520,7 +520,7 @@ export default function CopilotDrawer({
 
               {/* Timestamp & metrics */}
               <div
-                className={`flex items-center gap-2 mt-1 px-1 text-[10px] text-[#042718]/45 font-mono ${
+                className={`flex items-center gap-2 mt-1 px-1 text-[10px] text-[#121517]/45 font-mono ${
                   isUser ? "flex-row-reverse" : "flex-row ml-[42px]"
                 }`}
               >
@@ -556,20 +556,20 @@ export default function CopilotDrawer({
           <div className="flex items-start gap-2.5">
             <DipaAvatar className="mt-0.5" />
             <div
-              className="rounded-2xl px-4 py-3 flex items-center gap-2 text-xs text-[#042718]/70"
+              className="rounded-2xl px-4 py-3 flex items-center gap-2 text-xs text-[#121517]/70"
               style={{
-                background: "color-mix(in oklch, #FAFDFB 78%, transparent)",
+                background: "color-mix(in oklch, #FAF8F5 78%, transparent)",
                 backdropFilter: "blur(12px)",
                 WebkitBackdropFilter: "blur(12px)",
-                border: "1px solid color-mix(in oklch, #042718 10%, transparent)",
+                border: "1px solid color-mix(in oklch, #121517 10%, transparent)",
               }}
             >
               <div className="flex items-center gap-1.5">
-                <span className="copilot-dot-pulse-1 w-2 h-2 rounded-full bg-[#188E39]" />
-                <span className="copilot-dot-pulse-2 w-2 h-2 rounded-full bg-[#188E39]" />
-                <span className="copilot-dot-pulse-3 w-2 h-2 rounded-full bg-[#188E39]" />
+                <span className="copilot-dot-pulse-1 w-2 h-2 rounded-full bg-[#A8711A]" />
+                <span className="copilot-dot-pulse-2 w-2 h-2 rounded-full bg-[#A8711A]" />
+                <span className="copilot-dot-pulse-3 w-2 h-2 rounded-full bg-[#A8711A]" />
               </div>
-              <span className="font-mono text-[11px] ml-1 text-[#042718]/70">
+              <span className="font-mono text-[11px] ml-1 text-[#121517]/70">
                 Searching vector index & synthesizing...
               </span>
             </div>
@@ -582,10 +582,10 @@ export default function CopilotDrawer({
         <div
           className="relative z-30 px-4 py-3 text-xs leading-relaxed shrink-0 max-h-56 overflow-y-auto"
           style={{
-            background: "color-mix(in oklch, #FAFDFB 92%, transparent)",
+            background: "color-mix(in oklch, #FAF8F5 92%, transparent)",
             backdropFilter: "blur(20px)",
             WebkitBackdropFilter: "blur(20px)",
-            borderTop: "1px solid color-mix(in oklch, #042718 12%, transparent)",
+            borderTop: "1px solid color-mix(in oklch, #121517 12%, transparent)",
           }}
         >
           <div className="flex items-start justify-between mb-2">
@@ -593,22 +593,22 @@ export default function CopilotDrawer({
               <span className="text-[10px] font-mono uppercase tracking-wider text-[#065F46] font-bold">
                 Retrieved Vector Source
               </span>
-              <h4 className="font-onest font-bold text-xs text-[#042718]">
+              <h4 className="font-onest font-bold text-xs text-[#121517]">
                 {selectedChunk.title}
               </h4>
             </div>
             <button
               onClick={() => setSelectedChunk(null)}
-              className="p-1 rounded text-[#042718]/50 hover:text-[#042718]"
+              className="p-1 rounded text-[#121517]/50 hover:text-[#121517]"
               aria-label="Close source view"
             >
               <X size={14} />
             </button>
           </div>
-          <div className="p-2.5 rounded-lg bg-white/70 border border-[#042718]/10 text-[11px] font-mono text-[#042718]/85 whitespace-pre-wrap leading-relaxed max-h-28 overflow-y-auto mb-2">
+          <div className="p-2.5 rounded-lg bg-white/70 border border-[#121517]/10 text-[11px] font-mono text-[#121517]/85 whitespace-pre-wrap leading-relaxed max-h-28 overflow-y-auto mb-2">
             {selectedChunk.chunk}
           </div>
-          <div className="flex items-center justify-between text-[10px] font-mono text-[#042718]/60">
+          <div className="flex items-center justify-between text-[10px] font-mono text-[#121517]/60">
             <span>Score: {Math.round(selectedChunk.similarity * 100)}% Match</span>
             <button
               onClick={() => {
@@ -623,7 +623,7 @@ export default function CopilotDrawer({
                   onClose();
                 }
               }}
-              className="inline-flex items-center gap-1 text-[#188E39] hover:underline font-bold"
+              className="inline-flex items-center gap-1 text-[#A8711A] hover:underline font-bold"
             >
               Open Full Case Study <ArrowRight size={10} />
             </button>
@@ -637,14 +637,14 @@ export default function CopilotDrawer({
           className="relative z-10 px-4 py-2 flex items-center gap-1.5 overflow-x-auto no-scrollbar shrink-0"
           style={{
             backgroundColor: "transparent",
-            borderTop: "1px solid color-mix(in oklch, #042718 6%, transparent)",
+            borderTop: "1px solid color-mix(in oklch, #121517 6%, transparent)",
           }}
         >
           {STARTER_PROMPTS.map((prompt, i) => (
             <button
               key={i}
               onClick={() => handleSend(prompt)}
-              className="whitespace-nowrap px-2.5 py-1 rounded-full text-xs font-medium text-[#042718]/75 bg-white/60 hover:bg-white hover:text-[#042718] border border-[#042718]/10 transition-colors shrink-0 shadow-2xs cursor-pointer"
+              className="whitespace-nowrap px-2.5 py-1 rounded-full text-xs font-medium text-[#121517]/75 bg-white/60 hover:bg-white hover:text-[#121517] border border-[#121517]/10 transition-colors shrink-0 shadow-2xs cursor-pointer"
             >
               {prompt}
             </button>
@@ -667,18 +667,18 @@ export default function CopilotDrawer({
           onKeyDown={handleKeyDown}
           placeholder="Ask Dīpa about Deepak's metrics, case studies, work..."
           disabled={isLoading}
-          className="flex-1 px-3.5 py-2.5 rounded-xl focus:outline-none focus:border-[#188E39] focus:ring-1 focus:ring-[#188E39] text-xs sm:text-sm text-[#042718] placeholder-[#042718]/40"
+          className="flex-1 px-3.5 py-2.5 rounded-xl focus:outline-none focus:border-[#A8711A] focus:ring-1 focus:ring-[#A8711A] text-xs sm:text-sm text-[#121517] placeholder-[#121517]/40"
           style={{
-            background: "color-mix(in oklch, #FAFDFB 65%, transparent)",
+            background: "color-mix(in oklch, #FAF8F5 65%, transparent)",
             backdropFilter: "blur(10px) saturate(150%)",
             WebkitBackdropFilter: "blur(10px) saturate(150%)",
-            border: "1px solid color-mix(in oklch, #042718 12%, transparent)",
+            border: "1px solid color-mix(in oklch, #121517 12%, transparent)",
           }}
         />
         <button
           onClick={() => handleSend()}
           disabled={!input.trim() || isLoading}
-          className="p-2.5 rounded-xl bg-[#042718] hover:bg-[#188E39] disabled:bg-[#042718]/20 text-white disabled:text-white/40 transition-colors shrink-0 shadow-xs cursor-pointer disabled:cursor-not-allowed"
+          className="p-2.5 rounded-xl bg-[#121517] hover:bg-[#A8711A] disabled:bg-[#121517]/20 text-white disabled:text-white/40 transition-colors shrink-0 shadow-xs cursor-pointer disabled:cursor-not-allowed"
           aria-label="Send query to Dīpa"
         >
           <Send size={16} />

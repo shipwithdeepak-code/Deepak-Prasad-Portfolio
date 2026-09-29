@@ -33,15 +33,15 @@ export default function MoreWorkDetailPage({
     ];
 
   return (
-    <div className="w-full bg-[#FAFDFB] text-[#042718]">
+    <div className="w-full bg-[#FAF8F5] text-[#121517]">
       {/* ── Header & Context ─────────────────────────────────── */}
-      <section className="pt-10 pb-12 md:pt-14 md:pb-16 border-b border-[#042718]/8">
+      <section className="pt-10 pb-12 md:pt-14 md:pb-16 border-b border-[#121517]/8">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Back to Work Link */}
           <button
             type="button"
             onClick={() => onNavigate('/work')}
-            className="inline-flex items-center gap-2 text-xs sm:text-sm font-inter font-medium text-[#042718]/60 hover:text-[#188E39] mb-8 transition-colors cursor-pointer"
+            className="inline-flex items-center gap-2 text-xs sm:text-sm font-inter font-medium text-[#121517]/60 hover:text-[#A8711A] mb-8 transition-colors cursor-pointer"
           >
             <ArrowLeft size={16} />
             <span>Back to all work</span>
@@ -52,38 +52,38 @@ export default function MoreWorkDetailPage({
             <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.2em] font-semibold text-[#A8711A]">
               More Product Work
             </span>
-            <span className="text-[#042718]/25">•</span>
-            <span className="px-2.5 py-0.5 rounded-full bg-[#042718]/5 text-xs font-inter font-medium text-[#042718]/80">
+            <span className="text-[#121517]/25">•</span>
+            <span className="px-2.5 py-0.5 rounded-full bg-[#121517]/5 text-xs font-inter font-medium text-[#121517]/80">
               {item.primaryCategory}
             </span>
           </div>
 
           {/* Title */}
-          <h1 className="font-onest text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#042718] leading-[1.15] mb-4">
+          <h1 className="font-onest text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#121517] leading-[1.15] mb-4">
             {item.title}
           </h1>
 
           {/* One-line positioning statement */}
-          <p className="font-inter text-lg sm:text-xl font-medium text-[#042718]/80 leading-relaxed mb-6">
+          <p className="font-inter text-lg sm:text-xl font-medium text-[#121517]/80 leading-relaxed mb-6">
             {item.description}
           </p>
 
           {/* Company · Role · Period Metadata Row */}
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs sm:text-sm font-inter text-[#042718]/60 py-4 border-t border-b border-[#042718]/8">
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs sm:text-sm font-inter text-[#121517]/60 py-4 border-t border-b border-[#121517]/8">
             <div className="flex items-center gap-1.5">
-              <Building2 size={15} className="text-[#042718]/45" />
-              <span className="font-semibold text-[#042718]">{item.company}</span>
+              <Building2 size={15} className="text-[#121517]/45" />
+              <span className="font-semibold text-[#121517]">{item.company}</span>
             </div>
-            <div className="hidden sm:block text-[#042718]/20">•</div>
+            <div className="hidden sm:block text-[#121517]/20">•</div>
             <div className="flex items-center gap-1.5">
-              <User size={15} className="text-[#042718]/45" />
+              <User size={15} className="text-[#121517]/45" />
               <span>{item.role}</span>
             </div>
             {item.period && (
               <>
-                <div className="hidden sm:block text-[#042718]/20">•</div>
+                <div className="hidden sm:block text-[#121517]/20">•</div>
                 <div className="flex items-center gap-1.5">
-                  <Calendar size={15} className="text-[#042718]/45" />
+                  <Calendar size={15} className="text-[#121517]/45" />
                   <span>{item.period}</span>
                 </div>
               </>
@@ -95,7 +95,7 @@ export default function MoreWorkDetailPage({
             {item.tags.map((t, idx) => (
               <span
                 key={idx}
-                className="font-inter text-xs font-medium px-2.5 py-1 rounded-md bg-white border border-[#042718]/10 text-[#042718]/70"
+                className="font-inter text-xs font-medium px-2.5 py-1 rounded-md bg-white border border-[#121517]/10 text-[#121517]/70"
               >
                 {t}
               </span>
@@ -119,7 +119,7 @@ export default function MoreWorkDetailPage({
               : 'WHAT CHANGED';
 
             return (
-              <div className="mt-8 pt-8 border-t border-[#042718]/10">
+              <div className="mt-8 pt-8 border-t border-[#121517]/10">
                 <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.2em] font-semibold text-[#A8711A] block mb-4">
                   {eyebrowLabel}
                 </span>
@@ -128,14 +128,14 @@ export default function MoreWorkDetailPage({
                   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
                     {displayMetrics.map((m, idx) => (
                       <div key={idx} className="flex flex-col">
-                        <div className="font-onest text-3xl sm:text-4xl font-bold tracking-tight text-[#042718] tabular-nums">
+                        <div className="font-onest text-3xl sm:text-4xl font-bold tracking-tight text-[#121517] tabular-nums">
                           {m.value}
                         </div>
-                        <div className="font-inter text-xs sm:text-sm font-semibold text-[#042718]/80 mt-1 leading-snug">
+                        <div className="font-inter text-xs sm:text-sm font-semibold text-[#121517]/80 mt-1 leading-snug">
                           {m.label}
                         </div>
                         {'context' in m && (m as { context?: string }).context && (
-                          <div className="font-inter text-[11px] text-[#042718]/50 mt-0.5">
+                          <div className="font-inter text-[11px] text-[#121517]/50 mt-0.5">
                             {(m as { context?: string }).context}
                           </div>
                         )}
@@ -143,7 +143,7 @@ export default function MoreWorkDetailPage({
                     ))}
                   </div>
                 ) : (
-                  <p className="font-onest text-lg sm:text-xl font-medium text-[#042718]/85 leading-snug max-w-3xl">
+                  <p className="font-onest text-lg sm:text-xl font-medium text-[#121517]/85 leading-snug max-w-3xl">
                     {item.outcome.summary}
                   </p>
                 )}
@@ -158,63 +158,63 @@ export default function MoreWorkDetailPage({
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
           {/* First Screen Matrix: The Problem & Why It Mattered */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            <div className="p-6 rounded-2xl bg-white border border-[#042718]/8 shadow-2xs">
-              <span className="font-mono text-[11px] uppercase tracking-wider font-semibold text-[#042718]/50 block mb-2">
+            <div className="p-6 rounded-2xl bg-white border border-[#121517]/8 shadow-2xs">
+              <span className="font-mono text-[11px] uppercase tracking-wider font-semibold text-[#121517]/50 block mb-2">
                 The Problem
               </span>
-              <p className="font-inter text-sm sm:text-[15px] text-[#042718]/80 leading-relaxed">
+              <p className="font-inter text-sm sm:text-[15px] text-[#121517]/80 leading-relaxed">
                 {item.problem}
               </p>
             </div>
 
-            <div className="p-6 rounded-2xl bg-white border border-[#042718]/8 shadow-2xs">
+            <div className="p-6 rounded-2xl bg-white border border-[#121517]/8 shadow-2xs">
               <span className="font-mono text-[11px] uppercase tracking-wider font-semibold text-[#8A5A16] block mb-2">
                 Why It Mattered
               </span>
-              <p className="font-inter text-sm sm:text-[15px] text-[#042718]/80 leading-relaxed">
+              <p className="font-inter text-sm sm:text-[15px] text-[#121517]/80 leading-relaxed">
                 {item.whyItMattered}
               </p>
             </div>
           </div>
 
           {/* What I Personally Owned */}
-          <div className="p-6 rounded-2xl bg-[#F4F9F5] border border-[#188E39]/18">
-            <span className="font-mono text-[11px] uppercase tracking-wider font-semibold text-[#188E39] block mb-2">
+          <div className="p-6 rounded-2xl bg-[#F4F9F5] border border-[#A8711A]/18">
+            <span className="font-mono text-[11px] uppercase tracking-wider font-semibold text-[#A8711A] block mb-2">
               My Role
             </span>
-            <p className="font-inter text-sm sm:text-[15px] text-[#042718] font-medium leading-relaxed">
+            <p className="font-inter text-sm sm:text-[15px] text-[#121517] font-medium leading-relaxed">
               {item.myOwnership || item.myRole}
             </p>
           </div>
 
           {/* The Key Decision */}
           {item.keyDecision && (
-            <div className="p-6 sm:p-8 rounded-2xl bg-white border border-[#042718]/8 shadow-2xs">
+            <div className="p-6 sm:p-8 rounded-2xl bg-white border border-[#121517]/8 shadow-2xs">
               <span className="font-mono text-[11px] uppercase tracking-wider font-semibold text-[#A8711A] block mb-2">
                 The Key Decision
               </span>
               {typeof item.keyDecision === 'string' ? (
-                <p className="font-inter text-sm sm:text-[15px] text-[#042718]/80 leading-relaxed">
+                <p className="font-inter text-sm sm:text-[15px] text-[#121517]/80 leading-relaxed">
                   {item.keyDecision}
                 </p>
               ) : (
                 <div>
-                  <h3 className="font-onest text-xl font-bold text-[#042718] mb-3">
+                  <h3 className="font-onest text-xl font-bold text-[#121517] mb-3">
                     {item.keyDecision.title}
                   </h3>
-                  <p className="font-inter text-sm sm:text-[15px] text-[#042718]/85 leading-relaxed mb-4">
-                    <span className="font-semibold text-[#042718]">Decision: </span>
+                  <p className="font-inter text-sm sm:text-[15px] text-[#121517]/85 leading-relaxed mb-4">
+                    <span className="font-semibold text-[#121517]">Decision: </span>
                     {item.keyDecision.decision}
                   </p>
                   {item.keyDecision.tradeoff && (
-                    <div className="p-4 rounded-xl bg-[#FAFDFB] border border-[#042718]/6 text-xs sm:text-sm text-[#042718]/75 mb-3">
-                      <span className="font-semibold text-[#042718]">Trade-off: </span>
+                    <div className="p-4 rounded-xl bg-[#FAF8F5] border border-[#121517]/6 text-xs sm:text-sm text-[#121517]/75 mb-3">
+                      <span className="font-semibold text-[#121517]">Trade-off: </span>
                       {item.keyDecision.tradeoff}
                     </div>
                   )}
                   {item.keyDecision.why && (
-                    <p className="font-inter text-xs sm:text-sm text-[#042718]/70 italic">
-                      <span className="font-semibold not-italic text-[#042718]">Rationale: </span>
+                    <p className="font-inter text-xs sm:text-sm text-[#121517]/70 italic">
+                      <span className="font-semibold not-italic text-[#121517]">Rationale: </span>
                       {item.keyDecision.why}
                     </p>
                   )}
@@ -224,11 +224,11 @@ export default function MoreWorkDetailPage({
           )}
 
           {/* The Solution */}
-          <div className="p-6 sm:p-8 rounded-2xl bg-white border border-[#042718]/8 shadow-2xs">
-            <span className="font-mono text-[11px] uppercase tracking-wider font-semibold text-[#042718]/50 block mb-2">
+          <div className="p-6 sm:p-8 rounded-2xl bg-white border border-[#121517]/8 shadow-2xs">
+            <span className="font-mono text-[11px] uppercase tracking-wider font-semibold text-[#121517]/50 block mb-2">
               The Solution
             </span>
-            <p className="font-inter text-base text-[#042718]/80 leading-relaxed mb-6">
+            <p className="font-inter text-base text-[#121517]/80 leading-relaxed mb-6">
               {item.solution.summary}
             </p>
 
@@ -238,17 +238,17 @@ export default function MoreWorkDetailPage({
                 {item.solution.steps.map((step, sIdx) => (
                   <div
                     key={sIdx}
-                    className="flex items-start gap-3.5 p-3.5 rounded-xl bg-[#FAFDFB] border border-[#042718]/6"
+                    className="flex items-start gap-3.5 p-3.5 rounded-xl bg-[#FAF8F5] border border-[#121517]/6"
                   >
-                    <span className="w-6 h-6 rounded-full bg-[#042718] text-white flex items-center justify-center font-mono text-[11px] font-bold shrink-0 mt-0.5">
+                    <span className="w-6 h-6 rounded-full bg-[#121517] text-white flex items-center justify-center font-mono text-[11px] font-bold shrink-0 mt-0.5">
                       {sIdx + 1}
                     </span>
                     <div>
-                      <h4 className="font-onest font-semibold text-sm text-[#042718]">
+                      <h4 className="font-onest font-semibold text-sm text-[#121517]">
                         {step.label}
                       </h4>
                       {step.desc && (
-                        <p className="font-inter text-xs text-[#042718]/70 mt-0.5 leading-normal">
+                        <p className="font-inter text-xs text-[#121517]/70 mt-0.5 leading-normal">
                           {step.desc}
                         </p>
                       )}
@@ -259,7 +259,7 @@ export default function MoreWorkDetailPage({
             )}
 
             {item.solution.details && item.solution.details.length > 0 && (
-              <ul className="mt-6 space-y-2 text-xs sm:text-sm font-inter text-[#042718]/75 list-disc pl-5">
+              <ul className="mt-6 space-y-2 text-xs sm:text-sm font-inter text-[#121517]/75 list-disc pl-5">
                 {item.solution.details.map((detail, dIdx) => (
                   <li key={dIdx}>{detail}</li>
                 ))}
@@ -268,7 +268,7 @@ export default function MoreWorkDetailPage({
           </div>
 
           {/* Outcome & Systemic Change (Explaining why it happened & how the product changed) */}
-          <div className="p-6 sm:p-8 rounded-2xl bg-[#042718] text-white">
+          <div className="p-6 sm:p-8 rounded-2xl bg-[#121517] text-white">
             <div className="flex items-center justify-between gap-3 mb-3">
               <span className="font-mono text-[11px] uppercase tracking-wider font-semibold text-[#8FD44A]">
                 {item.id === 'performance-score' ? 'System Architecture Delivery' : 'Outcome & Systemic Change'}
@@ -285,19 +285,19 @@ export default function MoreWorkDetailPage({
           </div>
 
           {/* What I Learned (PM-level reflection) */}
-          <div className="p-6 rounded-2xl bg-white border border-[#042718]/8 shadow-2xs">
-            <span className="font-mono text-[11px] uppercase tracking-wider font-semibold text-[#042718]/50 block mb-2">
+          <div className="p-6 rounded-2xl bg-white border border-[#121517]/8 shadow-2xs">
+            <span className="font-mono text-[11px] uppercase tracking-wider font-semibold text-[#121517]/50 block mb-2">
               What I Learned
             </span>
-            <p className="font-inter text-sm sm:text-base italic text-[#042718]/80 leading-relaxed">
+            <p className="font-inter text-sm sm:text-base italic text-[#121517]/80 leading-relaxed">
               &ldquo;{item.reflection}&rdquo;
             </p>
           </div>
 
           {/* Related Work */}
           {item.relatedProjects && item.relatedProjects.length > 0 && (
-            <div className="pt-8 border-t border-[#042718]/10">
-              <span className="font-mono text-[11px] uppercase tracking-wider font-semibold text-[#042718]/50 block mb-4">
+            <div className="pt-8 border-t border-[#121517]/10">
+              <span className="font-mono text-[11px] uppercase tracking-wider font-semibold text-[#121517]/50 block mb-4">
                 Related Work
               </span>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -310,17 +310,17 @@ export default function MoreWorkDetailPage({
                       e.preventDefault();
                       onNavigate(rel.route);
                     }}
-                    className="p-4 rounded-xl bg-white border border-[#042718]/10 hover:border-[#188E39] hover:bg-[#FAFDFB] transition-colors flex items-center justify-between gap-3 group"
+                    className="p-4 rounded-xl bg-white border border-[#121517]/10 hover:border-[#A8711A] hover:bg-[#FAF8F5] transition-colors flex items-center justify-between gap-3 group"
                   >
                     <div>
                       <span className="font-mono text-[10px] text-[#A8711A] uppercase tracking-wider block mb-1">
                         {rel.category}
                       </span>
-                      <h4 className="font-onest font-bold text-sm text-[#042718] group-hover:text-[#188E39] transition-colors">
+                      <h4 className="font-onest font-bold text-sm text-[#121517] group-hover:text-[#A8711A] transition-colors">
                         {rel.title}
                       </h4>
                     </div>
-                    <ArrowRight size={16} className="text-[#042718]/40 group-hover:text-[#188E39] group-hover:translate-x-0.5 transition-all shrink-0" />
+                    <ArrowRight size={16} className="text-[#121517]/40 group-hover:text-[#A8711A] group-hover:translate-x-0.5 transition-all shrink-0" />
                   </a>
                 ))}
               </div>
@@ -330,9 +330,9 @@ export default function MoreWorkDetailPage({
       </section>
 
       {/* ── Previous / Next Project Pagination ────────────────── */}
-      <section className="py-12 border-t border-[#042718]/10">
+      <section className="py-12 border-t border-[#121517]/10">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white rounded-2xl p-4 sm:p-6 border border-[#042718]/10 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div className="bg-white rounded-2xl p-4 sm:p-6 border border-[#121517]/10 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-6">
             <a
               href={prevItem.route}
               onClick={(e) => {
@@ -340,14 +340,14 @@ export default function MoreWorkDetailPage({
                 e.preventDefault();
                 onNavigate(prevItem.route);
               }}
-              className="flex items-center gap-3 text-left p-3 rounded-xl hover:bg-[#FAFDFB] border border-transparent hover:border-[#042718]/10 transition-colors cursor-pointer w-full sm:w-auto"
+              className="flex items-center gap-3 text-left p-3 rounded-xl hover:bg-[#FAF8F5] border border-transparent hover:border-[#121517]/10 transition-colors cursor-pointer w-full sm:w-auto"
             >
-              <ArrowLeft size={20} className="text-[#188E39]" />
+              <ArrowLeft size={20} className="text-[#A8711A]" />
               <div>
-                <span className="text-[11px] font-inter font-semibold uppercase tracking-wider text-[#042718]/40 block">
+                <span className="text-[11px] font-inter font-semibold uppercase tracking-wider text-[#121517]/40 block">
                   Previous project
                 </span>
-                <span className="font-onest font-bold text-sm text-[#042718]">
+                <span className="font-onest font-bold text-sm text-[#121517]">
                   {prevItem.title}
                 </span>
               </div>
@@ -360,7 +360,7 @@ export default function MoreWorkDetailPage({
                 e.preventDefault();
                 onNavigate('/work');
               }}
-              className="text-xs font-inter font-semibold text-[#042718]/60 hover:text-[#042718] transition-colors"
+              className="text-xs font-inter font-semibold text-[#121517]/60 hover:text-[#121517] transition-colors"
             >
               All work
             </a>
@@ -372,17 +372,17 @@ export default function MoreWorkDetailPage({
                 e.preventDefault();
                 onNavigate(nextItem.route);
               }}
-              className="flex items-center justify-end gap-3 text-right p-3 rounded-xl hover:bg-[#FAFDFB] border border-transparent hover:border-[#042718]/10 transition-colors cursor-pointer w-full sm:w-auto"
+              className="flex items-center justify-end gap-3 text-right p-3 rounded-xl hover:bg-[#FAF8F5] border border-transparent hover:border-[#121517]/10 transition-colors cursor-pointer w-full sm:w-auto"
             >
               <div>
-                <span className="text-[11px] font-inter font-semibold uppercase tracking-wider text-[#042718]/40 block">
+                <span className="text-[11px] font-inter font-semibold uppercase tracking-wider text-[#121517]/40 block">
                   Next project
                 </span>
-                <span className="font-onest font-bold text-sm text-[#042718]">
+                <span className="font-onest font-bold text-sm text-[#121517]">
                   {nextItem.title}
                 </span>
               </div>
-              <ArrowRight size={20} className="text-[#188E39]" />
+              <ArrowRight size={20} className="text-[#A8711A]" />
             </a>
           </div>
         </div>

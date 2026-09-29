@@ -73,17 +73,17 @@ export default function DipaBuildPage({ onNavigate }: DipaBuildPageProps) {
   };
 
   return (
-    <div className="w-full bg-[#FAFDFB] text-[#042718]">
+    <div className="w-full bg-[#FAF8F5] text-[#121517]">
       {/* =========================================================================
           HERO & HEADER (Calm, Editorial, Technical)
           ========================================================================= */}
-      <header className="border-b border-[#042718]/8 bg-[#FAF8F5]">
+      <header className="border-b border-[#121517]/8 bg-[#FAF8F5]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
           {/* Back Link */}
           <button
             type="button"
             onClick={() => onNavigate("/work")}
-            className="inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-[#042718]/60 hover:text-[#042718] transition-colors mb-8 cursor-pointer"
+            className="inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-[#121517]/60 hover:text-[#121517] transition-colors mb-8 cursor-pointer"
           >
             <ArrowLeft size={14} />
             <span>Back to all work</span>
@@ -94,10 +94,10 @@ export default function DipaBuildPage({ onNavigate }: DipaBuildPageProps) {
             <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-[#A8711A]">
               DĪPA
             </span>
-            <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-[#042718]/50">
+            <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-[#121517]/50">
               ·
             </span>
-            <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-[#2F7A4F]">
+            <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-[#C89B3C]">
               AI-native portfolio assistant
             </span>
             <Tag variant="live" icon={<span className="w-1.5 h-1.5 rounded-full bg-[#6FBE8C] shrink-0" />}>
@@ -106,27 +106,27 @@ export default function DipaBuildPage({ onNavigate }: DipaBuildPageProps) {
           </div>
 
           {/* Title & Core Quote */}
-          <h1 className="font-onest text-3xl sm:text-5xl font-bold tracking-tight text-[#042718] leading-[1.1] text-balance">
+          <h1 className="font-onest text-3xl sm:text-5xl font-bold tracking-tight text-[#121517] leading-[1.1] text-balance">
             Dīpa
           </h1>
-          <p className="font-onest text-xl sm:text-2xl font-medium text-[#042718]/85 mt-3 leading-snug">
+          <p className="font-onest text-xl sm:text-2xl font-medium text-[#121517]/85 mt-3 leading-snug">
             &ldquo;An AI copilot grounded in my actual product work — not generic model knowledge.&rdquo;
           </p>
 
-          <p className="font-inter text-base sm:text-lg text-[#042718]/70 mt-5 leading-relaxed max-w-3xl">
+          <p className="font-inter text-base sm:text-lg text-[#121517]/70 mt-5 leading-relaxed max-w-3xl">
             Dīpa answers questions about Deepak&apos;s product work, experience, and portfolio using a
             curated, verified knowledge base. It does not scrape the portfolio live at query time; its
             knowledge is synchronized deterministically during each build and deployment.
           </p>
 
           {/* Metadata bar */}
-          <div className="mt-8 pt-6 border-t border-[#042718]/10 flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-[11px] text-[#042718]/65">
-            <span className="font-semibold text-[#042718]">Deepak Prasad</span>
-            <span className="text-[#042718]/25">/</span>
+          <div className="mt-8 pt-6 border-t border-[#121517]/10 flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-[11px] text-[#121517]/65">
+            <span className="font-semibold text-[#121517]">Deepak Prasad</span>
+            <span className="text-[#121517]/25">/</span>
             <span>Product Architect &amp; Builder</span>
-            <span className="text-[#042718]/25">/</span>
+            <span className="text-[#121517]/25">/</span>
             <span>gemini-embedding-2-preview (512-dim)</span>
-            <span className="text-[#042718]/25">/</span>
+            <span className="text-[#121517]/25">/</span>
             <span>gemini-3.1-flash-lite</span>
           </div>
 
@@ -148,7 +148,7 @@ export default function DipaBuildPage({ onNavigate }: DipaBuildPageProps) {
                 <ArrowRight size={15} />
               </span>
             </GlassButton>
-            <span className="font-inter text-xs text-[#042718]/60 ml-2">
+            <span className="font-inter text-xs text-[#121517]/60 ml-2">
               Opens the conversational drawer directly on this page
             </span>
           </div>
@@ -160,14 +160,14 @@ export default function DipaBuildPage({ onNavigate }: DipaBuildPageProps) {
           ========================================================================= */}
       <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
         {/* SECTION 1: WHAT DĪPA ANSWERS */}
-        <section className="mb-14 pb-12 border-b border-[#042718]/10">
+        <section className="mb-14 pb-12 border-b border-[#121517]/10">
           <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-[#A8711A] block mb-2">
             01 · Grounded Scope
           </span>
-          <h2 className="font-onest text-2xl sm:text-3xl font-bold text-[#042718] tracking-tight mb-4">
+          <h2 className="font-onest text-2xl sm:text-3xl font-bold text-[#121517] tracking-tight mb-4">
             What Dīpa can answer
           </h2>
-          <p className="font-inter text-sm sm:text-base text-[#042718]/70 leading-relaxed mb-6">
+          <p className="font-inter text-sm sm:text-base text-[#121517]/70 leading-relaxed mb-6">
             Dīpa is built specifically for recruiters, engineering leaders, and founders reviewing this portfolio.
             It provides factual, sourced answers to specific operational and strategic inquiries:
           </p>
@@ -176,15 +176,15 @@ export default function DipaBuildPage({ onNavigate }: DipaBuildPageProps) {
             {WHAT_DIPA_ANSWERS.map((item) => (
               <div
                 key={item.title}
-                className="p-5 rounded-[18px] bg-white border border-[#042718]/8 flex flex-col justify-start"
+                className="p-5 rounded-[18px] bg-white border border-[#121517]/8 flex flex-col justify-start"
               >
                 <div className="flex items-center gap-2 mb-2">
-                  <CheckCircle2 size={16} className="text-[#2F7A4F] shrink-0" />
-                  <h3 className="font-onest text-base font-bold text-[#042718]">
+                  <CheckCircle2 size={16} className="text-[#C89B3C] shrink-0" />
+                  <h3 className="font-onest text-base font-bold text-[#121517]">
                     {item.title}
                   </h3>
                 </div>
-                <p className="font-inter text-xs sm:text-[13.5px] text-[#042718]/70 leading-relaxed">
+                <p className="font-inter text-xs sm:text-[13.5px] text-[#121517]/70 leading-relaxed">
                   {item.desc}
                 </p>
               </div>
@@ -193,17 +193,17 @@ export default function DipaBuildPage({ onNavigate }: DipaBuildPageProps) {
         </section>
 
         {/* SECTION 2: HOW IT WORKS */}
-        <section className="mb-14 pb-12 border-b border-[#042718]/10">
+        <section className="mb-14 pb-12 border-b border-[#121517]/10">
           <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-[#A8711A] block mb-2">
             02 · System Flow
           </span>
-          <h2 className="font-onest text-2xl sm:text-3xl font-bold text-[#042718] tracking-tight mb-2">
+          <h2 className="font-onest text-2xl sm:text-3xl font-bold text-[#121517] tracking-tight mb-2">
             How it works
           </h2>
-          <p className="font-onest text-lg sm:text-xl font-medium text-[#042718]/80 mb-4">
+          <p className="font-onest text-lg sm:text-xl font-medium text-[#121517]/80 mb-4">
             &ldquo;From verified portfolio content to grounded answers.&rdquo;
           </p>
-          <p className="font-inter text-sm sm:text-base text-[#042718]/70 leading-relaxed max-w-3xl">
+          <p className="font-inter text-sm sm:text-base text-[#121517]/70 leading-relaxed max-w-3xl">
             The system separates knowledge ingestion from query execution. Content is converted to dense vectors
             at build time, enabling fast local cosine retrieval and strict confidence evaluation before model generation.
           </p>
@@ -213,33 +213,33 @@ export default function DipaBuildPage({ onNavigate }: DipaBuildPageProps) {
         </section>
 
         {/* SECTION 3: HOW DĪPA STAYS UP TO DATE */}
-        <section className="mb-14 pb-12 border-b border-[#042718]/10">
+        <section className="mb-14 pb-12 border-b border-[#121517]/10">
           <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-[#A8711A] block mb-2">
             03 · Knowledge Synchronization
           </span>
-          <h2 className="font-onest text-2xl sm:text-3xl font-bold text-[#042718] tracking-tight mb-4">
+          <h2 className="font-onest text-2xl sm:text-3xl font-bold text-[#121517] tracking-tight mb-4">
             How Dīpa stays up to date
           </h2>
 
-          <div className="p-6 sm:p-7 rounded-[20px] bg-[#FAF8F5] border border-[#042718]/10 space-y-4">
-            <p className="font-inter text-base sm:text-[17px] text-[#042718]/85 leading-relaxed">
+          <div className="p-6 sm:p-7 rounded-[20px] bg-[#FAF8F5] border border-[#121517]/10 space-y-4">
+            <p className="font-inter text-base sm:text-[17px] text-[#121517]/85 leading-relaxed">
               Dīpa does not scrape my portfolio live. Instead, it uses a deterministic build-time synchronization process.
               When verified portfolio content changes, the prebuild pipeline regenerates the knowledge base and creates new
-              512-dimensional embeddings, stored in the local <code className="font-mono text-xs px-1.5 py-0.5 rounded bg-white border border-[#042718]/15 text-[#042718]">ragKnowledgeBase.json</code>.
+              512-dimensional embeddings, stored in the local <code className="font-mono text-xs px-1.5 py-0.5 rounded bg-white border border-[#121517]/15 text-[#121517]">ragKnowledgeBase.json</code>.
               Each deployment therefore ships with a knowledge index generated from the same canonical source as the portfolio.
             </p>
-            <p className="font-inter text-sm sm:text-base text-[#042718]/75 leading-relaxed font-medium">
+            <p className="font-inter text-sm sm:text-base text-[#121517]/75 leading-relaxed font-medium">
               This keeps Dīpa&apos;s knowledge aligned with the canonical, verified source at each deployment.
             </p>
           </div>
         </section>
 
         {/* SECTION 4: TECHNICAL DETAILS */}
-        <section className="mb-14 pb-12 border-b border-[#042718]/10">
+        <section className="mb-14 pb-12 border-b border-[#121517]/10">
           <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-[#A8711A] block mb-2">
             04 · Architecture Specifications
           </span>
-          <h2 className="font-onest text-2xl sm:text-3xl font-bold text-[#042718] tracking-tight mb-6">
+          <h2 className="font-onest text-2xl sm:text-3xl font-bold text-[#121517] tracking-tight mb-6">
             Technical details
           </h2>
 
@@ -247,15 +247,15 @@ export default function DipaBuildPage({ onNavigate }: DipaBuildPageProps) {
             {TECHNICAL_SPEC_ITEMS.map((item) => (
               <div
                 key={item.label}
-                className="p-5 rounded-[18px] bg-white border border-[#042718]/8 flex flex-col justify-between"
+                className="p-5 rounded-[18px] bg-white border border-[#121517]/8 flex flex-col justify-between"
               >
                 <div className="font-mono text-[10.5px] font-semibold uppercase tracking-[0.14em] text-[#A8711A] mb-1">
                   {item.label}
                 </div>
-                <div className="font-onest text-base font-bold text-[#042718] my-1">
+                <div className="font-onest text-base font-bold text-[#121517] my-1">
                   {item.value}
                 </div>
-                <div className="font-inter text-xs text-[#042718]/65 mt-1 leading-snug">
+                <div className="font-inter text-xs text-[#121517]/65 mt-1 leading-snug">
                   {item.detail}
                 </div>
               </div>
@@ -264,14 +264,14 @@ export default function DipaBuildPage({ onNavigate }: DipaBuildPageProps) {
         </section>
 
         {/* SECTION 5: EPISTEMIC MODESTY / CONFIDENCE GATE */}
-        <section className="mb-14 pb-12 border-b border-[#042718]/10">
+        <section className="mb-14 pb-12 border-b border-[#121517]/10">
           <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-[#A8711A] block mb-2">
             05 · Safety &amp; Grounding
           </span>
-          <h2 className="font-onest text-2xl sm:text-3xl font-bold text-[#042718] tracking-tight mb-4">
+          <h2 className="font-onest text-2xl sm:text-3xl font-bold text-[#121517] tracking-tight mb-4">
             Epistemic modesty: declining over guessing
           </h2>
-          <div className="space-y-4 font-inter text-[15px] sm:text-base text-[#042718]/75 leading-relaxed">
+          <div className="space-y-4 font-inter text-[15px] sm:text-base text-[#121517]/75 leading-relaxed">
             <p>
               In an executive portfolio, a plausible hallucination destroys credibility far faster than an honest abstention.
               If a visitor asks about topics not covered in the verified corpus—such as non-work personal trivia or
@@ -285,37 +285,37 @@ export default function DipaBuildPage({ onNavigate }: DipaBuildPageProps) {
         </section>
 
         {/* SECTION 6: TECHNICAL CHOICES & TRADE-OFFS */}
-        <section className="mb-14 pb-12 border-b border-[#042718]/10">
+        <section className="mb-14 pb-12 border-b border-[#121517]/10">
           <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-[#A8711A] block mb-2">
             06 · Technical Choices &amp; Trade-offs
           </span>
-          <h2 className="font-onest text-2xl sm:text-3xl font-bold text-[#042718] tracking-tight mb-4">
+          <h2 className="font-onest text-2xl sm:text-3xl font-bold text-[#121517] tracking-tight mb-4">
             Why in-memory, why Gemini, and why the golden evaluation set
           </h2>
-          <div className="space-y-4 font-inter text-[15px] sm:text-base text-[#042718]/75 leading-relaxed">
-            <div className="p-5 rounded-[18px] bg-white border border-[#042718]/8">
-              <h3 className="font-onest text-base font-bold text-[#042718] mb-1">
+          <div className="space-y-4 font-inter text-[15px] sm:text-base text-[#121517]/75 leading-relaxed">
+            <div className="p-5 rounded-[18px] bg-white border border-[#121517]/8">
+              <h3 className="font-onest text-base font-bold text-[#121517] mb-1">
                 Why In-Memory CPU Dot-Product vs Pinecone or pgvector?
               </h3>
-              <p className="text-xs sm:text-sm text-[#042718]/75 leading-relaxed">
+              <p className="text-xs sm:text-sm text-[#121517]/75 leading-relaxed">
                 For a curated portfolio knowledge base of 32 chunks, running external vector database infrastructure (Pinecone, Weaviate, or pgvector) adds monthly costs, network hops (50–150ms latency), and external failure modes. A client-side or serverless in-memory cosine dot-product across 32 512-dimensional vectors executes in &lt;1 millisecond with zero cold-start overhead.
               </p>
             </div>
 
-            <div className="p-5 rounded-[18px] bg-white border border-[#042718]/8">
-              <h3 className="font-onest text-base font-bold text-[#042718] mb-1">
+            <div className="p-5 rounded-[18px] bg-white border border-[#121517]/8">
+              <h3 className="font-onest text-base font-bold text-[#121517] mb-1">
                 Why Gemini 3.1 Flash-Lite &amp; Embedding-2-Preview?
               </h3>
-              <p className="text-xs sm:text-sm text-[#042718]/75 leading-relaxed">
+              <p className="text-xs sm:text-sm text-[#121517]/75 leading-relaxed">
                 Flash-Lite provides sub-second time-to-first-token while adhering strictly to negative system prompts (&ldquo;If the retrieved chunks do not contain the answer, say you do not know&rdquo;). Embedding-2-preview at 512 dimensions strikes the ideal balance between semantic nuance and compact payload size (~65KB for the entire precomputed index).
               </p>
             </div>
 
-            <div className="p-5 rounded-[18px] bg-white border border-[#042718]/8">
-              <h3 className="font-onest text-base font-bold text-[#042718] mb-1">
+            <div className="p-5 rounded-[18px] bg-white border border-[#121517]/8">
+              <h3 className="font-onest text-base font-bold text-[#121517] mb-1">
                 Why a Golden Evaluation Set?
               </h3>
-              <p className="text-xs sm:text-sm text-[#042718]/75 leading-relaxed">
+              <p className="text-xs sm:text-sm text-[#121517]/75 leading-relaxed">
                 You cannot improve what you cannot benchmark. I created a 15-question golden test suite spanning career metrics, unlaunched project boundaries, and technical architecture questions to verify precision, recall, and strict adherence to refusal thresholds before shipping updates.
               </p>
             </div>
@@ -323,14 +323,14 @@ export default function DipaBuildPage({ onNavigate }: DipaBuildPageProps) {
         </section>
 
         {/* SECTION 7: WHAT WORKED, WHAT BROKE & WHAT COMES NEXT */}
-        <section className="mb-14 pb-12 border-b border-[#042718]/10">
+        <section className="mb-14 pb-12 border-b border-[#121517]/10">
           <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-[#A8711A] block mb-2">
             07 · Reality Check
           </span>
-          <h2 className="font-onest text-2xl sm:text-3xl font-bold text-[#042718] tracking-tight mb-4">
+          <h2 className="font-onest text-2xl sm:text-3xl font-bold text-[#121517] tracking-tight mb-4">
             What worked, what broke, and what comes next
           </h2>
-          <div className="space-y-4 font-inter text-[15px] sm:text-base text-[#042718]/75 leading-relaxed">
+          <div className="space-y-4 font-inter text-[15px] sm:text-base text-[#121517]/75 leading-relaxed">
             <p>
               <strong>What worked:</strong> Grounding queries against verified case study chunks prevented fabricated dates, inflated metrics, and inaccurate role attributions. Direct citation links give recruiters instant one-click proof.
             </p>

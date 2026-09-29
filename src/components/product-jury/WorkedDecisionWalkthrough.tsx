@@ -87,16 +87,16 @@ export function WorkedDecisionWalkthrough() {
   const current = steps[stepIndex];
 
   return (
-    <section id="example" className="scroll-mt-24 pt-10 pb-14 border-b border-[#042718]/10">
+    <section id="example" className="scroll-mt-24 pt-10 pb-14 border-b border-[#121517]/10">
       {/* Header */}
       <div className="mb-8">
         <span className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#A8711A] block mb-2">
           Mini Product Walkthrough
         </span>
-        <h2 className="font-onest text-2xl sm:text-3xl lg:text-4xl font-bold text-[#042718] tracking-tight">
+        <h2 className="font-onest text-2xl sm:text-3xl lg:text-4xl font-bold text-[#121517] tracking-tight">
           One decision, from question to re-judgement
         </h2>
-        <p className="font-inter text-sm sm:text-base text-[#042718]/75 mt-2 max-w-3xl leading-relaxed">
+        <p className="font-inter text-sm sm:text-base text-[#121517]/75 mt-2 max-w-3xl leading-relaxed">
           How Product Jury works in practice: following Maya, a Senior PM deciding whether to ship a receipt-capture redesign before a code freeze.
         </p>
       </div>
@@ -110,12 +110,12 @@ export function WorkedDecisionWalkthrough() {
             onClick={() => setStepIndex(idx)}
             className={`px-3.5 py-2 rounded-xl text-left shrink-0 transition-all cursor-pointer font-mono text-xs border ${
               stepIndex === idx
-                ? "bg-[#042718] text-white border-[#042718] shadow-xs"
-                : "bg-white text-[#042718]/70 border-[#042718]/10 hover:border-[#042718]/30 hover:bg-[#FAF8F5]"
+                ? "bg-[#121517] text-white border-[#121517] shadow-xs"
+                : "bg-white text-[#121517]/70 border-[#121517]/10 hover:border-[#121517]/30 hover:bg-[#FAF8F5]"
             }`}
           >
             <div className="font-bold">{s.time}</div>
-            <div className={`text-[10px] truncate max-w-[110px] ${stepIndex === idx ? "text-[#D9A94C]" : "text-[#042718]/50"}`}>
+            <div className={`text-[10px] truncate max-w-[110px] ${stepIndex === idx ? "text-[#D9A94C]" : "text-[#121517]/50"}`}>
               {s.stage}
             </div>
           </button>
@@ -123,15 +123,15 @@ export function WorkedDecisionWalkthrough() {
       </div>
 
       {/* Main Walkthrough Card */}
-      <div className="p-6 sm:p-8 rounded-[24px] bg-white border border-[#042718]/10 shadow-xs">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 mb-4 border-b border-[#042718]/8">
+      <div className="p-6 sm:p-8 rounded-[24px] bg-white border border-[#121517]/10 shadow-xs">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 mb-4 border-b border-[#121517]/8">
           <div>
             <div className="flex items-center gap-2 mb-1">
-              <span className="px-2 py-0.5 rounded bg-[#FAF8F5] border border-[#042718]/10 font-mono text-[10px] font-bold text-[#A8711A] uppercase">
+              <span className="px-2 py-0.5 rounded bg-[#FAF8F5] border border-[#121517]/10 font-mono text-[10px] font-bold text-[#A8711A] uppercase">
                 {current.time} · {current.stage}
               </span>
             </div>
-            <h3 className="font-onest text-xl sm:text-2xl font-bold text-[#042718]">
+            <h3 className="font-onest text-xl sm:text-2xl font-bold text-[#121517]">
               {current.title}
             </h3>
           </div>
@@ -140,7 +140,7 @@ export function WorkedDecisionWalkthrough() {
               type="button"
               disabled={stepIndex === 0}
               onClick={() => setStepIndex((p) => Math.max(0, p - 1))}
-              className="p-2 rounded-lg border border-[#042718]/15 text-xs font-mono disabled:opacity-30 disabled:cursor-not-allowed hover:bg-[#FAF8F5] cursor-pointer"
+              className="p-2 rounded-lg border border-[#121517]/15 text-xs font-mono disabled:opacity-30 disabled:cursor-not-allowed hover:bg-[#FAF8F5] cursor-pointer"
             >
               Prev
             </button>
@@ -148,18 +148,18 @@ export function WorkedDecisionWalkthrough() {
               type="button"
               disabled={stepIndex === steps.length - 1}
               onClick={() => setStepIndex((p) => Math.min(steps.length - 1, p + 1))}
-              className="px-3 py-2 rounded-lg bg-[#042718] text-white text-xs font-mono disabled:opacity-30 disabled:cursor-not-allowed hover:bg-[#0B3322] cursor-pointer"
+              className="px-3 py-2 rounded-lg bg-[#121517] text-white text-xs font-mono disabled:opacity-30 disabled:cursor-not-allowed hover:bg-[#1A1E22] cursor-pointer"
             >
               Next Step &rarr;
             </button>
           </div>
         </div>
 
-        <p className="font-inter text-xs sm:text-sm text-[#042718]/65 mb-3 italic">
+        <p className="font-inter text-xs sm:text-sm text-[#121517]/65 mb-3 italic">
           {current.context}
         </p>
 
-        <div className="p-4 rounded-xl bg-[#FAF8F5] border border-[#042718]/8 font-inter text-sm sm:text-[15px] font-medium text-[#042718] leading-relaxed mb-5">
+        <div className="p-4 rounded-xl bg-[#FAF8F5] border border-[#121517]/8 font-inter text-sm sm:text-[15px] font-medium text-[#121517] leading-relaxed mb-5">
           {current.body}
         </div>
 
@@ -167,12 +167,12 @@ export function WorkedDecisionWalkthrough() {
           {current.details.map((d, i) => (
             <div
               key={i}
-              className="p-3.5 rounded-xl bg-white border border-[#042718]/8 text-xs sm:text-[13px] font-inter leading-relaxed"
+              className="p-3.5 rounded-xl bg-white border border-[#121517]/8 text-xs sm:text-[13px] font-inter leading-relaxed"
             >
               <span className="font-mono text-[10.5px] font-bold uppercase tracking-wider text-[#A8711A] block mb-0.5">
                 {d.label}
               </span>
-              <span className="text-[#042718]/85">{d.text}</span>
+              <span className="text-[#121517]/85">{d.text}</span>
             </div>
           ))}
         </div>

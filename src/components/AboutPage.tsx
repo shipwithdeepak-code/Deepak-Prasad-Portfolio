@@ -52,27 +52,27 @@ export default function AboutPage({
   ];
 
   return (
-    <div className="w-full bg-[#FAFDFB] text-[#042718] py-12 md:py-20">
+    <div className="w-full bg-[#FAF8F5] text-[#121517] py-12 md:py-20">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header Hero with Portrait */}
         <div className="mb-16 grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-center">
           <div className="md:col-span-7 flex flex-col justify-center">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#042718]/5 text-xs font-inter font-semibold text-[#042718]/80 mb-4 w-fit">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#121517]/5 text-xs font-inter font-semibold text-[#121517]/80 mb-4 w-fit">
               <span>About Deepak Prasad</span>
             </div>
-            <h1 className="font-onest text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#042718] leading-[1.15] mb-6">
+            <h1 className="font-onest text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#121517] leading-[1.15] mb-6">
               I like solving problems where the answer isn’t obvious.
             </h1>
-            <p className="font-inter text-base sm:text-lg text-[#042718]/75 leading-relaxed font-normal mb-4">
+            <p className="font-inter text-base sm:text-lg text-[#121517]/75 leading-relaxed font-normal mb-4">
               I turn complex customer, business and operational problems into products people use, from AI-powered experiences and subscription businesses to B2B marketplaces and connected ecosystems.
             </p>
-            <p className="font-inter text-sm sm:text-base text-[#042718]/70 leading-relaxed font-normal">
+            <p className="font-inter text-sm sm:text-base text-[#121517]/70 leading-relaxed font-normal">
               Over the past 7+ years, I’ve operated across both India and European markets, building 0→1 products from concept to scale, managing cross-border pods, and designing systems that connect hardware, software, and human operations.
             </p>
           </div>
 
           <div className="md:col-span-5 flex justify-center md:justify-end">
-            <div className="relative w-full max-w-[340px] sm:max-w-[380px] md:max-w-full aspect-[4/5] rounded-[24px] overflow-hidden border border-[#042718]/15 shadow-xl bg-[#042718]/5 group">
+            <div className="relative w-full max-w-[340px] sm:max-w-[380px] md:max-w-full aspect-[4/5] rounded-[24px] overflow-hidden border border-[#121517]/15 shadow-xl bg-[#121517]/5 group">
               <picture>
                 <source srcSet="/deepak_portrait_4x5.webp" type="image/webp" />
                 <img
@@ -88,17 +88,17 @@ export default function AboutPage({
                   }}
                 />
               </picture>
-              <div className="about-portrait-fallback hidden w-full h-full flex-col items-center justify-center p-6 text-center bg-gradient-to-b from-[#042718] to-[#0A3D24] text-white">
-                <div className="w-16 h-16 rounded-full bg-[#188E39]/20 border-2 border-[#01bc7c]/40 flex items-center justify-center font-onest font-bold text-2xl text-white mb-3">
+              <div className="about-portrait-fallback hidden w-full h-full flex-col items-center justify-center p-6 text-center bg-gradient-to-b from-[#121517] to-[#1E2328] text-white">
+                <div className="w-16 h-16 rounded-full bg-white/10 border-2 border-white/20 flex items-center justify-center font-onest font-bold text-2xl text-white mb-3">
                   DP
                 </div>
                 <p className="font-onest font-bold text-base text-white">Deepak Prasad</p>
                 <p className="font-inter text-xs text-white/70 mt-1">Senior Product Manager</p>
               </div>
-              <div className="absolute bottom-3 left-3 right-3 px-3.5 py-2.5 rounded-xl bg-[#042718]/85 backdrop-blur-md text-white flex items-center justify-between text-xs font-inter border border-white/10 shadow-xs">
+              <div className="absolute bottom-3 left-3 right-3 px-3.5 py-2.5 rounded-xl bg-[#121517]/85 backdrop-blur-md text-white flex items-center justify-between text-xs font-inter border border-white/10 shadow-xs">
                 <span className="font-semibold tracking-tight">Deepak Prasad</span>
-                <span className="flex items-center gap-1.5 text-[#01bc7c] font-medium text-[11px]">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#01bc7c] animate-pulse" />
+                <span className="flex items-center gap-1.5 text-[#FDE68A] font-medium text-[11px]">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#C89B3C] animate-pulse" />
                   Available for PM roles
                 </span>
               </div>
@@ -109,8 +109,8 @@ export default function AboutPage({
         {/* =========================================================================
             CAREER EVOLUTION DIAGRAM
             ========================================================================= */}
-        <div className="mb-20 p-6 sm:p-8 rounded-[24px] bg-white border border-[#042718]/10 shadow-2xs">
-          <h3 className="font-onest text-xl sm:text-2xl font-bold text-[#042718] mb-6">
+        <div className="mb-20 p-6 sm:p-8 rounded-[24px] bg-white border border-[#121517]/10 shadow-2xs">
+          <h3 className="font-onest text-xl sm:text-2xl font-bold text-[#121517] mb-6">
             From physical hardware and rural mandis to consumer AI platforms
           </h3>
 
@@ -118,15 +118,15 @@ export default function AboutPage({
             {careerEvolutionSteps.map((step, idx) => (
               <div
                 key={idx}
-                className="flex flex-col p-3.5 rounded-xl bg-[#FAFDFB] border border-[#042718]/6"
+                className="flex flex-col p-3.5 rounded-xl bg-[#F7F5F0] border border-[#121517]/6"
               >
-                <span className="text-[10px] font-onest font-bold text-[#188E39]">
+                <span className="text-[10px] font-onest font-bold text-[#A8711A]">
                   0{idx + 1}
                 </span>
-                <span className="font-onest text-xs font-bold text-[#042718] mt-1 leading-snug">
+                <span className="font-onest text-xs font-bold text-[#121517] mt-1 leading-snug">
                   {step.title}
                 </span>
-                <span className="font-inter text-[10px] text-[#042718]/50 mt-1">
+                <span className="font-inter text-[10px] text-[#121517]/50 mt-1">
                   {step.context}
                 </span>
               </div>
@@ -139,12 +139,12 @@ export default function AboutPage({
             ========================================================================= */}
         <section id="experience" className="mb-20 scroll-mt-28">
           <div className="flex items-center gap-3 mb-2">
-            <Briefcase size={20} className="text-[#188E39]" />
-            <h2 className="font-onest text-2xl sm:text-3xl font-bold text-[#042718]">
+            <Briefcase size={20} className="text-[#A8711A]" />
+            <h2 className="font-onest text-2xl sm:text-3xl font-bold text-[#121517]">
               Experience & Roles
             </h2>
           </div>
-          <p className="font-inter text-sm sm:text-base text-[#042718]/65 mb-8">
+          <p className="font-inter text-sm sm:text-base text-[#121517]/65 mb-8">
             Product ownership across early-stage ventures, high-growth consumer apps, and scaled B2B platforms.
           </p>
 
@@ -152,28 +152,28 @@ export default function AboutPage({
             {EXPERIENCE_ROLES.map((role, idx) => (
               <div
                 key={idx}
-                className="bg-white rounded-[24px] border border-[#042718]/8 p-6 sm:p-8 shadow-2xs"
+                className="bg-white rounded-[24px] border border-[#121517]/8 p-6 sm:p-8 shadow-2xs"
               >
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
                   <div>
-                    <h3 className="font-onest text-xl sm:text-2xl font-bold text-[#042718]">
+                    <h3 className="font-onest text-xl sm:text-2xl font-bold text-[#121517]">
                       {role.title}
                     </h3>
-                    <div className="font-inter text-sm font-semibold text-[#188E39]">
+                    <div className="font-inter text-sm font-semibold text-[#A8711A]">
                       {role.company}
                     </div>
                   </div>
                   <div className="text-left sm:text-right">
-                    <span className="inline-block px-3 py-1 rounded-full bg-[#042718]/5 font-inter text-xs font-medium text-[#042718]">
+                    <span className="inline-block px-3 py-1 rounded-full bg-[#121517]/5 font-inter text-xs font-medium text-[#121517]">
                       {role.period}
                     </span>
-                    <span className="block font-inter text-[11px] text-[#042718]/50 mt-1">
+                    <span className="block font-inter text-[11px] text-[#121517]/50 mt-1">
                       {role.type}
                     </span>
                   </div>
                 </div>
 
-                <p className="font-inter text-sm text-[#042718]/70 leading-relaxed mb-6">
+                <p className="font-inter text-sm text-[#121517]/70 leading-relaxed mb-6">
                   {role.description}
                 </p>
 
@@ -182,7 +182,7 @@ export default function AboutPage({
                     {role.focus.map((f, fIdx) => (
                       <span
                         key={fIdx}
-                        className="text-[11px] font-inter font-medium px-2.5 py-0.5 rounded-full bg-[#F4FAFA] text-[#042718]/80 border border-[#042718]/5"
+                        className="text-[11px] font-inter font-medium px-2.5 py-0.5 rounded-full bg-[#F7F5F0] text-[#121517]/80 border border-[#121517]/6"
                       >
                         {f}
                       </span>
@@ -190,17 +190,17 @@ export default function AboutPage({
                   </div>
                 )}
 
-                <div className="pt-4 border-t border-[#042718]/6">
-                  <h4 className="font-inter text-xs font-bold uppercase tracking-wider text-[#042718]/40 mb-3">
+                <div className="pt-4 border-t border-[#121517]/6">
+                  <h4 className="font-inter text-xs font-bold uppercase tracking-wider text-[#121517]/40 mb-3">
                     Key Achievements
                   </h4>
                   <ul className="flex flex-col gap-2.5">
                     {role.highlights.map((h, hIdx) => (
                       <li
                         key={hIdx}
-                        className="flex items-start gap-2.5 text-xs sm:text-sm font-inter text-[#042718]/80 leading-relaxed"
+                        className="flex items-start gap-2.5 text-xs sm:text-sm font-inter text-[#121517]/80 leading-relaxed"
                       >
-                        <CheckCircle2 size={15} className="text-[#188E39] mt-0.5 shrink-0" />
+                        <CheckCircle2 size={15} className="text-[#A8711A] mt-0.5 shrink-0" />
                         <span>{h}</span>
                       </li>
                     ))}
@@ -214,14 +214,14 @@ export default function AboutPage({
         {/* =========================================================================
             CROSS-BORDER PRODUCT LEADERSHIP (SECTION 16)
             ========================================================================= */}
-        <section className="mb-20 p-8 rounded-[24px] bg-[#F4FAFA] border border-[#042718]/8">
+        <section className="mb-20 p-8 rounded-[24px] bg-[#F7F5F0] border border-[#121517]/8">
           <div className="flex items-center gap-3 mb-3">
-            <Users2 size={20} className="text-[#188E39]" />
-            <h2 className="font-onest text-2xl sm:text-3xl font-bold text-[#042718]">
+            <Users2 size={20} className="text-[#A8711A]" />
+            <h2 className="font-onest text-2xl sm:text-3xl font-bold text-[#121517]">
               {LEADERSHIP_SECTION.title}
             </h2>
           </div>
-          <p className="font-inter text-base text-[#042718]/75 mb-6">
+          <p className="font-inter text-base text-[#121517]/75 mb-6">
             {LEADERSHIP_SECTION.description}
           </p>
 
@@ -229,12 +229,12 @@ export default function AboutPage({
             {LEADERSHIP_SECTION.details.map((d, dIdx) => (
               <div
                 key={dIdx}
-                className="p-5 rounded-[18px] bg-white border border-[#042718]/8 shadow-2xs"
+                className="p-5 rounded-[18px] bg-white border border-[#121517]/8 shadow-2xs"
               >
-                <span className="font-onest text-xs font-bold text-[#188E39] block mb-2">
+                <span className="font-onest text-xs font-bold text-[#A8711A] block mb-2">
                   PILLAR 0{dIdx + 1}
                 </span>
-                <p className="font-inter text-xs sm:text-sm text-[#042718]/80 leading-relaxed">
+                <p className="font-inter text-xs sm:text-sm text-[#121517]/80 leading-relaxed">
                   {d}
                 </p>
               </div>
@@ -247,12 +247,12 @@ export default function AboutPage({
             ========================================================================= */}
         <section className="mb-20">
           <div className="flex items-center gap-3 mb-2">
-            <Compass size={20} className="text-[#188E39]" />
-            <h2 className="font-onest text-2xl sm:text-3xl font-bold text-[#042718]">
+            <Compass size={20} className="text-[#A8711A]" />
+            <h2 className="font-onest text-2xl sm:text-3xl font-bold text-[#121517]">
               How I approach product problems
             </h2>
           </div>
-          <p className="font-inter text-sm sm:text-base text-[#042718]/65 mb-8">
+          <p className="font-inter text-sm sm:text-base text-[#121517]/65 mb-8">
             Six core principles governing discovery, architecture, and technology execution.
           </p>
 
@@ -260,15 +260,15 @@ export default function AboutPage({
             {HOW_I_WORK_PRINCIPLES.map((principle) => (
               <div
                 key={principle.number}
-                className="bg-white rounded-[20px] p-6 border border-[#042718]/8 shadow-2xs"
+                className="bg-white rounded-[20px] p-6 border border-[#121517]/8 shadow-2xs"
               >
-                <span className="font-onest text-sm font-bold text-[#188E39] block mb-2">
+                <span className="font-onest text-sm font-bold text-[#A8711A] block mb-2">
                   {principle.number}
                 </span>
-                <h3 className="font-onest text-base sm:text-lg font-bold text-[#042718] mb-2">
+                <h3 className="font-onest text-base sm:text-lg font-bold text-[#121517] mb-2">
                   {principle.title}
                 </h3>
-                <p className="font-inter text-xs sm:text-sm text-[#042718]/70 leading-relaxed">
+                <p className="font-inter text-xs sm:text-sm text-[#121517]/70 leading-relaxed">
                   {principle.description}
                 </p>
               </div>
@@ -281,26 +281,26 @@ export default function AboutPage({
             ========================================================================= */}
         <section className="mb-16">
           <div className="flex items-center gap-3 mb-2">
-            <Layers size={20} className="text-[#188E39]" />
-            <h2 className="font-onest text-2xl sm:text-3xl font-bold text-[#042718]">
+            <Layers size={20} className="text-[#A8711A]" />
+            <h2 className="font-onest text-2xl sm:text-3xl font-bold text-[#121517]">
               Core Capabilities
             </h2>
           </div>
-          <p className="font-inter text-sm sm:text-base text-[#042718]/65 mb-8">
+          <p className="font-inter text-sm sm:text-base text-[#121517]/65 mb-8">
             Domain proficiency across the full product lifecycle.
           </p>
 
           <div className="flex flex-col gap-6 sm:gap-7">
             {CAPABILITY_GROUPS.map((group, idx) => (
               <div key={idx} className="flex flex-col gap-2.5">
-                <h3 className="font-onest text-sm sm:text-base font-bold text-[#042718]">
+                <h3 className="font-onest text-sm sm:text-base font-bold text-[#121517]">
                   {group.category}
                 </h3>
                 <div className="flex flex-wrap gap-2">
                   {group.skills.map((skill, sIdx) => (
                     <span
                       key={sIdx}
-                      className="text-xs font-inter font-medium px-2.5 py-1 rounded-md bg-[#FAFDFB] text-[#042718]/70 border border-[#042718]/6"
+                      className="text-xs font-inter font-medium px-2.5 py-1 rounded-md bg-[#F7F5F0] text-[#121517]/70 border border-[#121517]/6"
                     >
                       {skill}
                     </span>
@@ -312,7 +312,7 @@ export default function AboutPage({
         </section>
 
         {/* Resume & Contact Callout Footer */}
-        <div className="p-8 rounded-[24px] bg-[#042718] text-white flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div className="p-8 rounded-[24px] bg-[#121517] text-white flex flex-col sm:flex-row items-center justify-between gap-6">
           <div>
             <h3 className="font-onest text-xl sm:text-2xl font-bold mb-1">
               Want the full career history?

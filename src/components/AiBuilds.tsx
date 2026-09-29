@@ -5,12 +5,8 @@ import {
   Activity,
   X,
   CheckCircle2,
-  ShieldCheck,
-  Layers,
-  Sparkles,
 } from "lucide-react";
 import GlassButton from "./ui/GlassButton";
-import Tag from "./ui/Tag";
 
 /**
  * APPLIED AI & PRODUCT SYSTEMS — Homepage Section Grid
@@ -266,8 +262,8 @@ export default function AiBuilds({ onNavigate }: { onNavigate: (path: string) =>
             <div>
               <div className="flex items-center justify-between gap-2.5 mb-4">
                 <div className="flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#188E39] animate-pulse shrink-0" />
-                  <span className="font-mono text-[11px] font-bold text-[#188E39] uppercase tracking-wider">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#A8711A] animate-pulse shrink-0" />
+                  <span className="font-mono text-[11px] font-bold text-[#A8711A] uppercase tracking-wider">
                     LIVE BUILD
                   </span>
                 </div>
@@ -290,7 +286,7 @@ export default function AiBuilds({ onNavigate }: { onNavigate: (path: string) =>
                       <linearGradient id="aiDipaShell" x1=".3" y1="0" x2=".7" y2="1">
                         <stop offset="0" stopColor="#11482C" />
                         <stop offset="55%" stopColor="#08301E" />
-                        <stop offset="100%" stopColor="#042718" />
+                        <stop offset="100%" stopColor="#121517" />
                       </linearGradient>
                     </defs>
                     <g className="ai-orb">
@@ -499,7 +495,7 @@ export default function AiBuilds({ onNavigate }: { onNavigate: (path: string) =>
 
               {/* Section 4: Truthful Status */}
               <div className="p-3.5 rounded-2xl bg-[#FAF8F5] border border-black/[0.06] flex items-start gap-3">
-                <CheckCircle2 size={18} className="text-[#188E39] shrink-0 mt-0.5" />
+                <CheckCircle2 size={18} className="text-[#A8711A] shrink-0 mt-0.5" />
                 <div>
                   <h4 className="font-inter text-xs font-bold uppercase tracking-wider text-[#121517]">
                     Active Build Validation

@@ -122,37 +122,37 @@ export function DecisionLoopVisual() {
   const currentStep = LOOP_STEPS.find((s) => s.id === activeStep) || LOOP_STEPS[8];
 
   return (
-    <section id="the-loop" className="scroll-mt-24 pt-10 pb-14 border-b border-[#042718]/10">
+    <section id="the-loop" className="scroll-mt-24 pt-10 pb-14 border-b border-[#121517]/10">
       {/* Section Header */}
       <div className="mb-6">
         <span className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#A8711A] block mb-2">
           Core Product Loop
         </span>
-        <h2 className="font-onest text-2xl sm:text-3xl lg:text-4xl font-bold text-[#042718] tracking-tight">
+        <h2 className="font-onest text-2xl sm:text-3xl lg:text-4xl font-bold text-[#121517] tracking-tight">
           A closed decision loop, not a one-way conveyor
         </h2>
-        <p className="font-inter text-sm sm:text-base text-[#042718]/75 mt-2 max-w-3xl leading-relaxed">
+        <p className="font-inter text-sm sm:text-base text-[#121517]/75 mt-2 max-w-3xl leading-relaxed">
           Two properties separate this system from generic generative AI: it closes when new evidence arrives, and the human product manager sits directly at the point of decision.
         </p>
       </div>
 
       {/* Interactive Loop Diagram Container */}
-      <div className="p-5 sm:p-8 rounded-[24px] bg-[#FAF8F5] border border-[#042718]/10">
+      <div className="p-5 sm:p-8 rounded-[24px] bg-[#FAF8F5] border border-[#121517]/10">
         {/* Step Navigation Bar / Horizontal Grid for Desktop, vertical for Mobile */}
         <div className="mb-8">
           <div className="flex items-center justify-between gap-2 mb-3">
-            <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-[#042718]/60 font-semibold">
+            <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-[#121517]/60 font-semibold">
               Select any stage to inspect:
             </span>
-            <div className="flex items-center gap-2 font-mono text-[10px] text-[#042718]/60">
+            <div className="flex items-center gap-2 font-mono text-[10px] text-[#121517]/60">
               <span className="inline-flex items-center gap-1">
-                <span className="w-2 h-2 rounded-full bg-[#042718]" /> PM Action
+                <span className="w-2 h-2 rounded-full bg-[#121517]" /> PM Action
               </span>
               <span className="inline-flex items-center gap-1 ml-2">
                 <span className="w-2 h-2 rounded-full bg-[#A8711A]" /> System Analysis
               </span>
               <span className="inline-flex items-center gap-1 ml-2">
-                <span className="w-2 h-2 rounded-full bg-[#2F7A4F]" /> Closed Loop
+                <span className="w-2 h-2 rounded-full bg-[#C89B3C]" /> Closed Loop
               </span>
             </div>
           </div>
@@ -169,8 +169,8 @@ export function DecisionLoopVisual() {
                   onClick={() => setActiveStep(step.id)}
                   className={`p-2.5 sm:p-3 rounded-xl text-left transition-all cursor-pointer border ${
                     isSelected
-                      ? "bg-white border-[#042718] shadow-sm ring-1 ring-[#042718]"
-                      : "bg-white/80 border-[#042718]/10 hover:bg-white hover:border-[#042718]/25"
+                      ? "bg-white border-[#121517] shadow-sm ring-1 ring-[#121517]"
+                      : "bg-white/80 border-[#121517]/10 hover:bg-white hover:border-[#121517]/25"
                   }`}
                 >
                   <div className="flex items-center justify-between gap-1 mb-1">
@@ -179,14 +179,14 @@ export function DecisionLoopVisual() {
                     </span>
                     <span
                       className={`w-1.5 h-1.5 rounded-full ${
-                        isPm ? "bg-[#042718]" : "bg-[#A8711A]"
+                        isPm ? "bg-[#121517]" : "bg-[#A8711A]"
                       }`}
                     />
                   </div>
-                  <div className="font-onest text-xs font-bold text-[#042718] leading-tight truncate">
+                  <div className="font-onest text-xs font-bold text-[#121517] leading-tight truncate">
                     {step.name}
                   </div>
-                  <div className="font-mono text-[8.5px] uppercase tracking-wider text-[#042718]/50 mt-0.5">
+                  <div className="font-mono text-[8.5px] uppercase tracking-wider text-[#121517]/50 mt-0.5">
                     {step.category}
                   </div>
                 </button>
@@ -210,17 +210,17 @@ export function DecisionLoopVisual() {
                   className={`p-2.5 sm:p-3 rounded-xl text-left transition-all cursor-pointer border ${
                     isDecisionPoint
                       ? isSelected
-                        ? "bg-[#042718] text-white border-[#042718] shadow-md ring-2 ring-[#D9A94C]"
-                        : "bg-[#042718]/90 text-white border-[#042718] hover:bg-[#042718]"
+                        ? "bg-[#121517] text-white border-[#121517] shadow-md ring-2 ring-[#D9A94C]"
+                        : "bg-[#121517]/90 text-white border-[#121517] hover:bg-[#121517]"
                       : isSelected
-                      ? "bg-white border-[#2F7A4F] shadow-sm ring-1 ring-[#2F7A4F]"
-                      : "bg-white/80 border-[#042718]/10 hover:bg-white hover:border-[#042718]/25"
+                      ? "bg-white border-[#C89B3C] shadow-sm ring-1 ring-[#C89B3C]"
+                      : "bg-white/80 border-[#121517]/10 hover:bg-white hover:border-[#121517]/25"
                   }`}
                 >
                   <div className="flex items-center justify-between gap-1 mb-1">
                     <span
                       className={`font-mono text-[9px] font-bold ${
-                        isDecisionPoint ? "text-[#D9A94C]" : isLoop ? "text-[#2F7A4F]" : "text-[#A8711A]"
+                        isDecisionPoint ? "text-[#D9A94C]" : isLoop ? "text-[#C89B3C]" : "text-[#A8711A]"
                       }`}
                     >
                       {step.id}
@@ -230,23 +230,23 @@ export function DecisionLoopVisual() {
                         isDecisionPoint
                           ? "bg-[#D9A94C]"
                           : isLoop
-                          ? "bg-[#2F7A4F]"
+                          ? "bg-[#C89B3C]"
                           : isPm
-                          ? "bg-[#042718]"
+                          ? "bg-[#121517]"
                           : "bg-[#A8711A]"
                       }`}
                     />
                   </div>
                   <div
                     className={`font-onest text-xs font-bold leading-tight truncate ${
-                      isDecisionPoint ? "text-white" : "text-[#042718]"
+                      isDecisionPoint ? "text-white" : "text-[#121517]"
                     }`}
                   >
                     {step.name}
                   </div>
                   <div
                     className={`font-mono text-[8.5px] uppercase tracking-wider mt-0.5 ${
-                      isDecisionPoint ? "text-white/60" : "text-[#042718]/50"
+                      isDecisionPoint ? "text-white/60" : "text-[#121517]/50"
                     }`}
                   >
                     {isDecisionPoint ? "The Decision Point" : step.category}
@@ -258,22 +258,22 @@ export function DecisionLoopVisual() {
         </div>
 
         {/* Dynamic Detail Card for Selected Step */}
-        <div className="p-5 sm:p-6 rounded-[20px] bg-white border border-[#042718]/10 shadow-xs mb-6">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-[#042718]/8">
+        <div className="p-5 sm:p-6 rounded-[20px] bg-white border border-[#121517]/10 shadow-xs mb-6">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-[#121517]/8">
             <div className="flex items-center gap-3">
-              <span className="w-8 h-8 rounded-full bg-[#FAF8F5] border border-[#042718]/15 font-mono text-xs font-bold text-[#042718] flex items-center justify-center shrink-0">
+              <span className="w-8 h-8 rounded-full bg-[#FAF8F5] border border-[#121517]/15 font-mono text-xs font-bold text-[#121517] flex items-center justify-center shrink-0">
                 {currentStep.id}
               </span>
               <div>
                 <div className="flex items-center gap-2">
-                  <h3 className="font-onest text-base sm:text-lg font-bold text-[#042718]">
+                  <h3 className="font-onest text-base sm:text-lg font-bold text-[#121517]">
                     {currentStep.name}
                   </h3>
-                  <span className="font-mono text-[10px] uppercase tracking-wider px-2 py-0.5 rounded bg-[#FAF8F5] text-[#A8711A] font-semibold border border-[#042718]/8">
+                  <span className="font-mono text-[10px] uppercase tracking-wider px-2 py-0.5 rounded bg-[#FAF8F5] text-[#A8711A] font-semibold border border-[#121517]/8">
                     {currentStep.category}
                   </span>
                 </div>
-                <span className="font-inter text-xs text-[#042718]/60">
+                <span className="font-inter text-xs text-[#121517]/60">
                   {currentStep.role === "pm"
                     ? "Human Action — The PM leads and validates"
                     : currentStep.role === "loop"
@@ -284,44 +284,44 @@ export function DecisionLoopVisual() {
             </div>
 
             {currentStep.id === "09" && (
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#042718] text-[#D9A94C] font-mono text-[10.5px] font-bold tracking-wide shrink-0">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#121517] text-[#D9A94C] font-mono text-[10.5px] font-bold tracking-wide shrink-0">
                 <UserCheck size={13} />
                 THE PM DECIDES
               </span>
             )}
           </div>
 
-          <p className="font-inter text-sm text-[#042718]/85 mt-3 leading-relaxed">
+          <p className="font-inter text-sm text-[#121517]/85 mt-3 leading-relaxed">
             {currentStep.whatHappens}
           </p>
         </div>
 
         {/* The Closed Loop Revisit Box (Highlighting the return back to the decision) */}
-        <div className="p-5 rounded-[20px] bg-[#ECFDF5] border border-[#2F7A4F]/25 text-[#042718]">
+        <div className="p-5 rounded-[20px] bg-[#ECFDF5] border border-[#C89B3C]/25 text-[#121517]">
           <div className="flex items-start sm:items-center justify-between flex-wrap gap-2 mb-2">
             <div className="flex items-center gap-2">
-              <RotateCcw size={16} className="text-[#2F7A4F]" />
-              <span className="font-mono text-xs font-bold uppercase tracking-[0.16em] text-[#2F7A4F]">
+              <RotateCcw size={16} className="text-[#C89B3C]" />
+              <span className="font-mono text-xs font-bold uppercase tracking-[0.16em] text-[#C89B3C]">
                 The Loop Closes · Return &amp; Re-Judge
               </span>
             </div>
-            <span className="font-mono text-[10.5px] px-2.5 py-0.5 rounded-full bg-white text-[#2F7A4F] border border-[#2F7A4F]/20 font-semibold">
+            <span className="font-mono text-[10.5px] px-2.5 py-0.5 rounded-full bg-white text-[#C89B3C] border border-[#C89B3C]/20 font-semibold">
               North Star Mechanism: ≥25% 30-day revisit
             </span>
           </div>
 
-          <p className="font-inter text-xs sm:text-[13.5px] text-[#042718]/80 leading-relaxed">
+          <p className="font-inter text-xs sm:text-[13.5px] text-[#121517]/80 leading-relaxed">
             Unlike chatbots where conversations vanish into stale threads, Product Jury treats a decision as an evolving asset. When new telemetry or user research arrives, it re-evaluates the call against the original <strong>falsification condition</strong> and maps back into the decision—highlighting exactly what changed, why it changed, and what remains unknown.
           </p>
 
-          <div className="mt-4 pt-3 border-t border-[#2F7A4F]/20 flex flex-wrap items-center gap-2 font-mono text-[11px] text-[#2F7A4F] font-semibold">
+          <div className="mt-4 pt-3 border-t border-[#C89B3C]/20 flex flex-wrap items-center gap-2 font-mono text-[11px] text-[#C89B3C] font-semibold">
             <span>Step 11: Evidence Arrives</span>
             <ArrowRight size={12} />
             <span>Step 12: Re-Judge Against Contract</span>
             <ArrowRight size={12} />
             <span>Step 13: Diff &amp; What Changed</span>
             <ArrowRight size={12} />
-            <span className="underline decoration-[#2F7A4F] underline-offset-2">
+            <span className="underline decoration-[#C89B3C] underline-offset-2">
               Loops back into the durable Decision record
             </span>
           </div>

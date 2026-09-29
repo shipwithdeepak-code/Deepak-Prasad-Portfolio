@@ -219,15 +219,15 @@ export default function HomePage({
     };
   }, []);
 
-  const domainChips = [
-    { name: "ReshaMandi B2B Ecosystem", metric: "₹20 Cr+/mo" },
-    { name: "Instant Payouts Engine", metric: "99.9%" },
-    { name: "Computer Vision ML Grading", metric: "4 grades" },
-    { name: "Sportstech B2C SaaS", metric: "12,401 subscribers" },
-    { name: "0→1 AI Product Advisory", metric: "3 months" },
-    { name: "Multi-Tier Supply Chain", metric: "80K+ farmers" },
-    { name: "Dynamic Bidding Auctions", metric: "35% uplift" },
-    { name: "AI Localisation", metric: "200+ videos" },
+  const canonicalHeroProofRail = [
+    { name: "ReshaMandi B2B Marketplace", metric: "₹20–25 Cr/month" },
+    { name: "Farmer Payout Reliability", metric: "99.9%" },
+    { name: "Payout Settlement Window", metric: "15 days → under 2 hrs" },
+    { name: "Supply Chain Scale", metric: "80K+ farmers" },
+    { name: "Bidding Transaction-Value Uplift", metric: ">35%" },
+    { name: "Subscription Platform", metric: "€659k FY25" },
+    { name: "AI Coach Growth", metric: "~300 → 3,200+ DAU" },
+    { name: "0 → 1 Systems", metric: "Concept to production" },
   ];
 
   const DIPA_QUESTIONS = [
@@ -586,7 +586,7 @@ export default function HomePage({
                   }
                 }}
                 aria-label="Explore Flagship Shipped Work"
-                className="h-11 sm:h-12 px-6 sm:px-7 gap-2.5 rounded-full font-inter font-semibold text-[14.5px] sm:text-[15px] inline-flex items-center justify-center bg-[#121517] hover:bg-[#1A1E22] text-[#FAFDFB] border border-white/20 hover:border-white/35 shadow-[0_4px_24px_rgba(0,0,0,0.45),inset_0_1px_0_rgba(255,255,255,0.15)] cursor-pointer transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
+                className="h-11 sm:h-12 px-6 sm:px-7 gap-2.5 rounded-full font-inter font-semibold text-[14.5px] sm:text-[15px] inline-flex items-center justify-center bg-[#121517] hover:bg-[#1A1E22] text-[#FAF8F5] border border-white/20 hover:border-white/35 shadow-[0_4px_24px_rgba(0,0,0,0.45),inset_0_1px_0_rgba(255,255,255,0.15)] cursor-pointer transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
               >
                 <span>Explore Shipped Work</span>
                 <ArrowRight size={15} className="shrink-0 text-[#FDE68A]" />
@@ -645,7 +645,7 @@ export default function HomePage({
             </span>
 
             {/* 36–38px Circular Send Button in Charcoal */}
-            <span className="w-[36px] h-[36px] sm:w-[38px] sm:h-[38px] rounded-full bg-[#121517] hover:bg-[#1E2226] text-[#FAFDFB] flex items-center justify-center shrink-0 ask-dipa-send-btn shadow-2xs transition-colors" aria-hidden="true">
+            <span className="w-[36px] h-[36px] sm:w-[38px] sm:h-[38px] rounded-full bg-[#121517] hover:bg-[#1E2226] text-[#FAF8F5] flex items-center justify-center shrink-0 ask-dipa-send-btn shadow-2xs transition-colors" aria-hidden="true">
               <ArrowRight size={16} />
             </span>
           </button>
@@ -659,7 +659,7 @@ export default function HomePage({
             className="hero-marquee-container group relative max-w-[min(94vw,900px)] w-full mx-auto overflow-hidden rounded-full py-1.5 sm:py-2 px-3 sm:px-4 bg-[#121517]/55 hover:bg-[#121517]/70 focus-visible:bg-[#121517]/70 backdrop-blur-[14px] backdrop-saturate-[1.4] border border-white/[0.14] shadow-[0_4px_24px_rgba(0,0,0,0.42),inset_0_1px_0_rgba(255,255,255,0.1)] transition-colors duration-300 select-none [mask-image:linear-gradient(90deg,transparent_0%,#000_5%,#000_95%,transparent_100%)] [-webkit-mask-image:linear-gradient(90deg,transparent_0%,#000_5%,#000_95%,transparent_100%)] cursor-default focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FDE68A]/40"
           >
             <div className="hero-marquee-track flex items-center whitespace-nowrap">
-              {[...domainChips, ...domainChips].map((chip, idx) => (
+              {[...canonicalHeroProofRail, ...canonicalHeroProofRail].map((chip, idx) => (
                 <div
                   key={`${chip.name}-${idx}`}
                   className="flex items-center gap-2 px-3 sm:px-4 shrink-0 text-xs sm:text-[13px]"
@@ -834,7 +834,7 @@ export default function HomePage({
             -webkit-backdrop-filter: blur(18px);
             border: 1px solid rgba(255, 255, 255, 0.14);
             box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            color: #FAFDFB;
+            color: #FAF8F5;
             transition: background 300ms ease, border-color 300ms ease;
           }
           .work-deck-cta {
@@ -856,7 +856,7 @@ export default function HomePage({
             height: 32px;
             border-radius: 50%;
             background: #121517;
-            color: #FAFDFB;
+            color: #FAF8F5;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1065,7 +1065,7 @@ export default function HomePage({
                   <div className="work-deck-panel">
                     {/* Project Title: Prominent, begins cleanly at top with zero decorative eyebrow */}
                     <div className="mb-2.5">
-                      <h3 className="font-onest font-semibold text-[24px] sm:text-[28px] leading-[1.18] tracking-[-0.02em] text-[#FAFDFB]">
+                      <h3 className="font-onest font-semibold text-[24px] sm:text-[28px] leading-[1.18] tracking-[-0.02em] text-[#FAF8F5]">
                         {item.title}
                       </h3>
                       {item.tags.some((t) => t.startsWith("UNLAUNCHED")) && (
@@ -1126,7 +1126,7 @@ export default function HomePage({
             className="group inline-flex items-center gap-2.5 px-6 py-2.5 rounded-full bg-white/[0.88] hover:bg-white text-[#121517] font-inter text-[13.5px] sm:text-[14px] font-medium border border-black/[0.08] hover:border-black/20 shadow-[0_2px_12px_rgba(0,0,0,0.06)] hover:shadow-[0_4px_18px_rgba(0,0,0,0.1)] transition-all duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C89B3C] focus-visible:ring-offset-2"
           >
             <span>All work</span>
-            <span className="w-5 h-5 rounded-full bg-[#121517] text-[#FAFDFB] group-hover:text-[#FDE68A] flex items-center justify-center transition-colors">
+            <span className="w-5 h-5 rounded-full bg-[#121517] text-[#FAF8F5] group-hover:text-[#FDE68A] flex items-center justify-center transition-colors">
               <ArrowRight size={12} />
             </span>
           </a>
@@ -1152,28 +1152,23 @@ export default function HomePage({
           <AiBuilds onNavigate={onNavigate} />
         </div>
 
-        {/* Builder's Stack Tool Strip */}
-        <div className="mt-12 flex flex-col items-center gap-2.5">
-          <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-[#7A828A]">
-            PM &amp; AI Tooling
-          </span>
-          <div className="flex flex-wrap items-center justify-center gap-2 max-w-3xl">
-            {[
-              "Figma & Design Systems",
-              "Lovable AI",
-              "n8n",
-              "Claude Code",
-              "Google AI Studio",
-              "Power BI",
-            ].map((tool) => (
-              <span
-                key={tool}
-                className="font-mono text-xs px-2.5 py-1 rounded-md border text-[#4A525A] border-black/[0.08] bg-white/[0.6] select-none"
-              >
-                {tool}
-              </span>
-            ))}
-          </div>
+        {/* Maker's Editorial Signature Line */}
+        <div className="mt-10 md:mt-12 text-center">
+          <p className="font-mono text-[11px] sm:text-xs text-[#7A828A] tracking-normal flex flex-wrap items-center justify-center gap-x-2 gap-y-1 select-none">
+            <span>Built with</span>
+            <span className="text-[#C89B3C]/70" aria-hidden="true">·</span>
+            <span>Figma</span>
+            <span className="text-[#C89B3C]/70" aria-hidden="true">·</span>
+            <span>Claude Code</span>
+            <span className="text-[#C89B3C]/70" aria-hidden="true">·</span>
+            <span>Gemini</span>
+            <span className="text-[#C89B3C]/70" aria-hidden="true">·</span>
+            <span>Lovable</span>
+            <span className="text-[#C89B3C]/70" aria-hidden="true">·</span>
+            <span>n8n</span>
+            <span className="text-[#C89B3C]/70" aria-hidden="true">·</span>
+            <span>Power BI</span>
+          </p>
         </div>
       </section>
 

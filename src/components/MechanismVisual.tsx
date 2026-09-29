@@ -77,13 +77,13 @@ function ReshaMandiEditorialWorkflow({
   return (
     <div
       className={`my-8 p-6 rounded-2xl border ${
-        isDark ? "bg-[#042718] text-white border-white/10" : "bg-white text-[#042718] border-[#042718]/10 shadow-2xs"
+        isDark ? "bg-[#121517] text-white border-white/10" : "bg-white text-[#121517] border-[#121517]/10 shadow-2xs"
       } ${className}`}
       aria-label="ReshaMandi Governed Payout Workflow"
     >
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 pb-4 border-b border-current/10">
         <div>
-          <span className="font-mono text-[10px] uppercase font-bold tracking-wider text-[#188E39]">
+          <span className="font-mono text-[10px] uppercase font-bold tracking-wider text-[#A8711A]">
             Settlement State Machine
           </span>
           <h4 className="font-onest text-lg font-bold mt-0.5">
@@ -91,10 +91,10 @@ function ReshaMandiEditorialWorkflow({
           </h4>
         </div>
         <div className="flex items-center gap-2 text-xs font-mono">
-          <span className="px-2.5 py-1 rounded-md bg-[#188E39]/12 text-[#188E39] font-bold">
+          <span className="px-2.5 py-1 rounded-md bg-[#A8711A]/12 text-[#A8711A] font-bold">
             &lt;₹5L Instant · &gt;₹5L &lt;2h
           </span>
-          <span className="px-2.5 py-1 rounded-md bg-[#042718]/5 text-[#042718]/70 font-semibold">
+          <span className="px-2.5 py-1 rounded-md bg-[#121517]/5 text-[#121517]/70 font-semibold">
             99.9% Success
           </span>
         </div>
@@ -107,14 +107,14 @@ function ReshaMandiEditorialWorkflow({
           { step: '03 · Liquidity', title: 'Finance Clearance', desc: 'Automated disbursal trigger via Razorpay integration' },
           { step: '04 · Settlement', title: 'Payout & Receipt', desc: 'Instant vernacular SMS confirmation to farmer' },
         ].map((s) => (
-          <div key={s.step} className="p-3.5 rounded-xl bg-[#FAFDFB] border border-[#042718]/8">
-            <span className="font-mono text-[10px] text-[#188E39] font-bold block mb-1">
+          <div key={s.step} className="p-3.5 rounded-xl bg-[#FAF8F5] border border-[#121517]/8">
+            <span className="font-mono text-[10px] text-[#A8711A] font-bold block mb-1">
               {s.step}
             </span>
-            <h5 className="font-onest text-xs sm:text-sm font-bold text-[#042718] mb-1">
+            <h5 className="font-onest text-xs sm:text-sm font-bold text-[#121517] mb-1">
               {s.title}
             </h5>
-            <p className="font-inter text-xs text-[#042718]/70 leading-snug">
+            <p className="font-inter text-xs text-[#121517]/70 leading-snug">
               {s.desc}
             </p>
           </div>
@@ -165,15 +165,15 @@ function AiCoachEditorialBoundary({
     <div
       className={`my-10 p-6 sm:p-8 md:p-10 rounded-[24px] border ${
         isDark
-          ? "bg-[#042718] text-white border-white/10"
-          : "bg-white text-[#042718] border-[#042718]/10 shadow-xs"
+          ? "bg-[#121517] text-white border-white/10"
+          : "bg-white text-[#121517] border-[#121517]/10 shadow-xs"
       } ${className}`}
       aria-label="Sportstech AI Coach Editorial Boundary"
     >
       {/* Header Section */}
       <div className="flex flex-col md:flex-row md:items-baseline justify-between gap-4 mb-6 pb-5 border-b border-current/10">
         <div>
-          <span className="font-mono text-[11px] uppercase tracking-wider text-[#188E39] font-bold block mb-1">
+          <span className="font-mono text-[11px] uppercase tracking-wider text-[#A8711A] font-bold block mb-1">
             Applied AI Architecture · Product Boundaries
           </span>
           <h3 className="font-onest text-xl sm:text-2xl md:text-3xl font-bold tracking-tight">
@@ -181,71 +181,71 @@ function AiCoachEditorialBoundary({
           </h3>
         </div>
         <div className="flex flex-wrap items-center gap-2 text-xs font-mono shrink-0">
-          <span className="px-3 py-1 rounded-full bg-[#188E39]/12 text-[#188E39] font-semibold">
+          <span className="px-3 py-1 rounded-full bg-[#A8711A]/12 text-[#A8711A] font-semibold">
             3,200+ DAU
           </span>
-          <span className="px-3 py-1 rounded-full bg-[#042718]/5 text-[#042718]/80 font-semibold border border-current/10">
+          <span className="px-3 py-1 rounded-full bg-[#121517]/5 text-[#121517]/80 font-semibold border border-current/10">
             Scaled from ~300 in ~3 months
           </span>
         </div>
       </div>
 
-      <p className="font-inter text-sm sm:text-base text-[#042718]/80 leading-relaxed mb-8 max-w-3xl">
+      <p className="font-inter text-sm sm:text-base text-[#121517]/80 leading-relaxed mb-8 max-w-3xl">
         Building AI is easy; building an experience people can actually trust while working out is the hard part. The model generates answers, but the product determines what gets shown, what gets blocked, and when deterministic code takes over.
       </p>
 
       {/* Boundary Architecture Diagram */}
       <div className="flex flex-col gap-6">
         {/* Main Controlled Path */}
-        <div className="p-5 sm:p-6 rounded-2xl bg-[#FAFDFB] border border-[#042718]/10">
-          <div className="flex items-center justify-between mb-4 pb-2 border-b border-[#042718]/8">
-            <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#188E39]">
+        <div className="p-5 sm:p-6 rounded-2xl bg-[#FAF8F5] border border-[#121517]/10">
+          <div className="flex items-center justify-between mb-4 pb-2 border-b border-[#121517]/8">
+            <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#A8711A]">
               PRIMARY PATH · CONTROLLED AI ACTION LOOP
             </span>
-            <span className="font-mono text-[11px] text-[#042718]/60">
+            <span className="font-mono text-[11px] text-[#121517]/60">
               Gemini Primary · ChatGPT Failover
             </span>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-3 relative">
             {/* Step 1: User Context */}
-            <div className="p-4 rounded-xl bg-white border border-[#042718]/10 flex flex-col justify-between shadow-2xs">
+            <div className="p-4 rounded-xl bg-white border border-[#121517]/10 flex flex-col justify-between shadow-2xs">
               <div>
-                <span className="font-mono text-[10px] text-[#188E39] uppercase font-bold block mb-1">
+                <span className="font-mono text-[10px] text-[#A8711A] uppercase font-bold block mb-1">
                   01 · Ingestion
                 </span>
-                <h4 className="font-onest text-sm font-bold text-[#042718] mb-1">
+                <h4 className="font-onest text-sm font-bold text-[#121517] mb-1">
                   USER CONTEXT
                 </h4>
-                <p className="font-inter text-xs text-[#042718]/70 leading-relaxed">
+                <p className="font-inter text-xs text-[#121517]/70 leading-relaxed">
                   Consented workout history, available equipment, available minutes, and recent strain telemetry.
                 </p>
               </div>
-              <div className="mt-3 pt-2 border-t border-[#042718]/6 font-mono text-[10px] text-[#042718]/50">
+              <div className="mt-3 pt-2 border-t border-[#121517]/6 font-mono text-[10px] text-[#121517]/50">
                 Explainable Context
               </div>
             </div>
 
             {/* Step 2: AI Coach */}
-            <div className="p-4 rounded-xl bg-white border border-[#042718]/10 flex flex-col justify-between shadow-2xs">
+            <div className="p-4 rounded-xl bg-white border border-[#121517]/10 flex flex-col justify-between shadow-2xs">
               <div>
-                <span className="font-mono text-[10px] text-[#188E39] uppercase font-bold block mb-1">
+                <span className="font-mono text-[10px] text-[#A8711A] uppercase font-bold block mb-1">
                   02 · Model Layer
                 </span>
-                <h4 className="font-onest text-sm font-bold text-[#042718] mb-1">
+                <h4 className="font-onest text-sm font-bold text-[#121517] mb-1">
                   AI COACH
                 </h4>
-                <p className="font-inter text-xs text-[#042718]/70 leading-relaxed">
+                <p className="font-inter text-xs text-[#121517]/70 leading-relaxed">
                   Google Gemini (primary for speed & token cost) with automated ChatGPT fallback for high availability.
                 </p>
               </div>
-              <div className="mt-3 pt-2 border-t border-[#042718]/6 font-mono text-[10px] text-[#042718]/50">
+              <div className="mt-3 pt-2 border-t border-[#121517]/6 font-mono text-[10px] text-[#121517]/50">
                 Sub-Second First Token
               </div>
             </div>
 
             {/* Step 3: Product Boundaries */}
-            <div className="p-4 rounded-xl bg-[#ECFDF5] border border-[#188E39]/40 flex flex-col justify-between shadow-2xs">
+            <div className="p-4 rounded-xl bg-[#ECFDF5] border border-[#A8711A]/40 flex flex-col justify-between shadow-2xs">
               <div>
                 <span className="font-mono text-[10px] text-[#059669] uppercase font-bold block mb-1">
                   03 · Policy Interlock
@@ -253,29 +253,29 @@ function AiCoachEditorialBoundary({
                 <h4 className="font-onest text-sm font-bold text-[#065F46] mb-1">
                   PRODUCT BOUNDARIES
                 </h4>
-                <p className="font-inter text-xs text-[#042718]/80 leading-relaxed">
+                <p className="font-inter text-xs text-[#121517]/80 leading-relaxed">
                   Controlled content ecosystem: maps solely to verified studio exercises and certified safety cues.
                 </p>
               </div>
-              <div className="mt-3 pt-2 border-t border-[#188E39]/20 font-mono text-[10px] text-[#059669] font-medium">
+              <div className="mt-3 pt-2 border-t border-[#A8711A]/20 font-mono text-[10px] text-[#059669] font-medium">
                 AI ≠ Doctor · Data ≠ Diagnosis
               </div>
             </div>
 
             {/* Step 4: Actionable Platform Content */}
-            <div className="p-4 rounded-xl bg-white border border-[#042718]/10 flex flex-col justify-between shadow-2xs">
+            <div className="p-4 rounded-xl bg-white border border-[#121517]/10 flex flex-col justify-between shadow-2xs">
               <div>
-                <span className="font-mono text-[10px] text-[#188E39] uppercase font-bold block mb-1">
+                <span className="font-mono text-[10px] text-[#A8711A] uppercase font-bold block mb-1">
                   04 · Delivery
                 </span>
-                <h4 className="font-onest text-sm font-bold text-[#042718] mb-1">
+                <h4 className="font-onest text-sm font-bold text-[#121517] mb-1">
                   ACTIONABLE PLATFORM CONTENT
                 </h4>
-                <p className="font-inter text-xs text-[#042718]/70 leading-relaxed">
+                <p className="font-inter text-xs text-[#121517]/70 leading-relaxed">
                   Actionable routine with 1-tap deep links, transparent rationale, and quick-feedback telemetry chips.
                 </p>
               </div>
-              <div className="mt-3 pt-2 border-t border-[#042718]/6 font-mono text-[10px] text-[#042718]/50">
+              <div className="mt-3 pt-2 border-t border-[#121517]/6 font-mono text-[10px] text-[#121517]/50">
                 Grounded Workout Card
               </div>
             </div>
@@ -324,12 +324,12 @@ function AiCoachEditorialBoundary({
         </div>
 
         {/* ITERATION LOOP ARTIFACT */}
-        <div className="p-5 sm:p-6 rounded-2xl bg-[#FAFDFB] border border-[#042718]/10">
-          <div className="flex flex-wrap items-center justify-between gap-2 mb-3 pb-2 border-b border-[#042718]/8">
-            <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#042718]">
+        <div className="p-5 sm:p-6 rounded-2xl bg-[#FAF8F5] border border-[#121517]/10">
+          <div className="flex flex-wrap items-center justify-between gap-2 mb-3 pb-2 border-b border-[#121517]/8">
+            <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#121517]">
               ITERATION LOOP · FROM AMBIGUOUS CHARTER TO CONTROLLED ROLLOUT
             </span>
-            <span className="font-mono text-[11px] text-[#188E39] font-semibold">
+            <span className="font-mono text-[11px] text-[#A8711A] font-semibold">
               ~300 → 3,200+ DAU in ~3 Months
             </span>
           </div>
@@ -338,20 +338,20 @@ function AiCoachEditorialBoundary({
             {iterationStages.map((stage, idx) => (
               <div
                 key={idx}
-                className="p-3 rounded-xl bg-white border border-[#042718]/10 text-center shadow-2xs"
+                className="p-3 rounded-xl bg-white border border-[#121517]/10 text-center shadow-2xs"
               >
                 <div className="flex items-center justify-center gap-1 mb-1">
-                  <span className="font-mono text-[10px] text-[#188E39] font-bold">
+                  <span className="font-mono text-[10px] text-[#A8711A] font-bold">
                     {stage.num}
                   </span>
                   {idx < iterationStages.length - 1 && (
-                    <ArrowRight size={11} className="text-[#042718]/30 hidden sm:inline" />
+                    <ArrowRight size={11} className="text-[#121517]/30 hidden sm:inline" />
                   )}
                 </div>
-                <h5 className="font-onest text-xs font-bold text-[#042718]">
+                <h5 className="font-onest text-xs font-bold text-[#121517]">
                   {stage.name}
                 </h5>
-                <span className="font-inter text-[10px] text-[#042718]/60 mt-0.5 block">
+                <span className="font-inter text-[10px] text-[#121517]/60 mt-0.5 block">
                   {stage.detail}
                 </span>
               </div>
@@ -360,21 +360,21 @@ function AiCoachEditorialBoundary({
         </div>
 
         {/* WHAT CHANGED AFTER TESTING VISUAL */}
-        <div className="p-5 rounded-2xl bg-[#FAFDFB] border border-[#042718]/8">
-          <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#042718] block mb-3">
+        <div className="p-5 rounded-2xl bg-[#FAF8F5] border border-[#121517]/8">
+          <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#121517] block mb-3">
             WHAT CHANGED AFTER TESTING · EVIDENCE-BACKED ADAPTATIONS
           </span>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             {whatChangedTesting.map((item, idx) => (
               <div
                 key={idx}
-                className="p-3.5 rounded-xl bg-white border border-[#042718]/8 shadow-2xs"
+                className="p-3.5 rounded-xl bg-white border border-[#121517]/8 shadow-2xs"
               >
                 <div className="flex items-center justify-between text-[10px] font-mono mb-1.5">
                   <span className="text-[#DC2626] line-through">{item.before}</span>
-                  <span className="text-[#188E39] font-bold">→ {item.after}</span>
+                  <span className="text-[#A8711A] font-bold">→ {item.after}</span>
                 </div>
-                <p className="font-inter text-xs text-[#042718]/75 leading-relaxed">
+                <p className="font-inter text-xs text-[#121517]/75 leading-relaxed">
                   {item.reason}
                 </p>
               </div>
@@ -384,32 +384,32 @@ function AiCoachEditorialBoundary({
 
         {/* Product Principles Grid (Editorial Scale) */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
-          <div className="p-3.5 rounded-xl bg-[#FAFDFB] border border-[#042718]/8">
-            <span className="font-mono text-[10px] text-[#188E39] font-bold block mb-0.5">
+          <div className="p-3.5 rounded-xl bg-[#FAF8F5] border border-[#121517]/8">
+            <span className="font-mono text-[10px] text-[#A8711A] font-bold block mb-0.5">
               Principle 01
             </span>
-            <h5 className="font-onest text-xs font-bold text-[#042718]">Safety Before Engagement</h5>
-            <p className="font-inter text-[11px] text-[#042718]/70 mt-1 leading-snug">
+            <h5 className="font-onest text-xs font-bold text-[#121517]">Safety Before Engagement</h5>
+            <p className="font-inter text-[11px] text-[#121517]/70 mt-1 leading-snug">
               User physical safety strictly supersedes conversational flair or lengthened session time.
             </p>
           </div>
 
-          <div className="p-3.5 rounded-xl bg-[#FAFDFB] border border-[#042718]/8">
-            <span className="font-mono text-[10px] text-[#188E39] font-bold block mb-0.5">
+          <div className="p-3.5 rounded-xl bg-[#FAF8F5] border border-[#121517]/8">
+            <span className="font-mono text-[10px] text-[#A8711A] font-bold block mb-0.5">
               Principle 02
             </span>
-            <h5 className="font-onest text-xs font-bold text-[#042718]">AI ≠ Doctor · Data ≠ Diagnosis</h5>
-            <p className="font-inter text-[11px] text-[#042718]/70 mt-1 leading-snug">
+            <h5 className="font-onest text-xs font-bold text-[#121517]">AI ≠ Doctor · Data ≠ Diagnosis</h5>
+            <p className="font-inter text-[11px] text-[#121517]/70 mt-1 leading-snug">
               Heart rate spikes and calorie metrics are behavioral signals, never clinical diagnoses.
             </p>
           </div>
 
-          <div className="p-3.5 rounded-xl bg-[#FAFDFB] border border-[#042718]/8">
-            <span className="font-mono text-[10px] text-[#188E39] font-bold block mb-0.5">
+          <div className="p-3.5 rounded-xl bg-[#FAF8F5] border border-[#121517]/8">
+            <span className="font-mono text-[10px] text-[#A8711A] font-bold block mb-0.5">
               Principle 03
             </span>
-            <h5 className="font-onest text-xs font-bold text-[#042718]">Iterative Beta Discipline</h5>
-            <p className="font-inter text-[11px] text-[#042718]/70 mt-1 leading-snug">
+            <h5 className="font-onest text-xs font-bold text-[#121517]">Iterative Beta Discipline</h5>
+            <p className="font-inter text-[11px] text-[#121517]/70 mt-1 leading-snug">
               Internal dogfooding → 100-user closed beta → production rollout. Hallucinations mitigated via mandatory clarifying taps.
             </p>
           </div>
@@ -417,11 +417,11 @@ function AiCoachEditorialBoundary({
       </div>
 
       {/* Editorial Caption / Evidence Footer */}
-      <div className="mt-6 pt-4 border-t border-current/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs font-inter text-[#042718]/70">
+      <div className="mt-6 pt-4 border-t border-current/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs font-inter text-[#121517]/70">
         <p className="italic">
           "The model can generate. The product defines the boundary."
         </p>
-        <span className="font-mono text-[11px] font-semibold text-[#188E39] shrink-0">
+        <span className="font-mono text-[11px] font-semibold text-[#A8711A] shrink-0">
           Scaled from ~300 to 3,200+ DAU in ~3 months behind deterministic safety guardrails
         </span>
       </div>
@@ -455,15 +455,15 @@ function SubscriptionEditorialJourney({
     <div
       className={`my-10 p-6 sm:p-8 md:p-10 rounded-[24px] border ${
         isDark
-          ? "bg-[#042718] text-white border-white/10"
-          : "bg-white text-[#042718] border-[#042718]/10 shadow-xs"
+          ? "bg-[#121517] text-white border-white/10"
+          : "bg-white text-[#121517] border-[#121517]/10 shadow-xs"
       } ${className}`}
       aria-label="Sportstech Subscription Monetization Journey"
     >
       {/* Header Section */}
       <div className="flex flex-col md:flex-row md:items-baseline justify-between gap-4 mb-6 pb-5 border-b border-current/10">
         <div>
-          <span className="font-mono text-[11px] uppercase tracking-wider text-[#188E39] font-bold block mb-1">
+          <span className="font-mono text-[11px] uppercase tracking-wider text-[#A8711A] font-bold block mb-1">
             Monetization Architecture · Growth & Retention
           </span>
           <h3 className="font-onest text-xl sm:text-2xl md:text-3xl font-bold tracking-tight">
@@ -471,26 +471,26 @@ function SubscriptionEditorialJourney({
           </h3>
         </div>
         <div className="flex flex-wrap items-center gap-2 text-xs font-mono shrink-0">
-          <span className="px-3 py-1 rounded-full bg-[#188E39]/12 text-[#188E39] font-semibold">
+          <span className="px-3 py-1 rounded-full bg-[#A8711A]/12 text-[#A8711A] font-semibold">
             €659K FY25 Revenue
           </span>
-          <span className="px-3 py-1 rounded-full bg-[#042718]/5 text-[#042718]/80 font-semibold border border-current/10">
+          <span className="px-3 py-1 rounded-full bg-[#121517]/5 text-[#121517]/80 font-semibold border border-current/10">
             81.9% YoY Growth · 96.8% Retention
           </span>
         </div>
       </div>
 
-      <p className="font-inter text-sm sm:text-base text-[#042718]/80 leading-relaxed mb-8 max-w-3xl">
+      <p className="font-inter text-sm sm:text-base text-[#121517]/80 leading-relaxed mb-8 max-w-3xl">
         "Monetization is fundamentally a product problem, not just a pricing problem." The core challenge was creating enough perceived value to make paid membership make sense while protecting existing customer trust. Instead of aggressive Day-1 paywalls that trigger customer revolt, monetization was structured as progressive value realization.
       </p>
 
       {/* Full Product Journey Sequence */}
-      <div className="p-5 sm:p-6 rounded-2xl bg-[#FAFDFB] border border-[#042718]/10 mb-6">
-        <div className="flex items-center justify-between mb-4 pb-2 border-b border-[#042718]/8">
-          <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#188E39]">
+      <div className="p-5 sm:p-6 rounded-2xl bg-[#FAF8F5] border border-[#121517]/10 mb-6">
+        <div className="flex items-center justify-between mb-4 pb-2 border-b border-[#121517]/8">
+          <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#A8711A]">
             END-TO-END USER JOURNEY
           </span>
-          <span className="font-mono text-[11px] text-[#042718]/60">
+          <span className="font-mono text-[11px] text-[#121517]/60">
             Full-Launch Execution · Transparent Terms
           </span>
         </div>
@@ -499,22 +499,22 @@ function SubscriptionEditorialJourney({
           {journeySteps.map((step, idx) => (
             <div
               key={idx}
-              className="p-3.5 rounded-xl bg-white border border-[#042718]/8 flex flex-col justify-between shadow-2xs"
+              className="p-3.5 rounded-xl bg-white border border-[#121517]/8 flex flex-col justify-between shadow-2xs"
             >
               <div>
                 <div className="flex items-center justify-between mb-1">
-                  <span className="font-mono text-[10px] text-[#188E39] font-bold">
+                  <span className="font-mono text-[10px] text-[#A8711A] font-bold">
                     {step.num}
                   </span>
                   {idx < journeySteps.length - 1 && (
-                    <ArrowRight size={12} className="text-[#042718]/30 hidden lg:block" />
+                    <ArrowRight size={12} className="text-[#121517]/30 hidden lg:block" />
                   )}
                 </div>
-                <h4 className="font-onest text-xs sm:text-sm font-bold text-[#042718] leading-tight">
+                <h4 className="font-onest text-xs sm:text-sm font-bold text-[#121517] leading-tight">
                   {step.name}
                 </h4>
               </div>
-              <p className="font-inter text-[11px] text-[#042718]/70 mt-2 leading-snug">
+              <p className="font-inter text-[11px] text-[#121517]/70 mt-2 leading-snug">
                 {step.desc}
               </p>
             </div>
@@ -523,44 +523,44 @@ function SubscriptionEditorialJourney({
       </div>
 
       {/* Subtle Horizontal Tension Underneath: Conversion ↕ Value Realization ↕ Retention */}
-      <div className="p-5 sm:p-6 rounded-2xl bg-[#FAFDFB] border border-[#042718]/10">
+      <div className="p-5 sm:p-6 rounded-2xl bg-[#FAF8F5] border border-[#121517]/10">
         <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#8A5A16] block mb-3">
           THE THREE PRODUCT FORCES BALANCED
         </span>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="p-4 rounded-xl bg-white border border-[#042718]/8 shadow-2xs">
+          <div className="p-4 rounded-xl bg-white border border-[#121517]/8 shadow-2xs">
             <span className="font-mono text-[10px] uppercase font-bold text-[#8A5A16] block mb-1">
               Pillar 01 · Trust & Compliance
             </span>
-            <h5 className="font-onest text-sm font-bold text-[#042718] mb-1">
+            <h5 className="font-onest text-sm font-bold text-[#121517] mb-1">
               CONVERSION WITH EMPATHY
             </h5>
-            <p className="font-inter text-xs text-[#042718]/70 leading-relaxed">
+            <p className="font-inter text-xs text-[#121517]/70 leading-relaxed">
               Transparent 7-day trial terms, upfront renewal countdown notifications, and 1-tap cancellation UX strictly complying with European consumer protection directives.
             </p>
           </div>
 
-          <div className="p-4 rounded-xl bg-[#ECFDF5] border border-[#188E39]/30 shadow-2xs">
-            <span className="font-mono text-[10px] uppercase font-bold text-[#188E39] block mb-1">
+          <div className="p-4 rounded-xl bg-[#ECFDF5] border border-[#A8711A]/30 shadow-2xs">
+            <span className="font-mono text-[10px] uppercase font-bold text-[#A8711A] block mb-1">
               Pillar 02 · Utility Core
             </span>
             <h5 className="font-onest text-sm font-bold text-[#065F46] mb-1">
               VALUE REALISATION
             </h5>
-            <p className="font-inter text-xs text-[#042718]/80 leading-relaxed">
+            <p className="font-inter text-xs text-[#121517]/80 leading-relaxed">
               Hardware pairing kept 100% free; habit formation stabilized past Workout #3 and Workout #5 through dynamic schedule adaptation and live sensor telemetry.
             </p>
           </div>
 
-          <div className="p-4 rounded-xl bg-white border border-[#042718]/8 shadow-2xs">
+          <div className="p-4 rounded-xl bg-white border border-[#121517]/8 shadow-2xs">
             <span className="font-mono text-[10px] uppercase font-bold text-[#8A5A16] block mb-1">
               Pillar 03 · Long-Term Health
             </span>
-            <h5 className="font-onest text-sm font-bold text-[#042718] mb-1">
+            <h5 className="font-onest text-sm font-bold text-[#121517] mb-1">
               COMPOUNDING RETENTION
             </h5>
-            <p className="font-inter text-xs text-[#042718]/70 leading-relaxed">
+            <p className="font-inter text-xs text-[#121517]/70 leading-relaxed">
               Prioritizing annual commitments with substantial upfront savings, resulting in a 96.8% yearly-plan cohort retention rate across mature subscribers.
             </p>
           </div>
@@ -572,31 +572,31 @@ function SubscriptionEditorialJourney({
             <span className="font-mono text-[11px] uppercase font-bold text-[#A8711A]">
               RENEWAL FRICTION ARCHITECTURE
             </span>
-            <span className="font-mono text-[10px] text-[#042718]/60">
+            <span className="font-mono text-[10px] text-[#121517]/60">
               Hardware Bundle Expiry Dilemma
             </span>
           </div>
-          <p className="font-inter text-xs text-[#042718]/75 mb-3 leading-relaxed">
+          <p className="font-inter text-xs text-[#121517]/75 mb-3 leading-relaxed">
             "Renewal was not just a billing problem. It was a product-friction problem." When bundled hardware subscriptions expired, users faced high cognitive friction:
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center font-mono text-[11px]">
-            <div className="p-2 rounded-lg bg-[#FAFDFB] border border-[#042718]/8">
-              <span className="text-[#042718]/50 block text-[9px] mb-0.5">FRICTION 01</span>
-              <span className="text-[#042718] font-bold">Which Platform?</span>
-              <span className="text-[10px] text-[#042718]/60 block mt-0.5">iOS vs Android vs Web</span>
+            <div className="p-2 rounded-lg bg-[#FAF8F5] border border-[#121517]/8">
+              <span className="text-[#121517]/50 block text-[9px] mb-0.5">FRICTION 01</span>
+              <span className="text-[#121517] font-bold">Which Platform?</span>
+              <span className="text-[10px] text-[#121517]/60 block mt-0.5">iOS vs Android vs Web</span>
             </div>
-            <div className="p-2 rounded-lg bg-[#FAFDFB] border border-[#042718]/8">
-              <span className="text-[#042718]/50 block text-[9px] mb-0.5">FRICTION 02</span>
-              <span className="text-[#042718] font-bold">Which Plan?</span>
-              <span className="text-[10px] text-[#042718]/60 block mt-0.5">Monthly vs Annual Tier</span>
+            <div className="p-2 rounded-lg bg-[#FAF8F5] border border-[#121517]/8">
+              <span className="text-[#121517]/50 block text-[9px] mb-0.5">FRICTION 02</span>
+              <span className="text-[#121517] font-bold">Which Plan?</span>
+              <span className="text-[10px] text-[#121517]/60 block mt-0.5">Monthly vs Annual Tier</span>
             </div>
-            <div className="p-2 rounded-lg bg-[#FAFDFB] border border-[#042718]/8">
-              <span className="text-[#042718]/50 block text-[9px] mb-0.5">FRICTION 03</span>
-              <span className="text-[#042718] font-bold">Re-enter Card</span>
-              <span className="text-[10px] text-[#042718]/60 block mt-0.5">Payment method entry</span>
+            <div className="p-2 rounded-lg bg-[#FAF8F5] border border-[#121517]/8">
+              <span className="text-[#121517]/50 block text-[9px] mb-0.5">FRICTION 03</span>
+              <span className="text-[#121517] font-bold">Re-enter Card</span>
+              <span className="text-[10px] text-[#121517]/60 block mt-0.5">Payment method entry</span>
             </div>
-            <div className="p-2 rounded-lg bg-[#ECFDF5] border border-[#188E39]/30">
-              <span className="text-[#188E39] block text-[9px] mb-0.5">PRODUCT FIX</span>
+            <div className="p-2 rounded-lg bg-[#ECFDF5] border border-[#A8711A]/30">
+              <span className="text-[#A8711A] block text-[9px] mb-0.5">PRODUCT FIX</span>
               <span className="text-[#065F46] font-bold">1-Tap Resubscribe</span>
               <span className="text-[10px] text-[#065F46]/70 block mt-0.5">Pre-selected best tier</span>
             </div>
@@ -605,11 +605,11 @@ function SubscriptionEditorialJourney({
       </div>
 
       {/* Editorial Caption / Evidence Footer */}
-      <div className="mt-6 pt-4 border-t border-current/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs font-inter text-[#042718]/70">
+      <div className="mt-6 pt-4 border-t border-current/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs font-inter text-[#121517]/70">
         <p className="italic">
           "The challenge was creating enough perceived value to make paid membership make sense while protecting existing customer trust."
         </p>
-        <span className="font-mono text-[11px] font-semibold text-[#188E39] shrink-0">
+        <span className="font-mono text-[11px] font-semibold text-[#A8711A] shrink-0">
           Full launch execution · 12,401 paid subscribers
         </span>
       </div>
@@ -638,20 +638,20 @@ function PerformanceScoreEditorialEcosystem({
         <div
           className={`p-6 sm:p-8 md:p-10 rounded-[24px] border ${
             isDark
-              ? "bg-[#042718] text-white border-white/10"
-              : "bg-white text-[#042718] border-[#042718]/10 shadow-xs"
+              ? "bg-[#121517] text-white border-white/10"
+              : "bg-white text-[#121517] border-[#121517]/10 shadow-xs"
           }`}
           aria-label="Performance Score Ecosystem Map"
         >
           <div className="flex flex-col md:flex-row md:items-baseline justify-between gap-4 mb-6 pb-5 border-b border-current/10">
             <div>
-              <span className="font-mono text-[11px] uppercase tracking-wider text-[#188E39] font-bold block mb-1">
+              <span className="font-mono text-[11px] uppercase tracking-wider text-[#A8711A] font-bold block mb-1">
                 Visual Moment 01 · Ecosystem Map
               </span>
               <h3 className="font-onest text-xl sm:text-2xl md:text-3xl font-bold tracking-tight">
                 ONE BODY. ONE SCORE. ONE ECOSYSTEM.
               </h3>
-              <span className="font-mono text-xs text-[#042718]/60 block mt-0.5">
+              <span className="font-mono text-xs text-[#121517]/60 block mt-0.5">
                 From 5 Fragmented Surfaces to One Unified Experience
               </span>
             </div>
@@ -662,19 +662,19 @@ function PerformanceScoreEditorialEcosystem({
             </div>
           </div>
 
-          <p className="font-inter text-sm sm:text-base text-[#042718]/80 leading-relaxed mb-8 max-w-3xl">
+          <p className="font-inter text-sm sm:text-base text-[#121517]/80 leading-relaxed mb-8 max-w-3xl">
             "Before promising users one measure of progress, we had to make five surfaces behave like one product." This architectural map established a single Athletic Reliability contract uniting mobile, consoles, gym machines, and firmware.
           </p>
 
           {/* 3-Level Vertical Stack with Clear Connecting Bridges */}
           <div className="flex flex-col gap-4">
             {/* LEVEL 01: PRODUCT SURFACES */}
-            <div className="p-5 rounded-2xl bg-[#FAFDFB] border border-[#042718]/8">
+            <div className="p-5 rounded-2xl bg-[#FAF8F5] border border-[#121517]/8">
               <div className="flex items-center justify-between mb-3">
-                <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#042718]/70">
+                <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#121517]/70">
                   LEVEL 01 · 5 PRODUCT SURFACES
                 </span>
-                <span className="font-mono text-[11px] text-[#042718]/50">
+                <span className="font-mono text-[11px] text-[#121517]/50">
                   Disparate Sampling Cadences
                 </span>
               </div>
@@ -688,12 +688,12 @@ function PerformanceScoreEditorialEcosystem({
                 ].map((s) => (
                   <div
                     key={s.name}
-                    className="p-3 rounded-xl bg-white border border-[#042718]/10 text-center shadow-2xs"
+                    className="p-3 rounded-xl bg-white border border-[#121517]/10 text-center shadow-2xs"
                   >
-                    <span className="font-onest text-xs sm:text-sm font-bold text-[#042718] block">
+                    <span className="font-onest text-xs sm:text-sm font-bold text-[#121517] block">
                       {s.name}
                     </span>
-                    <span className="font-mono text-[10px] text-[#042718]/50 block mt-0.5">
+                    <span className="font-mono text-[10px] text-[#121517]/50 block mt-0.5">
                       {s.tech}
                     </span>
                   </div>
@@ -703,56 +703,56 @@ function PerformanceScoreEditorialEcosystem({
 
             {/* Ingestion Connector */}
             <div className="flex justify-center items-center gap-2 py-0.5">
-              <div className="h-px bg-[#042718]/15 flex-1" />
-              <span className="font-mono text-[11px] text-[#188E39] font-semibold px-3 py-0.5 rounded-full bg-[#188E39]/10">
+              <div className="h-px bg-[#121517]/15 flex-1" />
+              <span className="font-mono text-[11px] text-[#A8711A] font-semibold px-3 py-0.5 rounded-full bg-[#A8711A]/10">
                 ↓ Event Normalization & Ingestion Layer ↓
               </span>
-              <div className="h-px bg-[#042718]/15 flex-1" />
+              <div className="h-px bg-[#121517]/15 flex-1" />
             </div>
 
             {/* LEVEL 02: FOUNDATION */}
-            <div className="p-5 rounded-2xl bg-[#FAFDFB] border border-[#042718]/8">
+            <div className="p-5 rounded-2xl bg-[#FAF8F5] border border-[#121517]/8">
               <div className="flex items-center justify-between mb-3">
-                <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#188E39]">
+                <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#A8711A]">
                   LEVEL 02 · UNIFIED DATA FOUNDATION
                 </span>
-                <span className="font-mono text-[11px] text-[#188E39] font-semibold">
+                <span className="font-mono text-[11px] text-[#A8711A] font-semibold">
                   Zero Data Fragmentation
                 </span>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-                <div className="p-3.5 rounded-xl bg-white border border-[#188E39]/30 shadow-2xs">
-                  <span className="font-mono text-[10px] font-bold text-[#188E39] block mb-0.5">
+                <div className="p-3.5 rounded-xl bg-white border border-[#A8711A]/30 shadow-2xs">
+                  <span className="font-mono text-[10px] font-bold text-[#A8711A] block mb-0.5">
                     Schema Contract
                   </span>
-                  <h5 className="font-onest text-xs sm:text-sm font-bold text-[#042718]">
+                  <h5 className="font-onest text-xs sm:text-sm font-bold text-[#121517]">
                     Unified WorkoutSession
                   </h5>
-                  <p className="font-inter text-[11px] text-[#042718]/70 mt-1">
+                  <p className="font-inter text-[11px] text-[#121517]/70 mt-1">
                     Normalized telemetry schema across all strength, cardio, and wearable endpoints.
                   </p>
                 </div>
 
-                <div className="p-3.5 rounded-xl bg-white border border-[#188E39]/30 shadow-2xs">
-                  <span className="font-mono text-[10px] font-bold text-[#188E39] block mb-0.5">
+                <div className="p-3.5 rounded-xl bg-white border border-[#A8711A]/30 shadow-2xs">
+                  <span className="font-mono text-[10px] font-bold text-[#A8711A] block mb-0.5">
                     Data Integrity
                   </span>
-                  <h5 className="font-onest text-xs sm:text-sm font-bold text-[#042718]">
+                  <h5 className="font-onest text-xs sm:text-sm font-bold text-[#121517]">
                     Idempotent Ingestion
                   </h5>
-                  <p className="font-inter text-[11px] text-[#042718]/70 mt-1">
+                  <p className="font-inter text-[11px] text-[#121517]/70 mt-1">
                     Prevents double-counting when users record simultaneously on phone and smart gym.
                   </p>
                 </div>
 
-                <div className="p-3.5 rounded-xl bg-white border border-[#188E39]/30 shadow-2xs">
-                  <span className="font-mono text-[10px] font-bold text-[#188E39] block mb-0.5">
+                <div className="p-3.5 rounded-xl bg-white border border-[#A8711A]/30 shadow-2xs">
+                  <span className="font-mono text-[10px] font-bold text-[#A8711A] block mb-0.5">
                     Scoring Engine
                   </span>
-                  <h5 className="font-onest text-xs sm:text-sm font-bold text-[#042718]">
+                  <h5 className="font-onest text-xs sm:text-sm font-bold text-[#121517]">
                     Athletic Reliability Core
                   </h5>
-                  <p className="font-inter text-[11px] text-[#042718]/70 mt-1">
+                  <p className="font-inter text-[11px] text-[#121517]/70 mt-1">
                     Calculates holistic exertion and recovery confidence regardless of sensor availability.
                   </p>
                 </div>
@@ -761,15 +761,15 @@ function PerformanceScoreEditorialEcosystem({
 
             {/* Experience Connector */}
             <div className="flex justify-center items-center gap-2 py-0.5">
-              <div className="h-px bg-[#042718]/15 flex-1" />
-              <span className="font-mono text-[11px] text-[#188E39] font-semibold px-3 py-0.5 rounded-full bg-[#188E39]/10">
+              <div className="h-px bg-[#121517]/15 flex-1" />
+              <span className="font-mono text-[11px] text-[#A8711A] font-semibold px-3 py-0.5 rounded-full bg-[#A8711A]/10">
                 ↓ Front-End Experience Delivery ↓
               </span>
-              <div className="h-px bg-[#042718]/15 flex-1" />
+              <div className="h-px bg-[#121517]/15 flex-1" />
             </div>
 
             {/* LEVEL 03: EXPERIENCE */}
-            <div className="p-5 rounded-2xl bg-[#ECFDF5] border border-[#188E39]/30">
+            <div className="p-5 rounded-2xl bg-[#ECFDF5] border border-[#A8711A]/30">
               <div className="flex items-center justify-between mb-3">
                 <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#065F46]">
                   LEVEL 03 · UNIFIED USER EXPERIENCE
@@ -779,29 +779,29 @@ function PerformanceScoreEditorialEcosystem({
                 </span>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-                <div className="p-3.5 rounded-xl bg-white border border-[#188E39]/30 shadow-2xs">
-                  <h5 className="font-onest text-sm font-bold text-[#042718] mb-0.5">
+                <div className="p-3.5 rounded-xl bg-white border border-[#A8711A]/30 shadow-2xs">
+                  <h5 className="font-onest text-sm font-bold text-[#121517] mb-0.5">
                     0–100 Performance Score
                   </h5>
-                  <p className="font-inter text-[11px] text-[#042718]/75 leading-relaxed">
+                  <p className="font-inter text-[11px] text-[#121517]/75 leading-relaxed">
                     A singular, intuitive progress index replacing fragmented reps, calories, and zones.
                   </p>
                 </div>
 
-                <div className="p-3.5 rounded-xl bg-white border border-[#188E39]/30 shadow-2xs">
-                  <h5 className="font-onest text-sm font-bold text-[#042718] mb-0.5">
+                <div className="p-3.5 rounded-xl bg-white border border-[#A8711A]/30 shadow-2xs">
+                  <h5 className="font-onest text-sm font-bold text-[#121517] mb-0.5">
                     My Activity Timeline
                   </h5>
-                  <p className="font-inter text-[11px] text-[#042718]/75 leading-relaxed">
+                  <p className="font-inter text-[11px] text-[#121517]/75 leading-relaxed">
                     Unified multi-device session history rendering seamlessly across phone and equipment.
                   </p>
                 </div>
 
-                <div className="p-3.5 rounded-xl bg-white border border-[#188E39]/30 shadow-2xs">
-                  <h5 className="font-onest text-sm font-bold text-[#042718] mb-0.5">
+                <div className="p-3.5 rounded-xl bg-white border border-[#A8711A]/30 shadow-2xs">
+                  <h5 className="font-onest text-sm font-bold text-[#121517] mb-0.5">
                     Wellness Dashboard
                   </h5>
-                  <p className="font-inter text-[11px] text-[#042718]/75 leading-relaxed">
+                  <p className="font-inter text-[11px] text-[#121517]/75 leading-relaxed">
                     Synthesized exertion and recovery feedback that motivates without causing data fatigue.
                   </p>
                 </div>
@@ -809,7 +809,7 @@ function PerformanceScoreEditorialEcosystem({
             </div>
           </div>
 
-          <div className="mt-6 pt-4 border-t border-current/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs font-inter text-[#042718]/70">
+          <div className="mt-6 pt-4 border-t border-current/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs font-inter text-[#121517]/70">
             <p className="italic">
               "Before promising users one measure of progress, make the ecosystem behave like one product."
             </p>
@@ -825,14 +825,14 @@ function PerformanceScoreEditorialEcosystem({
         <div
           className={`p-6 sm:p-8 md:p-10 rounded-[24px] border ${
             isDark
-              ? "bg-[#042718] text-white border-white/10"
-              : "bg-white text-[#042718] border-[#042718]/10 shadow-xs"
+              ? "bg-[#121517] text-white border-white/10"
+              : "bg-white text-[#121517] border-[#121517]/10 shadow-xs"
           }`}
           aria-label="Performance Score Migration Strategy"
         >
           <div className="flex flex-col md:flex-row md:items-baseline justify-between gap-4 mb-6 pb-5 border-b border-current/10">
             <div>
-              <span className="font-mono text-[11px] uppercase tracking-wider text-[#188E39] font-bold block mb-1">
+              <span className="font-mono text-[11px] uppercase tracking-wider text-[#A8711A] font-bold block mb-1">
                 Visual Moment 02 · Migration Strategy
               </span>
               <h3 className="font-onest text-xl sm:text-2xl md:text-3xl font-bold tracking-tight">
@@ -840,16 +840,16 @@ function PerformanceScoreEditorialEcosystem({
               </h3>
             </div>
             <div className="flex items-center gap-2 text-xs font-mono shrink-0">
-              <span className="px-3 py-1 rounded-full bg-[#188E39]/12 text-[#188E39] font-semibold">
+              <span className="px-3 py-1 rounded-full bg-[#A8711A]/12 text-[#A8711A] font-semibold">
                 P0 · Ready for Development
               </span>
-              <span className="px-3 py-1 rounded-full bg-[#042718]/5 text-[#042718]/80 font-semibold border border-current/10">
+              <span className="px-3 py-1 rounded-full bg-[#121517]/5 text-[#121517]/80 font-semibold border border-current/10">
                 Idempotent Data Path
               </span>
             </div>
           </div>
 
-          <p className="font-inter text-sm sm:text-base text-[#042718]/80 leading-relaxed mb-8 max-w-3xl">
+          <p className="font-inter text-sm sm:text-base text-[#121517]/80 leading-relaxed mb-8 max-w-3xl">
             Thousands of live workouts could not tolerate dropped Bluetooth packets or database lockups. Instead of a single high-risk "big-bang" cutover, the architecture specified a phased dual-write bridge to deprecate legacy tables safely.
           </p>
 
@@ -876,36 +876,36 @@ function PerformanceScoreEditorialEcosystem({
             ].map((p, idx) => (
               <div
                 key={idx}
-                className="p-4 rounded-xl bg-[#FAFDFB] border border-[#042718]/8 flex flex-col justify-between shadow-2xs"
+                className="p-4 rounded-xl bg-[#FAF8F5] border border-[#121517]/8 flex flex-col justify-between shadow-2xs"
               >
                 <div>
                   <div className="flex items-center justify-between mb-1.5">
-                    <span className="font-mono text-[10px] text-[#188E39] font-bold">
+                    <span className="font-mono text-[10px] text-[#A8711A] font-bold">
                       {p.phase}
                     </span>
                     {idx < 2 && (
-                      <ArrowRight size={12} className="text-[#042718]/30 hidden md:block" />
+                      <ArrowRight size={12} className="text-[#121517]/30 hidden md:block" />
                     )}
                   </div>
-                  <h4 className="font-onest text-xs sm:text-sm font-bold text-[#042718] mb-1">
+                  <h4 className="font-onest text-xs sm:text-sm font-bold text-[#121517] mb-1">
                     {p.title}
                   </h4>
-                  <p className="font-inter text-[11px] text-[#042718]/70 leading-relaxed">
+                  <p className="font-inter text-[11px] text-[#121517]/70 leading-relaxed">
                     {p.desc}
                   </p>
                 </div>
-                <div className="mt-3 pt-2 border-t border-[#042718]/6 font-mono text-[10px] text-[#188E39] font-medium">
+                <div className="mt-3 pt-2 border-t border-[#121517]/6 font-mono text-[10px] text-[#A8711A] font-medium">
                   {p.status}
                 </div>
               </div>
             ))}
           </div>
 
-          <div className="mt-6 pt-4 border-t border-current/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs font-inter text-[#042718]/70">
+          <div className="mt-6 pt-4 border-t border-current/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs font-inter text-[#121517]/70">
             <p className="italic">
               "A user-facing metric is only as credible as the data pipeline underneath."
             </p>
-            <span className="font-mono text-[11px] font-semibold text-[#188E39] shrink-0">
+            <span className="font-mono text-[11px] font-semibold text-[#A8711A] shrink-0">
               DUAL-WRITE → UNIFIED READ → DECOMMISSION LEGACY (P0 · READY FOR DEV)
             </span>
           </div>
@@ -917,14 +917,14 @@ function PerformanceScoreEditorialEcosystem({
         <div
           className={`p-6 sm:p-8 md:p-10 rounded-[24px] border ${
             isDark
-              ? "bg-[#042718] text-white border-white/10"
-              : "bg-white text-[#042718] border-[#042718]/10 shadow-xs"
+              ? "bg-[#121517] text-white border-white/10"
+              : "bg-white text-[#121517] border-[#121517]/10 shadow-xs"
           }`}
           aria-label="Performance Score Hardware Tier Model"
         >
           <div className="flex flex-col md:flex-row md:items-baseline justify-between gap-4 mb-6 pb-5 border-b border-current/10">
             <div>
-              <span className="font-mono text-[11px] uppercase tracking-wider text-[#188E39] font-bold block mb-1">
+              <span className="font-mono text-[11px] uppercase tracking-wider text-[#A8711A] font-bold block mb-1">
                 Visual Moment 03 · Hardware & Tier Model
               </span>
               <h3 className="font-onest text-xl sm:text-2xl md:text-3xl font-bold tracking-tight">
@@ -932,76 +932,76 @@ function PerformanceScoreEditorialEcosystem({
               </h3>
             </div>
             <div className="flex items-center gap-2 text-xs font-mono shrink-0">
-              <span className="px-3 py-1 rounded-full bg-[#188E39]/12 text-[#188E39] font-semibold">
+              <span className="px-3 py-1 rounded-full bg-[#A8711A]/12 text-[#A8711A] font-semibold">
                 100% Mobile Access
               </span>
-              <span className="px-3 py-1 rounded-full bg-[#042718]/5 text-[#042718]/80 font-semibold border border-current/10">
+              <span className="px-3 py-1 rounded-full bg-[#121517]/5 text-[#121517]/80 font-semibold border border-current/10">
                 3 Telemetry Tiers
               </span>
             </div>
           </div>
 
-          <p className="font-inter text-sm sm:text-base text-[#042718]/80 leading-relaxed mb-8 max-w-3xl">
+          <p className="font-inter text-sm sm:text-base text-[#121517]/80 leading-relaxed mb-8 max-w-3xl">
             "Hardware should be an aspiration, not an exclusionary gate." Over 80% of mobile users did not own connected equipment; locking the progress score behind a €500+ machine would alienate the community. The system engineered three progressive calculation tiers:
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {/* Tier 1 */}
-            <div className="p-5 rounded-2xl bg-[#FAFDFB] border border-[#042718]/8 flex flex-col justify-between shadow-2xs">
+            <div className="p-5 rounded-2xl bg-[#FAF8F5] border border-[#121517]/8 flex flex-col justify-between shadow-2xs">
               <div>
-                <span className="font-mono text-[10px] text-[#188E39] font-bold uppercase block mb-1">
+                <span className="font-mono text-[10px] text-[#A8711A] font-bold uppercase block mb-1">
                   Tier 01 · Software Baseline
                 </span>
-                <h4 className="font-onest text-base font-bold text-[#042718] mb-1">
+                <h4 className="font-onest text-base font-bold text-[#121517] mb-1">
                   NO HARDWARE
                 </h4>
-                <p className="font-inter text-xs text-[#042718]/70 leading-relaxed">
+                <p className="font-inter text-xs text-[#121517]/70 leading-relaxed">
                   Calculates score using session duration, self-reported RPE (Rate of Perceived Exertion 1–10), and weekly workout consistency. Zero sensor required.
                 </p>
               </div>
-              <div className="mt-4 pt-3 border-t border-[#042718]/6 font-mono text-[11px] text-[#042718]/60">
+              <div className="mt-4 pt-3 border-t border-[#121517]/6 font-mono text-[11px] text-[#121517]/60">
                 100% of mobile users included
               </div>
             </div>
 
             {/* Tier 2 */}
-            <div className="p-5 rounded-2xl bg-white border border-[#188E39]/30 flex flex-col justify-between shadow-2xs">
+            <div className="p-5 rounded-2xl bg-white border border-[#A8711A]/30 flex flex-col justify-between shadow-2xs">
               <div>
-                <span className="font-mono text-[10px] text-[#188E39] font-bold uppercase block mb-1">
+                <span className="font-mono text-[10px] text-[#A8711A] font-bold uppercase block mb-1">
                   Tier 02 · Sensor-Enhanced
                 </span>
-                <h4 className="font-onest text-base font-bold text-[#042718] mb-1">
+                <h4 className="font-onest text-base font-bold text-[#121517] mb-1">
                   sPulse HR-ENHANCED
                 </h4>
-                <p className="font-inter text-xs text-[#042718]/70 leading-relaxed">
+                <p className="font-inter text-xs text-[#121517]/70 leading-relaxed">
                   Pairs with BLE heart-rate armbands and chest straps. Calculates live cardio zone distribution, peak effort spikes, and physiological strain.
                 </p>
               </div>
-              <div className="mt-4 pt-3 border-t border-[#042718]/6 font-mono text-[11px] text-[#188E39] font-medium">
+              <div className="mt-4 pt-3 border-t border-[#121517]/6 font-mono text-[11px] text-[#A8711A] font-medium">
                 Live cardiovascular telemetry
               </div>
             </div>
 
             {/* Tier 3 */}
-            <div className="p-5 rounded-2xl bg-[#FAFDFB] border border-[#042718]/8 flex flex-col justify-between shadow-2xs">
+            <div className="p-5 rounded-2xl bg-[#FAF8F5] border border-[#121517]/8 flex flex-col justify-between shadow-2xs">
               <div>
-                <span className="font-mono text-[10px] text-[#188E39] font-bold uppercase block mb-1">
+                <span className="font-mono text-[10px] text-[#A8711A] font-bold uppercase block mb-1">
                   Tier 03 · Bio-Centric Recovery
                 </span>
-                <h4 className="font-onest text-base font-bold text-[#042718] mb-1">
+                <h4 className="font-onest text-base font-bold text-[#121517] mb-1">
                   TRACKER / RING BIO-CENTRIC
                 </h4>
-                <p className="font-inter text-xs text-[#042718]/70 leading-relaxed">
+                <p className="font-inter text-xs text-[#121517]/70 leading-relaxed">
                   Integrates continuous biometric recovery metrics: resting heart rate trends, sleep stage duration, and overnight HRV recovery capacity.
                 </p>
               </div>
-              <div className="mt-4 pt-3 border-t border-[#042718]/6 font-mono text-[11px] text-[#042718]/60">
+              <div className="mt-4 pt-3 border-t border-[#121517]/6 font-mono text-[11px] text-[#121517]/60">
                 Full 24/7 recovery synthesis
               </div>
             </div>
           </div>
 
-          <div className="mt-6 pt-4 border-t border-current/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs font-inter text-[#042718]/70">
+          <div className="mt-6 pt-4 border-t border-current/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs font-inter text-[#121517]/70">
             <p className="italic">
               "Hardware enhances the experience. Hardware does not gate the core score."
             </p>
@@ -1048,15 +1048,15 @@ function AiLocalizationEditorialOperatingModel({
     <div
       className={`my-10 p-6 sm:p-8 md:p-10 rounded-[24px] border ${
         isDark
-          ? "bg-[#042718] text-white border-white/10"
-          : "bg-white text-[#042718] border-[#042718]/10 shadow-xs"
+          ? "bg-[#121517] text-white border-white/10"
+          : "bg-white text-[#121517] border-[#121517]/10 shadow-xs"
       } ${className}`}
       aria-label="AI Localization Operating Model"
     >
       {/* Header Section */}
       <div className="flex flex-col md:flex-row md:items-baseline justify-between gap-4 mb-6 pb-5 border-b border-current/10">
         <div>
-          <span className="font-mono text-[11px] uppercase tracking-wider text-[#188E39] font-bold block mb-1">
+          <span className="font-mono text-[11px] uppercase tracking-wider text-[#A8711A] font-bold block mb-1">
             Operational AI Engineering · European Expansion
           </span>
           <h3 className="font-onest text-xl sm:text-2xl md:text-3xl font-bold tracking-tight">
@@ -1064,16 +1064,16 @@ function AiLocalizationEditorialOperatingModel({
           </h3>
         </div>
         <div className="flex flex-wrap items-center gap-2 text-xs font-mono shrink-0">
-          <span className="px-3 py-1 rounded-full bg-[#188E39]/12 text-[#188E39] font-semibold">
+          <span className="px-3 py-1 rounded-full bg-[#A8711A]/12 text-[#A8711A] font-semibold">
             200+ videos in ~3 weeks
           </span>
-          <span className="px-3 py-1 rounded-full bg-[#042718]/5 text-[#042718]/80 font-semibold border border-current/10">
+          <span className="px-3 py-1 rounded-full bg-[#121517]/5 text-[#121517]/80 font-semibold border border-current/10">
             High brand integrity
           </span>
         </div>
       </div>
 
-      <p className="font-inter text-sm sm:text-base text-[#042718]/80 leading-relaxed mb-8 max-w-3xl">
+      <p className="font-inter text-sm sm:text-base text-[#121517]/80 leading-relaxed mb-8 max-w-3xl">
         "Technology creates leverage when it reorganizes the operating model. AI shortened the production cycle, while human review remained the quality gate." Rather than unconstrained machine translations that butchered gym terminology, the pipeline orchestrated commercial tools with mandatory human governance.
       </p>
 
@@ -1117,11 +1117,11 @@ function AiLocalizationEditorialOperatingModel({
 
         {/* Transition Indicator */}
         <div className="flex items-center justify-center gap-3 py-1">
-          <div className="h-px bg-[#042718]/15 flex-1" />
-          <span className="font-mono text-[11px] uppercase tracking-wider font-semibold text-[#188E39] px-3 py-1 rounded-full bg-[#188E39]/10">
+          <div className="h-px bg-[#121517]/15 flex-1" />
+          <span className="font-mono text-[11px] uppercase tracking-wider font-semibold text-[#A8711A] px-3 py-1 rounded-full bg-[#A8711A]/10">
             Operational Model Transformation ↓
           </span>
-          <div className="h-px bg-[#042718]/15 flex-1" />
+          <div className="h-px bg-[#121517]/15 flex-1" />
         </div>
 
         {/* NEW AI-ASSISTED + HUMAN-GOVERNED PIPELINE */}
@@ -1145,12 +1145,12 @@ function AiLocalizationEditorialOperatingModel({
                 className={`p-3.5 rounded-xl flex flex-col justify-between shadow-2xs ${
                   step.isHuman
                     ? "bg-[#ECFDF5] border-2 border-[#059669] ring-2 ring-[#059669]/20"
-                    : "bg-white border border-[#188E39]/30"
+                    : "bg-white border border-[#A8711A]/30"
                 }`}
               >
                 <div>
                   <div className="flex items-center justify-between mb-1">
-                    <span className="font-mono text-[10px] text-[#188E39] font-bold">
+                    <span className="font-mono text-[10px] text-[#A8711A] font-bold">
                       0{idx + 1}
                     </span>
                     {step.isHuman && (
@@ -1159,16 +1159,16 @@ function AiLocalizationEditorialOperatingModel({
                       </span>
                     )}
                     {idx < newOperatingSteps.length - 1 && !step.isHuman && (
-                      <ArrowRight size={12} className="text-[#188E39]/50 hidden lg:block" />
+                      <ArrowRight size={12} className="text-[#A8711A]/50 hidden lg:block" />
                     )}
                   </div>
                   <h4 className={`font-onest text-xs sm:text-sm font-bold leading-tight ${
-                    step.isHuman ? "text-[#065F46]" : "text-[#042718]"
+                    step.isHuman ? "text-[#065F46]" : "text-[#121517]"
                   }`}>
                     {step.name}
                   </h4>
                 </div>
-                <p className="font-inter text-[11px] text-[#042718]/70 mt-2 leading-snug">
+                <p className="font-inter text-[11px] text-[#121517]/70 mt-2 leading-snug">
                   {step.detail}
                 </p>
               </div>
@@ -1178,26 +1178,26 @@ function AiLocalizationEditorialOperatingModel({
       </div>
 
       {/* Human Review Gate Callout (Non-Negotiable Quality Constraint) */}
-      <div className="mt-6 p-4 rounded-xl bg-[#FAFDFB] border border-[#042718]/8 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs font-inter">
+      <div className="mt-6 p-4 rounded-xl bg-[#FAF8F5] border border-[#121517]/8 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs font-inter">
         <div>
-          <span className="font-mono font-bold uppercase tracking-wider text-[#188E39] block mb-0.5">
+          <span className="font-mono font-bold uppercase tracking-wider text-[#A8711A] block mb-0.5">
             Non-Negotiable Governance Gate
           </span>
-          <p className="text-[#042718]/80 leading-relaxed">
+          <p className="text-[#121517]/80 leading-relaxed">
             Every translated video underwent a dedicated native-speaker review gate to eliminate physiological coaching errors (e.g. preventing "break your knees" instead of "soft bend in the knees").
           </p>
         </div>
-        <span className="font-mono text-[11px] font-semibold text-[#042718]/60 shrink-0">
+        <span className="font-mono text-[11px] font-semibold text-[#121517]/60 shrink-0">
           Not Zero-Touch · Human-in-the-Loop
         </span>
       </div>
 
       {/* Editorial Caption / Evidence Footer */}
-      <div className="mt-6 pt-4 border-t border-current/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs font-inter text-[#042718]/70">
+      <div className="mt-6 pt-4 border-t border-current/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs font-inter text-[#121517]/70">
         <p className="italic">
           "AI shortened the production cycle, while human review remained the quality gate."
         </p>
-        <span className="font-mono text-[11px] font-semibold text-[#188E39] shrink-0">
+        <span className="font-mono text-[11px] font-semibold text-[#A8711A] shrink-0">
           Italian, French, and Spanish Catalogs Live
         </span>
       </div>

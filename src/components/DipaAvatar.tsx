@@ -13,7 +13,7 @@ export interface DipaAvatarProps {
 export function DipaAvatar({ className = "" }: DipaAvatarProps) {
   return (
     <div
-      className={`w-[32px] h-[32px] rounded-full bg-[#042718] flex items-center justify-center shrink-0 overflow-hidden ${className}`}
+      className={`w-[32px] h-[32px] rounded-full bg-[#121517] flex items-center justify-center shrink-0 overflow-hidden ${className}`}
       aria-label="Dīpa"
       role="img"
     >

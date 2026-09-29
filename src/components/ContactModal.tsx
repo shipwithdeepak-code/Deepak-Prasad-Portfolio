@@ -77,19 +77,19 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.95, y: 20 }}
         transition={{ duration: 0.3 }}
-        className="w-full max-w-xl max-h-[90vh] overflow-y-auto bg-white rounded-[32px] p-6 sm:p-8 shadow-2xl border border-[#042718]/10 relative text-left cursor-default"
+        className="w-full max-w-xl max-h-[90vh] overflow-y-auto bg-white rounded-[32px] p-6 sm:p-8 shadow-2xl border border-[#121517]/10 relative text-left cursor-default"
       >
         {/* Top Header */}
-        <div className="flex items-center justify-between mb-6 pb-4 border-b border-[#042718]/10">
+        <div className="flex items-center justify-between mb-6 pb-4 border-b border-[#121517]/10">
           <div className="flex items-center gap-2.5">
-            <div className="w-10 h-10 rounded-2xl bg-[#E4F2EB] flex items-center justify-center text-[#188E39]">
+            <div className="w-10 h-10 rounded-2xl bg-[#E4F2EB] flex items-center justify-center text-[#A8711A]">
               <Calendar size={20} />
             </div>
             <div>
-              <h3 className="font-onest text-xl font-bold text-[#042718]">
+              <h3 className="font-onest text-xl font-bold text-[#121517]">
                 Get in Touch with Deepak
               </h3>
-              <p className="font-inter text-xs text-[#042718]/60">
+              <p className="font-inter text-xs text-[#121517]/60">
                 Usually responds within 24 hours
               </p>
             </div>
@@ -98,7 +98,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
           <button
             type="button"
             onClick={onClose}
-            className="p-2 rounded-full hover:bg-[#042718]/5 text-[#042718]/60 hover:text-[#042718] transition-colors cursor-pointer"
+            className="p-2 rounded-full hover:bg-[#121517]/5 text-[#121517]/60 hover:text-[#121517] transition-colors cursor-pointer"
           >
             <X size={20} />
           </button>
@@ -106,22 +106,22 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
 
         {sent ? (
           <div className="py-8 flex flex-col items-center text-center">
-            <div className="w-16 h-16 rounded-full bg-[#E4F2EB] flex items-center justify-center text-[#188E39] mb-4">
+            <div className="w-16 h-16 rounded-full bg-[#E4F2EB] flex items-center justify-center text-[#A8711A] mb-4">
               <CheckCircle2 size={32} />
             </div>
-            <h4 className="font-onest text-2xl font-bold text-[#042718] mb-2">
+            <h4 className="font-onest text-2xl font-bold text-[#121517] mb-2">
               Note Prepared for Deepak
             </h4>
-            <p className="font-inter text-sm text-[#042718]/80 max-w-md mb-6 leading-relaxed">
+            <p className="font-inter text-sm text-[#121517]/80 max-w-md mb-6 leading-relaxed">
               Your default email client was triggered with your note addressed to{" "}
-              <strong className="text-[#042718] font-semibold">shipwithdeepak@gmail.com</strong>.
+              <strong className="text-[#121517] font-semibold">shipwithdeepak@gmail.com</strong>.
               If your client didn&apos;t open automatically, use the buttons below:
             </p>
 
             <div className="flex flex-col sm:flex-row items-center gap-3 w-full max-w-sm mb-6">
               <a
                 href={mailtoUrl}
-                className="w-full sm:flex-1 py-2.5 px-4 rounded-xl bg-[#042718] text-white font-inter text-xs font-semibold hover:bg-[#188E39] transition-colors flex items-center justify-center gap-2"
+                className="w-full sm:flex-1 py-2.5 px-4 rounded-xl bg-[#121517] text-white font-inter text-xs font-semibold hover:bg-[#A8711A] transition-colors flex items-center justify-center gap-2"
               >
                 <Mail size={14} />
                 <span>Open in Email App</span>
@@ -130,26 +130,26 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
               <button
                 type="button"
                 onClick={handleCopyNote}
-                className="w-full sm:flex-1 py-2.5 px-4 rounded-xl border border-[#042718]/15 bg-[#FAFDFB] hover:bg-[#FAFDFB]/80 text-[#042718] font-inter text-xs font-semibold transition-colors flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full sm:flex-1 py-2.5 px-4 rounded-xl border border-[#121517]/15 bg-[#FAF8F5] hover:bg-[#FAF8F5]/80 text-[#121517] font-inter text-xs font-semibold transition-colors flex items-center justify-center gap-2 cursor-pointer"
               >
                 <span>{copied ? "Copied to Clipboard!" : "Copy Note"}</span>
               </button>
             </div>
 
-            <div className="pt-4 border-t border-[#042718]/10 w-full flex items-center justify-between text-xs font-inter text-[#042718]/60">
+            <div className="pt-4 border-t border-[#121517]/10 w-full flex items-center justify-between text-xs font-inter text-[#121517]/60">
               <button
                 type="button"
                 onClick={() => {
                   setSent(false);
                 }}
-                className="hover:text-[#042718] underline cursor-pointer"
+                className="hover:text-[#121517] underline cursor-pointer"
               >
                 Edit message
               </button>
               <button
                 type="button"
                 onClick={onClose}
-                className="hover:text-[#042718] font-semibold cursor-pointer"
+                className="hover:text-[#121517] font-semibold cursor-pointer"
               >
                 Done
               </button>
@@ -159,7 +159,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
             {/* Subject Selector */}
             <div>
-              <label className="block font-inter text-xs font-bold uppercase tracking-wider text-[#042718]/70 mb-2">
+              <label className="block font-inter text-xs font-bold uppercase tracking-wider text-[#121517]/70 mb-2">
                 Collaboration Type
               </label>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -171,8 +171,8 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                     className={
                       "p-2.5 rounded-xl font-inter text-xs text-left transition-[background-color,color,border-color,box-shadow] cursor-pointer border " +
                       (subject === opt
-                        ? "bg-[#042718] text-white border-[#042718] font-semibold shadow-xs"
-                        : "bg-[#FAFDFB] text-[#042718]/80 border-[#042718]/10 hover:border-[#188E39]/40")
+                        ? "bg-[#121517] text-white border-[#121517] font-semibold shadow-xs"
+                        : "bg-[#FAF8F5] text-[#121517]/80 border-[#121517]/10 hover:border-[#A8711A]/40")
                     }
                   >
                     {opt}
@@ -184,7 +184,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
             {/* Name & Email Fields */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-1">
               <div>
-                <label className="block font-inter text-xs font-semibold text-[#042718]/70 mb-1">
+                <label className="block font-inter text-xs font-semibold text-[#121517]/70 mb-1">
                   Your Name
                 </label>
                 <input
@@ -193,12 +193,12 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Jane Doe"
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-[#FAFDFB] border border-[#042718]/15 font-inter text-sm text-[#042718] outline-none focus:border-[#188E39]"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-[#FAF8F5] border border-[#121517]/15 font-inter text-sm text-[#121517] outline-none focus:border-[#A8711A]"
                 />
               </div>
 
               <div>
-                <label className="block font-inter text-xs font-semibold text-[#042718]/70 mb-1">
+                <label className="block font-inter text-xs font-semibold text-[#121517]/70 mb-1">
                   Your Email
                 </label>
                 <input
@@ -207,14 +207,14 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="jane@company.com"
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-[#FAFDFB] border border-[#042718]/15 font-inter text-sm text-[#042718] outline-none focus:border-[#188E39]"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-[#FAF8F5] border border-[#121517]/15 font-inter text-sm text-[#121517] outline-none focus:border-[#A8711A]"
                 />
               </div>
             </div>
 
             {/* Message Area */}
             <div>
-              <label className="block font-inter text-xs font-semibold text-[#042718]/70 mb-1">
+              <label className="block font-inter text-xs font-semibold text-[#121517]/70 mb-1">
                 Project Context / Message
               </label>
               <textarea
@@ -223,18 +223,18 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 placeholder="Tell Deepak about your product vision, challenges, or timeline..."
-                className="w-full px-3.5 py-2.5 rounded-xl bg-[#FAFDFB] border border-[#042718]/15 font-inter text-sm text-[#042718] outline-none focus:border-[#188E39] resize-none"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-[#FAF8F5] border border-[#121517]/15 font-inter text-sm text-[#121517] outline-none focus:border-[#A8711A] resize-none"
               />
             </div>
 
             {/* Action Buttons */}
-            <div className="pt-3 border-t border-[#042718]/10 flex flex-col sm:flex-row items-center justify-between gap-3">
-              <div className="flex flex-wrap items-center gap-3 text-xs text-[#042718]/70 font-inter">
+            <div className="pt-3 border-t border-[#121517]/10 flex flex-col sm:flex-row items-center justify-between gap-3">
+              <div className="flex flex-wrap items-center gap-3 text-xs text-[#121517]/70 font-inter">
                 <a
                   href="https://www.linkedin.com/in/prasad-deepak/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-[#188E39] flex items-center gap-1 font-medium"
+                  className="hover:text-[#A8711A] flex items-center gap-1 font-medium"
                 >
                   <Linkedin size={14} />
                   <span>LinkedIn</span>
@@ -244,7 +244,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                   href="https://github.com/shipwithdeepak-code"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-[#188E39] flex items-center gap-1 font-medium"
+                  className="hover:text-[#A8711A] flex items-center gap-1 font-medium"
                 >
                   <Github size={14} />
                   <span>GitHub</span>
@@ -252,7 +252,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                 <span>•</span>
                 <a
                   href="mailto:shipwithdeepak@gmail.com"
-                  className="hover:text-[#188E39] flex items-center gap-1 font-medium text-[#188E39]"
+                  className="hover:text-[#A8711A] flex items-center gap-1 font-medium text-[#A8711A]"
                 >
                   <Mail size={14} />
                   <span>shipwithdeepak@gmail.com</span>

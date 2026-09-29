@@ -3,16 +3,16 @@ import { ArrowDown, XCircle, CheckCircle2, ShieldX, HelpCircle, Layers } from "l
 
 export function ComparisonVisual() {
   return (
-    <section id="comparison" className="scroll-mt-24 pt-10 pb-14 border-b border-[#042718]/10">
+    <section id="comparison" className="scroll-mt-24 pt-10 pb-14 border-b border-[#121517]/10">
       {/* Header */}
       <div className="mb-8">
         <span className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#A8711A] block mb-2">
           Product Positioning
         </span>
-        <h2 className="font-onest text-2xl sm:text-3xl lg:text-4xl font-bold text-[#042718] tracking-tight">
+        <h2 className="font-onest text-2xl sm:text-3xl lg:text-4xl font-bold text-[#121517] tracking-tight">
           It looks like an AI critique tool. It isn&apos;t.
         </h2>
-        <p className="font-inter text-sm sm:text-base text-[#042718]/75 mt-2 max-w-3xl leading-relaxed">
+        <p className="font-inter text-sm sm:text-base text-[#121517]/75 mt-2 max-w-3xl leading-relaxed">
           General AI assistants already critique a screenshot instantly, fluently, and for free. Competing on that ground is building a worse version of something a PM already has open in another tab.
         </p>
       </div>
@@ -20,65 +20,65 @@ export function ComparisonVisual() {
       {/* Side-by-Side Comparison Container */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-8">
         {/* Left Column: General AI Assistant */}
-        <div className="p-6 sm:p-7 rounded-[22px] bg-white border border-[#042718]/10 shadow-xs flex flex-col justify-between">
+        <div className="p-6 sm:p-7 rounded-[22px] bg-white border border-[#121517]/10 shadow-xs flex flex-col justify-between">
           <div>
-            <div className="flex items-center justify-between gap-2 pb-3 mb-4 border-b border-[#042718]/8">
+            <div className="flex items-center justify-between gap-2 pb-3 mb-4 border-b border-[#121517]/8">
               <div>
                 <span className="font-mono text-[10px] uppercase tracking-wider text-[#A8711A] font-semibold block">
                   Commodity Model
                 </span>
-                <h3 className="font-onest text-lg sm:text-xl font-bold text-[#042718]">
+                <h3 className="font-onest text-lg sm:text-xl font-bold text-[#121517]">
                   General AI Assistant
                 </h3>
               </div>
-              <span className="px-2.5 py-0.5 rounded-full bg-[#FAF8F5] border border-[#042718]/10 font-mono text-[10px] text-[#042718]/70">
+              <span className="px-2.5 py-0.5 rounded-full bg-[#FAF8F5] border border-[#121517]/10 font-mono text-[10px] text-[#121517]/70">
                 Stateless Chat
               </span>
             </div>
 
             {/* Simple Linear Flow */}
             <div className="space-y-2.5 my-5">
-              <div className="p-3 rounded-xl bg-[#FAF8F5] border border-[#042718]/6 text-center font-onest text-xs sm:text-sm font-semibold text-[#042718]">
+              <div className="p-3 rounded-xl bg-[#FAF8F5] border border-[#121517]/6 text-center font-onest text-xs sm:text-sm font-semibold text-[#121517]">
                 Screenshot
               </div>
-              <div className="flex justify-center text-[#042718]/30">
+              <div className="flex justify-center text-[#121517]/30">
                 <ArrowDown size={14} />
               </div>
-              <div className="p-3 rounded-xl bg-[#FAF8F5] border border-[#042718]/6 text-center font-onest text-xs sm:text-sm font-semibold text-[#042718]">
+              <div className="p-3 rounded-xl bg-[#FAF8F5] border border-[#121517]/6 text-center font-onest text-xs sm:text-sm font-semibold text-[#121517]">
                 Critique
               </div>
-              <div className="flex justify-center text-[#042718]/30">
+              <div className="flex justify-center text-[#121517]/30">
                 <ArrowDown size={14} />
               </div>
-              <div className="p-3 rounded-xl bg-[#FAF8F5] border border-[#042718]/6 text-center font-onest text-xs sm:text-sm font-semibold text-[#042718]">
+              <div className="p-3 rounded-xl bg-[#FAF8F5] border border-[#121517]/6 text-center font-onest text-xs sm:text-sm font-semibold text-[#121517]">
                 Answer
               </div>
             </div>
 
             {/* Inherent Failure Modes */}
-            <div className="space-y-2.5 pt-4 border-t border-[#042718]/8">
-              <div className="flex items-start gap-2 text-xs font-inter text-[#042718]/70">
+            <div className="space-y-2.5 pt-4 border-t border-[#121517]/8">
+              <div className="flex items-start gap-2 text-xs font-inter text-[#121517]/70">
                 <XCircle size={14} className="text-[#A8711A] shrink-0 mt-0.5" />
                 <span><strong>No commitment:</strong> Agrees too readily; never states in advance what would prove its opinion wrong.</span>
               </div>
-              <div className="flex items-start gap-2 text-xs font-inter text-[#042718]/70">
+              <div className="flex items-start gap-2 text-xs font-inter text-[#121517]/70">
                 <XCircle size={14} className="text-[#A8711A] shrink-0 mt-0.5" />
                 <span><strong>No object:</strong> A conversation thread is not a decision. It has no lineage, no versions, and no diff.</span>
               </div>
-              <div className="flex items-start gap-2 text-xs font-inter text-[#042718]/70">
+              <div className="flex items-start gap-2 text-xs font-inter text-[#121517]/70">
                 <XCircle size={14} className="text-[#A8711A] shrink-0 mt-0.5" />
                 <span><strong>No refusal:</strong> Built to be helpful, so it will always fabricate a plausible recommendation even with zero evidence.</span>
               </div>
             </div>
           </div>
 
-          <div className="mt-6 pt-3 border-t border-[#042718]/8 font-mono text-[11px] text-[#042718]/50 text-center">
+          <div className="mt-6 pt-3 border-t border-[#121517]/8 font-mono text-[11px] text-[#121517]/50 text-center">
             Outcome: Ephemeral opinion forgotten by next week
           </div>
         </div>
 
         {/* Right Column: Product Jury */}
-        <div className="p-6 sm:p-7 rounded-[22px] bg-[#042718] text-white shadow-md flex flex-col justify-between border border-[#042718]">
+        <div className="p-6 sm:p-7 rounded-[22px] bg-[#121517] text-white shadow-md flex flex-col justify-between border border-[#121517]">
           <div>
             <div className="flex items-center justify-between gap-2 pb-3 mb-4 border-b border-white/10">
               <div>
@@ -116,7 +116,7 @@ export function ComparisonVisual() {
                 Red Team Challenge &amp; PM Response Gate
               </div>
               <div className="text-center text-[#D9A94C] text-[10px]">↓</div>
-              <div className="p-2 rounded-lg bg-[#2F7A4F]/60 border border-[#2F7A4F] text-center text-white">
+              <div className="p-2 rounded-lg bg-[#C89B3C]/60 border border-[#C89B3C] text-center text-white">
                 Durable Decision Record &amp; 30-Day Revisit
               </div>
             </div>
@@ -145,8 +145,8 @@ export function ComparisonVisual() {
       </div>
 
       {/* Synthesis Quote */}
-      <div className="p-5 sm:p-6 rounded-[20px] bg-[#FAF8F5] border border-[#042718]/8 text-center max-w-2xl mx-auto">
-        <blockquote className="font-playfair italic text-base sm:text-lg text-[#042718] leading-snug">
+      <div className="p-5 sm:p-6 rounded-[20px] bg-[#FAF8F5] border border-[#121517]/8 text-center max-w-2xl mx-auto">
+        <blockquote className="font-playfair italic text-base sm:text-lg text-[#121517] leading-snug">
           &ldquo;General AI is already very good at critique. Product Jury does not need to win that battle. The product is the structure around the judgement.&rdquo;
         </blockquote>
       </div>

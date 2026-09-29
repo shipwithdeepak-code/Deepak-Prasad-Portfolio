@@ -48,7 +48,7 @@ function DipaCharacter() {
         <linearGradient id="dipaShell" x1=".3" y1="0" x2=".7" y2="1">
           <stop offset="0" stopColor="#11482C" />
           <stop offset="55%" stopColor="#08301E" />
-          <stop offset="100%" stopColor="#042718" />
+          <stop offset="100%" stopColor="#121517" />
         </linearGradient>
       </defs>
 
@@ -198,7 +198,7 @@ export default function DipaLauncher({ onClick, isOpen, className = "" }: DipaLa
         .dipa-l[data-paused="1"] .dipa-c__glance { animation-play-state: paused; }
 
         .dipa-l__label {
-          font-size: 13.5px; font-weight: 600; color: #042718;
+          font-size: 13.5px; font-weight: 600; color: #121517;
           white-space: nowrap; line-height: 1;
         }
 

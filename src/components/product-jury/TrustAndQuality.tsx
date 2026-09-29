@@ -50,16 +50,16 @@ export function TrustAndQuality() {
   ];
 
   return (
-    <section id="trust" className="scroll-mt-24 pt-10 pb-14 border-b border-[#042718]/10">
+    <section id="trust" className="scroll-mt-24 pt-10 pb-14 border-b border-[#121517]/10">
       {/* Header */}
       <div className="mb-8">
         <span className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#A8711A] block mb-2">
           Quality &amp; Epistemic Boundaries
         </span>
-        <h2 className="font-onest text-2xl sm:text-3xl lg:text-4xl font-bold text-[#042718] tracking-tight">
+        <h2 className="font-onest text-2xl sm:text-3xl lg:text-4xl font-bold text-[#121517] tracking-tight">
           Designed to know when it doesn&apos;t know
         </h2>
-        <p className="font-inter text-sm sm:text-base text-[#042718]/75 mt-2 max-w-3xl leading-relaxed">
+        <p className="font-inter text-sm sm:text-base text-[#121517]/75 mt-2 max-w-3xl leading-relaxed">
           Product decisions fail when tools exhibit false confidence. These five epistemic rules are binding product requirements, not disclaimers.
         </p>
       </div>
@@ -69,7 +69,7 @@ export function TrustAndQuality() {
         {principles.map((p, i) => (
           <div
             key={i}
-            className={`p-6 rounded-[22px] bg-white border border-[#042718]/10 shadow-xs flex flex-col justify-between ${
+            className={`p-6 rounded-[22px] bg-white border border-[#121517]/10 shadow-xs flex flex-col justify-between ${
               i === 4 ? "md:col-span-2 lg:col-span-1" : ""
             }`}
           >
@@ -78,15 +78,15 @@ export function TrustAndQuality() {
                 <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[#A8711A]">
                   Principle 0{i + 1}
                 </span>
-                <ShieldCheck size={16} className="text-[#2F7A4F]" />
+                <ShieldCheck size={16} className="text-[#C89B3C]" />
               </div>
-              <h3 className="font-onest text-base sm:text-lg font-bold text-[#042718] mb-1">
+              <h3 className="font-onest text-base sm:text-lg font-bold text-[#121517] mb-1">
                 {p.title}
               </h3>
-              <div className="font-mono text-xs font-semibold text-[#2F7A4F] mb-2">
+              <div className="font-mono text-xs font-semibold text-[#C89B3C] mb-2">
                 &rarr; {p.rule}
               </div>
-              <p className="font-inter text-xs sm:text-[13px] text-[#042718]/70 leading-relaxed">
+              <p className="font-inter text-xs sm:text-[13px] text-[#121517]/70 leading-relaxed">
                 {p.desc}
               </p>
             </div>
@@ -95,14 +95,14 @@ export function TrustAndQuality() {
       </div>
 
       {/* Trust by Design: Privacy & Security Box */}
-      <div className="p-6 sm:p-8 rounded-[24px] bg-[#FAF8F5] border border-[#042718]/10">
+      <div className="p-6 sm:p-8 rounded-[24px] bg-[#FAF8F5] border border-[#121517]/10">
         <div className="flex items-center gap-2.5 mb-2">
-          <Lock size={18} className="text-[#042718]" />
-          <h3 className="font-onest text-lg sm:text-xl font-bold text-[#042718]">
+          <Lock size={18} className="text-[#121517]" />
+          <h3 className="font-onest text-lg sm:text-xl font-bold text-[#121517]">
             Trust by design: Privacy &amp; Security
           </h3>
         </div>
-        <p className="font-inter text-xs sm:text-sm text-[#042718]/70 mb-6 max-w-2xl">
+        <p className="font-inter text-xs sm:text-sm text-[#121517]/70 mb-6 max-w-2xl">
           Product managers frequently work with confidential screens and pre-launch features covered by non-disclosure agreements. Privacy cannot be an afterthought.
         </p>
 
@@ -110,13 +110,13 @@ export function TrustAndQuality() {
           {privacyItems.map((item, idx) => (
             <div
               key={idx}
-              className="p-4 rounded-xl bg-white border border-[#042718]/8 shadow-xs"
+              className="p-4 rounded-xl bg-white border border-[#121517]/8 shadow-xs"
             >
-              <div className="font-onest text-xs sm:text-sm font-bold text-[#042718] mb-1.5 flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#042718]" />
+              <div className="font-onest text-xs sm:text-sm font-bold text-[#121517] mb-1.5 flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#121517]" />
                 {item.title}
               </div>
-              <p className="font-inter text-xs text-[#042718]/75 leading-relaxed">
+              <p className="font-inter text-xs text-[#121517]/75 leading-relaxed">
                 {item.desc}
               </p>
             </div>

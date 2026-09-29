@@ -19,9 +19,9 @@ export const SectionLabel: React.FC<SectionLabelProps> = ({
   className = "",
 }) => {
   const colorStyles = {
-    green: "text-[#188E39]",
-    amber: "text-[#A8711A]",
-    default: "text-[#042718]/60",
+    green: "text-[#C89B3C]",
+    amber: "text-[#C89B3C]",
+    default: "text-[#121517]/60",
   };
 
   return (

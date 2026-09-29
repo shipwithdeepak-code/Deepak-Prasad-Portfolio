@@ -40,16 +40,16 @@ export default function Navigation({
       {/* Floating Corner Navigation: Zero shared container, zero pill. Two independent floating corner elements */}
       <header className="fixed top-0 left-0 right-0 z-50 w-full pointer-events-none">
         <div className="w-full flex items-center justify-between px-4 sm:px-5 md:px-6 pt-1 sm:pt-1.5 md:pt-2">
-          {/* TOP LEFT: Deliberate Editorial Identity Lockup [avatar] Deepak Prasad */}
+          {/* TOP LEFT: Deliberate Editorial Identity Lockup [avatar] Deepak Prasad -> /about */}
           <a
-            href="/"
+            href="/about"
             onClick={(e) => {
               e.preventDefault();
-              onNavigate("/");
+              onNavigate("/about");
             }}
             className="pointer-events-auto inline-flex items-center gap-2.5 sm:gap-3 group rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C89B3C] focus-visible:ring-offset-2 shrink-0 select-none transition-transform duration-200 hover:scale-[1.01]"
             id="nav-logo"
-            aria-label="Deepak Prasad - Home"
+            aria-label="Deepak Prasad - About Me"
           >
             {/* Sharp circular photo avatar (40–44px desktop, personal signature caliber) */}
             <div className="relative shrink-0">
@@ -80,7 +80,7 @@ export default function Navigation({
             </div>
 
             {/* Editorial Name: Semibold, crisp, 15–16px, near-white light signature with soft shadow, no pill, no border */}
-            <span className="font-onest text-[15px] sm:text-[16px] font-semibold text-[#FAFDFB] leading-none tracking-[-0.2px] whitespace-nowrap [text-shadow:0_1px_6px_rgba(0,0,0,0.9),0_0_16px_rgba(0,0,0,0.65)] group-hover:text-white/90 transition-colors">
+            <span className="font-onest text-[15px] sm:text-[16px] font-semibold text-[#FAF8F5] leading-none tracking-[-0.2px] whitespace-nowrap [text-shadow:0_1px_6px_rgba(0,0,0,0.9),0_0_16px_rgba(0,0,0,0.65)] group-hover:text-white/90 transition-colors">
               Deepak Prasad
             </span>
           </a>
@@ -104,7 +104,7 @@ export default function Navigation({
                 </span>
               </span>
             </span>
-            <div className="nav-arrow-chip w-[22px] h-[22px] sm:w-[25px] sm:h-[25px] rounded-full bg-[#121517] text-[#FAFDFB] flex items-center justify-center shrink-0">
+            <div className="nav-arrow-chip w-[22px] h-[22px] sm:w-[25px] sm:h-[25px] rounded-full bg-[#121517] text-[#FAF8F5] flex items-center justify-center shrink-0">
               <ArrowUpRight className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-white" />
             </div>
           </a>

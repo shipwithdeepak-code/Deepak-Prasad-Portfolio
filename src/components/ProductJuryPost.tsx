@@ -59,17 +59,17 @@ export default function ProductJuryPost({ onNavigate }: ProductJuryPostProps) {
   };
 
   return (
-    <div className="w-full bg-[#FAFDFB] text-[#042718]">
+    <div className="w-full bg-[#FAF8F5] text-[#121517]">
       {/* =========================================================================
           HERO SECTION
           ========================================================================= */}
-      <header className="border-b border-[#042718]/8 bg-[#FAF8F5]">
+      <header className="border-b border-[#121517]/8 bg-[#FAF8F5]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-14 sm:pt-14 sm:pb-18">
           {/* Back to all work button */}
           <button
             type="button"
             onClick={() => onNavigate("/work")}
-            className="inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-[#042718]/60 hover:text-[#042718] transition-colors mb-8 cursor-pointer"
+            className="inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-[#121517]/60 hover:text-[#121517] transition-colors mb-8 cursor-pointer"
           >
             <ArrowLeft size={14} />
             <span>Back to all work</span>
@@ -80,27 +80,27 @@ export default function ProductJuryPost({ onNavigate }: ProductJuryPostProps) {
             <Tag variant="amber" icon={<span className="w-1.5 h-1.5 rounded-full bg-[#A8711A] shrink-0" />}>
               PRODUCT IN BUILD
             </Tag>
-            <span className="text-[#042718]/30">·</span>
-            <span className="font-mono text-[10px] font-medium text-[#042718]/65">
+            <span className="text-[#121517]/30">·</span>
+            <span className="font-mono text-[10px] font-medium text-[#121517]/65">
               An active product exploration
             </span>
           </div>
 
           {/* Main Title & Subheadline */}
-          <h1 className="font-onest text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#042718] leading-[1.08]">
+          <h1 className="font-onest text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#121517] leading-[1.08]">
             Product Jury
           </h1>
-          <p className="font-onest text-lg sm:text-2xl font-medium text-[#042718]/85 mt-2 leading-snug">
+          <p className="font-onest text-lg sm:text-2xl font-medium text-[#121517]/85 mt-2 leading-snug">
             A decision system for product managers.
           </p>
 
           {/* Prominent Thesis Quote */}
-          <blockquote className="my-6 pl-4 sm:pl-5 border-l-2 border-[#D9A94C] font-playfair italic text-lg sm:text-2xl text-[#042718] leading-[1.35]">
+          <blockquote className="my-6 pl-4 sm:pl-5 border-l-2 border-[#D9A94C] font-playfair italic text-lg sm:text-2xl text-[#121517] leading-[1.35]">
             &ldquo;Make a product call you can defend — and keep the defence.&rdquo;
           </blockquote>
 
           {/* Short Explanation */}
-          <div className="space-y-3 font-inter text-sm sm:text-base text-[#042718]/75 max-w-2xl leading-relaxed">
+          <div className="space-y-3 font-inter text-sm sm:text-base text-[#121517]/75 max-w-2xl leading-relaxed">
             <p>
               Why I&apos;m building this: AI can generate 50 product ideas in 10 seconds. But who evaluates whether those ideas are any good?
             </p>
@@ -110,7 +110,7 @@ export default function ProductJuryPost({ onNavigate }: ProductJuryPostProps) {
           </div>
 
           {/* Action Row: CTA to loop + Status Indicator (Strictly NO GitHub) */}
-          <div className="mt-8 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 pt-6 border-t border-[#042718]/10">
+          <div className="mt-8 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 pt-6 border-t border-[#121517]/10">
             <GlassButton
               variant="primary"
               size="md"
@@ -121,8 +121,8 @@ export default function ProductJuryPost({ onNavigate }: ProductJuryPostProps) {
               See how the decision loop works
             </GlassButton>
 
-            <div className="inline-flex items-center gap-2 font-mono text-[11px] text-[#042718]/65">
-              <span className="w-2 h-2 rounded-full bg-[#2F7A4F] shrink-0" />
+            <div className="inline-flex items-center gap-2 font-mono text-[11px] text-[#121517]/65">
+              <span className="w-2 h-2 rounded-full bg-[#C89B3C] shrink-0" />
               <span>Researching · Designing · Prototyping</span>
             </div>
           </div>
@@ -132,7 +132,7 @@ export default function ProductJuryPost({ onNavigate }: ProductJuryPostProps) {
       {/* =========================================================================
           STICKY SECTION NAVIGATION
           ========================================================================= */}
-      <nav className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-[#042718]/10 shadow-[0_2px_8px_rgba(4,39,24,0.02)]">
+      <nav className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-[#121517]/10 shadow-[0_2px_8px_rgba(4,39,24,0.02)]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-1 sm:gap-2 overflow-x-auto py-2.5 scrollbar-none text-xs font-mono">
             {NAV_SECTIONS.map((sec) => (
@@ -142,8 +142,8 @@ export default function ProductJuryPost({ onNavigate }: ProductJuryPostProps) {
                 onClick={() => scrollToSection(sec.id)}
                 className={`px-3 py-1.5 rounded-lg whitespace-nowrap transition-colors cursor-pointer ${
                   activeNav === sec.id
-                    ? "bg-[#042718] text-white font-semibold"
-                    : "text-[#042718]/65 hover:text-[#042718] hover:bg-[#FAF8F5]"
+                    ? "bg-[#121517] text-white font-semibold"
+                    : "text-[#121517]/65 hover:text-[#121517] hover:bg-[#FAF8F5]"
                 }`}
               >
                 {sec.label}
@@ -194,7 +194,7 @@ export default function ProductJuryPost({ onNavigate }: ProductJuryPostProps) {
             FINAL SECTION: THE THESIS
             ========================================================================= */}
         <section className="pt-14 pb-16">
-          <div className="p-8 sm:p-12 rounded-[28px] bg-[#042718] text-white text-center border border-[#042718] shadow-md">
+          <div className="p-8 sm:p-12 rounded-[28px] bg-[#121517] text-white text-center border border-[#121517] shadow-md">
             <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-[#D9A94C] font-bold block mb-3">
               The Thesis
             </span>
@@ -212,7 +212,7 @@ export default function ProductJuryPost({ onNavigate }: ProductJuryPostProps) {
                 icon={<ArrowLeft size={15} />}
                 iconPosition="left"
                 onClick={() => onNavigate("/work")}
-                className="!bg-white !text-[#042718] hover:!bg-white/90"
+                className="!bg-white !text-[#121517] hover:!bg-white/90"
               >
                 Back to all work
               </GlassButton>

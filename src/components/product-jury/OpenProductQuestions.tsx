@@ -54,16 +54,16 @@ export function OpenProductQuestions() {
   ];
 
   return (
-    <section id="open-questions" className="scroll-mt-24 pt-10 pb-14 border-b border-[#042718]/10">
+    <section id="open-questions" className="scroll-mt-24 pt-10 pb-14 border-b border-[#121517]/10">
       {/* Part 1: Open Questions */}
       <div className="mb-8">
         <span className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#A8711A] block mb-2">
           Product Discovery
         </span>
-        <h2 className="font-onest text-2xl sm:text-3xl lg:text-4xl font-bold text-[#042718] tracking-tight">
+        <h2 className="font-onest text-2xl sm:text-3xl lg:text-4xl font-bold text-[#121517] tracking-tight">
           What I&apos;m still deciding
         </h2>
-        <p className="font-inter text-sm sm:text-base text-[#042718]/75 mt-2 max-w-3xl leading-relaxed">
+        <p className="font-inter text-sm sm:text-base text-[#121517]/75 mt-2 max-w-3xl leading-relaxed">
           Real products in build have genuine trade-offs that haven&apos;t been settled. These three strategic decisions are actively being weighed.
         </p>
       </div>
@@ -72,20 +72,20 @@ export function OpenProductQuestions() {
         {openQuestions.map((q) => (
           <div
             key={q.num}
-            className="p-6 rounded-[22px] bg-white border border-[#042718]/10 shadow-xs"
+            className="p-6 rounded-[22px] bg-white border border-[#121517]/10 shadow-xs"
           >
             <div className="flex items-center gap-2 mb-2">
               <span className="font-mono text-xs font-bold text-[#A8711A]">
                 Question {q.num}
               </span>
-              <span className="font-mono text-[10px] uppercase tracking-wider px-2 py-0.5 rounded bg-[#FAF8F5] text-[#042718]/70 border border-[#042718]/8">
+              <span className="font-mono text-[10px] uppercase tracking-wider px-2 py-0.5 rounded bg-[#FAF8F5] text-[#121517]/70 border border-[#121517]/8">
                 {q.topic}
               </span>
             </div>
-            <h3 className="font-onest text-base sm:text-lg font-bold text-[#042718] mb-2">
+            <h3 className="font-onest text-base sm:text-lg font-bold text-[#121517] mb-2">
               {q.question}
             </h3>
-            <p className="font-inter text-xs sm:text-sm text-[#042718]/75 leading-relaxed">
+            <p className="font-inter text-xs sm:text-sm text-[#121517]/75 leading-relaxed">
               {q.implications}
             </p>
           </div>
@@ -94,13 +94,13 @@ export function OpenProductQuestions() {
 
       {/* Part 2: Non-Goals */}
       <div className="mb-6">
-        <span className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#042718]/60 block mb-2">
+        <span className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#121517]/60 block mb-2">
           Scope Boundaries
         </span>
-        <h3 className="font-onest text-xl sm:text-2xl font-bold text-[#042718] tracking-tight">
+        <h3 className="font-onest text-xl sm:text-2xl font-bold text-[#121517] tracking-tight">
           What I&apos;m deliberately not building
         </h3>
-        <p className="font-inter text-xs sm:text-sm text-[#042718]/70 mt-1 max-w-2xl">
+        <p className="font-inter text-xs sm:text-sm text-[#121517]/70 mt-1 max-w-2xl">
           A product is defined as much by what it rejects as what it builds. These are explicit, non-negotiable boundaries.
         </p>
       </div>
@@ -109,16 +109,16 @@ export function OpenProductQuestions() {
         {nonGoals.map((ng, idx) => (
           <div
             key={idx}
-            className="p-4 sm:p-5 rounded-xl bg-[#FAF8F5] border border-[#042718]/8 flex flex-col justify-between"
+            className="p-4 sm:p-5 rounded-xl bg-[#FAF8F5] border border-[#121517]/8 flex flex-col justify-between"
           >
             <div>
               <div className="flex items-center gap-2 mb-1.5">
                 <XCircle size={15} className="text-[#A8711A] shrink-0" />
-                <span className="font-onest text-xs sm:text-sm font-bold text-[#042718]">
+                <span className="font-onest text-xs sm:text-sm font-bold text-[#121517]">
                   {ng.title}
                 </span>
               </div>
-              <p className="font-inter text-xs text-[#042718]/70 leading-relaxed">
+              <p className="font-inter text-xs text-[#121517]/70 leading-relaxed">
                 {ng.desc}
               </p>
             </div>
