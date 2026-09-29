@@ -390,7 +390,7 @@ export const OperatingPrinciples: React.FC<OperatingPrinciplesProps> = ({
           </div>
 
           {/* Two small inline SVG doodles at opacity .38 */}
-          {/* Three-bar chart in amber and green */}
+          {/* Three-bar chart in amber and champagne */}
           <svg
             width="32"
             height="28"
@@ -401,7 +401,7 @@ export const OperatingPrinciples: React.FC<OperatingPrinciplesProps> = ({
             aria-hidden="true"
           >
             <rect x="4" y="14" width="5" height="11" rx="1" fill="#A8711A" />
-            <rect x="13" y="8" width="5" height="17" rx="1" fill="#3C7A50" />
+            <rect x="13" y="8" width="5" height="17" rx="1" fill="#C89B3C" />
             <rect x="22" y="3" width="5" height="22" rx="1" fill="#D9A94C" />
             <line
               x1="1"

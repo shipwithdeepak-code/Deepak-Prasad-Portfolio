@@ -51,7 +51,7 @@ export class ErrorBoundary extends Component<Props, State> {
             <button
               type="button"
               onClick={this.handleRefresh}
-              className="font-inter font-semibold text-sm px-6 py-3 rounded-full bg-[#A8711A] hover:bg-[#13732e] text-white transition-[background-color,box-shadow] shadow-sm hover:shadow cursor-pointer"
+              className="font-inter font-semibold text-sm px-6 py-3 rounded-full bg-[#A8711A] hover:bg-[#8A5A16] text-white transition-[background-color,box-shadow] shadow-sm hover:shadow cursor-pointer"
             >
               Refresh Page
             </button>

@@ -100,7 +100,7 @@ export default function DipaBuildPage({ onNavigate }: DipaBuildPageProps) {
             <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-[#C89B3C]">
               AI-native portfolio assistant
             </span>
-            <Tag variant="live" icon={<span className="w-1.5 h-1.5 rounded-full bg-[#6FBE8C] shrink-0" />}>
+            <Tag variant="live" icon={<span className="w-1.5 h-1.5 rounded-full bg-[#A8711A] shrink-0" />}>
               Live on portfolio
             </Tag>
           </div>

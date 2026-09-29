@@ -198,7 +198,7 @@ export default function AiBuilds({ onNavigate }: { onNavigate: (path: string) =>
                   {/* Evidence Split: Observed vs Inferred */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-left">
                     <div className="p-2 rounded-lg bg-[#FAF8F5] border border-black/[0.05]">
-                      <span className="font-mono text-[9px] uppercase font-bold text-[#1E6B3E] block mb-0.5">
+                      <span className="font-mono text-[9px] uppercase font-bold text-[#121517] block mb-0.5">
                         ✓ Observed Evidence
                       </span>
                       <p className="font-inter text-[11.5px] text-[#374151] leading-snug">
@@ -244,7 +244,7 @@ export default function AiBuilds({ onNavigate }: { onNavigate: (path: string) =>
               }}
               aria-label="How I built Jagr"
             >
-              How I built Jagr &rarr;
+              How I built Jagr
             </GlassButton>
             <span className="font-mono text-[11px] text-[#7A828A] flex items-center gap-1.5">
               Click to view build journey &rarr;
@@ -333,7 +333,7 @@ export default function AiBuilds({ onNavigate }: { onNavigate: (path: string) =>
                 onClick={() => window.dispatchEvent(new CustomEvent("open-copilot"))}
                 aria-label="Open Dīpa copilot"
               >
-                Open Dīpa &rarr;
+                Open Dīpa
               </GlassButton>
               <a
                 href="/work/dipa"
@@ -390,7 +390,7 @@ export default function AiBuilds({ onNavigate }: { onNavigate: (path: string) =>
                 }}
                 aria-label="Explore Product Jury"
               >
-                Explore Product Jury &rarr;
+                Explore Product Jury
               </GlassButton>
             </div>
           </article>

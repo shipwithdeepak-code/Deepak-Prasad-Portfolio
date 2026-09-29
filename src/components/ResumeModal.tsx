@@ -288,7 +288,7 @@ export default function ResumeModal({
 
         {/* Modal Body */}
         {activeTab === "pdf" ? (
-          <div className="flex-1 flex flex-col bg-[#F4F7F5] p-3 sm:p-5 overflow-hidden">
+          <div className="flex-1 flex flex-col bg-[#FAF8F5] p-3 sm:p-5 overflow-hidden">
             <div className="flex flex-wrap items-center justify-between gap-2 px-4 py-2.5 mb-3 bg-white rounded-2xl border border-[#121517]/10 text-xs font-inter text-[#121517]/75 shadow-xs shrink-0">
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-[#A8711A] animate-pulse" />

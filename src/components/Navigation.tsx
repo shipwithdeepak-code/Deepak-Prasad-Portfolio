@@ -9,9 +9,18 @@ interface NavigationProps {
 }
 
 export default function Navigation({
+  currentPath,
   onNavigate,
 }: NavigationProps) {
   const [scrollProgress, setScrollProgress] = useState(0);
+
+  // Normalize current path to determine context-aware destination
+  const cleanPath = currentPath.split("?")[0].replace(/\/+$/, "") || "/";
+  const isHomepage = cleanPath === "/";
+  const targetHref = isHomepage ? "/about" : "/";
+  const ariaLabel = isHomepage
+    ? "Deepak Prasad - About Me"
+    : "Deepak Prasad - Home";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -40,16 +49,16 @@ export default function Navigation({
       {/* Floating Corner Navigation: Zero shared container, zero pill. Two independent floating corner elements */}
       <header className="fixed top-0 left-0 right-0 z-50 w-full pointer-events-none">
         <div className="w-full flex items-center justify-between px-4 sm:px-5 md:px-6 pt-1 sm:pt-1.5 md:pt-2">
-          {/* TOP LEFT: Deliberate Editorial Identity Lockup [avatar] Deepak Prasad -> /about */}
+          {/* TOP LEFT: Context-Aware Editorial Identity Lockup [avatar] Deepak Prasad */}
           <a
-            href="/about"
+            href={targetHref}
             onClick={(e) => {
               e.preventDefault();
-              onNavigate("/about");
+              onNavigate(targetHref);
             }}
             className="pointer-events-auto inline-flex items-center gap-2.5 sm:gap-3 group rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C89B3C] focus-visible:ring-offset-2 shrink-0 select-none transition-transform duration-200 hover:scale-[1.01]"
             id="nav-logo"
-            aria-label="Deepak Prasad - About Me"
+            aria-label={ariaLabel}
           >
             {/* Sharp circular photo avatar (40–44px desktop, personal signature caliber) */}
             <div className="relative shrink-0">

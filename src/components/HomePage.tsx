@@ -563,7 +563,7 @@ export default function HomePage({
               in ~3 months. I kept asking questions until the product matched reality.
             </motion.p>
 
-            {/* CTA Hierarchy: Solid dark/green primary vs. quiet light secondary link */}
+            {/* CTA Hierarchy: Solid dark primary vs. quiet light secondary link */}
             <motion.div
               initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}

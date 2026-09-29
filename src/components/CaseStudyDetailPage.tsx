@@ -413,13 +413,13 @@ export default function CaseStudyDetailPage({
                     </div>
 
                     <div className="p-6 rounded-[20px] bg-[#F5F3EF] border border-[#FDE68A]/40">
-                      <span className="text-xs font-inter font-bold uppercase tracking-wider text-[#059669] block mb-3">
+                      <span className="text-xs font-inter font-bold uppercase tracking-wider text-[#A8711A] block mb-3">
                         {sec.comparison.after.title}
                       </span>
                       <ul className="flex flex-col gap-2.5">
                         {sec.comparison.after.steps.map((st, i) => (
                           <li key={i} className="flex items-start gap-2 text-xs sm:text-sm font-inter text-[#121517] font-medium">
-                            <CheckCircle2 size={15} className="text-[#059669] mt-0.5 shrink-0" />
+                            <CheckCircle2 size={15} className="text-[#A8711A] mt-0.5 shrink-0" />
                             <span>{st}</span>
                           </li>
                         ))}

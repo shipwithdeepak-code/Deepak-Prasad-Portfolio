@@ -82,7 +82,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
         {/* Top Header */}
         <div className="flex items-center justify-between mb-6 pb-4 border-b border-[#121517]/10">
           <div className="flex items-center gap-2.5">
-            <div className="w-10 h-10 rounded-2xl bg-[#E4F2EB] flex items-center justify-center text-[#A8711A]">
+            <div className="w-10 h-10 rounded-2xl bg-[#C89B3C]/12 flex items-center justify-center text-[#A8711A]">
               <Calendar size={20} />
             </div>
             <div>
@@ -106,7 +106,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
 
         {sent ? (
           <div className="py-8 flex flex-col items-center text-center">
-            <div className="w-16 h-16 rounded-full bg-[#E4F2EB] flex items-center justify-center text-[#A8711A] mb-4">
+            <div className="w-16 h-16 rounded-full bg-[#C89B3C]/12 flex items-center justify-center text-[#A8711A] mb-4">
               <CheckCircle2 size={32} />
             </div>
             <h4 className="font-onest text-2xl font-bold text-[#121517] mb-2">

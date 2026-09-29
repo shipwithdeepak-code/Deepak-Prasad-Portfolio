@@ -101,7 +101,7 @@ export function MagicMoments() {
       body: "When test results arrive, the PM doesn't prompt an AI from scratch. They return to the existing decision. The system re-evaluates the same question against the falsification condition, records a new version, and shows what changed, why it changed, and what remains unknown.",
       badge: "CAP-15 & CAP-16",
       visual: (
-        <div className="mt-3 p-3 rounded-xl bg-[#ECFDF5] border border-[#C89B3C]/25 text-[#121517]">
+        <div className="mt-3 p-3 rounded-xl bg-[#FAF8F5] border border-[#C89B3C]/25 text-[#121517]">
           <div className="flex items-center justify-between mb-1">
             <span className="font-mono text-[10px] uppercase font-bold text-[#C89B3C]">9 Days Later · Re-Judge</span>
             <span className="font-mono text-[9px] text-[#C89B3C]">Version 1 → Version 2</span>

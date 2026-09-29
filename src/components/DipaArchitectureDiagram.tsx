@@ -106,7 +106,7 @@ export function DipaArchitectureDiagram() {
 
         {/* Step 8: 0.68 Confidence Gate */}
         <div className="w-full sm:w-88 text-center p-3.5 rounded-xl bg-[#121517] text-white shadow-xs">
-          <div className="font-mono text-xs uppercase tracking-wider text-[#A7F3D0] font-semibold">
+          <div className="font-mono text-xs uppercase tracking-wider text-[#FDE68A] font-semibold">
             0.68 Confidence Gate
           </div>
           <div className="font-inter text-[11.5px] text-white/80 mt-1">
@@ -117,7 +117,7 @@ export function DipaArchitectureDiagram() {
         {/* Branch: Enough vs Not Enough */}
         <div className="w-full sm:w-96 grid grid-cols-2 gap-3 mt-4">
           {/* Branch Left: Enough (≥ 0.68) */}
-          <div className="flex flex-col items-center text-center p-3.5 rounded-xl bg-[#ECFDF5] border border-[#C89B3C]/20">
+          <div className="flex flex-col items-center text-center p-3.5 rounded-xl bg-[#FAF8F5] border border-[#C89B3C]/20">
             <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[#C89B3C] mb-1">
               Score ≥ 0.68 · Verified
             </span>

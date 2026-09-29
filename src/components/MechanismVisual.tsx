@@ -245,19 +245,19 @@ function AiCoachEditorialBoundary({
             </div>
 
             {/* Step 3: Product Boundaries */}
-            <div className="p-4 rounded-xl bg-[#ECFDF5] border border-[#A8711A]/40 flex flex-col justify-between shadow-2xs">
+            <div className="p-4 rounded-xl bg-[#FAF8F5] border border-[#A8711A]/40 flex flex-col justify-between shadow-2xs">
               <div>
-                <span className="font-mono text-[10px] text-[#059669] uppercase font-bold block mb-1">
+                <span className="font-mono text-[10px] text-[#A8711A] uppercase font-bold block mb-1">
                   03 · Policy Interlock
                 </span>
-                <h4 className="font-onest text-sm font-bold text-[#065F46] mb-1">
+                <h4 className="font-onest text-sm font-bold text-[#121517] mb-1">
                   PRODUCT BOUNDARIES
                 </h4>
                 <p className="font-inter text-xs text-[#121517]/80 leading-relaxed">
                   Controlled content ecosystem: maps solely to verified studio exercises and certified safety cues.
                 </p>
               </div>
-              <div className="mt-3 pt-2 border-t border-[#A8711A]/20 font-mono text-[10px] text-[#059669] font-medium">
+              <div className="mt-3 pt-2 border-t border-[#A8711A]/20 font-mono text-[10px] text-[#A8711A] font-medium">
                 AI ≠ Doctor · Data ≠ Diagnosis
               </div>
             </div>
@@ -541,11 +541,11 @@ function SubscriptionEditorialJourney({
             </p>
           </div>
 
-          <div className="p-4 rounded-xl bg-[#ECFDF5] border border-[#A8711A]/30 shadow-2xs">
+          <div className="p-4 rounded-xl bg-[#FAF8F5] border border-[#A8711A]/30 shadow-2xs">
             <span className="font-mono text-[10px] uppercase font-bold text-[#A8711A] block mb-1">
               Pillar 02 · Utility Core
             </span>
-            <h5 className="font-onest text-sm font-bold text-[#065F46] mb-1">
+            <h5 className="font-onest text-sm font-bold text-[#121517] mb-1">
               VALUE REALISATION
             </h5>
             <p className="font-inter text-xs text-[#121517]/80 leading-relaxed">
@@ -595,10 +595,10 @@ function SubscriptionEditorialJourney({
               <span className="text-[#121517] font-bold">Re-enter Card</span>
               <span className="text-[10px] text-[#121517]/60 block mt-0.5">Payment method entry</span>
             </div>
-            <div className="p-2 rounded-lg bg-[#ECFDF5] border border-[#A8711A]/30">
+            <div className="p-2 rounded-lg bg-[#FAF8F5] border border-[#A8711A]/30">
               <span className="text-[#A8711A] block text-[9px] mb-0.5">PRODUCT FIX</span>
-              <span className="text-[#065F46] font-bold">1-Tap Resubscribe</span>
-              <span className="text-[10px] text-[#065F46]/70 block mt-0.5">Pre-selected best tier</span>
+              <span className="text-[#121517] font-bold">1-Tap Resubscribe</span>
+              <span className="text-[10px] text-[#A8711A] block mt-0.5">Pre-selected best tier</span>
             </div>
           </div>
         </div>
@@ -769,12 +769,12 @@ function PerformanceScoreEditorialEcosystem({
             </div>
 
             {/* LEVEL 03: EXPERIENCE */}
-            <div className="p-5 rounded-2xl bg-[#ECFDF5] border border-[#A8711A]/30">
+            <div className="p-5 rounded-2xl bg-[#FAF8F5] border border-[#A8711A]/30">
               <div className="flex items-center justify-between mb-3">
-                <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#065F46]">
+                <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#121517]">
                   LEVEL 03 · UNIFIED USER EXPERIENCE
                 </span>
-                <span className="font-mono text-[11px] text-[#059669] font-semibold">
+                <span className="font-mono text-[11px] text-[#A8711A] font-semibold">
                   Consistent Everywhere
                 </span>
               </div>
@@ -1125,15 +1125,15 @@ function AiLocalizationEditorialOperatingModel({
         </div>
 
         {/* NEW AI-ASSISTED + HUMAN-GOVERNED PIPELINE */}
-        <div className="p-5 sm:p-6 rounded-2xl bg-[#ECFDF5]/80 border border-[#6EE7B7]/50">
-          <div className="flex flex-wrap items-center justify-between gap-2 mb-4 pb-3 border-b border-[#6EE7B7]/40">
+        <div className="p-5 sm:p-6 rounded-2xl bg-white border border-[#121517]/10 shadow-sm">
+          <div className="flex flex-wrap items-center justify-between gap-2 mb-4 pb-3 border-b border-[#121517]/10">
             <div className="flex items-center gap-2">
-              <CheckCircle2 size={16} className="text-[#059669]" />
-              <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#065F46]">
+              <CheckCircle2 size={16} className="text-[#A8711A]" />
+              <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#121517]">
                 NEW OPERATING MODEL · AI-ASSISTED + HUMAN-GOVERNED PIPELINE
               </span>
             </div>
-            <span className="font-mono text-[11px] text-[#059669] font-medium">
+            <span className="font-mono text-[11px] text-[#A8711A] font-medium">
               ~3 Weeks Turnaround · ~10× Faster Velocity · Human-Validated Safety
             </span>
           </div>
@@ -1144,7 +1144,7 @@ function AiLocalizationEditorialOperatingModel({
                 key={idx}
                 className={`p-3.5 rounded-xl flex flex-col justify-between shadow-2xs ${
                   step.isHuman
-                    ? "bg-[#ECFDF5] border-2 border-[#059669] ring-2 ring-[#059669]/20"
+                    ? "bg-[#FAF8F5] border-2 border-[#A8711A] ring-2 ring-[#C89B3C]/20"
                     : "bg-white border border-[#A8711A]/30"
                 }`}
               >
@@ -1154,7 +1154,7 @@ function AiLocalizationEditorialOperatingModel({
                       0{idx + 1}
                     </span>
                     {step.isHuman && (
-                      <span className="font-mono text-[9px] uppercase font-bold text-[#059669] bg-[#059669]/10 px-1.5 py-0.5 rounded">
+                      <span className="font-mono text-[9px] uppercase font-bold text-[#A8711A] bg-[#C89B3C]/12 px-1.5 py-0.5 rounded">
                         Quality Gate
                       </span>
                     )}
@@ -1162,9 +1162,7 @@ function AiLocalizationEditorialOperatingModel({
                       <ArrowRight size={12} className="text-[#A8711A]/50 hidden lg:block" />
                     )}
                   </div>
-                  <h4 className={`font-onest text-xs sm:text-sm font-bold leading-tight ${
-                    step.isHuman ? "text-[#065F46]" : "text-[#121517]"
-                  }`}>
+                  <h4 className="font-onest text-xs sm:text-sm font-bold leading-tight text-[#121517]">
                     {step.name}
                   </h4>
                 </div>

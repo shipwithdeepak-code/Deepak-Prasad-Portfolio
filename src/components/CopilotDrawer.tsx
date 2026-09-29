@@ -362,7 +362,7 @@ export default function CopilotDrawer({
               <span className="font-onest font-semibold text-sm text-[#121517] tracking-tight">
                 Dīpa
               </span>
-              <span className="px-1.5 py-0.5 rounded text-[10px] font-mono font-medium tracking-tight bg-[#ECFDF5] text-[#065F46] border border-[#A7F3D0]">
+              <span className="px-1.5 py-0.5 rounded text-[10px] font-mono font-medium tracking-tight bg-[#C89B3C]/10 text-[#A8711A] border border-[#C89B3C]/30">
                 RAG v1.2
               </span>
             </div>
@@ -411,7 +411,7 @@ export default function CopilotDrawer({
           }}
         >
           <div className="flex items-start justify-between mb-1.5">
-            <span className="font-onest font-bold text-xs uppercase tracking-wider text-[#065F46] flex items-center gap-1.5">
+            <span className="font-onest font-bold text-xs uppercase tracking-wider text-[#A8711A] flex items-center gap-1.5">
               <Cpu size={13} /> Architecture: Production RAG Pipeline
             </span>
             <button
@@ -427,15 +427,15 @@ export default function CopilotDrawer({
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 font-mono text-[10px] text-[#121517]/80">
             <div className="p-2 rounded-lg bg-white/60 border border-[#121517]/5">
-              <div className="font-bold text-[#065F46] mb-0.5">1. Embeddings</div>
+              <div className="font-bold text-[#121517] mb-0.5">1. Embeddings</div>
               gemini-embedding-2-preview (512-dim) generated at build time.
             </div>
             <div className="p-2 rounded-lg bg-white/60 border border-[#121517]/5">
-              <div className="font-bold text-[#065F46] mb-0.5">2. Retrieval &amp; Gate</div>
+              <div className="font-bold text-[#121517] mb-0.5">2. Retrieval &amp; Gate</div>
               In-memory cosine similarity evaluated against a 0.68 confidence gate.
             </div>
             <div className="p-2 rounded-lg bg-white/60 border border-[#121517]/5">
-              <div className="font-bold text-[#065F46] mb-0.5">3. Grounding</div>
+              <div className="font-bold text-[#121517] mb-0.5">3. Grounding</div>
               gemini-3.1-flash-lite generates grounded answers with source citations.
             </div>
           </div>
@@ -488,7 +488,7 @@ export default function CopilotDrawer({
                   {!isUser && msg.retrievedChunks && msg.retrievedChunks.length > 0 && (
                     <div className="mt-2.5 pt-2 border-t border-[#121517]/8">
                       <div className="flex items-center justify-between mb-1.5">
-                        <span className="text-[10px] font-mono uppercase tracking-wider text-[#065F46] font-semibold flex items-center gap-1">
+                        <span className="text-[10px] font-mono uppercase tracking-wider text-[#A8711A] font-semibold flex items-center gap-1">
                           <Database size={11} /> Grounded in {msg.retrievedChunks.length} Source
                           {msg.retrievedChunks.length > 1 ? "s" : ""}
                         </span>
@@ -503,7 +503,7 @@ export default function CopilotDrawer({
                           <button
                             key={chunk.id}
                             onClick={() => setSelectedChunk(chunk)}
-                            className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-medium bg-[#ECFDF5] hover:bg-[#D1FAE5] text-[#065F46] border border-[#A7F3D0] transition-colors cursor-pointer"
+                            className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-medium bg-[#C89B3C]/10 hover:bg-[#C89B3C]/18 text-[#A8711A] border border-[#C89B3C]/25 transition-colors cursor-pointer"
                           >
                             <BookOpen size={10} />
                             <span className="truncate max-w-[130px]">{chunk.title}</span>
@@ -590,7 +590,7 @@ export default function CopilotDrawer({
         >
           <div className="flex items-start justify-between mb-2">
             <div>
-              <span className="text-[10px] font-mono uppercase tracking-wider text-[#065F46] font-bold">
+              <span className="text-[10px] font-mono uppercase tracking-wider text-[#A8711A] font-bold">
                 Retrieved Vector Source
               </span>
               <h4 className="font-onest font-bold text-xs text-[#121517]">

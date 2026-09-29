@@ -297,7 +297,7 @@ export function DecisionLoopVisual() {
         </div>
 
         {/* The Closed Loop Revisit Box (Highlighting the return back to the decision) */}
-        <div className="p-5 rounded-[20px] bg-[#ECFDF5] border border-[#C89B3C]/25 text-[#121517]">
+        <div className="p-5 rounded-[20px] bg-[#FAF8F5] border border-[#C89B3C]/25 text-[#121517]">
           <div className="flex items-start sm:items-center justify-between flex-wrap gap-2 mb-2">
             <div className="flex items-center gap-2">
               <RotateCcw size={16} className="text-[#C89B3C]" />

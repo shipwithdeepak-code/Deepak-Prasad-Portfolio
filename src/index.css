@@ -11,7 +11,7 @@
 }
 
 /* =========================================================================
-   GLOBAL DESIGN SYSTEM: EDITORIAL GREEN × SOFT GLASS × POLISHED MOTION
+   GLOBAL DESIGN SYSTEM: EDITORIAL CHARCOAL × SOFT GLASS × POLISHED MOTION
    ========================================================================= */
 
 :root {
@@ -292,7 +292,7 @@ html, body {
   cursor: not-allowed;
 }
 
-/* Primary Variant: Emerald base gradient + top highlight + inner rim + reflection sweep */
+/* Primary Variant: Charcoal base gradient + top highlight + inner rim + reflection sweep */
 .glass-btn-primary {
   background: linear-gradient(172deg, var(--ds-button-primary-start) 0%, var(--ds-button-primary-end) 100%);
   color: #FFFFFF;

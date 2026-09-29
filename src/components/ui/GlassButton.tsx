@@ -25,7 +25,7 @@ export interface GlassButtonProps
 }
 
 /**
- * GlassButton primitive for EDITORIAL GREEN × SOFT GLASS design system.
+ * GlassButton primitive for EDITORIAL CHARCOAL × SOFT GLASS design system.
  * Standardizes button states, borders, tactile feedback, and accessibility focus.
  */
 export const GlassButton: React.FC<GlassButtonProps> = ({

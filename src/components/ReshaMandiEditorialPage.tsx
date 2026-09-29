@@ -404,7 +404,7 @@ export default function ReshaMandiEditorialPage({
           </div>
 
           {/* KEY PRODUCT DECISION ANCHOR */}
-          <div className="p-5 sm:p-6 rounded-2xl bg-[#ECFDF5] border border-[#A8711A]/25">
+          <div className="p-5 sm:p-6 rounded-2xl bg-[#FAF8F5] border border-[#A8711A]/25">
             <div className="flex items-center gap-2 mb-2">
               <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#A8711A]">
                 KEY PRODUCT DECISION #1
@@ -443,7 +443,7 @@ export default function ReshaMandiEditorialPage({
 
           {/* WhatsApp Artifact Display */}
           <div className="mb-8">
-            <div className="relative rounded-2xl overflow-hidden border border-[#121517]/10 bg-[#0F1E17] shadow-sm max-w-2xl mx-auto">
+            <div className="relative rounded-2xl overflow-hidden border border-[#121517]/10 bg-[#121517] shadow-sm max-w-2xl mx-auto">
               <img
                 src="/images/reshamandi/02-reshamandi-whatsapp-lot-workflow.jpg"
                 alt="Handwritten lot record and dispatch communication over WhatsApp"
@@ -453,7 +453,7 @@ export default function ReshaMandiEditorialPage({
 
               {/* Redaction overlay bar */}
               <div
-                className="absolute top-0 left-0 right-0 h-14 bg-[#0F1E17]/95 backdrop-blur-sm border-b border-white/10 flex items-center px-4 justify-between"
+                className="absolute top-0 left-0 right-0 h-14 bg-[#121517]/95 backdrop-blur-sm border-b border-white/10 flex items-center px-4 justify-between"
                 aria-hidden="true"
               >
                 <div className="flex items-center gap-2">
@@ -511,7 +511,7 @@ export default function ReshaMandiEditorialPage({
           </div>
 
           {/* KEY PRODUCT DECISION ANCHOR */}
-          <div className="p-5 sm:p-6 rounded-2xl bg-[#ECFDF5] border border-[#A8711A]/25 max-w-3xl mx-auto">
+          <div className="p-5 sm:p-6 rounded-2xl bg-[#FAF8F5] border border-[#A8711A]/25 max-w-3xl mx-auto">
             <div className="flex items-center gap-2 mb-2">
               <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#A8711A]">
                 KEY PRODUCT DECISION #2
@@ -631,7 +631,7 @@ export default function ReshaMandiEditorialPage({
           </div>
 
           {/* KEY PRODUCT DECISION ANCHOR */}
-          <div className="p-5 sm:p-6 rounded-2xl bg-[#ECFDF5] border border-[#A8711A]/25">
+          <div className="p-5 sm:p-6 rounded-2xl bg-[#FAF8F5] border border-[#A8711A]/25">
             <div className="flex items-center gap-2 mb-2">
               <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#A8711A]">
                 KEY PRODUCT DECISION #3
@@ -868,11 +868,11 @@ export default function ReshaMandiEditorialPage({
                   </div>
 
                   {/* After */}
-                  <div className="p-4 rounded-xl bg-[#ECFDF5] border border-[#6EE7B7]/50">
-                    <span className="font-mono text-xs font-bold text-[#059669] block mb-2">
+                  <div className="p-4 rounded-xl bg-[#FAF8F5] border border-[#121517]/10">
+                    <span className="font-mono text-xs font-bold text-[#A8711A] block mb-2">
                       AFTER (AUTOMATED BANKING RAILS)
                     </span>
-                    <div className="flex flex-wrap items-center gap-2 text-xs font-inter text-[#065F46] font-medium">
+                    <div className="flex flex-wrap items-center gap-2 text-xs font-inter text-[#121517] font-medium">
                       <span>Transaction</span>
                       <span>→</span>
                       <span>approval</span>

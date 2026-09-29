@@ -141,21 +141,21 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
               </p>
 
               {isSubmitted ? (
-                <div className="p-8 rounded-[16px] bg-[#ECFDF5] border border-[#6EE7B7]/40 text-center flex flex-col items-center gap-3">
-                  <div className="w-12 h-12 rounded-full bg-[#059669] text-white flex items-center justify-center">
+                <div className="p-8 rounded-[16px] bg-white border border-[#121517]/10 text-center flex flex-col items-center gap-3 shadow-sm">
+                  <div className="w-12 h-12 rounded-full bg-[#121517] text-[#C89B3C] flex items-center justify-center">
                     <CheckCircle2 size={24} />
                   </div>
-                  <h4 className="font-onest text-xl font-bold text-[#065F46]">
+                  <h4 className="font-onest text-xl font-bold text-[#121517]">
                     Note Prepared for Deepak
                   </h4>
-                  <p className="font-inter text-xs sm:text-sm text-[#047857] max-w-md leading-relaxed">
-                    Your email client was triggered with your note addressed to <strong className="font-semibold text-[#065F46]">shipwithdeepak@gmail.com</strong>. If your mail client didn&apos;t open automatically, use the buttons below:
+                  <p className="font-inter text-xs sm:text-sm text-[#121517]/70 max-w-md leading-relaxed">
+                    Your email client was triggered with your note addressed to <strong className="font-semibold text-[#121517]">shipwithdeepak@gmail.com</strong>. If your mail client didn&apos;t open automatically, use the buttons below:
                   </p>
 
                   <div className="flex flex-col sm:flex-row items-center gap-3 w-full max-w-sm mt-3 mb-2">
                     <a
                       href={mailtoUrl}
-                      className="w-full sm:flex-1 py-2.5 px-4 rounded-xl bg-[#065F46] text-white font-inter text-xs font-semibold hover:bg-[#047857] transition-colors flex items-center justify-center gap-2 shadow-xs"
+                      className="w-full sm:flex-1 py-2.5 px-4 rounded-xl bg-[#121517] text-white font-inter text-xs font-semibold hover:bg-[#1D2125] transition-colors flex items-center justify-center gap-2 shadow-xs"
                     >
                       <Mail size={14} />
                       <span>Open in Email App</span>
@@ -164,7 +164,7 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
                     <button
                       type="button"
                       onClick={handleCopyNote}
-                      className="w-full sm:flex-1 py-2.5 px-4 rounded-xl border border-[#065F46]/30 bg-white hover:bg-[#FAF8F5] text-[#065F46] font-inter text-xs font-semibold transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-2xs"
+                      className="w-full sm:flex-1 py-2.5 px-4 rounded-xl border border-[#121517]/15 bg-white hover:bg-[#FAF8F5] text-[#121517] font-inter text-xs font-semibold transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-2xs"
                     >
                       <span>{copied ? "Copied to Clipboard!" : "Copy Note"}</span>
                     </button>
@@ -176,7 +176,7 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
                       setIsSubmitted(false);
                       setFormData({ name: "", email: "", subject: "", message: "" });
                     }}
-                    className="mt-2 text-xs font-inter font-semibold text-[#065F46] underline cursor-pointer"
+                    className="mt-2 text-xs font-inter font-semibold text-[#121517]/70 hover:text-[#121517] underline cursor-pointer"
                   >
                     Send another note
                   </button>

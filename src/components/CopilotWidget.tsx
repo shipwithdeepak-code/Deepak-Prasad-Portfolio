@@ -230,7 +230,7 @@ export default function CopilotWidget({
                     setInitialPrompt(promptText);
                     setIsOpen(true);
                   }}
-                  className="mt-2 text-left font-inter text-[11px] font-medium text-[#065F46] hover:text-[#121517] bg-[#ECFDF5]/85 hover:bg-[#ECFDF5] px-2.5 py-1 rounded-lg border border-[#C89B3C]/30 transition-colors block w-fit"
+                  className="mt-2 text-left font-inter text-[11px] font-medium text-[#121517] bg-[#C89B3C]/10 hover:bg-[#C89B3C]/18 px-2.5 py-1 rounded-lg border border-[#C89B3C]/30 transition-colors block w-fit"
                 >
                   Try:{" "}
                   <span className="font-semibold">

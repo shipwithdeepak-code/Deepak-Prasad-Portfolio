@@ -178,7 +178,7 @@ export default function MoreWorkDetailPage({
           </div>
 
           {/* What I Personally Owned */}
-          <div className="p-6 rounded-2xl bg-[#F4F9F5] border border-[#A8711A]/18">
+          <div className="p-6 rounded-2xl bg-[#FAF8F5] border border-[#A8711A]/18">
             <span className="font-mono text-[11px] uppercase tracking-wider font-semibold text-[#A8711A] block mb-2">
               My Role
             </span>
@@ -270,7 +270,7 @@ export default function MoreWorkDetailPage({
           {/* Outcome & Systemic Change (Explaining why it happened & how the product changed) */}
           <div className="p-6 sm:p-8 rounded-2xl bg-[#121517] text-white">
             <div className="flex items-center justify-between gap-3 mb-3">
-              <span className="font-mono text-[11px] uppercase tracking-wider font-semibold text-[#8FD44A]">
+              <span className="font-mono text-[11px] uppercase tracking-wider font-semibold text-[#C89B3C]">
                 {item.id === 'performance-score' ? 'System Architecture Delivery' : 'Outcome & Systemic Change'}
               </span>
               {item.outcome.type && (
