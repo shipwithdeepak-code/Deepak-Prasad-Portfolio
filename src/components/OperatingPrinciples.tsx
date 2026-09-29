@@ -123,7 +123,7 @@ export const OperatingPrinciples: React.FC<OperatingPrinciplesProps> = ({
           padding: 17px 18px 14px;
           border-radius: 3px;
           color: #241F19;
-          box-shadow: 0 8px 22px rgba(4, 39, 24, 0.08), 0 2px 5px rgba(4, 39, 24, 0.05);
+          box-shadow: 0 8px 22px rgba(0, 0, 0, 0.06), 0 2px 5px rgba(0, 0, 0, 0.03);
           transition: transform 420ms cubic-bezier(0.23, 1, 0.32, 1), box-shadow 420ms cubic-bezier(0.23, 1, 0.32, 1);
           cursor: pointer;
         }
@@ -131,7 +131,7 @@ export const OperatingPrinciples: React.FC<OperatingPrinciplesProps> = ({
         @media (hover: hover) and (pointer: fine) {
           .principles-pin-card:hover {
             transform: translateY(-7px) rotate(0deg) !important;
-            box-shadow: 0 14px 32px rgba(4, 39, 24, 0.12), 0 3px 8px rgba(4, 39, 24, 0.08) !important;
+            box-shadow: 0 14px 32px rgba(0, 0, 0, 0.10), 0 3px 8px rgba(0, 0, 0, 0.05) !important;
           }
           .principles-pin-card:hover .note-arrow {
             transform: translate(2px, -2px);
@@ -140,7 +140,7 @@ export const OperatingPrinciples: React.FC<OperatingPrinciplesProps> = ({
 
         .principles-pin-card.is-open {
           transform: rotate(0deg) !important;
-          box-shadow: 0 14px 32px rgba(4, 39, 24, 0.14), 0 4px 10px rgba(4, 39, 24, 0.09) !important;
+          box-shadow: 0 14px 32px rgba(0, 0, 0, 0.12), 0 4px 10px rgba(0, 0, 0, 0.06) !important;
         }
 
         .principles-grid-board {
@@ -186,7 +186,7 @@ export const OperatingPrinciples: React.FC<OperatingPrinciplesProps> = ({
           font-style: italic;
           font-weight: 400;
           letter-spacing: -0.01em;
-          color: rgba(4, 39, 24, 0.76);
+          color: rgba(18, 21, 23, 0.76);
           font-size: 1.03em;
         }
       `}</style>
@@ -408,7 +408,7 @@ export const OperatingPrinciples: React.FC<OperatingPrinciplesProps> = ({
               y1="26"
               x2="30"
               y2="26"
-              stroke="#042718"
+              stroke="#121517"
               strokeWidth="1.2"
               strokeLinecap="round"
             />
@@ -443,13 +443,13 @@ export const OperatingPrinciples: React.FC<OperatingPrinciplesProps> = ({
             className="hub-cell z-[3] text-center px-[6px] col-span-1 min-[641px]:col-span-2 min-[1025px]:col-span-1 min-[1025px]:col-start-2 min-[1025px]:row-start-2 mb-3 min-[1025px]:mb-0 flex flex-col items-center justify-center"
           >
             {/* h2 "Six principles I keep coming back to." */}
-            <h2 className="font-onest font-bold text-[clamp(1.45rem,2.9vw,2.35rem)] leading-[1.08] text-[#042718] mt-3 tracking-tight principles-hub-heading">
+            <h2 className="font-onest font-bold text-[clamp(1.45rem,2.9vw,2.35rem)] leading-[1.08] text-[#121517] mt-3 tracking-tight principles-hub-heading">
               Six principles I keep coming{" "}
               <em className="principles-hub-em not-italic">back to.</em>
             </h2>
 
             {/* p "Not a framework I downloaded. A working set of rules shaped by shipping real products." */}
-            <p className="font-inter text-[14.2px] text-[#042718]/[0.76] max-w-[34ch] mx-auto mt-3 leading-normal">
+            <p className="font-inter text-[14.2px] text-[#4A525A] max-w-[34ch] mx-auto mt-3 leading-normal">
               Not a framework I downloaded. A working set of rules shaped by shipping real products.
             </p>
 
@@ -562,7 +562,7 @@ export const OperatingPrinciples: React.FC<OperatingPrinciplesProps> = ({
                 e.preventDefault();
                 onNavigate("/about");
               }}
-              className="inline-flex items-center gap-1.5 text-[14px] font-inter font-medium text-[#042718]/70 hover:text-[#042718] transition-colors group cursor-pointer"
+              className="inline-flex items-center gap-1.5 text-[14px] font-inter font-medium text-[#4A525A] hover:text-[#121517] transition-colors group cursor-pointer"
             >
               <span>More about how I work</span>
               <span className="transition-transform duration-200 group-hover:translate-x-0.5">→</span>

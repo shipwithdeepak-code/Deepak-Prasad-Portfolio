@@ -212,8 +212,8 @@ export default function Footer({
         <span
           className={`font-onest font-bold tracking-[-0.04em] text-[clamp(3.5rem,15vw,13rem)] leading-none whitespace-nowrap transition-colors duration-300 ${
             inView
-              ? "text-[#042718]/[0.06] [text-shadow:0_1px_0_rgba(255,255,255,0.7)]"
-              : "text-[#042718]/[0.04] [text-shadow:0_1px_0_rgba(255,255,255,0.4)]"
+              ? "text-[#121517]/[0.05] [text-shadow:0_1px_0_rgba(255,255,255,0.7)]"
+              : "text-[#121517]/[0.03] [text-shadow:0_1px_0_rgba(255,255,255,0.4)]"
           }`}
         >
           Deepak Prasad
@@ -232,10 +232,10 @@ export default function Footer({
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
                 viewport={{ once: true }}
-                className="w-full max-w-3xl text-center text-[#042718] font-onest text-[34px] sm:text-[44px] md:text-[54px] font-semibold leading-[1.12] tracking-tight md:tracking-[-2px] mb-4 [text-shadow:0_1px_2px_rgba(250,248,245,0.9),0_0_16px_rgba(250,248,245,0.75)]"
+                className="w-full max-w-3xl text-center text-[#121517] font-onest text-[34px] sm:text-[44px] md:text-[54px] font-semibold leading-[1.12] tracking-tight md:tracking-[-2px] mb-4 [text-shadow:0_1px_2px_rgba(250,248,245,0.9),0_0_16px_rgba(250,248,245,0.75)]"
               >
                 Let’s build something{" "}
-                <span className="font-playfair italic font-medium text-[#042718]/70">
+                <span className="font-playfair italic font-medium text-[#121517]/75">
                   extraordinary
                 </span>{" "}
                 together
@@ -247,14 +247,14 @@ export default function Footer({
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
                 viewport={{ once: true }}
-                className="w-full max-w-[52ch] text-center text-[#042718]/85 font-inter text-[15px] md:text-[18px] leading-[1.62] mb-10 [text-shadow:0_1px_2px_rgba(250,248,245,0.9),0_0_16px_rgba(250,248,245,0.75)] mx-auto"
+                className="w-full max-w-[52ch] text-center text-[#4A525A] font-inter text-[15px] md:text-[18px] leading-[1.62] mb-10 [text-shadow:0_1px_2px_rgba(250,248,245,0.9),0_0_16px_rgba(250,248,245,0.75)] mx-auto"
               >
                 Four of the systems on this page are{" "}
-                <span className="text-[#042718] font-semibold">
+                <span className="text-[#121517] font-semibold">
                   still running today
                 </span>
                 . If you&apos;re building something that has to{" "}
-                <span className="text-[#042718] font-semibold">
+                <span className="text-[#121517] font-semibold">
                   keep working long after launch
                 </span>
                 , I&apos;d like to hear about it. I&apos;ll tell you honestly
@@ -280,7 +280,7 @@ export default function Footer({
                   size="lg"
                   icon={
                     <span className="flex items-center gap-1.5">
-                      <Calendar size={18} className="text-[#34D399]" />
+                      <Calendar size={18} className="text-[#C89B3C]" />
                     </span>
                   }
                   iconPosition="left"
@@ -305,7 +305,7 @@ export default function Footer({
                   variant="icon"
                   className="h-13 w-13 !rounded-full"
                 >
-                  <Linkedin size={20} className="text-[#042718]" />
+                  <Linkedin size={20} className="text-[#121517]" />
                 </GlassButton>
 
                 <GlassButton
@@ -317,7 +317,7 @@ export default function Footer({
                   variant="icon"
                   className="h-13 w-13 !rounded-full"
                 >
-                  <Github size={20} className="text-[#042718]" />
+                  <Github size={20} className="text-[#121517]" />
                 </GlassButton>
 
                 <GlassButton
@@ -327,7 +327,7 @@ export default function Footer({
                   variant="icon"
                   className="h-13 w-13 !rounded-full"
                 >
-                  <Mail size={20} className="text-[#042718]" />
+                  <Mail size={20} className="text-[#121517]" />
                 </GlassButton>
               </motion.div>
             </div>

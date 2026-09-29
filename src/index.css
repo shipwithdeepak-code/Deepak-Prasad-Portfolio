@@ -16,58 +16,60 @@
 
 :root {
   /* Surface & Canvas Tokens */
-  --ds-bg: #FAFDFB;
+  --ds-bg: #FAF8F5;
   --ds-surface: #FFFFFF;
-  --ds-surface-soft: #F4FAFA;
-  --ds-bg-subtle: #F3F8F5;
-  --ds-surface-secondary: #F6FAF7;
+  --ds-surface-soft: #F5F3EF;
+  --ds-bg-subtle: #F3F1EC;
+  --ds-surface-secondary: #F7F5F0;
   
   /* Ink & Typography Tokens */
-  --ds-ink: #042718;
-  --ds-ink-secondary: rgba(4, 39, 24, 0.76);
-  --ds-ink-muted: rgba(4, 39, 24, 0.54);
-  --ds-ink-faint: rgba(4, 39, 24, 0.28);
+  --ds-ink: #121517;
+  --ds-ink-secondary: rgba(18, 21, 23, 0.74);
+  --ds-ink-muted: rgba(18, 21, 23, 0.52);
+  --ds-ink-faint: rgba(18, 21, 23, 0.28);
   
-  /* Brand Green Spectrum */
+  /* Brand Green Spectrum (Preserved for canonical data/dipa states) */
   --ds-green: #188E39;
   --ds-green-hover: #15803D;
-  --ds-green-deep: #042718;
+  --ds-green-deep: #0D261A;
   --ds-mint: #01BC7C;
   --ds-green-subtle: rgba(24, 142, 57, 0.08);
-  --ds-green-border: rgba(24, 142, 57, 0.22);
+  --ds-green-border: rgba(24, 142, 57, 0.20);
   --ds-green-accent: #2F7A4F;
   --ds-green-live: #6FBE8C;
   --ds-green-lime: #C8F07A;
   
-  /* Amber / Gold Accents */
+  /* Champagne & Amber / Gold Accents */
+  --ds-champagne: #C89B3C;
+  --ds-champagne-light: #FDE68A;
   --ds-amber: #A8711A;
   --ds-amber-subtle: rgba(168, 113, 26, 0.10);
-  --ds-amber-border: rgba(168, 113, 26, 0.26);
+  --ds-amber-border: rgba(168, 113, 26, 0.24);
 
   /* Border & Outline Tokens */
-  --ds-border: rgba(4, 39, 24, 0.10);
-  --ds-border-strong: rgba(4, 39, 24, 0.16);
-  --ds-border-hairline: rgba(4, 39, 24, 0.06);
-  --ds-border-light: rgba(4, 39, 24, 0.10);
-  --ds-border-medium: rgba(4, 39, 24, 0.16);
+  --ds-border: rgba(18, 21, 23, 0.08);
+  --ds-border-strong: rgba(18, 21, 23, 0.15);
+  --ds-border-hairline: rgba(18, 21, 23, 0.05);
+  --ds-border-light: rgba(18, 21, 23, 0.08);
+  --ds-border-medium: rgba(18, 21, 23, 0.14);
 
   /* Glass Material Tokens */
-  --ds-glass-white: rgba(255, 255, 255, 0.72);
-  --ds-glass-green: rgba(4, 39, 24, 0.82);
-  --ds-glass-bg: rgba(255, 255, 255, 0.88);
-  --ds-glass-bg-subtle: rgba(255, 255, 255, 0.72);
-  --ds-glass-bg-solid: rgba(255, 255, 255, 0.95);
-  --ds-glass-border: rgba(4, 39, 24, 0.10);
-  --ds-glass-border-highlight: rgba(255, 255, 255, 0.70);
+  --ds-glass-white: rgba(255, 255, 255, 0.82);
+  --ds-glass-green: rgba(18, 21, 23, 0.88);
+  --ds-glass-bg: rgba(255, 255, 255, 0.90);
+  --ds-glass-bg-subtle: rgba(255, 255, 255, 0.75);
+  --ds-glass-bg-solid: rgba(255, 255, 255, 0.97);
+  --ds-glass-border: rgba(18, 21, 23, 0.08);
+  --ds-glass-border-highlight: rgba(255, 255, 255, 0.80);
   --ds-glass-blur: blur(14px);
   --ds-glass-blur-lg: blur(20px);
 
   /* Elevation Shadows */
-  --ds-shadow-xs: 0 1px 3px rgba(4, 39, 24, 0.04);
-  --ds-shadow-sm: 0 3px 8px rgba(4, 39, 24, 0.05), 0 1px 2px rgba(4, 39, 24, 0.03);
-  --ds-shadow-md: 0 8px 24px rgba(4, 39, 24, 0.07), 0 2px 6px rgba(4, 39, 24, 0.04);
-  --ds-shadow-lg: 0 18px 48px rgba(4, 39, 24, 0.09), 0 6px 14px rgba(4, 39, 24, 0.05);
-  --ds-shadow-xl: 0 28px 72px rgba(4, 39, 24, 0.12), 0 8px 20px rgba(4, 39, 24, 0.06);
+  --ds-shadow-xs: 0 1px 3px rgba(0, 0, 0, 0.03);
+  --ds-shadow-sm: 0 3px 8px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+  --ds-shadow-md: 0 8px 24px rgba(0, 0, 0, 0.06), 0 2px 6px rgba(0, 0, 0, 0.03);
+  --ds-shadow-lg: 0 18px 48px rgba(0, 0, 0, 0.08), 0 6px 14px rgba(0, 0, 0, 0.04);
+  --ds-shadow-xl: 0 28px 72px rgba(0, 0, 0, 0.11), 0 8px 20px rgba(0, 0, 0, 0.05);
 
   /* Motion & Easing Curves */
   --ds-ease: cubic-bezier(0.23, 1, 0.32, 1);
@@ -85,25 +87,25 @@
   --ds-radius-pill: 9999px;
 
   /* Focus Ring */
-  --ds-focus-ring: 0 0 0 3px rgba(24, 142, 57, 0.35);
+  --ds-focus-ring: 0 0 0 3px rgba(200, 155, 60, 0.35);
   --ds-focus-ring-amber: 0 0 0 3px rgba(168, 113, 26, 0.35);
 
-  /* Button Material Tokens: EDITORIAL GREEN × POLISHED GLASS */
-  --ds-button-primary-start: #0B3F26;
-  --ds-button-primary-end: #042718;
-  --ds-button-primary-hover-start: #0E4E30;
-  --ds-button-primary-hover-end: #073420;
-  --ds-button-dark-start: #072F1D;
-  --ds-button-dark-end: #02170E;
-  --ds-button-highlight: rgba(255, 255, 255, 0.22);
-  --ds-button-inner-rim: rgba(255, 255, 255, 0.14);
-  --ds-button-border: rgba(255, 255, 255, 0.18);
-  --ds-button-border-dark: rgba(255, 255, 255, 0.12);
-  --ds-button-shadow: 0 2px 6px rgba(4, 39, 24, 0.16), 0 10px 24px -4px rgba(4, 39, 24, 0.14);
-  --ds-button-hover-shadow: 0 4px 12px rgba(4, 39, 24, 0.20), 0 16px 32px -4px rgba(4, 39, 24, 0.22);
-  --ds-button-secondary-bg: rgba(255, 255, 255, 0.92);
-  --ds-button-secondary-border: rgba(4, 39, 24, 0.14);
-  --ds-button-secondary-shadow: 0 2px 6px rgba(4, 39, 24, 0.05), 0 8px 20px -3px rgba(4, 39, 24, 0.04);
+  /* Button Material Tokens: EDITORIAL CHARCOAL × POLISHED GLASS */
+  --ds-button-primary-start: #1D2125;
+  --ds-button-primary-end: #101215;
+  --ds-button-primary-hover-start: #2A2E33;
+  --ds-button-primary-hover-end: #171A1D;
+  --ds-button-dark-start: #16181B;
+  --ds-button-dark-end: #0B0D0F;
+  --ds-button-highlight: rgba(255, 255, 255, 0.18);
+  --ds-button-inner-rim: rgba(255, 255, 255, 0.12);
+  --ds-button-border: rgba(255, 255, 255, 0.16);
+  --ds-button-border-dark: rgba(255, 255, 255, 0.10);
+  --ds-button-shadow: 0 2px 6px rgba(0, 0, 0, 0.12), 0 10px 24px -4px rgba(0, 0, 0, 0.10);
+  --ds-button-hover-shadow: 0 4px 12px rgba(0, 0, 0, 0.16), 0 16px 32px -4px rgba(0, 0, 0, 0.16);
+  --ds-button-secondary-bg: rgba(255, 255, 255, 0.94);
+  --ds-button-secondary-border: rgba(18, 21, 23, 0.10);
+  --ds-button-secondary-shadow: 0 2px 6px rgba(0, 0, 0, 0.04), 0 8px 20px -3px rgba(0, 0, 0, 0.03);
 }
 
 html, body {
@@ -731,7 +733,7 @@ html, body {
   }
 }
 
-/* Dark Variant: Deep green glass/lacquer */
+/* Dark Variant: Deep charcoal glass */
 .glass-btn-dark {
   background: linear-gradient(172deg, var(--ds-button-dark-start) 0%, var(--ds-button-dark-end) 100%);
   color: #FFFFFF;
@@ -741,7 +743,7 @@ html, body {
 
 @media (hover: hover) and (pointer: fine) {
   .glass-btn-dark:hover {
-    background: linear-gradient(172deg, #0A3D26 0%, #031D12 100%);
+    background: linear-gradient(172deg, #23272C 0%, #121517 100%);
     border-color: rgba(255, 255, 255, 0.22);
     transform: translateY(-1.5px);
     box-shadow: inset 0 1px 0 var(--ds-button-inner-rim), var(--ds-button-hover-shadow);
@@ -773,7 +775,7 @@ html, body {
   }
 }
 
-/* Secondary Variant: Translucent white surface + subtle green-tinted border + fallback */
+/* Secondary Variant: Translucent white surface + subtle neutral border + fallback */
 .glass-btn-secondary {
   background: var(--ds-button-secondary-bg);
   backdrop-filter: blur(12px);
@@ -786,9 +788,9 @@ html, body {
 @media (hover: hover) and (pointer: fine) {
   .glass-btn-secondary:hover {
     background: #FFFFFF;
-    border-color: rgba(4, 39, 24, 0.26);
+    border-color: rgba(18, 21, 23, 0.22);
     transform: translateY(-1.5px);
-    box-shadow: inset 0 1px 0 #FFFFFF, 0 4px 14px rgba(4, 39, 24, 0.08);
+    box-shadow: inset 0 1px 0 #FFFFFF, 0 4px 14px rgba(0, 0, 0, 0.08);
   }
 
   .glass-btn-secondary::after {
@@ -820,32 +822,32 @@ html, body {
   background: rgba(255, 255, 255, 0.88);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  color: rgba(4, 39, 24, 0.8);
-  border: 1px solid rgba(4, 39, 24, 0.12);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 2px 6px rgba(4, 39, 24, 0.05);
+  color: rgba(18, 21, 23, 0.85);
+  border: 1px solid rgba(18, 21, 23, 0.12);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 2px 6px rgba(0, 0, 0, 0.04);
 }
 
 @media (hover: hover) and (pointer: fine) {
   .glass-btn-icon:hover {
     background: #FFFFFF;
     color: var(--ds-ink);
-    border-color: rgba(4, 39, 24, 0.22);
+    border-color: rgba(18, 21, 23, 0.20);
     transform: translateY(-1.5px);
-    box-shadow: inset 0 1px 0 #FFFFFF, 0 4px 12px rgba(4, 39, 24, 0.09);
+    box-shadow: inset 0 1px 0 #FFFFFF, 0 4px 12px rgba(0, 0, 0, 0.08);
   }
 }
 
 /* Ghost Variant: Clean, borderless, subtle interaction */
 .glass-btn-ghost {
   background: transparent;
-  color: rgba(4, 39, 24, 0.72);
+  color: rgba(18, 21, 23, 0.72);
   border: 1px solid transparent;
 }
 
 @media (hover: hover) and (pointer: fine) {
   .glass-btn-ghost:hover {
     color: var(--ds-ink);
-    background: rgba(4, 39, 24, 0.05);
+    background: rgba(18, 21, 23, 0.05);
   }
 }
 

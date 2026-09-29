@@ -338,7 +338,7 @@ export default function HomePage({
       id: "w7",
       content: (
         <span className="inline-block whitespace-nowrap">
-          <span className="font-playfair italic font-medium text-[#042718] relative inline-block px-[2px]">
+          <span className="font-playfair italic font-medium text-[#121517] relative inline-block px-[2px]">
             curious
           </span>
           .
@@ -348,7 +348,7 @@ export default function HomePage({
     {
       id: "w8",
       content: (
-        <span className="font-playfair font-medium text-[#042718] inline-block">
+        <span className="font-playfair font-medium text-[#121517] inline-block">
           Stubborn
         </span>
       ),
@@ -403,7 +403,7 @@ export default function HomePage({
   );
 
   return (
-    <div className="w-full bg-[#FAF8F5] text-[#042718]">
+    <div className="w-full bg-[#FAF8F5] text-[#121517]">
       {/* =========================================================================
           1. HERO SECTION (ORIGINAL HERO WITH SEASONAL BACKGROUND EXPERIMENT)
           ========================================================================= */}
@@ -1134,28 +1134,28 @@ export default function HomePage({
       </section>
 
       {/* =========================================================================
-          4. APPLIED AI LAB & PRODUCT EXPERIMENTS (PM THINKING & MECHANISM TESTING)
+          4. THE PRODUCT LAB (PM THINKING, MECHANISM TESTING & APPLIED SYSTEMS)
           ========================================================================= */}
-      <section id="ai-builds" className="py-14 md:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section id="ai-builds" data-section="product-lab" className="py-14 md:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center text-center mb-8 md:mb-12">
-          <h2 className="font-onest text-[32px] sm:text-[42px] md:text-[50px] font-bold text-[#042718] leading-[1.15] tracking-tight md:tracking-[-1.5px] max-w-3xl text-center">
+          <h2 className="font-onest text-[32px] sm:text-[42px] md:text-[50px] font-bold text-[#121517] leading-[1.15] tracking-tight md:tracking-[-1.5px] max-w-3xl text-center">
             I don&apos;t just use AI to make things. <br className="hidden sm:inline" />
-            <span className="font-playfair italic font-medium text-[#042718]/85">I use it to test how products should work.</span>
+            <span className="font-playfair italic font-medium text-[#121517]/80">I use it to test how products should work.</span>
           </h2>
-          <p className="font-inter text-[15px] md:text-[17.5px] text-[#042718]/80 leading-relaxed max-w-[720px] font-normal mt-4 text-center">
+          <p className="font-inter text-[15px] md:text-[17px] text-[#4A525A] leading-relaxed max-w-[720px] font-normal mt-4 text-center">
             I prototype product mechanisms, challenge my assumptions, and build working systems with AI as an implementation partner &mdash; while keeping the product decisions, constraints, and validation loop mine.
           </p>
         </div>
 
-        {/* Empty container ready for the project cards */}
+        {/* Product Lab Grid */}
         <div id="ai-builds-grid" className="w-full">
           <AiBuilds onNavigate={onNavigate} />
         </div>
 
         {/* Builder's Stack Tool Strip */}
-        <div className="mt-12 flex flex-col items-center gap-3">
-          <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-[#042718]/45">
-            PM & AI Tooling
+        <div className="mt-12 flex flex-col items-center gap-2.5">
+          <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-[#7A828A]">
+            PM &amp; AI Tooling
           </span>
           <div className="flex flex-wrap items-center justify-center gap-2 max-w-3xl">
             {[
@@ -1168,7 +1168,7 @@ export default function HomePage({
             ].map((tool) => (
               <span
                 key={tool}
-                className="font-mono text-xs px-2.5 py-1 rounded-md border text-[rgba(4,39,24,0.56)] border-[rgba(4,39,24,0.10)] bg-transparent"
+                className="font-mono text-xs px-2.5 py-1 rounded-md border text-[#4A525A] border-black/[0.08] bg-white/[0.6] select-none"
               >
                 {tool}
               </span>

@@ -21,15 +21,15 @@ export const Tag: React.FC<TagProps> = ({
 }) => {
   const variantStyles = {
     default:
-      "bg-[#042718]/5 text-[#042718]/75 border border-[#042718]/8 hover:bg-[#042718]/8",
+      "bg-black/[0.04] text-[#121517]/75 border border-black/[0.08] hover:bg-black/[0.06]",
     accent:
-      "bg-[#188E39]/10 text-[#188E39] border border-[#188E39]/20 font-semibold",
+      "bg-[#C89B3C]/10 text-[#A8711A] border border-[#C89B3C]/25 font-semibold",
     amber:
-      "bg-[#A8711A]/10 text-[#A8711A] border border-[#A8711A]/20 font-semibold",
+      "bg-[#C89B3C]/12 text-[#9A6715] border border-[#C89B3C]/25 font-semibold",
     live:
-      "bg-[#6FBE8C]/15 text-[#2F7A4F] border border-[#2F7A4F]/30 font-semibold",
+      "bg-[#188E39]/10 text-[#188E39] border border-[#188E39]/20 font-semibold",
     outline:
-      "bg-white/80 backdrop-blur-sm text-[#042718]/70 border border-[#042718]/12 hover:border-[#042718]/25",
+      "bg-white/80 backdrop-blur-sm text-[#121517]/70 border border-black/[0.10] hover:border-black/20",
   };
 
   return (
