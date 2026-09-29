@@ -442,11 +442,6 @@ export const OperatingPrinciples: React.FC<OperatingPrinciplesProps> = ({
           <div
             className="hub-cell z-[3] text-center px-[6px] col-span-1 min-[641px]:col-span-2 min-[1025px]:col-span-1 min-[1025px]:col-start-2 min-[1025px]:row-start-2 mb-3 min-[1025px]:mb-0 flex flex-col items-center justify-center"
           >
-            {/* eyebrow "How I work" — mono, 10px, uppercase, #A8711A, tracking .24em */}
-            <span className="font-mono text-[10px] uppercase text-[#A8711A] tracking-[0.24em] font-semibold block">
-              How I work
-            </span>
-
             {/* h2 "Six principles I keep coming back to." */}
             <h2 className="font-onest font-bold text-[clamp(1.45rem,2.9vw,2.35rem)] leading-[1.08] text-[#042718] mt-3 tracking-tight principles-hub-heading">
               Six principles I keep coming{" "}

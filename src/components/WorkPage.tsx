@@ -202,7 +202,6 @@ export default function WorkPage({
             ========================================================================= */}
         <section className="mb-20 md:mb-28">
           <div className="mb-8">
-            <SectionLabel label="Flagship Work" color="amber" />
             <h2 className="font-onest text-2xl sm:text-3xl font-bold text-[#042718] tracking-tight">
               Five deep PM stories
             </h2>
@@ -288,7 +287,6 @@ export default function WorkPage({
             ========================================================================= */}
         <section className="mb-20 md:mb-28 pt-10 border-t border-[#042718]/10">
           <div className="max-w-3xl mb-8">
-            <SectionLabel label="Applied AI" color="amber" />
             <h2 className="font-onest text-2xl sm:text-3xl font-bold text-[#042718] tracking-tight">
               Things I built.
             </h2>
@@ -391,7 +389,6 @@ export default function WorkPage({
             ========================================================================= */}
         <section id="more-work" className="pt-10 border-t border-[#042718]/10">
           <div className="max-w-3xl mb-8">
-            <SectionLabel label="Library" color="amber" />
             <h2 className="font-onest text-3xl sm:text-4xl font-bold text-[#042718] tracking-tight">
               More product work
             </h2>

@@ -7,8 +7,6 @@ import { ALL_FLAGSHIP_CASE_STUDIES } from "../data/caseStudies";
 import { CaseStudyDetail } from "../types";
 import { OperatingPrinciples } from "./OperatingPrinciples";
 import AiBuilds from "./AiBuilds";
-import GlassButton from "./ui/GlassButton";
-import SectionLabel from "./ui/SectionLabel";
 import SeasonalHeroBackground, {
   SeasonalTheme,
   SEASONAL_THEMES,
@@ -103,7 +101,7 @@ function NumericStatDisplay({
   return (
     <span
       aria-label={`${canonicalValue} — ${label}`}
-      className="font-onest text-2xl sm:text-3xl font-bold tracking-tight text-[#042718]"
+      className="font-onest text-3xl sm:text-4xl lg:text-[40px] font-bold tracking-tight text-[#121517] leading-none"
     >
       <span aria-hidden="true">
         {count}
@@ -121,8 +119,8 @@ function StatNumberDisplay({
 }: StatNumberDisplayProps) {
   const delay = idx * 90;
 
-  // Semantic transitions containing "→" (e.g. "0→1", "~300 → 3,200+ DAU", "15 days → under 2 hrs")
-  // Render canonical text directly with editorial Playfair transition arrow — never coerce to numbers
+  // Semantic transitions containing "→" (e.g. "0 → 1", "~300 → 3,200+ DAU", "15 days → under 2 hrs")
+  // Render canonical text directly with editorial Playfair champagne transition arrow — never coerce to numbers
   if (metric.value.includes("→")) {
     const parts = metric.value.split("→");
     const left = parts[0].trim();
@@ -131,11 +129,11 @@ function StatNumberDisplay({
     return (
       <span
         aria-label={`${metric.value} — ${metric.label}`}
-        className="font-onest text-2xl sm:text-3xl font-bold tracking-tight text-[#042718] inline-flex items-center"
+        className="font-onest text-3xl sm:text-4xl lg:text-[40px] font-bold tracking-tight text-[#121517] leading-none inline-flex items-center flex-wrap"
       >
-        <span aria-hidden="true" className="inline-flex items-center">
+        <span aria-hidden="true" className="inline-flex items-center flex-wrap">
           <span>{left}</span>
-          <span className="font-playfair italic font-normal text-[#042718]/70 mx-1.5 select-none">
+          <span className="font-playfair italic font-normal text-[#C89B3C] mx-1.5 sm:mx-2 text-[0.85em] select-none">
             →
           </span>
           <span>{right}</span>
@@ -167,7 +165,7 @@ function StatNumberDisplay({
   return (
     <span
       aria-label={`${metric.value} — ${metric.label}`}
-      className="font-onest text-2xl sm:text-3xl font-bold tracking-tight text-[#042718]"
+      className="font-onest text-3xl sm:text-4xl lg:text-[40px] font-bold tracking-tight text-[#121517] leading-none"
     >
       {metric.value}
     </span>
@@ -370,7 +368,7 @@ export default function HomePage({
       detail: "Across India & Europe",
     },
     {
-      value: "0→1",
+      value: "0 → 1",
       label: "AI, SaaS & platforms",
       detail: "Concept to production",
     },
@@ -690,23 +688,20 @@ export default function HomePage({
       <section
         ref={statsSectionRef}
         id="methodology"
-        className="pt-20 md:pt-28 pb-12 md:pb-16 bg-[#FAF8F5] scroll-mt-24 relative z-10"
+        className="pt-12 sm:pt-14 md:pt-16 pb-14 md:pb-20 bg-[#FAF8F5] scroll-mt-24 relative z-10"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 pb-6 border-b border-[#042718]/8">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 pb-6 border-b border-black/[0.08]">
             <div>
-              <span className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#188E39] block mb-2">
-                VERIFIED TRACK RECORD · 7+ YEARS SHIPPING PRODUCTION SYSTEMS
-              </span>
-              <h2 className="font-onest text-2xl sm:text-3xl font-bold tracking-tight text-[#042718]">
+              <h2 className="font-onest text-2xl sm:text-3xl md:text-[34px] lg:text-[36px] font-bold tracking-tight text-[#121517] leading-[1.18]">
                 Measurable business & user impact at scale.
               </h2>
             </div>
-            <p className="font-inter text-xs sm:text-sm text-[#042718]/60 max-w-sm sm:text-right">
+            <p className="font-inter text-xs sm:text-[13.5px] text-[#5A626A] max-w-sm sm:text-right leading-relaxed">
               Validated across enterprise B2B marketplaces, consumer AI, and subscription platforms.
             </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-y-6 sm:gap-y-8 md:gap-y-0">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
             {proofStripMetrics.map((item, idx) => (
               <motion.div
                 key={idx}
@@ -723,32 +718,37 @@ export default function HomePage({
                     ? { duration: 0 }
                     : {
                         duration: 0.5,
-                        delay: idx * 0.09,
+                        delay: idx * 0.08,
                         ease: [0.16, 1, 0.3, 1],
                       }
                 }
-                className={`flex flex-col items-start ${
-                  idx % 3 !== 0 ? "md:border-l md:border-[#042718]/8 md:pl-8 lg:pl-10" : "md:pr-6 lg:pr-8"
+                className={`group flex flex-col items-start ${
+                  idx % 3 !== 0 ? "md:border-l md:border-black/[0.08] md:pl-8 lg:pl-10" : "md:pr-8 lg:pr-10"
                 } ${
-                  idx === 1 || idx === 4 ? "md:pr-6 lg:pr-8" : ""
+                  idx === 1 || idx === 4 ? "md:pr-8 lg:pr-10" : ""
                 } ${
-                  idx >= 3 ? "md:border-t md:border-[#042718]/8 md:pt-7" : "md:pb-7"
+                  idx >= 3 ? "md:border-t md:border-black/[0.08] md:pt-8" : "md:pb-8"
                 } ${
-                  idx % 2 === 1 ? "sm:max-md:border-l sm:max-md:border-[#042718]/8 sm:max-md:pl-6" : "sm:max-md:pr-6"
+                  idx % 2 === 1 ? "sm:max-md:border-l sm:max-md:border-black/[0.08] sm:max-md:pl-6" : "sm:max-md:pr-6"
                 } ${
-                  idx >= 2 ? "sm:max-md:border-t sm:max-md:border-[#042718]/8 sm:max-md:pt-5" : "sm:max-md:pb-5"
+                  idx >= 2 ? "sm:max-md:border-t sm:max-md:border-black/[0.08] sm:max-md:pt-6" : "sm:max-md:pb-6"
                 } ${
-                  idx > 0 ? "max-sm:border-t max-sm:border-[#042718]/8 max-sm:pt-4" : ""
+                  idx > 0 ? "max-sm:border-t max-sm:border-black/[0.08] max-sm:pt-5" : ""
+                } ${
+                  idx < 5 ? "max-sm:pb-5" : ""
                 }`}
               >
-                <StatNumberDisplay
-                  metric={item}
-                  idx={idx}
-                  isInView={isInView}
-                  shouldReduceMotion={shouldReduceMotion}
-                />
+                {/* Metric value with subtle micro-interaction */}
+                <div className="motion-safe:group-hover:-translate-y-[2px] transition-transform duration-200">
+                  <StatNumberDisplay
+                    metric={item}
+                    idx={idx}
+                    isInView={isInView}
+                    shouldReduceMotion={shouldReduceMotion}
+                  />
+                </div>
 
-                {/* Thin sage/moss accent line beneath each stat number */}
+                {/* Restrained Champagne Accent Rule */}
                 <motion.div
                   initial={shouldReduceMotion ? { scaleX: 1 } : { scaleX: 0 }}
                   animate={
@@ -763,19 +763,19 @@ export default function HomePage({
                       ? { duration: 0 }
                       : {
                           duration: 0.6,
-                          delay: idx * 0.09 + 0.12,
+                          delay: idx * 0.08 + 0.1,
                           ease: [0.16, 1, 0.3, 1],
                         }
                   }
                   style={{ transformOrigin: "left" }}
-                  className="h-[1.5px] w-12 sm:w-14 bg-[#6E8864]/40 my-2.5 rounded-full"
+                  className="h-[1.5px] w-9 sm:w-11 bg-[#C89B3C]/40 group-hover:bg-[#C89B3C] group-hover:w-14 transition-all duration-300 my-3 rounded-full"
                   aria-hidden="true"
                 />
 
-                <span className="font-inter text-xs sm:text-[13px] font-semibold text-[#042718]/90 mt-0.5">
+                <span className="font-inter text-xs sm:text-[13.5px] font-semibold text-[#16191D] mt-0.5">
                   {item.label}
                 </span>
-                <span className="font-inter text-[11px] text-[#042718]/50 mt-0.5">
+                <span className="font-inter text-[11.5px] sm:text-[12px] text-[#6B7280] group-hover:text-[#424850] transition-colors duration-200 mt-0.5 leading-normal">
                   {item.detail}
                 </span>
               </motion.div>
@@ -787,21 +787,24 @@ export default function HomePage({
       {/* =========================================================================
           3. SELECTED WORK SECTION (5 FLAGSHIP CASE STUDIES - OVERTAKE STICKY DECK)
           ========================================================================= */}
-      <section id="selected-work" className="py-14 md:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section id="selected-work" className="py-16 md:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <style>{`
           .work-deck-slot {
             position: sticky;
             top: 120px;
-            margin-bottom: clamp(18px, 2.6vw, 42px);
+            margin-bottom: clamp(20px, 3vw, 48px);
           }
           .work-deck-card {
             position: relative;
-            border-radius: 30px;
+            border-radius: 28px;
             overflow: clip;
             padding: 10px;
             aspect-ratio: 964 / 473;
             width: 100%;
-            background: #042718;
+            background: #121517;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 48px rgba(0, 0, 0, 0.2);
+            transition: transform 300ms ease, box-shadow 300ms ease, border-color 300ms ease;
           }
           .work-deck-shot {
             position: absolute;
@@ -820,49 +823,67 @@ export default function HomePage({
             position: relative;
             z-index: 1;
             margin-left: auto;
-            width: 360px;
+            width: 380px;
             height: 100%;
-            border-radius: 26px;
-            padding: 30px;
+            border-radius: 22px;
+            padding: 32px 30px;
             display: flex;
             flex-direction: column;
-            background: #042718;
-            color: #FFFFFF;
+            background: rgba(14, 17, 20, 0.82);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            color: #FAFDFB;
+            transition: background 300ms ease, border-color 300ms ease;
           }
           .work-deck-cta {
-            height: 47px;
+            height: 44px;
             border-radius: 100px;
-            background: #FFFFFF;
-            color: #042718;
-            padding: 8px 8px 8px 24px;
+            background: rgba(255, 255, 255, 0.92);
+            color: #121517;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            padding: 6px 6px 6px 20px;
             display: inline-flex;
             align-items: center;
             justify-content: space-between;
             text-decoration: none;
             cursor: pointer;
-            transition: transform 240ms ease, box-shadow 240ms ease;
+            transition: transform 240ms ease, box-shadow 240ms ease, background-color 240ms ease;
           }
           .work-deck-cta-arrow {
-            width: 31px;
-            height: 31px;
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
-            background: #042718;
-            color: #FFFFFF;
+            background: #121517;
+            color: #FAFDFB;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: transform 240ms ease;
+            transition: transform 240ms ease, color 240ms ease, background-color 240ms ease;
           }
 
           @media (hover: hover) and (pointer: fine) {
             .work-deck-card:hover .work-deck-shot img {
-              transform: scale(1.04);
+              transform: scale(1.02);
+            }
+            .work-deck-card:hover {
+              transform: translateY(-2px);
+              box-shadow: 0 28px 64px rgba(0, 0, 0, 0.28);
+              border-color: rgba(255, 255, 255, 0.18);
+            }
+            .work-deck-card:hover .work-deck-panel {
+              background: rgba(14, 17, 20, 0.88);
+              border-color: rgba(255, 255, 255, 0.22);
             }
             .work-deck-card:hover .work-deck-cta {
-              transform: translateY(-2px);
-              box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+              background: #FFFFFF;
+              transform: translateY(-1px);
+              box-shadow: 0 4px 16px rgba(0, 0, 0, 0.22);
             }
             .work-deck-card:hover .work-deck-cta-arrow {
+              background: #121517;
+              color: #FDE68A;
               transform: rotate(45deg);
             }
           }
@@ -870,7 +891,7 @@ export default function HomePage({
           @media (max-width: 900px) {
             .work-deck-slot {
               position: static;
-              margin-bottom: 20px;
+              margin-bottom: 24px;
             }
             .work-deck-card {
               aspect-ratio: auto;
@@ -883,14 +904,14 @@ export default function HomePage({
               position: relative;
               inset: auto;
               width: 100%;
-              height: clamp(180px, 40vw, 260px);
+              height: clamp(200px, 45vw, 280px);
               border-radius: 18px;
             }
             .work-deck-panel {
               width: 100%;
               height: auto;
               margin: 8px 0 0;
-              padding: 22px;
+              padding: 24px 20px;
               border-radius: 18px;
             }
           }
@@ -899,36 +920,28 @@ export default function HomePage({
             .work-deck-slot {
               position: static;
             }
+            .work-deck-card:hover {
+              transform: none !important;
+            }
             .work-deck-shot img {
               transition: none !important;
+              transform: none !important;
             }
             .work-deck-cta, .work-deck-cta-arrow {
               transition: none !important;
+              transform: none !important;
             }
           }
         `}</style>
 
-        {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-10 md:mb-14">
-          <div className="max-w-2xl">
-            <SectionLabel label="FLAGSHIP SHIPPED PRODUCTS" color="green" className="mb-3" />
-            <h2 className="font-onest text-[34px] sm:text-[44px] md:text-[54px] font-bold text-[#042718] leading-[1.12] tracking-tight md:tracking-[-2px]">
-              From silk mandis to <em className="font-playfair italic font-medium text-[#042718]/70 not-italic">conversational AI</em>
-            </h2>
-            <p className="font-inter text-[15px] md:text-[18px] text-[#042718]/80 leading-relaxed max-w-[640px] font-normal mt-4">
-              Core products I personally owned and shipped to production as Senior Product Manager — driving enterprise scale, B2C subscription growth, and applied AI guardrails.
-            </p>
-          </div>
-
-          <GlassButton
-            variant="primary"
-            size="md"
-            icon={<ArrowRight size={15} />}
-            onClick={() => onNavigate("/work")}
-            className="self-start sm:self-auto shrink-0"
-          >
-            All work
-          </GlassButton>
+        {/* Section Header — Centered Editorial Composition */}
+        <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-12 md:mb-16">
+          <h2 className="font-onest text-[32px] sm:text-[42px] md:text-[50px] font-bold text-[#121517] leading-[1.14] tracking-tight md:tracking-[-1.5px]">
+            From silk mandis to <em className="font-playfair italic font-medium text-[#121517]/85 not-italic">conversational AI</em>
+          </h2>
+          <p className="font-inter text-[15px] md:text-[17px] text-[#5A626A] leading-relaxed max-w-[620px] font-normal mt-3.5">
+            Core products I personally owned and shipped to production as Senior Product Manager — driving enterprise scale, B2C subscription growth, and applied AI guardrails.
+          </p>
         </div>
 
         {/* The 5 Stacked Cards */}
@@ -1023,10 +1036,10 @@ export default function HomePage({
                     if (targetStudy) onSelectCaseStudy(targetStudy);
                     onNavigate(`/work/${item.slug}`);
                   }}
-                  className="work-deck-card block text-inherit no-underline cursor-pointer group shadow-[0_24px_64px_rgba(4,39,24,0.12)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#188E39] focus-visible:ring-offset-4"
+                  className="work-deck-card block text-inherit no-underline cursor-pointer group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C89B3C] focus-visible:ring-offset-4"
                   aria-label={`Explore work: ${item.title}`}
                 >
-                  {/* Full-bleed background image behind the whole card */}
+                  {/* Full-bleed authentic background image behind the whole card */}
                   <div className="work-deck-shot">
                     <img
                       src={`${item.imagePrefix}.webp`}
@@ -1044,69 +1057,47 @@ export default function HomePage({
                       {...(isFirst ? { fetchPriority: "high" } : {})}
                     />
 
-                    {/* Gradient shade on mobile for contrast if needed */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#042718]/40 via-transparent to-black/20 pointer-events-none" />
-
-                    {/* Stamp: Year (right: 392px on desktop to clear 360px panel + 10px + gap, right: 16px on mobile) */}
-                    <div className="absolute top-3 sm:top-4 right-3 sm:right-4 min-[901px]:right-[392px] z-10 px-3 py-1 rounded-full bg-[rgba(4,39,24,0.58)] backdrop-blur-[8px] text-[11px] sm:text-xs font-mono text-white/90 select-none border border-white/10">
-                      {item.year}
-                    </div>
+                    {/* Neutral ambient gradient shade for image depth */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20 pointer-events-none" />
                   </div>
 
-                  {/* Floating Panel on top of image, inset right */}
+                  {/* Smoked Glass Charcoal Information Panel */}
                   <div className="work-deck-panel">
-                    {/* Role & Year Header */}
-                    <div className="flex items-center justify-between gap-2 mb-2 pb-2 border-b border-white/10">
-                      <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-[#E8C48A]">
-                        {item.role}
-                      </span>
-                      <span className="font-mono text-[11px] text-white/50">
-                        {item.year}
-                      </span>
+                    {/* Project Title: Prominent, begins cleanly at top with zero decorative eyebrow */}
+                    <div className="mb-2.5">
+                      <h3 className="font-onest font-semibold text-[24px] sm:text-[28px] leading-[1.18] tracking-[-0.02em] text-[#FAFDFB]">
+                        {item.title}
+                      </h3>
+                      {item.tags.some((t) => t.startsWith("UNLAUNCHED")) && (
+                        <div className="inline-block mt-1.5">
+                          <span className="rounded-full px-2.5 py-0.5 text-[10.5px] font-mono font-semibold tracking-wider bg-[#2A2010] text-[#FDE68A] border border-[#FDE68A]/30">
+                            UNLAUNCHED · DEVELOPMENT-READY PRD
+                          </span>
+                        </div>
+                      )}
                     </div>
 
-                    {/* Tag pills */}
-                    <div className="flex flex-wrap gap-1.5 mb-3">
-                      {item.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className={
-                            tag.startsWith("UNLAUNCHED")
-                              ? "rounded-[100px] px-2.5 py-1 text-[11px] font-mono font-bold leading-none bg-[#3D2605] text-[#FDE68A] border border-[#F59E0B]/40"
-                              : "rounded-[100px] px-2.5 py-1 text-[12px] font-inter font-medium leading-none bg-[#0B3322] text-[#B7BCBC]"
-                          }
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-
-                    {/* H3 Title */}
-                    <h3 className="font-onest font-semibold text-[22px] sm:text-[26px] leading-[26px] sm:leading-[31.2px] tracking-[-0.78px] text-[#FFFFFF] mb-2.5">
-                      {item.title}
-                    </h3>
-
-                    {/* Description */}
-                    <p className="font-inter text-[14px] sm:text-[16px] leading-[19.2px] text-[#B7BCBC] font-normal">
+                    {/* Exact Authentic Description */}
+                    <p className="font-inter text-[14px] sm:text-[15.5px] leading-[1.58] text-white/80 font-normal">
                       {item.description}
                     </p>
 
                     {/* Flex spacer */}
                     <div className="flex-1 min-h-[20px] sm:min-h-[28px]" />
 
-                    {/* Metric row */}
-                    <div className="pt-[18px] border-t border-[rgba(255,255,255,0.14)] flex items-baseline justify-between gap-3 mb-5">
-                      <div className="font-onest font-semibold text-[34px] sm:text-[42px] leading-none tracking-[-0.84px] text-[#E8C48A] tabular-nums">
+                    {/* Verified Metrics Row */}
+                    <div className="pt-4 border-t border-white/[0.12] flex items-baseline justify-between gap-3 mb-5">
+                      <div className="font-onest font-semibold text-[32px] sm:text-[38px] leading-none tracking-[-0.02em] text-[#FDE68A] tabular-nums">
                         {item.figure}
                       </div>
-                      <div className="font-inter text-[13px] sm:text-[16px] leading-snug text-[#B7BCBC] text-right max-w-[15ch]">
+                      <div className="font-inter text-[12.5px] sm:text-[14px] leading-snug text-white/70 text-right max-w-[17ch]">
                         {item.qualifier}
                       </div>
                     </div>
 
-                    {/* CTA button */}
+                    {/* CTA Button */}
                     <div className="work-deck-cta">
-                      <span className="font-inter font-semibold text-[14px] text-[#042718]">
+                      <span className="font-inter font-semibold text-[13.5px] text-[#121517]">
                         Explore the work
                       </span>
                       <span className="work-deck-cta-arrow font-sans text-sm font-semibold">
@@ -1119,6 +1110,27 @@ export default function HomePage({
             );
           })}
         </div>
+
+        {/* Closing Action: All Work */}
+        <div className="mt-14 md:mt-18 flex flex-col items-center text-center">
+          <p className="font-inter text-xs sm:text-[13px] text-[#5A626A] mb-3 select-none">
+            Continue exploring everything I&apos;ve shipped
+          </p>
+          <a
+            href="/work"
+            onClick={(e) => {
+              e.preventDefault();
+              onNavigate("/work");
+            }}
+            id="featured-work-all-work-cta"
+            className="group inline-flex items-center gap-2.5 px-6 py-2.5 rounded-full bg-white/[0.88] hover:bg-white text-[#121517] font-inter text-[13.5px] sm:text-[14px] font-medium border border-black/[0.08] hover:border-black/20 shadow-[0_2px_12px_rgba(0,0,0,0.06)] hover:shadow-[0_4px_18px_rgba(0,0,0,0.1)] transition-all duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C89B3C] focus-visible:ring-offset-2"
+          >
+            <span>All work</span>
+            <span className="w-5 h-5 rounded-full bg-[#121517] text-[#FAFDFB] group-hover:text-[#FDE68A] flex items-center justify-center transition-colors">
+              <ArrowRight size={12} />
+            </span>
+          </a>
+        </div>
       </section>
 
       {/* =========================================================================
@@ -1126,7 +1138,6 @@ export default function HomePage({
           ========================================================================= */}
       <section id="ai-builds" className="py-14 md:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center text-center mb-8 md:mb-12">
-          <SectionLabel label="APPLIED AI & PRODUCT SYSTEMS" color="amber" className="mb-2" />
           <h2 className="font-onest text-[32px] sm:text-[42px] md:text-[50px] font-bold text-[#042718] leading-[1.15] tracking-tight md:tracking-[-1.5px] max-w-3xl text-center">
             I don&apos;t just use AI to make things. <br className="hidden sm:inline" />
             <span className="font-playfair italic font-medium text-[#042718]/85">I use it to test how products should work.</span>

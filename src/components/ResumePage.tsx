@@ -50,9 +50,6 @@ export default function ResumePage({
             ========================================================================= */}
         <div className="p-8 rounded-[24px] bg-[#042718] text-white mb-16 shadow-md relative overflow-hidden">
           <div className="max-w-xl relative z-10">
-            <span className="text-xs font-inter font-semibold uppercase tracking-wider text-[#A7F3D0] mb-2 block">
-              Official PDF Resume
-            </span>
             <h2 className="font-onest text-2xl sm:text-3xl font-bold leading-snug mb-3">
               Want the full career history? Download my resume
             </h2>

@@ -110,9 +110,6 @@ export default function AboutPage({
             CAREER EVOLUTION DIAGRAM
             ========================================================================= */}
         <div className="mb-20 p-6 sm:p-8 rounded-[24px] bg-white border border-[#042718]/10 shadow-2xs">
-          <span className="text-xs font-inter font-semibold uppercase tracking-wider text-[#188E39] block mb-2">
-            Career Journey & Evolution
-          </span>
           <h3 className="font-onest text-xl sm:text-2xl font-bold text-[#042718] mb-6">
             From physical hardware and rural mandis to consumer AI platforms
           </h3>
