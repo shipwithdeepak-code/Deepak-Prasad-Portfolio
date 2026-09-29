@@ -9,6 +9,10 @@ import { OperatingPrinciples } from "./OperatingPrinciples";
 import AiBuilds from "./AiBuilds";
 import GlassButton from "./ui/GlassButton";
 import SectionLabel from "./ui/SectionLabel";
+import SeasonalHeroBackground, {
+  SeasonalTheme,
+  SEASONAL_THEMES,
+} from "./SeasonalHeroBackground";
 
 interface HomePageProps {
   onNavigate: (path: string) => void;
@@ -336,7 +340,7 @@ export default function HomePage({
       id: "w7",
       content: (
         <span className="inline-block whitespace-nowrap">
-          <span className="font-playfair italic font-medium text-[#042718] relative inline-block px-[3px] headline-curious-marker">
+          <span className="font-playfair italic font-medium text-[#042718] relative inline-block px-[2px]">
             curious
           </span>
           .
@@ -392,253 +396,291 @@ export default function HomePage({
     },
   ];
 
+  // BACKGROUND EXPERIMENT: Set to true to enable the four seasonal cinematic states background, or false to use the exact original background.
+  const USE_SEASONAL_BACKGROUND = true;
+
+  // Adaptive theme state synchronized with seasonal video background
+  const [heroTheme, setHeroTheme] = useState<SeasonalTheme>(
+    SEASONAL_THEMES["golden-hour"]
+  );
+
   return (
     <div className="w-full bg-[#FAF8F5] text-[#042718]">
       {/* =========================================================================
-          1. HERO SECTION (ORIGINAL HERO)
+          1. HERO SECTION (ORIGINAL HERO WITH SEASONAL BACKGROUND EXPERIMENT)
           ========================================================================= */}
-      <section className="relative pt-[112px] md:pt-[136px] pb-8 md:pb-12 min-h-[100svh] flex flex-col justify-center items-center overflow-hidden bg-[#FAF8F5]">
-        {/* Background Video/Image band full bleed cover */}
-        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-          <picture className="w-full h-full block">
-            <source srcSet="/images/hero-bg-poster.webp" type="image/webp" />
-            <img
-              src="/images/hero-bg-poster.jpg"
-              alt=""
-              aria-hidden="true"
-              fetchPriority="high"
-              loading="eager"
-              decoding="sync"
-              width={1440}
-              height={900}
-              className="w-full h-full object-cover object-center"
-            />
-          </picture>
-
-          {canPlayHeroVideo && (
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              preload="auto"
-              poster="/images/hero-bg-poster.webp"
-              aria-hidden="true"
-              className="absolute inset-0 w-full h-full object-cover object-center"
-            >
-              <source
-                src="https://cdn.jiro.build/Amox/All%20Images/P01-Header-01-BG.mp4"
-                type="video/mp4"
+      <section
+        id="hero-section"
+        className="relative pt-[112px] md:pt-[132px] pb-8 md:pb-12 min-h-[100svh] flex flex-col justify-center items-center overflow-hidden bg-[#FAF8F5]"
+      >
+        {/* Living Cinematic Background or Exact Original Background */}
+        {USE_SEASONAL_BACKGROUND ? (
+          <SeasonalHeroBackground onThemeChange={setHeroTheme} />
+        ) : (
+          <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+            <picture className="w-full h-full block">
+              <source srcSet="/images/hero-bg-poster.webp" type="image/webp" />
+              <img
+                src="/images/hero-bg-poster.jpg"
+                alt=""
+                aria-hidden="true"
+                fetchPriority="high"
+                loading="eager"
+                decoding="sync"
+                width={1440}
+                height={900}
+                className="w-full h-full object-cover object-center"
               />
-            </video>
-          )}
-        </div>
+            </picture>
 
-        {/* Restrained bottom edge: connects naturally to the next section without an aggressive white washout */}
+            {canPlayHeroVideo && (
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="auto"
+                poster="/images/hero-bg-poster.webp"
+                aria-hidden="true"
+                className="absolute inset-0 w-full h-full object-cover object-center"
+              >
+                <source
+                  src="https://cdn.jiro.build/Amox/All%20Images/P01-Header-01-BG.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            )}
+          </div>
+        )}
+
+        {/* Restrained bottom edge: connects naturally to the next section without washing out the proof strip */}
         <div
-          className="absolute bottom-0 left-0 right-0 h-28 md:h-32 z-[1] pointer-events-none bg-[linear-gradient(to_bottom,rgba(250,248,245,0)_0%,rgba(250,248,245,0.35)_55%,rgba(250,248,245,0.92)_88%,#FAF8F5_100%)]"
+          className="absolute bottom-0 left-0 right-0 h-10 md:h-12 z-[1] pointer-events-none bg-[linear-gradient(to_bottom,transparent_0%,rgba(250,248,245,0.4)_50%,#FAF8F5_100%)]"
           aria-hidden="true"
         />
 
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center text-center my-auto w-full">
-          {/* Eyebrow badge / Credential chip - green dot removed, px-[18px] py-2 text-[13px] */}
-          <motion.div
-            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.4 }}
-            className="inline-flex items-center gap-2 px-[18px] py-2 rounded-full bg-white/90 backdrop-blur-xs border border-[#042718]/10 text-[13px] font-inter font-semibold text-[#042718] mb-4 md:mb-6 shadow-2xs mx-auto max-w-full text-center leading-normal"
-          >
-            <span>Senior Product Manager · AI · 0→1 · B2B & B2C</span>
-          </motion.div>
-
-          {/* Main Headline - Word cascade with screen-reader friendly text */}
-          <motion.h1
-            className="font-onest text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-[#042718] leading-[1.12] mb-5 max-w-4xl mx-auto text-center [overflow-wrap:anywhere] [text-shadow:0_1px_2px_rgba(255,255,255,0.95),0_0_24px_rgba(255,255,255,0.7)]"
-          >
-            <span className="sr-only">
-              I'm mostly just someone who stays curious. Stubborn enough not to stop asking 'why.'
-            </span>
-            <motion.span
-              aria-hidden="true"
-              variants={headlineContainerVariants}
-              initial="hidden"
-              animate="visible"
-              className="inline"
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10 flex flex-col items-center text-center my-auto w-full md:pb-[150px]">
+          {/* Central Hero Content Group - Reduced ~5–8% to fit comfortably inside inner window with generous breathing room */}
+          <div className="flex flex-col items-center text-center w-full max-w-3xl mx-auto -translate-y-2 sm:-translate-y-3 md:-translate-y-5">
+            {/* Eyebrow - Simple editorial text, zero pill, zero border, zero background */}
+            <motion.div
+              initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.4 }}
+              className="text-[12px] sm:text-[12.5px] md:text-[13px] font-inter font-medium tracking-[0.02em] text-white/90 [text-shadow:0_1px_8px_rgba(0,0,0,0.75),0_0_16px_rgba(0,0,0,0.5)] mb-3 mx-auto max-w-full text-center leading-normal select-none"
             >
-              {headlineWords.map((word) => (
-                <motion.span
-                  key={word.id}
-                  variants={headlineWordVariants}
-                  className="inline-block mr-[0.26em]"
-                >
-                  {word.content}
-                </motion.span>
-              ))}
-            </motion.span>
-          </motion.h1>
+              Senior Product Manager · AI · 0→1 · B2B & B2C
+            </motion.div>
 
-          {/* Supporting Copy - Exact copy, max-w-[64ch], no em-dashes */}
-          <motion.p
-            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={
-              shouldReduceMotion
-                ? { duration: 0 }
-                : { duration: 0.5, ease: [0.23, 1, 0.32, 1], delay: 0.42 }
-            }
-            className="font-inter text-[15px] md:text-lg text-[#042718]/85 leading-[1.62] md:leading-relaxed mb-8 max-w-full md:max-w-[58ch] lg:max-w-[64ch] mx-auto text-center font-normal [text-shadow:0_1px_2px_rgba(255,255,255,0.95),0_0_16px_rgba(255,255,255,0.8)]"
-          >
-            I&apos;m{" "}
-            <span className="font-playfair italic font-medium text-[#042718] text-xl sm:text-2xl inline-block">
-              Deepak
-            </span>
-            , a Senior Product Manager. Seven years across marketplaces, AI and subscription products. I&apos;ve built systems that move{" "}
-            <span className="text-[#042718] font-semibold whitespace-nowrap">
-              ₹20 to 25 Cr a month
-            </span>
-            , and an AI coach that scaled from{" "}
-            <span className="text-[#042718] font-semibold whitespace-nowrap">
-              ~300 to 3,200+ DAU
-            </span>{" "}
-            in ~3 months. I kept asking questions until the product matched reality.
-          </motion.p>
-
-          {/* Primary Professional Action Row */}
-          <motion.div
-            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={
-              shouldReduceMotion
-                ? { duration: 0 }
-                : { duration: 0.45, ease: [0.23, 1, 0.32, 1], delay: 0.52 }
-            }
-            className="flex flex-wrap items-center justify-center gap-3 mb-6 relative z-10"
-          >
-            <GlassButton
-              variant="primary"
-              size="lg"
-              icon={<ArrowRight size={16} />}
-              onClick={() => {
-                const el = document.getElementById("selected-work");
-                if (el) {
-                  el.scrollIntoView({ behavior: "smooth" });
-                } else if (onNavigate) {
-                  onNavigate("/work");
-                }
-              }}
-              aria-label="Explore Flagship Shipped Work"
+            {/* Main Headline - Reduced scale ~6%, stable light treatment, high contrast, warm cream 'curious.', fits inside inner window */}
+            <motion.h1
+              className="font-onest text-[32px] sm:text-[42px] md:text-[48px] lg:text-[52px] font-bold tracking-tight text-white leading-[1.14] mb-4 md:mb-5 max-w-3xl mx-auto text-center [overflow-wrap:anywhere] [text-shadow:0_2px_14px_rgba(0,0,0,0.75),0_0_28px_rgba(0,0,0,0.5)]"
             >
-              Explore Shipped Work
-            </GlassButton>
-
-            <GlassButton
-              variant="secondary"
-              size="lg"
-              onClick={() => {
-                if (onOpenResumeModal) {
-                  onOpenResumeModal();
-                } else if (onNavigate) {
-                  onNavigate("/resume");
-                }
-              }}
-              aria-label="View Deepak's Resume"
-            >
-              View Resume
-            </GlassButton>
-          </motion.div>
-
-          {/* Dīpa Conversational Discovery */}
-          <motion.div
-            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={
-              shouldReduceMotion
-                ? { duration: 0 }
-                : { duration: 0.5, ease: [0.23, 1, 0.32, 1], delay: 0.62 }
-            }
-            className="flex flex-col items-center justify-center mb-7 sm:mb-8 w-full"
-          >
-            <div className="flex items-center gap-2 mb-2.5">
-              <span className="font-mono text-[11px] uppercase tracking-wider text-[#042718]/60 font-semibold">
-                Or explore via conversational retrieval
+              <span className="sr-only">
+                I'm mostly just someone who stays curious. Stubborn enough not to stop asking 'why.'
               </span>
-            </div>
-            <button
-              type="button"
-              ref={askDipaButtonRef}
-              onClick={() => {
-                if (typeof window !== "undefined") {
-                  window.dispatchEvent(new CustomEvent("open-copilot"));
-                }
-              }}
-              className="ask-dipa-capsule relative isolate overflow-hidden w-[min(94vw,680px)] md:w-[min(92vw,600px)] lg:w-[min(94vw,680px)] rounded-full pl-[22px] pr-[10px] py-[10px] bg-white/[0.84] backdrop-blur-[12px] backdrop-saturate-[1.55] border border-white/85 shadow-[inset_0_1px_0_rgba(255,255,255,0.85),0_14px_40px_rgba(4,39,24,0.13)] flex items-center gap-3 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A8711A] focus-visible:ring-offset-2 select-none"
-              aria-label="Ask Dīpa about my work"
-            >
-              {/* Amber sparkle */}
-              <span className="text-[#A8711A] text-[16px] leading-none shrink-0" aria-hidden="true">
-                ✦
-              </span>
+              <motion.span
+                aria-hidden="true"
+                variants={headlineContainerVariants}
+                initial="hidden"
+                animate="visible"
+                className="inline"
+              >
+                {headlineWords.map((word) => {
+                  if (word.id === "w7") {
+                    return (
+                      <motion.span
+                        key={word.id}
+                        variants={headlineWordVariants}
+                        className="inline-block mr-[0.26em]"
+                      >
+                        <span className="inline-block whitespace-nowrap">
+                          <span
+                            className="font-playfair italic font-medium text-[#FDE68A] relative inline-block px-[2px] [text-shadow:0_2px_14px_rgba(0,0,0,0.8),0_0_24px_rgba(253,230,138,0.35)]"
+                          >
+                            curious
+                          </span>
+                          .
+                        </span>
+                      </motion.span>
+                    );
+                  }
+                  if (word.id === "w8") {
+                    return (
+                      <motion.span
+                        key={word.id}
+                        variants={headlineWordVariants}
+                        className="inline-block mr-[0.26em]"
+                      >
+                        <span
+                          className="font-playfair font-medium text-white inline-block"
+                        >
+                          Stubborn
+                        </span>
+                      </motion.span>
+                    );
+                  }
+                  return (
+                    <motion.span
+                      key={word.id}
+                      variants={headlineWordVariants}
+                      className="inline-block mr-[0.26em]"
+                    >
+                      {word.content}
+                    </motion.span>
+                  );
+                })}
+              </motion.span>
+            </motion.h1>
 
-              {/* ASK DĪPA label (hidden under 820px) */}
-              <span className="hidden min-[820px]:inline-block font-inter uppercase text-[11px] tracking-[0.15em] font-bold text-[#A8711A] shrink-0">
-                ASK DĪPA
-              </span>
-
-              {/* 1px x 20px divider (hidden under 820px) */}
-              <span className="hidden min-[820px]:block w-[1px] h-[20px] bg-[#042718]/19 shrink-0" aria-hidden="true" />
-
-              {/* Rotating Question with amber caret */}
-              <span className="font-inter text-[15.5px] text-[#042718]/76 flex-1 text-left truncate whitespace-nowrap overflow-hidden text-ellipsis" aria-hidden="true">
-                {displayedQuestionText}
-                <span className="amber-caret" aria-hidden="true" />
-              </span>
-
-              {/* 38px Circular Send Button */}
-              <span className="w-[38px] h-[38px] rounded-full bg-[#042718] text-[#FAFDFB] flex items-center justify-center shrink-0 ask-dipa-send-btn shadow-2xs" aria-hidden="true">
-                <ArrowRight size={16} />
-              </span>
-            </button>
-
-            {/* Caption underneath - plain text with soft white halo, no pill */}
+            {/* Supporting Copy - Refined scale, near-white, high readability over landscape, preserved metrics */}
             <motion.p
-              initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
+              initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={
                 shouldReduceMotion
                   ? { duration: 0 }
-                  : { duration: 0.4, ease: [0.23, 1, 0.32, 1], delay: 0.78 }
+                  : { duration: 0.5, ease: [0.23, 1, 0.32, 1], delay: 0.42 }
               }
-              className="font-playfair italic text-[13px] text-[#042718]/75 text-center mt-4 mx-auto max-w-md [text-shadow:0_1px_2px_rgba(255,255,255,0.95),0_0_14px_rgba(255,255,255,0.8)]"
+              className="font-inter text-[14px] sm:text-[15px] md:text-[16px] text-white/95 leading-[1.62] mb-5 sm:mb-6 max-w-full md:max-w-[54ch] lg:max-w-[58ch] mx-auto text-center font-normal [text-shadow:0_1px_8px_rgba(0,0,0,0.7),0_0_20px_rgba(0,0,0,0.5)]"
             >
-              Trained on my own case studies. It tells you when it doesn&apos;t know.
+              I&apos;m{" "}
+              <span
+                className="font-playfair italic font-medium text-[#FDE68A] text-[16.5px] sm:text-[17.5px] md:text-[18.5px] inline-block"
+              >
+                Deepak
+              </span>
+              , a Senior Product Manager. Seven years across marketplaces, AI and subscription products. I&apos;ve built systems that move{" "}
+              <span
+                className="text-white font-semibold whitespace-nowrap"
+              >
+                ₹20 to 25 Cr a month
+              </span>
+              , and an AI coach that scaled from{" "}
+              <span
+                className="text-white font-semibold whitespace-nowrap"
+              >
+                ~300 to 3,200+ DAU
+              </span>{" "}
+              in ~3 months. I kept asking questions until the product matched reality.
             </motion.p>
-          </motion.div>
 
-          {/* Marquee Ticker with metrics */}
-          <motion.div
-            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={
-              shouldReduceMotion
-                ? { duration: 0 }
-                : { duration: 0.45, ease: [0.23, 1, 0.32, 1], delay: 0.9 }
-            }
-            className="w-full max-w-4xl mx-auto overflow-hidden py-1 hero-marquee-container [mask-image:linear-gradient(90deg,transparent,#000_9%,#000_91%,transparent)] [-webkit-mask-image:linear-gradient(90deg,transparent,#000_9%,#000_91%,transparent)]"
+            {/* CTA Hierarchy: Solid dark/green primary vs. quiet light secondary link */}
+            <motion.div
+              initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={
+                shouldReduceMotion
+                  ? { duration: 0 }
+                  : { duration: 0.45, ease: [0.23, 1, 0.32, 1], delay: 0.52 }
+              }
+              className="flex flex-wrap items-center justify-center gap-3.5 relative z-10"
+            >
+              {/* PRIMARY CTA: Charcoal + Warm Ivory / Champagne */}
+              <button
+                type="button"
+                onClick={() => {
+                  const el = document.getElementById("selected-work");
+                  if (el) {
+                    el.scrollIntoView({ behavior: "smooth" });
+                  } else if (onNavigate) {
+                    onNavigate("/work");
+                  }
+                }}
+                aria-label="Explore Flagship Shipped Work"
+                className="h-11 sm:h-12 px-6 sm:px-7 gap-2.5 rounded-full font-inter font-semibold text-[14.5px] sm:text-[15px] inline-flex items-center justify-center bg-[#121517] hover:bg-[#1A1E22] text-[#FAFDFB] border border-white/20 hover:border-white/35 shadow-[0_4px_24px_rgba(0,0,0,0.45),inset_0_1px_0_rgba(255,255,255,0.15)] cursor-pointer transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
+              >
+                <span>Explore Shipped Work</span>
+                <ArrowRight size={15} className="shrink-0 text-[#FDE68A]" />
+              </button>
+
+              {/* SECONDARY CTA: Quiet frosted glass text link */}
+              <button
+                type="button"
+                onClick={() => {
+                  if (onOpenResumeModal) {
+                    onOpenResumeModal();
+                  } else if (onNavigate) {
+                    onNavigate("/resume");
+                  }
+                }}
+                aria-label="View Deepak's Resume"
+                className="h-11 sm:h-12 px-4 sm:px-5 gap-2 rounded-full font-inter font-medium text-[14px] sm:text-[14.5px] inline-flex items-center justify-center text-white/90 hover:text-white hover:bg-white/10 border border-white/15 backdrop-blur-sm transition-colors cursor-pointer"
+              >
+                <span>View Resume</span>
+              </button>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Dīpa Conversational Discovery - Frosted Glass + Charcoal + Amber/Champagne Accents */}
+        <div className="w-full flex justify-center px-4 relative z-20 mt-4 mb-3 md:mt-0 md:mb-0 md:absolute md:bottom-[16%] lg:bottom-[16.5%] xl:bottom-[17%] left-0 right-0 pointer-events-auto">
+          <button
+            type="button"
+            id="hero-ask-dipa-cta"
+            ref={askDipaButtonRef}
+            onClick={() => {
+              if (typeof window !== "undefined") {
+                window.dispatchEvent(new CustomEvent("open-copilot"));
+              }
+            }}
+            className="ask-dipa-capsule relative isolate overflow-hidden w-[min(92vw,590px)] rounded-full pl-[18px] sm:pl-[22px] pr-[8px] sm:pr-[10px] py-[8px] sm:py-[9px] bg-white/[0.86] backdrop-blur-[14px] backdrop-saturate-[1.5] border border-white/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.9),0_10px_32px_rgba(0,0,0,0.22)] flex items-center gap-3 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C89B3C] focus-visible:ring-offset-2 select-none"
+            aria-label="Ask Dīpa about my work"
           >
-            <div className="hero-marquee-track flex items-center gap-3 w-fit whitespace-nowrap">
-              {[...domainChips, ...domainChips].map((chip, i) => (
+            {/* Amber / Champagne sparkle */}
+            <span className="text-[#A8711A] text-[16px] leading-none shrink-0" aria-hidden="true">
+              ✦
+            </span>
+
+            {/* ASK DĪPA label (hidden under 820px) */}
+            <span className="hidden min-[820px]:inline-block font-inter uppercase text-[11px] tracking-[0.15em] font-bold text-[#A8711A] shrink-0">
+              ASK DĪPA
+            </span>
+
+            {/* 1px x 20px divider (neutral charcoal tint) */}
+            <span className="hidden min-[820px]:block w-[1px] h-[20px] bg-[#121517]/15 shrink-0" aria-hidden="true" />
+
+            {/* Rotating Question with amber caret */}
+            <span className="font-inter text-[14px] sm:text-[15px] text-[#121517]/80 flex-1 text-left truncate whitespace-nowrap overflow-hidden text-ellipsis" aria-hidden="true">
+              {displayedQuestionText}
+              <span className="amber-caret" aria-hidden="true" />
+            </span>
+
+            {/* 36–38px Circular Send Button in Charcoal */}
+            <span className="w-[36px] h-[36px] sm:w-[38px] sm:h-[38px] rounded-full bg-[#121517] hover:bg-[#1E2226] text-[#FAFDFB] flex items-center justify-center shrink-0 ask-dipa-send-btn shadow-2xs transition-colors" aria-hidden="true">
+              <ArrowRight size={16} />
+            </span>
+          </button>
+        </div>
+
+        {/* Cinematic Proof Rail - Charcoal Frosted Glass + Champagne Metric Accents */}
+        <div className="w-full flex justify-center px-4 relative z-20 mt-3 mb-2 md:mt-0 md:mb-0 md:absolute md:bottom-4 lg:bottom-5 left-0 right-0 pointer-events-auto">
+          <div
+            tabIndex={0}
+            aria-label="Verified product metrics and operational scale across shipped systems"
+            className="hero-marquee-container group relative max-w-[min(94vw,900px)] w-full mx-auto overflow-hidden rounded-full py-1.5 sm:py-2 px-3 sm:px-4 bg-[#121517]/55 hover:bg-[#121517]/70 focus-visible:bg-[#121517]/70 backdrop-blur-[14px] backdrop-saturate-[1.4] border border-white/[0.14] shadow-[0_4px_24px_rgba(0,0,0,0.42),inset_0_1px_0_rgba(255,255,255,0.1)] transition-colors duration-300 select-none [mask-image:linear-gradient(90deg,transparent_0%,#000_5%,#000_95%,transparent_100%)] [-webkit-mask-image:linear-gradient(90deg,transparent_0%,#000_5%,#000_95%,transparent_100%)] cursor-default focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FDE68A]/40"
+          >
+            <div className="hero-marquee-track flex items-center whitespace-nowrap">
+              {[...domainChips, ...domainChips].map((chip, idx) => (
                 <div
-                  key={`${chip.name}-${i}`}
-                  className="hero-marquee-chip flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/80 backdrop-blur-[8px] backdrop-saturate-[1.5] border border-[#042718]/10 shadow-2xs text-xs sm:text-sm font-medium text-[#042718] shrink-0"
+                  key={`${chip.name}-${idx}`}
+                  className="flex items-center gap-2 px-3 sm:px-4 shrink-0 text-xs sm:text-[13px]"
                 >
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#188E39] shrink-0" />
-                  <span>{chip.name}</span>
-                  <span className="text-[#042718]/40">·</span>
-                  <span className="font-semibold text-[#042718]/80">{chip.metric}</span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#FDE68A] shrink-0 opacity-90" aria-hidden="true" />
+                  <span className="font-medium text-white/85 tracking-[-0.01em] whitespace-nowrap">
+                    {chip.name}
+                  </span>
+                  <span className="text-white/30 font-normal select-none" aria-hidden="true">·</span>
+                  <span className="font-semibold text-[#FDE68A] tracking-[-0.01em] whitespace-nowrap">
+                    {chip.metric}
+                  </span>
+                  <span className="ml-3 sm:ml-4 text-white/20 font-light select-none text-[11px]" aria-hidden="true">
+                    /
+                  </span>
                 </div>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 

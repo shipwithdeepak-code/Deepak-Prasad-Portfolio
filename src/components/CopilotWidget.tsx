@@ -62,20 +62,19 @@ export default function CopilotWidget({
     }
   }, [isOpen, showIntroTooltip, showScrollNudge, dismissIntroTooltip, dismissScrollNudge]);
 
-  // Mobile only: the hero section has its own "Ask Dīpa" CTA right above
-  // the fold. On small screens it sits in the same bottom-right area as
-  // the floating launcher, so fade the launcher out while that CTA is
-  // visible and bring it back once the visitor scrolls past it.
+  // Hero viewport: The hero section already features the canonical Dīpa bar,
+  // so the redundant bottom-right floating launcher is hidden while the hero is visible.
   useEffect(() => {
     if (typeof window === "undefined") return;
-    if (window.innerWidth >= 640) return;
 
     let observer: IntersectionObserver | null = null;
     let retryTimer: ReturnType<typeof setTimeout> | null = null;
 
     const attachObserver = () => {
-      const heroCta = document.getElementById("hero-ask-dipa-cta");
-      if (!heroCta) return false;
+      const heroSection =
+        document.getElementById("hero-section") ||
+        document.getElementById("hero-ask-dipa-cta");
+      if (!heroSection) return false;
 
       observer = new IntersectionObserver(
         (entries) => {
@@ -83,16 +82,16 @@ export default function CopilotWidget({
             setHideForHeroCta(entry.isIntersecting);
           }
         },
-        { threshold: 0.15 }
+        { threshold: 0.05 }
       );
 
-      observer.observe(heroCta);
+      observer.observe(heroSection);
       return true;
     };
 
     const attached = attachObserver();
     if (!attached) {
-      retryTimer = setTimeout(attachObserver, 800);
+      retryTimer = setTimeout(attachObserver, 500);
     }
 
     return () => {
