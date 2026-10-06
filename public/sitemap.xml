@@ -56,6 +56,16 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://deepak-prasad.ai.studio/work/dipa</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://deepak-prasad.ai.studio/work/product-jury</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://deepak-prasad.ai.studio/writing/product-jury</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
