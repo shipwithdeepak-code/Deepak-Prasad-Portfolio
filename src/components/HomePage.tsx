@@ -548,7 +548,7 @@ export default function HomePage({
               >
                 Deepak
               </span>
-              , a Senior Product Manager. Seven years across subscriptions, B2B marketplaces and applied AI. I&apos;ve scaled subscription revenue to{" "}
+              , a Senior Product Manager. 7+ years across subscriptions, B2B marketplaces and applied AI. I&apos;ve scaled subscription revenue to{" "}
               <span
                 className="text-white font-semibold whitespace-nowrap"
               >

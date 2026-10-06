@@ -75,7 +75,7 @@ export const MORE_PRODUCT_WORK_ITEMS: MoreProductWorkItem[] = [
     ],
     problem: 'Ginning mills and cotton traders operated across geographically distant agrarian clusters with zero real-time inventory visibility and manual contract negotiation.',
     whyItMattered: 'Expanding into cotton was critical to cross-selling raw materials to diversified textile manufacturers who consumed both silk and cotton blends.',
-    myOwnership: 'Architected the multi-commodity transaction schema, ginning dispatch protocols, and procurement workflows to support cotton bale grading and lot tracking.',
+    myOwnership: 'Led the multi-commodity transaction schema, ginning dispatch protocols, and procurement workflows to support cotton bale grading and lot tracking.',
     keyDecision: {
       title: 'Unified Commodity Engine vs Isolated Vertical Silo',
       decision: 'Built an extensible commodity data model that parameterized staple length and trash percentage rather than spinning up a separate siloed application.',
@@ -978,7 +978,7 @@ export const MORE_PRODUCT_WORK_ITEMS: MoreProductWorkItem[] = [
     title: 'SAP / ERP Integration',
     shortTitle: 'SAP / ERP Integration',
     storyAngle: 'Connecting product transactions to enterprise systems',
-    description: 'Architected the bidirectional transaction sync between front-end mandi weighbridge workflows and central enterprise general ledger systems.',
+    description: 'Led the bidirectional transaction sync between front-end mandi weighbridge workflows and central enterprise general ledger systems.',
     company: 'ReshaMandi',
     period: '2022 – 2023',
     role: 'Product Manager · Systems Integration',

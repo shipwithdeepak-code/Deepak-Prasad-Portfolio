@@ -323,7 +323,15 @@ FACT VS INFERENCE VS UNKNOWN:
 
 METRICS & SPECIFICS:
 7. GROUNDED METRICS & TONE:
-   - Cite real metrics directly from the context (e.g., 80K+ farmers, ₹20–25 Cr monthly volume, 99.9% reliability, ~300 to 3,200+ DAU, 39.4% mature cohort conversion, €659K FY25 revenue, 200+ videos in ~3 weeks).
+   - Always refer to him as "Deepak Prasad" (never "Deepak P").
+   - Experience: 7+ years across subscriptions, B2B marketplaces, and applied AI.
+   - AI Coach: ~300 to 3,200+ DAU within ~3 months.
+   - Subscriptions: 174,180 freemium users; 12,401 paying subscribers; €659K FY2025 revenue; 81.9% YoY subscriber growth; 96.8% annual plan retention.
+   - ReshaMandi Payouts & Marketplace: disbursements grew from ~₹10–15 Cr to ₹20–25 Cr per month; 80,000+ farmers; ₹2,000 Cr platform; >90% ML pricing model accuracy; 35%+ lift in transaction value.
+   - Marketplace & Payments Wording: Deepak "led" (never "architected") marketplace and payment systems.
+   - Athletic Performance Score: "One Body. One Score. One Ecosystem." is strictly Product Strategy & PRD work (development-ready PRD); it was not launched to production and did not ship.
+   - Content Localisation: 200+ videos in ~3 weeks, ~10× faster, Italian, French, and Spanish.
+   - LionCircuits: 40% increase in monthly orders.
    - Deliver crisp, natural, professional answers (1–3 brief paragraphs or focused bullet points) without robotic phrases like "According to chunk...".`;
 
           const prompt = `Context:\n${contextBlocks}\n\nUser Question:\n${cleanQuestion}\n\nPlease provide a direct answer without any greeting, "Hello", or self-introduction:`;

@@ -35,7 +35,7 @@
       "source": "Resume — ReshaMandi",
       "category": "Career",
       "title": "Product Manager at ReshaMandi (Jun 2021 – Sep 2023)",
-      "chunk": "Deepak served as Product Manager at ReshaMandi (Jun 2021 – Sep 2023) in Bengaluru, owning core marketplace workflows and payments across ~1.1 Lakh stakeholders, including 80,000+ farmers via ReshaFarms. He digitized end-to-end operational workflows (LeadSquared CRM, Razorpay, SAP, Camunda), built an instant-payout workflow scaling monthly disbursements from ₹10–15 Cr to ₹20–25 Cr at 99.9% reliability, launched a real-time cocoon bidding auction 0→1 (>35% transaction uplift), and partnered with ML engineers to build a cocoon pricing model (>90% accuracy). Deepak's scope was strictly marketplace, field operations, and instant payouts; ReshaMudra credit products were not part of his ownership."
+      "chunk": "Deepak served as Product Manager at ReshaMandi (Jun 2021 – Sep 2023) in Bengaluru, owning core marketplace workflows and payments across ~1.1 Lakh stakeholders on a ₹2,000 Cr platform, including 80,000+ farmers via ReshaFarms. He digitized end-to-end operational workflows (LeadSquared CRM, Razorpay, SAP, Camunda), led an instant-payout workflow scaling monthly disbursements from ~₹10–15 Cr to ₹20–25 Cr at 99.9% reliability, launched a real-time cocoon bidding auction 0→1 (35%+ lift in transaction value), and partnered with ML engineers to build a cocoon pricing model (>90% model accuracy). Deepak's scope was strictly marketplace, field operations, and instant payouts; ReshaMudra credit products were not part of his ownership."
     },
     {
       "id": "career-sportstech-pm",
@@ -77,14 +77,14 @@
       "source": "ReshaMandi Case Study: Instant Payouts",
       "category": "ReshaMandi",
       "title": "ReshaMandi Instant Payout Engine & Settlement Rails",
-      "chunk": "At ReshaMandi, Deepak owned the instant-payout workflow integrating Razorpay banking rails and internal accounting systems: transactions under ₹5L settled immediately upon lot weighing and quality confirmation, while amounts over ₹5L cleared within 2 hours. Payout reliability reached 99.9%, as monthly disbursement volume scaled from ₹10–15 Cr to ₹20–25 Cr across 80,000+ farmers, eliminating predatory middlemen credit cycles."
+      "chunk": "At ReshaMandi, Deepak owned the instant-payout workflow integrating Razorpay banking rails and internal accounting systems: transactions under ₹5L settled immediately upon lot weighing and quality confirmation, while amounts over ₹5L cleared within 2 hours. Payout reliability reached 99.9%, as monthly disbursement volume scaled from ~₹10–15 Cr to ₹20–25 Cr across 80,000+ farmers on a ₹2,000 Cr platform, eliminating predatory middlemen credit cycles."
     },
     {
       "id": "reshamandi-bidding-pricing",
       "source": "ReshaMandi Case Study: Cocoon Bidding & ML Pricing",
       "category": "ReshaMandi",
       "title": "Cocoon Bidding System & Computer Vision Pricing",
-      "chunk": "Deepak built the real-time cocoon bidding workflow 0→1 (Scan → Bid → Watch → Win → Pay), replacing chaotic shouting auctions with structured bidding rules and lifting transaction value by >35% in pilot sessions. Alongside this, he partnered with ML engineers to build a computer vision pricing system analyzing cocoon samples for uniformity, discoloration, and shell ratio, providing benchmark pricing guidance (>90% accuracy)."
+      "chunk": "Deepak built the real-time cocoon bidding workflow 0→1 (Scan → Bid → Watch → Win → Pay), replacing chaotic shouting auctions with structured bidding rules and lifting transaction value by 35%+ in pilot sessions. Alongside this, he partnered with ML engineers to build a computer vision pricing system analyzing cocoon samples for uniformity, discoloration, and shell ratio, providing benchmark pricing guidance (>90% ML pricing model accuracy)."
     },
     {
       "id": "reshamandi-ecosystem-expansion",
@@ -105,7 +105,7 @@
       "source": "More Product Work: Cotton Marketplace",
       "category": "ReshaMandi",
       "title": "Cotton Marketplace: Extensible Multi-Commodity Platform Rails",
-      "chunk": "Deepak architected the multi-commodity transaction schema, ginning floor allocation protocols, and multi-truck split dispatch workflows for ReshaMandi's cotton expansion. By parameterizing staple length, moisture, and trash percentage into a unified engine, the architecture proved commodity-agnostic and accelerated subsequent fiber expansions 2×."
+      "chunk": "Deepak led the multi-commodity transaction schema, ginning floor allocation protocols, and multi-truck split dispatch workflows for ReshaMandi's cotton expansion. By parameterizing staple length, moisture, and trash percentage into a unified engine, the architecture proved commodity-agnostic and accelerated subsequent fiber expansions 2×."
     },
     {
       "id": "ai-coach-thesis-scope",
@@ -167,8 +167,8 @@
       "id": "performance-score-prd",
       "source": "Performance Score PRD: Scope & Status",
       "category": "PRD Specification",
-      "title": "Athletic Performance Score: Architecture & PRD Status",
-      "chunk": "The Athletic Performance Score is an architectural specification and PRD designed by Deepak ('One Body. One Score. One Ecosystem.') unifying strength, cardio, and recovery metrics into a single 0–100 athletic readiness score across 5 surfaces (mobile, console, tablet, web, weekly digest). Status: It was fully architected and review-ready across engineering and sports science, but was NOT launched to production; there are no production metrics or adoption claims."
+      "title": "Athletic Performance Score: Product Strategy & PRD Status",
+      "chunk": "The Athletic Performance Score is a product strategy and PRD specification designed by Deepak ('One Body. One Score. One Ecosystem. [Product Strategy & PRD]') unifying strength, cardio, and recovery metrics into a single 0–100 athletic readiness score across 5 surfaces (mobile, console, tablet, web, weekly digest). Status: It represents a development-ready product strategy and comprehensive PRD, but was NOT launched to production; it did not ship, and there are no production metrics or adoption claims."
     },
     {
       "id": "ai-build-jagr",

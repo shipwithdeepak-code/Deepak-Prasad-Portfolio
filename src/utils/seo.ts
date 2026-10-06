@@ -38,7 +38,7 @@ const STATIC_ROUTES: Record<
   "/about": {
     title: "About — Deepak Prasad",
     description:
-      "Seven years building products across marketplaces, AI and subscription platforms. How I work and what I care about.",
+      "7+ years building products across marketplaces, AI and subscription platforms. How I work and what I care about.",
     ogType: "profile",
   },
   "/resume": {

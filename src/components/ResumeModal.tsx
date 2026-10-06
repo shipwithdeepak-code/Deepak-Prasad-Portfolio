@@ -207,7 +207,7 @@ export default function ResumeModal({
             </div>
             <div className="min-w-0">
               <h3 className="font-onest text-sm sm:text-lg font-bold text-[#121517] truncate">
-                Deepak P — Senior PM
+                Deepak Prasad — Senior PM
               </h3>
               <p className="font-inter text-[11px] sm:text-xs text-[#121517]/60 truncate hidden xs:block">
                 B2B & B2C · AI & ML · Product Strategy

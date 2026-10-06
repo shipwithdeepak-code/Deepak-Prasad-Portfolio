@@ -868,7 +868,7 @@ export const PERFORMANCE_SCORE_CASE_STUDY: CaseStudyDetail = {
   id: 'performance-score',
   slug: 'performance-score',
   number: '04',
-  title: 'One Body. One Score. One Ecosystem.',
+  title: 'One Body. One Score. One Ecosystem. (Product Strategy & PRD)',
   subtitle:
     'This wasn’t a feature I shipped. It was the product architecture I believed we needed to build.',
   description:
@@ -879,7 +879,7 @@ export const PERFORMANCE_SCORE_CASE_STUDY: CaseStudyDetail = {
     'How do you unite fragmented hardware telemetry and siloed databases into a single, cohesive metric of progress without gating users behind expensive sensors?',
   productPhilosophy:
     'Hardware should be an aspiration, not a gate. Data fragmentation must be resolved at the schema and architecture level before designing the interface.',
-  category: 'Product Strategy & Connected Ecosystems',
+  category: 'Product Strategy & PRD · Connected Ecosystems',
   role: 'Senior Product Manager · Connected Ecosystem Strategy',
   timeline: '2025 (Product Strategy & Development-Ready PRD)',
   tags: ['Product Strategy', 'Connected Products', 'Data', 'PRD', '0→1'],
@@ -1915,7 +1915,7 @@ export const MORE_WORK_CATEGORIES: MoreWorkCategory[] = [
       {
         title: 'SAP S/4HANA ERP Integration',
         description:
-          'Architected the bidirectional transaction sync between front-end mandi weighbridges and SAP inventory / general ledger systems.',
+          'Led the bidirectional transaction sync between front-end mandi weighbridges and SAP inventory / general ledger systems.',
         tags: ['SAP ERP', 'General Ledger', 'Enterprise Data'],
         scope: 'Core financial sync bridge',
       },
@@ -2029,7 +2029,7 @@ export const EXPERIENCE_ROLES: ExperienceRole[] = [
     focus: ['B2B Marketplace', 'Workflow Digitisation', 'Instant Payouts', 'AI / CV Grading'],
     highlights: [
       'Digitised end-to-end workflows across onboarding, KYC, lead gen, sales orders, logistics, and payments integrating LeadSquared CRM, Razorpay, SAP, and Camunda.',
-      'Architected Instant Payouts workflow with automated weighbridge-to-bank settlement with 99.9% reliability, scaling disbursements from ₹10–15 Cr to ₹20–25 Cr per month.',
+      'Led Instant Payouts workflow with automated weighbridge-to-bank settlement with 99.9% reliability, scaling disbursements from ₹10–15 Cr to ₹20–25 Cr per month.',
       'Built real-time cocoon bidding workflow 0→1 (Scan → Bid → Watch → Win → Pay); 3 daily sessions lifted pilot auction transaction value >35%.',
       'Partnered with ML team to productize computer-vision cocoon grading & pricing workflow with >90% model accuracy.',
       'Conducted extensive direct field research in mandi collection centres across Karnataka and Tamil Nadu.',
