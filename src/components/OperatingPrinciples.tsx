@@ -442,15 +442,18 @@ export const OperatingPrinciples: React.FC<OperatingPrinciplesProps> = ({
           <div
             className="hub-cell z-[3] text-center px-[6px] col-span-1 min-[641px]:col-span-2 min-[1025px]:col-span-1 min-[1025px]:col-start-2 min-[1025px]:row-start-2 mb-3 min-[1025px]:mb-0 flex flex-col items-center justify-center"
           >
+            <span className="font-mono text-[10.5px] font-bold uppercase tracking-[0.2em] text-[#A8711A] mb-1">
+              MY PRODUCT COMPASS
+            </span>
             {/* h2 "Six principles I keep coming back to." */}
-            <h2 className="font-onest font-bold text-[clamp(1.45rem,2.9vw,2.35rem)] leading-[1.08] text-[#121517] mt-3 tracking-tight principles-hub-heading">
+            <h2 className="font-onest font-bold text-[clamp(1.45rem,2.9vw,2.35rem)] leading-[1.08] text-[#121517] mt-1 tracking-tight principles-hub-heading">
               Six principles I keep coming{" "}
               <em className="principles-hub-em not-italic">back to.</em>
             </h2>
 
-            {/* p "Not a framework I downloaded. A working set of rules shaped by shipping real products." */}
+            {/* p "How I think and decide when the route is ambiguous." */}
             <p className="font-inter text-[14.2px] text-[#4A525A] max-w-[34ch] mx-auto mt-3 leading-normal">
-              Not a framework I downloaded. A working set of rules shaped by shipping real products.
+              How I think and decide when the route is ambiguous. A working set of rules shaped by shipping real products.
             </p>
 
             {/* p Caveat, 1.22rem, #A8711A, margin-top 14px: "Things I write down before I ship." */}

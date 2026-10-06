@@ -1,11 +1,12 @@
-import React, { useEffect, useRef, useState, Suspense } from "react";
-import { motion } from "framer-motion";
+import React, { useRef } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import {
   Linkedin,
   Github,
   Mail,
   ArrowUpRight,
   Calendar,
+  FileText,
 } from "lucide-react";
 import { CALENDLY_URL } from "../utils/calendly";
 import GlassButton from "./ui/GlassButton";
@@ -16,260 +17,195 @@ interface FooterProps {
   onOpenContactModal?: () => void;
 }
 
-const SylvaLivingWorldScene = React.lazy(() =>
-  import("@designcodeio/threeui").then((m) => ({ default: m.SylvaLivingWorldScene }))
-);
-
 export default function Footer({
   onNavigate,
   onOpenResumeModal,
   onOpenContactModal,
 }: FooterProps) {
-  const footerRef = useRef<HTMLElement>(null);
-  const sceneRef = useRef<HTMLDivElement>(null);
-
-  // Condition 4: Mobile (< 768px) and reduced-motion get a still, not a scene
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(() => {
-    if (typeof window === "undefined") return false;
-    return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  });
-
-  const [isDesktop, setIsDesktop] = useState(() => {
-    if (typeof window === "undefined") return false;
-    return window.innerWidth >= 768;
-  });
-
-  // FIX B — warm it up on idle, not on scroll. Move the mount off the IntersectionObserver entirely
-  const [mounted, setMounted] = useState(false);
-  const [settled, setSettled] = useState(false);
-  // The scene reports 'settled' at frame 540, but late-stage growth can still be
-  // running. Hold the reveal a further 2.2s so the fade never uncovers a build.
-  const [graceDone, setGraceDone] = useState(false);
-  useEffect(() => {
-    if (!settled) return;
-    const t = window.setTimeout(() => setGraceDone(true), 300);
-    return () => window.clearTimeout(t);
-  }, [settled]);
-
-  // FIX C — reveal on approach, at 800px rootMargin, 700ms fade cubic-bezier(0.23,1,0.32,1)
-  const [inView, setInView] = useState(false);
-  // CAUSE B — tighter 200px rootMargin observer to toggle visibility and throttle rAF off-screen
-  const [isNear, setIsNear] = useState(false);
-
-  // Reveal ONLY when settled AND in view
-  const visible = settled && graceDone && inView;
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const handleMotionChange = (e: MediaQueryListEvent) => {
-      setPrefersReducedMotion(e.matches);
-    };
-    motionQuery.addEventListener("change", handleMotionChange);
-
-    const handleResize = () => {
-      setIsDesktop(window.innerWidth >= 768);
-    };
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      motionQuery.removeEventListener("change", handleMotionChange);
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
-  // FIX B: Warm up chunk and initialize scene on browser idle
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    if (prefersReducedMotion || window.innerWidth < 768) return;
-
-    const id = ("requestIdleCallback" in window)
-      ? (window as any).requestIdleCallback(() => setMounted(true), { timeout: 3000 })
-      : setTimeout(() => setMounted(true), 1500);
-
-    return () => {
-      if ("cancelIdleCallback" in window) {
-        (window as any).cancelIdleCallback(id);
-      } else {
-        clearTimeout(id);
-      }
-    };
-  }, [prefersReducedMotion]);
-
-  // Settled safeguard
-  useEffect(() => {
-    if (!mounted) return;
-    const t = setTimeout(() => setSettled(true), 4000);
-    return () => clearTimeout(t);
-  }, [mounted]);
-
-  // FIX C: Opacity reveal on approach (800px)
-  useEffect(() => {
-    if (prefersReducedMotion || !isDesktop) return;
-
-    const el = footerRef.current;
-    if (!el || typeof IntersectionObserver === "undefined") return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setInView(entry.isIntersecting);
-      },
-      { rootMargin: "800px" }
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [prefersReducedMotion, isDesktop]);
-
-  // CAUSE B & FIX B: Release rAF render throttle during the 2500px approach
-  useEffect(() => {
-    if (prefersReducedMotion || !isDesktop) return;
-
-    const el = footerRef.current;
-    if (!el || typeof IntersectionObserver === "undefined") return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsNear(entry.isIntersecting);
-      },
-      { rootMargin: "2500px" }
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [prefersReducedMotion, isDesktop]);
-
-  // CAUSE C: Debounce ResizeObserver to 200ms and skip if size hasn't changed
-  useEffect(() => {
-    const el = footerRef.current;
-    if (!el || typeof ResizeObserver === "undefined") return;
-
-    let last = { w: 0, h: 0 };
-    let t: number;
-    const ro = new ResizeObserver((entries) => {
-      if (!entries[0]) return;
-      const { width: w, height: h } = entries[0].contentRect;
-      if (Math.abs(w - last.w) < 2 && Math.abs(h - last.h) < 2) return;
-      last = { w, h };
-      clearTimeout(t);
-      t = window.setTimeout(() => {
-        sceneRef.current
-          ?.querySelector("iframe")
-          ?.contentWindow?.postMessage({ type: "resize" }, "*");
-      }, 200);
-    });
-
-    ro.observe(el);
-    return () => {
-      clearTimeout(t);
-      ro.disconnect();
-    };
-  }, []);
+  const shouldReduceMotion = Boolean(useReducedMotion());
+  const footerRef = useRef<HTMLElement | null>(null);
 
   return (
     <footer
       ref={footerRef}
-      className="relative w-full overflow-hidden min-h-[85vh] md:min-h-screen flex flex-col justify-center items-center bg-[#FAF8F5] contain-[layout_paint_style] footer-containment"
+      id="footer-section"
+      className="relative w-full overflow-hidden min-h-[85vh] md:min-h-screen flex flex-col justify-between items-center bg-[#FAF8F5] contain-[layout_paint_style]"
     >
-      {/* Atmospheric base layer: Seamless blend from #FAF8F5 into pale water blue and muted soft sage green */}
+      <style>{`
+        @keyframes horizonMistSlow {
+          0% {
+            transform: translate3d(0, 0, 0);
+          }
+          50% {
+            transform: translate3d(-2.5%, -2px, 0);
+          }
+          100% {
+            transform: translate3d(0, 0, 0);
+          }
+        }
+        .footer-horizon-mist {
+          animation: horizonMistSlow 48s ease-in-out infinite;
+          will-change: transform;
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .footer-horizon-mist {
+            animation: none !important;
+            transform: none !important;
+          }
+        }
+      `}</style>
+
+      {/* =========================================================================
+          1. ATMOSPHERIC HORIZON LAYERS (SOFT, DISTANT, UNDERSTATED DEPTH)
+          Progression: Ivory -> Warm Atmosphere -> Distant Horizon -> Subtle Foreground
+          ========================================================================= */}
+
+      {/* Layer 1: Seamless sky transition from #FAF8F5 into soft dawn twilight */}
       <div
-        className="absolute inset-0 z-0 bg-[radial-gradient(75%_55%_at_50%_100%,rgba(215,232,217,0.55)_0%,rgba(228,239,235,0.35)_45%,transparent_75%),radial-gradient(85%_50%_at_50%_35%,rgba(228,242,246,0.5)_0%,transparent_65%),linear-gradient(180deg,#FAF8F5_0%,#F3F8F8_32%,#EAF2EE_65%,#DFECE0_100%)]"
+        className="absolute inset-0 z-0 bg-[linear-gradient(180deg,#FAF8F5_0%,#FAF7F2_24%,#F5EFE4_50%,#EBE0CC_76%,#DFCFB5_100%)] pointer-events-none"
         aria-hidden="true"
       />
 
-      {/* CAUSE B: Ambient 3D Scene Layer (Z-0) — visibility toggled to throttle rAF only AFTER settled */}
+      {/* Layer 2: Restrained golden-hour sun bloom on the horizon line */}
       <div
-        ref={sceneRef}
-        style={{ visibility: (!settled || !graceDone || isNear) ? "visible" : "hidden" }}
-        className={`absolute inset-0 z-0 pointer-events-none overflow-hidden transition-opacity duration-1000 ease-[cubic-bezier(0.23,1,0.32,1)] ${
-          visible ? "opacity-100" : "opacity-0"
-        }`}
-      >
-        {mounted && (
-          <Suspense fallback={null}>
-            <SylvaLivingWorldScene
-              variant="living-green"
-              className="w-full h-full"
-              style={{ pointerEvents: "none" }}
-              onSettled={() => setSettled(true)}
-            />
-          </Suspense>
-        )}
-      </div>
-
-      {/* Scrim Overlay (Z-1): Weighted to TOP, completely clears by 62% for full scene visibility */}
-      <div
-        className="absolute inset-0 z-[1] pointer-events-none bg-[linear-gradient(to_bottom,#FAF8F5_0%,rgba(250,248,245,0.88)_18%,rgba(250,248,245,0.45)_40%,rgba(250,248,245,0)_62%,rgba(250,248,245,0)_100%)]"
+        className="absolute inset-x-0 bottom-0 h-[60%] z-0 pointer-events-none bg-[radial-gradient(ellipse_80%_50%_at_50%_88%,rgba(253,230,138,0.28)_0%,rgba(200,155,60,0.14)_35%,rgba(200,155,60,0.03)_65%,transparent_100%)]"
         aria-hidden="true"
       />
 
-      {/* CAUSE A: Watermark closing mark of the whole page (Z-1) — embossed overlay blend mode applied ONLY when on-screen */}
+      {/* Layer 3: Subtle atmospheric mist drift (Zero literal tracks/trains) */}
       <div
-        className="absolute inset-x-0 bottom-[4%] z-[1] pointer-events-none select-none flex justify-center"
+        className="footer-horizon-mist absolute inset-x-[-10%] bottom-[6%] h-[24%] z-0 pointer-events-none opacity-30 bg-[radial-gradient(ellipse_60%_35%_at_45%_50%,rgba(255,255,255,0.5)_0%,rgba(250,248,245,0.2)_45%,transparent_75%)]"
+        aria-hidden="true"
+      />
+
+      {/* Layer 4: Distant Multi-Plane Horizon Silhouettes (Soft, low-profile rolling topography) */}
+      <div
+        className="absolute inset-x-0 bottom-0 h-[140px] sm:h-[180px] md:h-[220px] z-[1] pointer-events-none overflow-hidden"
         aria-hidden="true"
       >
-        <span
-          className={`font-onest font-bold tracking-[-0.04em] text-[clamp(3.5rem,15vw,13rem)] leading-none whitespace-nowrap transition-colors duration-300 ${
-            inView
-              ? "text-[#121517]/[0.05] [text-shadow:0_1px_0_rgba(255,255,255,0.7)]"
-              : "text-[#121517]/[0.03] [text-shadow:0_1px_0_rgba(255,255,255,0.4)]"
-          }`}
+        <svg
+          viewBox="0 0 1440 240"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="none"
+          className="w-full h-full block"
         >
-          Deepak Prasad
-        </span>
+          <defs>
+            {/* Far Ridge Gradient: Soft, distant atmospheric perspective */}
+            <linearGradient id="farRidgeGrad" x1="720" y1="60" x2="720" y2="240" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stopColor="#A89F91" stopOpacity="0.25" />
+              <stop offset="50%" stopColor="#968C7E" stopOpacity="0.38" />
+              <stop offset="100%" stopColor="#7E7467" stopOpacity="0.52" />
+            </linearGradient>
+
+            {/* Mid Ridge Gradient: Warm atmospheric charcoal-slate (Soft, no harsh black band) */}
+            <linearGradient id="midRidgeGrad" x1="720" y1="110" x2="720" y2="240" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stopColor="#484E55" stopOpacity="0.38" />
+              <stop offset="45%" stopColor="#30353B" stopOpacity="0.55" />
+              <stop offset="100%" stopColor="#1E2226" stopOpacity="0.72" />
+            </linearGradient>
+
+            {/* Valley Haze: Soft ambient glow between the ridges */}
+            <linearGradient id="valleyHaze" x1="720" y1="80" x2="720" y2="180" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stopColor="#FDE68A" stopOpacity="0.22" />
+              <stop offset="100%" stopColor="#FAF8F5" stopOpacity="0" />
+            </linearGradient>
+
+            {/* Base atmospheric haze softening the bottom foundation */}
+            <linearGradient id="baseHazeGrad" x1="720" y1="180" x2="720" y2="240" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stopColor="#DFCFB5" stopOpacity="0" />
+              <stop offset="100%" stopColor="#DFCFB5" stopOpacity="0.35" />
+            </linearGradient>
+          </defs>
+
+          {/* Far Distant Mountain Ridges: Gentle, undulating horizon */}
+          <path
+            d="M0 145C140 125 260 105 400 118C540 131 660 155 800 135C940 115 1060 90 1200 110C1310 125 1380 140 1440 148V240H0V145Z"
+            fill="url(#farRidgeGrad)"
+          />
+
+          {/* Atmospheric Valley Haze */}
+          <path
+            d="M0 160C180 135 360 128 540 145C720 162 900 138 1080 125C1260 112 1380 140 1440 155V240H0V160Z"
+            fill="url(#valleyHaze)"
+          />
+
+          {/* Mid-Ground Horizon Ridge: Softer, low-lying rolling hills */}
+          <path
+            d="M0 182C150 170 280 158 430 174C580 190 710 170 860 158C1010 146 1150 174 1300 166C1380 162 1420 170 1440 176V240H0V182Z"
+            fill="url(#midRidgeGrad)"
+          />
+
+          {/* Base Atmospheric Wash */}
+          <rect x="0" y="180" width="1440" height="60" fill="url(#baseHazeGrad)" />
+        </svg>
       </div>
 
-      {/* Existing Footer Content positioned in upper portion (Z-2) */}
-      <div className="relative z-[2] w-full flex flex-col items-center justify-center mt-[8vh] sm:mt-[12vh] md:mt-[10vh] mb-auto">
-        {/* CTA SECTION */}
-        <section className="w-full relative py-12 sm:py-16 md:py-20 overflow-hidden flex flex-col items-center justify-center">
+      {/* Layer 5: Scrim Overlay for pristine headline & copy contrast */}
+      <div
+        className="absolute inset-0 z-[1] pointer-events-none bg-[linear-gradient(to_bottom,#FAF8F5_0%,rgba(250,248,245,0.92)_28%,rgba(250,248,245,0.60)_52%,rgba(250,248,245,0)_76%)]"
+        aria-hidden="true"
+      />
+
+      {/* =========================================================================
+          2. CTA CONTENT CONTAINER (GENEROUS ATMOSPHERIC DISTANCE & CLARITY)
+          Hierarchy: NEXT STOP -> Main Heading -> Supporting Copy -> CTAs -> Horizon
+          ========================================================================= */}
+      <div className="relative z-[3] w-full flex flex-col items-center justify-center pt-16 sm:pt-20 md:pt-24 pb-32 sm:pb-40 md:pb-48">
+        <section className="w-full relative overflow-hidden flex flex-col items-center justify-center">
           <div className="max-w-[1440px] w-full mx-auto px-6 lg:px-[96px] relative z-10 flex flex-col items-center">
-            <div className="max-w-[1248px] w-full flex flex-col items-center">
-              {/* Heading with soft protective halo */}
-              <motion.h2
-                initial={{ opacity: 0, y: 20 }}
+            <div className="max-w-[1040px] w-full flex flex-col items-center text-center">
+              {/* Eyebrow: NEXT STOP */}
+              <motion.div
+                initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
+                transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.45 }}
                 viewport={{ once: true }}
-                className="w-full max-w-3xl text-center text-[#121517] font-onest text-[34px] sm:text-[44px] md:text-[54px] font-semibold leading-[1.12] tracking-tight md:tracking-[-2px] mb-4 [text-shadow:0_1px_2px_rgba(250,248,245,0.9),0_0_16px_rgba(250,248,245,0.75)]"
+                className="mb-3"
               >
-                Let’s build something{" "}
-                <span className="font-playfair italic font-medium text-[#121517]/75">
-                  extraordinary
+                <span className="font-mono text-[11px] sm:text-[11.5px] font-bold uppercase tracking-[0.22em] text-[#A8711A]">
+                  NEXT STOP
+                </span>
+              </motion.div>
+
+              {/* Main Heading */}
+              <motion.h2
+                initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.55, delay: 0.08 }}
+                viewport={{ once: true }}
+                className="w-full max-w-3xl text-center text-[#121517] font-onest text-[32px] sm:text-[44px] md:text-[54px] font-bold leading-[1.12] tracking-tight md:tracking-[-1.8px] mb-4 [text-shadow:0_1px_2px_rgba(250,248,245,0.9),0_0_16px_rgba(250,248,245,0.75)]"
+              >
+                Looking for the next product challenge worth getting{" "}
+                <span className="font-playfair italic font-medium text-[#121517]/85">
+                  stubborn
                 </span>{" "}
-                together
+                about.
               </motion.h2>
 
-              {/* Subheading with soft protective halo */}
+              {/* Subheading: Preserved exact verified copy */}
               <motion.p
-                initial={{ opacity: 0, y: 20 }}
+                initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
+                transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.55, delay: 0.16 }}
                 viewport={{ once: true }}
-                className="w-full max-w-[52ch] text-center text-[#4A525A] font-inter text-[15px] md:text-[18px] leading-[1.62] mb-10 [text-shadow:0_1px_2px_rgba(250,248,245,0.9),0_0_16px_rgba(250,248,245,0.75)] mx-auto"
+                className="w-full max-w-[56ch] text-center text-[#4A525A] font-inter text-[14.5px] sm:text-[16px] md:text-[17.5px] leading-[1.62] mb-9 [text-shadow:0_1px_2px_rgba(250,248,245,0.9),0_0_16px_rgba(250,248,245,0.75)] mx-auto font-normal"
               >
-                Four of the systems on this page are{" "}
-                <span className="text-[#121517] font-semibold">
-                  still running today
-                </span>
-                . If you&apos;re building something that has to{" "}
-                <span className="text-[#121517] font-semibold">
-                  keep working long after launch
-                </span>
-                , I&apos;d like to hear about it. I&apos;ll tell you honestly
-                whether I&apos;m the right fit.
+                Open to <span className="text-[#121517] font-semibold">Senior Product Manager</span> and{" "}
+                <span className="text-[#121517] font-semibold">Product Lead</span> opportunities across subscriptions,
+                marketplaces, and applied AI. If you&apos;re building products that need to scale long after launch,
+                let&apos;s talk.
               </motion.p>
 
               {/* Action Buttons Row */}
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
+                transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.55, delay: 0.24 }}
                 viewport={{ once: true }}
                 className="flex flex-wrap items-center justify-center gap-3 sm:gap-4"
               >
-                {/* Full CTA button */}
+                {/* Primary CTA: Let's Talk */}
                 <GlassButton
                   as="a"
                   href={CALENDLY_URL}
@@ -284,7 +220,7 @@ export default function Footer({
                     </span>
                   }
                   iconPosition="left"
-                  className="shadow-lg group"
+                  className="shadow-md group"
                 >
                   <span className="flex items-center gap-2">
                     <span>Let&apos;s Talk</span>
@@ -295,44 +231,74 @@ export default function Footer({
                   </span>
                 </GlassButton>
 
-                {/* Three icon-only circular buttons */}
-                <GlassButton
-                  as="a"
-                  href="https://www.linkedin.com/in/prasad-deepak/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="LinkedIn"
-                  variant="icon"
-                  className="h-13 w-13 !rounded-full"
-                >
-                  <Linkedin size={20} className="text-[#121517]" />
-                </GlassButton>
+                {/* Secondary CTA: View Resume (Direct recruiter accessibility) */}
+                {onOpenResumeModal && (
+                  <GlassButton
+                    type="button"
+                    onClick={onOpenResumeModal}
+                    id="footer-view-resume-cta"
+                    variant="secondary"
+                    size="lg"
+                    icon={<FileText size={17} className="text-[#121517]/70" />}
+                    iconPosition="left"
+                    className="shadow-sm !bg-white/90 hover:!bg-white"
+                  >
+                    View Resume
+                  </GlassButton>
+                )}
 
-                <GlassButton
-                  as="a"
-                  href="https://github.com/shipwithdeepak-code"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="GitHub"
-                  variant="icon"
-                  className="h-13 w-13 !rounded-full"
-                >
-                  <Github size={20} className="text-[#121517]" />
-                </GlassButton>
+                {/* Three Contact Icons */}
+                <div className="flex items-center gap-2 sm:gap-2.5">
+                  <GlassButton
+                    as="a"
+                    href="https://www.linkedin.com/in/prasad-deepak/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="LinkedIn profile"
+                    variant="icon"
+                    className="h-12 w-12 sm:h-13 sm:w-13 !rounded-full !bg-white/85 hover:!bg-white"
+                  >
+                    <Linkedin size={19} className="text-[#121517]" />
+                  </GlassButton>
 
-                <GlassButton
-                  as="a"
-                  href="mailto:shipwithdeepak@gmail.com"
-                  aria-label="Email"
-                  variant="icon"
-                  className="h-13 w-13 !rounded-full"
-                >
-                  <Mail size={20} className="text-[#121517]" />
-                </GlassButton>
+                  <GlassButton
+                    as="a"
+                    href="https://github.com/shipwithdeepak-code"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="GitHub profile"
+                    variant="icon"
+                    className="h-12 w-12 sm:h-13 sm:w-13 !rounded-full !bg-white/85 hover:!bg-white"
+                  >
+                    <Github size={19} className="text-[#121517]" />
+                  </GlassButton>
+
+                  <GlassButton
+                    as="a"
+                    href="mailto:shipwithdeepak@gmail.com"
+                    aria-label="Email Deepak Prasad"
+                    variant="icon"
+                    className="h-12 w-12 sm:h-13 sm:w-13 !rounded-full !bg-white/85 hover:!bg-white"
+                  >
+                    <Mail size={19} className="text-[#121517]" />
+                  </GlassButton>
+                </div>
               </motion.div>
             </div>
           </div>
         </section>
+      </div>
+
+      {/* Bottom Copyright & Colophon Bar */}
+      <div className="relative z-[3] w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 border-t border-[#121517]/8 flex flex-col sm:flex-row items-center justify-between gap-2.5 text-xs font-mono text-[#121517]/55 select-none">
+        <div>
+          <span>&copy; {new Date().getFullYear()} Deepak Prasad</span>
+          <span className="mx-2" aria-hidden="true">&middot;</span>
+          <span>Senior Product Manager</span>
+        </div>
+        <div className="text-[11px] text-[#121517]/45">
+          Bengaluru, India &middot; Open to Global Relocation
+        </div>
       </div>
     </footer>
   );

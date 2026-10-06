@@ -5,27 +5,28 @@ export interface DipaAvatarProps {
 }
 
 /**
- * Dīpa's face, static, for use inside the chat drawer.
- * Same character as the launcher (DipaLauncher) so the thing you click and the
- * thing you talk to are recognisably one creature. No animation here — a
- * blinking avatar beside every message would be noise.
+ * Dīpa's face, static, for use inside the chat drawer and tooltips.
+ * Consistently matches the unified Dīpa visual system:
+ * - Dīpa character: Existing signature green/black eye artwork
+ * - Shell: Deep charcoal #121517
+ * - Accent: Subtle champagne gold #C89B3C border
  */
 export function DipaAvatar({ className = "" }: DipaAvatarProps) {
   return (
     <div
-      className={`w-[32px] h-[32px] rounded-full bg-[#121517] flex items-center justify-center shrink-0 overflow-hidden ${className}`}
+      className={`w-[32px] h-[32px] rounded-full bg-[#121517] border border-[#C89B3C]/30 flex items-center justify-center shrink-0 overflow-hidden shadow-xs ${className}`}
       aria-label="Dīpa"
       role="img"
     >
       <svg viewBox="14 14 36 36" width="32" height="32" aria-hidden="true">
         <defs>
           <linearGradient id="dipaAvVisor" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stopColor="#C8F07A" />
+            <stop offset="0%" stopColor="#C8F07A" />
             <stop offset="45%" stopColor="#8FD44A" />
             <stop offset="100%" stopColor="#3C9A48" />
           </linearGradient>
           <radialGradient id="dipaAvGlow" cx="50%" cy="40%" r="60%">
-            <stop offset="0" stopColor="#E8FBA8" stopOpacity=".9" />
+            <stop offset="0%" stopColor="#E8FBA8" stopOpacity=".9" />
             <stop offset="100%" stopColor="#8FD44A" stopOpacity="0" />
           </radialGradient>
         </defs>

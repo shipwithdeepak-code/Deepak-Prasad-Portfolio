@@ -42,12 +42,12 @@ export interface CopilotDrawerProps {
 }
 
 const STARTER_PROMPTS = [
-  "What was Deepak's impact at ReshaMandi?",
-  "Why choose RAG over fine-tuning for this site?",
-  "How did the Sportstech AI Coach handle latency?",
-  "Explain Deepak's first operating principle",
-  "What's actually changing for PMs with AI?",
-  "Is 'AI-native PM' more than a buzzword?",
+  "Take me to the subscription story",
+  "Show me how Deepak approaches AI",
+  "Tell me about the ReshaMandi work",
+  "How does Deepak make product decisions?",
+  "What was Deepak's impact at Sportstech?",
+  "What trade-offs did Deepak make in 0→1 builds?",
 ];
 
 export default function CopilotDrawer({
@@ -70,7 +70,7 @@ export default function CopilotDrawer({
     {
       id: "welcome",
       sender: "copilot",
-      text: "Hi, I'm Dīpa. I know Deepak's work, thinking, and the stories behind his projects: the case studies, decisions, and lessons in between. What are you curious about?",
+      text: "Hi, I'm Dīpa, your conductor. I know Deepak's work, decisions, and lessons across every case study on this route. What are you curious about?",
       timestamp: "Just now",
     },
   ]);
@@ -308,7 +308,7 @@ export default function CopilotDrawer({
         WebkitBackdropFilter: "blur(24px) saturate(160%)",
         border: "1px solid color-mix(in oklch, #121517 12%, transparent)",
         boxShadow:
-          "0 16px 32px -16px rgba(4,39,24,.4), 0 4px 10px -4px rgba(4,39,24,.18)",
+          "0 16px 32px -16px rgba(18,21,23,.24), 0 4px 10px -4px rgba(18,21,23,.12)",
         ...(keyboardViewport &&
         typeof window !== "undefined" &&
         window.innerWidth < 640
@@ -327,7 +327,7 @@ export default function CopilotDrawer({
           className="ambient-drift-1 absolute -top-12 -right-12 w-72 h-72 rounded-full pointer-events-none"
           style={{
             background:
-              "radial-gradient(circle, rgba(1, 188, 124, 0.16) 0%, rgba(1, 188, 124, 0) 70%)",
+              "radial-gradient(circle, rgba(200, 155, 60, 0.14) 0%, rgba(200, 155, 60, 0) 70%)",
             filter: "blur(32px)",
           }}
         />
@@ -335,7 +335,7 @@ export default function CopilotDrawer({
           className="ambient-drift-2 absolute -bottom-16 -left-16 w-80 h-80 rounded-full pointer-events-none"
           style={{
             background:
-              "radial-gradient(circle, rgba(24, 142, 57, 0.14) 0%, rgba(24, 142, 57, 0) 70%)",
+              "radial-gradient(circle, rgba(229, 193, 108, 0.12) 0%, rgba(229, 193, 108, 0) 70%)",
             filter: "blur(40px)",
           }}
         />
@@ -363,11 +363,11 @@ export default function CopilotDrawer({
                 Dīpa
               </span>
               <span className="px-1.5 py-0.5 rounded text-[10px] font-mono font-medium tracking-tight bg-[#C89B3C]/10 text-[#A8711A] border border-[#C89B3C]/30">
-                RAG v1.2
+                Conductor · RAG v1.2
               </span>
             </div>
             <p className="font-inter text-[11px] text-[#121517]/65 font-normal leading-tight">
-              Ask about Deepak&apos;s metrics, case studies, work
+              Ask Dīpa about any project and she&apos;ll point you to the evidence
             </p>
           </div>
         </div>

@@ -110,8 +110,11 @@ export default function AboutPage({
             CAREER EVOLUTION DIAGRAM
             ========================================================================= */}
         <div className="mb-20 p-6 sm:p-8 rounded-[24px] bg-white border border-[#121517]/10 shadow-2xs">
+          <span className="font-mono text-[10.5px] font-bold uppercase tracking-[0.2em] text-[#A8711A] block mb-2">
+            STATIONS ALONG THE WAY
+          </span>
           <h3 className="font-onest text-xl sm:text-2xl font-bold text-[#121517] mb-6">
-            From physical hardware and rural mandis to consumer AI platforms
+            Stations Along the Way · From physical hardware and rural mandis to consumer AI platforms
           </h3>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">

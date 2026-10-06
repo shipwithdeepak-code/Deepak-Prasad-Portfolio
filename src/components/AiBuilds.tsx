@@ -284,19 +284,22 @@ export default function AiBuilds({ onNavigate }: { onNavigate: (path: string) =>
                         <stop offset="100%" stopColor="#8FD44A" stopOpacity="0" />
                       </radialGradient>
                       <linearGradient id="aiDipaShell" x1=".3" y1="0" x2=".7" y2="1">
-                        <stop offset="0" stopColor="#11482C" />
-                        <stop offset="55%" stopColor="#08301E" />
+                        <stop offset="0" stopColor="#252A2F" />
+                        <stop offset="55%" stopColor="#181B1E" />
                         <stop offset="100%" stopColor="#121517" />
                       </linearGradient>
                     </defs>
                     <g className="ai-orb">
-                      <path d="M24 15 18 5" stroke="#9FD9B4" strokeWidth="2.8" strokeLinecap="round" />
-                      <circle cx="17.4" cy="4" r="3.4" fill="#C9EBD6" />
-                      <path d="M40 15 46 5.5" stroke="#9FD9B4" strokeWidth="2.8" strokeLinecap="round" />
-                      <circle cx="46.6" cy="4.5" r="3.4" fill="#C9EBD6" />
+                      <path d="M24 15 18 5" stroke="#C89B3C" strokeWidth="2.8" strokeLinecap="round" />
+                      <circle cx="17.4" cy="4" r="3.4" fill="#FAF8F5" stroke="#C89B3C" strokeWidth="0.8" />
+                      <path d="M40 15 46 5.5" stroke="#C89B3C" strokeWidth="2.8" strokeLinecap="round" />
+                      <circle cx="46.6" cy="4.5" r="3.4" fill="#FAF8F5" stroke="#C89B3C" strokeWidth="0.8" />
                       <path
                         d="M32 8c13.3 0 23 10.2 23 24.5C55 45.3 45.3 54 32 54S9 45.3 9 32.5C9 18.2 18.7 8 32 8Z"
                         fill="url(#aiDipaShell)"
+                        stroke="#C89B3C"
+                        strokeWidth="0.8"
+                        strokeOpacity="0.45"
                       />
                       <ellipse cx="32" cy="32" rx="18" ry="11" fill="url(#aiDipaVisor)" />
                       <ellipse cx="32" cy="31" rx="16" ry="9.5" fill="url(#aiDipaGlow)" />

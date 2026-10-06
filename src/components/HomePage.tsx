@@ -467,7 +467,7 @@ export default function HomePage({
               transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.4 }}
               className="text-[12px] sm:text-[12.5px] md:text-[13px] font-inter font-medium tracking-[0.02em] text-white/90 [text-shadow:0_1px_8px_rgba(0,0,0,0.75),0_0_16px_rgba(0,0,0,0.5)] mb-3 mx-auto max-w-full text-center leading-normal select-none"
             >
-              Senior Product Manager · AI · 0→1 · B2B & B2C
+              Senior Product Manager · Subscriptions · Marketplaces · Applied AI
             </motion.div>
 
             {/* Main Headline - Reduced scale ~6%, stable light treatment, high contrast, warm cream 'curious.', fits inside inner window */}
@@ -548,13 +548,19 @@ export default function HomePage({
               >
                 Deepak
               </span>
-              , a Senior Product Manager. Seven years across marketplaces, AI and subscription products. I&apos;ve built systems that move{" "}
+              , a Senior Product Manager. Seven years across subscriptions, B2B marketplaces and applied AI. I&apos;ve scaled subscription revenue to{" "}
+              <span
+                className="text-white font-semibold whitespace-nowrap"
+              >
+                €659K
+              </span>
+              , built systems moving{" "}
               <span
                 className="text-white font-semibold whitespace-nowrap"
               >
                 ₹20 to 25 Cr a month
               </span>
-              , and an AI coach that scaled from{" "}
+              , and shipped an in-app AI coach that grew from{" "}
               <span
                 className="text-white font-semibold whitespace-nowrap"
               >
@@ -936,8 +942,11 @@ export default function HomePage({
 
         {/* Section Header — Centered Editorial Composition */}
         <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-12 md:mb-16">
+          <span className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#A8711A] mb-2">
+            SELECTED WORK
+          </span>
           <h2 className="font-onest text-[32px] sm:text-[42px] md:text-[50px] font-bold text-[#121517] leading-[1.14] tracking-tight md:tracking-[-1.5px]">
-            From silk mandis to <em className="font-playfair italic font-medium text-[#121517]/85 not-italic">conversational AI</em>
+            From subscription scale and conversational AI to <em className="font-playfair italic font-medium text-[#121517]/85 not-italic">marketplaces</em>
           </h2>
           <p className="font-inter text-[15px] md:text-[17px] text-[#5A626A] leading-relaxed max-w-[620px] font-normal mt-3.5">
             Core products I personally owned and shipped to production as Senior Product Manager — driving enterprise scale, B2C subscription growth, and applied AI guardrails.
@@ -948,18 +957,18 @@ export default function HomePage({
         <div className="relative w-full">
           {[
             {
-              slug: "reshamandi",
-              title: "ReshaMandi",
-              tags: ["B2B marketplace", "Escrow & payments"],
-              role: "PM, core marketplace",
-              year: "2021–23",
+              slug: "subscription",
+              title: "Sportstech Subscription",
+              tags: ["Monetization", "B2C SaaS"],
+              role: "PM, monetization",
+              year: "2023–26",
               description:
-                "Rebuilt a fragmented offline silk trade into one governed flow across farmers, yards and finance.",
-              figure: "₹20–25 Cr",
-              qualifier: "per month, at 99.9% reliability",
-              imagePrefix: "/images/reshamandi-hero",
-              imgAlt: "ReshaMandi B2B marketplace workflow",
-              has1200: false,
+                "Built the subscription business from zero: packaging, paywalls, trial mechanics and win-back.",
+              figure: "€659K",
+              qualifier: "FY25, up 81.9% YoY",
+              imagePrefix: "/images/subscription-hero",
+              imgAlt: "Sportstech Subscription checkout and growth screens",
+              has1200: true,
             },
             {
               slug: "ai-coach",
@@ -976,29 +985,29 @@ export default function HomePage({
               has1200: true,
             },
             {
-              slug: "subscription",
-              title: "Sportstech Subscription",
-              tags: ["Monetization", "B2C SaaS"],
-              role: "PM, monetization",
-              year: "2023–26",
+              slug: "reshamandi",
+              title: "ReshaMandi",
+              tags: ["B2B marketplace", "Escrow & payments"],
+              role: "PM, core marketplace",
+              year: "2021–23",
               description:
-                "Built the subscription business from zero: packaging, paywalls, trial mechanics and win-back.",
-              figure: "€659K",
-              qualifier: "FY25, up 81.9% YoY",
-              imagePrefix: "/images/subscription-hero",
-              imgAlt: "Sportstech Subscription checkout and growth screens",
-              has1200: true,
+                "Rebuilt a fragmented offline silk trade into one governed flow across farmers, yards and finance.",
+              figure: "₹20–25 Cr",
+              qualifier: "per month, at 99.9% reliability",
+              imagePrefix: "/images/reshamandi-hero",
+              imgAlt: "ReshaMandi B2B marketplace workflow",
+              has1200: false,
             },
             {
               slug: "performance-score",
               title: "Performance Score",
-              tags: ["UNLAUNCHED · DEVELOPMENT-READY PRD", "Connected hardware"],
+              tags: ["Connected hardware", "System design"],
               role: "PM, algorithms & hardware",
               year: "2025",
               description:
                 "Unlaunched product strategy and development-ready PRD: unifying 5 fragmented surfaces into one shared fitness recovery engine.",
               figure: "5 surfaces",
-              qualifier: "unlaunched PRD & system design",
+              qualifier: "Status · Unlaunched / Development-ready PRD",
               imagePrefix: "/images/performance-score-hero",
               imgAlt: "Performance Score algorithm visualization",
               has1200: true,
@@ -1063,18 +1072,11 @@ export default function HomePage({
 
                   {/* Smoked Glass Charcoal Information Panel */}
                   <div className="work-deck-panel">
-                    {/* Project Title: Prominent, begins cleanly at top with zero decorative eyebrow */}
+                    {/* Project Title */}
                     <div className="mb-2.5">
                       <h3 className="font-onest font-semibold text-[24px] sm:text-[28px] leading-[1.18] tracking-[-0.02em] text-[#FAF8F5]">
                         {item.title}
                       </h3>
-                      {item.tags.some((t) => t.startsWith("UNLAUNCHED")) && (
-                        <div className="inline-block mt-1.5">
-                          <span className="rounded-full px-2.5 py-0.5 text-[10.5px] font-mono font-semibold tracking-wider bg-[#2A2010] text-[#FDE68A] border border-[#FDE68A]/30">
-                            UNLAUNCHED · DEVELOPMENT-READY PRD
-                          </span>
-                        </div>
-                      )}
                     </div>
 
                     {/* Exact Authentic Description */}
@@ -1087,10 +1089,10 @@ export default function HomePage({
 
                     {/* Verified Metrics Row */}
                     <div className="pt-4 border-t border-white/[0.12] flex items-baseline justify-between gap-3 mb-5">
-                      <div className="font-onest font-semibold text-[32px] sm:text-[38px] leading-none tracking-[-0.02em] text-[#FDE68A] tabular-nums">
+                      <div className="font-onest font-semibold text-[32px] sm:text-[38px] leading-none tracking-[-0.02em] text-[#FDE68A] tabular-nums shrink-0">
                         {item.figure}
                       </div>
-                      <div className="font-inter text-[12.5px] sm:text-[14px] leading-snug text-white/70 text-right max-w-[17ch]">
+                      <div className="font-inter text-[12.5px] sm:text-[14px] leading-snug text-white/70 text-right max-w-[22ch]">
                         {item.qualifier}
                       </div>
                     </div>
@@ -1138,12 +1140,15 @@ export default function HomePage({
           ========================================================================= */}
       <section id="ai-builds" data-section="product-lab" className="py-14 md:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center text-center mb-8 md:mb-12">
+          <span className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#A8711A] mb-2">
+            PRODUCT LAB
+          </span>
           <h2 className="font-onest text-[32px] sm:text-[42px] md:text-[50px] font-bold text-[#121517] leading-[1.15] tracking-tight md:tracking-[-1.5px] max-w-3xl text-center">
-            I don&apos;t just use AI to make things. <br className="hidden sm:inline" />
-            <span className="font-playfair italic font-medium text-[#121517]/80">I use it to test how products should work.</span>
+            Where I test ideas, build systems and explore <br className="hidden sm:inline" />
+            <span className="font-playfair italic font-medium text-[#121517]/80">what comes next.</span>
           </h2>
           <p className="font-inter text-[15px] md:text-[17px] text-[#4A525A] leading-relaxed max-w-[720px] font-normal mt-4 text-center">
-            I prototype product mechanisms, challenge my assumptions, and build working systems with AI as an implementation partner &mdash; while keeping the product decisions, constraints, and validation loop mine.
+            I prototype product mechanisms, challenge my assumptions, and build working systems with AI as an implementation partner &mdash; while keeping the product decisions, constraints, and validation loop mine. Product thinking first. AI capability second.
           </p>
         </div>
 

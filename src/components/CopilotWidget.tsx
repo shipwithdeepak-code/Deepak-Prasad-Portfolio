@@ -202,7 +202,7 @@ export default function CopilotWidget({
               WebkitBackdropFilter: "blur(20px) saturate(160%)",
               border: "1px solid color-mix(in oklch, #121517 12%, transparent)",
               boxShadow:
-                "0 12px 30px -8px rgba(4,39,24,.22), 0 4px 10px -3px rgba(4,39,24,.1)",
+                "0 12px 30px -8px rgba(18,21,23,.12), 0 4px 10px -3px rgba(18,21,23,.06)",
             }}
             onClick={() => {
               if (showScrollNudge) dismissScrollNudge();
@@ -215,16 +215,16 @@ export default function CopilotWidget({
               <div>
                 <p className="font-inter text-xs sm:text-[13px] font-medium text-[#121517] leading-snug">
                   {showScrollNudge
-                    ? "Curious about the thinking behind this? Ask Dīpa →"
-                    : "I'm Dīpa. I know a little about Deepak's work. Ask me anything →"}
+                    ? "Meet Dīpa, your conductor. Ask her about any project and she'll point you to the evidence →"
+                    : "Meet Dīpa, your conductor. Ask her about any project and she'll point you to the evidence →"}
                 </p>
                 <button
                   type="button"
                   onClick={(e) => {
                     e.stopPropagation();
                     const promptText = showScrollNudge
-                      ? "Tell me about the trade-offs in Deepak's selected work"
-                      : "What's Deepak's strongest 0→1 product?";
+                      ? "Take me to the subscription story"
+                      : "Take me to the subscription story";
                     if (showScrollNudge) dismissScrollNudge();
                     if (showIntroTooltip) dismissIntroTooltip();
                     setInitialPrompt(promptText);
@@ -234,9 +234,7 @@ export default function CopilotWidget({
                 >
                   Try:{" "}
                   <span className="font-semibold">
-                    {showScrollNudge
-                      ? "Trade-offs in Deepak's selected work"
-                      : "What's Deepak's strongest 0→1 product?"}
+                    Take me to the subscription story
                   </span>
                 </button>
               </div>
@@ -266,7 +264,7 @@ export default function CopilotWidget({
         style={
           isCtaHovering && !shouldReduceMotion
             ? {
-                filter: "drop-shadow(0 0 16px rgba(1, 188, 124, 0.45))",
+                filter: "drop-shadow(0 0 16px rgba(200, 155, 60, 0.4))",
                 transition: "transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), filter 0.25s ease-out",
               }
             : undefined
