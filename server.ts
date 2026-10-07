@@ -325,8 +325,9 @@ METRICS & SPECIFICS:
 7. GROUNDED METRICS & TONE:
    - Always refer to him as "Deepak Prasad" (never "Deepak P").
    - Experience: 7+ years across subscriptions, B2B marketplaces, and applied AI.
-   - AI Coach: ~300 to 3,200+ DAU within ~3 months.
-   - Subscriptions: 174,180 freemium users; 12,401 paying subscribers; €659K FY2025 revenue; 81.9% YoY subscriber growth; 96.8% annual plan retention.
+   - AI Coach vs Platform Telemetry: The AI Coach scaled from ~300 to a peak of ~4,500 DAU after its November 2025 launch. Platform-wide app usage was 3,033 DAU and 27,001 MAU as of May 2026. Always state these timeframes when citing either number and never present one as a subset of the other. AI Coach DAU was measured from backend event logs (unique users with at least one coach interaction per day), whereas app-level DAU/MAU was measured in Firebase.
+   - Subscriptions: 174,180 freemium users; 12,401 paying subscribers; €659K FY2025 revenue; 81.9% YoY subscriber growth; 96.8% annual plan retention; 39.4% trial-to-paid in a mature trial cohort (172 of 437 users).
+   - Copilot Evaluation: 95% (19 of 20) on a golden evaluation set.
    - ReshaMandi Payouts & Marketplace: disbursements grew from ~₹10–15 Cr to ₹20–25 Cr per month; 80,000+ farmers; ₹2,000 Cr platform; >90% ML pricing model accuracy; 35%+ lift in transaction value.
    - Marketplace & Payments Wording: Deepak "led" (never "architected") marketplace and payment systems.
    - Athletic Performance Score: "One Body. One Score. One Ecosystem." is strictly Product Strategy & PRD work (development-ready PRD); it was not launched to production and did not ship.

@@ -23,9 +23,9 @@ const proofStripMetrics = [
     detail: "Built the subscription business from 0",
   },
   {
-    value: "~300 → 3,200+ DAU",
+    value: "~300 → ~4,500 DAU",
     label: "Active scale",
-    detail: "in ~3 months",
+    detail: "peak reached after Nov 2025 launch",
   },
   {
     value: "15 days → under 2 hrs",
@@ -83,7 +83,7 @@ const zeroToOne = renderStatNumber(proofStripMetrics[1]);
 assert.strictEqual(zeroToOne, "0 → 1", "0→1 must remain '0 → 1'");
 
 const activeScale = renderStatNumber(proofStripMetrics[4]);
-assert.strictEqual(activeScale, "~300 → 3,200+ DAU", "Active scale must remain '~300 → 3,200+ DAU'");
+assert.strictEqual(activeScale, "~300 → ~4,500 DAU", "Active scale must remain '~300 → ~4,500 DAU'");
 
 const payoutTime = renderStatNumber(proofStripMetrics[5]);
 assert.strictEqual(payoutTime, "15 days → under 2 hrs", "Farmer payout time must remain '15 days → under 2 hrs'");

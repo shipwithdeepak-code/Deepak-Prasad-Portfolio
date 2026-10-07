@@ -834,7 +834,7 @@ export const MORE_PRODUCT_WORK_ITEMS: MoreProductWorkItem[] = [
     tags: ['Monetization', 'Retention', 'Payments'],
     metrics: [
       { value: '437', label: 'users in mature cohort', context: 'trial expiration cohort' },
-      { value: '39.4%', label: 'renewal conversion rate', context: '172 paying subscribers converted' },
+      { value: '39.4%', label: 'trial-to-paid conversion', context: '39.4% trial-to-paid in a mature trial cohort (172 of 437 users)' },
       { value: '82.5%', label: 'annual plan share', context: '17.5% monthly among converters' },
     ],
     problem: 'Hardware purchases came with 3-to-12-month bundled app access; when the complimentary trial period expired, customers dropped off due to unexpected payment failures and disjointed web renewal forms.',

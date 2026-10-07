@@ -49,7 +49,7 @@
       "source": "Resume — Sportstech Senior Product Manager",
       "category": "Career",
       "title": "Senior Product Manager at Sportstech (Oct 2024 – May 2026)",
-      "chunk": "As Senior Product Manager at Sportstech (Oct 2024 – May 2026), Deepak owned subscription strategy for a B2C fitness platform serving 174,180 freemium users and 12,401 paying subscribers, generating €659K in FY2025 subscription revenue with 81.9% YoY subscriber growth and 96.8% annual retention. He led the 0→1 development of the in-app AI Coach (scaling ~300 to 3,200+ DAU in ~3 months, Gemini primary / ChatGPT fallback), built an AI video localization workflow (200+ videos in ~3 weeks, ~10× faster), and managed/mentored a 6-person cross-functional pod (3 PMs, Growth, Content) in an ODC model partnering with Germany HQ leadership."
+      "chunk": "As Senior Product Manager at Sportstech (Oct 2024 – May 2026), Deepak owned subscription strategy for a B2C fitness platform serving 174,180 freemium users and 12,401 paying subscribers, generating €659K in FY2025 subscription revenue with 81.9% YoY subscriber growth and 96.8% annual retention. He led the 0→1 development of the in-app AI Coach (scaled from ~300 to a peak of ~4,500 DAU after its November 2025 launch, Gemini primary / ChatGPT fallback), built an AI video localization workflow (200+ videos in ~3 weeks, ~10× faster), and managed/mentored a 6-person cross-functional pod (3 PMs, Growth, Content) in an ODC model partnering with Germany HQ leadership."
     },
     {
       "id": "career-consulting",
@@ -119,7 +119,7 @@
       "source": "Sportstech AI Coach Case Study: Growth & Models",
       "category": "Sportstech",
       "title": "AI Coach Growth, Beta Validation & Multi-Model Architecture",
-      "chunk": "The AI Coach followed a disciplined rollout: internal dogfooding with coaches, a 100-user phased beta, and production launch with a voice vs text A/B experiment. The feature scaled from an initial cohort of ~300 DAU to 3,200+ DAU in roughly 3 months through iterative improvements. It ran on a multi-model architecture using Gemini as the primary engine for multimodal reasoning with ChatGPT as reliable fallback."
+      "chunk": "The AI Coach followed a disciplined rollout: internal dogfooding with coaches, a 100-user phased beta, and production launch with a voice vs text A/B experiment. The feature scaled from an initial cohort of ~300 DAU to a peak of ~4,500 DAU after its November 2025 launch through iterative improvements. It ran on a multi-model architecture using Gemini as the primary engine for multimodal reasoning with ChatGPT as reliable fallback. Metric definitions: AI Coach DAU measured from backend event logs (unique users with at least one coach interaction per day). App-level DAU/MAU measured in Firebase."
     },
     {
       "id": "ai-coach-safety-governance",
@@ -140,14 +140,14 @@
       "source": "Sportstech Subscription Case Study: Scale",
       "category": "Sportstech",
       "title": "Subscription Scale: 174K Users, 12.4K Paid, €659K FY25 Revenue",
-      "chunk": "Under Deepak's subscription ownership, the platform grew to 174,180 freemium users and 12,401 paying subscribers, generating €659K in FY2025 subscription revenue. Key performance metrics included 81.9% YoY subscriber growth, 96.8% annual plan retention, and a 39.4% conversion rate (172/437 users) in the mature trial cohort through renewal-friction reduction."
+      "chunk": "Under Deepak's subscription ownership, the platform grew to 174,180 freemium users and 12,401 paying subscribers, generating €659K in FY2025 subscription revenue. Key performance metrics included 81.9% YoY subscriber growth, 96.8% annual plan retention, and 39.4% trial-to-paid in a mature trial cohort (172 of 437 users) through renewal-friction reduction."
     },
     {
       "id": "sportstech-telemetry-funnels",
       "source": "Sportstech Subscription Case Study: Telemetry",
       "category": "Sportstech",
-      "title": "Sportstech Platform Telemetry: 3,033 DAU, 27,001 MAU",
-      "chunk": "Deepak owned product performance tracking across acquisition, engagement, and subscription funnels. Telemetry and cohort instrumentation tracked DAU, MAU, conversion, and churn to inform weekly prioritization. The overall consumer fitness platform scaled to 3,033 DAU and 27,001 MAU (an 11% DAU/MAU ratio)."
+      "title": "Platform-wide App Telemetry (as of May 2026): 3,033 DAU, 27,001 MAU",
+      "chunk": "Deepak owned product performance tracking across acquisition, engagement, and subscription funnels. Telemetry and cohort instrumentation tracked DAU, MAU, conversion, and churn to inform weekly prioritization. Platform-wide (whole app, as of May 2026): 3,033 DAU, 27,001 MAU (an 11% DAU/MAU ratio). Note: The AI Coach scaled from ~300 to a peak of ~4,500 DAU after its November 2025 launch. Platform-wide app usage was 3,033 DAU and 27,001 MAU as of May 2026. Always state these timeframes when citing either number and never present one as a subset of the other. Metric definitions: AI Coach DAU measured from backend event logs (unique users with at least one coach interaction per day). App-level DAU/MAU measured in Firebase."
     },
     {
       "id": "ai-localization-pipeline",

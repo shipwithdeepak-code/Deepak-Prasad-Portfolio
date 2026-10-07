@@ -444,7 +444,7 @@ export default function CaseStudyDetailPage({
                       <div className="flex items-center gap-2 text-xs font-inter font-medium text-[#121517]/70">
                         <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F5F3EF] text-[#121517] font-semibold">
                           <CheckCircle2 size={13} />
-                          <span>95% Pass Rate (19/20)</span>
+                          <span>95% (19 of 20) on a golden evaluation set</span>
                         </span>
                         <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-[#121517]/5 text-[#121517]/80 font-semibold">
                           <span>0% Hallucinations</span>

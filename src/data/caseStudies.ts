@@ -332,9 +332,9 @@ export const AI_COACH_CASE_STUDY: CaseStudyDetail = {
   role: 'Product Manager · AI & Consumer Engagement',
   timeline: 'Oct 2024 – May 2026',
   tags: ['AI', 'Conversational AI', '0→1', 'Consumer'],
-  proofPoints: ['3,200+ DAU during rollout', 'in ~3 months', 'Gemini + ChatGPT Fallback'],
+  proofPoints: ['Peak ~4,500 DAU', 'after Nov 2025 launch', 'Gemini + ChatGPT Fallback'],
   keyStats: [
-    { label: 'Active User Scale', value: '3,200+ DAU', detail: 'During rollout period, supported by in-app prompts and coaching' },
+    { label: 'Peak Active Users', value: '~4,500 DAU', detail: 'Peak reached after Nov 2025 launch. AI Coach DAU measured from backend event logs (unique users with at least one coach interaction per day). App-level DAU/MAU measured in Firebase.' },
     { label: 'Primary LLM', value: 'Gemini', detail: 'Chosen for speed, JSON adherence & cost' },
     { label: 'Fallback LLM', value: 'ChatGPT', detail: 'Automated failover for uptime resilience' },
     { label: 'Core Principle', value: 'Safety First', detail: 'Deterministic guardrails over open generation' },
@@ -347,7 +347,7 @@ export const AI_COACH_CASE_STUDY: CaseStudyDetail = {
     myOwnership:
       'I figured out what the assistant should and should not do, set our safety boundaries, worked with engineering on provider selection, and ran our testing loops to see where the product broke before rollout.',
     whatChanged:
-      'Supported reaching 3,200+ DAU during the product rollout period, supported by in-app workout prompts and conversational coaching, with 0 reported safety incidents or medical escalations during the launch period, turning an ambiguous concept into a daily workout discovery tool.',
+      'Scaled from ~300 to a peak of ~4,500 DAU after its November 2025 launch, supported by in-app workout prompts and conversational coaching, with 0 reported safety incidents or medical escalations during the launch period, turning an ambiguous concept into a daily workout discovery tool.',
   },
   tradeOff: {
     considered:
@@ -359,7 +359,7 @@ export const AI_COACH_CASE_STUDY: CaseStudyDetail = {
     gaveUp:
       'We gave up chatty conversational banter and longer session durations that might have looked good on vanity metrics dashboards.',
     outcome:
-      'We saw 0 reported safety incidents or medical escalations during the observed launch period and reached 3,200+ DAU during the product rollout period, supported by in-app workout prompts and conversational coaching, because users and our coaching team trusted the recommendations.',
+      'We saw 0 reported safety incidents or medical escalations during the observed launch period and scaled from ~300 to a peak of ~4,500 DAU after its November 2025 launch, supported by in-app workout prompts and conversational coaching, because users and our coaching team trusted the recommendations.',
   },
   artifacts: {
     title: 'Safety Interceptor Logic & Recommendation Schema',
@@ -577,9 +577,9 @@ export const AI_COACH_CASE_STUDY: CaseStudyDetail = {
       id: 'from-beta-to-production',
       number: '06',
       title: 'From Beta to Production: What Changed and What I Learned',
-      subtitle: 'Scaling to 3,200+ DAU, disciplined attribution, and honest reflections',
+      subtitle: 'Scaling to a peak of ~4,500 DAU after its November 2025 launch, disciplined attribution, and honest reflections',
       content: [
-        'Within about 3 months of rollout, daily active usage of the AI Coach grew from an initial cohort of ~300 users to 3,200+ DAU. It quickly became one of the main ways people found new workouts and recovery sessions in the app.',
+        'After its November 2025 launch, daily active usage of the AI Coach scaled from an initial cohort of ~300 users to a peak of ~4,500 DAU (AI Coach DAU measured from backend event logs: unique users with at least one coach interaction per day; app-level DAU/MAU measured in Firebase). It quickly became one of the main ways people found new workouts and recovery sessions in the app.',
         '### What the AI Coach Actually Drove (And What It Didn\'t)',
         'It is easy in a case study to claim that a single feature drove company-wide subscription growth. But that isn\'t how real products work. Platform subscribers and retention grew during this period, but that was the result of our entire team: great trainer content, marketing campaigns, and reliable video streaming.',
         'What the AI Coach actually did was solve the discovery problem: users who engaged with the coach found a relevant workout in under a minute instead of getting stuck in catalog menus, and we achieved that without a single reported safety incident or medical escalation.',
@@ -587,8 +587,8 @@ export const AI_COACH_CASE_STUDY: CaseStudyDetail = {
       outcomeHierarchy: [
         {
           category: 'Product Outcome',
-          metric: '3,200+ DAU',
-          desc: 'Reached 3,200+ DAU during the product rollout period, supported by in-app workout prompts and conversational coaching.',
+          metric: '~4,500 DAU (Peak)',
+          desc: 'Scaled from ~300 to a peak of ~4,500 DAU after its November 2025 launch, supported by in-app workout prompts and conversational coaching. AI Coach DAU measured from backend event logs (unique users with at least one coach interaction per day). App-level DAU/MAU measured in Firebase.',
         },
         {
           category: 'User Outcome',
@@ -610,7 +610,7 @@ export const AI_COACH_CASE_STUDY: CaseStudyDetail = {
         'One thing I would do differently is bring the readability constraint into the first version. We spent time making the model more capable before fully appreciating that people were using the coach between sets, while walking, or with very little attention available. The model could give a much longer, more detailed answer than the user actually needed. That changed how I think about AI products: the quality of the model is only one part of the experience. The product still has to decide what context to give it, what it can do, where it should stop, and what the user should be able to do next.',
       highlights: [
         {
-          title: '~300 → 3,200+ DAU in ~3 Months',
+          title: '~300 → Peak of ~4,500 DAU after Nov 2025 Launch',
           desc: 'Grew through organic in-app discovery and word-of-mouth trust across the fitness community.',
         },
         {
@@ -1391,7 +1391,7 @@ export const COPILOT_GOLDEN_EVALUATION_SET: EvaluationRow[] = [
     retrievalHitTop3: true,
     similarity: 0.87,
     status: "Pass",
-    notes: "Retrieved ~300 to 3,200+ DAU scale within ~3 months."
+    notes: "Retrieved ~300 to a peak of ~4,500 DAU after November 2025 launch."
   },
   {
     id: 6,
@@ -1568,13 +1568,13 @@ export const BEHIND_COPILOT_CASE_STUDY: CaseStudyDetail = {
     'Fast in-memory CPU retrieval',
     '0 external DB dependencies',
     '100% citation grounding across the evaluation set',
-    '95% golden set accuracy (19/20)',
+    '95% (19 of 20) on a golden evaluation set',
   ],
   keyStats: [
     { label: 'Retrieval Latency', value: 'Fast CPU', detail: 'In-memory cosine calculation (generation takes ~4–6s)' },
     { label: 'Vector DB Cost', value: '$0 / mo', detail: 'Zero cloud database or cluster maintenance' },
     { label: 'Grounding Precision', value: '100%', detail: '100% citation grounding across the evaluation set' },
-    { label: 'Golden Benchmark', value: '19/20', detail: '95% pass rate across the 20-query golden evaluation set' },
+    { label: 'Golden Benchmark', value: '19/20', detail: '95% (19 of 20) on a golden evaluation set' },
   ],
   quickContext: {
     problem:
@@ -1732,7 +1732,7 @@ export const BEHIND_COPILOT_CASE_STUDY: CaseStudyDetail = {
       content: [
         'To scientifically evaluate the RAG pipeline prior to release, we constructed a 20-question golden test set encompassing factual career metrics, product philosophies, technical architecture, and adversarial out-of-domain edge cases.',
         'Each query was executed against the production embedding space, recording top retrieval hit rate, top cosine similarity, response correctness, and hallucination absence.',
-        'The architecture achieved a 95% pass rate (19/20 passes), with high fidelity across the 20-query golden evaluation set and fast in-memory retrieval.',
+        'The architecture achieved 95% (19 of 20) on a golden evaluation set, with high fidelity across adversarial prompts and fast in-memory retrieval.',
       ],
       evaluationTable: COPILOT_GOLDEN_EVALUATION_SET,
       outcomeHierarchy: [
@@ -1749,7 +1749,7 @@ export const BEHIND_COPILOT_CASE_STUDY: CaseStudyDetail = {
         {
           category: 'Product Outcome',
           metric: '19/20 Passes',
-          desc: '95% golden set accuracy across the 20-query golden evaluation set, including adversarial prompts.',
+          desc: '95% (19 of 20) on a golden evaluation set, including adversarial prompts.',
         },
         {
           category: 'User Outcome',
@@ -1984,7 +1984,7 @@ export const EXPERIENCE_ROLES: ExperienceRole[] = [
       'Owned end-to-end subscription strategy, consumer AI initiatives, and connected product experiences for a digital fitness platform across iOS and Android.',
     focus: ['AI Coach (0→1)', 'Subscription & Monetization', 'Connected Products', 'Growth & Retention'],
     highlights: [
-      'Spearheaded 0→1 development of conversational in-app AI Coach (Gemini primary, ChatGPT fallback); scaled adoption from ~300 to 3,200+ DAU within roughly 3 months.',
+      'Spearheaded 0→1 development of conversational in-app AI Coach (Gemini primary, ChatGPT fallback); scaled from ~300 to a peak of ~4,500 DAU after its November 2025 launch.',
       'Managed subscription strategy across 174,180 freemium and 12,401 paying users; drove 81.9% YoY subscriber growth and 96.8% yearly-plan retention (€659K FY25 subscription revenue).',
       'Architected comprehensive cross-platform strategy and PRD for Performance Score (0–100 Athletic Reliability) uniting mobile, Smart Gym, and wearable telemetry.',
       'Designed AI-assisted content localization pipeline shipping 200+ workout videos in ~3 weeks (~10× faster) across Italian, French, and Spanish.',
@@ -2113,7 +2113,7 @@ export const HOW_I_WORK_PRINCIPLES: HowIWorkPrinciple[] = [
     detail:
       'The fastest way to kill an early-stage product is premature complexity. Ruthlessly isolate the atomic value loop, validate PMF signals, and expand only when the core mechanism is airtight.',
     aphorism: 'Ruthlessly isolate the atomic value loop before expanding.',
-    evidence: 'Sportstech AI Coach · ~300 → 3,200+ DAU',
+    evidence: 'Sportstech AI Coach · ~300 to Peak ~4,500 DAU (Nov 2025 Launch)',
     evidenceLink: '/work/ai-coach',
   },
   {

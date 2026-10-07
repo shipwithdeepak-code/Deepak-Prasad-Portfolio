@@ -119,7 +119,7 @@ function StatNumberDisplay({
 }: StatNumberDisplayProps) {
   const delay = idx * 90;
 
-  // Semantic transitions containing "→" (e.g. "0 → 1", "~300 → 3,200+ DAU", "15 days → under 2 hrs")
+  // Semantic transitions containing "→" (e.g. "0 → 1", "~300 → ~4,500 DAU", "15 days → under 2 hrs")
   // Render canonical text directly with editorial Playfair champagne transition arrow — never coerce to numbers
   if (metric.value.includes("→")) {
     const parts = metric.value.split("→");
@@ -226,7 +226,7 @@ export default function HomePage({
     { name: "Supply Chain Scale", metric: "80K+ farmers" },
     { name: "Bidding Transaction-Value Uplift", metric: ">35%" },
     { name: "Subscription Platform", metric: "€659k FY25" },
-    { name: "AI Coach Growth", metric: "~300 → 3,200+ DAU" },
+    { name: "AI Coach Peak Growth", metric: "~300 → ~4,500 peak DAU" },
     { name: "0 → 1 Systems", metric: "Concept to production" },
   ];
 
@@ -383,9 +383,9 @@ export default function HomePage({
       detail: "Built the subscription business from 0",
     },
     {
-      value: "~300 → 3,200+ DAU",
+      value: "~300 → ~4,500 DAU",
       label: "Active scale",
-      detail: "in ~3 months",
+      detail: "peak reached after Nov 2025 launch",
     },
     {
       value: "15 days → under 2 hrs",
@@ -560,13 +560,13 @@ export default function HomePage({
               >
                 ₹20 to 25 Cr a month
               </span>
-              , and shipped an in-app AI coach that grew from{" "}
+              , and shipped an in-app AI coach that scaled from{" "}
               <span
                 className="text-white font-semibold whitespace-nowrap"
               >
-                ~300 to 3,200+ DAU
+                ~300 to a peak of ~4,500 DAU
               </span>{" "}
-              in ~3 months. I kept asking questions until the product matched reality.
+              after its November 2025 launch. I kept asking questions until the product matched reality.
             </motion.p>
 
             {/* CTA Hierarchy: Solid dark primary vs. quiet light secondary link */}
@@ -978,8 +978,8 @@ export default function HomePage({
               year: "2024–26",
               description:
                 "Took an ambiguous AI opportunity to production in three months, behind hard safety guardrails.",
-              figure: "3,200+",
-              qualifier: "DAU during rollout period",
+              figure: "~4,500",
+              qualifier: "peak DAU reached after Nov 2025 launch",
               imagePrefix: "/images/ai-coach-hero",
               imgAlt: "Sportstech AI Coach conversational interface",
               has1200: true,

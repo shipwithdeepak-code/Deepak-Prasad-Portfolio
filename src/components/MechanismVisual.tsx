@@ -182,10 +182,10 @@ function AiCoachEditorialBoundary({
         </div>
         <div className="flex flex-wrap items-center gap-2 text-xs font-mono shrink-0">
           <span className="px-3 py-1 rounded-full bg-[#A8711A]/12 text-[#A8711A] font-semibold">
-            3,200+ DAU
+            Peak ~4,500 DAU
           </span>
           <span className="px-3 py-1 rounded-full bg-[#121517]/5 text-[#121517]/80 font-semibold border border-current/10">
-            Scaled from ~300 in ~3 months
+            Scaled from ~300 after Nov 2025 launch
           </span>
         </div>
       </div>
@@ -330,7 +330,7 @@ function AiCoachEditorialBoundary({
               ITERATION LOOP · FROM AMBIGUOUS CHARTER TO CONTROLLED ROLLOUT
             </span>
             <span className="font-mono text-[11px] text-[#A8711A] font-semibold">
-              ~300 → 3,200+ DAU in ~3 Months
+              ~300 → Peak of ~4,500 DAU (Nov 2025 Launch)
             </span>
           </div>
 
@@ -422,7 +422,7 @@ function AiCoachEditorialBoundary({
           "The model can generate. The product defines the boundary."
         </p>
         <span className="font-mono text-[11px] font-semibold text-[#A8711A] shrink-0">
-          Scaled from ~300 to 3,200+ DAU in ~3 months behind deterministic safety guardrails
+          Scaled from ~300 to a peak of ~4,500 DAU after its November 2025 launch behind deterministic safety guardrails. (AI Coach DAU measured from backend event logs: unique users with at least one coach interaction per day; app-level DAU/MAU measured in Firebase.)
         </span>
       </div>
     </div>
