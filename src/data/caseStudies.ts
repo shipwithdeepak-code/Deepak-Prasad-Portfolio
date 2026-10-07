@@ -1783,6 +1783,33 @@ export const BEHIND_COPILOT_CASE_STUDY: CaseStudyDetail = {
       quote:
         'A product manager’s AI assistant should not merely generate fluent prose; it should embody the rigor, transparency, and safety architecture of the products they build.',
     },
+    {
+      id: 'voice-indian-languages',
+      number: '07',
+      title: 'Voice & Indian languages',
+      subtitle: 'Multi-modal localization across English, Hindi, Kannada, Tamil, and Telugu via a secured proxy',
+      content: [
+        'To make Dīpa intuitive for visitors across diverse linguistic regions, we added an optional voice interaction pipeline powered by Sarvam AI across English and four major Indian languages: Hindi (हिन्दी), Kannada (ಕನ್ನಡ), Tamil (தமிழ்), and Telugu (తెలుగు).',
+        '### The Six-Stage Voice Pipeline',
+        'The voice interaction executes a disciplined multi-modal chain: browser recording → Sarvam speech-to-text (/stt) → translation to English (/translate) → Gemini RAG (unchanged in-memory retrieval with concise voice formatting) → Sarvam translation back (/translate with male speaker gender) → Sarvam text-to-speech (/tts).',
+        '### Why a Separate Proxy?',
+        'The Sarvam API key lives securely in a dedicated Cloudflare Worker proxy (dipa-voice-proxy.deepakprasad.workers.dev), never in client-side code. The Worker enforces strict rate limits (15 requests/day per visitor, 300/day site-wide) and validates an allowed-origin check (https://deepak-prasad.ai.studio and localhost), preventing key extraction or upstream budget exhaustion.',
+        '### Graceful Fallback',
+        'Any voice failure, network disruption, or quota limit returns the visitor cleanly to text chat with a friendly notification ("Voice is resting for today. You can still type." or "Voice is unavailable right now. You can still type."). Visitors never see raw error codes, and text chat remains 100% operational.',
+        '### Design Decision: Grammatical Gender in Indian Languages',
+        'Hindi marks gender grammatically on verbs and pronouns. Without an explicit speaker profile, translation models tended to pick feminine forms for a gender-neutral "you". We enforce a male speaker setting across all translations into Indian languages to consistently match Sarvam’s male TTS audio persona.',
+      ],
+      highlights: [
+        {
+          title: 'Full Voice Pipeline',
+          desc: 'End-to-end STT, neural translation, grounded Gemini RAG, and high-fidelity TTS.',
+        },
+        {
+          title: 'Secured Edge Worker',
+          desc: 'Cloudflare Worker proxy with zero client key exposure and per-visitor quota governance.',
+        },
+      ],
+    },
   ],
 };
 

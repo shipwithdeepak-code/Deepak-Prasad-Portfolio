@@ -1,6 +1,6 @@
 {
   "version": "2026-09-27.closed-world-grounding",
-  "updatedAt": "2026-09-27",
+  "updatedAt": "2026-10-07T09:51:30.128Z",
   "chunks": [
     {
       "id": "deepak-profile-overview",
@@ -225,6 +225,13 @@
       "category": "ReshaMandi",
       "title": "Cocoon Bidding System: Real-Time Bidding Mechanics",
       "chunk": "Deepak's cocoon bidding system replaced subjective buyer-seller bargaining with a digital auction mechanism. The workflow: farmers' cocoon crates were weighed on digital scales and assigned a QR lot tag (Scan); reelers placed sealed bids or competed in dynamic windows (Bid); prices updated on mobile and mandi displays (Watch); highest bidder won the lot (Win); and payment triggered immediately to the farmer via instant banking rails (Pay). Transaction value improved >35% over manual baseline."
+    },
+    {
+      "id": "copilot-voice-sarvam-proxy",
+      "source": "Behind the AI Copilot: Voice & Indian Languages",
+      "title": "Voice Mode & Indian Language Localization via Sarvam AI Proxy",
+      "category": "Architecture & Multi-Modal",
+      "chunk": "Dīpa features an optional \"Talk to Dīpa in your language\" voice mode supporting English, Hindi (हिन्दी), Kannada (ಕನ್ನಡ), Tamil (தமிழ்), and Telugu (తెలుగు) powered by Sarvam AI. The end-to-end voice pipeline operates as follows: 1) Browser audio recording via MediaRecorder (auto-selecting Opus/WebM or MP4 with a 29-second hard stop); 2) Audio uploaded as-is to a dedicated Cloudflare Worker proxy (/stt) for Sarvam speech-to-text; 3) If non-English, the transcript is translated to English via Sarvam (/translate); 4) The English question queries the existing in-memory Gemini RAG pipeline in concise voice mode (<= 3 sentences, ~500 characters); 5) If non-English, the answer is translated back to the visitor's language via Sarvam (/translate) with speaker_gender set to \"male\"; 6) The translated answer is synthesized to MP3 audio via Sarvam (/tts) on user play. The Sarvam API key resides securely inside the Cloudflare Worker proxy, never exposed to client browsers, enforcing per-visitor (15 requests/day) and site-wide (300/day) limits and origin verification. Any service limit, network failure, or unauthorized origin triggers graceful fallback to standard text chat with friendly explanations. Grammatically, Hindi marks gender on verbs and pronouns; the proxy specifies male speaker gender to align with the male TTS voice persona and prevent default feminine inflection."
     }
   ]
 }

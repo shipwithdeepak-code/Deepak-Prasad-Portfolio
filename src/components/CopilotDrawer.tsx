@@ -9,8 +9,22 @@ import {
   Info,
   RotateCcw,
   BookOpen,
+  Mic,
+  Volume2,
+  Pause,
+  Globe,
+  Loader2,
+  Square,
 } from "lucide-react";
 import { DipaAvatar } from "./DipaAvatar";
+import {
+  VOICE_LANGUAGES,
+  VoiceLanguageCode,
+  parseVoiceError,
+  speechToText,
+  translateText,
+  textToSpeech,
+} from "../services/voiceProxy";
 
 export interface RetrievedChunk {
   id: string;
@@ -23,7 +37,7 @@ export interface RetrievedChunk {
 
 export interface Message {
   id: string;
-  sender: "user" | "copilot";
+  sender: "user" | "copilot" | "system";
   text: string;
   timestamp: string;
   fallback?: boolean;
@@ -31,6 +45,11 @@ export interface Message {
   topSimilarity?: number;
   retrievalTimeMs?: number;
   totalTimeMs?: number;
+  originalEnglishText?: string;
+  language?: VoiceLanguageCode;
+  hasVoiceAudio?: boolean;
+  isVoice?: boolean;
+  isSystemNotice?: boolean;
 }
 
 export interface CopilotDrawerProps {
@@ -65,6 +84,39 @@ export default function CopilotDrawer({
     height: number;
     offsetTop: number;
   } | null>(null);
+
+  // Voice mode state
+  const [selectedLanguage, setSelectedLanguage] = useState<VoiceLanguageCode>(() => {
+    if (typeof window !== "undefined") {
+      const stored = sessionStorage.getItem("dipa_voice_lang");
+      if (stored && VOICE_LANGUAGES.some((l) => l.code === stored)) {
+        return stored as VoiceLanguageCode;
+      }
+    }
+    return "en";
+  });
+  const [isVoiceResting, setIsVoiceResting] = useState<boolean>(() => {
+    if (typeof window !== "undefined") {
+      return sessionStorage.getItem("dipa_voice_resting") === "true";
+    }
+    return false;
+  });
+  const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
+  const [isRecording, setIsRecording] = useState(false);
+  const [recordingCountdown, setRecordingCountdown] = useState(29);
+  const [voiceStatus, setVoiceStatus] = useState<
+    "Listening…" | "Transcribing…" | "Thinking…" | "Preparing voice…" | null
+  >(null);
+  const [playingAudioMsgId, setPlayingAudioMsgId] = useState<string | null>(null);
+  const [audioLoadingMsgId, setAudioLoadingMsgId] = useState<string | null>(null);
+  const [shownOriginalTextMap, setShownOriginalTextMap] = useState<Record<string, boolean>>({});
+
+  const mediaRecorderRef = useRef<MediaRecorder | null>(null);
+  const audioStreamRef = useRef<MediaStream | null>(null);
+  const countdownIntervalRef = useRef<any>(null);
+  const audioChunksRef = useRef<Blob[]>([]);
+  const activeAudioElement = useRef<HTMLAudioElement | null>(null);
+  const langMenuRef = useRef<HTMLDivElement>(null);
 
   const [messages, setMessages] = useState<Message[]>([
     {
@@ -126,6 +178,375 @@ export default function CopilotDrawer({
       vv.removeEventListener("scroll", updateViewport);
     };
   }, [isOpen]);
+
+  // Click outside listener for language menu
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (langMenuRef.current && !langMenuRef.current.contains(e.target as Node)) {
+        setIsLangMenuOpen(false);
+      }
+    };
+    if (isLangMenuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [isLangMenuOpen]);
+
+  // Drawer close & unmount cleanup
+  useEffect(() => {
+    if (!isOpen) {
+      if (activeAudioElement.current) {
+        activeAudioElement.current.pause();
+        activeAudioElement.current = null;
+        setPlayingAudioMsgId(null);
+      }
+      if (isRecording) {
+        stopRecording();
+      }
+    }
+  }, [isOpen]);
+
+  useEffect(() => {
+    return () => {
+      if (mediaRecorderRef.current && mediaRecorderRef.current.state === "recording") {
+        mediaRecorderRef.current.stop();
+      }
+      if (audioStreamRef.current) {
+        audioStreamRef.current.getTracks().forEach((track) => track.stop());
+      }
+      if (countdownIntervalRef.current) {
+        clearInterval(countdownIntervalRef.current);
+      }
+      if (activeAudioElement.current) {
+        activeAudioElement.current.pause();
+      }
+    };
+  }, []);
+
+  const stopRecording = () => {
+    if (countdownIntervalRef.current) {
+      clearInterval(countdownIntervalRef.current);
+      countdownIntervalRef.current = null;
+    }
+    if (mediaRecorderRef.current && mediaRecorderRef.current.state === "recording") {
+      mediaRecorderRef.current.stop();
+    }
+    if (audioStreamRef.current) {
+      audioStreamRef.current.getTracks().forEach((track) => track.stop());
+      audioStreamRef.current = null;
+    }
+    setIsRecording(false);
+    setRecordingCountdown(29);
+  };
+
+  const startRecording = async () => {
+    if (isVoiceResting || isLoading) return;
+
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+      const err = parseVoiceError("upstream_unreachable");
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: "voice-notice-" + Date.now(),
+          sender: "system",
+          text: err.friendlyMessage,
+          timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+          isSystemNotice: true,
+        },
+      ]);
+      return;
+    }
+
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      audioStreamRef.current = stream;
+
+      const preferredTypes = [
+        "audio/webm;codecs=opus",
+        "audio/webm",
+        "audio/mp4",
+      ];
+      let selectedMime = "";
+      for (const t of preferredTypes) {
+        if (typeof MediaRecorder !== "undefined" && MediaRecorder.isTypeSupported(t)) {
+          selectedMime = t;
+          break;
+        }
+      }
+
+      const recorder = selectedMime
+        ? new MediaRecorder(stream, { mimeType: selectedMime })
+        : new MediaRecorder(stream);
+      mediaRecorderRef.current = recorder;
+      audioChunksRef.current = [];
+
+      recorder.ondataavailable = (e) => {
+        if (e.data && e.data.size > 0) {
+          audioChunksRef.current.push(e.data);
+        }
+      };
+
+      recorder.onstop = () => {
+        if (stream) {
+          stream.getTracks().forEach((t) => t.stop());
+        }
+        audioStreamRef.current = null;
+        if (countdownIntervalRef.current) {
+          clearInterval(countdownIntervalRef.current);
+          countdownIntervalRef.current = null;
+        }
+        setIsRecording(false);
+        setRecordingCountdown(29);
+
+        const recordedBlob = new Blob(audioChunksRef.current, {
+          type: selectedMime || "audio/webm",
+        });
+        handleVoiceUploadAndQuery(recordedBlob);
+      };
+
+      recorder.start(250);
+      setIsRecording(true);
+      setRecordingCountdown(29);
+      setVoiceStatus("Listening…");
+
+      let currentSec = 29;
+      countdownIntervalRef.current = setInterval(() => {
+        currentSec -= 1;
+        if (currentSec <= 0) {
+          stopRecording();
+        } else {
+          setRecordingCountdown(currentSec);
+        }
+      }, 1000);
+    } catch {
+      const err = parseVoiceError("upstream_unreachable");
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: "voice-notice-" + Date.now(),
+          sender: "system",
+          text: err.friendlyMessage,
+          timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+          isSystemNotice: true,
+        },
+      ]);
+      setIsRecording(false);
+      setVoiceStatus(null);
+    }
+  };
+
+  const handleMicToggle = () => {
+    if (isRecording) {
+      stopRecording();
+    } else {
+      startRecording();
+    }
+  };
+
+  const handleVoiceUploadAndQuery = async (audioBlob: Blob) => {
+    if (audioBlob.size > 2 * 1024 * 1024) {
+      const err = parseVoiceError("audio_too_large");
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: "voice-notice-" + Date.now(),
+          sender: "system",
+          text: err.friendlyMessage,
+          timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+          isSystemNotice: true,
+        },
+      ]);
+      setVoiceStatus(null);
+      return;
+    }
+
+    hasInteractedRef.current = true;
+    setIsLoading(true);
+
+    try {
+      // 1. Speech to Text via Sarvam proxy
+      setVoiceStatus("Transcribing…");
+      const sttRes = await speechToText(audioBlob, selectedLanguage);
+      const transcript = (sttRes.transcript || "").trim();
+
+      if (!transcript) {
+        const err = parseVoiceError("upstream_rejected_input");
+        setMessages((prev) => [
+          ...prev,
+          {
+            id: "voice-notice-" + Date.now(),
+            sender: "system",
+            text: err.friendlyMessage,
+            timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+            isSystemNotice: true,
+          },
+        ]);
+        return;
+      }
+
+      // Display visitor message in their selected language
+      const userMessage: Message = {
+        id: "user-" + Date.now(),
+        sender: "user",
+        text: transcript,
+        timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+        language: selectedLanguage,
+        isVoice: true,
+      };
+      setMessages((prev) => [...prev, userMessage]);
+
+      // 2. Translate to English if needed
+      let englishQuery = transcript;
+      if (selectedLanguage !== "en") {
+        setVoiceStatus("Thinking…");
+        const transRes = await translateText(transcript, selectedLanguage, "en");
+        englishQuery = transRes.translation;
+      }
+
+      // 3. Query RAG in concise voice mode (<= 3 sentences, ~500 chars)
+      setVoiceStatus("Thinking…");
+      const queryRes = await fetch("/api/copilot/query", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ question: englishQuery, isVoiceMode: true }),
+      });
+
+      if (!queryRes.ok) {
+        throw new Error(`Server returned status ${queryRes.status}`);
+      }
+
+      const ragData = await queryRes.json();
+      const rawAnswer = ragData.answer || "";
+      const cleanAnswer = rawAnswer
+        .replace(
+          /^(?:hello!?|hi!?|greetings!?|hey!?)\s*(?:i am|i'm|this is)?\s*(?:dīpa|dipa)?(?:,?\s*deepak(?:'s)?\s*ai\s*assistant)?[.!,:]*\s*/i,
+          ""
+        )
+        .trim();
+      const englishAnswer = cleanAnswer || rawAnswer;
+
+      // 4. Translate back to selected language if needed (male speaker gender)
+      let finalDisplayAnswer = englishAnswer;
+      if (selectedLanguage !== "en") {
+        setVoiceStatus("Preparing voice…");
+        const backTransRes = await translateText(
+          englishAnswer,
+          "en",
+          selectedLanguage,
+          "male"
+        );
+        finalDisplayAnswer = backTransRes.translation;
+      }
+
+      const copilotMessage: Message = {
+        id: "copilot-" + Date.now(),
+        sender: "copilot",
+        text: finalDisplayAnswer,
+        originalEnglishText: selectedLanguage !== "en" ? englishAnswer : undefined,
+        language: selectedLanguage,
+        timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+        fallback: ragData.fallback,
+        retrievedChunks: ragData.retrievedChunks,
+        topSimilarity: ragData.topSimilarity,
+        retrievalTimeMs: ragData.retrievalTimeMs,
+        totalTimeMs: ragData.totalTimeMs,
+        hasVoiceAudio: true,
+      };
+
+      setMessages((prev) => [...prev, copilotMessage]);
+    } catch (err: any) {
+      const voiceErr = parseVoiceError(err?.code || err?.message);
+      if (voiceErr.isResting) {
+        sessionStorage.setItem("dipa_voice_resting", "true");
+        setIsVoiceResting(true);
+      }
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: "voice-notice-" + Date.now(),
+          sender: "system",
+          text: voiceErr.friendlyMessage,
+          timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+          isSystemNotice: true,
+        },
+      ]);
+    } finally {
+      setVoiceStatus(null);
+      setIsLoading(false);
+    }
+  };
+
+  const handlePlayAudio = async (msg: Message) => {
+    if (isVoiceResting) return;
+
+    if (playingAudioMsgId === msg.id) {
+      if (activeAudioElement.current) {
+        activeAudioElement.current.pause();
+        activeAudioElement.current = null;
+      }
+      setPlayingAudioMsgId(null);
+      return;
+    }
+
+    if (activeAudioElement.current) {
+      activeAudioElement.current.pause();
+      activeAudioElement.current = null;
+      setPlayingAudioMsgId(null);
+    }
+
+    const isEnglishShown = Boolean(shownOriginalTextMap[msg.id]);
+    const textToSpeak = isEnglishShown && msg.originalEnglishText ? msg.originalEnglishText : msg.text;
+    const langToSpeak: VoiceLanguageCode = isEnglishShown ? "en" : (msg.language || selectedLanguage);
+
+    setAudioLoadingMsgId(msg.id);
+
+    try {
+      const audioBlob = await textToSpeech(textToSpeak, langToSpeak);
+      const audioUrl = URL.createObjectURL(audioBlob);
+      const audio = new Audio(audioUrl);
+      activeAudioElement.current = audio;
+
+      audio.onended = () => {
+        setPlayingAudioMsgId(null);
+        activeAudioElement.current = null;
+        URL.revokeObjectURL(audioUrl);
+      };
+
+      audio.onerror = () => {
+        setPlayingAudioMsgId(null);
+        activeAudioElement.current = null;
+        URL.revokeObjectURL(audioUrl);
+      };
+
+      setPlayingAudioMsgId(msg.id);
+      await audio.play();
+    } catch (err: any) {
+      const voiceErr = parseVoiceError(err?.code || err?.message);
+      if (voiceErr.isResting) {
+        sessionStorage.setItem("dipa_voice_resting", "true");
+        setIsVoiceResting(true);
+      }
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: "voice-notice-" + Date.now(),
+          sender: "system",
+          text: voiceErr.friendlyMessage,
+          timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+          isSystemNotice: true,
+        },
+      ]);
+    } finally {
+      setAudioLoadingMsgId(null);
+    }
+  };
+
+  const toggleShowOriginal = (msgId: string) => {
+    setShownOriginalTextMap((prev) => ({
+      ...prev,
+      [msgId]: !prev[msgId],
+    }));
+  };
 
   // Auto-scroll after a real interaction
   useEffect(() => {
@@ -452,7 +873,26 @@ export default function CopilotDrawer({
       >
         {messages.map((msg, index) => {
           const isUser = msg.sender === "user";
+          const isSystem = msg.sender === "system" || Boolean(msg.isSystemNotice);
           const isLastMessage = index === messages.length - 1;
+
+          if (isSystem) {
+            return (
+              <div
+                key={msg.id}
+                ref={isLastMessage ? lastMessageRef : null}
+                className="flex flex-col items-center justify-center my-1.5 px-3 text-center w-full"
+              >
+                <div
+                  className="inline-flex items-center justify-center px-3.5 py-1.5 rounded-full text-xs font-normal leading-relaxed text-[#121517]/60 bg-[#121517]/[0.035] border border-[#121517]/[0.08] max-w-[92%] shadow-2xs"
+                  role="status"
+                >
+                  <span>{msg.text}</span>
+                </div>
+              </div>
+            );
+          }
+
           return (
             <div
               key={msg.id}
@@ -482,7 +922,72 @@ export default function CopilotDrawer({
                       : undefined
                   }
                 >
-                  <div className="break-words">{formatText(msg.text, isUser)}</div>
+                  <div className="break-words">
+                    {formatText(
+                      !isUser && shownOriginalTextMap[msg.id] && msg.originalEnglishText
+                        ? msg.originalEnglishText
+                        : msg.text,
+                      isUser
+                    )}
+                  </div>
+
+                  {/* Voice Player & Language Toggle Bar */}
+                  {!isUser && !msg.fallback && (
+                    <div className="flex items-center gap-2 mt-2 pt-2 border-t border-[#121517]/8 flex-wrap">
+                      {!isVoiceResting && (
+                        <button
+                          type="button"
+                          onClick={() => handlePlayAudio(msg)}
+                          aria-label={
+                            playingAudioMsgId === msg.id
+                              ? "Pause audio voice response"
+                              : audioLoadingMsgId === msg.id
+                              ? "Preparing voice response"
+                              : `Play voice response in ${
+                                  shownOriginalTextMap[msg.id]
+                                    ? "English"
+                                    : VOICE_LANGUAGES.find((l) => l.code === msg.language)?.nativeName || "voice"
+                                }`
+                          }
+                          className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-medium bg-[#C89B3C]/12 hover:bg-[#C89B3C]/20 text-[#A8711A] border border-[#C89B3C]/25 transition-colors cursor-pointer"
+                        >
+                          {audioLoadingMsgId === msg.id ? (
+                            <>
+                              <Loader2 size={11} className="animate-spin text-[#A8711A]" />
+                              <span className="font-mono text-[10px]">Loading voice…</span>
+                            </>
+                          ) : playingAudioMsgId === msg.id ? (
+                            <>
+                              <Pause size={11} className="text-[#A8711A]" />
+                              <span className="font-mono text-[10px] font-semibold text-[#A8711A]">Pause</span>
+                            </>
+                          ) : (
+                            <>
+                              <Volume2 size={11} className="text-[#A8711A]" />
+                              <span className="font-mono text-[10px]">Listen</span>
+                            </>
+                          )}
+                        </button>
+                      )}
+
+                      {msg.originalEnglishText && (
+                        <button
+                          type="button"
+                          onClick={() => toggleShowOriginal(msg.id)}
+                          aria-label={
+                            shownOriginalTextMap[msg.id]
+                              ? "Show translated text"
+                              : "Show original English text"
+                          }
+                          className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-mono font-medium text-[#121517]/65 hover:text-[#121517] hover:bg-[#121517]/5 transition-colors cursor-pointer"
+                        >
+                          {shownOriginalTextMap[msg.id]
+                            ? `Show ${VOICE_LANGUAGES.find((l) => l.code === msg.language)?.nativeName || "translation"}`
+                            : "Show English"}
+                        </button>
+                      )}
+                    </div>
+                  )}
 
                   {/* Retrieved chunks / citations drawer */}
                   {!isUser && msg.retrievedChunks && msg.retrievedChunks.length > 0 && (
@@ -551,27 +1056,41 @@ export default function CopilotDrawer({
           );
         })}
 
-        {/* Typing indicator */}
-        {isLoading && (
+        {/* Live Status indicator (voice & retrieval) */}
+        {(voiceStatus || isLoading) && (
           <div className="flex items-start gap-2.5">
             <DipaAvatar className="mt-0.5" />
             <div
-              className="rounded-2xl px-4 py-3 flex items-center gap-2 text-xs text-[#121517]/70"
+              className="rounded-2xl px-4 py-3 flex items-center gap-2 text-xs text-[#121517]/80"
               style={{
-                background: "color-mix(in oklch, #FAF8F5 78%, transparent)",
+                background: "color-mix(in oklch, #FAF8F5 85%, transparent)",
                 backdropFilter: "blur(12px)",
                 WebkitBackdropFilter: "blur(12px)",
-                border: "1px solid color-mix(in oklch, #121517 10%, transparent)",
+                border: "1px solid color-mix(in oklch, #121517 12%, transparent)",
               }}
             >
-              <div className="flex items-center gap-1.5">
-                <span className="copilot-dot-pulse-1 w-2 h-2 rounded-full bg-[#A8711A]" />
-                <span className="copilot-dot-pulse-2 w-2 h-2 rounded-full bg-[#A8711A]" />
-                <span className="copilot-dot-pulse-3 w-2 h-2 rounded-full bg-[#A8711A]" />
-              </div>
-              <span className="font-mono text-[11px] ml-1 text-[#121517]/70">
-                Searching vector index & synthesizing...
-              </span>
+              {voiceStatus === "Listening…" ? (
+                <div className="flex items-center gap-2">
+                  <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse" />
+                  <span className="font-mono text-[11px] font-bold text-red-600">
+                    Listening… ({recordingCountdown}s)
+                  </span>
+                  <span className="text-[10px] font-mono text-[#121517]/50 hidden sm:inline">
+                    · tap mic to finish
+                  </span>
+                </div>
+              ) : (
+                <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-1.5">
+                    <span className="copilot-dot-pulse-1 w-2 h-2 rounded-full bg-[#A8711A]" />
+                    <span className="copilot-dot-pulse-2 w-2 h-2 rounded-full bg-[#A8711A]" />
+                    <span className="copilot-dot-pulse-3 w-2 h-2 rounded-full bg-[#A8711A]" />
+                  </div>
+                  <span className="font-mono text-[11px] ml-1 text-[#121517]/80">
+                    {voiceStatus || "Searching vector index & synthesizing..."}
+                  </span>
+                </div>
+              )}
             </div>
           </div>
         )}
@@ -632,7 +1151,7 @@ export default function CopilotDrawer({
       )}
 
       {/* Starter Prompts pills — visible only when conversation is short */}
-      {messages.length <= 2 && !isLoading && (
+      {messages.filter((m) => m.sender !== "system" && !m.isSystemNotice).length <= 2 && !isLoading && (
         <div
           className="relative z-10 px-4 py-2 flex items-center gap-1.5 overflow-x-auto no-scrollbar shrink-0"
           style={{
@@ -652,37 +1171,137 @@ export default function CopilotDrawer({
         </div>
       )}
 
-      {/* Input Bar (z-10) — seamless continuous glass surface */}
+      {/* Input Bar & Voice Controls (z-10) — seamless continuous glass surface */}
       <div
-        className="relative z-10 p-3 flex items-center gap-2 shrink-0"
+        className="relative z-10 flex flex-col shrink-0"
         style={{
           backgroundColor: "transparent",
         }}
       >
-        <input
-          ref={inputRef}
-          type="text"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyDown={handleKeyDown}
-          placeholder="Ask Dīpa about Deepak's metrics, case studies, work..."
-          disabled={isLoading}
-          className="flex-1 px-3.5 py-2.5 rounded-xl focus:outline-none focus:border-[#A8711A] focus:ring-1 focus:ring-[#A8711A] text-xs sm:text-sm text-[#121517] placeholder-[#121517]/40"
-          style={{
-            background: "color-mix(in oklch, #FAF8F5 65%, transparent)",
-            backdropFilter: "blur(10px) saturate(150%)",
-            WebkitBackdropFilter: "blur(10px) saturate(150%)",
-            border: "1px solid color-mix(in oklch, #121517 12%, transparent)",
-          }}
-        />
-        <button
-          onClick={() => handleSend()}
-          disabled={!input.trim() || isLoading}
-          className="p-2.5 rounded-xl bg-[#121517] hover:bg-[#A8711A] disabled:bg-[#121517]/20 text-white disabled:text-white/40 transition-colors shrink-0 shadow-xs cursor-pointer disabled:cursor-not-allowed"
-          aria-label="Send query to Dīpa"
-        >
-          <Send size={16} />
-        </button>
+        <div className="p-3 flex items-center gap-2">
+          {/* Language Selector Dropdown */}
+          <div ref={langMenuRef} className="relative shrink-0">
+            <button
+              type="button"
+              onClick={() => setIsLangMenuOpen((prev) => !prev)}
+              disabled={isLoading || isRecording}
+              aria-haspopup="listbox"
+              aria-expanded={isLangMenuOpen}
+              aria-label={`Select voice language (currently ${
+                VOICE_LANGUAGES.find((l) => l.code === selectedLanguage)?.label || "English"
+              })`}
+              className="h-[38px] px-2.5 rounded-xl bg-white/70 hover:bg-white text-[#121517] border border-[#121517]/12 text-xs font-medium flex items-center gap-1.5 transition-colors cursor-pointer shadow-2xs disabled:opacity-50"
+            >
+              <Globe size={13} className="text-[#A8711A]" />
+              <span className="font-sans font-semibold text-[11px] sm:text-xs">
+                {VOICE_LANGUAGES.find((l) => l.code === selectedLanguage)?.nativeName || "English"}
+              </span>
+            </button>
+
+            {isLangMenuOpen && (
+              <div
+                role="listbox"
+                className="absolute bottom-full mb-1.5 left-0 w-36 py-1 rounded-xl bg-white/95 backdrop-blur-md border border-[#121517]/12 shadow-lg z-50 flex flex-col text-xs overflow-hidden"
+              >
+                {VOICE_LANGUAGES.map((lang) => (
+                  <button
+                    key={lang.code}
+                    type="button"
+                    role="option"
+                    aria-selected={selectedLanguage === lang.code}
+                    onClick={() => {
+                      setSelectedLanguage(lang.code);
+                      sessionStorage.setItem("dipa_voice_lang", lang.code);
+                      setIsLangMenuOpen(false);
+                    }}
+                    className={`px-3 py-1.5 text-left flex items-center justify-between transition-colors hover:bg-[#C89B3C]/12 cursor-pointer ${
+                      selectedLanguage === lang.code
+                        ? "text-[#A8711A] font-bold bg-[#C89B3C]/8"
+                        : "text-[#121517]/85"
+                    }`}
+                  >
+                    <span>{lang.nativeName}</span>
+                    <span className="text-[10px] opacity-60 font-mono">{lang.label}</span>
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
+          <input
+            ref={inputRef}
+            type="text"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={handleKeyDown}
+            placeholder={
+              isRecording
+                ? `Listening… (${recordingCountdown}s left)`
+                : `Ask Dīpa about Deepak's metrics, case studies, work...`
+            }
+            disabled={isLoading || isRecording}
+            className="flex-1 px-3.5 py-2 rounded-xl focus:outline-none focus:border-[#A8711A] focus:ring-1 focus:ring-[#A8711A] text-xs sm:text-sm text-[#121517] placeholder-[#121517]/40 h-[38px]"
+            style={{
+              background: "color-mix(in oklch, #FAF8F5 65%, transparent)",
+              backdropFilter: "blur(10px) saturate(150%)",
+              WebkitBackdropFilter: "blur(10px) saturate(150%)",
+              border: "1px solid color-mix(in oklch, #121517 12%, transparent)",
+            }}
+          />
+
+          {/* Voice Mic Button (hidden/disabled if isVoiceResting) */}
+          {!isVoiceResting && (
+            <button
+              type="button"
+              onClick={handleMicToggle}
+              disabled={isLoading && !isRecording}
+              aria-label={
+                isRecording
+                  ? `Stop recording (${recordingCountdown} seconds left)`
+                  : `Talk to Dīpa in ${
+                      VOICE_LANGUAGES.find((l) => l.code === selectedLanguage)?.label || "English"
+                    }`
+              }
+              title={
+                isRecording
+                  ? `Stop recording (${recordingCountdown}s left)`
+                  : `Talk to Dīpa in ${
+                      VOICE_LANGUAGES.find((l) => l.code === selectedLanguage)?.label || "English"
+                    }`
+              }
+              className={`h-[38px] px-2.5 rounded-xl flex items-center justify-center gap-1.5 transition-all shrink-0 cursor-pointer ${
+                isRecording
+                  ? "bg-red-600 hover:bg-red-700 text-white shadow-md animate-pulse ring-2 ring-red-400 ring-offset-1"
+                  : "bg-white/70 hover:bg-white text-[#121517]/80 hover:text-[#A8711A] border border-[#121517]/12 shadow-2xs"
+              }`}
+            >
+              {isRecording ? (
+                <>
+                  <Square size={13} className="fill-current" />
+                  <span className="font-mono text-[11px] font-bold">REC {recordingCountdown}s</span>
+                </>
+              ) : (
+                <Mic size={16} />
+              )}
+            </button>
+          )}
+
+          {/* Send Button */}
+          <button
+            type="button"
+            onClick={() => handleSend()}
+            disabled={!input.trim() || isLoading || isRecording}
+            className="h-[38px] w-[38px] flex items-center justify-center rounded-xl bg-[#121517] hover:bg-[#A8711A] disabled:bg-[#121517]/20 text-white disabled:text-white/40 transition-colors shrink-0 shadow-xs cursor-pointer disabled:cursor-not-allowed"
+            aria-label="Send query to Dīpa"
+          >
+            <Send size={15} />
+          </button>
+        </div>
+
+        {/* Small line under the mic: Voice and Indian languages powered by Sarvam AI. */}
+        <div className="text-[10px] text-center text-[#121517]/45 pb-2 px-3 font-sans select-none">
+          Voice and Indian languages powered by Sarvam AI.
+        </div>
       </div>
     </div>
   );

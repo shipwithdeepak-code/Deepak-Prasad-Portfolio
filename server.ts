@@ -180,7 +180,7 @@ async function startServer() {
         });
       }
 
-      const { question, topK = 4 } = req.body;
+      const { question, topK = 4, isVoiceMode = false } = req.body;
       if (!question || typeof question !== "string" || question.trim().length === 0) {
         return res.status(400).json({ error: "Question is required." });
       }
@@ -333,9 +333,16 @@ METRICS & SPECIFICS:
    - Athletic Performance Score: "One Body. One Score. One Ecosystem." is strictly Product Strategy & PRD work (development-ready PRD); it was not launched to production and did not ship.
    - Content Localisation: 200+ videos in ~3 weeks, ~10× faster, Italian, French, and Spanish.
    - LionCircuits: 40% increase in monthly orders.
-   - Deliver crisp, natural, professional answers (1–3 brief paragraphs or focused bullet points) without robotic phrases like "According to chunk...".`;
+   - Voice Mode & Indian Languages: Dīpa supports an optional voice mode across English, Hindi, Kannada, Tamil, and Telugu via a Cloudflare Worker proxy to Sarvam AI. The pipeline records audio, transcribes via Sarvam STT, translates to English, answers via Gemini RAG, translates back with male speaker gender alignment, and synthesizes audio via Sarvam TTS. The Sarvam key lives in a Cloudflare Worker (never in the browser), with 15 requests/day per visitor and 300/day site-wide limits and origin checking, falling back gracefully to text on errors.
+   - Deliver crisp, natural, professional answers (1–3 brief paragraphs or focused bullet points) without robotic phrases like "According to chunk...".${
+     isVoiceMode
+       ? `\n\nVOICE MODE MANDATE: The user is asking via voice mode. Answer in AT MOST 3 SENTENCES (about 500 characters maximum) with NO bullet points, NO lists, and NO markdown syntax so it sounds completely natural when read aloud and translated.`
+       : ""
+   }`;
 
-          const prompt = `Context:\n${contextBlocks}\n\nUser Question:\n${cleanQuestion}\n\nPlease provide a direct answer without any greeting, "Hello", or self-introduction:`;
+          const prompt = isVoiceMode
+            ? `Context:\n${contextBlocks}\n\nUser Question:\n${cleanQuestion}\n\nPlease provide a direct, concise voice answer in at most 3 sentences (about 500 characters maximum) without any markdown formatting or self-introduction:`
+            : `Context:\n${contextBlocks}\n\nUser Question:\n${cleanQuestion}\n\nPlease provide a direct answer without any greeting, "Hello", or self-introduction:`;
 
           const candidateModels = ["gemini-3.1-flash-lite", "gemini-flash-latest", "gemini-3.8-flash"];
           let rawText = "";
