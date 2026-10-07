@@ -1810,6 +1810,42 @@ export const BEHIND_COPILOT_CASE_STUDY: CaseStudyDetail = {
         },
       ],
     },
+    {
+      id: 'sarvam-field-notes',
+      number: '08',
+      title: 'Building on Sarvam AI: field notes',
+      subtitle: "A product manager's build log: why Sarvam, architecture, setup decisions, and four production findings",
+      content: [
+        '### a) Why Sarvam',
+        'I wanted Dīpa to work for visitors who prefer Indian languages and voice. Sarvam offers speech-to-text, translation and text-to-speech for Indian languages through one API and credit system, and new accounts get free credits to evaluate.',
+        '### b) Architecture',
+        'Browser recording → Cloudflare Worker proxy → Sarvam speech-to-text (saaras:v3) → translation to English (sarvam-translate:v1) → Gemini RAG, unchanged → translation back → Sarvam text-to-speech (bulbul:v3).',
+        '### c) Setup decisions',
+        '• Hosting & Security: My site is hosted by Google AI Studio, which can’t hold a custom secret, so I put the Sarvam key in a separate Cloudflare Worker. The key never reaches the browser.',
+        '• Cost guardrails: 15 voice requests per visitor per day, 300 per day site-wide, and an allowed-origin check.',
+        '• Concise voice answers: Voice-mode answers are capped at about 3 sentences, so they stay within translation and speech character limits and sound natural when spoken.',
+        '• Graceful fallback: Every failure, including running out of credits, falls back to text chat with a friendly notice.',
+        '### d) Four findings: what happened → what I did → what I’d suggest',
+        '1. Browser audio was rejected. Every Chrome recording failed with "Invalid file type". Chrome labels recordings "audio/webm;codecs=opus"; the speech-to-text API accepts "audio/webm" but rejects the same type with a codecs parameter, and the docs don’t mention it. I reproduced it with test clips, then normalised the content type in my proxy; Chrome and Safari recordings now work. Suggestion: accept standard MIME parameters, or document the exact accepted values with a browser example. Any developer building browser voice input will hit this on day one.',
+        '2. Grammatical gender in translation. With no setting, "How are you?" translated to Hindi in the feminine form (आप कैसी हैं?). The translate API’s speaker_gender parameter fixed it, but it changed the form used for the person being addressed, not just the speaker, which the name doesn’t suggest. I set it to male to match the male voice. Suggestion: clarify the parameter\'s scope in the docs, and consider an addressee or neutral option for assistants talking to strangers.',
+        '3. Pricing consistency. The public pricing page and the API docs listed different translation prices (₹0.005 per character on the pricing page versus ₹20 per 10,000 characters in the docs). Suggestion: one source of truth for rates, plus a cost estimator, so developers can forecast spend.',
+        '4. Designing for a prepaid wallet. What happened: Sarvam\'s docs say API calls fail outright once the prepaid balance reaches zero. I haven\'t hit that in production; I designed for it up front. What I did: proxy-side limits, a per-visitor and daily cap, and a friendly "Voice is resting" fallback to text. Suggestion: low-balance alerts by email or WhatsApp and a small grace buffer for paying accounts.',
+        '### e) Result',
+        'Voice works end to end in Chrome and Safari across English, Hindi, Kannada, Tamil and Telugu. A typical voice round trip takes about 3 to 4 seconds.',
+        '### f) What I\'d do next',
+        'Measure which languages visitors actually choose, and test whether voice changes how many questions they ask.',
+      ],
+      highlights: [
+        {
+          title: 'Normalised Ingest Rails',
+          desc: 'Cloudflare Worker strips codecs parameters from webm blobs to guarantee universal browser recording acceptance.',
+        },
+        {
+          title: 'Grammatical Gender Calibrated',
+          desc: 'Explicit speaker_gender: "male" setting aligns honorifics and verbs with Sarvam\'s bulbul:v3 voice persona.',
+        },
+      ],
+    },
   ],
 };
 

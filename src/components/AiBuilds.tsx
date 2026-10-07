@@ -78,308 +78,339 @@ export default function AiBuilds({ onNavigate }: { onNavigate: (path: string) =>
         }
       `}</style>
 
-      {/* Main Grid: 8 Cols for Jagr (Primary Flagship ~67%), 4 Cols for Dīpa + Product Jury (~33%) */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch w-full">
-        {/* =========================================================================
-            1. JAGR: PRIMARY FLAGSHIP BUILD (lg:col-span-8)
-            Visual-first, minimal text, strong product interface mockup
-            ========================================================================= */}
-        <article
-          className="ai-card ai-card--jagr lg:col-span-8 p-6 sm:p-8 flex flex-col justify-between cursor-pointer group"
-          onClick={() => setIsJagrModalOpen(true)}
-          role="button"
-          tabIndex={0}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" || e.key === " ") {
-              e.preventDefault();
-              setIsJagrModalOpen(true);
-            }
-          }}
-          aria-label="Jagr: Explore how I built it"
-        >
-          <div>
-            {/* Top Metadata Row: Status & Supporting Micro-Mechanism */}
-            <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
-              <div className="flex items-center gap-2">
-                <span className="font-mono text-[11px] font-bold text-[#A8711A] tracking-wider uppercase">
-                  FLAGSHIP BUILD
-                </span>
-                <span aria-hidden="true" className="text-black/25">·</span>
-                <span className="font-mono text-[11px] text-[#4A525A] flex items-center gap-1.5">
-                  <Activity size={12} className="text-[#C89B3C]" />
-                  Active build &middot; Sentry vertical slice
-                </span>
-              </div>
-              <span className="font-mono text-[10.5px] uppercase tracking-wider text-[#7A828A] hidden sm:inline-block">
-                Signal &rarr; Context &rarr; Attention
-              </span>
-            </div>
-
-            {/* Product Title & Concise Statement */}
-            <div>
-              <h3 className="font-onest text-[32px] sm:text-[40px] md:text-[44px] font-extrabold text-[#121517] tracking-tight leading-none">
-                Jagr
-              </h3>
-              <p className="font-inter text-[18px] sm:text-[21px] font-semibold text-[#121517] mt-2 leading-snug">
-                From product signals to product attention.
-              </p>
-              <p className="font-inter text-[14.5px] sm:text-[15px] text-[#4A525A] leading-relaxed mt-2.5 max-w-2xl font-normal">
-                I&apos;m building an autonomous product-context system that detects meaningful
-                change, preserves evidence, and helps turn noisy signals into focused product
-                investigations.
-              </p>
-            </div>
-
-            {/* PRODUCT VISUAL: Authentic Sentry Vertical Slice Interface */}
-            <div className="relative mt-5 rounded-2xl border border-black/[0.08] bg-white/95 shadow-[0_10px_28px_rgba(0,0,0,0.04)] overflow-hidden transition-all duration-300 group-hover:border-black/[0.14] group-hover:shadow-[0_16px_36px_rgba(0,0,0,0.06)]">
-              {/* Window Frame Bar */}
-              <div className="flex items-center justify-between px-3.5 py-2.5 bg-[#FAF8F5] border-b border-black/[0.06]">
-                <div className="flex items-center gap-2">
-                  <div className="flex items-center gap-1.5" aria-hidden="true">
-                    <span className="w-2.5 h-2.5 rounded-full bg-[#E57373]/80" />
-                    <span className="w-2.5 h-2.5 rounded-full bg-[#FFB74D]/80" />
-                    <span className="w-2.5 h-2.5 rounded-full bg-[#81C784]/80" />
-                  </div>
-                  <span className="ml-1.5 font-mono text-[11px] text-[#4A525A] font-medium tracking-tight">
-                    jagr &middot; investigation #inv-0842
-                  </span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-white border border-black/[0.08] text-[#121517] font-mono text-[9.5px] font-semibold tracking-wider">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#C89B3C] animate-pulse" />
-                    Coalesced (14 &rarr; 1)
-                  </span>
-                </div>
-              </div>
-
-              {/* Interface Workspace */}
-              <div className="p-4 sm:p-5 bg-gradient-to-b from-white to-[#FAF8F5]/60 space-y-3">
-                {/* Signal Ingestion & Coalescing Trigger */}
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-2.5 rounded-xl bg-[#FAF8F5] border border-black/[0.06]">
-                  <div className="flex items-center gap-2.5">
-                    <div className="w-7 h-7 rounded-lg bg-black/[0.03] border border-black/[0.06] flex items-center justify-center text-[#A8711A] shrink-0 font-mono font-bold text-xs">
-                      ⚡
-                    </div>
-                    <div>
-                      <div className="flex items-center gap-2">
-                        <span className="font-mono text-[11px] font-bold text-[#121517] uppercase tracking-wider">
-                          sentry.exception &middot; BatchEscrowWorker
-                        </span>
-                        <span className="px-1.5 py-0.2 rounded bg-white border border-black/[0.08] font-mono text-[9.5px] text-[#4A525A]">
-                          v2.4.1
-                        </span>
-                      </div>
-                      <p className="font-inter text-[11.5px] text-[#5A626A] leading-tight mt-0.5">
-                        14 exception spikes grouped under Watch #W-0842
-                      </p>
-                    </div>
-                  </div>
-                  <span className="font-mono text-[10px] text-[#A8711A] font-semibold self-start sm:self-auto bg-white px-2 py-0.5 rounded border border-black/[0.08]">
-                    P99 Latency +320ms
-                  </span>
-                </div>
-
-                {/* Bounded Investigation Card */}
-                <div className="p-3.5 rounded-xl bg-white border border-black/[0.08] shadow-2xs space-y-2.5">
-                  <div className="flex flex-wrap items-baseline justify-between gap-2 pb-2 border-b border-black/[0.05]">
-                    <div>
-                      <span className="font-mono text-[9.5px] font-bold uppercase tracking-widest text-[#A8711A]">
-                        Bounded Investigation
-                      </span>
-                      <h4 className="font-inter text-[14px] sm:text-[15px] font-bold text-[#121517] leading-snug">
-                        DB Connection Pool Starvation during Settlement Run
-                      </h4>
-                    </div>
-                    <span className="font-mono text-[10px] text-[#7A828A]">
-                      Provenance: Validated
-                    </span>
-                  </div>
-
-                  {/* Evidence Split: Observed vs Inferred */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-left">
-                    <div className="p-2 rounded-lg bg-[#FAF8F5] border border-black/[0.05]">
-                      <span className="font-mono text-[9px] uppercase font-bold text-[#121517] block mb-0.5">
-                        ✓ Observed Evidence
-                      </span>
-                      <p className="font-inter text-[11.5px] text-[#374151] leading-snug">
-                        Worker pool saturated at 100% capacity; escrow settlement loop blocked awaiting connection acquisition.
-                      </p>
-                    </div>
-                    <div className="p-2 rounded-lg bg-[#FAF8F5] border border-black/[0.05]">
-                      <span className="font-mono text-[9px] uppercase font-bold text-[#A8711A] block mb-0.5">
-                        ✦ Inferred Root Cause
-                      </span>
-                      <p className="font-inter text-[11.5px] text-[#374151] leading-snug">
-                        Release v2.4.1 omitted connection keep-alive timeout under concurrent batch disbursement load.
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Required PM Attention Callout */}
-                  <div className="p-2.5 rounded-lg bg-[#FAF8F5] border border-black/[0.06] flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                    <div className="flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-[#C89B3C] shrink-0" />
-                      <span className="font-inter text-[11.5px] font-medium text-[#121517]">
-                        <strong>Required PM Attention:</strong> Decision on pool scaling (10 &rarr; 32) vs async worker decoupling.
-                      </span>
-                    </div>
-                    <span className="font-mono text-[10px] font-semibold text-[#A8711A] shrink-0 bg-white px-2 py-0.5 rounded border border-black/[0.08]">
-                      Awaiting Sign-off &rarr;
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Bottom Action Strip */}
-          <div className="mt-5 pt-4 border-t border-black/[0.06] flex flex-wrap items-center justify-between gap-3">
-            <GlassButton
-              variant="dark"
-              size="md"
-              icon={<ArrowRight size={15} className="transition-transform duration-200 group-hover:translate-x-1" />}
-              onClick={(e) => {
-                e.stopPropagation();
-                setIsJagrModalOpen(true);
-              }}
-              aria-label="How I built Jagr"
-            >
-              How I built Jagr
-            </GlassButton>
-            <span className="font-mono text-[11px] text-[#7A828A] flex items-center gap-1.5">
-              Click to view build journey &rarr;
+      {/* 1. DĪPA: PRIMARY FLAGSHIP PRODUCT (Full-Width Dominant Card) */}
+      <article
+        className="ai-card ai-card--dipa w-full p-6 sm:p-9 md:p-10 mb-10 transition-all duration-300"
+        aria-label="Dīpa: Flagship AI Product"
+      >
+        {/* Top Metadata Row */}
+        <div className="flex flex-wrap items-center justify-between gap-3 pb-6 border-b border-black/[0.06] mb-6 sm:mb-8">
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-[#A8711A] animate-pulse shrink-0" />
+            <span className="font-mono text-[11px] font-bold text-[#A8711A] tracking-wider uppercase">
+              FLAGSHIP AI PRODUCT
+            </span>
+            <span aria-hidden="true" className="text-black/25">·</span>
+            <span className="font-mono text-[11px] text-[#4A525A]">
+              Live on portfolio · Evaluated RAG &amp; Voice
             </span>
           </div>
-        </article>
+          <span className="font-mono text-[10.5px] text-[#7A828A]">
+            34 verified chunks · Strict confidence gating
+          </span>
+        </div>
 
-        {/* =========================================================================
-            2 & 3. SECONDARY PRODUCTS STACK (lg:col-span-4)
-            Compact, lightweight, distinct products
-            ========================================================================= */}
-        <div className="lg:col-span-4 flex flex-col gap-5 justify-between">
-          {/* ── CARD 2: DĪPA (AI PORTFOLIO ASSISTANT) ───────────────────────── */}
-          <article className="ai-card ai-card--dipa p-6 sm:p-7 flex flex-col justify-between flex-1">
+        {/* Grid: Details on Left (7 cols), Visual on Right (5 cols) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div className="lg:col-span-7 flex flex-col justify-between">
             <div>
-              <div className="flex items-center justify-between gap-2.5 mb-4">
-                <div className="flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#A8711A] animate-pulse shrink-0" />
-                  <span className="font-mono text-[11px] font-bold text-[#A8711A] uppercase tracking-wider">
-                    LIVE BUILD
-                  </span>
-                </div>
-                <span className="font-mono text-[10.5px] text-[#7A828A]">32 verified chunks</span>
-              </div>
-
-              <div className="flex items-center gap-3.5 mb-3.5">
-                <span className="ai-orb-wrap w-12 h-12 flex items-center justify-center shrink-0" aria-hidden="true">
-                  <svg viewBox="0 0 64 64" className="w-full h-full block overflow-visible">
-                    <defs>
-                      <linearGradient id="aiDipaVisor" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0" stopColor="#C8F07A" />
-                        <stop offset="45%" stopColor="#8FD44A" />
-                        <stop offset="100%" stopColor="#3C9A48" />
-                      </linearGradient>
-                      <radialGradient id="aiDipaGlow" cx="50%" cy="40%" r="60%">
-                        <stop offset="0" stopColor="#E8FBA8" stopOpacity=".9" />
-                        <stop offset="100%" stopColor="#8FD44A" stopOpacity="0" />
-                      </radialGradient>
-                      <linearGradient id="aiDipaShell" x1=".3" y1="0" x2=".7" y2="1">
-                        <stop offset="0" stopColor="#252A2F" />
-                        <stop offset="55%" stopColor="#181B1E" />
-                        <stop offset="100%" stopColor="#121517" />
-                      </linearGradient>
-                    </defs>
-                    <g className="ai-orb">
-                      <path d="M24 15 18 5" stroke="#C89B3C" strokeWidth="2.8" strokeLinecap="round" />
-                      <circle cx="17.4" cy="4" r="3.4" fill="#FAF8F5" stroke="#C89B3C" strokeWidth="0.8" />
-                      <path d="M40 15 46 5.5" stroke="#C89B3C" strokeWidth="2.8" strokeLinecap="round" />
-                      <circle cx="46.6" cy="4.5" r="3.4" fill="#FAF8F5" stroke="#C89B3C" strokeWidth="0.8" />
-                      <path
-                        d="M32 8c13.3 0 23 10.2 23 24.5C55 45.3 45.3 54 32 54S9 45.3 9 32.5C9 18.2 18.7 8 32 8Z"
-                        fill="url(#aiDipaShell)"
-                        stroke="#C89B3C"
-                        strokeWidth="0.8"
-                        strokeOpacity="0.45"
-                      />
-                      <ellipse cx="32" cy="32" rx="18" ry="11" fill="url(#aiDipaVisor)" />
-                      <ellipse cx="32" cy="31" rx="16" ry="9.5" fill="url(#aiDipaGlow)" />
-                      <ellipse cx="32" cy="32" rx="6.4" ry="6.8" fill="#06301B" />
-                      <circle cx="29.8" cy="29.8" r="1.9" fill="#EAF6EE" />
-                    </g>
-                  </svg>
+              <div className="flex items-center gap-3 mb-3">
+                <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-[#A8711A]">
+                  MEET DĪPA
                 </span>
-                <div>
-                  <h3 className="font-onest text-[22px] sm:text-[24px] font-bold text-[#121517] leading-tight tracking-tight">
-                    Dīpa
-                  </h3>
-                  <p className="font-inter text-[12.5px] font-semibold text-[#A8711A]">
-                    AI Portfolio Assistant
-                  </p>
-                </div>
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#FAF8F5] border border-black/10 font-mono text-[10px] text-[#121517] font-semibold">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#8FD44A]" />
+                  Live System
+                </span>
               </div>
 
-              <p className="font-inter text-[14px] font-medium text-[#121517] leading-snug">
-                Grounded in my verified product work.
+              <h3 className="font-onest text-[34px] sm:text-[44px] md:text-[48px] font-extrabold text-[#121517] tracking-tight leading-none">
+                Dīpa
+              </h3>
+
+              <p className="font-inter text-[18px] sm:text-[21px] font-semibold text-[#121517] mt-3 leading-snug">
+                A live, multilingual voice copilot that answers questions about my work, grounded in evidence and evaluated before it ships.
               </p>
-              <p className="font-inter text-[12.5px] text-[#4A525A] leading-relaxed mt-2">
-                Running right now on this page. Answers questions about my work from 32 curated
-                chunks, cites evidence, and declines when confidence is thin.
+
+              {/* Three Proof Chips */}
+              <div className="flex flex-wrap items-center gap-2.5 mt-5">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-black/[0.10] text-[#121517] font-mono text-[11px] font-semibold shadow-2xs">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#C89B3C]" />
+                  RAG with citations
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-black/[0.10] text-[#121517] font-mono text-[11px] font-semibold shadow-2xs">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#C89B3C]" />
+                  Golden eval set: 19 of 20
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-black/[0.10] text-[#121517] font-mono text-[11px] font-semibold shadow-2xs">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#C89B3C]" />
+                  Voice in 5 Indian languages (Sarvam AI)
+                </span>
+              </div>
+
+              <p className="font-inter text-[14px] sm:text-[14.5px] text-[#4A525A] leading-relaxed mt-4 max-w-xl">
+                Running in real-time across this entire portfolio. Built with in-memory 512-dim cosine retrieval, 
+                sub-second local search, strict refusal gating (&lt;0.68 similarity), and natural voice conversation across 
+                English, हिन्दी, ಕನ್ನಡ, தமிழ், and తెలుగు.
               </p>
             </div>
 
-            {/* Dīpa Action Buttons */}
+            {/* Flagship Actions */}
+            <div className="mt-7 pt-5 border-t border-black/[0.06] flex flex-wrap items-center gap-3">
+              <GlassButton
+                variant="dark"
+                size="md"
+                icon={<ArrowUpRight size={15} />}
+                onClick={() => window.dispatchEvent(new CustomEvent("open-copilot"))}
+                aria-label="Try Dīpa"
+              >
+                Try Dīpa
+              </GlassButton>
+
+              <GlassButton
+                variant="secondary"
+                size="md"
+                icon={<ArrowRight size={15} />}
+                onClick={() => onNavigate("/work/dipa")}
+                aria-label="How it works"
+              >
+                How it works
+              </GlassButton>
+            </div>
+          </div>
+
+          {/* Right Column: Visual Showcase */}
+          <div className="lg:col-span-5">
+            <div className="p-5 sm:p-6 rounded-2xl bg-gradient-to-b from-white to-[#FAF8F5] border border-black/[0.08] shadow-[0_8px_24px_rgba(0,0,0,0.04)]">
+              <div className="flex items-center justify-between mb-4 pb-3 border-b border-black/[0.06]">
+                <div className="flex items-center gap-2">
+                  <span className="ai-orb-wrap w-8 h-8 flex items-center justify-center shrink-0" aria-hidden="true">
+                    <svg viewBox="0 0 64 64" className="w-full h-full block overflow-visible">
+                      <defs>
+                        <linearGradient id="aiDipaVisorCard" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="0" stopColor="#C8F07A" />
+                          <stop offset="45%" stopColor="#8FD44A" />
+                          <stop offset="100%" stopColor="#3C9A48" />
+                        </linearGradient>
+                        <radialGradient id="aiDipaGlowCard" cx="50%" cy="40%" r="60%">
+                          <stop offset="0" stopColor="#E8FBA8" stopOpacity=".9" />
+                          <stop offset="100%" stopColor="#8FD44A" stopOpacity="0" />
+                        </radialGradient>
+                        <linearGradient id="aiDipaShellCard" x1=".3" y1="0" x2=".7" y2="1">
+                          <stop offset="0" stopColor="#252A2F" />
+                          <stop offset="55%" stopColor="#181B1E" />
+                          <stop offset="100%" stopColor="#121517" />
+                        </linearGradient>
+                      </defs>
+                      <g className="ai-orb">
+                        <path d="M24 15 18 5" stroke="#C89B3C" strokeWidth="2.8" strokeLinecap="round" />
+                        <circle cx="17.4" cy="4" r="3.4" fill="#FAF8F5" stroke="#C89B3C" strokeWidth="0.8" />
+                        <path d="M40 15 46 5.5" stroke="#C89B3C" strokeWidth="2.8" strokeLinecap="round" />
+                        <circle cx="46.6" cy="4.5" r="3.4" fill="#FAF8F5" stroke="#C89B3C" strokeWidth="0.8" />
+                        <path
+                          d="M32 8c13.3 0 23 10.2 23 24.5C55 45.3 45.3 54 32 54S9 45.3 9 32.5C9 18.2 18.7 8 32 8Z"
+                          fill="url(#aiDipaShellCard)"
+                          stroke="#C89B3C"
+                          strokeWidth="0.8"
+                          strokeOpacity="0.45"
+                        />
+                        <ellipse cx="32" cy="32" rx="18" ry="11" fill="url(#aiDipaVisorCard)" />
+                        <ellipse cx="32" cy="31" rx="16" ry="9.5" fill="url(#aiDipaGlowCard)" />
+                        <ellipse cx="32" cy="32" rx="6.4" ry="6.8" fill="#06301B" />
+                        <circle cx="29.8" cy="29.8" r="1.9" fill="#EAF6EE" />
+                      </g>
+                    </svg>
+                  </span>
+                  <div>
+                    <span className="font-onest text-sm font-bold text-[#121517] block leading-tight">
+                      Conversational Interface
+                    </span>
+                    <span className="font-mono text-[10px] text-[#A8711A]">
+                      Interactive Voice &amp; Text
+                    </span>
+                  </div>
+                </div>
+                <span className="font-mono text-[10px] px-2 py-0.5 rounded bg-white border border-black/[0.08] text-[#4A525A]">
+                  5 Languages
+                </span>
+              </div>
+
+              {/* Sample Voice Interaction Preview */}
+              <div className="space-y-3">
+                <div className="p-3 rounded-xl bg-white border border-black/[0.06] text-left">
+                  <div className="flex items-center justify-between text-[10.5px] font-mono text-[#7A828A] mb-1">
+                    <span>Visitor (Voice)</span>
+                    <span className="text-[#A8711A] font-semibold">ಕನ್ನಡ / Hindi / EN</span>
+                  </div>
+                  <p className="font-inter text-xs text-[#121517] leading-snug">
+                    &ldquo;What did Deepak build at ReshaMandi?&rdquo;
+                  </p>
+                </div>
+
+                <div className="p-3 rounded-xl bg-[#FAF8F5] border border-black/[0.06] text-left space-y-1.5">
+                  <div className="flex items-center justify-between text-[10.5px] font-mono text-[#7A828A]">
+                    <span className="text-[#121517] font-semibold flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#8FD44A]" />
+                      Dīpa
+                    </span>
+                    <span className="text-[#A8711A] font-mono">Similarity: 0.867</span>
+                  </div>
+                  <p className="font-inter text-xs text-[#374151] leading-relaxed">
+                    Deepak engineered the instant payout and settlement engine handling ₹20–25 Cr monthly, reducing mandi settlement from 72h to &lt;10s.
+                  </p>
+                  <div className="flex flex-wrap items-center gap-1.5 pt-1">
+                    <span className="px-2 py-0.5 rounded bg-white border border-black/[0.08] font-mono text-[9.5px] text-[#A8711A] font-medium">
+                      [ReshaMandi Instant Payouts Engine]
+                    </span>
+                    <span className="font-mono text-[9.5px] text-[#7A828A]">
+                      · Spoken via bulbul:v3
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Indian Languages Strip */}
+              <div className="mt-3.5 pt-3 border-t border-black/[0.06] flex items-center justify-between text-[11px] font-mono text-[#4A525A]">
+                <span className="text-[10px] uppercase tracking-wider text-[#7A828A]">Available:</span>
+                <span className="font-medium text-[#121517]">English · हिन्दी · ಕನ್ನಡ · தமிழ் · తెలుగు</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      {/* =========================================================================
+          2. IN PROGRESS SUBSECTION
+          Clearly labelled subsection for exploratory builds and active prototypes.
+          ========================================================================= */}
+      <div className="w-full mb-4">
+        <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-6 pb-3 border-b border-black/[0.08]">
+          <div className="flex items-center gap-2.5">
+            <span className="font-mono text-[11px] font-bold text-[#A8711A] tracking-wider uppercase">
+              SUBSECTION
+            </span>
+            <span aria-hidden="true" className="text-black/25">·</span>
+            <h3 className="font-onest text-xl sm:text-2xl font-bold text-[#121517] tracking-tight">
+              In progress
+            </h3>
+          </div>
+          <p className="font-inter text-xs sm:text-[13px] text-[#7A828A]">
+            Active prototypes and decision systems under exploration.
+          </p>
+        </div>
+
+        {/* 2-Column Grid for Jagr & Product Jury */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 items-stretch">
+          {/* ── CARD: JAGR ─────────────────────────────────────────── */}
+          <article
+            className="ai-card ai-card--jagr p-6 sm:p-7 flex flex-col justify-between cursor-pointer group"
+            onClick={() => setIsJagrModalOpen(true)}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                setIsJagrModalOpen(true);
+              }
+            }}
+            aria-label="Jagr: Explore how I built it"
+          >
+            <div>
+              {/* Header row with small 'In progress' tag */}
+              <div className="flex items-center justify-between gap-2.5 mb-4">
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#FAF8F5] border border-black/10 font-mono text-[10.5px] font-semibold text-[#A8711A] uppercase tracking-wider">
+                  In progress
+                </span>
+                <span className="font-mono text-[10.5px] text-[#7A828A]">
+                  Autonomous Product Context
+                </span>
+              </div>
+
+              <div>
+                <h4 className="font-onest text-[24px] sm:text-[26px] font-extrabold text-[#121517] tracking-tight leading-tight">
+                  Jagr
+                </h4>
+                <p className="font-inter text-[14.5px] font-semibold text-[#121517] mt-1 leading-snug">
+                  From product signals to product attention.
+                </p>
+              </div>
+
+              {/* Three Short Lines: Problem, Built so far, What's next */}
+              <div className="space-y-2.5 mt-4 pt-3.5 border-t border-black/[0.06] text-left">
+                <div className="font-inter text-[13px] text-[#4A525A] leading-relaxed">
+                  <strong className="text-[#121517] font-semibold">The problem it explores:</strong> Critical product context fractures across pull requests, telemetry alerts, and noisy channels when product managers step away.
+                </div>
+                <div className="font-inter text-[13px] text-[#4A525A] leading-relaxed">
+                  <strong className="text-[#121517] font-semibold">What&apos;s built so far:</strong> Source-aware vertical slice on Sentry exception and release streams with normalized event ingestion, cadence coalescing (14 spikes into 1 watch), and bounded investigations.
+                </div>
+                <div className="font-inter text-[13px] text-[#4A525A] leading-relaxed">
+                  <strong className="text-[#121517] font-semibold">What&apos;s next:</strong> Broader signal providers including GitHub pull request diffs, Linear tickets, Slack channel synthesis, and automated decision context.
+                </div>
+              </div>
+
+              {/* Micro-visual bar */}
+              <div className="mt-4 p-2.5 rounded-xl bg-[#FAF8F5] border border-black/[0.06] flex items-center justify-between gap-2">
+                <span className="font-mono text-[10px] font-bold text-[#121517] uppercase tracking-wider">
+                  ⚡ sentry.exception &middot; BatchEscrowWorker
+                </span>
+                <span className="font-mono text-[9.5px] text-[#A8711A] font-semibold bg-white px-2 py-0.5 rounded border border-black/[0.08]">
+                  Coalesced (14 &rarr; 1)
+                </span>
+              </div>
+            </div>
+
+            {/* Bottom Action */}
             <div className="mt-5 pt-4 border-t border-black/[0.06] flex items-center justify-between gap-3">
               <GlassButton
                 variant="dark"
                 size="sm"
-                icon={<ArrowUpRight size={14} />}
-                onClick={() => window.dispatchEvent(new CustomEvent("open-copilot"))}
-                aria-label="Open Dīpa copilot"
-              >
-                Open Dīpa
-              </GlassButton>
-              <a
-                href="/work/dipa"
+                icon={<ArrowRight size={14} className="transition-transform duration-200 group-hover:translate-x-1" />}
                 onClick={(e) => {
-                  e.preventDefault();
-                  onNavigate("/work/dipa");
+                  e.stopPropagation();
+                  setIsJagrModalOpen(true);
                 }}
-                className="font-mono text-[11px] text-[#5A626A] hover:text-[#121517] transition-colors"
+                aria-label="How I built Jagr"
               >
-                How I built this &rarr;
-              </a>
+                How I built Jagr
+              </GlassButton>
+              <span className="font-mono text-[11px] text-[#7A828A]">
+                View build journey &rarr;
+              </span>
             </div>
           </article>
 
-          {/* ── CARD 3: PRODUCT JURY (DECISION SYSTEM) ────────── */}
-          <article className="ai-card p-6 sm:p-7 flex flex-col justify-between flex-1">
+          {/* ── CARD: PRODUCT JURY ─────────────────────────────────── */}
+          <article className="ai-card p-6 sm:p-7 flex flex-col justify-between">
             <div>
+              {/* Header row with small 'In progress' tag */}
               <div className="flex items-center justify-between gap-2.5 mb-4">
-                <span className="font-mono text-[11px] font-bold text-[#A8711A] tracking-wider uppercase">
-                  ACTIVE BUILD
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#FAF8F5] border border-black/10 font-mono text-[10.5px] font-semibold text-[#A8711A] uppercase tracking-wider">
+                  In progress
                 </span>
-                <span className="font-mono text-[10.5px] text-[#7A828A] font-medium">Decision Engine</span>
+                <span className="font-mono text-[10.5px] text-[#7A828A]">
+                  Decision Engine
+                </span>
               </div>
 
               <div>
-                <h3 className="font-onest text-[22px] sm:text-[24px] font-bold text-[#121517] leading-tight tracking-tight">
+                <h4 className="font-onest text-[24px] sm:text-[26px] font-extrabold text-[#121517] tracking-tight leading-tight">
                   Product Jury
-                </h3>
-                <p className="font-inter text-[12.5px] font-semibold text-[#A8711A] mt-0.5">
+                </h4>
+                <p className="font-inter text-[14.5px] font-semibold text-[#121517] mt-1 leading-snug">
                   A decision system for product managers.
                 </p>
-                <blockquote className="my-3 pl-3 border-l-2 border-[#C89B3C] font-playfair italic text-[14px] text-[#121517] leading-snug">
-                  &ldquo;Make a product call you can defend &mdash; and keep the defence.&rdquo;
-                </blockquote>
               </div>
 
-              {/* Compact mechanism */}
-              <div className="mt-3.5 p-2 rounded-lg bg-[#FAF8F5] border border-black/[0.06] font-mono text-[10.5px] font-semibold text-[#4A525A] text-center">
+              {/* Three Short Lines: Problem, Built so far, What's next */}
+              <div className="space-y-2.5 mt-4 pt-3.5 border-t border-black/[0.06] text-left">
+                <div className="font-inter text-[13px] text-[#4A525A] leading-relaxed">
+                  <strong className="text-[#121517] font-semibold">The problem it explores:</strong> Making product calls you can defend and preserving the defense—separating empirical evidence from inference and assumption before committing roadmap resources.
+                </div>
+                <div className="font-inter text-[13px] text-[#4A525A] leading-relaxed">
+                  <strong className="text-[#121517] font-semibold">What&apos;s built so far:</strong> Multi-agent product decision system (Evidence &rarr; Decision &rarr; Red Team &rarr; Record) with structured verdict cards, multi-perspective examination, and evidence classification.
+                </div>
+                <div className="font-inter text-[13px] text-[#4A525A] leading-relaxed">
+                  <strong className="text-[#121517] font-semibold">What&apos;s next:</strong> Expanded rubrics for pricing and positioning calls, interactive red-teaming simulations, and shared decision audit logs.
+                </div>
+              </div>
+
+              {/* Micro mechanism bar */}
+              <div className="mt-4 p-2.5 rounded-xl bg-[#FAF8F5] border border-black/[0.06] font-mono text-[10.5px] font-semibold text-[#4A525A] text-center">
                 Evidence &rarr; Decision &rarr; Red Team &rarr; Record
               </div>
             </div>
 
-            {/* Product Jury Action Button */}
+            {/* Bottom Action */}
             <div className="mt-5 pt-4 border-t border-black/[0.06] flex items-center justify-between">
               <GlassButton
                 as="a"

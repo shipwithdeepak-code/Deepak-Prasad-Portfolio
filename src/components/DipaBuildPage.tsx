@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { ArrowLeft, ArrowRight, Sparkles, CheckCircle2 } from "lucide-react";
+import { ArrowLeft, ArrowRight, Sparkles, CheckCircle2, Mic, Globe, ShieldCheck, HelpCircle } from "lucide-react";
 import { DipaArchitectureDiagram } from "./DipaArchitectureDiagram";
 import GlassButton from "./ui/GlassButton";
 import Tag from "./ui/Tag";
@@ -340,6 +340,271 @@ export default function DipaBuildPage({ onNavigate }: DipaBuildPageProps) {
             <p>
               <strong>What comes next:</strong> Adding interactive follow-up nudges based on recruiter reading depth, exploring streaming conversational voice mode, and open-sourcing the prebuild portfolio-RAG harness for other product craftspeople.
             </p>
+          </div>
+        </section>
+
+        {/* SECTION 8: VOICE & INDIAN LANGUAGES */}
+        <section className="mb-14 pb-12 border-b border-[#121517]/10">
+          <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-[#A8711A] block mb-2">
+            08 · Voice &amp; Localization
+          </span>
+          <h2 className="font-onest text-2xl sm:text-3xl font-bold text-[#121517] tracking-tight mb-4">
+            Voice &amp; Indian languages
+          </h2>
+          <div className="space-y-4 font-inter text-[15px] sm:text-base text-[#121517]/75 leading-relaxed">
+            <p>
+              To make Dīpa intuitive for visitors across diverse linguistic regions, we added an optional voice interaction pipeline powered by Sarvam AI across English and four major Indian languages: <strong>Hindi (हिन्दी)</strong>, <strong>Kannada (ಕನ್ನಡ)</strong>, <strong>Tamil (தமிழ்)</strong>, and <strong>Telugu (తెలుగు)</strong>.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 my-4">
+              <div className="p-4 rounded-xl bg-white border border-[#121517]/8">
+                <span className="font-mono text-[10.5px] font-bold uppercase tracking-wider text-[#A8711A] block mb-1">
+                  Multi-Modal Speech
+                </span>
+                <p className="text-xs text-[#121517]/70">
+                  Browser MediaRecorder captures audio up to 29s and pipes it directly to speech-to-text without heavy client WAV conversions.
+                </p>
+              </div>
+              <div className="p-4 rounded-xl bg-white border border-[#121517]/8">
+                <span className="font-mono text-[10.5px] font-bold uppercase tracking-wider text-[#A8711A] block mb-1">
+                  Grounded Core Intact
+                </span>
+                <p className="text-xs text-[#121517]/70">
+                  Non-English questions translate to English for retrieval against our verified in-memory corpus, ensuring zero loss of factual precision.
+                </p>
+              </div>
+              <div className="p-4 rounded-xl bg-white border border-[#121517]/8">
+                <span className="font-mono text-[10.5px] font-bold uppercase tracking-wider text-[#A8711A] block mb-1">
+                  Local Voice Persona
+                </span>
+                <p className="text-xs text-[#121517]/70">
+                  Synthesized back in the visitor&apos;s language with calibrated male honorifics and natural text-to-speech cadence.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION 9: BUILDING ON SARVAM AI: FIELD NOTES */}
+        <section className="mb-14 pb-12 border-b border-[#121517]/10">
+          <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-[#A8711A] block mb-2">
+            09 · Build Log &amp; Learnings
+          </span>
+          <h2 className="font-onest text-2xl sm:text-3xl font-bold text-[#121517] tracking-tight mb-2">
+            Building on Sarvam AI: field notes
+          </h2>
+          <p className="font-onest text-lg sm:text-xl font-medium text-[#121517]/80 mb-6">
+            A product manager&apos;s build log: why Sarvam, architecture, setup decisions, and production findings.
+          </p>
+
+          <div className="space-y-8 font-inter text-[15px] sm:text-base text-[#121517]/80 leading-relaxed">
+            {/* a) Why Sarvam */}
+            <div className="p-6 rounded-[20px] bg-white border border-[#121517]/8">
+              <h3 className="font-onest text-lg font-bold text-[#121517] mb-2 flex items-center gap-2">
+                <span className="font-mono text-xs font-semibold text-[#A8711A]">a</span>
+                Why Sarvam
+              </h3>
+              <p className="text-sm sm:text-[15px] text-[#121517]/75 leading-relaxed">
+                I wanted Dīpa to work for visitors who prefer Indian languages and voice. Sarvam offers speech-to-text, translation and text-to-speech for Indian languages through one API and credit system, and new accounts get free credits to evaluate.
+              </p>
+            </div>
+
+            {/* b) Architecture & Diagram */}
+            <div className="p-6 rounded-[20px] bg-white border border-[#121517]/8">
+              <h3 className="font-onest text-lg font-bold text-[#121517] mb-2 flex items-center gap-2">
+                <span className="font-mono text-xs font-semibold text-[#A8711A]">b</span>
+                Architecture
+              </h3>
+              <p className="text-sm text-[#121517]/70 mb-4">
+                The voice pipeline stitches together browser audio, edge proxy translation, and the existing verified RAG core:
+              </p>
+
+              {/* Simple Flow Diagram */}
+              <div className="p-4 sm:p-5 rounded-xl bg-[#FAF8F5] border border-[#121517]/10 overflow-x-auto">
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2 sm:gap-1.5 min-w-[700px] text-xs font-mono">
+                  <div className="p-2.5 rounded-lg bg-white border border-[#121517]/10 text-center flex-1">
+                    <span className="block font-bold text-[#121517]">Browser</span>
+                    <span className="text-[10px] text-[#121517]/60">Recording (MediaRecorder)</span>
+                  </div>
+                  <span className="text-[#C89B3C] font-bold text-center sm:text-left">&rarr;</span>
+
+                  <div className="p-2.5 rounded-lg bg-white border border-[#121517]/10 text-center flex-1">
+                    <span className="block font-bold text-[#121517]">Worker Proxy</span>
+                    <span className="text-[10px] text-[#121517]/60">Cloudflare Edge</span>
+                  </div>
+                  <span className="text-[#C89B3C] font-bold text-center sm:text-left">&rarr;</span>
+
+                  <div className="p-2.5 rounded-lg bg-white border border-[#121517]/10 text-center flex-1">
+                    <span className="block font-bold text-[#121517]">Sarvam STT</span>
+                    <span className="text-[10px] text-[#A8711A]">saaras:v3</span>
+                  </div>
+                  <span className="text-[#C89B3C] font-bold text-center sm:text-left">&rarr;</span>
+
+                  <div className="p-2.5 rounded-lg bg-white border border-[#121517]/10 text-center flex-1">
+                    <span className="block font-bold text-[#121517]">Translate</span>
+                    <span className="text-[10px] text-[#A8711A]">sarvam-translate:v1 (&rarr;en)</span>
+                  </div>
+                  <span className="text-[#C89B3C] font-bold text-center sm:text-left">&rarr;</span>
+
+                  <div className="p-2.5 rounded-lg bg-[#FAF8F5] border-2 border-[#C89B3C]/40 text-center flex-1 shadow-2xs">
+                    <span className="block font-bold text-[#121517]">Gemini RAG</span>
+                    <span className="text-[10px] text-[#121517]/70">Unchanged retrieval</span>
+                  </div>
+                  <span className="text-[#C89B3C] font-bold text-center sm:text-left">&rarr;</span>
+
+                  <div className="p-2.5 rounded-lg bg-white border border-[#121517]/10 text-center flex-1">
+                    <span className="block font-bold text-[#121517]">Translate Back</span>
+                    <span className="text-[10px] text-[#A8711A]">speaker_gender: &quot;male&quot;</span>
+                  </div>
+                  <span className="text-[#C89B3C] font-bold text-center sm:text-left">&rarr;</span>
+
+                  <div className="p-2.5 rounded-lg bg-white border border-[#121517]/10 text-center flex-1">
+                    <span className="block font-bold text-[#121517]">Sarvam TTS</span>
+                    <span className="text-[10px] text-[#A8711A]">bulbul:v3 (MP3)</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* c) Setup decisions */}
+            <div className="p-6 rounded-[20px] bg-white border border-[#121517]/8">
+              <h3 className="font-onest text-lg font-bold text-[#121517] mb-3 flex items-center gap-2">
+                <span className="font-mono text-xs font-semibold text-[#A8711A]">c</span>
+                Setup decisions
+              </h3>
+              <ul className="space-y-3 text-sm sm:text-[14.5px] text-[#121517]/75">
+                <li className="flex items-start gap-2.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#A8711A] shrink-0 mt-2" />
+                  <span>
+                    <strong>Isolated Secret Storage:</strong> My site is hosted by Google AI Studio, which can&apos;t hold a custom secret, so I put the Sarvam key in a separate Cloudflare Worker. The key never reaches the browser.
+                  </span>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#A8711A] shrink-0 mt-2" />
+                  <span>
+                    <strong>Cost Guardrails:</strong> 15 voice requests per visitor per day, 300 per day site-wide, and an allowed-origin check to prevent quota drains.
+                  </span>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#A8711A] shrink-0 mt-2" />
+                  <span>
+                    <strong>Concise Answer Caps:</strong> Voice-mode answers are capped at about 3 sentences, so they stay within translation and speech character limits and sound natural when spoken.
+                  </span>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#A8711A] shrink-0 mt-2" />
+                  <span>
+                    <strong>Reliable Failover:</strong> Every failure, including running out of credits, falls back to text chat with a friendly notice.
+                  </span>
+                </li>
+              </ul>
+            </div>
+
+            {/* d) Four findings */}
+            <div className="p-6 rounded-[20px] bg-white border border-[#121517]/8">
+              <h3 className="font-onest text-lg font-bold text-[#121517] mb-2 flex items-center gap-2">
+                <span className="font-mono text-xs font-semibold text-[#A8711A]">d</span>
+                Four findings: what happened &rarr; what I did &rarr; what I&apos;d suggest
+              </h3>
+              <p className="text-xs text-[#121517]/60 mb-5">
+                Concrete developer friction points and PM recommendations discovered during integration:
+              </p>
+
+              <div className="space-y-5">
+                {/* Finding 1 */}
+                <div className="p-4 sm:p-5 rounded-xl bg-[#FAF8F5] border border-[#121517]/8">
+                  <h4 className="font-onest text-base font-bold text-[#121517] mb-2">
+                    1. Browser audio was rejected
+                  </h4>
+                  <div className="space-y-2 text-xs sm:text-[13.5px] text-[#121517]/75">
+                    <p>
+                      <strong>What happened:</strong> Every Chrome recording failed with &ldquo;Invalid file type&rdquo;. Chrome labels recordings <code className="font-mono text-xs px-1 py-0.5 rounded bg-white border border-black/10">&quot;audio/webm;codecs=opus&quot;</code>; the speech-to-text API accepts <code className="font-mono text-xs px-1 py-0.5 rounded bg-white border border-black/10">&quot;audio/webm&quot;</code> but rejects the same type with a codecs parameter, and the docs don&apos;t mention it.
+                    </p>
+                    <p>
+                      <strong>What I did:</strong> I reproduced it with test clips, then normalised the content type in my proxy; Chrome and Safari recordings now work.
+                    </p>
+                    <p className="text-[#A8711A] font-medium pt-1">
+                      <strong>Suggestion:</strong> Accept standard MIME parameters, or document the exact accepted values with a browser example. Any developer building browser voice input will hit this on day one.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Finding 2 */}
+                <div className="p-4 sm:p-5 rounded-xl bg-[#FAF8F5] border border-[#121517]/8">
+                  <h4 className="font-onest text-base font-bold text-[#121517] mb-2">
+                    2. Grammatical gender in translation
+                  </h4>
+                  <div className="space-y-2 text-xs sm:text-[13.5px] text-[#121517]/75">
+                    <p>
+                      <strong>What happened:</strong> With no setting, &ldquo;How are you?&rdquo; translated to Hindi in the feminine form (<span className="font-hindi font-medium">आप कैसी हैं?</span>). The translate API&apos;s <code className="font-mono text-xs px-1 py-0.5 rounded bg-white border border-black/10">speaker_gender</code> parameter fixed it, but it changed the form used for the person being addressed, not just the speaker, which the name doesn&apos;t suggest.
+                    </p>
+                    <p>
+                      <strong>What I did:</strong> I set it to male to match the male voice.
+                    </p>
+                    <p className="text-[#A8711A] font-medium pt-1">
+                      <strong>Suggestion:</strong> Clarify the parameter&apos;s scope in the docs, and consider an addressee or neutral option for assistants talking to strangers.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Finding 3 */}
+                <div className="p-4 sm:p-5 rounded-xl bg-[#FAF8F5] border border-[#121517]/8">
+                  <h4 className="font-onest text-base font-bold text-[#121517] mb-2">
+                    3. Pricing consistency
+                  </h4>
+                  <div className="space-y-2 text-xs sm:text-[13.5px] text-[#121517]/75">
+                    <p>
+                      <strong>What happened:</strong> The public pricing page and the API docs listed different translation prices (₹0.005 per character on the pricing page versus ₹20 per 10,000 characters in the docs).
+                    </p>
+                    <p>
+                      <strong>What I did:</strong> Factored conservative budgeting and rate testing into usage forecast models.
+                    </p>
+                    <p className="text-[#A8711A] font-medium pt-1">
+                      <strong>Suggestion:</strong> One source of truth for rates, plus a cost estimator, so developers can forecast spend.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Finding 4 */}
+                <div className="p-4 sm:p-5 rounded-xl bg-[#FAF8F5] border border-[#121517]/8">
+                  <h4 className="font-onest text-base font-bold text-[#121517] mb-2">
+                    4. Designing for a prepaid wallet
+                  </h4>
+                  <div className="space-y-2 text-xs sm:text-[13.5px] text-[#121517]/75">
+                    <p>
+                      <strong>What happened:</strong> Sarvam&apos;s docs say API calls fail outright once the prepaid balance reaches zero. I haven&apos;t hit that in production; I designed for it up front.
+                    </p>
+                    <p>
+                      <strong>What I did:</strong> Proxy-side limits, a per-visitor and daily cap, and a friendly &ldquo;Voice is resting&rdquo; fallback to text.
+                    </p>
+                    <p className="text-[#A8711A] font-medium pt-1">
+                      <strong>Suggestion:</strong> Low-balance alerts by email or WhatsApp and a small grace buffer for paying accounts.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* e) Result */}
+            <div className="p-6 rounded-[20px] bg-white border border-[#121517]/8">
+              <h3 className="font-onest text-lg font-bold text-[#121517] mb-2 flex items-center gap-2">
+                <span className="font-mono text-xs font-semibold text-[#A8711A]">e</span>
+                Result
+              </h3>
+              <p className="text-sm sm:text-[15px] text-[#121517]/75 leading-relaxed">
+                Voice works end to end in Chrome and Safari across English, Hindi, Kannada, Tamil and Telugu. A typical voice round trip takes about 3 to 4 seconds.
+              </p>
+            </div>
+
+            {/* f) What I'd do next */}
+            <div className="p-6 rounded-[20px] bg-white border border-[#121517]/8">
+              <h3 className="font-onest text-lg font-bold text-[#121517] mb-2 flex items-center gap-2">
+                <span className="font-mono text-xs font-semibold text-[#A8711A]">f</span>
+                What I&apos;d do next
+              </h3>
+              <p className="text-sm sm:text-[15px] text-[#121517]/75 leading-relaxed">
+                Measure which languages visitors actually choose, and test whether voice changes how many questions they ask.
+              </p>
+            </div>
           </div>
         </section>
 

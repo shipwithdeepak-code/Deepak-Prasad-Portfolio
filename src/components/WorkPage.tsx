@@ -289,64 +289,46 @@ export default function WorkPage({
               Things I built.
             </h2>
             <p className="font-inter text-sm sm:text-base text-[#121517]/70 leading-relaxed mt-2">
-              AI products I designed and built to explore decision intelligence and AI-native product experiences.
+              AI products I designed and built to explore grounded intelligence, multi-lingual voice, and product decision systems.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-            {/* ── 01. Product Jury ─────────────────────────────────── */}
-            <div className="bg-[#F5F3EF] rounded-[20px] p-6 sm:p-7 border border-[#121517]/8 flex flex-col justify-between transition-all duration-240 hover:-translate-y-1 hover:bg-[#EFECE6] hover:shadow-[0_12px_32px_rgba(18,21,23,0.06)]">
+            {/* ── 01. Dīpa (Flagship AI Product) ────────────────────── */}
+            <div className="bg-[#FAF8F5] rounded-[20px] p-6 sm:p-7 border border-[#121517]/10 flex flex-col justify-between transition-all duration-240 hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(18,21,23,0.06)]">
               <div>
-                <SectionLabel number="01" label="Product Jury" color="amber" />
-
-                <h3 className="font-onest font-semibold text-[22px] sm:text-[24px] leading-[28px] tracking-[-0.48px] text-[#121517] mb-2">
-                  AI decision intelligence for product teams
-                </h3>
-
-                <p className="font-inter text-[14px] leading-[20px] text-[#121517]/70 mb-4 line-clamp-3">
-                  A multi-agent product decision workspace that examines a product screen, separates evidence from inference and assumption, and produces a structured product verdict.
-                </p>
-
-                <div className="pt-3.5 border-t border-[#121517]/8 mb-5">
-                  <p className="font-inter text-xs text-[#121517]/65 font-medium leading-relaxed">
-                    Multi-agent deliberation · Evidence classification · Structured verdicts
-                  </p>
+                <div className="flex items-center justify-between gap-2 mb-3">
+                  <SectionLabel number="01" label="Dīpa (Flagship)" color="amber" />
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white border border-black/10 font-mono text-[10px] text-[#121517] font-semibold">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#8FD44A]" />
+                    Live System
+                  </span>
                 </div>
-              </div>
-
-              <div className="flex flex-wrap items-center gap-2.5 pt-2">
-                <GlassButton
-                  as="a"
-                  href="/work/product-jury"
-                  variant="primary"
-                  size="sm"
-                  icon={<ArrowRight size={13} />}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    onNavigate("/work/product-jury");
-                  }}
-                >
-                  Check what I&apos;m building
-                </GlassButton>
-              </div>
-            </div>
-
-            {/* ── 02. Dīpa ─────────────────────────────────────────── */}
-            <div className="bg-[#F5F3EF] rounded-[20px] p-6 sm:p-7 border border-[#121517]/8 flex flex-col justify-between transition-all duration-240 hover:-translate-y-1 hover:bg-[#EFECE6] hover:shadow-[0_12px_32px_rgba(18,21,23,0.06)]">
-              <div>
-                <SectionLabel number="02" label="Dīpa" color="amber" />
 
                 <h3 className="font-onest font-semibold text-[22px] sm:text-[24px] leading-[28px] tracking-[-0.48px] text-[#121517] mb-2">
-                  An AI-native portfolio assistant
+                  Dīpa
                 </h3>
 
-                <p className="font-inter text-[14px] leading-[20px] text-[#121517]/70 mb-4 line-clamp-3">
-                  An AI assistant grounded in my own portfolio and product work, designed to answer questions using retrieved source material without hallucinating.
+                <p className="font-inter text-[14.5px] leading-[21px] text-[#121517] font-medium mb-3">
+                  A live, multilingual voice copilot that answers questions about my work, grounded in evidence and evaluated before it ships.
                 </p>
 
-                <div className="pt-3.5 border-t border-[#121517]/8 mb-5">
-                  <p className="font-inter text-xs text-[#121517]/65 font-medium leading-relaxed">
-                    Grounded retrieval · Portfolio-aware answers · Source-aware responses
+                {/* Proof Chips */}
+                <div className="flex flex-wrap items-center gap-1.5 pt-1 pb-3">
+                  <span className="px-2 py-0.5 rounded-md bg-white border border-black/[0.08] font-mono text-[10.5px] text-[#4A525A] font-semibold">
+                    RAG with citations
+                  </span>
+                  <span className="px-2 py-0.5 rounded-md bg-white border border-black/[0.08] font-mono text-[10.5px] text-[#4A525A] font-semibold">
+                    Golden eval set: 19 of 20
+                  </span>
+                  <span className="px-2 py-0.5 rounded-md bg-white border border-black/[0.08] font-mono text-[10.5px] text-[#A8711A] font-semibold">
+                    Voice in 5 Indian languages (Sarvam AI)
+                  </span>
+                </div>
+
+                <div className="pt-3 border-t border-[#121517]/8 mb-5">
+                  <p className="font-inter text-xs text-[#121517]/65 leading-relaxed">
+                    In-memory cosine retrieval · Refusal gate (&lt;0.68) · Sub-second latency · Zero hosted vector DB costs
                   </p>
                 </div>
               </div>
@@ -375,7 +357,62 @@ export default function WorkPage({
                     onNavigate("/work/dipa");
                   }}
                 >
-                  HOW I BUILT IT
+                  HOW IT WORKS
+                </GlassButton>
+              </div>
+            </div>
+
+            {/* ── 02. Product Jury (In progress) ────────────────────── */}
+            <div className="bg-[#F5F3EF] rounded-[20px] p-6 sm:p-7 border border-[#121517]/8 flex flex-col justify-between transition-all duration-240 hover:-translate-y-1 hover:bg-[#EFECE6] hover:shadow-[0_12px_32px_rgba(18,21,23,0.06)]">
+              <div>
+                <div className="flex items-center justify-between gap-2 mb-3">
+                  <SectionLabel number="02" label="Product Jury" color="amber" />
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white border border-black/10 font-mono text-[10.5px] font-semibold text-[#A8711A] uppercase tracking-wider">
+                    In progress
+                  </span>
+                </div>
+
+                <h3 className="font-onest font-semibold text-[22px] sm:text-[24px] leading-[28px] tracking-[-0.48px] text-[#121517] mb-2">
+                  Product Jury
+                </h3>
+
+                <p className="font-inter text-[13.5px] font-semibold text-[#121517] mb-3">
+                  A decision system for product managers.
+                </p>
+
+                {/* Three short lines */}
+                <div className="space-y-2 pt-2 pb-3 text-left">
+                  <div className="font-inter text-xs text-[#4A525A] leading-relaxed">
+                    <strong className="text-[#121517] font-semibold">The problem it explores:</strong> Making product calls you can defend and preserving the defense—separating evidence from inference and assumption before committing roadmap resources.
+                  </div>
+                  <div className="font-inter text-xs text-[#4A525A] leading-relaxed">
+                    <strong className="text-[#121517] font-semibold">What&apos;s built so far:</strong> Multi-agent product decision system (Evidence &rarr; Decision &rarr; Red Team &rarr; Record) with structured verdict cards and evidence classification.
+                  </div>
+                  <div className="font-inter text-xs text-[#4A525A] leading-relaxed">
+                    <strong className="text-[#121517] font-semibold">What&apos;s next:</strong> Expanded rubrics for pricing and positioning calls, interactive red-teaming simulations, and shared decision audit logs.
+                  </div>
+                </div>
+
+                <div className="pt-3 border-t border-[#121517]/8 mb-5">
+                  <p className="font-mono text-[11px] text-[#4A525A] font-medium text-center">
+                    Evidence &rarr; Decision &rarr; Red Team &rarr; Record
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex flex-wrap items-center gap-2.5 pt-2">
+                <GlassButton
+                  as="a"
+                  href="/writing/product-jury"
+                  variant="primary"
+                  size="sm"
+                  icon={<ArrowRight size={13} />}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate("/writing/product-jury");
+                  }}
+                >
+                  EXPLORE PRODUCT JURY
                 </GlassButton>
               </div>
             </div>
