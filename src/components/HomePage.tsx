@@ -119,7 +119,7 @@ function StatNumberDisplay({
 }: StatNumberDisplayProps) {
   const delay = idx * 90;
 
-  // Semantic transitions containing "→" (e.g. "0 → 1", "~300 → ~4,500 DAU", "15 days → under 2 hrs")
+  // Semantic transitions containing "→" (e.g. "0 → 1", "~300 → ~4,500 DAU", "up to 15 days → under 2 hrs")
   // Render canonical text directly with editorial Playfair champagne transition arrow — never coerce to numbers
   if (metric.value.includes("→")) {
     const parts = metric.value.split("→");
@@ -222,9 +222,9 @@ export default function HomePage({
   const canonicalHeroProofRail = [
     { name: "ReshaMandi B2B Marketplace", metric: "₹20–25 Cr/month" },
     { name: "Farmer Payout Reliability", metric: "99.9%" },
-    { name: "Payout Settlement Window", metric: "15 days → under 2 hrs" },
+    { name: "Payout Settlement Window", metric: "up to 15 days → under 2 hrs" },
     { name: "Supply Chain Scale", metric: "80K+ farmers" },
-    { name: "Bidding Transaction-Value Uplift", metric: ">35%" },
+    { name: "Bidding Integrity", metric: "Geofenced & timed" },
     { name: "Subscription Platform", metric: "€659k FY25" },
     { name: "AI Coach Peak Growth", metric: "~300 → ~4,500 peak DAU" },
     { name: "0 → 1 Systems", metric: "Concept to production" },
@@ -388,7 +388,7 @@ export default function HomePage({
       detail: "peak reached after Nov 2025 launch",
     },
     {
-      value: "15 days → under 2 hrs",
+      value: "up to 15 days → under 2 hrs",
       label: "Farmer payout time",
       detail: "99.9% success, fully automated",
     },
@@ -548,19 +548,19 @@ export default function HomePage({
               >
                 Deepak
               </span>
-              , a Senior Product Manager. 7+ years across subscriptions, B2B marketplaces and applied AI. I&apos;ve scaled subscription revenue to{" "}
+              , a Senior Product Manager. 7+ years across subscriptions, B2B marketplaces and applied AI. I owned the subscription business through{" "}
               <span
                 className="text-white font-semibold whitespace-nowrap"
               >
                 €659K
-              </span>
-              , built systems moving{" "}
+              </span>{" "}
+              in FY2025 revenue, built payout systems moving{" "}
               <span
                 className="text-white font-semibold whitespace-nowrap"
               >
-                ₹20 to 25 Cr a month
+                ₹20–25 Cr a month
               </span>
-              , and shipped an in-app AI coach that scaled from{" "}
+              , and shipped an in-app AI coach that grew from{" "}
               <span
                 className="text-white font-semibold whitespace-nowrap"
               >
@@ -578,41 +578,43 @@ export default function HomePage({
                   ? { duration: 0 }
                   : { duration: 0.45, ease: [0.23, 1, 0.32, 1], delay: 0.52 }
               }
-              className="flex flex-wrap items-center justify-center gap-3.5 relative z-10"
+              className="flex flex-col items-center justify-center relative z-10"
             >
-              {/* PRIMARY CTA: Charcoal + Warm Ivory / Champagne */}
-              <button
-                type="button"
-                onClick={() => {
-                  const el = document.getElementById("selected-work");
-                  if (el) {
-                    el.scrollIntoView({ behavior: "smooth" });
-                  } else if (onNavigate) {
-                    onNavigate("/work");
-                  }
-                }}
-                aria-label="Explore Flagship Shipped Work"
-                className="h-11 sm:h-12 px-6 sm:px-7 gap-2.5 rounded-full font-inter font-semibold text-[14.5px] sm:text-[15px] inline-flex items-center justify-center bg-[#121517] hover:bg-[#1A1E22] text-[#FAF8F5] border border-white/20 hover:border-white/35 shadow-[0_4px_24px_rgba(0,0,0,0.45),inset_0_1px_0_rgba(255,255,255,0.15)] cursor-pointer transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
-              >
-                <span>Explore Shipped Work</span>
-                <ArrowRight size={15} className="shrink-0 text-[#FDE68A]" />
-              </button>
+              <div className="flex flex-wrap items-center justify-center gap-3.5">
+                {/* PRIMARY CTA: Charcoal + Warm Ivory / Champagne */}
+                <button
+                  type="button"
+                  onClick={() => {
+                    const el = document.getElementById("selected-work");
+                    if (el) {
+                      el.scrollIntoView({ behavior: "smooth" });
+                    } else if (onNavigate) {
+                      onNavigate("/work");
+                    }
+                  }}
+                  aria-label="Explore Flagship Shipped Work"
+                  className="h-11 sm:h-12 px-6 sm:px-7 gap-2.5 rounded-full font-inter font-semibold text-[14.5px] sm:text-[15px] inline-flex items-center justify-center bg-[#121517] hover:bg-[#1A1E22] text-[#FAF8F5] border border-white/20 hover:border-white/35 shadow-[0_4px_24px_rgba(0,0,0,0.45),inset_0_1px_0_rgba(255,255,255,0.15)] cursor-pointer transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
+                >
+                  <span>Explore Shipped Work</span>
+                  <ArrowRight size={15} className="shrink-0 text-[#FDE68A]" />
+                </button>
 
-              {/* SECONDARY CTA: Quiet frosted glass text link */}
-              <button
-                type="button"
-                onClick={() => {
-                  if (onOpenResumeModal) {
-                    onOpenResumeModal();
-                  } else if (onNavigate) {
-                    onNavigate("/resume");
-                  }
-                }}
-                aria-label="View Deepak's Resume"
-                className="h-11 sm:h-12 px-4 sm:px-5 gap-2 rounded-full font-inter font-medium text-[14px] sm:text-[14.5px] inline-flex items-center justify-center text-white/90 hover:text-white hover:bg-white/10 border border-white/15 backdrop-blur-sm transition-colors cursor-pointer"
-              >
-                <span>View Resume</span>
-              </button>
+                {/* SECONDARY CTA: Opens the current CV file /Deepak_Prasad_Resume.pdf */}
+                <a
+                  href="/Deepak_Prasad_Resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="View Deepak's Resume"
+                  className="h-11 sm:h-12 px-4 sm:px-5 gap-2 rounded-full font-inter font-medium text-[14px] sm:text-[14.5px] inline-flex items-center justify-center text-white/90 hover:text-white hover:bg-white/10 border border-white/15 backdrop-blur-sm transition-colors cursor-pointer"
+                >
+                  <span>View Resume</span>
+                </a>
+              </div>
+
+              {/* Small status line under buttons */}
+              <p className="font-inter text-[12.5px] sm:text-[13px] text-white/75 mt-3 tracking-normal text-center font-normal">
+                Available to join immediately · Bengaluru
+              </p>
             </motion.div>
           </div>
         </div>

@@ -167,6 +167,7 @@ export interface MoreProductWorkItem {
 export interface ExperienceRole {
   title: string;
   company: string;
+  subline?: string;
   period: string;
   type: string;
   description: string;

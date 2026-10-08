@@ -374,7 +374,7 @@ export const MORE_PRODUCT_WORK_ITEMS: MoreProductWorkItem[] = [
     primaryCategory: 'B2B & Platforms',
     tags: ['Marketplace', 'B2B', '0→1', 'Field Product'],
     metrics: [
-      { value: '>35%', label: 'pilot transaction-value uplift', context: 'vs. previous offline baseline' },
+      { value: '15 min', label: 'payment window', context: 'geofenced auction yard' },
       { value: '~3/day', label: 'pilot session cadence', context: 'mandi auction yard' },
       { value: 'QR → Win', label: 'streamlined transaction flow', context: 'Scan · Bid · Watch · Win · Pay' },
     ],
@@ -399,14 +399,14 @@ export const MORE_PRODUCT_WORK_ITEMS: MoreProductWorkItem[] = [
       details: [
         'Constructed sub-second bid distribution across floor displays using local network protocols.',
         'Designed high-contrast UI readable from 5 meters away across dusty auction sheds.',
-        'Demonstrated >35% pilot transaction-value uplift in early auction trials.',
+        'Added geofencing and a 15-minute payment window after shared QR codes led to remote bids and non-payment.',
       ]
     },
     outcome: {
-      summary: 'Demonstrated >35% pilot transaction-value uplift in early auction trials, unlocking fair competitive price discovery for sericulture farmers.',
+      summary: 'Added geofencing and a 15-minute payment window after shared QR codes led to remote bids and non-payment.',
       type: 'Pilot Market Impact',
       metrics: [
-        { label: 'Pilot Value Uplift', value: '>35%' },
+        { label: 'Payment Window', value: '15 min' },
         { label: 'Pilot Sessions', value: '~3/day' },
         { label: 'Flow Design', value: 'Scan → Bid → Win' },
       ]
@@ -459,7 +459,7 @@ export const MORE_PRODUCT_WORK_ITEMS: MoreProductWorkItem[] = [
       ]
     },
     outcome: {
-      summary: 'Replaced arbitrary broker thumb-checks with transparent quality-based price bands, establishing reproducible grading across procurement centers.',
+      summary: 'Image-based price recommendation with a human in the loop, piloted at 2 centres, establishing reproducible grading across procurement centres.',
       type: 'Productized AI Workflow'
     },
     reflection: 'AI in physical markets should advise, not dictate. Empowering operators with transparent data builds adoption ten times faster than black-box automation.',

@@ -58,7 +58,7 @@ export default function WorkPage({
       case "ai-coach":
         return {
           h3: "Sportstech AI Coach",
-          desc: "Took an ambiguous conversational AI opportunity to production in 3 months; scaled from ~300 to a peak of ~4,500 DAU after its November 2025 launch behind medical escalation and physiological safety guardrails.",
+          desc: "Took an ambiguous conversational AI opportunity to production in 3 months; scaled from ~300 to a peak of ~4,500 DAU after its November 2025 launch behind physiological safety guardrails.",
           figure: "~4,500",
           qual: "peak DAU reached after Nov 2025 launch",
           imagePrefix: "/images/ai-coach-hero",

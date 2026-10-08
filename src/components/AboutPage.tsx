@@ -99,7 +99,7 @@ export default function AboutPage({
                 <span className="font-semibold tracking-tight">Deepak Prasad</span>
                 <span className="flex items-center gap-1.5 text-[#FDE68A] font-medium text-[11px]">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#C89B3C] animate-pulse" />
-                  Available for PM roles
+                  Available to join immediately · Bengaluru
                 </span>
               </div>
             </div>
@@ -165,6 +165,11 @@ export default function AboutPage({
                     <div className="font-inter text-sm font-semibold text-[#A8711A]">
                       {role.company}
                     </div>
+                    {role.subline && (
+                      <div className="font-inter text-xs text-[#121517]/60 mt-0.5">
+                        {role.subline}
+                      </div>
+                    )}
                   </div>
                   <div className="text-left sm:text-right">
                     <span className="inline-block px-3 py-1 rounded-full bg-[#121517]/5 font-inter text-xs font-medium text-[#121517]">
@@ -328,8 +333,8 @@ export default function AboutPage({
           <div className="flex flex-wrap items-center gap-3 shrink-0">
             <GlassButton
               as="a"
-              href="/Deepak_Prasad_Senior_Product_Manager_Resume.pdf"
-              download="Deepak_Prasad_Senior_Product_Manager_Resume.pdf"
+              href="/Deepak_Prasad_Resume.pdf"
+              download="Deepak_Prasad_Resume.pdf"
               variant="primary"
               size="md"
               icon={<FileDown size={16} />}

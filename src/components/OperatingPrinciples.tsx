@@ -61,7 +61,7 @@ const PRINCIPLES: PrincipleNote[] = [
     category: "0→1 & SCALE",
     title: "Build the smallest useful system.",
     summary: "Prove it with 100 users before you scale to thousands.",
-    body: "Before opening the AI Coach to everyone I shipped it to a 100-user beta, then A/B tested voice input against text-only, to learn what people actually wanted rather than assume it.",
+    body: "Before opening the AI Coach to everyone I shipped it to a 100-user beta, then analysed voice vs text usage by context (trigger and workout events) and kept both: text for planning before a workout, voice mid-workout, to learn what people actually wanted rather than assume it.",
     bg: "#DCFCE7",
     rotation: "-1.2deg",
     pinGradient: "radial-gradient(circle at 34% 30%, #4ADE80, #15803D)",

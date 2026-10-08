@@ -28,7 +28,7 @@ const proofStripMetrics = [
     detail: "peak reached after Nov 2025 launch",
   },
   {
-    value: "15 days → under 2 hrs",
+    value: "up to 15 days → under 2 hrs",
     label: "Farmer payout time",
     detail: "99.9% success, fully automated",
   },
@@ -86,7 +86,7 @@ const activeScale = renderStatNumber(proofStripMetrics[4]);
 assert.strictEqual(activeScale, "~300 → ~4,500 DAU", "Active scale must remain '~300 → ~4,500 DAU'");
 
 const payoutTime = renderStatNumber(proofStripMetrics[5]);
-assert.strictEqual(payoutTime, "15 days → under 2 hrs", "Farmer payout time must remain '15 days → under 2 hrs'");
+assert.strictEqual(payoutTime, "up to 15 days → under 2 hrs", "Farmer payout time must remain 'up to 15 days → under 2 hrs'");
 console.log("  ✓ All semantic transitions preserved without numeric interpolation bugs.");
 
 // 3. Verify Numeric Counts Finish on Exact Canonical Value

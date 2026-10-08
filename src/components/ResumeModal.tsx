@@ -38,34 +38,29 @@ PROFILE
 Senior Product Manager with 7+ years building and scaling B2B and B2C products across SaaS, AI, marketplaces, workflow automation and connected products, including a production conversational AI feature and an ML-powered pricing model, alongside enterprise workflow automation across CRM, ERP and payments systems. Skilled at reading market trends and customer pain points and turning them into scalable product solutions, owning quarterly planning and roadmap creation through customer interviews, UAT, launch and adoption tracking. Known for taking 0→1 products from ambiguous charters, managing and mentoring product teams, and bringing automation to complex, non-desk operational workflows.
 
 WORK EXPERIENCE
-1. Product Consultant | Independent (via Tejmonvi Softwares) [May 2026 – Present]
-Bengaluru, India | Advising early-stage ventures across healthtech, fintech, and consumer platforms
-• Lead product strategy for TNSQAI, a pre-commercial AI-powered radiology diagnostics company. Benchmarked 7 global radiology AI players and defined a Now/Next/Later product roadmap, translating AI model evaluation outputs from the ML team into go-to-market decisions.
-• Advise early-stage founders in parallel across an M&A marketplace platform and a global music-rights platform, translating ambiguous priorities into structured requirements and execution roadmaps.
-
-2. Senior Product Manager | Sportstech [Oct 2024 – May 2026]
+1. Senior Product Manager | Sportstech [Oct 2024 – Sep 2026]
 Bengaluru, India | Digital sports subscription platform (iOS & Android), via Tejmonvi Softwares (ODC) | 174,000+ users
-• Owned end-to-end subscription strategy for a B2C SaaS platform serving 174,180 freemium users and 12,401 paying subscribers, generating €659K in FY2025 subscription revenue. Subscribers grew 81.9% YoY, with yearly-plan retention reaching 96.8%.
-• Led the 0→1 development of an in-app AI Coach, defining conversational AI use cases, user flows, context and data requirements, and quality guardrails. Launched on Gemini as the primary model with ChatGPT as fallback, and scaled from ~300 to a peak of ~4,500 DAU after its November 2025 launch through iterative improvements.
+• Owned end-to-end subscription strategy for a B2C SaaS platform serving 174,180 freemium users and 12,401 paying subscribers, generating €659K in FY2025 subscription revenue. Co-authored the FY2025 subscription analysis: segmenting retention by plan type showed monthly plans churned far faster than annual, which set monthly-to-annual migration as the 2026 priority. Separately, subscribers grew 81.9% YoY, with yearly-plan retention reaching 96.8%.
+• Led the 0→1 development of an in-app AI Coach, defining conversational AI use cases, user flows, context and data requirements, and quality guardrails. Launched on Gemini as the primary model with ChatGPT as fallback; analysed voice vs text usage by context (trigger and workout events) and kept both: text for planning before a workout, voice mid-workout. Scaled from ~300 to a peak of ~4,500 DAU after its November 2025 launch through iterative improvements.
 • Owned quarterly planning and roadmap creation for the subscription domain, defining pricing, free/paid packaging, trial design, paywalls and renewal experiences, and establishing product metrics across conversion, churn, retention and LTV.
 • Owned product-performance tracking across engagement, subscription and acquisition funnels using DAU/MAU, conversion, retention and churn metrics to inform roadmap prioritisation and post-launch iteration. Platform-wide (whole app, as of May 2026): 3,033 DAU, 27,001 MAU (an 11% DAU/MAU ratio).
 • Designed an AI-assisted content-localisation workflow that shipped 200+ videos in roughly 3 weeks (about 10× faster than the prior process), supporting launches in Italian, French and Spanish.
 • Operated in an ODC model, leading the India-based product and engineering team while sales and operations sat at company HQ in Germany. Directly managed and mentored a 6-person cross-functional pod (3 PMs, Growth, Content), growing their scope and ownership while setting OKRs and reporting KPIs to leadership.
 
-3. Product Manager | Sportstech [Aug 2023 – Sep 2024]
+2. Product Manager | Sportstech [Aug 2023 – Sep 2024]
 Bengaluru, India
 • Joined as the first Product Manager on the team and built the platform 0→1 from scratch, designing signup, onboarding and subscription flows (pricing, packaging, trial, paywall, checkout) with no prior playbook and defining retention and conversion metrics from first principles.
 • Conducted customer interviews and synthesised feedback, app reviews and behavioural data to prioritise fixes. Translated requirements into PRDs, user stories and acceptance criteria, partnering with engineering and design through discovery, UAT, launch and post-launch iteration.
 
-4. Product Manager | ReshaMandi [Jun 2021 – Sep 2023]
+3. Product Manager | ReshaMandi [Jun 2021 – Sep 2023]
 Bengaluru, India | Enterprise B2B agri-tech & silk marketplace | ₹2,000 Cr platform | ~1.1 Lakh stakeholders across 5 business verticals (incl. 80K+ farmers via ReshaFarms)
 • Owned product delivery across a complex B2B marketplace ecosystem spanning farmers, buyers, field operations, sales, finance and customer support, translating fragmented offline workflows into scalable digital products.
 • Digitised end-to-end workflows across onboarding, KYC, lead generation, purchase and sales orders, logistics and payments, integrating LeadSquared CRM, Razorpay, SAP and Camunda across business, IT and vendor teams. Identified payment delays as a trust and operational bottleneck and owned an instant-payout workflow that automated approval-to-bank settlement, as disbursement volume grew from roughly ₹10–15Cr to ₹20–25Cr per month.
 • Conducted direct field research with farmers, agents and operations teams, regularly travelling to collection centres and grounding roadmap and design decisions in direct observation and user feedback rather than assumptions.
-• Built a real-time cocoon bidding workflow 0→1, replacing manual buyer discovery and negotiation with a structured Scan → Bid → Watch → Win → Pay experience and configurable auction rules. The pilot ran roughly 3 sessions a day and lifted transaction value more than 35% versus the prior baseline.
-• Partnered with the ML team to define an image-based cocoon pricing solution, translating field-level pricing and quality-assessment challenges into an AI-assisted product workflow (>90% model accuracy).
+• Built a real-time cocoon bidding workflow 0→1, replacing manual buyer discovery and negotiation with a structured Scan → Bid → Watch → Win → Pay experience and configurable auction rules. Added geofencing and a 15-minute payment window after shared QR codes led to remote bids and non-payment.
+• Partnered with the ML team to define an image-based price recommendation with a human in the loop, piloted at 2 centres.
 
-5. Associate Product Manager | LionCircuits [Jul 2018 – May 2020]
+4. Associate Product Manager | LionCircuits [Jul 2018 – May 2020]
 Bengaluru, India | IoT, AI & PCB manufacturing platform
 • Led concept-to-launch of a B2B Assembly Ordering Platform, contributing to a 40% increase in monthly orders. Built an auto-quote generation and BOM-scrubbing tool, plus a Raspberry Pi-based AI proof-of-concept for facial-recognition traffic monitoring.
 
@@ -247,8 +242,8 @@ export default function ResumeModal({
 
             {/* Direct Download Button */}
             <a
-              href="/Deepak_Prasad_Senior_Product_Manager_Resume.pdf"
-              download="Deepak_Prasad_Senior_Product_Manager_Resume.pdf"
+              href="/Deepak_Prasad_Resume.pdf"
+              download="Deepak_Prasad_Resume.pdf"
               onClick={handleDownload}
               className="px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-[#A8711A] hover:bg-[#A8711A]/90 text-white font-inter text-xs font-semibold transition-colors cursor-pointer flex items-center gap-1 sm:gap-1.5 shadow-2xs no-underline"
               title="Download Resume PDF"
@@ -303,7 +298,7 @@ export default function ResumeModal({
 
             <div className="flex-1 w-full bg-white rounded-2xl border border-[#121517]/10 overflow-hidden shadow-sm relative flex flex-col">
               <iframe
-                src="/Deepak_Prasad_Senior_Product_Manager_Resume.pdf#toolbar=1&navpanes=0&view=FitH"
+                src="/Deepak_Prasad_Resume.pdf#toolbar=1&navpanes=0&view=FitH"
                 title="Deepak Prasad Original Resume PDF"
                 className="w-full h-full min-h-[500px] flex-1 border-0"
               />

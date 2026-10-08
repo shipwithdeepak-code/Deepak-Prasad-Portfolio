@@ -18,12 +18,12 @@ export default function ResumePage({
   onNavigate,
   onOpenResumeModal,
 }: ResumePageProps) {
-  const resumePdfPath = "/Deepak_Prasad_Senior_Product_Manager_Resume.pdf";
+  const resumePdfPath = "/Deepak_Prasad_Resume.pdf";
 
   const handleDownload = () => {
     const link = document.createElement("a");
     link.href = resumePdfPath;
-    link.download = "Deepak_Prasad_Senior_Product_Manager_Resume.pdf";
+    link.download = "Deepak_Prasad_Resume.pdf";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -61,7 +61,7 @@ export default function ResumePage({
               <GlassButton
                 as="a"
                 href={resumePdfPath}
-                download="Deepak_Prasad_Senior_Product_Manager_Resume.pdf"
+                download="Deepak_Prasad_Resume.pdf"
                 id="resume-page-direct-download"
                 variant="primary"
                 size="md"
@@ -123,6 +123,11 @@ export default function ResumePage({
                   <div className="font-inter text-xs sm:text-sm font-semibold text-[#A8711A]">
                     {role.company}
                   </div>
+                  {role.subline && (
+                    <div className="font-inter text-[11px] sm:text-xs text-[#121517]/60 mt-0.5">
+                      {role.subline}
+                    </div>
+                  )}
                   <p className="font-inter text-xs text-[#121517]/60 mt-1 max-w-xl">
                     {role.description}
                   </p>

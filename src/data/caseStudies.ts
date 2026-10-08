@@ -231,7 +231,7 @@ export const RESHAMANDI_CASE_STUDY: CaseStudyDetail = {
       content: [
         'In traditional mandis, price discovery was informal and opaque. Small groups of local buyers negotiated in private, leaving farmers with little visibility into prevailing market demand in larger urban centres.',
         'We introduced a structured digital auction workflow. When a lot was created at a collection center, verified buyers—both in the center and in downstream weaving clusters—could inspect the verified lot details and participate in timed bidding windows.',
-        'In pilot deployments across target collection centres, opening up transparent multi-buyer bidding demonstrated a >35% improvement in realized transaction value for high-quality cocoon lots.',
+        'In pilot deployments across target collection centres, added geofencing and a 15-minute payment window after shared QR codes led to remote bids and non-payment.',
       ],
       diagramType: 'bidding',
       workflowSteps: [
@@ -347,7 +347,7 @@ export const AI_COACH_CASE_STUDY: CaseStudyDetail = {
     myOwnership:
       'I figured out what the assistant should and should not do, set our safety boundaries, worked with engineering on provider selection, and ran our testing loops to see where the product broke before rollout.',
     whatChanged:
-      'Scaled from ~300 to a peak of ~4,500 DAU after its November 2025 launch, supported by in-app workout prompts and conversational coaching, with 0 reported safety incidents or medical escalations during the launch period, turning an ambiguous concept into a daily workout discovery tool.',
+      'Scaled from ~300 to a peak of ~4,500 DAU after its November 2025 launch, supported by in-app workout prompts and conversational coaching, turning an ambiguous concept into a daily workout discovery tool.',
   },
   tradeOff: {
     considered:
@@ -359,7 +359,7 @@ export const AI_COACH_CASE_STUDY: CaseStudyDetail = {
     gaveUp:
       'We gave up chatty conversational banter and longer session durations that might have looked good on vanity metrics dashboards.',
     outcome:
-      'We saw 0 reported safety incidents or medical escalations during the observed launch period and scaled from ~300 to a peak of ~4,500 DAU after its November 2025 launch, supported by in-app workout prompts and conversational coaching, because users and our coaching team trusted the recommendations.',
+      'The product scaled from ~300 to a peak of ~4,500 DAU after its November 2025 launch, supported by in-app workout prompts and conversational coaching, because users and our coaching team trusted the recommendations.',
   },
   artifacts: {
     title: 'Safety Interceptor Logic & Recommendation Schema',
@@ -460,7 +460,7 @@ export const AI_COACH_CASE_STUDY: CaseStudyDetail = {
         tradeoff:
           'We lost some conversational fluidity for edge-case health topics, and session durations stayed shorter because we didn\'t engage in medical dialogue.',
         result:
-          'We had 0 reported safety incidents or medical escalations during the launch period, and our coaching and legal stakeholders trusted the system.',
+          'Our coaching and legal stakeholders trusted the system, and users were safely guided to appropriate workout plans.',
       },
       diagramType: 'safety',
       highlights: [
@@ -582,18 +582,13 @@ export const AI_COACH_CASE_STUDY: CaseStudyDetail = {
         'After its November 2025 launch, daily active usage of the AI Coach scaled from an initial cohort of ~300 users to a peak of ~4,500 DAU (AI Coach DAU measured from backend event logs: unique users with at least one coach interaction per day; app-level DAU/MAU measured in Firebase). It quickly became one of the main ways people found new workouts and recovery sessions in the app.',
         '### What the AI Coach Actually Drove (And What It Didn\'t)',
         'It is easy in a case study to claim that a single feature drove company-wide subscription growth. But that isn\'t how real products work. Platform subscribers and retention grew during this period, but that was the result of our entire team: great trainer content, marketing campaigns, and reliable video streaming.',
-        'What the AI Coach actually did was solve the discovery problem: users who engaged with the coach found a relevant workout in under a minute instead of getting stuck in catalog menus, and we achieved that without a single reported safety incident or medical escalation.',
+        'What the AI Coach actually did was solve the discovery problem: users who engaged with the coach found a relevant workout in under a minute instead of getting stuck in catalog menus.',
       ],
       outcomeHierarchy: [
         {
           category: 'Product Outcome',
           metric: '~4,500 DAU (Peak)',
           desc: 'Scaled from ~300 to a peak of ~4,500 DAU after its November 2025 launch, supported by in-app workout prompts and conversational coaching. AI Coach DAU measured from backend event logs (unique users with at least one coach interaction per day). App-level DAU/MAU measured in Firebase.',
-        },
-        {
-          category: 'User Outcome',
-          metric: '0 Escalations',
-          desc: '0 reported safety incidents or medical escalations during the launch period across thousands of sessions.',
         },
         {
           category: 'Operational Outcome',
@@ -744,7 +739,7 @@ export const SUBSCRIPTION_CASE_STUDY: CaseStudyDetail = {
         tradeoff:
           'Gave up the artificial short-term conversion spike that aggressive Day-1 hard paywalls generate (which typically leads to high 30-day churn).',
         result:
-          'Secured customer trust and European consumer regulatory compliance, anchoring an 81.9% YoY subscriber growth trajectory with minimal refund disputes.',
+          'Co-authored the FY2025 subscription analysis: segmenting retention by plan type showed monthly plans churned far faster than annual, which set monthly-to-annual migration as the 2026 priority. Separately, subscribers grew 81.9% YoY.',
       },
       highlights: [
         {
@@ -2018,31 +2013,11 @@ export const MORE_WORK_CATEGORIES: MoreWorkCategory[] = [
 // =========================================================================
 export const EXPERIENCE_ROLES: ExperienceRole[] = [
   {
-    title: 'Product Consultant',
-    company: 'Independent (via Tejmonvi Softwares)',
-    period: 'May 2026 – Present',
-    type: 'Advisory & Strategy · Bengaluru, India',
-    description:
-      'Advising early-stage ventures across healthtech, fintech, and consumer platforms on 0→1 product discovery, ML workflow evaluation, and commercial roadmaps.',
-    focus: ['Healthtech AI', 'M&A Platforms', 'Global Music-Rights', '0→1 Strategy'],
-    highlights: [
-      'Lead product strategy for TNSQAI (pre-commercial AI radiology diagnostics); benchmarked 7 global radiology AI players, structured Now / Next / Later product roadmap, and translated ML evaluation benchmarks into actionable GTM decisions.',
-      'Advise an M&A marketplace platform on deal flow digitisation, broker verification, and confidential buyer-seller matchmaking workflows.',
-      'Guide a global music-rights platform on catalog metadata management, royalty distribution telemetry, and rights clearance automation.',
-    ],
-    skills: [
-      'AI Diagnostics Evaluation',
-      '0→1 Product Strategy',
-      'GTM Roadmapping',
-      'Marketplace Architecture',
-      'Founder Advisory',
-    ],
-  },
-  {
     title: 'Senior Product Manager',
     company: 'Sportstech',
-    period: 'Oct 2024 – May 2026',
-    type: 'Full-time · 174,000+ Users · €659K FY25 Revenue',
+    subline: 'via Tejmonvi Softwares (ODC)',
+    period: 'Oct 2024 – Sep 2026',
+    type: 'via Tejmonvi Softwares (ODC) · Full-time · €659K FY25 Revenue',
     description:
       'Owned end-to-end subscription strategy, consumer AI initiatives, and connected product experiences for a digital fitness platform across iOS and Android.',
     focus: ['AI Coach (0→1)', 'Subscription & Monetization', 'Connected Products', 'Growth & Retention'],
@@ -2093,14 +2068,14 @@ export const EXPERIENCE_ROLES: ExperienceRole[] = [
     highlights: [
       'Digitised end-to-end workflows across onboarding, KYC, lead gen, sales orders, logistics, and payments integrating LeadSquared CRM, Razorpay, SAP, and Camunda.',
       'Led Instant Payouts workflow with automated weighbridge-to-bank settlement with 99.9% reliability, scaling disbursements from ₹10–15 Cr to ₹20–25 Cr per month.',
-      'Built real-time cocoon bidding workflow 0→1 (Scan → Bid → Watch → Win → Pay); 3 daily sessions lifted pilot auction transaction value >35%.',
-      'Partnered with ML team to productize computer-vision cocoon grading & pricing workflow with >90% model accuracy.',
+      'Built real-time cocoon bidding workflow 0→1 (Scan → Bid → Watch → Win → Pay). Added geofencing and a 15-minute payment window after shared QR codes led to remote bids and non-payment.',
+      'Partnered with ML team to productize image-based price recommendation with a human in the loop, piloted at 2 centres.',
       'Conducted extensive direct field research in mandi collection centres across Karnataka and Tamil Nadu.',
     ],
     skills: [
       'B2B Marketplaces',
       'Instant Payouts (Razorpay/SAP)',
-      'ML Grading (>90% Accuracy)',
+      'Image-based Price Recommendation (Human-in-the-loop)',
       'Camunda & Workflows',
       'Field Research',
     ],
