@@ -5,6 +5,7 @@ import {
   Github,
   Mail,
   ArrowUpRight,
+  ArrowRight,
   Calendar,
   FileText,
 } from "lucide-react";
@@ -20,284 +21,236 @@ interface FooterProps {
 export default function Footer({
   onNavigate,
   onOpenResumeModal,
-  onOpenContactModal,
+  onOpenContactModal: _onOpenContactModal,
 }: FooterProps) {
   const shouldReduceMotion = Boolean(useReducedMotion());
   const footerRef = useRef<HTMLElement | null>(null);
+
+  const handleExploreWork = (e: React.MouseEvent<HTMLElement>) => {
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+    if (onNavigate) {
+      e.preventDefault();
+      onNavigate("/work");
+    }
+  };
+
+  const handleResumeClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+    if (onOpenResumeModal) {
+      e.preventDefault();
+      onOpenResumeModal();
+    }
+  };
+
+  const currentYear = 2026;
 
   return (
     <footer
       ref={footerRef}
       id="footer-section"
-      className="relative w-full overflow-hidden min-h-[85vh] md:min-h-screen flex flex-col justify-between items-center bg-[#FAF8F5] contain-[layout_paint_style]"
+      role="contentinfo"
+      aria-label="Site Colophon and Contact"
+      className="relative w-full bg-[#FAF8F5] text-[#121517] border-t border-[#121517]/10 overflow-hidden"
     >
-      <style>{`
-        @keyframes horizonMistSlow {
-          0% {
-            transform: translate3d(0, 0, 0);
-          }
-          50% {
-            transform: translate3d(-2.5%, -2px, 0);
-          }
-          100% {
-            transform: translate3d(0, 0, 0);
-          }
-        }
-        .footer-horizon-mist {
-          animation: horizonMistSlow 48s ease-in-out infinite;
-          will-change: transform;
-        }
-        @media (prefers-reduced-motion: reduce) {
-          .footer-horizon-mist {
-            animation: none !important;
-            transform: none !important;
-          }
-        }
-      `}</style>
-
-      {/* =========================================================================
-          1. ATMOSPHERIC HORIZON LAYERS (SOFT, DISTANT, UNDERSTATED DEPTH)
-          Progression: Ivory -> Warm Atmosphere -> Distant Horizon -> Subtle Foreground
-          ========================================================================= */}
-
-      {/* Layer 1: Seamless sky transition from #FAF8F5 into soft dawn twilight */}
+      {/* Subtle architectural background warmth - restrained single ambient bloom */}
       <div
-        className="absolute inset-0 z-0 bg-[linear-gradient(180deg,#FAF8F5_0%,#FAF7F2_24%,#F5EFE4_50%,#EBE0CC_76%,#DFCFB5_100%)] pointer-events-none"
+        className="absolute top-0 right-1/4 w-[480px] h-[260px] bg-[radial-gradient(ellipse_at_center,rgba(200,155,60,0.05)_0%,transparent_70%)] pointer-events-none -translate-y-1/2"
         aria-hidden="true"
       />
 
-      {/* Layer 2: Restrained golden-hour sun bloom on the horizon line */}
-      <div
-        className="absolute inset-x-0 bottom-0 h-[60%] z-0 pointer-events-none bg-[radial-gradient(ellipse_80%_50%_at_50%_88%,rgba(253,230,138,0.28)_0%,rgba(200,155,60,0.14)_35%,rgba(200,155,60,0.03)_65%,transparent_100%)]"
-        aria-hidden="true"
-      />
+      <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 pt-8 sm:pt-10 md:pt-12 lg:pt-14 pb-10 sm:pb-12">
+        {/* =====================================================================
+            TOP ROW: Small introductory label + Professional Positioning
+            ===================================================================== */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-6 sm:pb-8 border-b border-[#121517]/8">
+          {/* A. Small introductory label */}
+          <motion.div
+            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.35 }}
+            viewport={{ once: true, amount: 0.5 }}
+            className="inline-flex items-center gap-2"
+          >
+            <span
+              className="w-1.5 h-1.5 rounded-full bg-[#A8711A] shrink-0"
+              aria-hidden="true"
+            />
+            <span className="font-mono text-[11px] sm:text-[11.5px] font-bold uppercase tracking-[0.24em] text-[#A8711A]">
+              THE NEXT CHAPTER STARTS HERE
+            </span>
+          </motion.div>
 
-      {/* Layer 3: Subtle atmospheric mist drift (Zero literal tracks/trains) */}
-      <div
-        className="footer-horizon-mist absolute inset-x-[-10%] bottom-[6%] h-[24%] z-0 pointer-events-none opacity-30 bg-[radial-gradient(ellipse_60%_35%_at_45%_50%,rgba(255,255,255,0.5)_0%,rgba(250,248,245,0.2)_45%,transparent_75%)]"
-        aria-hidden="true"
-      />
-
-      {/* Layer 4: Distant Multi-Plane Horizon Silhouettes (Soft, low-profile rolling topography) */}
-      <div
-        className="absolute inset-x-0 bottom-0 h-[140px] sm:h-[180px] md:h-[220px] z-[1] pointer-events-none overflow-hidden"
-        aria-hidden="true"
-      >
-        <svg
-          viewBox="0 0 1440 240"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          preserveAspectRatio="none"
-          className="w-full h-full block"
-        >
-          <defs>
-            {/* Far Ridge Gradient: Soft, distant atmospheric perspective */}
-            <linearGradient id="farRidgeGrad" x1="720" y1="60" x2="720" y2="240" gradientUnits="userSpaceOnUse">
-              <stop offset="0%" stopColor="#A89F91" stopOpacity="0.25" />
-              <stop offset="50%" stopColor="#968C7E" stopOpacity="0.38" />
-              <stop offset="100%" stopColor="#7E7467" stopOpacity="0.52" />
-            </linearGradient>
-
-            {/* Mid Ridge Gradient: Warm atmospheric charcoal-slate (Soft, no harsh black band) */}
-            <linearGradient id="midRidgeGrad" x1="720" y1="110" x2="720" y2="240" gradientUnits="userSpaceOnUse">
-              <stop offset="0%" stopColor="#484E55" stopOpacity="0.38" />
-              <stop offset="45%" stopColor="#30353B" stopOpacity="0.55" />
-              <stop offset="100%" stopColor="#1E2226" stopOpacity="0.72" />
-            </linearGradient>
-
-            {/* Valley Haze: Soft ambient glow between the ridges */}
-            <linearGradient id="valleyHaze" x1="720" y1="80" x2="720" y2="180" gradientUnits="userSpaceOnUse">
-              <stop offset="0%" stopColor="#FDE68A" stopOpacity="0.22" />
-              <stop offset="100%" stopColor="#FAF8F5" stopOpacity="0" />
-            </linearGradient>
-
-            {/* Base atmospheric haze softening the bottom foundation */}
-            <linearGradient id="baseHazeGrad" x1="720" y1="180" x2="720" y2="240" gradientUnits="userSpaceOnUse">
-              <stop offset="0%" stopColor="#DFCFB5" stopOpacity="0" />
-              <stop offset="100%" stopColor="#DFCFB5" stopOpacity="0.35" />
-            </linearGradient>
-          </defs>
-
-          {/* Far Distant Mountain Ridges: Gentle, undulating horizon */}
-          <path
-            d="M0 145C140 125 260 105 400 118C540 131 660 155 800 135C940 115 1060 90 1200 110C1310 125 1380 140 1440 148V240H0V145Z"
-            fill="url(#farRidgeGrad)"
-          />
-
-          {/* Atmospheric Valley Haze */}
-          <path
-            d="M0 160C180 135 360 128 540 145C720 162 900 138 1080 125C1260 112 1380 140 1440 155V240H0V160Z"
-            fill="url(#valleyHaze)"
-          />
-
-          {/* Mid-Ground Horizon Ridge: Softer, low-lying rolling hills */}
-          <path
-            d="M0 182C150 170 280 158 430 174C580 190 710 170 860 158C1010 146 1150 174 1300 166C1380 162 1420 170 1440 176V240H0V182Z"
-            fill="url(#midRidgeGrad)"
-          />
-
-          {/* Base Atmospheric Wash */}
-          <rect x="0" y="180" width="1440" height="60" fill="url(#baseHazeGrad)" />
-        </svg>
-      </div>
-
-      {/* Layer 5: Scrim Overlay for pristine headline & copy contrast */}
-      <div
-        className="absolute inset-0 z-[1] pointer-events-none bg-[linear-gradient(to_bottom,#FAF8F5_0%,rgba(250,248,245,0.92)_28%,rgba(250,248,245,0.60)_52%,rgba(250,248,245,0)_76%)]"
-        aria-hidden="true"
-      />
-
-      {/* =========================================================================
-          2. CTA CONTENT CONTAINER (GENEROUS ATMOSPHERIC DISTANCE & CLARITY)
-          Hierarchy: NEXT STOP -> Main Heading -> Supporting Copy -> CTAs -> Horizon
-          ========================================================================= */}
-      <div className="relative z-[3] w-full flex flex-col items-center justify-center pt-16 sm:pt-20 md:pt-24 pb-32 sm:pb-40 md:pb-48">
-        <section className="w-full relative overflow-hidden flex flex-col items-center justify-center">
-          <div className="max-w-[1440px] w-full mx-auto px-6 lg:px-[96px] relative z-10 flex flex-col items-center">
-            <div className="max-w-[1040px] w-full flex flex-col items-center text-center">
-              {/* Eyebrow: NEXT STOP */}
-              <motion.div
-                initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.45 }}
-                viewport={{ once: true }}
-                className="mb-3"
-              >
-                <span className="font-mono text-[11px] sm:text-[11.5px] font-bold uppercase tracking-[0.22em] text-[#A8711A]">
-                  NEXT STOP
-                </span>
-              </motion.div>
-
-              {/* Main Heading */}
-              <motion.h2
-                initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.55, delay: 0.08 }}
-                viewport={{ once: true }}
-                className="w-full max-w-3xl text-center text-[#121517] font-onest text-[32px] sm:text-[44px] md:text-[54px] font-bold leading-[1.12] tracking-tight md:tracking-[-1.8px] mb-4 [text-shadow:0_1px_2px_rgba(250,248,245,0.9),0_0_16px_rgba(250,248,245,0.75)]"
-              >
-                Looking for the next product challenge worth getting{" "}
-                <span className="font-playfair italic font-medium text-[#121517]/85">
-                  stubborn
-                </span>{" "}
-                about.
-              </motion.h2>
-
-              {/* Subheading: Preserved exact verified copy */}
-              <motion.p
-                initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.55, delay: 0.16 }}
-                viewport={{ once: true }}
-                className="w-full max-w-[56ch] text-center text-[#4A525A] font-inter text-[14.5px] sm:text-[16px] md:text-[17.5px] leading-[1.62] mb-9 [text-shadow:0_1px_2px_rgba(250,248,245,0.9),0_0_16px_rgba(250,248,245,0.75)] mx-auto font-normal"
-              >
-                Open to <span className="text-[#121517] font-semibold">Senior Product Manager</span> and{" "}
-                <span className="text-[#121517] font-semibold">Product Lead</span> opportunities across subscriptions,
-                marketplaces, and applied AI. If you&apos;re building products that need to scale long after launch,
-                let&apos;s talk.
-              </motion.p>
-
-              {/* Action Buttons Row */}
-              <motion.div
-                initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.55, delay: 0.24 }}
-                viewport={{ once: true }}
-                className="flex flex-wrap items-center justify-center gap-3 sm:gap-4"
-              >
-                {/* Primary CTA: Let's Talk */}
-                <GlassButton
-                  as="a"
-                  href={CALENDLY_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  id="footer-book-strategy-chat-cta"
-                  variant="primary"
-                  size="lg"
-                  icon={
-                    <span className="flex items-center gap-1.5">
-                      <Calendar size={18} className="text-[#C89B3C]" />
-                    </span>
-                  }
-                  iconPosition="left"
-                  className="shadow-md group"
-                >
-                  <span className="flex items-center gap-2">
-                    <span>Let&apos;s Talk</span>
-                    <ArrowUpRight
-                      size={16}
-                      className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
-                    />
-                  </span>
-                </GlassButton>
-
-                {/* Secondary CTA: View Resume (Direct recruiter accessibility) */}
-                {onOpenResumeModal && (
-                  <GlassButton
-                    type="button"
-                    onClick={onOpenResumeModal}
-                    id="footer-view-resume-cta"
-                    variant="secondary"
-                    size="lg"
-                    icon={<FileText size={17} className="text-[#121517]/70" />}
-                    iconPosition="left"
-                    className="shadow-sm !bg-white/90 hover:!bg-white"
-                  >
-                    View Resume
-                  </GlassButton>
-                )}
-
-                {/* Three Contact Icons */}
-                <div className="flex items-center gap-2 sm:gap-2.5">
-                  <GlassButton
-                    as="a"
-                    href="https://www.linkedin.com/in/prasad-deepak/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="LinkedIn profile"
-                    variant="icon"
-                    className="h-12 w-12 sm:h-13 sm:w-13 !rounded-full !bg-white/85 hover:!bg-white"
-                  >
-                    <Linkedin size={19} className="text-[#121517]" />
-                  </GlassButton>
-
-                  <GlassButton
-                    as="a"
-                    href="https://github.com/shipwithdeepak-code"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="GitHub profile"
-                    variant="icon"
-                    className="h-12 w-12 sm:h-13 sm:w-13 !rounded-full !bg-white/85 hover:!bg-white"
-                  >
-                    <Github size={19} className="text-[#121517]" />
-                  </GlassButton>
-
-                  <GlassButton
-                    as="a"
-                    href="mailto:shipwithdeepak@gmail.com"
-                    aria-label="Email Deepak Prasad"
-                    variant="icon"
-                    className="h-12 w-12 sm:h-13 sm:w-13 !rounded-full !bg-white/85 hover:!bg-white"
-                  >
-                    <Mail size={19} className="text-[#121517]" />
-                  </GlassButton>
-                </div>
-              </motion.div>
-            </div>
-          </div>
-        </section>
-      </div>
-
-      {/* Bottom Copyright & Colophon Bar */}
-      <div className="relative z-[3] w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 border-t border-[#121517]/8 flex flex-col sm:flex-row items-center justify-between gap-2.5 text-xs font-mono text-[#121517]/55 select-none">
-        <div>
-          <span>&copy; {new Date().getFullYear()} Deepak Prasad</span>
-          <span className="mx-2" aria-hidden="true">&middot;</span>
-          <span>Senior Product Manager</span>
+          {/* F. Professional positioning */}
+          <motion.div
+            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.35, delay: 0.05 }}
+            viewport={{ once: true, amount: 0.5 }}
+            className="flex items-center"
+          >
+            <span className="font-mono text-[10.5px] sm:text-[11.5px] font-medium tracking-[0.14em] text-[#4A525A] uppercase select-none">
+              PRODUCT STRATEGY <span className="text-[#C89B3C] mx-1">·</span> AI <span className="text-[#C89B3C] mx-1">·</span> GROWTH <span className="text-[#C89B3C] mx-1">·</span> EXECUTION
+            </span>
+          </motion.div>
         </div>
-        <div className="text-[11px] text-[#121517]/45">
-          Bengaluru, India &middot; Open to Global Relocation
+
+        {/* =====================================================================
+            MAIN CONTENT SECTION: Asymmetric Editorial Split Composition
+            ===================================================================== */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 xl:gap-16 items-start pt-7 sm:pt-9 md:pt-11 pb-10 sm:pb-14 lg:pb-16">
+          {/* LEFT COLUMN: Main Monumental Headline (Visual Anchor) */}
+          <div className="lg:col-span-7 xl:col-span-8">
+            <motion.h2
+              initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.55, ease: [0.23, 1, 0.32, 1] }}
+              viewport={{ once: true, amount: 0.3 }}
+              className="font-onest text-[38px] xs:text-[46px] sm:text-[58px] md:text-[72px] lg:text-[80px] xl:text-[92px] font-bold text-[#121517] leading-[0.98] sm:leading-[0.96] tracking-[-1px] sm:tracking-[-2px] xl:tracking-[-3px] [overflow-wrap:anywhere]"
+            >
+              LET&apos;S BUILD
+              <br />
+              WHAT&apos;S NEXT
+              <span className="text-[#C89B3C]">.</span>
+            </motion.h2>
+          </div>
+
+          {/* RIGHT COLUMN: Supporting Copy, CTAs, and Direct Channels */}
+          <div className="lg:col-span-5 xl:col-span-4 flex flex-col justify-between space-y-6 sm:space-y-7 pt-1 lg:pt-2.5">
+            {/* C. Supporting Copy */}
+            <motion.p
+              initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.45, delay: 0.08 }}
+              viewport={{ once: true, amount: 0.3 }}
+              className="font-inter text-[15px] sm:text-[16.5px] md:text-[17.5px] text-[#4A525A] leading-[1.62] max-w-[42ch] font-normal"
+            >
+              I turn complex problems into products people use and businesses can grow.
+            </motion.p>
+
+            {/* ACTION GROUP: Primary (LET'S TALK) & Secondary (EXPLORE MY WORK) */}
+            <motion.div
+              initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.45, delay: 0.14 }}
+              viewport={{ once: true, amount: 0.3 }}
+              className="flex flex-col sm:flex-row items-stretch sm:items-center flex-wrap gap-3 sm:gap-3.5"
+            >
+              {/* D. Primary Call to Action: LET'S TALK (Protected Single-Line Layout) */}
+              <GlassButton
+                as="a"
+                href={CALENDLY_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                id="footer-primary-cta"
+                variant="primary"
+                size="lg"
+                icon={<Calendar size={17} className="text-[#FDE68A] shrink-0" />}
+                iconPosition="left"
+                className="w-full sm:w-auto justify-center group !h-12 sm:!h-12.5 !px-5 sm:!px-6 shadow-md whitespace-nowrap shrink-0 min-w-fit"
+              >
+                <span className="inline-flex items-center gap-1.5 font-inter font-semibold tracking-[0.02em] uppercase text-[13px] sm:text-[13.5px] whitespace-nowrap">
+                  <span className="whitespace-nowrap">Let&apos;s Talk</span>
+                  <ArrowUpRight
+                    size={15}
+                    className="shrink-0 text-white/70 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
+                  />
+                </span>
+              </GlassButton>
+
+              {/* E. Secondary Call to Action: EXPLORE MY WORK */}
+              <GlassButton
+                as="a"
+                href="/work"
+                onClick={handleExploreWork}
+                id="footer-secondary-cta"
+                variant="secondary"
+                size="lg"
+                icon={<ArrowRight size={15} className="text-[#121517]/70 group-hover:translate-x-0.5 transition-transform shrink-0" />}
+                iconPosition="right"
+                className="w-full sm:w-auto justify-center group !h-12 sm:!h-12.5 !px-5 sm:!px-6 !bg-white hover:!bg-[#F5F3EF] border border-[#121517]/12 hover:border-[#121517]/24 shadow-xs whitespace-nowrap shrink-0 min-w-fit"
+              >
+                <span className="font-inter font-medium tracking-[0.01em] uppercase text-[12.5px] sm:text-[13px] text-[#121517] whitespace-nowrap">
+                  Explore My Work
+                </span>
+              </GlassButton>
+            </motion.div>
+
+            {/* G. Social and Professional Links */}
+            <motion.div
+              initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.45, delay: 0.2 }}
+              viewport={{ once: true, amount: 0.3 }}
+              className="flex items-center gap-2.5 pt-1 sm:pt-2"
+            >
+              {/* LinkedIn */}
+              <a
+                href="https://www.linkedin.com/in/prasad-deepak/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn profile of Deepak Prasad (opens in new tab)"
+                className="w-10 h-10 sm:w-10.5 sm:h-10.5 rounded-full bg-white hover:bg-[#FAF8F5] border border-[#121517]/10 hover:border-[#121517]/25 shadow-xs flex items-center justify-center text-[#121517] hover:text-[#A8711A] transition-all duration-200 hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C89B3C] focus-visible:ring-offset-2 shrink-0"
+              >
+                <Linkedin size={17} />
+              </a>
+
+              {/* GitHub */}
+              <a
+                href="https://github.com/shipwithdeepak-code"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub profile of Deepak Prasad (opens in new tab)"
+                className="w-10 h-10 sm:w-10.5 sm:h-10.5 rounded-full bg-white hover:bg-[#FAF8F5] border border-[#121517]/10 hover:border-[#121517]/25 shadow-xs flex items-center justify-center text-[#121517] hover:text-[#A8711A] transition-all duration-200 hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C89B3C] focus-visible:ring-offset-2 shrink-0"
+              >
+                <Github size={17} />
+              </a>
+
+              {/* Email */}
+              <a
+                href="mailto:shipwithdeepak@gmail.com"
+                aria-label="Send email to shipwithdeepak@gmail.com"
+                className="w-10 h-10 sm:w-10.5 sm:h-10.5 rounded-full bg-white hover:bg-[#FAF8F5] border border-[#121517]/10 hover:border-[#121517]/25 shadow-xs flex items-center justify-center text-[#121517] hover:text-[#A8711A] transition-all duration-200 hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C89B3C] focus-visible:ring-offset-2 shrink-0"
+              >
+                <Mail size={17} />
+              </a>
+
+              {/* Resume Quick Access Link */}
+              <a
+                href="/Deepak_Prasad_Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={handleResumeClick}
+                aria-label="View Deepak Prasad's Resume (opens PDF)"
+                className="h-10 sm:h-10.5 px-3.5 rounded-full bg-white hover:bg-[#FAF8F5] border border-[#121517]/10 hover:border-[#121517]/25 shadow-xs inline-flex items-center gap-1.5 text-xs font-inter font-medium text-[#121517] hover:text-[#A8711A] transition-all duration-200 hover:scale-[1.02] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C89B3C] focus-visible:ring-offset-2 cursor-pointer shrink-0"
+              >
+                <FileText size={14} className="text-[#121517]/70" />
+                <span>Resume</span>
+              </a>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* =====================================================================
+            H. CLOSING SIGNATURE & COLOPHON BAR
+            ===================================================================== */}
+        <div className="pt-6 sm:pt-8 border-t border-[#121517]/8 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-mono text-[#5A626A] select-none">
+          <div className="flex flex-wrap items-center justify-center sm:justify-start gap-x-2 gap-y-1">
+            <span className="font-semibold text-[#121517]/80">
+              Deepak Prasad &copy; {currentYear}
+            </span>
+            <span className="text-[#C89B3C]/70" aria-hidden="true">
+              ·
+            </span>
+            <span>Senior Product Manager</span>
+          </div>
+
+          <div className="flex items-center gap-2 text-[11px] sm:text-xs text-[#5A626A] text-center sm:text-right">
+            <span>Bengaluru, India</span>
+            <span className="text-[#C89B3C]/70" aria-hidden="true">
+              ·
+            </span>
+            <span className="text-[#A8711A] font-medium">Available to join immediately</span>
+          </div>
         </div>
       </div>
     </footer>

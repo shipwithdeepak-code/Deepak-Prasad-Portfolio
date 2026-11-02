@@ -112,7 +112,7 @@ export const OperatingPrinciples: React.FC<OperatingPrinciplesProps> = ({
   return (
     <section
       id="principles"
-      className="relative overflow-x-clip min-h-0 min-[1025px]:min-h-screen flex flex-col justify-center bg-[#FAF8F5] py-[clamp(52px,7vw,96px)]"
+      className="relative overflow-x-clip bg-[#FAF8F5] py-[clamp(44px,5.5vw,72px)]"
     >
       <style>{`
         .principles-pin-card {

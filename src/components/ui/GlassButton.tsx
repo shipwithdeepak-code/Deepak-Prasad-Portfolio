@@ -44,7 +44,7 @@ export const GlassButton: React.FC<GlassButtonProps> = ({
   onClick,
   ...props
 }) => {
-  const baseStyles = "glass-btn-base";
+  const baseStyles = "glass-btn-base whitespace-nowrap select-none";
 
   const sizeStyles = {
     sm: "text-xs h-9 px-3.5 gap-1.5",
