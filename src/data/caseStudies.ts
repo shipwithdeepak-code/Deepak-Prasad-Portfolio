@@ -26,19 +26,19 @@ export const RESHAMANDI_CASE_STUDY: CaseStudyDetail = {
   productPhilosophy:
     'Digitise the process, not blindly replace people. Understand the physical system well enough to know what should change, what should stay human, and where technology can remove friction without breaking trust.',
   category: 'B2B Marketplace & Operational Systems',
-  role: 'Product Manager · Core Marketplace, Workflows & Payments',
-  timeline: 'June 2021 – Sept 2023',
+  role: 'Senior Product Manager · Core Marketplace, Workflows & Payments',
+  timeline: 'Jun 2021 – Aug 2023',
   tags: ['B2B', 'Marketplace', 'Workflow', 'Operations', '0→1'],
   proofPoints: [
     '80K+ farmers',
     '₹20–25 Cr/month disbursement volume',
-    '>35% bidding transaction-value uplift',
+    'Seconds / under 2 hrs instant payouts',
   ],
   keyStats: [
     { label: 'Farmers Served', value: '80,000+', detail: 'Engaged through ReshaFarms advisory' },
-    { label: 'Monthly Disbursements', value: '₹20–25 Cr', detail: 'Marketplace volume context scaled during this period' },
-    { label: 'Bidding Value Uplift', value: '>35%', detail: 'Observed in pilot auction price discovery' },
-    { label: 'Payout Reliability', value: '99.9%', detail: 'Disbursement success rate across banking rails' },
+    { label: 'Monthly Disbursements', value: '₹20–25 Cr', detail: 'Marketplace volume scaled from about ₹10–15 Cr to ₹20–25 Cr a month' },
+    { label: 'Auction Bidding', value: 'Repeat Participation', detail: 'Real-time bidding drove sustained repeat buyer participation' },
+    { label: 'Payout Settlement', value: 'Instant', detail: 'Disbursement: seconds standard, under 2 hrs large' },
   ],
   quickContext: {
     problem:
@@ -48,7 +48,7 @@ export const RESHAMANDI_CASE_STUDY: CaseStudyDetail = {
     myOwnership:
       'I owned product requirements for collection centre intake, digital lot management, pricing workflows, and the governed payout pipeline connecting ground validation to banking rails.',
     whatChanged:
-      'Replaced ad-hoc paper notes and WhatsApp handoffs with a structured digital lot record and a governed payout flow (<₹5L settled instantly, >₹5L within 2 hours at 99.9% success), contributing to scaling monthly marketplace volume from ₹10–15 Cr to ₹20–25 Cr.',
+      'Replaced ad-hoc paper notes and WhatsApp handoffs with a structured digital lot record and a governed payout flow (from up to 15 days to seconds for standard payouts and under 2 hours for large ones), contributing to scaling monthly marketplace volume from about ₹10–15 Cr to ₹20–25 Cr a month.',
   },
   tradeOff: {
     considered:
@@ -268,20 +268,20 @@ export const RESHAMANDI_CASE_STUDY: CaseStudyDetail = {
       content: [
         'The transition from informal notebook-and-chat handoffs to structured digital workflows yielded measurable operational results:',
         '• 80,000+ Farmers Engaged: Supported across rearing stages through vernacular advisory on ReshaFarms.',
-        '• ₹20–25 Cr Monthly Disbursements: Governed payout flow helped scale volume from ₹10–15 Cr to ₹20–25 Cr per month with 99.9% payout success (<₹5L instant, >₹5L within 2 hours).',
-        '• >35% Transaction Value Uplift: Observed in pilot auction bidding through transparent multi-buyer price discovery.',
+        '• ₹20–25 Cr Monthly Disbursements: Governed payout flow helped scale volume from about ₹10–15 Cr to ₹20–25 Cr per month with 99.9% payout success (seconds for standard payouts and under 2 hours for large ones).',
+        '• Repeat Auction Participation: Real-time bidding drove sustained repeat buyer participation across trading hubs.',
         '• Structured Auditability: Replaced informal chats with searchable digital lot records across all active collection hubs.',
       ],
       outcomeHierarchy: [
         {
           category: 'Business Outcome',
           metric: '₹20–25 Cr/mo',
-          desc: 'Monthly disbursement volume scaled from ₹10–15 Cr to ₹20–25 Cr, with Instant Payout as a core contributing product intervention.',
+          desc: 'Monthly disbursement volume scaled from about ₹10–15 Cr to ₹20–25 Cr, with Instant Payout as a core contributing product intervention.',
         },
         {
           category: 'Operational Outcome',
           metric: '99.9%',
-          desc: 'Payout reliability across automated banking rails (<₹5L instant, >₹5L within 2 hours).',
+          desc: 'Payout reliability across automated banking rails (seconds for standard payouts, under 2 hours for large ones).',
         },
         {
           category: 'User Outcome',
@@ -289,9 +289,9 @@ export const RESHAMANDI_CASE_STUDY: CaseStudyDetail = {
           desc: 'Smallholder sericulture farmers engaged with rearing guidance and dependable same-day liquidity.',
         },
         {
-          category: 'Business Outcome',
-          metric: '>35%',
-          desc: 'Transaction-value uplift observed in pilot auctions through open, multi-buyer bidding.',
+          category: 'Product Outcome',
+          metric: 'Repeat Participation',
+          desc: 'Real-time cocoon bidding drove sustained repeat buyer participation and transparent price discovery across trading hubs.',
         },
       ],
       highlights: [
@@ -330,7 +330,7 @@ export const AI_COACH_CASE_STUDY: CaseStudyDetail = {
     'Safety before engagement. Building AI is easy; building an experience people can actually trust while exercising is the real product problem.',
   category: 'Conversational AI & Consumer Tech',
   role: 'Product Manager · AI & Consumer Engagement',
-  timeline: 'Oct 2024 – May 2026',
+  timeline: 'Oct 2024 – Sep 2026',
   tags: ['AI', 'Conversational AI', '0→1', 'Consumer'],
   proofPoints: ['Peak ~4,500 DAU', 'after Nov 2025 launch', 'Gemini + ChatGPT Fallback'],
   keyStats: [
@@ -341,7 +341,7 @@ export const AI_COACH_CASE_STUDY: CaseStudyDetail = {
   ],
   quickContext: {
     problem:
-      'We had over 174,000 users navigating a deep, static workout catalog. Finding the right workout took too much manual filtering, but letting an open-ended chatbot give freeform fitness advice introduced serious injury and hallucination risks.',
+      'We had over 200K+ users navigating a deep, static workout catalog. Finding the right workout took too much manual filtering, but letting an open-ended chatbot give freeform fitness advice introduced serious injury and hallucination risks.',
     whyItMattered:
       'In fitness, a confident wrong answer can cause actual injury. If the assistant told someone to push through sharp joint pain or hallucinated unrealistic progression, we would break user trust immediately.',
     myOwnership:
@@ -393,14 +393,14 @@ export const AI_COACH_CASE_STUDY: CaseStudyDetail = {
       subtitle: 'Moving past executive excitement to uncover why users were dropping off before workouts',
       content: [
         'Like many consumer fitness apps at the time, our leadership was eager to "add AI" to the mobile experience. But building an open-ended chatbot just because generative AI was exciting felt like the wrong starting point. Open-ended conversational assistants are expensive, often hallucinate, and people usually try them once or twice out of curiosity and never come back.',
-        'So before writing a single prompt, I spent time looking at where users were actually getting stuck in our app. Over 174,000 active users were navigating a catalog of hundreds of on-demand workouts. The content was great, but finding something to do on a Tuesday night was surprisingly frustrating.',
+        'So before writing a single prompt, I spent time looking at where users were actually getting stuck in our app. Over 200K+ active users were navigating a catalog of hundreds of on-demand workouts. The content was great, but finding something to do on a Tuesday night was surprisingly frustrating.',
         'Users had to manually filter by duration, equipment, target muscle group, and instructor. If someone had 20 minutes, a set of 15-pound dumbbells, and sore knees from yesterday\'s run, they had to cross-reference multiple screens. When that took more than a minute, they often closed the app.',
         'At the same time, we couldn\'t just plug in an unconstrained chat window. Fitness is an area where a model giving casual medical advice or hallucinating an unsafe exercise cue can lead to real physical injury. So the real problem wasn\'t "how do we add a chatbot?" It was: how do we help users find and start the right workout in 30 seconds, while making sure the assistant never gives advice it isn\'t qualified to give?',
       ],
       highlights: [
         {
           title: 'The Real Bottleneck',
-          desc: '174K+ users were spending too much time filtering static menus instead of working out, leading to pre-session drop-off.',
+          desc: '200K+ users were spending too much time filtering static menus instead of working out, leading to pre-session drop-off.',
         },
         {
           title: 'The Real Product Challenge',
@@ -636,19 +636,19 @@ export const SUBSCRIPTION_CASE_STUDY: CaseStudyDetail = {
   productPhilosophy:
     'Perceived value precedes the paywall. Conversion without retention is just expensive churn.',
   category: 'Monetization, Growth & B2C SaaS',
-  role: 'Product Manager · Subscription, Monetization & Onboarding',
-  timeline: 'Aug 2023 – May 2026',
+  role: 'First Product Manager, then Senior Product Manager',
+  timeline: 'Aug 2023 – Sep 2026',
   tags: ['Growth', 'Monetization', 'Subscription', 'B2C'],
   proofPoints: [
-    '12,401 paid subscribers',
-    '€659K FY25 subscription revenue',
-    '81.9% YoY subscriber growth',
+    'about 15K paying subscribers',
+    '87% on yearly plans',
+    '200K+ platform users',
   ],
   keyStats: [
-    { label: 'Paying Subscribers', value: '12,401', detail: 'Active digital subscribers in FY2025' },
-    { label: 'Subscription Revenue', value: '€659K', detail: 'FY25 platform subscription revenue' },
-    { label: 'YoY Growth', value: '81.9%', detail: 'Annual subscriber expansion' },
-    { label: 'Yearly Plan Retention', value: '96.8%', detail: 'Annual cohort commitment' },
+    { label: 'Paying Subscribers', value: '~15K', detail: 'paying subscribers achieved in under 3 years' },
+    { label: 'Yearly Plan Share', value: '87%', detail: 'of paying subscribers on yearly plans' },
+    { label: 'Platform Scale', value: '200K+', detail: 'total registered platform users' },
+    { label: 'Hardware Conversion', value: '~50%', detail: 'of ~4,000 free-plan device owners moved to paid' },
   ],
   quickContext: {
     problem:
@@ -656,9 +656,9 @@ export const SUBSCRIPTION_CASE_STUDY: CaseStudyDetail = {
     whyItMattered:
       'The business needed predictable subscription revenue to justify ongoing app and content investments, but an aggressive gating strategy threatened the core hardware business and ran into strict European consumer transparency regulations.',
     myOwnership:
-      'As PM for monetization, I owned the subscription funnel: onboarding questions, paywall placement and triggers, packaging and pricing tests, trial countdown UX, and retention mechanics post-conversion.',
+      'As Senior Product Manager for monetization, I owned the subscription funnel: onboarding questions, paywall placement and triggers, packaging and pricing tests, trial countdown UX, and retention mechanics post-conversion.',
     whatChanged:
-      'Shifted monetization from gating passive video workouts to charging for dynamic habit progression and accountability. Supported growing the subscription engine to 12,401 paid subscribers and €659K FY25 revenue at 81.9% YoY growth and 96.8% yearly-plan retention.',
+      'Shifted monetization from gating passive video workouts to charging for dynamic habit progression and accountability. Supported growing the subscription engine to about 15K paying subscribers and taking yearly plans to 87% of subscribers, while monthly plans lost subscribers far faster than annual plans.',
   },
   tradeOff: {
     considered:
@@ -670,7 +670,7 @@ export const SUBSCRIPTION_CASE_STUDY: CaseStudyDetail = {
     gaveUp:
       'We gave up the short-term conversion spike that aggressive Day-1 hard paywalls generate, which typically collapses into heavy 30-day cancellation spikes.',
     outcome:
-      'Maintained brand goodwill, kept refund disputes near zero, and supported scaling to 12,401 active paying subscribers with 96.8% yearly-plan retention.',
+      'Maintained brand goodwill, kept refund disputes near zero, and supported scaling to about 15K paying subscribers, while monthly plans lost subscribers far faster than annual plans.',
   },
   artifacts: {
     title: 'Monetization Funnel & Cancellation Governance Schemas',
@@ -798,7 +798,7 @@ export const SUBSCRIPTION_CASE_STUDY: CaseStudyDetail = {
         tradeoff:
           'Left a substantial catalog of standard workout videos completely ungated for non-paying users.',
         result:
-          'Users who completed 3 workouts in week 1 retained at 4× the rate of passive viewers, driving 96.8% annual cohort retention.',
+          'Users who completed 3 workouts in week 1 retained at 4× the rate of passive viewers, while monthly plans lost subscribers far faster than annual plans.',
       },
       highlights: [
         {
@@ -807,7 +807,7 @@ export const SUBSCRIPTION_CASE_STUDY: CaseStudyDetail = {
         },
         {
           title: 'Yearly Commitment',
-          desc: 'Yearly plans were positioned with clear savings, anchoring 96.8% yearly-plan retention across mature cohorts.',
+          desc: 'Yearly plans were positioned with clear savings, while monthly plans lost subscribers far faster than annual plans.',
         },
       ],
     },
@@ -818,21 +818,21 @@ export const SUBSCRIPTION_CASE_STUDY: CaseStudyDetail = {
       subtitle: 'Company-level performance during the product ownership period',
       content: [
         'During the period of my product ownership across monetization, onboarding, and subscription funnels, the platform achieved substantial business milestones:',
-        '• 12,401 Paid Subscribers: Active paying subscriber base established from zero.',
-        '• €659K FY2025 Subscription Revenue: High-margin recurring software revenue stream.',
-        '• 81.9% Year-over-Year Subscriber Growth: Sustained customer acquisition and funnel optimization.',
-        '• 96.8% Yearly-Plan Retention: High cohort renewal rate driven by annual commitment packaging.',
+        '• about 15K Paying Subscribers: Active paying subscriber base established from zero in under 3 years across 200K+ users.',
+        '• 87% Yearly Plans: Moved paying subscribers onto yearly plans after cohort analysis and cancellation A/B tests.',
+        '• Device Conversion: Moved ~50% of ~4,000 free-plan device owners onto paid auto-renewing plans via a custom redemption flow.',
+        '• Monthly plans lost subscribers far faster than annual plans, setting monthly-to-annual migration as the priority.',
       ],
       outcomeHierarchy: [
         {
           category: 'Business Outcome',
-          metric: '€659K',
-          desc: 'FY2025 platform subscription revenue generated from zero; 12,401 active paying subscribers; 81.9% YoY subscriber growth.',
+          metric: '~15K',
+          desc: 'Active paying subscribers built from zero in under 3 years across 200K+ platform users.',
         },
         {
           category: 'Product Outcome',
-          metric: '96.8%',
-          desc: 'Yearly-plan cohort retention driven by upfront value packaging; habit stabilization past Workout #3 and #5.',
+          metric: 'Plan Retention',
+          desc: 'Monthly retention, month to date (22 May 2026); monthly plans lost subscribers far faster than annual plans.',
         },
         {
           category: 'User Outcome',
@@ -898,7 +898,7 @@ export const PERFORMANCE_SCORE_CASE_STUDY: CaseStudyDetail = {
     whyItMattered:
       'Users had no singular answer to "Am I getting fitter or burning out?", while engineering teams faced mounting technical debt supporting siloed hardware endpoints and disparate database schemas.',
     myOwnership:
-      'This wasn’t a feature I shipped; it was the product architecture I believed we needed to build. I authored the cross-platform PRD, specified the 0–100 Athletic Reliability scoring algorithm, and designed the 3-phase data migration strategy across 5 engineering surfaces.',
+      'This wasn’t a feature I shipped; it was the product architecture I believed we needed to build. I authored the cross-platform PRD, specified the Athletic Reliability Performance Score algorithm, and designed the 3-phase data migration strategy across 5 engineering surfaces.',
     whatChanged:
       'Delivered an executive-aligned, development-ready systems architecture uniting mobile, display, Smart Gym, and firmware under one data contract—ensuring progress tracking worked with or without expensive hardware.',
   },
@@ -920,9 +920,9 @@ export const PERFORMANCE_SCORE_CASE_STUDY: CaseStudyDetail = {
     type: 'spec',
     items: [
       {
-        label: 'Athletic Reliability 0–100 Composite Vector',
+        label: 'Athletic Reliability Performance Score Composite Vector',
         value: 'Progress Algorithm Specification',
-        desc: 'Calculated across Strain Management (40%), Consistency (35%), and Scheduled Recovery Adherence (25%).',
+        desc: 'Calculated across Strain Management (weight 0.40), Consistency (weight 0.35), and Scheduled Recovery Adherence (weight 0.25).',
         code: '{ score: 84, strain_idx: 88, consistency_idx: 82, recovery_credit: 80, hardware_tier: "TIER_1_FALLBACK", confidence: 0.92 }',
       },
       {
@@ -969,13 +969,13 @@ export const PERFORMANCE_SCORE_CASE_STUDY: CaseStudyDetail = {
       content: [
         'The human body doesn\'t compartmentalize cardio strain and muscular fatigue into separate silos. When you do a heavy leg workout in the morning and a sprint session in the evening, your central nervous system absorbs the cumulative load.',
         'I designed the Performance Score around three foundational principles:',
-        '1. A Single Progress Model: A normalized 0–100 index measuring Athletic Reliability across three balanced pillars: Consistency, Strain Management, and Recovery Adherence.',
+        '1. A Single Progress Model: A normalized Athletic Reliability Performance Score measuring momentum across three balanced pillars: Consistency, Strain Management, and Recovery Adherence.',
         '2. Contextualization Matters: A high heart rate during a HIIT session is productive strain; an elevated resting heart rate on a rest day is a sign of under-recovery. The score interprets the context of exertion rather than rewarding raw volume.',
         '3. Never Punish Inactivity: Traditional fitness streaks treat a rest day like a moral failure, resetting counters to zero. In athletic training, deliberate rest is when muscular adaptation occurs. We designed the recovery pillar so that taking a scheduled rest day preserves or boosts your score.',
       ],
       highlights: [
         {
-          title: 'Athletic Reliability (0–100)',
+          title: 'Athletic Reliability Performance Score',
           desc: 'A single, understandable number reflecting overall physical momentum and recovery balance.',
         },
         {
@@ -1065,7 +1065,7 @@ export const PERFORMANCE_SCORE_CASE_STUDY: CaseStudyDetail = {
         },
         {
           category: 'Product Outcome',
-          metric: '0–100 Index',
+          metric: 'Performance Score',
           desc: 'Modelled progress index accessible with or without hardware, designed never to punish healthy rest days.',
         },
         {
@@ -1112,9 +1112,9 @@ export const AI_LOCALIZATION_CASE_STUDY: CaseStudyDetail = {
   role: 'Senior Product Manager · AI Workflow & Content Pipeline',
   timeline: 'Oct 2024 – May 2026',
   tags: ['AI', 'Operations', 'Content', 'European Expansion'],
-  proofPoints: ['200+ videos', '3 languages', '~3 weeks', '~10× faster'],
+  proofPoints: ['300+ workout videos', '3 languages', '~3 weeks', '~10× faster'],
   keyStats: [
-    { label: 'Videos Localized', value: '200+', detail: 'High-production fitness and workout sessions' },
+    { label: 'Videos Localized', value: '300+', detail: 'High-production fitness and workout sessions' },
     { label: 'Languages Shipped', value: '3 Languages', detail: 'Italian, French, and Spanish' },
     { label: 'Production Window', value: '~3 Weeks', detail: 'Turnaround from source video to live catalog' },
     { label: 'Production Velocity', value: '~10× Faster', detail: 'Compared to traditional studio filming benchmarks' },
@@ -1127,7 +1127,7 @@ export const AI_LOCALIZATION_CASE_STUDY: CaseStudyDetail = {
     myOwnership:
       'I evaluated and benchmarked generative tools (HeyGen, ElevenLabs), designed the new human-in-the-loop operating model, structured pilot test batches, and established standardized multi-language fitness glossaries.',
     whatChanged:
-      'Shipped 200+ high-production workout videos across Italian, French, and Spanish in roughly 3 weeks (~10× faster than studio benchmarks), creating a repeatable operational blueprint for rapid market expansion.',
+      'Shipped 300+ high-production workout videos across Italian, French, and Spanish in roughly 3 weeks (~10× faster than studio benchmarks), creating a repeatable operational blueprint for rapid market expansion.',
   },
   tradeOff: {
     considered:
@@ -1139,7 +1139,7 @@ export const AI_LOCALIZATION_CASE_STUDY: CaseStudyDetail = {
     gaveUp:
       'We gave up the illusion of instantaneous zero-touch software publishing; every video required scheduling and compensating human reviewers.',
     outcome:
-      'Successfully localized 200+ high-production videos across Italian, French, and Spanish in ~3 weeks (~10× faster than studio benchmarks) while keeping coaching quality consistent across markets.',
+      'Successfully localized 300+ high-production workout videos across Italian, French, and Spanish in ~3 weeks (~10× faster than studio benchmarks) while keeping coaching quality consistent across markets.',
   },
   artifacts: {
     title: 'AI Synthesis Pipeline & Human-in-the-Loop QA Contracts',
@@ -1175,7 +1175,7 @@ export const AI_LOCALIZATION_CASE_STUDY: CaseStudyDetail = {
       content: [
         'To drive European subscriber acquisition, the platform needed native-language workout content for Italy, France, and Spain. However, traditional studio production was cost-prohibitive and painfully slow.',
         'Producing just 20 workout videos in a single foreign language historically required 3 to 4 months of studio time: casting native-speaking fitness trainers, booking European studio space, filming, editing, color grading, and dubbing.',
-        'To localize a 200+ video library across three languages, traditional production would have cost hundreds of thousands of euros and taken over a year. The question was whether AI could remove enough of that bottleneck without lowering the coaching bar.',
+        'To localize a 300+ video library across three languages, traditional production would have cost hundreds of thousands of euros and taken over a year. The question was whether AI could remove enough of that bottleneck without lowering the coaching bar.',
       ],
       highlights: [
         {
@@ -1220,7 +1220,7 @@ export const AI_LOCALIZATION_CASE_STUDY: CaseStudyDetail = {
         },
         {
           title: 'Pilot-First Validation',
-          desc: 'Tested small batches of 5–10 videos first to catch edge-case artifacts before committing to the full 200+ library.',
+          desc: 'Tested small batches of 5–10 videos first to catch edge-case artifacts before committing to the full 300+ library.',
         },
       ],
     },
@@ -1235,7 +1235,7 @@ export const AI_LOCALIZATION_CASE_STUDY: CaseStudyDetail = {
       diagramType: 'comparison',
       comparison: {
         before: {
-          title: 'Old Traditional Studio Workflow (3–4 Months)',
+          title: 'Old Traditional Studio Workflow (3–4 Months per Market)',
           steps: [
             'Scout and hire native European trainers',
             'Book European production studio and camera crew',
@@ -1276,7 +1276,7 @@ export const AI_LOCALIZATION_CASE_STUDY: CaseStudyDetail = {
         tradeoff:
           'Gave up the vanity pitch of zero-touch automated publishing; required scheduling and compensating native fitness reviewers.',
         result:
-          'Maintained high coaching quality and brand safety across 200+ released workout videos in Italian, French, and Spanish.',
+          'Maintained high coaching quality and brand safety across 300+ released workout videos in Italian, French, and Spanish.',
       },
       highlights: [
         {
@@ -1293,10 +1293,10 @@ export const AI_LOCALIZATION_CASE_STUDY: CaseStudyDetail = {
       id: 'results',
       number: '05',
       title: 'Operational Outcomes & Strategic Expansion',
-      subtitle: '200+ videos shipped across 3 languages in roughly 3 weeks',
+      subtitle: '300+ workout videos shipped across 3 languages in roughly 3 weeks',
       content: [
         'The AI localization pipeline delivered transformative operational leverage:',
-        '• 200+ Videos Localized: Shipped a complete, robust workout library across Italian, French, and Spanish.',
+        '• 300+ Videos Localized: Shipped a complete, robust workout library across Italian, French, and Spanish.',
         '• ~3-Week Execution Window: Shrunk a project that would have taken over 12 months into under a month.',
         '• ~10× Production Acceleration: Reduced time-to-market by an order of magnitude compared to studio filming.',
         '• Repeatable Operating Blueprint: Established a scalable playbook the company can re-use for future geographic expansion.',
@@ -1305,11 +1305,11 @@ export const AI_LOCALIZATION_CASE_STUDY: CaseStudyDetail = {
         {
           category: 'Operational Outcome',
           metric: '~10× Faster',
-          desc: 'Production turnaround compressed from 3–4 months per 20 videos to ~3 weeks for 200+ videos; repeatable expansion blueprint.',
+          desc: 'Production turnaround compressed from 3–4 months per market to ~3 weeks for 300+ workout videos; repeatable expansion blueprint.',
         },
         {
           category: 'Business Outcome',
-          metric: '200+ Shipped',
+          metric: '300+ Shipped',
           desc: 'Enabled synchronized go-to-market catalog launch across Italy, France, and Spain at minimal capital expense.',
         },
         {
@@ -1346,7 +1346,7 @@ export const COPILOT_GOLDEN_EVALUATION_SET: EvaluationRow[] = [
     retrievalHitTop3: true,
     similarity: 0.88,
     status: "Pass",
-    notes: "Accurately cited 80,000+ farmers, ₹20-25 Cr/mo, 99.9% escrow reliability."
+    notes: "Accurately cited 80,000+ farmers, ₹20-25 Cr/mo, and standard payouts in seconds."
   },
   {
     id: 2,
@@ -1496,7 +1496,7 @@ export const COPILOT_GOLDEN_EVALUATION_SET: EvaluationRow[] = [
     retrievalHitTop3: true,
     similarity: 0.83,
     status: "Pass",
-    notes: "0-100 score synthesizing HRV, sleep stages, and active physical load."
+    notes: "Performance Score synthesizing HRV, sleep stages, and active physical load."
   },
   {
     id: 17,
@@ -1904,7 +1904,7 @@ export const MORE_WORK_CATEGORIES: MoreWorkCategory[] = [
       {
         title: 'Sportstech Community Feed',
         description:
-          'Designed a lightweight social engagement layer enabling workout sharing, peer encouragement, and habit reinforcement across 174K+ users.',
+          'Designed a lightweight social engagement layer enabling workout sharing, peer encouragement, and habit reinforcement across 200K+ users.',
         tags: ['Community', 'Engagement Loops', 'Social Proof'],
         scope: 'Core app social surface',
       },
@@ -2017,16 +2017,19 @@ export const EXPERIENCE_ROLES: ExperienceRole[] = [
     company: 'Sportstech',
     subline: 'via Tejmonvi Softwares (ODC)',
     period: 'Oct 2024 – Sep 2026',
-    type: 'via Tejmonvi Softwares (ODC) · Full-time · €659K FY25 Revenue',
+    type: 'via Tejmonvi Softwares (ODC) · Full-time · 200K+ Users',
     description:
       'Owned end-to-end subscription strategy, consumer AI initiatives, and connected product experiences for a digital fitness platform across iOS and Android.',
     focus: ['AI Coach (0→1)', 'Subscription & Monetization', 'Connected Products', 'Growth & Retention'],
     highlights: [
-      'Spearheaded 0→1 development of conversational in-app AI Coach (Gemini primary, ChatGPT fallback); scaled from ~300 to a peak of ~4,500 DAU after its November 2025 launch.',
-      'Managed subscription strategy across 174,180 freemium and 12,401 paying users; drove 81.9% YoY subscriber growth and 96.8% yearly-plan retention (€659K FY25 subscription revenue).',
-      'Architected comprehensive cross-platform strategy and PRD for Performance Score (0–100 Athletic Reliability) uniting mobile, Smart Gym, and wearable telemetry.',
-      'Designed AI-assisted content localization pipeline shipping 200+ workout videos in ~3 weeks (~10× faster) across Italian, French, and Spanish.',
-      'Led and mentored a 6-person cross-functional pod (3 PMs, Growth, Content) in an ODC model partnering with Germany HQ leadership.',
+      'Took a free app to about 15K paying subscribers in under 3 years, across 200K+ users.',
+      'Shipped the in-app AI Coach (about 4,500 peak daily users) with consent, safety limits, deterministic checks for high-risk cases, Gemini with a ChatGPT fallback, and a 100-user beta first.',
+      'Led AI video recommendations end to end with the data and ML team; workout completion rose 30%+.',
+      'Found that monthly subscribers churned far faster, rebuilt onboarding around the first "aha" moment, won the cancellation A/B tests with a discounted yearly offer and took yearly plans to 87% of paying subscribers. Also led the website checkout launch of Unzer, Google Pay, Apple Pay, Klarna, PayPal and SEPA.',
+      'Built a Lovable and Stripe redemption site that moved about 2,000 of roughly 4,000 free-plan device owners onto paid, auto-renewing plans.',
+      'Shipped 300+ workout videos in Italian, French and Spanish in about 3 weeks (about 10× faster than studio production) with an AI dubbing pipeline and human review.',
+      'Designed a single fitness dashboard that brings workout metrics from iOS, Android, display and Smart Gym into one view, and defined the Performance Score to rate each workout.',
+      'Led the India product team, reporting to the CEO of the India unit: set the roadmap against company OKRs and hired, coached and managed 5 direct reports (3 PMs, growth, content), 2 designers and interns.',
     ],
     skills: [
       'B2C SaaS & Subscriptions',
@@ -2037,7 +2040,7 @@ export const EXPERIENCE_ROLES: ExperienceRole[] = [
     ],
   },
   {
-    title: 'Product Manager',
+    title: 'Senior Product Manager',
     company: 'Sportstech',
     period: 'Aug 2023 – Sep 2024',
     type: 'Full-time · 0→1 Platform Build',
@@ -2058,19 +2061,19 @@ export const EXPERIENCE_ROLES: ExperienceRole[] = [
     ],
   },
   {
-    title: 'Product Manager',
+    title: 'Senior Product Manager',
     company: 'ReshaMandi',
-    period: 'Jun 2021 – Sep 2023',
+    period: 'Jun 2021 – Aug 2023',
     type: 'Full-time · B2B Agri-Tech Marketplace',
     description:
       'Owned core product delivery across India’s sericulture value chain spanning ~1.1 Lakh stakeholders across 5 verticals (including 80K+ farmers via ReshaFarms).',
     focus: ['B2B Marketplace', 'Workflow Digitisation', 'Instant Payouts', 'AI / CV Grading'],
     highlights: [
-      'Digitised end-to-end workflows across onboarding, KYC, lead gen, sales orders, logistics, and payments integrating LeadSquared CRM, Razorpay, SAP, and Camunda.',
-      'Led Instant Payouts workflow with automated weighbridge-to-bank settlement with 99.9% reliability, scaling disbursements from ₹10–15 Cr to ₹20–25 Cr per month.',
-      'Built real-time cocoon bidding workflow 0→1 (Scan → Bid → Watch → Win → Pay). Added geofencing and a 15-minute payment window after shared QR codes led to remote bids and non-payment.',
+      'Digitised end-to-end workflows across onboarding, KYC, lead gen, sales orders, logistics, and payments integrating LeadSquared CRM (rolled out for about 700 people), Razorpay, SAP, and Camunda.',
+      'Led Instant Payouts workflow with automated weighbridge-to-bank settlement (standard payouts in seconds, large payouts under 2 hours), scaling disbursements from about ₹10–15 Cr to ₹20–25 Cr a month.',
+      'Built real-time cocoon bidding workflow 0→1 (Scan → Bid → Watch → Win → Pay) driving repeat participation. Added geofencing and a 15-minute payment window after shared QR codes led to remote bids and non-payment.',
       'Partnered with ML team to productize image-based price recommendation with a human in the loop, piloted at 2 centres.',
-      'Conducted extensive direct field research in mandi collection centres across Karnataka and Tamil Nadu.',
+      'Conducted extensive direct field research in mandi collection centres across Karnataka.',
     ],
     skills: [
       'B2B Marketplaces',
@@ -2111,7 +2114,7 @@ export const LEADERSHIP_SECTION: LeadershipInfo = {
   description:
     'Worked in an ODC (Offshore Development Center) model where the India-based product and engineering team operated alongside Sales and Operations at the company’s Germany HQ.',
   details: [
-    'Led and mentored a 6-person cross-functional pod spanning 3 PMs, Growth, and Content, driving velocity across subscription, AI, and connected product tracks.',
+    'Led the India product team, reporting to the CEO of the India unit: hired and managed 5 direct reports (3 PMs, growth, content) and 2 designers, plus interns, working closely with Germany HQ across subscription, AI, and connected product tracks.',
     'Set clear quarterly OKRs, established telemetry reporting standards, and aligned divergent stakeholder priorities without relying solely on formal authority.',
     'Bridged the timezone and cultural gap between European executive leadership, German marketing teams, and high-velocity engineering pods in India.',
   ],
@@ -2140,7 +2143,7 @@ export const HOW_I_WORK_PRINCIPLES: HowIWorkPrinciple[] = [
     detail:
       'The product is the workflow. Software should not force users to pause their physical momentum. Real leverage happens when digital tools effortlessly mirror and accelerate ground operations.',
     aphorism: 'Software should not force users to pause physical momentum.',
-    evidence: 'ReshaMandi · Bidding Value Uplift >35%',
+    evidence: 'ReshaMandi · Real-Time Bidding & Repeat Participation',
     evidenceLink: '/work/reshamandi',
   },
   {
@@ -2162,7 +2165,7 @@ export const HOW_I_WORK_PRINCIPLES: HowIWorkPrinciple[] = [
     detail:
       'Conversion without retention is just expensive churn. We track cohort survival, daily habit formation, and operational SLA reliability as the ultimate tests of product health.',
     aphorism: 'Conversion without retention is just expensive churn.',
-    evidence: 'Sportstech · €659K FY25 Subscription Revenue',
+    evidence: 'Sportstech · ~15K Paying Subscribers',
     evidenceLink: '/work/subscription',
   },
   {
@@ -2173,7 +2176,7 @@ export const HOW_I_WORK_PRINCIPLES: HowIWorkPrinciple[] = [
     detail:
       'Technology should never be added for novelty. Deploy AI and automation where humans are biased, strained, or throttled, transforming operational bottlenecks into scalable leverage.',
     aphorism: 'Deploy AI where human effort is throttled, not for novelty.',
-    evidence: 'ReshaMandi · ML Pricing Accuracy >90%',
+    evidence: 'ReshaMandi · Computer Vision Pricing (Human-in-the-Loop)',
     evidenceLink: '/work/reshamandi',
   },
   {
@@ -2184,7 +2187,7 @@ export const HOW_I_WORK_PRINCIPLES: HowIWorkPrinciple[] = [
     detail:
       "A roadmap is temporary; the people who shipped it aren't. Cross-functional ownership means the pod gets stronger while the product ships, not just tickets closed.",
     aphorism: "A roadmap is temporary; the people who shipped it aren't.",
-    evidence: 'Sportstech · Managed & Mentored 6-Person Cross-Functional Pod',
+    evidence: 'Sportstech · Led India Product Team (5 Direct Reports, 2 Designers, Interns)',
     evidenceLink: '/work/ai-coach',
   },
 ];
@@ -2275,7 +2278,7 @@ export const PRODUCT_PRINCIPLES = [
     title: "Build toward the smallest useful system",
     principle:
       "Define the first version, make tradeoffs explicit and create a path from 0→1 to scale.",
-    detail: "Say no to 90% of good ideas to make the 10% exceptional.",
+    detail: "Say no to the vast majority of good ideas to make the critical few exceptional.",
     tags: ["0→1 Strategy"],
   },
   {

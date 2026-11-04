@@ -52,7 +52,7 @@ export default function WorkPage({
           h3: "ReshaMandi",
           desc: "Rebuilt a fragmented offline silk trade into one governed flow across farmers, yards and finance.",
           figure: "₹20–25 Cr",
-          qual: "per month, at 99.9% reliability",
+          qual: "monthly disbursements (from ₹10–15 Cr)",
           imagePrefix: "/images/reshamandi-hero",
         };
       case "ai-coach":
@@ -67,8 +67,8 @@ export default function WorkPage({
         return {
           h3: "Sportstech Subscription",
           desc: "Built the subscription business from zero: packaging, paywalls, trial mechanics and win-back.",
-          figure: "€659K",
-          qual: "FY25, up 81.9% YoY",
+          figure: "~15K",
+          qual: "paying subscribers in under 3 years",
           imagePrefix: "/images/subscription-hero",
         };
       case "performance-score":

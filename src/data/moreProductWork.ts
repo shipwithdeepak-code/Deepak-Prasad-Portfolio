@@ -13,7 +13,7 @@ export const MORE_PRODUCT_WORK_ITEMS: MoreProductWorkItem[] = [
     description: 'B2B marketplace for silk yarn connecting reeler-side supply with textile manufacturers and weavers.',
     company: 'ReshaMandi',
     period: '2021 – 2023',
-    role: 'Product Manager · Core Marketplace',
+    role: 'Senior Product Manager · Core Marketplace',
     primaryCategory: 'B2B & Platforms',
     tags: ['B2B', 'Marketplace', '0→1'],
     metrics: [
@@ -66,7 +66,7 @@ export const MORE_PRODUCT_WORK_ITEMS: MoreProductWorkItem[] = [
     description: 'Extending the core marketplace architecture into cotton procurement, multi-ginning dispatch, and spinning mill supply lines.',
     company: 'ReshaMandi',
     period: '2022 – 2023',
-    role: 'Product Manager · Marketplace Expansion',
+    role: 'Senior Product Manager · Marketplace Expansion',
     primaryCategory: 'B2B & Platforms',
     tags: ['B2B', 'Marketplace', 'Platform'],
     metrics: [
@@ -115,7 +115,7 @@ export const MORE_PRODUCT_WORK_ITEMS: MoreProductWorkItem[] = [
     description: 'Structured assisted onboarding and verification workflows to turn informal agricultural suppliers into verified digital participants.',
     company: 'ReshaMandi',
     period: '2021 – 2023',
-    role: 'Product Manager · Operations & Identity',
+    role: 'Senior Product Manager · Operations & Identity',
     primaryCategory: 'B2B & Platforms',
     tags: ['B2B', 'KYC', 'Workflow', 'Operations'],
     metrics: [
@@ -164,16 +164,16 @@ export const MORE_PRODUCT_WORK_ITEMS: MoreProductWorkItem[] = [
     description: 'Digitised field-led lead capture and buyer management across distributed rural mandi hubs and sales desks.',
     company: 'ReshaMandi',
     period: '2021 – 2023',
-    role: 'Product Manager · Sales Operations & CRM',
+    role: 'Senior Product Manager · Sales Operations & CRM',
     primaryCategory: 'B2B & Platforms',
     tags: ['B2B', 'CRM', 'Operations'],
     metrics: [
-      { value: '20+', label: 'procurement hubs deployed', context: 'LeadSquared CRM' },
+      { value: '~700 people', label: 'CRM rollout across 5 functions', context: 'support, sales, ops, procurement & logistics' },
       { value: 'Offline-first', label: 'lead capture pipeline', context: 'rural connectivity zones' },
     ],
     problem: 'Sales teams and mandi procurement coordinators tracked farmer relationships and reeler buyer demand in physical notebooks and fragmented messaging chats.',
     whyItMattered: 'High-value buyer leads fell through the cracks, regional demand forecasts were based on guesswork, and field rep accountability could not be audited.',
-    myOwnership: 'Owned the deployment, customization, and workflow integration of LeadSquared CRM across 20+ procurement hubs, aligning field incentives with data capture.',
+    myOwnership: 'Owned the deployment, customization, and workflow integration of LeadSquared CRM rolled out for about 700 people across support, sales, operations, procurement and logistics, aligning field incentives with data capture.',
     keyDecision: {
       title: 'Strict Stage-Gating vs Free-Form Notes',
       decision: 'Mandated strict operational stage gates (Contacted → Yard Visit → Sample Passed → Credit Approved) before deals could be logged.',
@@ -194,7 +194,7 @@ export const MORE_PRODUCT_WORK_ITEMS: MoreProductWorkItem[] = [
       ]
     },
     outcome: {
-      summary: 'Replaced paper logbooks across 20+ rural hubs with structured lead lifecycles, enabling reliable regional demand forecasting.',
+      summary: 'Replaced paper logbooks across rural hubs with structured lead lifecycles for about 700 people across support, sales, operations, procurement and logistics.',
       type: 'Operational Efficiency'
     },
     reflection: 'Field teams only adopt a CRM when it saves them time in the field, not just when it generates reports for head office.',
@@ -217,12 +217,12 @@ export const MORE_PRODUCT_WORK_ITEMS: MoreProductWorkItem[] = [
     description: 'Automated escrow approval and disbursement workflows, transforming multi-day payment coordination into governed, sub-minute farmer settlements.',
     company: 'ReshaMandi',
     period: '2021 – 2023',
-    role: 'Product Manager · Payments & Settlement',
+    role: 'Senior Product Manager · Payments & Settlement',
     primaryCategory: 'B2B & Platforms',
     tags: ['Payments', 'B2B', 'Automation', 'Workflow'],
     metrics: [
       { value: '>₹5L', label: 'maximum payout within 2 hours', context: 'verified banking rails' },
-      { value: '99.9%', label: 'payout settlement success', context: 'automated escrow release' },
+      { value: 'Instant', label: 'governed banking rails', context: 'seconds standard, under 2 hrs large' },
       { value: 'Sub-minute', label: 'settlement on weighbridge lock', context: 'down from 3–15 days' },
     ],
     problem: 'Farmers historically waited 3–15 days for payment under traditional mandi broker agreements, leaving them vulnerable to cash flow crises and forced debt.',
@@ -244,11 +244,11 @@ export const MORE_PRODUCT_WORK_ITEMS: MoreProductWorkItem[] = [
       details: [
         'Engineered an idempotent payout retry queue handling transient banking switch timeouts.',
         'Integrated automated SMS alerts in local vernacular languages confirming transfer reference numbers.',
-        'Maintained 99.9% settlement reliability with audited escrow balance reconciliations.',
+        'Maintained governed settlement reliability with audited escrow balance reconciliations.',
       ]
     },
     outcome: {
-      summary: 'Maintained 99.9% payout reliability across ₹20–25 Cr monthly disbursement volume, cementing farmer trust across rural mandis.',
+      summary: 'Disbursements grew from ₹10–15 Cr to ₹20–25 Cr a month, cementing farmer trust across rural mandis.',
       type: 'Core Business Impact'
     },
     reflection: 'In physical commodity marketplaces, liquidity is the product. Speed of settlement builds stronger customer loyalty than any marketing incentive.',
@@ -268,7 +268,7 @@ export const MORE_PRODUCT_WORK_ITEMS: MoreProductWorkItem[] = [
     description: 'Digitised purchase and sales order state machines, connecting commercial negotiations to contract generation and financial ledgers.',
     company: 'ReshaMandi',
     period: '2021 – 2023',
-    role: 'Product Manager · Core Workflows',
+    role: 'Senior Product Manager · Core Workflows',
     primaryCategory: 'B2B & Platforms',
     tags: ['B2B', 'Workflow', 'Operations'],
     metrics: [
@@ -314,15 +314,15 @@ export const MORE_PRODUCT_WORK_ITEMS: MoreProductWorkItem[] = [
     title: 'Logistics & Dispatch',
     shortTitle: 'Logistics & Dispatch',
     storyAngle: 'Connecting marketplace transactions to physical movement',
-    description: 'Connecting marketplace transactions to physical warehouse movement, vehicle allocation, and weighbridge gatepass clearance.',
+    description: 'Logistics module with automated workflows for warehouse inbound and outbound goods; CRM rollout for about 700 people across support, sales, operations, procurement and logistics; live bidding with geofencing and a 15-minute payment window.',
     company: 'ReshaMandi',
     period: '2022 – 2023',
-    role: 'Product Manager · Logistics Systems',
+    role: 'Senior Product Manager · Logistics Systems',
     primaryCategory: 'Operations & Automation',
     tags: ['B2B', 'Logistics', 'Operations'],
     metrics: [
-      { value: 'Thousands', label: 'monthly dispatches digitised', context: 'rural truck routes' },
-      { value: 'Automated', label: 'weighbridge gatepass sync', context: 'connecting load cells to transit records' },
+      { value: '~700 people', label: 'CRM rollout across 5 functions', context: 'support, sales, ops, procurement & logistics' },
+      { value: '15 min', label: 'bidding payment window', context: 'geofenced auction yard' },
     ],
     problem: 'Trucks arrived at mandi centers without coordinated pickup schedules, leading to loading yard congestion, perishable cargo spoilage, and manual paper gatepasses.',
     whyItMattered: 'Cocoon batches degrade within hours; logistics delays directly ruined product quality before delivery to reeler factories.',
@@ -370,7 +370,7 @@ export const MORE_PRODUCT_WORK_ITEMS: MoreProductWorkItem[] = [
     description: 'Designed a high-speed Scan → Bid → Watch → Win → Pay flow around real-world mandi auction constraints.',
     company: 'ReshaMandi',
     period: '2021 – 2022',
-    role: 'Product Manager · Core Marketplace',
+    role: 'Senior Product Manager · Core Marketplace',
     primaryCategory: 'B2B & Platforms',
     tags: ['Marketplace', 'B2B', '0→1', 'Field Product'],
     metrics: [
@@ -425,14 +425,14 @@ export const MORE_PRODUCT_WORK_ITEMS: MoreProductWorkItem[] = [
     title: 'ML Cocoon Pricing',
     shortTitle: 'ML Cocoon Pricing',
     storyAngle: 'Using AI to support quality-based price discovery',
-    description: 'Productized a human-in-the-loop ML workflow with the data science team to recommend fair price bands based on objective cocoon quality metrics.',
+    description: 'Partnered with the ML team on image-based cocoon price recommendations; a person makes the final call; piloted at 2 centres before the network.',
     company: 'ReshaMandi',
     period: '2022 – 2023',
-    role: 'Product Manager · AI & Data Workflows',
+    role: 'Senior Product Manager · AI & Data Workflows',
     primaryCategory: 'AI & Data',
     tags: ['AI', 'Marketplace', 'B2B', 'Human-in-the-loop'],
     metrics: [
-      { value: 'Human-in-loop', label: 'advisory price bands', context: 'computer vision + market history' },
+      { value: '2 centres', label: 'piloted before rollout', context: 'human in the loop' },
       { value: '±5%', label: 'audited variance threshold', context: 'explainable ML model' },
     ],
     problem: 'Cocoon quality was assessed subjectively by human touch, leading to inconsistent grading, farmer distrust, and volatile price fluctuations across trading centers.',
@@ -459,7 +459,7 @@ export const MORE_PRODUCT_WORK_ITEMS: MoreProductWorkItem[] = [
       ]
     },
     outcome: {
-      summary: 'Image-based price recommendation with a human in the loop, piloted at 2 centres, establishing reproducible grading across procurement centres.',
+      summary: 'Partnered with the ML team on image-based cocoon price recommendations; a person makes the final call; piloted at 2 centres before the network rollout.',
       type: 'Productized AI Workflow'
     },
     reflection: 'AI in physical markets should advise, not dictate. Empowering operators with transparent data builds adoption ten times faster than black-box automation.',
@@ -478,7 +478,7 @@ export const MORE_PRODUCT_WORK_ITEMS: MoreProductWorkItem[] = [
     description: 'Farmer-facing advisory and supply visibility platform, guiding sericulture farmers across the 25-day rearing lifecycle.',
     company: 'ReshaMandi',
     period: '2021 – 2023',
-    role: 'Product Manager · Farmer Product',
+    role: 'Senior Product Manager · Farmer Product',
     primaryCategory: 'B2B & Platforms',
     tags: ['B2B', 'Farmer Product', 'Marketplace', 'Field Product'],
     metrics: [
@@ -629,7 +629,7 @@ export const MORE_PRODUCT_WORK_ITEMS: MoreProductWorkItem[] = [
     description: 'Reduced friction to start cardio and strength sessions with a 1-tap launcher that bypassed lengthy video introductions.',
     company: 'Sportstech',
     period: '2024 – 2025',
-    role: 'Product Manager · Core Experience',
+    role: 'Senior Product Manager · Core Experience',
     primaryCategory: 'Connected Products',
     tags: ['UX', 'Hardware', 'Connected Products'],
     metrics: [
@@ -678,7 +678,7 @@ export const MORE_PRODUCT_WORK_ITEMS: MoreProductWorkItem[] = [
     description: 'Designed a lightweight social engagement layer enabling workout sharing, peer encouragement, and habit reinforcement.',
     company: 'Sportstech',
     period: '2024 – 2025',
-    role: 'Product Manager · Engagement & Community',
+    role: 'Senior Product Manager · Engagement & Community',
     primaryCategory: 'Connected Products',
     tags: ['Consumer', 'Community', 'Engagement'],
     metrics: [
@@ -727,7 +727,7 @@ export const MORE_PRODUCT_WORK_ITEMS: MoreProductWorkItem[] = [
     description: 'Structured multi-week consumer fitness challenges with gamified milestone badges, lifting mid-funnel habit formation and cohort retention.',
     company: 'Sportstech',
     period: '2024 – 2025',
-    role: 'Product Manager · Growth & Engagement',
+    role: 'Senior Product Manager · Growth & Engagement',
     primaryCategory: 'Growth & Monetization',
     tags: ['Growth', 'Engagement', 'Gamification'],
     metrics: [
@@ -776,7 +776,7 @@ export const MORE_PRODUCT_WORK_ITEMS: MoreProductWorkItem[] = [
     description: 'Created real-time competitive leaderboard mechanics for synchronous and on-demand group workouts on connected equipment displays.',
     company: 'Sportstech',
     period: '2024 – 2025',
-    role: 'Product Manager · Connected Display',
+    role: 'Senior Product Manager · Connected Display',
     primaryCategory: 'Connected Products',
     tags: ['Connected Products', 'Real-time', 'Gamification'],
     metrics: [
@@ -932,7 +932,7 @@ export const MORE_PRODUCT_WORK_ITEMS: MoreProductWorkItem[] = [
     description: 'Automated internal purchase requests, vendor matching, and approval hierarchies, eliminating manual spreadsheet coordination.',
     company: 'ReshaMandi',
     period: '2022 – 2023',
-    role: 'Product Manager · Internal Systems',
+    role: 'Senior Product Manager · Internal Systems',
     primaryCategory: 'Operations & Automation',
     tags: ['Automation', 'Operations', 'Workflow'],
     metrics: [
@@ -981,7 +981,7 @@ export const MORE_PRODUCT_WORK_ITEMS: MoreProductWorkItem[] = [
     description: 'Led the bidirectional transaction sync between front-end mandi weighbridge workflows and central enterprise general ledger systems.',
     company: 'ReshaMandi',
     period: '2022 – 2023',
-    role: 'Product Manager · Systems Integration',
+    role: 'Senior Product Manager · Systems Integration',
     primaryCategory: 'Operations & Automation',
     tags: ['Enterprise', 'Integrations', 'B2B'],
     metrics: [
@@ -1034,7 +1034,7 @@ export const MORE_PRODUCT_WORK_ITEMS: MoreProductWorkItem[] = [
     description: 'Led concept-to-launch of a digital B2B electronics assembly ordering platform, eliminating manual back-and-forth for hardware engineers.',
     company: 'LionCircuits',
     period: '2020 – 2021',
-    role: 'Product Manager · 0→1 Platform',
+    role: 'Senior Product Manager · 0→1 Platform',
     primaryCategory: 'B2B & Platforms',
     tags: ['B2B', 'Manufacturing', '0→1'],
     metrics: [
@@ -1087,7 +1087,7 @@ export const MORE_PRODUCT_WORK_ITEMS: MoreProductWorkItem[] = [
     description: 'Engineered an automated Bill of Materials parsing engine validating component availability, pricing, and manufacturing lead times in seconds.',
     company: 'LionCircuits',
     period: '2020 – 2021',
-    role: 'Product Manager · Quoting Systems',
+    role: 'Senior Product Manager · Quoting Systems',
     primaryCategory: 'Operations & Automation',
     tags: ['B2B', 'Automation', 'Manufacturing'],
     metrics: [

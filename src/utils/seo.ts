@@ -3,9 +3,9 @@ import { MORE_PRODUCT_WORK_ITEMS } from "../data/moreProductWork";
 
 export const SITE_ORIGIN = "https://deepak-prasad.ai.studio";
 export const DEFAULT_TITLE =
-  "Deepak Prasad — Senior Product Manager | AI, 0→1 & Product Strategy";
+  "Deepak Prasad — Senior Product Manager | Subscription Growth, Monetization & Applied AI";
 export const DEFAULT_DESC =
-  "Senior Product Manager building AI, B2B and B2C products across marketplaces, subscription platforms, connected products and workflow automation.";
+  "Senior Product Manager with 7+ years across consumer subscriptions, AI features, payments and marketplaces. Founding member of the Sportstech product team and its first PM: took a free app to about 15K paying subscribers in under 3 years.";
 
 export interface RouteMetadata {
   title: string;
@@ -68,13 +68,13 @@ const STATIC_ROUTES: Record<
     ogType: "article",
   },
   "/work/dipa": {
-    title: "Dīpa: An AI-Native Portfolio Assistant — Deepak Prasad",
+    title: "Dīpa: An AI Portfolio Assistant — Deepak Prasad",
     description:
       "How I built an AI assistant grounded in my portfolio using in-memory cosine retrieval, zero vector database dependencies, and strict confidence gating.",
     ogType: "article",
   },
   "/work/behind-copilot": {
-    title: "Dīpa: An AI-Native Portfolio Assistant — Deepak Prasad",
+    title: "Dīpa: An AI Portfolio Assistant — Deepak Prasad",
     description:
       "How I built an AI assistant grounded in my portfolio using in-memory cosine retrieval, zero vector database dependencies, and strict confidence gating.",
     ogType: "article",

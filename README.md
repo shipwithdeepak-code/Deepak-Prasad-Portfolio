@@ -21,11 +21,11 @@ Built as a high-performance web platform combining product storytelling and inte
 2. **Building a Conversational AI Coach (Sportstech)**  
    0→1 launch of an in-app AI fitness coach with dual-model orchestration (Gemini primary, ChatGPT fallback), scaling from ~300 to a peak of ~4,500 DAU after its November 2025 launch behind physiological safety guardrails.
 3. **Turning a Free Fitness App into a Subscription Business (Sportstech)**  
-   Co-authored the FY2025 subscription analysis setting monthly-to-annual migration as the 2026 priority. End-to-end monetization architecture, paywall optimization, and trial-to-paid conversion scaling to 12,401 subscribers and €659K FY2025 revenue (81.9% YoY growth, 96.8% yearly retention).
+   Co-authored the FY2025 subscription analysis setting monthly-to-annual migration as the 2026 priority. End-to-end monetization architecture, paywall optimization, and trial-to-paid conversion scaling to about 15K paying subscribers and €659K FY2025 revenue (up 81.9% YoY as of May 2026).
 4. **One Body. One Score. One Ecosystem. (Product Strategy & PRD)**  
-   Cross-platform product strategy and development-ready PRD defining a 0–100 Athletic Reliability scoring algorithm across iOS, Android, Smart Gym hardware, and wearables (unlaunched product strategy & PRD specification).
+   Cross-platform product strategy and development-ready PRD defining an Athletic Reliability Performance Score algorithm across iOS, Android, Smart Gym hardware, and wearables (unlaunched product strategy & PRD specification).
 5. **Scaling Content Localization with AI (Sportstech)**  
-   Redesigned traditional studio video production into an AI-assisted translation and dubbing pipeline, producing 200+ workouts in 3 weeks (~10× faster) across Italian, French, and Spanish.
+   Redesigned traditional studio video production into an AI-assisted translation and dubbing pipeline, producing 300+ workout videos in 3 weeks (~10× faster) across Italian, French, and Spanish.
 6. **Behind the AI Copilot: Transparent In-Memory RAG**  
    Architectural deep dive into transparent retrieval-augmented generation, fast CPU in-memory vector search, citation grounding, and 95% (19 of 20) on a golden evaluation set.
 

@@ -561,7 +561,7 @@ function SubscriptionEditorialJourney({
               COMPOUNDING RETENTION
             </h5>
             <p className="font-inter text-xs text-[#121517]/70 leading-relaxed">
-              Prioritizing annual commitments with substantial upfront savings, resulting in a 96.8% yearly-plan cohort retention rate across mature subscribers.
+              Prioritizing annual commitments with substantial upfront savings, as monthly plans lost subscribers far faster than annual plans.
             </p>
           </div>
         </div>
@@ -610,7 +610,7 @@ function SubscriptionEditorialJourney({
           "The challenge was creating enough perceived value to make paid membership make sense while protecting existing customer trust."
         </p>
         <span className="font-mono text-[11px] font-semibold text-[#A8711A] shrink-0">
-          Full launch execution · 12,401 paid subscribers
+          Full launch execution · about 15K paying subscribers
         </span>
       </div>
     </div>
@@ -781,7 +781,7 @@ function PerformanceScoreEditorialEcosystem({
               <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                 <div className="p-3.5 rounded-xl bg-white border border-[#A8711A]/30 shadow-2xs">
                   <h5 className="font-onest text-sm font-bold text-[#121517] mb-0.5">
-                    0–100 Performance Score
+                    Performance Score
                   </h5>
                   <p className="font-inter text-[11px] text-[#121517]/75 leading-relaxed">
                     A singular, intuitive progress index replacing fragmented reps, calories, and zones.
@@ -1036,7 +1036,7 @@ function AiLocalizationEditorialOperatingModel({
   ];
 
   const newOperatingSteps = [
-    { name: "Existing Video", detail: "Source 200+ English master catalog", isHuman: false },
+    { name: "Existing Video", detail: "Source 300+ English master catalog", isHuman: false },
     { name: "AI Localization", detail: "ElevenLabs voice cloning & HeyGen sync", isHuman: false },
     { name: "Cue Guidelines", detail: "Standardized fitness cue memory", isHuman: false },
     { name: "Human Review", detail: "Dedicated native-speaker verification pass", isHuman: true },
@@ -1065,7 +1065,7 @@ function AiLocalizationEditorialOperatingModel({
         </div>
         <div className="flex flex-wrap items-center gap-2 text-xs font-mono shrink-0">
           <span className="px-3 py-1 rounded-full bg-[#A8711A]/12 text-[#A8711A] font-semibold">
-            200+ videos in ~3 weeks
+            300+ videos in ~3 weeks
           </span>
           <span className="px-3 py-1 rounded-full bg-[#121517]/5 text-[#121517]/80 font-semibold border border-current/10">
             High brand integrity

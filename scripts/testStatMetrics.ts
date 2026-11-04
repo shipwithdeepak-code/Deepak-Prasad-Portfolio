@@ -18,7 +18,7 @@ const proofStripMetrics = [
     detail: "From offline silk trade to a connected platform",
   },
   {
-    value: "12K+",
+    value: "15K+",
     label: "Paid subscribers",
     detail: "Built the subscription business from 0",
   },
@@ -93,7 +93,7 @@ console.log("  ✓ All semantic transitions preserved without numeric interpolat
 console.log("\n3. Testing Animated Final State on Numeric Counts:");
 assert.strictEqual(renderStatNumber(proofStripMetrics[0], 7), "7+ years");
 assert.strictEqual(renderStatNumber(proofStripMetrics[2], 80), "80K+");
-assert.strictEqual(renderStatNumber(proofStripMetrics[3], 12), "12K+");
+assert.strictEqual(renderStatNumber(proofStripMetrics[3], 15), "15K+");
 console.log("  ✓ All animated numeric counts terminate at exact canonical target values.");
 
 console.log("\n=== ALL REGRESSION TESTS PASSED SUCCESSFULLY ===");

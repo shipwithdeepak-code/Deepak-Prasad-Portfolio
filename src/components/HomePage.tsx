@@ -142,7 +142,7 @@ function StatNumberDisplay({
     );
   }
 
-  // Pure count metrics with numeric prefix (e.g. "7+ years", "80K+", "12K+")
+  // Pure count metrics with numeric prefix (e.g. "7+ years", "80K+", "~15K")
   const match = metric.value.match(/^(\d+)(.*)$/);
   if (match) {
     const target = parseInt(match[1], 10);
@@ -221,12 +221,12 @@ export default function HomePage({
 
   const canonicalHeroProofRail = [
     { name: "ReshaMandi B2B Marketplace", metric: "₹20–25 Cr/month" },
-    { name: "Farmer Payout Reliability", metric: "99.9%" },
-    { name: "Payout Settlement Window", metric: "up to 15 days → under 2 hrs" },
+    { name: "Standard payouts", metric: "up to 15 days → seconds" },
     { name: "Supply Chain Scale", metric: "80K+ farmers" },
     { name: "Bidding Integrity", metric: "Geofenced & timed" },
-    { name: "Subscription Platform", metric: "€659k FY25" },
-    { name: "AI Coach Peak Growth", metric: "~300 → ~4,500 peak DAU" },
+    { name: "Paying Subscribers", metric: "~15K" },
+    { name: "Yearly Subscriptions", metric: "87%" },
+    { name: "AI Coach Peak Growth", metric: "~300 → ~4,500 DAU" },
     { name: "0 → 1 Systems", metric: "Concept to production" },
   ];
 
@@ -368,29 +368,29 @@ export default function HomePage({
       detail: "Across India & Europe",
     },
     {
-      value: "0 → 1",
-      label: "AI, SaaS & platforms",
-      detail: "Concept to production",
+      value: "~15K",
+      label: "Paying subscribers",
+      detail: "Free app to paid in under 3 years, as first PM",
     },
     {
-      value: "80K+",
-      label: "Farmers served",
-      detail: "From offline silk trade to a connected platform",
-    },
-    {
-      value: "12K+",
-      label: "Paid subscribers",
-      detail: "Built the subscription business from 0",
+      value: "87%",
+      label: "Paying subscribers on yearly plans",
+      detail: "After cohort analysis and cancellation A/B tests",
     },
     {
       value: "~300 → ~4,500 DAU",
-      label: "Active scale",
-      detail: "peak reached after Nov 2025 launch",
+      label: "AI coach",
+      detail: "100-user beta first; peak after the Nov 2025 launch",
     },
     {
-      value: "up to 15 days → under 2 hrs",
-      label: "Farmer payout time",
-      detail: "99.9% success, fully automated",
+      value: "up to 15 days → seconds",
+      label: "Standard farmer payouts",
+      detail: "Disbursements grew from ₹10–15 Cr to ₹20–25 Cr a month",
+    },
+    {
+      value: "~50%",
+      label: "Of ~4,000 free-plan device owners moved to paid",
+      detail: "Fix I built myself (Lovable + Stripe)",
     },
   ];
 
@@ -467,7 +467,7 @@ export default function HomePage({
               transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.4 }}
               className="text-[12px] sm:text-[12.5px] md:text-[13px] font-inter font-medium tracking-[0.02em] text-white/90 [text-shadow:0_1px_8px_rgba(0,0,0,0.75),0_0_16px_rgba(0,0,0,0.5)] mb-3 mx-auto max-w-full text-center leading-normal select-none"
             >
-              Senior Product Manager · Subscriptions · Marketplaces · Applied AI
+              Senior Product Manager · Subscription Growth · Monetization · Applied AI
             </motion.div>
 
             {/* Main Headline - Reduced scale ~6%, stable light treatment, high contrast, warm cream 'curious.', fits inside inner window */}
@@ -542,31 +542,7 @@ export default function HomePage({
               }
               className="font-inter text-[14px] sm:text-[15px] md:text-[16px] text-white/95 leading-[1.62] mb-5 sm:mb-6 max-w-full md:max-w-[54ch] lg:max-w-[58ch] mx-auto text-center font-normal [text-shadow:0_1px_8px_rgba(0,0,0,0.7),0_0_20px_rgba(0,0,0,0.5)]"
             >
-              I&apos;m{" "}
-              <span
-                className="font-playfair italic font-medium text-[#FDE68A] text-[16.5px] sm:text-[17.5px] md:text-[18.5px] inline-block"
-              >
-                Deepak
-              </span>
-              , a Senior Product Manager. 7+ years across subscriptions, B2B marketplaces and applied AI. I owned the subscription business through{" "}
-              <span
-                className="text-white font-semibold whitespace-nowrap"
-              >
-                €659K
-              </span>{" "}
-              in FY2025 revenue, built payout systems moving{" "}
-              <span
-                className="text-white font-semibold whitespace-nowrap"
-              >
-                ₹20–25 Cr a month
-              </span>
-              , and shipped an in-app AI coach that grew from{" "}
-              <span
-                className="text-white font-semibold whitespace-nowrap"
-              >
-                ~300 to a peak of ~4,500 DAU
-              </span>{" "}
-              after its November 2025 launch. I kept asking questions until the product matched reality.
+              Senior Product Manager with 7+ years across consumer subscriptions, AI features, payments and marketplaces. Founding member of the Sportstech product team and its first PM: took a free app to about 15K paying subscribers in under 3 years, shipped an in-app AI coach (about 4,500 peak daily users) and redesigned onboarding and cancellation across the subscriber lifecycle.
             </motion.p>
 
             {/* CTA Hierarchy: Solid dark primary vs. quiet light secondary link */}
@@ -955,19 +931,19 @@ export default function HomePage({
           </p>
         </div>
 
-        {/* The 5 Stacked Cards */}
+        {/* The Stacked Cards (7 Curated Works) */}
         <div className="relative w-full">
           {[
             {
               slug: "subscription",
               title: "Sportstech Subscription",
               tags: ["Monetization", "B2C SaaS"],
-              role: "PM, monetization",
+              role: "Senior Product Manager, monetization",
               year: "2023–26",
               description:
                 "Built the subscription business from zero: packaging, paywalls, trial mechanics and win-back.",
-              figure: "€659K",
-              qualifier: "FY25, up 81.9% YoY",
+              figure: "~15K",
+              qualifier: "paying subscribers in under 3 years",
               imagePrefix: "/images/subscription-hero",
               imgAlt: "Sportstech Subscription checkout and growth screens",
               has1200: true,
@@ -976,7 +952,7 @@ export default function HomePage({
               slug: "ai-coach",
               title: "Sportstech AI Coach",
               tags: ["Conversational AI", "Consumer health"],
-              role: "PM, applied AI & safety",
+              role: "Senior Product Manager, applied AI & safety",
               year: "2024–26",
               description:
                 "Took an ambiguous AI opportunity to production in three months, behind hard safety guardrails.",
@@ -990,21 +966,49 @@ export default function HomePage({
               slug: "reshamandi",
               title: "ReshaMandi",
               tags: ["B2B marketplace", "Escrow & payments"],
-              role: "PM, core marketplace",
+              role: "Senior Product Manager, core marketplace",
               year: "2021–23",
               description:
                 "Rebuilt a fragmented offline silk trade into one governed flow across farmers, yards and finance.",
               figure: "₹20–25 Cr",
-              qualifier: "per month, at 99.9% reliability",
+              qualifier: "monthly disbursements (from ₹10–15 Cr)",
               imagePrefix: "/images/reshamandi-hero",
               imgAlt: "ReshaMandi B2B marketplace workflow",
+              has1200: false,
+            },
+            {
+              slug: "ml-cocoon-pricing",
+              title: "Human-in-the-loop price recommendations",
+              tags: ["Applied AI", "Human-in-the-loop"],
+              role: "Senior Product Manager, AI & data workflows",
+              year: "2022–23",
+              description:
+                "Partnered with the ML team on image-based cocoon price recommendations; a person makes the final call; piloted at 2 centres before the network.",
+              figure: "2 centres",
+              qualifier: "piloted before network rollout; person makes final call",
+              imagePrefix: "/images/reshamandi-hero",
+              imgAlt: "Human-in-the-loop price recommendations review workflow",
+              has1200: false,
+            },
+            {
+              slug: "logistics-dispatch",
+              title: "Logistics and operations",
+              tags: ["Operations", "B2B Logistics", "CRM"],
+              role: "Senior Product Manager, operations & logistics",
+              year: "2021–23",
+              description:
+                "Logistics module with automated workflows for warehouse inbound and outbound goods; CRM rollout for about 700 people across support, sales, operations, procurement and logistics; live bidding with geofencing and a 15-minute payment window.",
+              figure: "~700 people",
+              qualifier: "CRM rollout across 5 functions; 15-min bidding window",
+              imagePrefix: "/images/reshamandi-hero",
+              imgAlt: "Logistics and operations dispatch workflows",
               has1200: false,
             },
             {
               slug: "performance-score",
               title: "Performance Score",
               tags: ["Connected hardware", "System design"],
-              role: "PM, algorithms & hardware",
+              role: "Senior Product Manager, algorithms & hardware",
               year: "2025",
               description:
                 "Unlaunched product strategy and development-ready PRD: unifying 5 fragmented surfaces into one shared fitness recovery engine.",
@@ -1018,7 +1022,7 @@ export default function HomePage({
               slug: "ai-localization",
               title: "AI Localization",
               tags: ["AI operations", "European expansion"],
-              role: "PM, media automation",
+              role: "Senior Product Manager, media automation",
               year: "2025",
               description:
                 "Re-architected a manual video workflow into an AI-assisted pipeline across three languages.",
@@ -1034,18 +1038,23 @@ export default function HomePage({
             const targetStudy = ALL_FLAGSHIP_CASE_STUDIES.find(
               (s) => s.slug === item.slug
             );
+            const cardHref = targetStudy ? `/work/${item.slug}` : `/work/more/${item.slug}`;
 
             return (
               <div key={item.slug} className="work-deck-slot">
                 <a
-                  href={`/work/${item.slug}`}
+                  href={cardHref}
                   onClick={(e) => {
                     if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) {
                       return;
                     }
                     e.preventDefault();
-                    if (targetStudy) onSelectCaseStudy(targetStudy);
-                    onNavigate(`/work/${item.slug}`);
+                    if (targetStudy) {
+                      onSelectCaseStudy(targetStudy);
+                      onNavigate(`/work/${item.slug}`);
+                    } else {
+                      onNavigate(`/work/more/${item.slug}`);
+                    }
                   }}
                   className="work-deck-card block text-inherit no-underline cursor-pointer group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C89B3C] focus-visible:ring-offset-4"
                   aria-label={`Explore work: ${item.title}`}

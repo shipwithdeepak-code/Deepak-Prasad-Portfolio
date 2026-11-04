@@ -30,45 +30,46 @@ interface ResumeModalProps {
   onOpenContact: () => void;
 }
 
-export const RESUME_TEXT = `DEEPAK P
-Senior Product Manager | B2B & B2C | AI | Product Strategy & Roadmapping
+export const RESUME_TEXT = `DEEPAK PRASAD
+Senior Product Manager | Subscription Growth, Monetization & Applied AI
 Bengaluru, India • +91 8792964656 • shipwithdeepak@gmail.com • linkedin.com/in/prasad-deepak • github.com/shipwithdeepak-code
 
 PROFILE
-Senior Product Manager with 7+ years building and scaling B2B and B2C products across SaaS, AI, marketplaces, workflow automation and connected products, including a production conversational AI feature and an ML-powered pricing model, alongside enterprise workflow automation across CRM, ERP and payments systems. Skilled at reading market trends and customer pain points and turning them into scalable product solutions, owning quarterly planning and roadmap creation through customer interviews, UAT, launch and adoption tracking. Known for taking 0→1 products from ambiguous charters, managing and mentoring product teams, and bringing automation to complex, non-desk operational workflows.
+Senior Product Manager with 7+ years across consumer subscriptions, AI features, payments and marketplaces. Founding member of the Sportstech product team and its first PM: took a free app to about 15K paying subscribers in under 3 years, shipped an in-app AI coach (about 4,500 peak daily users) and redesigned onboarding and cancellation across the subscriber lifecycle. Owned the subscription business through ~15K paying subscribers, built payout systems moving ₹20–25 Cr a month, and led cross-border product teams across India and Europe.
 
 WORK EXPERIENCE
 1. Senior Product Manager | Sportstech [Oct 2024 – Sep 2026]
-Bengaluru, India | Digital sports subscription platform (iOS & Android), via Tejmonvi Softwares (ODC) | 174,000+ users
-• Owned end-to-end subscription strategy for a B2C SaaS platform serving 174,180 freemium users and 12,401 paying subscribers, generating €659K in FY2025 subscription revenue. Co-authored the FY2025 subscription analysis: segmenting retention by plan type showed monthly plans churned far faster than annual, which set monthly-to-annual migration as the 2026 priority. Separately, subscribers grew 81.9% YoY, with yearly-plan retention reaching 96.8%.
-• Led the 0→1 development of an in-app AI Coach, defining conversational AI use cases, user flows, context and data requirements, and quality guardrails. Launched on Gemini as the primary model with ChatGPT as fallback; analysed voice vs text usage by context (trigger and workout events) and kept both: text for planning before a workout, voice mid-workout. Scaled from ~300 to a peak of ~4,500 DAU after its November 2025 launch through iterative improvements.
-• Owned quarterly planning and roadmap creation for the subscription domain, defining pricing, free/paid packaging, trial design, paywalls and renewal experiences, and establishing product metrics across conversion, churn, retention and LTV.
-• Owned product-performance tracking across engagement, subscription and acquisition funnels using DAU/MAU, conversion, retention and churn metrics to inform roadmap prioritisation and post-launch iteration. Platform-wide (whole app, as of May 2026): 3,033 DAU, 27,001 MAU (an 11% DAU/MAU ratio).
-• Designed an AI-assisted content-localisation workflow that shipped 200+ videos in roughly 3 weeks (about 10× faster than the prior process), supporting launches in Italian, French and Spanish.
-• Operated in an ODC model, leading the India-based product and engineering team while sales and operations sat at company HQ in Germany. Directly managed and mentored a 6-person cross-functional pod (3 PMs, Growth, Content), growing their scope and ownership while setting OKRs and reporting KPIs to leadership.
+Bengaluru, India | Digital sports subscription platform (iOS & Android), via Tejmonvi Softwares (ODC) | 200K+ users
+• Took a free app to about 15K paying subscribers in under 3 years, across 200K+ users.
+• Shipped the in-app AI Coach (about 4,500 peak daily users) with consent, safety limits, deterministic checks for high-risk cases, Gemini with a ChatGPT fallback, and a 100-user beta first.
+• Led AI video recommendations end to end with the data and ML team; workout completion rose 30%+.
+• Found that monthly subscribers churned far faster, rebuilt onboarding around the first "aha" moment, won the cancellation A/B tests with a discounted yearly offer and took yearly plans to 87% of paying subscribers. Also led the website checkout launch of Unzer, Google Pay, Apple Pay, Klarna, PayPal and SEPA.
+• Built a Lovable and Stripe redemption site that moved about 2,000 of roughly 4,000 free-plan device owners onto paid, auto-renewing plans.
+• Shipped 300+ workout videos in Italian, French and Spanish in about 3 weeks (about 10× faster than studio production) with an AI dubbing pipeline and human review.
+• Designed a single fitness dashboard that brings workout metrics from iOS, Android, display and Smart Gym into one view, and defined the Performance Score to rate each workout.
+• Led the India product team, reporting to the CEO of the India unit: set the roadmap against company OKRs and hired, coached and managed 5 direct reports (3 PMs, growth, content), 2 designers and interns.
 
-2. Product Manager | Sportstech [Aug 2023 – Sep 2024]
+2. Senior Product Manager | Sportstech [Aug 2023 – Sep 2024]
 Bengaluru, India
 • Joined as the first Product Manager on the team and built the platform 0→1 from scratch, designing signup, onboarding and subscription flows (pricing, packaging, trial, paywall, checkout) with no prior playbook and defining retention and conversion metrics from first principles.
 • Conducted customer interviews and synthesised feedback, app reviews and behavioural data to prioritise fixes. Translated requirements into PRDs, user stories and acceptance criteria, partnering with engineering and design through discovery, UAT, launch and post-launch iteration.
 
-3. Product Manager | ReshaMandi [Jun 2021 – Sep 2023]
+3. Senior Product Manager | ReshaMandi [Jun 2021 – Aug 2023]
 Bengaluru, India | Enterprise B2B agri-tech & silk marketplace | ₹2,000 Cr platform | ~1.1 Lakh stakeholders across 5 business verticals (incl. 80K+ farmers via ReshaFarms)
 • Owned product delivery across a complex B2B marketplace ecosystem spanning farmers, buyers, field operations, sales, finance and customer support, translating fragmented offline workflows into scalable digital products.
-• Digitised end-to-end workflows across onboarding, KYC, lead generation, purchase and sales orders, logistics and payments, integrating LeadSquared CRM, Razorpay, SAP and Camunda across business, IT and vendor teams. Identified payment delays as a trust and operational bottleneck and owned an instant-payout workflow that automated approval-to-bank settlement, as disbursement volume grew from roughly ₹10–15Cr to ₹20–25Cr per month.
-• Conducted direct field research with farmers, agents and operations teams, regularly travelling to collection centres and grounding roadmap and design decisions in direct observation and user feedback rather than assumptions.
-• Built a real-time cocoon bidding workflow 0→1, replacing manual buyer discovery and negotiation with a structured Scan → Bid → Watch → Win → Pay experience and configurable auction rules. Added geofencing and a 15-minute payment window after shared QR codes led to remote bids and non-payment.
+• Digitised end-to-end workflows across onboarding, KYC, lead generation, purchase and sales orders, logistics and payments, integrating LeadSquared CRM (rolled out for about 700 people), Razorpay, SAP and Camunda across business, IT and vendor teams.
+• Led Instant Payouts workflow: from up to 15 days to seconds for standard payouts and under 2 hours for large ones, as disbursements grew from about ₹10–15 Cr to ₹20–25 Cr a month. Before, payments went through WhatsApp approval and manual payment: nominally 2 days, often 7 or more, worst case about 15 days. After the instant payout workflow on Razorpay (lot, centre manager approval, finance approval, farmer acknowledgement, bank validation, automatic payout, success or retry), standard payouts settled within seconds and large ones within 2 hours.
+• Built a real-time cocoon bidding workflow 0→1 (Scan → Bid → Watch → Win → Pay); added geofencing and a 15-minute payment window after shared QR codes led to remote bids and non-payment; bidding drove repeat participation.
 • Partnered with the ML team to define an image-based price recommendation with a human in the loop, piloted at 2 centres.
+• Conducted extensive direct field research in mandi collection centres across Karnataka.
 
 4. Associate Product Manager | LionCircuits [Jul 2018 – May 2020]
 Bengaluru, India | IoT, AI & PCB manufacturing platform
 • Led concept-to-launch of a B2B Assembly Ordering Platform, contributing to a 40% increase in monthly orders. Built an auto-quote generation and BOM-scrubbing tool, plus a Raspberry Pi-based AI proof-of-concept for facial-recognition traffic monitoring.
 
-CORE COMPETENCIES
-• Product Strategy: Product Strategy, Market & Customer Research, Customer Interviews, Quarterly Planning, Roadmapping, Prioritisation, 0→1 Product Development, PRDs, User Stories, UAT, Adoption Tracking
-• B2B SaaS / B2C: B2B SaaS Platforms, B2C Subscription Products, Enterprise Workflow Automation, Marketplace Products, Payments, Monetisation
-• AI / Data: AI Product Strategy, Conversational AI, AI-Enabled Workflows, ML Product Development, Product Analytics, Funnel Analysis, Retention, Churn, LTV
-• Leadership: Cross-functional Leadership (Eng, Design, Sales, CS), People Management & Mentoring, Stakeholder Management, OKRs, Influence Without Authority, Agile/Scrum
+PROJECTS
+• Dīpa (Portfolio AI Copilot): Live, multilingual voice copilot answering questions about Deepak's work, grounded in RAG with citations, 95% (19/20) on golden evaluation set, voice in 5 Indian languages (Sarvam AI).
+• Performance Score Strategy: Comprehensive cross-platform strategy and PRD (Athletic Reliability Performance Score) uniting mobile, Smart Gym, and wearable telemetry.
 
 SKILLS & TOOLS
 • Tools & Platforms: Jira, SAP (basic), Camunda, LeadSquared CRM, Razorpay, Figma, Firebase, Google Analytics, Google Play Console
@@ -115,49 +116,6 @@ export default function ResumeModal({
     }
   };
 
-  const competencies = [
-    {
-      category: "Product Strategy",
-      items: [
-        "0→1 Product Discovery",
-        "Market & Customer Research",
-        "Quarterly Planning & OKRs",
-        "Roadmapping & Prioritisation",
-        "PRDs & User Stories",
-        "UAT & Adoption Tracking",
-      ],
-    },
-    {
-      category: "B2B SaaS & Marketplaces",
-      items: [
-        "B2B Marketplaces",
-        "Enterprise Workflows (SAP/Camunda)",
-        "B2C Subscription Funnels",
-        "Payments & Instant Payouts",
-        "Monetisation & Paywalls",
-      ],
-    },
-    {
-      category: "AI & Data Systems",
-      items: [
-        "Conversational AI (Gemini / ChatGPT)",
-        "ML Product Workflows (>90% Accuracy)",
-        "Funnel & Cohort Retention",
-        "LTV & Churn Modeling",
-        "Telemetry & Product Analytics",
-      ],
-    },
-    {
-      category: "Leadership & Execution",
-      items: [
-        "Cross-functional Team Lead",
-        "People Management & Mentoring (6-person pod)",
-        "ODC & Distributed Teams",
-        "Influence Without Authority",
-        "Agile / Scrum Ownership",
-      ],
-    },
-  ];
 
   const toolsAndDomains = {
     tools: [
@@ -205,7 +163,7 @@ export default function ResumeModal({
                 Deepak Prasad — Senior PM
               </h3>
               <p className="font-inter text-[11px] sm:text-xs text-[#121517]/60 truncate hidden xs:block">
-                B2B & B2C · AI & ML · Product Strategy
+                Subscription Growth · Monetization · Applied AI
               </p>
             </div>
           </div>
@@ -355,7 +313,7 @@ export default function ResumeModal({
                 <Sparkles size={14} /> Profile Summary
               </h4>
               <p className="font-inter text-xs sm:text-sm text-[#121517]/85 leading-relaxed">
-                Senior Product Manager with <strong>7+ years</strong> building and scaling B2B and B2C products across SaaS, AI, marketplaces, workflow automation and connected products, including a production conversational AI feature (in-app AI Coach with Gemini + ChatGPT fallback) and an ML-powered pricing model (&gt;90% accuracy), alongside enterprise workflow automation across CRM, ERP and payments systems. Skilled at reading market trends and customer pain points and turning them into scalable product solutions, owning quarterly planning and roadmap creation through customer interviews, UAT, launch and adoption tracking. Known for taking 0→1 products from ambiguous charters, managing and mentoring product teams, and bringing automation to complex, non-desk operational workflows.
+                Senior Product Manager with <strong>7+ years</strong> across consumer subscriptions, AI features, payments and marketplaces. Founding member of the Sportstech product team and its first PM: took a free app to about 15K paying subscribers in under 3 years, shipped an in-app AI coach (about 4,500 peak daily users) and redesigned onboarding and cancellation across the subscriber lifecycle. Owned the subscription business through ~15K paying subscribers, built payout systems moving ₹20–25 Cr a month, and led cross-border product teams across India and Europe.
               </p>
             </div>
           </div>
@@ -416,34 +374,31 @@ export default function ResumeModal({
             </div>
           </div>
 
-          {/* Core Competencies Matrix */}
+          {/* Projects */}
           <div>
             <h4 className="font-onest text-base font-bold text-[#121517] mb-4 flex items-center gap-2">
-              <Layers size={18} className="text-[#A8711A]" />
-              <span>Core Competencies</span>
+              <Sparkles size={18} className="text-[#A8711A]" />
+              <span>Projects</span>
             </h4>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {competencies.map((group, idx) => (
-                <div
-                  key={idx}
-                  className="p-5 rounded-2xl bg-[#FAF8F5] border border-[#121517]/10 space-y-2.5"
-                >
-                  <h5 className="font-onest text-xs font-bold uppercase tracking-wider text-[#A8711A]">
-                    {group.category}
-                  </h5>
-                  <div className="flex flex-wrap gap-1.5">
-                    {group.items.map((item, iIdx) => (
-                      <span
-                        key={iIdx}
-                        className="px-2.5 py-1 rounded-lg bg-white text-[#121517] font-inter text-xs font-medium border border-[#121517]/10 shadow-2xs"
-                      >
-                        {item}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              ))}
+            <div className="space-y-3">
+              <div className="p-5 rounded-2xl bg-white border border-[#121517]/10 space-y-1.5 shadow-2xs">
+                <h5 className="font-onest text-sm font-bold text-[#121517]">
+                  Dīpa (Portfolio AI Copilot)
+                </h5>
+                <p className="font-inter text-xs sm:text-sm text-[#121517]/80 leading-relaxed">
+                  Live, multilingual voice copilot answering questions about Deepak&apos;s work, grounded in RAG with citations, 95% (19/20) on golden evaluation set, voice in 5 Indian languages (Sarvam AI).
+                </p>
+              </div>
+
+              <div className="p-5 rounded-2xl bg-white border border-[#121517]/10 space-y-1.5 shadow-2xs">
+                <h5 className="font-onest text-sm font-bold text-[#121517]">
+                  Performance Score Strategy
+                </h5>
+                <p className="font-inter text-xs sm:text-sm text-[#121517]/80 leading-relaxed">
+                  Comprehensive cross-platform strategy and PRD (Athletic Reliability Performance Score) uniting mobile, Smart Gym, and wearable telemetry.
+                </p>
+              </div>
             </div>
           </div>
 

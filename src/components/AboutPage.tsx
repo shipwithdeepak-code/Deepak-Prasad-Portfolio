@@ -46,7 +46,7 @@ export default function AboutPage({
     { title: "Hardware / IoT", context: "LionCircuits APM" },
     { title: "B2B Marketplace", context: "ReshaMandi 80K+ farmers" },
     { title: "Workflow & Payments", context: "Instant Payouts & KYC" },
-    { title: "Subscription & Growth", context: "Sportstech 12K+ subscribers" },
+    { title: "Subscription & Growth", context: "Sportstech ~15K subscribers" },
     { title: "Connected Products", context: "Performance Score Strategy" },
     { title: "AI Products", context: "Conversational Coach & Localization" },
   ];

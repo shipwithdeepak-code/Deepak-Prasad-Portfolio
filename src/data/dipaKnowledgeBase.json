@@ -21,7 +21,7 @@
       "source": "Resume — Career History",
       "category": "Career",
       "title": "Complete Career History & Chronological Timeline",
-      "chunk": "Deepak's verified career chronology comprises four roles: 1) Associate Product Manager at LionCircuits (Jul 2018 – May 2020), 2) Product Manager at ReshaMandi (Jun 2021 – Sep 2023), 3) Product Manager at Sportstech (Aug 2023 – Sep 2024), and 4) Senior Product Manager at Sportstech (Oct 2024 – Sep 2026) via Tejmonvi Softwares (ODC). Deepak left Sportstech in September 2026 and is available to join immediately in Bengaluru."
+      "chunk": "Deepak's verified career chronology comprises four roles: 1) Associate Product Manager at LionCircuits (Jul 2018 – May 2020), 2) Product Manager at ReshaMandi (Jun 2021 – Aug 2023), 3) Product Manager at Sportstech (Aug 2023 – Sep 2024), and 4) Senior Product Manager at Sportstech (Oct 2024 – Sep 2026) via Tejmonvi Softwares (ODC). Deepak left Sportstech in September 2026 and is available to join immediately in Bengaluru."
     },
     {
       "id": "career-lioncircuits",
@@ -34,22 +34,22 @@
       "id": "career-reshamandi-role",
       "source": "Resume — ReshaMandi",
       "category": "Career",
-      "title": "Product Manager at ReshaMandi (Jun 2021 – Sep 2023)",
-      "chunk": "Deepak served as Product Manager at ReshaMandi (Jun 2021 – Sep 2023) in Bengaluru, owning core marketplace workflows and payments across ~1.1 Lakh stakeholders on a ₹2,000 Cr platform, including 80,000+ farmers via ReshaFarms. He digitized end-to-end operational workflows (LeadSquared CRM, Razorpay, SAP, Camunda), led an instant-payout workflow scaling monthly disbursements from ~₹10–15 Cr to ₹20–25 Cr at 99.9% reliability, launched a real-time cocoon bidding auction 0→1 (Scan → Bid → Watch → Win → Pay; added geofencing and a 15-minute payment window after shared QR codes led to remote bids and non-payment), and partnered with ML engineers to build an image-based price recommendation with a human in the loop, piloted at 2 centres. Deepak's scope was strictly marketplace, field operations, and instant payouts; ReshaMudra credit products were not part of his ownership."
+      "title": "Senior Product Manager at ReshaMandi (Jun 2021 – Aug 2023)",
+      "chunk": "Deepak served as Senior Product Manager at ReshaMandi (Jun 2021 – Aug 2023) in Bengaluru, owning core marketplace workflows and payments across ~1.1 Lakh stakeholders on a ₹2,000 Cr platform, including 80,000+ farmers via ReshaFarms. He digitized end-to-end operational workflows (LeadSquared CRM rolled out for about 700 people, Razorpay, SAP, Camunda). Before, payments went through WhatsApp approval and manual payment: nominally 2 days, often 7 or more, worst case about 15 days. After the instant payout workflow on Razorpay (lot, centre manager approval, finance approval, farmer acknowledgement, bank validation, automatic payout, success or retry), standard payouts settled within seconds and large ones within 2 hours, scaling disbursements from about ₹10–15 Cr to ₹20–25 Cr a month across 80,000+ farmers. He launched a real-time cocoon bidding auction 0→1 (Scan → Bid → Watch → Win → Pay) driving repeat participation, with geofencing and a 15-minute payment window after shared QR codes led to remote bids and non-payment, and partnered with the ML team on image-based price recommendations with a human in the loop, piloted at 2 centres. Deepak conducted extensive field research in mandi collection centres across Karnataka. Deepak's scope was strictly marketplace, field operations, and instant payouts; ReshaMudra credit products were not part of his ownership."
     },
     {
       "id": "career-sportstech-pm",
-      "source": "Resume — Sportstech Product Manager",
+      "source": "Resume — Sportstech Senior Product Manager",
       "category": "Career",
-      "title": "Product Manager at Sportstech (Aug 2023 – Sep 2024)",
-      "chunk": "Deepak joined Sportstech in Bengaluru as the first Product Manager on the team (Aug 2023 – Sep 2024) and built the platform 0→1 from scratch. With no prior playbook, he designed user onboarding, signup, and end-to-end subscription monetization flows (pricing, packaging, trial mechanics, paywalls, and checkout), while establishing baseline conversion and retention metrics from first principles through direct customer interviews and PRDs."
+      "title": "Senior Product Manager at Sportstech (Aug 2023 – Sep 2024)",
+      "chunk": "Deepak joined Sportstech in Bengaluru as the first Product Manager on the team (Aug 2023 – Sep 2024), serving as Senior Product Manager, and built the platform 0→1 from scratch. With no prior playbook, he designed user onboarding, signup, and end-to-end subscription monetization flows (pricing, packaging, trial mechanics, paywalls, and checkout), while establishing baseline conversion and retention metrics from first principles through direct customer interviews and PRDs."
     },
     {
       "id": "career-sportstech-spm",
       "source": "Resume — Sportstech Senior Product Manager",
       "category": "Career",
       "title": "Senior Product Manager at Sportstech via Tejmonvi Softwares (ODC) (Oct 2024 – Sep 2026)",
-      "chunk": "As Senior Product Manager at Sportstech via Tejmonvi Softwares (ODC) (Oct 2024 – Sep 2026), Deepak owned subscription strategy for a B2C fitness platform serving 174,180 freemium users and 12,401 paying subscribers, generating €659K in FY2025 subscription revenue with 81.9% YoY subscriber growth (a separate metric) and 96.8% annual retention. He co-authored the FY2025 subscription analysis showing monthly plans churned far faster than annual, setting monthly-to-annual migration as the 2026 priority. He led the 0→1 development of the in-app AI Coach (scaled from ~300 to a peak of ~4,500 DAU after its November 2025 launch, Gemini primary / ChatGPT fallback; analysed voice vs text usage by context and kept both: text for planning before a workout, voice mid-workout), built an AI video localization workflow (200+ videos in ~3 weeks, ~10× faster), and managed/mentored a 6-person cross-functional pod in an ODC model partnering with Germany HQ leadership. Deepak left Sportstech in September 2026 and is available to join immediately in Bengaluru."
+      "chunk": "As Senior Product Manager at Sportstech via Tejmonvi Softwares (ODC) (Oct 2024 – Sep 2026), Deepak took a free app to about 15K paying subscribers in under 3 years, across 200K+ users. He shipped the in-app AI Coach (about 4,500 peak daily users) with consent, safety limits, deterministic checks for high-risk cases, Gemini with a ChatGPT fallback, and a 100-user beta first. He led AI video recommendations end to end with the data and ML team (workout completion rose 30%+). He found that monthly subscribers churned far faster, rebuilt onboarding around the first 'aha' moment, won cancellation A/B tests with a discounted yearly offer, and took yearly plans to 87% of paying subscribers. Also led the website checkout launch of Unzer, Google Pay, Apple Pay, Klarna, PayPal, and SEPA. He built a Lovable and Stripe redemption site that moved about 2,000 of roughly 4,000 free-plan device owners onto paid, auto-renewing plans. He shipped 300+ workout videos in Italian, French, and Spanish in about 3 weeks (~10× faster than studio production) with an AI dubbing pipeline and human review. He designed a single fitness dashboard bringing workout metrics from iOS, Android, display, and Smart Gym into one view, defining the Performance Score to rate each workout. He led the India product team, reporting to the CEO of the India unit: set the roadmap against company OKRs and hired, coached, and managed 5 direct reports (3 PMs, growth, content), 2 designers, and interns. Deepak left Sportstech in September 2026 and is available to join immediately in Bengaluru."
     },
     {
       "id": "current-status-availability",
@@ -63,7 +63,7 @@
       "source": "Resume — Competencies & Tools",
       "category": "Profile",
       "title": "Core Competencies, Tools & Technical Platforms",
-      "chunk": "Deepak's competencies include Product Strategy (0→1 discovery, customer interviews, quarterly OKRs, roadmapping, PRDs, UAT, adoption tracking), B2B & B2C Monetization (SaaS, subscriptions, enterprise workflows, instant payouts), AI & Data (conversational AI, ML workflows with human-in-the-loop evaluation, retention/churn modeling, telemetry), and Cross-functional Leadership (mentoring 6-person pods, ODC models). Tools: Jira, SAP (basic), Camunda, LeadSquared CRM, Razorpay, Figma, Firebase, Google Analytics, and Google Play Console."
+      "chunk": "Deepak's competencies include Product Strategy (0→1 discovery, customer interviews, quarterly OKRs, roadmapping, PRDs, UAT, adoption tracking), B2B & B2C Monetization (SaaS, subscriptions, enterprise workflows, instant payouts), AI & Data (conversational AI, ML workflows with human-in-the-loop evaluation, retention/churn modeling, telemetry), and Cross-functional Leadership (leading cross-border product teams: 5 direct reports, 2 designers, interns). Tools: Jira, SAP (basic), Camunda, LeadSquared CRM, Razorpay, Figma, Firebase, Google Analytics, and Google Play Console."
     },
     {
       "id": "reshamandi-thesis-discovery",
@@ -77,14 +77,14 @@
       "source": "ReshaMandi Case Study: Instant Payouts",
       "category": "ReshaMandi",
       "title": "ReshaMandi Instant Payout Engine & Settlement Rails",
-      "chunk": "At ReshaMandi, Deepak owned the instant-payout workflow integrating Razorpay banking rails and internal accounting systems: transactions under ₹5L settled immediately upon lot weighing and quality confirmation, while amounts over ₹5L cleared within 2 hours. Payout reliability reached 99.9%, as monthly disbursement volume scaled from ~₹10–15 Cr to ₹20–25 Cr across 80,000+ farmers on a ₹2,000 Cr platform, eliminating predatory middlemen credit cycles."
+      "chunk": "At ReshaMandi, Deepak owned the instant-payout workflow integrating Razorpay banking rails and internal accounting systems. Before, payments went through WhatsApp approval and manual payment: nominally 2 days, often 7 or more, worst case about 15 days. After the instant payout workflow on Razorpay (lot, centre manager approval, finance approval, farmer acknowledgement, bank validation, automatic payout, success or retry), standard payouts settled within seconds and large ones within 2 hours. Monthly disbursements scaled from about ₹10–15 Cr to ₹20–25 Cr across 80,000+ farmers on a ₹2,000 Cr platform, eliminating predatory middlemen credit cycles."
     },
     {
       "id": "reshamandi-bidding-pricing",
       "source": "ReshaMandi Case Study: Cocoon Bidding & ML Pricing",
       "category": "ReshaMandi",
       "title": "Cocoon Bidding System & Computer Vision Pricing",
-      "chunk": "Deepak built the real-time cocoon bidding workflow 0→1 (Scan → Bid → Watch → Win → Pay), replacing chaotic shouting auctions with structured bidding rules. Added geofencing and a 15-minute payment window after shared QR codes led to remote bids and non-payment. Alongside this, he partnered with ML engineers to build an image-based price recommendation with a human in the loop, piloted at 2 centres."
+      "chunk": "Deepak built the real-time cocoon bidding workflow 0→1 (Scan → Bid → Watch → Win → Pay) driving repeat participation. Added geofencing and a 15-minute payment window after shared QR codes led to remote bids and non-payment. Alongside this, he partnered with the ML team on image-based cocoon price recommendations; a person makes the final call; piloted at 2 centres before the network."
     },
     {
       "id": "reshamandi-ecosystem-expansion",
@@ -119,7 +119,7 @@
       "source": "Sportstech AI Coach Case Study: Growth & Models",
       "category": "Sportstech",
       "title": "AI Coach Growth, Beta Validation & Multi-Model Architecture",
-      "chunk": "The AI Coach followed a disciplined rollout: internal dogfooding with coaches, a 100-user phased beta, and production launch. Analysed voice vs text usage by context (trigger and workout events) and kept both: text for planning before a workout, voice mid-workout. The feature scaled from an initial cohort of ~300 DAU to a peak of ~4,500 DAU after its November 2025 launch through iterative improvements. It ran on a multi-model architecture using Gemini as the primary engine for multimodal reasoning with ChatGPT as reliable fallback. Metric definitions: AI Coach DAU measured from backend event logs (unique users with at least one coach interaction per day). App-level DAU/MAU measured in Firebase."
+      "chunk": "The AI Coach followed a disciplined rollout: internal dogfooding with coaches, a 100-user phased beta, and production launch. Analysed AI Coach usage by context and kept both modes: text for planning before a workout, voice during it. The feature scaled from an initial cohort of ~300 daily active users to a peak of ~4,500 daily active users after its November 2025 launch through iterative improvements. Gemini is the primary model with ChatGPT as the fallback. For high-risk questions such as acute pain, heart issues or eating disorders, deterministic code-level checks respond before the model. Metric definitions: AI Coach DAU measured from backend event logs (unique users with at least one coach interaction per day). App-level DAU/MAU measured in Firebase."
     },
     {
       "id": "ai-coach-safety-governance",
@@ -139,36 +139,36 @@
       "id": "subscription-metrics-performance",
       "source": "Sportstech Subscription Case Study: Scale",
       "category": "Sportstech",
-      "title": "Subscription Scale: 174K Users, 12.4K Paid, €659K FY25 Revenue",
-      "chunk": "Under Deepak's subscription ownership, the platform grew to 174,180 freemium users and 12,401 paying subscribers, generating €659K in FY2025 subscription revenue. Co-authored the FY2025 subscription analysis: segmenting retention by plan type showed monthly plans churned far faster than annual, which set monthly-to-annual migration as the 2026 priority. Separately, subscribers grew 81.9% YoY, with 96.8% annual plan retention and 39.4% trial-to-paid in a mature trial cohort (172 of 437 users)."
+      "title": "Subscription Scale: 200K+ Users, ~15K Paid, 87% Yearly Plans",
+      "chunk": "Under Deepak's subscription ownership, the platform grew to 200K+ users and about 15K paying subscribers in under 3 years. Co-authored the FY2025 subscription analysis: segmenting retention by plan type showed that monthly plans lost subscribers far faster than annual plans, which set monthly-to-annual migration as the priority. He won cancellation A/B tests with a discounted yearly offer and took yearly plans to 87% of paying subscribers. He also built a redemption site moving about 2,000 of roughly 4,000 free-plan device owners (~50%) to paid auto-renewing plans."
     },
     {
       "id": "sportstech-telemetry-funnels",
       "source": "Sportstech Subscription Case Study: Telemetry",
       "category": "Sportstech",
       "title": "Platform-wide App Telemetry (as of May 2026): 3,033 DAU, 27,001 MAU",
-      "chunk": "Deepak owned product performance tracking across acquisition, engagement, and subscription funnels. Telemetry and cohort instrumentation tracked DAU, MAU, conversion, and churn to inform weekly prioritization. Platform-wide (whole app, as of May 2026): 3,033 DAU, 27,001 MAU (an 11% DAU/MAU ratio). Note: The AI Coach scaled from ~300 to a peak of ~4,500 DAU after its November 2025 launch. Platform-wide app usage was 3,033 DAU and 27,001 MAU as of May 2026. Always state these timeframes when citing either number and never present one as a subset of the other. Metric definitions: AI Coach DAU measured from backend event logs (unique users with at least one coach interaction per day). App-level DAU/MAU measured in Firebase."
+      "chunk": "Deepak owned product performance tracking across acquisition, engagement, and subscription funnels. Telemetry and cohort instrumentation tracked DAU, MAU, conversion, and churn to inform weekly prioritization. Platform-wide (whole app, as of May 2026): 3,033 DAU, 27,001 MAU (an 11% DAU/MAU ratio). Note: The AI Coach scaled from ~300 to a peak of ~4,500 daily active users after its November 2025 launch. Platform-wide app usage was 3,033 DAU and 27,001 MAU as of May 2026. Always state these timeframes when citing either number and never present one as a subset of the other. Metric definitions: AI Coach DAU measured from backend event logs (unique users with at least one coach interaction per day). App-level DAU/MAU measured in Firebase."
     },
     {
       "id": "ai-localization-pipeline",
       "source": "Sportstech AI Localization Case Study: Workflow",
       "category": "Sportstech",
-      "title": "AI-Assisted Video Localization: 200+ Videos in ~3 Weeks (~10× Faster)",
-      "chunk": "Traditional video dubbing required 3–4 months using external voice studios. Deepak designed an AI-assisted localization pipeline that shipped 200+ workout coaching videos across Italian, French, and Spanish in roughly 3 weeks (~10× faster) using ElevenLabs and HeyGen voice synthesis with human-in-the-loop native speaker quality checks for safety-critical cues."
+      "title": "AI-Assisted Video Localization: 300+ Workout Videos in ~3 Weeks (~10× Faster)",
+      "chunk": "Traditional video dubbing required 3–4 months per market using external voice studios. Deepak designed an AI-assisted localization pipeline that shipped 300+ workout coaching videos across Italian, French, and Spanish in roughly 3 weeks (~10× faster than studio production) using ElevenLabs and HeyGen voice synthesis with human-in-the-loop native speaker quality checks for safety-critical cues."
     },
     {
       "id": "sportstech-odc-leadership",
       "source": "Resume & Case Study — Leadership",
       "category": "Sportstech",
       "title": "Cross-Border ODC Leadership & Pod Management",
-      "chunk": "At Sportstech, Deepak operated in an Offshore Development Center (ODC) model, leading the India-based product and engineering pod while business, sales, and operations sat at company headquarters in Germany. He directly managed and mentored a 6-person cross-functional pod (3 Product Managers, Growth Specialist, Content Specialist), defining roadmaps, setting quarterly OKRs, and reporting KPIs to executive leadership."
+      "chunk": "At Sportstech, Deepak operated in an Offshore Development Center (ODC) model, leading the India product team, reporting to the CEO of the India unit: hired and managed 5 direct reports (3 PMs, growth, content) and 2 designers, plus interns, working closely with Germany HQ across subscription, AI, and connected product tracks, defining roadmaps, setting quarterly OKRs, and reporting KPIs to executive leadership."
     },
     {
       "id": "performance-score-prd",
       "source": "Performance Score PRD: Scope & Status",
       "category": "PRD Specification",
       "title": "Athletic Performance Score: Product Strategy & PRD Status",
-      "chunk": "The Athletic Performance Score is a product strategy and PRD specification designed by Deepak ('One Body. One Score. One Ecosystem. [Product Strategy & PRD]') unifying strength, cardio, and recovery metrics into a single 0–100 athletic readiness score across 5 surfaces (mobile, console, tablet, web, weekly digest). Status: It represents a development-ready product strategy and comprehensive PRD, but was NOT launched to production; it did not ship, and there are no production metrics or adoption claims."
+      "chunk": "The Athletic Performance Score is a product strategy and PRD specification designed by Deepak ('One Body. One Score. One Ecosystem. [Product Strategy & PRD]') unifying strength, cardio, and recovery metrics into a single athletic readiness score across 5 surfaces (mobile, console, tablet, web, weekly digest). Status: It represents a development-ready product strategy and comprehensive PRD, but was NOT launched to production; it did not ship, and there are no production metrics or adoption claims."
     },
     {
       "id": "ai-build-jagr",
@@ -199,11 +199,11 @@
       "chunk": "Parametric weights in fine-tuned models are lossy and stochastic. When asked for precise historical metrics (such as ReshaMandi's ₹20–25 Cr monthly escrow disbursement or VTU engineering credentials), fine-tuned models frequently hallucinate plausible-sounding errors. In contrast, RAG cleanly separates knowledge storage from reasoning, guaranteeing 100% factual fidelity, instant updates without re-training, and verifiable citation provenance."
     },
     {
-      "id": "dipa-grounding-abstention",
-      "source": "Dīpa Architecture: Grounding & Abstention",
+      "id": "copilot-fallback",
+      "source": "AI Copilot Architecture: Handling Unknowns",
       "category": "Dīpa",
-      "title": "Dīpa Grounding Contract & Difference Between Fact and Absence of Fact",
-      "chunk": "Dīpa operates under strict epistemic rules: it only answers from verified portfolio and resume evidence. If a fact is supported, it cites the source. If asked about facts not in the portfolio or resume, it clearly states: 'I don't have that in Deepak's verified portfolio material' rather than guessing. It distinguishes between fact and absence of fact: for example, LionCircuits is recognized as his earliest listed role, but not assumed to be his first job ever unless specified. For unlisted timeframes (like May 2020 – Jun 2021), it assumes nothing."
+      "title": "Dīpa Grounding Contract & Handling Unknowns",
+      "chunk": "When I don't know the answer, Dīpa says so and points to the contact page instead of guessing. Dīpa operates under strict epistemic rules: it only answers from verified portfolio and resume evidence. If a fact is supported, it cites the source. If asked about facts not in the portfolio or resume, it clearly states: 'I don't have that in Deepak's verified portfolio material' rather than guessing. It distinguishes between fact and absence of fact: for example, LionCircuits is recognized as his earliest listed role, but not assumed to be his first job ever unless specified. For unlisted timeframes (like May 2020 – Jun 2021), it assumes nothing."
     },
     {
       "id": "deepak-operating-principles",

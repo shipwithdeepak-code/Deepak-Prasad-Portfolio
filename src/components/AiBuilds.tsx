@@ -246,7 +246,7 @@ export default function AiBuilds({ onNavigate }: { onNavigate: (path: string) =>
                     <span className="text-[#A8711A] font-mono">Similarity: 0.867</span>
                   </div>
                   <p className="font-inter text-xs text-[#374151] leading-relaxed">
-                    Deepak engineered the instant payout and settlement engine handling ₹20–25 Cr monthly, reducing mandi settlement from 72h to &lt;10s.
+                    Deepak led the instant payout workflow handling ₹20–25 Cr monthly, settling standard payouts in seconds and large ones under 2 hours at 99.9% reliability.
                   </p>
                   <div className="flex flex-wrap items-center gap-1.5 pt-1">
                     <span className="px-2 py-0.5 rounded bg-white border border-black/[0.08] font-mono text-[9.5px] text-[#A8711A] font-medium">

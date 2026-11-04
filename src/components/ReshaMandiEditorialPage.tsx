@@ -179,7 +179,7 @@ export default function ReshaMandiEditorialPage({
                   <span>What Changed</span>
                 </div>
                 <p className="font-inter text-[#121517] leading-relaxed font-semibold">
-                  99.9% payout reliability, helping expand monthly volume context from ₹10–15 Cr to ₹20–25 Cr; &gt;35% auction value uplift in pilot centers; 80K+ farmers engaged.
+                  99.9% payout reliability, helping expand monthly volume context from ₹10–15 Cr to ₹20–25 Cr a month; bidding driving repeat buyer participation; 80K+ farmers engaged.
                 </p>
               </div>
             </div>
@@ -955,7 +955,7 @@ export default function ReshaMandiEditorialPage({
                     Verified Pilot Outcome:
                   </span>
                   <span className="font-mono text-xs font-bold text-[#A8711A] px-2.5 py-1 rounded-md bg-[#A8711A]/10">
-                    &gt;35% transaction-value uplift demonstrated in pilot auctions
+                    Transparent dynamic bidding drove repeat participation
                   </span>
                 </div>
               </div>
@@ -1013,7 +1013,7 @@ export default function ReshaMandiEditorialPage({
                   KEY PRODUCT DECISION #5 · STRUCTURED AUCTION WINDOWS
                 </span>
                 <p className="font-inter text-xs text-[#121517]/80 leading-relaxed">
-                  Replaced private, unrecorded haggling with structured, timed auction windows and real-time outbid notifications. Opening transparent bidding to verified buyers in the hub and downstream weaving clusters demonstrated a &gt;35% transaction-value uplift for high-quality lots in pilot sessions.
+                  Replaced private, unrecorded haggling with structured, timed auction windows and real-time outbid notifications. Opening transparent bidding to verified buyers in the hub and downstream weaving clusters established transparent market pricing and drove repeat participation.
                 </p>
               </div>
             </article>
@@ -1042,7 +1042,7 @@ export default function ReshaMandiEditorialPage({
               {/* Ownership statement */}
               <div className="p-4 rounded-xl bg-[#FAF8F5] border border-[#121517]/10 mb-8 max-w-3xl">
                 <p className="font-inter text-sm sm:text-[15px] text-[#121517] font-medium leading-relaxed">
-                  “I worked with the machine learning team to productize a computer-vision-assisted grading and pricing workflow (&gt;90% accuracy), translating complex physical appraisal parameters into a guided digital recommendation.”
+                  “I worked with the machine learning team to productize an image-based price recommendation workflow with a human in the loop, piloted at 2 centres, translating complex physical appraisal parameters into a guided digital recommendation.”
                 </p>
               </div>
 
@@ -1229,16 +1229,16 @@ export default function ReshaMandiEditorialPage({
               </p>
             </div>
 
-            {/* >35% Uplift */}
+            {/* Repeat Bidding Participation */}
             <div className="p-6 rounded-2xl bg-white border border-[#121517]/8 shadow-2xs">
               <span className="font-mono text-[10px] uppercase tracking-wider font-bold text-[#8A5A16] block mb-1">
-                PRICE DISCOVERY UPLIFT
+                PRICE DISCOVERY &amp; PARTICIPATION
               </span>
-              <div className="font-onest text-3xl font-bold text-[#8A5A16] mb-1">
-                &gt;35%
+              <div className="font-onest text-2xl sm:text-3xl font-bold text-[#8A5A16] mb-1">
+                Repeat Bidding
               </div>
               <p className="font-inter text-xs text-[#121517]/75 leading-relaxed">
-                Cocoon Bidding pilot transaction-value uplift demonstrated in pilot centers.
+                Structured dynamic bidding auction drove repeat buyer participation across mandi centers.
               </p>
             </div>
 
