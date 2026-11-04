@@ -221,7 +221,7 @@ export default function HomePage({
 
   const canonicalHeroProofRail = [
     { name: "ReshaMandi B2B Marketplace", metric: "₹20–25 Cr/month" },
-    { name: "Standard payouts", metric: "up to 15 days → seconds" },
+    { name: "Standard payouts", metric: "Seconds (from up to 15 days)" },
     { name: "Supply Chain Scale", metric: "80K+ farmers" },
     { name: "Bidding Integrity", metric: "Geofenced & timed" },
     { name: "Paying Subscribers", metric: "~15K" },
@@ -378,13 +378,13 @@ export default function HomePage({
       detail: "After cohort analysis and cancellation A/B tests",
     },
     {
-      value: "~300 → ~4,500 DAU",
+      value: "~300 → ~2,000 DAU in the beta; peak ~4,500 after launch",
       label: "AI coach",
       detail: "100-user beta first; peak after the Nov 2025 launch",
     },
     {
-      value: "up to 15 days → seconds",
-      label: "Standard farmer payouts",
+      value: "Seconds",
+      label: "Standard farmer payouts, from up to 15 days",
       detail: "Disbursements grew from ₹10–15 Cr to ₹20–25 Cr a month",
     },
     {
@@ -938,7 +938,7 @@ export default function HomePage({
               slug: "subscription",
               title: "Sportstech Subscription",
               tags: ["Monetization", "B2C SaaS"],
-              role: "Senior Product Manager, monetization",
+              role: "Product Manager, then Senior Product Manager · Sportstech",
               year: "2023–26",
               description:
                 "Built the subscription business from zero: packaging, paywalls, trial mechanics and win-back.",
@@ -952,7 +952,7 @@ export default function HomePage({
               slug: "ai-coach",
               title: "Sportstech AI Coach",
               tags: ["Conversational AI", "Consumer health"],
-              role: "Senior Product Manager, applied AI & safety",
+              role: "Senior Product Manager · Sportstech",
               year: "2024–26",
               description:
                 "Took an ambiguous AI opportunity to production in three months, behind hard safety guardrails.",
@@ -966,7 +966,7 @@ export default function HomePage({
               slug: "reshamandi",
               title: "ReshaMandi",
               tags: ["B2B marketplace", "Escrow & payments"],
-              role: "Senior Product Manager, core marketplace",
+              role: "Product Manager · ReshaMandi",
               year: "2021–23",
               description:
                 "Rebuilt a fragmented offline silk trade into one governed flow across farmers, yards and finance.",
@@ -980,7 +980,7 @@ export default function HomePage({
               slug: "ml-cocoon-pricing",
               title: "Human-in-the-loop price recommendations",
               tags: ["Applied AI", "Human-in-the-loop"],
-              role: "Senior Product Manager, AI & data workflows",
+              role: "Product Manager · ReshaMandi",
               year: "2022–23",
               description:
                 "Partnered with the ML team on image-based cocoon price recommendations; a person makes the final call; piloted at 2 centres before the network.",
@@ -994,10 +994,10 @@ export default function HomePage({
               slug: "logistics-dispatch",
               title: "Logistics and operations",
               tags: ["Operations", "B2B Logistics", "CRM"],
-              role: "Senior Product Manager, operations & logistics",
+              role: "Product Manager · ReshaMandi",
               year: "2021–23",
               description:
-                "Logistics module with automated workflows for warehouse inbound and outbound goods; CRM rollout for about 700 people across support, sales, operations, procurement and logistics; live bidding with geofencing and a 15-minute payment window.",
+                "Logistics module with automated workflows for warehouse inbound and outbound goods; CRM rollout for about 700 people across support, sales, operations, procurement and logistics, with department dashboards and training; live bidding with geofencing and a 15-minute payment window.",
               figure: "~700 people",
               qualifier: "CRM rollout across 5 functions; 15-min bidding window",
               imagePrefix: "/images/reshamandi-hero",
@@ -1008,7 +1008,7 @@ export default function HomePage({
               slug: "performance-score",
               title: "Performance Score",
               tags: ["Connected hardware", "System design"],
-              role: "Senior Product Manager, algorithms & hardware",
+              role: "Senior Product Manager · Sportstech",
               year: "2025",
               description:
                 "Unlaunched product strategy and development-ready PRD: unifying 5 fragmented surfaces into one shared fitness recovery engine.",
@@ -1022,7 +1022,7 @@ export default function HomePage({
               slug: "ai-localization",
               title: "AI Localization",
               tags: ["AI operations", "European expansion"],
-              role: "Senior Product Manager, media automation",
+              role: "Senior Product Manager · Sportstech",
               year: "2025",
               description:
                 "Re-architected a manual video workflow into an AI-assisted pipeline across three languages.",

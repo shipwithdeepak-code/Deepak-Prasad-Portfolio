@@ -49,12 +49,12 @@ Bengaluru, India | Digital sports subscription platform (iOS & Android), via Tej
 • Designed a single fitness dashboard that brings workout metrics from iOS, Android, display and Smart Gym into one view, and defined the Performance Score to rate each workout.
 • Led the India product team, reporting to the CEO of the India unit: set the roadmap against company OKRs and hired, coached and managed 5 direct reports (3 PMs, growth, content), 2 designers and interns.
 
-2. Senior Product Manager | Sportstech [Aug 2023 – Sep 2024]
+2. Product Manager | Sportstech [Aug 2023 – Sep 2024]
 Bengaluru, India
 • Joined as the first Product Manager on the team and built the platform 0→1 from scratch, designing signup, onboarding and subscription flows (pricing, packaging, trial, paywall, checkout) with no prior playbook and defining retention and conversion metrics from first principles.
 • Conducted customer interviews and synthesised feedback, app reviews and behavioural data to prioritise fixes. Translated requirements into PRDs, user stories and acceptance criteria, partnering with engineering and design through discovery, UAT, launch and post-launch iteration.
 
-3. Senior Product Manager | ReshaMandi [Jun 2021 – Aug 2023]
+3. Product Manager | ReshaMandi [Jun 2021 – Aug 2023]
 Bengaluru, India | Enterprise B2B agri-tech & silk marketplace | ₹2,000 Cr platform | ~1.1 Lakh stakeholders across 5 business verticals (incl. 80K+ farmers via ReshaFarms)
 • Owned product delivery across a complex B2B marketplace ecosystem spanning farmers, buyers, field operations, sales, finance and customer support, translating fragmented offline workflows into scalable digital products.
 • Digitised end-to-end workflows across onboarding, KYC, lead generation, purchase and sales orders, logistics and payments, integrating LeadSquared CRM (rolled out for about 700 people), Razorpay, SAP and Camunda across business, IT and vendor teams.

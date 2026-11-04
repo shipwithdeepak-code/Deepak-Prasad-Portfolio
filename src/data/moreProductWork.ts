@@ -13,7 +13,7 @@ export const MORE_PRODUCT_WORK_ITEMS: MoreProductWorkItem[] = [
     description: 'B2B marketplace for silk yarn connecting reeler-side supply with textile manufacturers and weavers.',
     company: 'ReshaMandi',
     period: '2021 – 2023',
-    role: 'Senior Product Manager · Core Marketplace',
+    role: 'Product Manager · ReshaMandi',
     primaryCategory: 'B2B & Platforms',
     tags: ['B2B', 'Marketplace', '0→1'],
     metrics: [
@@ -66,7 +66,7 @@ export const MORE_PRODUCT_WORK_ITEMS: MoreProductWorkItem[] = [
     description: 'Extending the core marketplace architecture into cotton procurement, multi-ginning dispatch, and spinning mill supply lines.',
     company: 'ReshaMandi',
     period: '2022 – 2023',
-    role: 'Senior Product Manager · Marketplace Expansion',
+    role: 'Product Manager · ReshaMandi',
     primaryCategory: 'B2B & Platforms',
     tags: ['B2B', 'Marketplace', 'Platform'],
     metrics: [
@@ -115,7 +115,7 @@ export const MORE_PRODUCT_WORK_ITEMS: MoreProductWorkItem[] = [
     description: 'Structured assisted onboarding and verification workflows to turn informal agricultural suppliers into verified digital participants.',
     company: 'ReshaMandi',
     period: '2021 – 2023',
-    role: 'Senior Product Manager · Operations & Identity',
+    role: 'Product Manager · ReshaMandi',
     primaryCategory: 'B2B & Platforms',
     tags: ['B2B', 'KYC', 'Workflow', 'Operations'],
     metrics: [
@@ -164,7 +164,7 @@ export const MORE_PRODUCT_WORK_ITEMS: MoreProductWorkItem[] = [
     description: 'Digitised field-led lead capture and buyer management across distributed rural mandi hubs and sales desks.',
     company: 'ReshaMandi',
     period: '2021 – 2023',
-    role: 'Senior Product Manager · Sales Operations & CRM',
+    role: 'Product Manager · ReshaMandi',
     primaryCategory: 'B2B & Platforms',
     tags: ['B2B', 'CRM', 'Operations'],
     metrics: [
@@ -173,7 +173,7 @@ export const MORE_PRODUCT_WORK_ITEMS: MoreProductWorkItem[] = [
     ],
     problem: 'Sales teams and mandi procurement coordinators tracked farmer relationships and reeler buyer demand in physical notebooks and fragmented messaging chats.',
     whyItMattered: 'High-value buyer leads fell through the cracks, regional demand forecasts were based on guesswork, and field rep accountability could not be audited.',
-    myOwnership: 'Owned the deployment, customization, and workflow integration of LeadSquared CRM rolled out for about 700 people across support, sales, operations, procurement and logistics, aligning field incentives with data capture.',
+    myOwnership: 'Owned the deployment, customization, and workflow integration of LeadSquared CRM: CRM rollout for about 700 people across support, sales, operations, procurement and logistics, with department dashboards and training.',
     keyDecision: {
       title: 'Strict Stage-Gating vs Free-Form Notes',
       decision: 'Mandated strict operational stage gates (Contacted → Yard Visit → Sample Passed → Credit Approved) before deals could be logged.',
@@ -217,12 +217,12 @@ export const MORE_PRODUCT_WORK_ITEMS: MoreProductWorkItem[] = [
     description: 'Automated escrow approval and disbursement workflows, transforming multi-day payment coordination into governed, sub-minute farmer settlements.',
     company: 'ReshaMandi',
     period: '2021 – 2023',
-    role: 'Senior Product Manager · Payments & Settlement',
+    role: 'Product Manager · ReshaMandi',
     primaryCategory: 'B2B & Platforms',
     tags: ['Payments', 'B2B', 'Automation', 'Workflow'],
     metrics: [
       { value: '>₹5L', label: 'maximum payout within 2 hours', context: 'verified banking rails' },
-      { value: 'Instant', label: 'governed banking rails', context: 'seconds standard, under 2 hrs large' },
+      { value: 'Seconds', label: 'Standard farmer payouts, from up to 15 days', context: 'seconds standard, under 2 hrs large' },
       { value: 'Sub-minute', label: 'settlement on weighbridge lock', context: 'down from 3–15 days' },
     ],
     problem: 'Farmers historically waited 3–15 days for payment under traditional mandi broker agreements, leaving them vulnerable to cash flow crises and forced debt.',
@@ -268,7 +268,7 @@ export const MORE_PRODUCT_WORK_ITEMS: MoreProductWorkItem[] = [
     description: 'Digitised purchase and sales order state machines, connecting commercial negotiations to contract generation and financial ledgers.',
     company: 'ReshaMandi',
     period: '2021 – 2023',
-    role: 'Senior Product Manager · Core Workflows',
+    role: 'Product Manager · ReshaMandi',
     primaryCategory: 'B2B & Platforms',
     tags: ['B2B', 'Workflow', 'Operations'],
     metrics: [
@@ -317,7 +317,7 @@ export const MORE_PRODUCT_WORK_ITEMS: MoreProductWorkItem[] = [
     description: 'Logistics module with automated workflows for warehouse inbound and outbound goods; CRM rollout for about 700 people across support, sales, operations, procurement and logistics; live bidding with geofencing and a 15-minute payment window.',
     company: 'ReshaMandi',
     period: '2022 – 2023',
-    role: 'Senior Product Manager · Logistics Systems',
+    role: 'Product Manager · ReshaMandi',
     primaryCategory: 'Operations & Automation',
     tags: ['B2B', 'Logistics', 'Operations'],
     metrics: [
@@ -370,7 +370,7 @@ export const MORE_PRODUCT_WORK_ITEMS: MoreProductWorkItem[] = [
     description: 'Designed a high-speed Scan → Bid → Watch → Win → Pay flow around real-world mandi auction constraints.',
     company: 'ReshaMandi',
     period: '2021 – 2022',
-    role: 'Senior Product Manager · Core Marketplace',
+    role: 'Product Manager · ReshaMandi',
     primaryCategory: 'B2B & Platforms',
     tags: ['Marketplace', 'B2B', '0→1', 'Field Product'],
     metrics: [
@@ -428,7 +428,7 @@ export const MORE_PRODUCT_WORK_ITEMS: MoreProductWorkItem[] = [
     description: 'Partnered with the ML team on image-based cocoon price recommendations; a person makes the final call; piloted at 2 centres before the network.',
     company: 'ReshaMandi',
     period: '2022 – 2023',
-    role: 'Senior Product Manager · AI & Data Workflows',
+    role: 'Product Manager · ReshaMandi',
     primaryCategory: 'AI & Data',
     tags: ['AI', 'Marketplace', 'B2B', 'Human-in-the-loop'],
     metrics: [
@@ -478,7 +478,7 @@ export const MORE_PRODUCT_WORK_ITEMS: MoreProductWorkItem[] = [
     description: 'Farmer-facing advisory and supply visibility platform, guiding sericulture farmers across the 25-day rearing lifecycle.',
     company: 'ReshaMandi',
     period: '2021 – 2023',
-    role: 'Senior Product Manager · Farmer Product',
+    role: 'Product Manager · ReshaMandi',
     primaryCategory: 'B2B & Platforms',
     tags: ['B2B', 'Farmer Product', 'Marketplace', 'Field Product'],
     metrics: [
@@ -531,7 +531,7 @@ export const MORE_PRODUCT_WORK_ITEMS: MoreProductWorkItem[] = [
     description: 'Unified Apple HealthKit, Google Health Connect, and BLE heart rate monitors into a cohesive cardiovascular strain engine.',
     company: 'Sportstech',
     period: '2024 – 2025',
-    role: 'Lead Product Manager · Connected Platform',
+    role: 'Senior Product Manager · Sportstech',
     primaryCategory: 'Connected Products',
     tags: ['Connected Products', 'Integrations', 'Consumer'],
     metrics: [
@@ -580,7 +580,7 @@ export const MORE_PRODUCT_WORK_ITEMS: MoreProductWorkItem[] = [
     description: 'Designed the unified companion experience pairing smartphones with home workout stations, standardizing telemetry and rep detection.',
     company: 'Sportstech',
     period: '2024 – 2025',
-    role: 'Lead Product Manager · Connected Ecosystem',
+    role: 'Senior Product Manager · Sportstech',
     primaryCategory: 'Connected Products',
     tags: ['Hardware', 'Connected Products', 'B2C'],
     metrics: [
@@ -629,7 +629,7 @@ export const MORE_PRODUCT_WORK_ITEMS: MoreProductWorkItem[] = [
     description: 'Reduced friction to start cardio and strength sessions with a 1-tap launcher that bypassed lengthy video introductions.',
     company: 'Sportstech',
     period: '2024 – 2025',
-    role: 'Senior Product Manager · Core Experience',
+    role: 'Senior Product Manager · Sportstech',
     primaryCategory: 'Connected Products',
     tags: ['UX', 'Hardware', 'Connected Products'],
     metrics: [
@@ -678,7 +678,7 @@ export const MORE_PRODUCT_WORK_ITEMS: MoreProductWorkItem[] = [
     description: 'Designed a lightweight social engagement layer enabling workout sharing, peer encouragement, and habit reinforcement.',
     company: 'Sportstech',
     period: '2024 – 2025',
-    role: 'Senior Product Manager · Engagement & Community',
+    role: 'Senior Product Manager · Sportstech',
     primaryCategory: 'Connected Products',
     tags: ['Consumer', 'Community', 'Engagement'],
     metrics: [
@@ -727,7 +727,7 @@ export const MORE_PRODUCT_WORK_ITEMS: MoreProductWorkItem[] = [
     description: 'Structured multi-week consumer fitness challenges with gamified milestone badges, lifting mid-funnel habit formation and cohort retention.',
     company: 'Sportstech',
     period: '2024 – 2025',
-    role: 'Senior Product Manager · Growth & Engagement',
+    role: 'Senior Product Manager · Sportstech',
     primaryCategory: 'Growth & Monetization',
     tags: ['Growth', 'Engagement', 'Gamification'],
     metrics: [
@@ -776,7 +776,7 @@ export const MORE_PRODUCT_WORK_ITEMS: MoreProductWorkItem[] = [
     description: 'Created real-time competitive leaderboard mechanics for synchronous and on-demand group workouts on connected equipment displays.',
     company: 'Sportstech',
     period: '2024 – 2025',
-    role: 'Senior Product Manager · Connected Display',
+    role: 'Senior Product Manager · Sportstech',
     primaryCategory: 'Connected Products',
     tags: ['Connected Products', 'Real-time', 'Gamification'],
     metrics: [
@@ -829,7 +829,7 @@ export const MORE_PRODUCT_WORK_ITEMS: MoreProductWorkItem[] = [
     description: 'Designed the structural renewal and payment journey for expiring hardware-bundled subscriptions, mitigating involuntary churn.',
     company: 'Sportstech',
     period: '2024 – 2025',
-    role: 'Lead Product Manager · Monetization & Growth',
+    role: 'Senior Product Manager · Sportstech',
     primaryCategory: 'Growth & Monetization',
     tags: ['Monetization', 'Retention', 'Payments'],
     metrics: [
@@ -883,7 +883,7 @@ export const MORE_PRODUCT_WORK_ITEMS: MoreProductWorkItem[] = [
     description: 'Designed event-driven webhook pipelines linking customer app reviews and feedback directly into operational triage queues.',
     company: 'Sportstech',
     period: '2024 – 2025',
-    role: 'Lead Product Manager · Product Operations',
+    role: 'Senior Product Manager · Sportstech',
     primaryCategory: 'Operations & Automation',
     tags: ['Automation', 'Operations', 'n8n'],
     metrics: [
@@ -932,7 +932,7 @@ export const MORE_PRODUCT_WORK_ITEMS: MoreProductWorkItem[] = [
     description: 'Automated internal purchase requests, vendor matching, and approval hierarchies, eliminating manual spreadsheet coordination.',
     company: 'ReshaMandi',
     period: '2022 – 2023',
-    role: 'Senior Product Manager · Internal Systems',
+    role: 'Product Manager · ReshaMandi',
     primaryCategory: 'Operations & Automation',
     tags: ['Automation', 'Operations', 'Workflow'],
     metrics: [
@@ -981,7 +981,7 @@ export const MORE_PRODUCT_WORK_ITEMS: MoreProductWorkItem[] = [
     description: 'Led the bidirectional transaction sync between front-end mandi weighbridge workflows and central enterprise general ledger systems.',
     company: 'ReshaMandi',
     period: '2022 – 2023',
-    role: 'Senior Product Manager · Systems Integration',
+    role: 'Product Manager · ReshaMandi',
     primaryCategory: 'Operations & Automation',
     tags: ['Enterprise', 'Integrations', 'B2B'],
     metrics: [
@@ -1033,8 +1033,8 @@ export const MORE_PRODUCT_WORK_ITEMS: MoreProductWorkItem[] = [
     storyAngle: 'Digitising B2B electronics manufacturing',
     description: 'Led concept-to-launch of a digital B2B electronics assembly ordering platform, eliminating manual back-and-forth for hardware engineers.',
     company: 'LionCircuits',
-    period: '2020 – 2021',
-    role: 'Senior Product Manager · 0→1 Platform',
+    period: 'Jul 2018 – May 2020',
+    role: 'Associate Product Manager · LionCircuits',
     primaryCategory: 'B2B & Platforms',
     tags: ['B2B', 'Manufacturing', '0→1'],
     metrics: [
@@ -1086,8 +1086,8 @@ export const MORE_PRODUCT_WORK_ITEMS: MoreProductWorkItem[] = [
     storyAngle: 'Automating complex manufacturing quotes',
     description: 'Engineered an automated Bill of Materials parsing engine validating component availability, pricing, and manufacturing lead times in seconds.',
     company: 'LionCircuits',
-    period: '2020 – 2021',
-    role: 'Senior Product Manager · Quoting Systems',
+    period: 'Jul 2018 – May 2020',
+    role: 'Associate Product Manager · LionCircuits',
     primaryCategory: 'Operations & Automation',
     tags: ['B2B', 'Automation', 'Manufacturing'],
     metrics: [
@@ -1135,8 +1135,8 @@ export const MORE_PRODUCT_WORK_ITEMS: MoreProductWorkItem[] = [
     storyAngle: 'Exploring AI at the edge',
     description: 'Built Raspberry Pi and edge computing prototypes utilizing OpenCV for automated optical inspection and workshop monitoring.',
     company: 'LionCircuits / Independent',
-    period: '2019 – 2020',
-    role: 'Product Engineer · R&D & Prototyping',
+    period: 'Jul 2018 – May 2020',
+    role: 'Associate Product Manager · LionCircuits',
     primaryCategory: 'AI & Data',
     tags: ['AI', 'IoT', 'Prototyping'],
     metrics: [

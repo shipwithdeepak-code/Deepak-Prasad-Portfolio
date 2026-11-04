@@ -26,7 +26,7 @@ export const RESHAMANDI_CASE_STUDY: CaseStudyDetail = {
   productPhilosophy:
     'Digitise the process, not blindly replace people. Understand the physical system well enough to know what should change, what should stay human, and where technology can remove friction without breaking trust.',
   category: 'B2B Marketplace & Operational Systems',
-  role: 'Senior Product Manager · Core Marketplace, Workflows & Payments',
+  role: 'Product Manager · ReshaMandi',
   timeline: 'Jun 2021 – Aug 2023',
   tags: ['B2B', 'Marketplace', 'Workflow', 'Operations', '0→1'],
   proofPoints: [
@@ -38,7 +38,7 @@ export const RESHAMANDI_CASE_STUDY: CaseStudyDetail = {
     { label: 'Farmers Served', value: '80,000+', detail: 'Engaged through ReshaFarms advisory' },
     { label: 'Monthly Disbursements', value: '₹20–25 Cr', detail: 'Marketplace volume scaled from about ₹10–15 Cr to ₹20–25 Cr a month' },
     { label: 'Auction Bidding', value: 'Repeat Participation', detail: 'Real-time bidding drove sustained repeat buyer participation' },
-    { label: 'Payout Settlement', value: 'Instant', detail: 'Disbursement: seconds standard, under 2 hrs large' },
+    { label: 'Payout Settlement', value: 'Seconds', detail: 'Standard farmer payouts, from up to 15 days' },
   ],
   quickContext: {
     problem:
@@ -329,7 +329,7 @@ export const AI_COACH_CASE_STUDY: CaseStudyDetail = {
   productPhilosophy:
     'Safety before engagement. Building AI is easy; building an experience people can actually trust while exercising is the real product problem.',
   category: 'Conversational AI & Consumer Tech',
-  role: 'Product Manager · AI & Consumer Engagement',
+  role: 'Senior Product Manager · Sportstech',
   timeline: 'Oct 2024 – Sep 2026',
   tags: ['AI', 'Conversational AI', '0→1', 'Consumer'],
   proofPoints: ['Peak ~4,500 DAU', 'after Nov 2025 launch', 'Gemini + ChatGPT Fallback'],
@@ -636,7 +636,7 @@ export const SUBSCRIPTION_CASE_STUDY: CaseStudyDetail = {
   productPhilosophy:
     'Perceived value precedes the paywall. Conversion without retention is just expensive churn.',
   category: 'Monetization, Growth & B2C SaaS',
-  role: 'First Product Manager, then Senior Product Manager',
+  role: 'Product Manager, then Senior Product Manager · Sportstech',
   timeline: 'Aug 2023 – Sep 2026',
   tags: ['Growth', 'Monetization', 'Subscription', 'B2C'],
   proofPoints: [
@@ -875,7 +875,7 @@ export const PERFORMANCE_SCORE_CASE_STUDY: CaseStudyDetail = {
   productPhilosophy:
     'Hardware should be an aspiration, not a gate. Data fragmentation must be resolved at the schema and architecture level before designing the interface.',
   category: 'Product Strategy & PRD · Connected Ecosystems',
-  role: 'Senior Product Manager · Connected Ecosystem Strategy',
+  role: 'Senior Product Manager · Sportstech',
   timeline: '2025 (Product Strategy & Development-Ready PRD)',
   tags: ['Product Strategy', 'Connected Products', 'Data', 'PRD', '0→1'],
   proofPoints: [
@@ -1109,7 +1109,7 @@ export const AI_LOCALIZATION_CASE_STUDY: CaseStudyDetail = {
   productPhilosophy:
     'Technology creates leverage when it reorganizes the operating model. AI models provide throughput; domain-specific human review preserves brand integrity.',
   category: 'AI Operations & European Expansion',
-  role: 'Senior Product Manager · AI Workflow & Content Pipeline',
+  role: 'Senior Product Manager · Sportstech',
   timeline: 'Oct 2024 – May 2026',
   tags: ['AI', 'Operations', 'Content', 'European Expansion'],
   proofPoints: ['300+ workout videos', '3 languages', '~3 weeks', '~10× faster'],
@@ -2040,7 +2040,7 @@ export const EXPERIENCE_ROLES: ExperienceRole[] = [
     ],
   },
   {
-    title: 'Senior Product Manager',
+    title: 'Product Manager',
     company: 'Sportstech',
     period: 'Aug 2023 – Sep 2024',
     type: 'Full-time · 0→1 Platform Build',
@@ -2061,7 +2061,7 @@ export const EXPERIENCE_ROLES: ExperienceRole[] = [
     ],
   },
   {
-    title: 'Senior Product Manager',
+    title: 'Product Manager',
     company: 'ReshaMandi',
     period: 'Jun 2021 – Aug 2023',
     type: 'Full-time · B2B Agri-Tech Marketplace',
